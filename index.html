@@ -291,6 +291,7 @@ input[type=checkbox]{accent-color:var(--brass)}
 .fslot.over{border-color:var(--gold);box-shadow:inset 0 0 14px #000a,0 0 14px #e8c982}
 .up-acts{display:grid;gap:8px;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr))}
 .rs2{display:inline-flex;align-items:center;gap:4px}
+.fullbar{background:var(--blood);color:#fff3d6;font-weight:700;text-align:center;padding:10px 14px;border-radius:3px;margin-bottom:14px;border:1px solid #5a1a0e;box-shadow:0 0 14px #a5351f66;letter-spacing:.02em}
 #ghost{position:fixed;z-index:40;pointer-events:none;transform:translate(-50%,-50%) scale(1.1);box-shadow:0 8px 20px #000a;cursor:grabbing}
 .matlist{display:grid;gap:6px}
 .matlist>div{display:flex;align-items:center;gap:8px}
@@ -341,7 +342,7 @@ const MATS=['fer','cuir','plante','cristal','essence','rune'];
 const MAT_N={fer:'Fer',cuir:'Cuir',plante:'Plante',cristal:'Cristal',essence:'Essence',rune:'Rune',gold:'Or'};
 const MAT_OBJ={fer:'Lingot de fer',cuir:'Peau tannée',plante:'Herbe enchantée',cristal:'Éclat de cristal',essence:'Fiole d’essence',rune:'Pierre runique'};
 const MAT_D={fer:'Sert à forger et à améliorer tout l’équipement.',cuir:'Indispensable à la forge et aux améliorations.',plante:'Herbe luminescente cueillie dans la Forêt Enchantée.',cristal:'Forges fines, relances de valeurs et améliorations avancées.',essence:'Forges de maître et remplacement d’affixes.',rune:'Rare. Forge légendaire, ascension et améliorations ultimes.'};
-const BAG=48,STACK=100;
+const BAG=48,STACK=500;
 const STAT_N={hp:'PV',atk:'Force',mag:'Intelligence',def:'Défense',res:'Résistance',spd:'Vitesse',crit:'Critique',critDmg:'Dégâts critiques',dodge:'Esquive',lifesteal:'Vol de vie',hpPct:'PV',dmgPct:'Dégâts',goldFind:'Or trouvé',dropRate:'Butin trouvé'};
 const PCT=new Set(['crit','critDmg','dodge','lifesteal','hpPct','dmgPct','goldFind','dropRate']);
 const fmtStat=(s,v)=>PCT.has(s)?`+${r1(v)}% ${STAT_N[s]}`:`+${Math.round(v)} ${STAT_N[s]}`;
@@ -445,9 +446,9 @@ const ZONES=[
 const PM=1/60; /* taux exprimés par minute */
 const SITES=[
   {id:'mine',n:'La Mine',unlock:0,out:{fer:10*PM,gold:10*PM},cache:.0008,desc:'Des galeries étroites où résonnent les pioches. On y extrait du fer et quelques pépites d’or.'},
-  {id:'bois',n:'Forêt Enchantée',unlock:120,out:{plante:6*PM,cuir:6*PM},cache:.0008,desc:'Des sous-bois baignés de lueurs, riches en herbes rares et en gibier.'},
-  {id:'ruines',n:'Ruines englouties',unlock:450,out:{essence:3*PM,rune:.5*PM},cache:.001,desc:'Des salles noyées où l’essence suinte entre les glyphes runiques.'},
-  {id:'marais',n:'Marais des brumes',unlock:1400,out:{essence:4*PM,cuir:3*PM,rune:.5*PM,gold:10*PM},cache:.0012,desc:'On y récolte l’essence qui suinte des racines.'},
+  {id:'bois',n:'Forêt Enchantée',unlock:120,out:{plante:6*PM,cuir:6*PM,cristal:10*PM},caps:{cristal:100},cache:.0008,desc:'Des sous-bois baignés de lueurs, riches en herbes rares et en gibier.'},
+  {id:'ruines',n:'Ruines englouties',unlock:450,out:{essence:3*PM,rune:.5*PM,cristal:10*PM},caps:{cristal:100},cache:.001,desc:'Des salles noyées où l’essence suinte entre les glyphes runiques.'},
+  {id:'marais',n:'Marais des brumes',unlock:1400,out:{cristal:10*PM,essence:4*PM,cuir:3*PM,rune:.5*PM,gold:10*PM},caps:{cristal:100},cache:.0012,desc:'On y récolte l’essence qui suinte des racines.'},
 ];
 const TIERS=[
   {n:'Forge ordinaire',cost:{fer:20,cuir:10},odds:[60,30,9,1,0]},
@@ -991,7 +992,7 @@ async function finish(r){
 /* ============ idle ============ */
 const f=n=>n*(1+.12*(n-1));
 const siteRate=(si,lvl,m)=>(si.out[m]||0)*f(lvl);
-const siteCap=()=>50;
+const siteCap=(si,lvl,m)=>(si&&si.caps&&si.caps[m])||50;
 const siteUpCost=lvl=>Math.round(60*Math.pow(1.7,lvl-1));
 function produce(dt){
   for(const si of SITES){
@@ -1002,7 +1003,7 @@ function produce(dt){
     }
   }
 }
-function collectSite(id){
+function collectSite(id,quiet){
   const si=SITES.find(s=>s.id===id),st=S.sites[id]; let got={};
   let full=false;
   for(const [m,v] of Object.entries(st.stock)){
@@ -1012,13 +1013,36 @@ function collectSite(id){
     if(n-left>0){got[m]=n-left; if(m!=='gold') markNew()} st.stock[m]=v-(n-left);
   }
   const items=[];
-  if(full) setTimeout(()=>toast('Inventaire plein : une partie de la récolte reste dans la zone de collecte.'),50);
+  if(full&&!quiet) setTimeout(()=>toast('Inventaire plein : une partie de la récolte reste dans la zone de collecte.'),50);
   return {got,items};
+}
+/* place restante pour un matériau dans l’inventaire */
+const matRoom=k=>S.bag.reduce((a,c)=>a+(!c?STACK:c.mat===k?STACK-c.n:0),0);
+/* une ressource attend en zone de collecte mais l’inventaire n’a plus de place */
+function collectBlocked(){
+  for(const si of SITES){const st=S.sites[si.id]; if(!st||st.lvl<1) continue;
+    for(const m of Object.keys(si.out)){ if(m==='gold') continue; const v=st.stock[m]||0;
+      if(Math.floor(v)>=1&&matRoom(m)===0&&(S.autoCollect||v>=siteCap(si,st.lvl,m)-1e-6)) return true }}
+  return false;
+}
+let lastBlocked=false;
+function autoCollect(){
+  const got={};
+  for(const si of SITES){const st=S.sites[si.id]; if(!st||st.lvl<1) continue;
+    const capped=Object.keys(si.out).some(m=>(st.stock[m]||0)>=siteCap(si,st.lvl,m)-1e-6&&(m==='gold'||matRoom(m)>0));
+    if(!capped) continue;
+    const r=collectSite(si.id,true); for(const [k,v] of Object.entries(r.got)) got[k]=(got[k]||0)+v;
+  }
+  if(Object.keys(got).length){ save(); renderHeader(); if(UI.tab==='bag'||UI.tab==='forge') render(); else renderTabs();
+    toast('Collecte automatique : '+Object.entries(got).map(([k,n])=>n+' '+MAT_N[k].toLowerCase()).join(', ')) }
 }
 function tick(){
   const now=Date.now(),dt=Math.max(0,(now-S.last)/1000); S.last=now;
   if(!S||!S.heroes.length) return;
-  produce(dt); if(UI.tab==='sites') liveSites();
+  produce(dt);
+  if(S.autoCollect) autoCollect();
+  const b=collectBlocked(); if(b!==lastBlocked){lastBlocked=b; if(UI.tab==='sites') render(); else renderTabs()}
+  if(UI.tab==='sites') liveSites();
 }
 
 /* ============ rendu ============ */
@@ -1030,7 +1054,7 @@ function renderHeader(){
 function renderTabs(){
   const el=$('#tabs'),g=$('#gear'); if(!S||!S.heroes.length){el.innerHTML='';g.hidden=true;return}
   g.hidden=false; g.classList.toggle('on',UI.tab==='opts');
-  el.innerHTML=TABS.map(([k,n])=>`<button role="tab" aria-selected="${UI.tab===k}" data-act="tab" data-t="${k}">${n}${k==='bag'&&S.bagDot&&UI.tab!=='bag'?'<span class="ndot" aria-label="Nouveaux objets"></span>':''}</button>`).join('');
+  el.innerHTML=TABS.map(([k,n])=>`<button role="tab" aria-selected="${UI.tab===k}" data-act="tab" data-t="${k}">${n}${k==='bag'&&S.bagDot&&UI.tab!=='bag'?'<span class="ndot" aria-label="Nouveaux objets"></span>':''}${k==='sites'&&collectBlocked()?'<span class="ndot" aria-label="Inventaire plein"></span>':''}</button>`).join('');
 }
 function render(){
   hideTip(); renderTabs(); renderHeader();
@@ -1419,8 +1443,13 @@ function viewSites(){
       <div class="rates" style="margin-bottom:10px">${rates}</div><div class="grid" style="gap:6px;margin-bottom:10px">${stk}</div>
       <div class="row"><button class="btn pri" data-act="siteCollect" data-id="${si.id}">Collecter</button><button class="btn" data-act="siteUp" data-id="${si.id}" ${S.gold>=up?'':'disabled'}>Améliorer</button>${costHTML({gold:up})}</div></section>`}).join('');
   setTimeout(liveSites,0);
-  return `<div class="row between" style="margin-bottom:6px"><h2>Collecte</h2><button class="btn" data-act="siteAll">Tout collecter</button></div>
-    <p class="hint" style="margin-bottom:14px">Les zones de collecte produisent sans vous, même hors ligne, jusqu’à 50 unités de chaque ressource. Pensez à collecter !</p><div class="grid g2">${cards}</div>`;
+  lastBlocked=collectBlocked();
+  return `${lastBlocked?'<div class="fullbar" role="alert">Inventaire plein, veuillez faire de la place.</div>':''}
+    <div class="row between" style="margin-bottom:6px"><h2>Collecte</h2><div class="row">
+      <button class="btn ${S.autoCollect?'pri':''}" data-act="autoCol" aria-pressed="${!!S.autoCollect}">Collecte auto : ${S.autoCollect?'activée':'désactivée'}</button>
+      <button class="btn" data-act="siteAll">Tout collecter</button></div></div>
+    ${S.autoCollect?'<p class="hint" style="margin-bottom:6px">Chaque zone est vidée automatiquement dès qu’une de ses ressources atteint sa limite.</p>':''}
+    <p class="hint" style="margin-bottom:14px">Les zones de collecte produisent sans vous, même hors ligne, jusqu’à 50 unités de chaque ressource (100 pour les cristaux). Pensez à collecter !</p><div class="grid g2">${cards}</div>`;
 }
 function liveSites(){
   for(const si of SITES){
@@ -1605,6 +1634,7 @@ const A={
     if(r.items.length)t.push(`${r.items.length} objet${r.items.length>1?'s':''}`);
     save();render();toast(t.length?'Récolté : '+t.join(', '):'Rien à collecter pour l’instant.');
   },
+  autoCol:()=>{S.autoCollect=!S.autoCollect; if(S.autoCollect) autoCollect(); save(); render()},
   siteAll:()=>{
     let n=0,it=0; for(const si of SITES) if(S.sites[si.id].lvl>0){const r=collectSite(si.id);n+=Object.values(r.got).reduce((a,b)=>a+b,0);it+=r.items.length}
     save();render();toast(n||it?`Récolté : ${n} ressources${it?`, ${it} objet${it>1?'s':''}`:''}.`:'Rien à collecter pour l’instant.');
