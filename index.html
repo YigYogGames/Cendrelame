@@ -9,7 +9,7 @@
   --paper:#e2d0a8; --bg2:#d8c496; --bg3:#cab283; --line:#a88d5b; --line2:#85693c;
   --fg:#2c2015; --mute:#68523a;
   --brass:#7b2a1a; --brass-d:#a35a3a; --verd:#4b7a38; --blood:#a5351f; --ok:#3d7a34;
-  --r0:#5b5b55; --r1:#174f94; --r2:#6e5000; --r3:#6a2f9e; --r4:#8f3303;
+  --r0:#5b5b55; --r1:#174f94; --r2:#6e5000; --r3:#6a2f9e; --r4:#8f3303; --r5:#0b7c86;
   --display:'IM Fell English SC',Georgia,serif;
   --body:'Alegreya Sans','Trebuchet MS',sans-serif;
 }
@@ -247,15 +247,15 @@ input[type=checkbox]{accent-color:var(--brass)}
 
 /* inventaire : grille 12 x 4 */
 .bagwrap{overflow-x:auto;padding:2px;scrollbar-width:thin}
-.bag{display:grid;grid-template-columns:repeat(12,minmax(42px,1fr));gap:4px;min-width:calc(12 * 42px + 11 * 4px + 14px);padding:7px;background:#3a2817;border:1px solid #1d1209;border-radius:3px;box-shadow:inset 0 0 22px #000b,0 1px 0 #f4e8c855;user-select:none;-webkit-user-select:none}
+.bag{position:relative;display:grid;grid-template-columns:repeat(17,minmax(30px,1fr));gap:3px;min-width:calc(17 * 30px + 16 * 3px + 16px);padding:7px;background:#3a2817;border:1px solid #1d1209;border-radius:3px;box-shadow:inset 0 0 22px #000b,0 1px 0 #f4e8c855;user-select:none;-webkit-user-select:none}
 .cell{position:relative;aspect-ratio:1/1;min-width:0;display:grid;place-items:center;padding:0;margin:0;background:linear-gradient(160deg,#4d3621,#35251a);border:1px solid #20150c;border-radius:2px;box-shadow:inset 0 0 8px #0009;color:#f3e4c0}
 .cell svg{width:66%;height:66%;pointer-events:none}
 .cell.full{cursor:grab;touch-action:none}
 .cell.mat{background:linear-gradient(160deg,#6a4c2f,#4a3320);border-color:#8a6a40}
 .cell.it{border:2px solid color-mix(in srgb,var(--rc) 75%,#fff 10%);background:linear-gradient(160deg,color-mix(in srgb,var(--rc) 45%,#4d3621),#35251a 85%);color:color-mix(in srgb,var(--rc) 30%,#fff0d0)}
 .cell.it svg{fill:currentColor;width:58%;height:58%}
-.cell .q{position:absolute;right:3px;bottom:0;font-size:.78rem;font-weight:700;font-variant-numeric:tabular-nums;color:#fff3d6;text-shadow:0 1px 2px #000,0 0 3px #000;pointer-events:none}
-.cell .u{position:absolute;left:3px;top:0;font-size:.7rem;font-weight:700;color:var(--gold);text-shadow:0 1px 2px #000;pointer-events:none}
+.cell .q{position:absolute;right:2px;bottom:0;font-size:.66rem;font-weight:700;font-variant-numeric:tabular-nums;color:#fff3d6;text-shadow:0 1px 2px #000,0 0 3px #000;pointer-events:none}
+.cell .u{position:absolute;left:2px;top:0;font-size:.64rem;font-weight:700;color:var(--gold);text-shadow:0 1px 2px #000;pointer-events:none}
 .cell.sel{outline:2px solid var(--gold);outline-offset:1px}
 .cell.over{box-shadow:inset 0 0 0 2px var(--gold),0 0 10px #e8c98288}
 .cell.drag{opacity:.3}
@@ -292,12 +292,24 @@ input[type=checkbox]{accent-color:var(--brass)}
 .up-acts{display:grid;gap:8px;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr))}
 .rs2{display:inline-flex;align-items:center;gap:4px}
 .fullbar{background:var(--blood);color:#fff3d6;font-weight:700;text-align:center;padding:10px 14px;border-radius:3px;margin-bottom:14px;border:1px solid #5a1a0e;box-shadow:0 0 14px #a5351f66;letter-spacing:.02em}
-#ghost{position:fixed;z-index:40;pointer-events:none;transform:translate(-50%,-50%) scale(1.1);box-shadow:0 8px 20px #000a;cursor:grabbing}
+.prism{display:flex;align-items:center;gap:6px;margin-top:10px;padding:6px 8px;border:1px dashed var(--r5);border-radius:3px;cursor:pointer;font-weight:500}
+.prism.on{background:#0b7c8618;border-style:solid;box-shadow:0 0 10px #0b7c8655;color:var(--r5);font-weight:700}
+.prism input{accent-color:var(--r5)}
+#ghost{position:fixed;z-index:40;pointer-events:none;transform:none;opacity:.92;box-shadow:0 8px 20px #000a;cursor:grabbing}
 .matlist{display:grid;gap:6px}
 .matlist>div{display:flex;align-items:center;gap:8px}
 .matlist b{margin-left:auto;font-variant-numeric:tabular-nums}
 
 #toasts{position:fixed;left:0;right:0;bottom:calc(14px + env(safe-area-inset-bottom,0px));display:flex;flex-direction:column;align-items:center;gap:6px;pointer-events:none;z-index:20;padding-inline:16px}
+.gi{aspect-ratio:auto;z-index:1}
+.gi.it svg{width:74%;height:86%}
+.gi.mat svg{width:72%;height:72%}
+#foot{z-index:3;pointer-events:none;border-radius:2px}
+#foot.ok{background:#4b7a3866;box-shadow:inset 0 0 0 2px #8fd16a}
+#foot.bad{background:#a5351f66;box-shadow:inset 0 0 0 2px #e0563a}
+.gb{color:var(--ok);font-weight:700;font-size:.9em}
+.toast.lvl{background:linear-gradient(160deg,#5a3d17,#3d2a1b);border:2px solid var(--gold);color:#fff3d6;font-size:1.08rem;padding:12px 22px;text-align:center;box-shadow:0 0 24px #e8c98266,0 6px 24px #000a}
+.toast.lvl b{display:block;font-family:var(--display);font-weight:400;font-size:1.35rem;color:var(--gold);letter-spacing:.05em}
 .toast{background:#3d2a1b;color:#f3e4c0;border:1px solid var(--gold);border-radius:3px;padding:8px 14px;box-shadow:0 6px 24px #000a;animation:tin .25s;max-width:560px}
 @keyframes tin{from{transform:translateY(8px);opacity:0}}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
@@ -338,18 +350,20 @@ const SLOTS=['weapon','helm','armor','boots','ring','ring2','amulet'];
 const ITEM_SLOTS=['weapon','helm','armor','boots','ring','amulet'];
 const slotType=k=>k==='ring2'?'ring':k;
 const SLOT_N={weapon:'Arme',helm:'Casque',armor:'Armure',boots:'Bottes',ring:'Anneau',amulet:'Amulette',ring2:'Anneau (2)'};
-const MATS=['fer','cuir','plante','cristal','essence','rune'];
-const MAT_N={fer:'Fer',cuir:'Cuir',plante:'Plante',cristal:'Cristal',essence:'Essence',rune:'Rune',gold:'Or'};
-const MAT_OBJ={fer:'Lingot de fer',cuir:'Peau tannée',plante:'Herbe enchantée',cristal:'Éclat de cristal',essence:'Fiole d’essence',rune:'Pierre runique'};
-const MAT_D={fer:'Sert à forger et à améliorer tout l’équipement.',cuir:'Indispensable à la forge et aux améliorations.',plante:'Herbe luminescente cueillie dans la Forêt Enchantée.',cristal:'Forges fines, relances de valeurs et améliorations avancées.',essence:'Forges de maître et remplacement d’affixes.',rune:'Rare. Forge légendaire, ascension et améliorations ultimes.'};
-const BAG=48,STACK=500;
+const MATS=['fer','cuir','plante','cristal','essence','rune','prisme'];
+const MAT_N={fer:'Fer',cuir:'Cuir',plante:'Plante',cristal:'Cristal',essence:'Essence',rune:'Rune',prisme:'Prisme divin',gold:'Or'};
+const MAT_OBJ={fer:'Lingot de fer',cuir:'Peau tannée',plante:'Herbe enchantée',cristal:'Éclat de cristal',essence:'Fiole d’essence',rune:'Pierre runique',prisme:'Prisme divin'};
+const MAT_D={prisme:'Relique céleste, lâchée rarement par Le Dévoreur (10 %). À la forge légendaire, elle crée un objet de niveau 60 et de rareté Divin.',fer:'Sert à forger et à améliorer tout l’équipement.',cuir:'Indispensable à la forge et aux améliorations.',plante:'Herbe luminescente cueillie dans la Forêt Enchantée.',cristal:'Forges fines, relances de valeurs et améliorations avancées.',essence:'Forges de maître et remplacement d’affixes.',rune:'Rare. Forge légendaire, ascension et améliorations ultimes.'};
+const GW=17,GH=6,BAG=GW*GH,STACK=500;
+/* taille d'un objet dans la grille (largeur x hauteur) */
+const SIZE=o=>o.mat?[1,1]:({weapon:[1,5],armor:[2,3],helm:[2,2],boots:[2,2],ring:[1,1],amulet:[1,1]})[o.slot]||[1,1];
 const STAT_N={hp:'PV',atk:'Force',mag:'Intelligence',def:'Défense',res:'Résistance',spd:'Vitesse',crit:'Critique',critDmg:'Dégâts critiques',dodge:'Esquive',lifesteal:'Vol de vie',hpPct:'PV',dmgPct:'Dégâts',goldFind:'Or trouvé',dropRate:'Butin trouvé'};
 const PCT=new Set(['crit','critDmg','dodge','lifesteal','hpPct','dmgPct','goldFind','dropRate']);
 const fmtStat=(s,v)=>PCT.has(s)?`+${r1(v)}% ${STAT_N[s]}`:`+${Math.round(v)} ${STAT_N[s]}`;
-const MAXL=60;
+const MAXL=50;
 
 const RAR=[
-  {n:'Commun',aff:1,m:1},{n:'Magique',aff:2,m:1.05},{n:'Rare',aff:3,m:1.12},{n:'Épique',aff:4,m:1.22},{n:'Légendaire',aff:5,m:1.35}
+  {n:'Commun',aff:1,m:1},{n:'Magique',aff:2,m:1.05},{n:'Rare',aff:3,m:1.12},{n:'Épique',aff:4,m:1.22},{n:'Légendaire',aff:5,m:1.35},{n:'Divin',aff:6,m:1.5}
 ];
 const BASES=[
   {n:'Épée',slot:'weapon',cls:'guerrier',imp:[['atk',6,1.8]]},
@@ -451,10 +465,10 @@ const SITES=[
   {id:'marais',n:'Marais des brumes',unlock:1400,out:{cristal:10*PM,essence:4*PM,cuir:3*PM,rune:.5*PM,gold:10*PM},caps:{cristal:100},cache:.0012,desc:'On y récolte l’essence qui suinte des racines.'},
 ];
 const TIERS=[
-  {n:'Forge ordinaire',cost:{fer:20,cuir:10},odds:[60,30,9,1,0]},
-  {n:'Forge fine',cost:{fer:40,cuir:20,cristal:10},odds:[25,45,25,5,0]},
-  {n:'Forge de maître',cost:{fer:60,cuir:30,cristal:25,essence:10},odds:[5,25,45,22,3]},
-  {n:'Forge légendaire',cost:{fer:80,cuir:40,cristal:40,essence:25,rune:10},odds:[0,5,30,50,15]},
+  {n:'Forge ordinaire',lv:[1,15],cost:{fer:20,cuir:10},odds:[60,30,9,1,0]},
+  {n:'Forge fine',lv:[10,30],cost:{fer:40,cuir:20,cristal:10},odds:[25,45,25,5,0]},
+  {n:'Forge de maître',lv:[25,45],cost:{fer:60,cuir:30,cristal:25,essence:10},odds:[5,25,45,22,3]},
+  {n:'Forge légendaire',lv:[40,53],cost:{fer:80,cuir:40,cristal:40,essence:25,rune:10},odds:[0,5,30,50,15]},
 ];
 const HUES=[8,38,140,190,260,320];
 const ICONS={
@@ -480,6 +494,7 @@ const MI={
   fer:'<path d="M3 13.5l3-5.5h12l3 5.5z" fill="#c9ccd2" stroke="#3f434a" stroke-width="1.2" stroke-linejoin="round"/><path d="M3 13.5h18V18a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1z" fill="#7d818a" stroke="#3f434a" stroke-width="1.2" stroke-linejoin="round"/><path d="M7.5 10h6l-.8 1.8H6.5z" fill="#f1f2f4"/><path d="M6 16h12" stroke="#5b5f67" stroke-width="1"/>',
   cuir:'<path d="M7 3.5l3 2h4l3-2 3.5 4-2 3 2 4-3 1-1 5H8l-1-5-3-1 2-4-2-3z" fill="#a8693a" stroke="#4a2810" stroke-width="1.2" stroke-linejoin="round"/><path d="M12 7v11" stroke="#4a2810" stroke-width="1" stroke-dasharray="1.6 1.6"/><path d="M8.5 9.5l1.5 3-1.5 2" fill="none" stroke="#d29a63" stroke-width="1"/>',
   plante:'<path d="M12 21V11" stroke="#3d5a1e" stroke-width="1.6" fill="none" stroke-linecap="round"/><path d="M12 14C7 14 4 11 4 6c5 0 8 3 8 8z" fill="#6fae3a" stroke="#2f4f14" stroke-width="1.2" stroke-linejoin="round"/><path d="M12 12c0-5 3-8 8-8 0 5-3 8-8 8z" fill="#8fcf52" stroke="#2f4f14" stroke-width="1.2" stroke-linejoin="round"/><circle cx="12" cy="4.5" r="1.7" fill="#e6d35c" stroke="#7a6a14" stroke-width=".8"/>',
+  prisme:'<path d="M12 2.5L21 19H3z" fill="#eef7ff" stroke="#3b4a7a" stroke-width="1.2" stroke-linejoin="round"/><path d="M12 2.5L15.5 19H8.5z" fill="#cfe8ff"/><path d="M1.5 11.5l10.5 1" stroke="#fff3b0" stroke-width="1.5" stroke-linecap="round"/><path d="M14 12.2l8.5 1.8" stroke="#e8463a" stroke-width="1.4" stroke-linecap="round"/><path d="M14.4 13.6l8 3" stroke="#f2b632" stroke-width="1.4" stroke-linecap="round"/><path d="M14.8 15l7.2 4" stroke="#4aa3e8" stroke-width="1.4" stroke-linecap="round"/>',
   cristal:'<path d="M12 2l6 6.5L12 22 6 8.5z" fill="#5db4e8" stroke="#1b5a86" stroke-width="1.2" stroke-linejoin="round"/><path d="M12 2l-2.4 6.5L12 22l2.4-13.5z" fill="#a9defa"/><path d="M6 8.5h12" stroke="#1b5a86" stroke-width="1"/>',
   essence:'<rect x="9.4" y="2" width="5.2" height="2.6" rx=".6" fill="#8a5a2b" stroke="#4a2c10" stroke-width="1"/><path d="M10 4.6h4v4.2l4.2 7.4A3 3 0 0 1 15.6 20.6H8.4a3 3 0 0 1-2.6-4.4L10 8.8z" fill="#e6d8f2" stroke="#4d2a68" stroke-width="1.2" stroke-linejoin="round"/><path d="M7.4 15h9.2l1.2 2.2a2 2 0 0 1-1.8 2.9H8a2 2 0 0 1-1.8-2.9z" fill="#a15be0"/>',
   rune:'<path d="M7 3h10l3 4-1 12-3 2H8l-3-2-1-12z" fill="#857a6a" stroke="#352e25" stroke-width="1.2" stroke-linejoin="round"/><path d="M12 7v10M9 10l3-3 3 3M9.2 15.2l5.6-3" stroke="#f6c64f" stroke-width="1.7" fill="none" stroke-linecap="round" stroke-linejoin="round"/>',
@@ -494,19 +509,49 @@ const UI={tab:'combat',zone:0,stage:1,invHero:null,invSlot:'all',hero:null,recru
 const C={phase:'idle',units:[],round:0,turn:null,pending:null,waiting:null,logs:[],result:null,abort:false,id:0,zone:0,stage:1};
 
 /* ---- inventaire (48 cases) : null | {mat,n} | objet ---- */
-const bagNew=()=>Array(BAG).fill(null);
+const bagNew=()=>[];
+/* S.bag = liste d'entrées {x,y,o} ; o = {mat,n} ou objet d'équipement */
+function occGrid(bag,skip){
+  const g=Array.from({length:GH},()=>Array(GW).fill(-1));
+  bag.forEach((e,i)=>{ if(skip&&skip.includes(e)) return; const [w,h]=SIZE(e.o);
+    for(let y=e.y;y<e.y+h&&y<GH;y++) for(let x=e.x;x<e.x+w&&x<GW;x++) g[y][x]=i });
+  return g;
+}
+function fitsAt(bag,x,y,w,h,skip){
+  if(x<0||y<0||x+w>GW||y+h>GH) return false;
+  const g=occGrid(bag,skip);
+  for(let yy=y;yy<y+h;yy++) for(let xx=x;xx<x+w;xx++) if(g[yy][xx]>=0) return false;
+  return true;
+}
+function findSpot(bag,w,h){
+  const g=occGrid(bag);
+  for(let x=0;x<=GW-w;x++) for(let y=0;y<=GH-h;y++){
+    let ok=true; for(let yy=y;yy<y+h&&ok;yy++) for(let xx=x;xx<x+w;xx++) if(g[yy][xx]>=0){ok=false;break}
+    if(ok) return [x,y];
+  }
+  return null;
+}
 function bagAddMat(bag,k,n){
   n=Math.max(0,Math.floor(n||0));
-  for(const c of bag){ if(n<=0) break; if(c&&c.mat===k&&c.n<STACK){const m=Math.min(STACK-c.n,n);c.n+=m;n-=m} }
-  for(let i=0;i<bag.length&&n>0;i++) if(!bag[i]){const m=Math.min(STACK,n);bag[i]={mat:k,n:m};n-=m}
+  for(const e of bag){ if(n<=0) break; const c=e.o; if(c.mat===k&&c.n<STACK){const m=Math.min(STACK-c.n,n);c.n+=m;n-=m} }
+  while(n>0){ const sp=findSpot(bag,1,1); if(!sp) break; const m=Math.min(STACK,n); bag.push({x:sp[0],y:sp[1],o:{mat:k,n:m}}); n-=m }
   return n;
 }
-function bagAddItem(bag,it){const i=bag.indexOf(null); if(i<0) return false; bag[i]=it; return true}
+function bagAddItem(bag,it){const sp=findSpot(bag,...SIZE(it)); if(!sp) return false; bag.push({x:sp[0],y:sp[1],o:it}); return true}
 const sellValue=it=>Math.round((5+it.ilvl*2)*(it.rarity+1)*(1+(it.up||0)*.25));
 let MIG_MSG='';
 function migrate(d){
   if(Array.isArray(d.bag)){
-    d.bag=Array.from({length:BAG},(_,i)=>d.bag[i]||null);
+    const isNew=d.bag.length&&d.bag.every(e=>e&&e.o&&typeof e.x==='number');
+    if(!isNew){
+      const objs=d.bag.map(e=>e&&e.o?e.o:e).filter(Boolean),nb=[]; let gold=0,sold=0;
+      const items=objs.filter(o=>!o.mat).sort((a,b)=>{const A=SIZE(a),B=SIZE(b);return B[0]*B[1]-A[0]*A[1]||b.rarity-a.rarity});
+      for(const it of items) if(!bagAddItem(nb,it)){gold+=sellValue(it);sold++}
+      const tot={}; for(const o of objs) if(o.mat) tot[o.mat]=(tot[o.mat]||0)+o.n;
+      for(const [k,n] of Object.entries(tot)) bagAddMat(nb,k,n);
+      d.bag=nb; d.gold=(d.gold||0)+gold;
+      if(objs.length) MIG_MSG='Nouvel inventaire : les objets occupent maintenant plusieurs cases.'+(sold?` ${sold} objet${sold>1?'s':''} sans place vendu${sold>1?'s':''} pour ${fmt(gold)} or.`:'');
+    }else d.bag=d.bag.filter(e=>e.x>=0&&e.y>=0&&e.x<GW&&e.y<GH);
   }else{
     const bag=bagNew(),mats=d.mats||{}; let lost=0,gold=0;
     for(const k of MATS) lost+=bagAddMat(bag,k,mats[k]||0);
@@ -518,7 +563,7 @@ function migrate(d){
   delete d.mats; delete d.inv;
   if((d.v||1)<3) v3(d);
   if((d.v||1)<4) v4(d);
-  d.v=4; return d;
+  d.v=5; return d;
 }
 /* v4 : plus de butin d’équipement, l’affixe « Butin trouvé » est remplacé */
 function v4(d){
@@ -526,7 +571,7 @@ function v4(d){
     it.aff=it.aff.map(a=>{ if(a.s!=='dropRate') return a; const n=pick(affPool(it.cls).filter(x=>!it.aff.some(y=>y.s===x.s))); return n?{s:n.s,v:rollAff(n,it.ilvl,m)}:null }).filter(Boolean);
     if(/ de Fortune$/.test(it.name)) it.name=it.name.replace(/ de Fortune$/,'');
   };
-  (d.bag||[]).forEach(conv); for(const h of d.heroes||[]) Object.values(h.equip||{}).forEach(conv);
+  (d.bag||[]).forEach(e=>conv(e&&e.o?e.o:e)); for(const h of d.heroes||[]) Object.values(h.equip||{}).forEach(conv);
   for(const k of Object.keys(d.sites||{})) if(d.sites[k]) delete d.sites[k].cache;
 }
 /* passage au système de classes : Guerrier / Sorcier, objets réservés, Force / Intelligence */
@@ -546,7 +591,7 @@ function v3(d){
     }
     it.aff=aff; return it;
   };
-  (d.bag||[]).forEach(conv);
+  (d.bag||[]).forEach(e=>conv(e&&e.o?e.o:e));
   let changed=false;
   for(const h of d.heroes||[]){
     const nc=h.cls==='voleur'?'guerrier':h.cls==='clerc'?'mage':h.cls;
@@ -563,7 +608,7 @@ function v3(d){
 }
 function newGame(){
   const bag=bagNew(); bagAddMat(bag,'fer',60); bagAddMat(bag,'cuir',30);
-  return {v:4,uid:0,heroes:[],party:[],bag,gold:80,
+  return {v:5,uid:0,heroes:[],party:[],bag,gold:80,
     sites:Object.fromEntries(SITES.map(s=>[s.id,{lvl:s.unlock===0?1:0,stock:{},cache:0}])),
     prog:{zone:0,stage:1},auto:false,farm:false,speed:1,last:Date.now(),kills:0};
 }
@@ -607,13 +652,16 @@ function itemStats(it){
   for(const a of it.aff) r[a.s]=(r[a.s]||0)+a.v*k;
   return r;
 }
-const invItems=()=>S.bag.filter(c=>c&&!c.mat);
-const freeCells=()=>S.bag.reduce((a,c)=>a+(c?0:1),0);
-const cellOf=id=>S.bag.findIndex(c=>c&&!c.mat&&c.id===id);
-const matCount=k=>S.bag.reduce((a,c)=>a+(c&&c.mat===k?c.n:0),0);
+const invItems=()=>S.bag.filter(e=>!e.o.mat).map(e=>e.o);
+const freeCells=()=>BAG-S.bag.reduce((a,e)=>{const [w,h]=SIZE(e.o);return a+w*h},0);
+const cellOf=id=>S.bag.findIndex(e=>!e.o.mat&&e.o.id===id);
+const entryOf=o=>S.bag.findIndex(e=>e.o===o);
+const canFit=(w,h)=>!!findSpot(S.bag,w,h);
+const matCount=k=>S.bag.reduce((a,e)=>a+(e.o.mat===k?e.o.n:0),0);
 function removeMat(k,n){
-  const idx=S.bag.map((c,i)=>c&&c.mat===k?i:-1).filter(i=>i>=0).sort((a,b)=>S.bag[a].n-S.bag[b].n);
-  for(const i of idx){ if(n<=0) break; const c=S.bag[i],m=Math.min(c.n,n); c.n-=m; n-=m; if(!c.n) S.bag[i]=null }
+  const es=S.bag.filter(e=>e.o.mat===k).sort((a,b)=>a.o.n-b.o.n);
+  for(const e of es){ if(n<=0) break; const m=Math.min(e.o.n,n); e.o.n-=m; n-=m }
+  S.bag=S.bag.filter(e=>!(e.o.mat&&e.o.n<=0));
 }
 const LOST={}; let lostT=0;
 function noteLost(k,n){
@@ -636,7 +684,7 @@ function itemCard(it,foot='',delta=null){
 }
 /* coût de création : réel pour les objets forgés/travaillés, estimé sinon (forge équivalente à la rareté + améliorations) */
 function estCost(it){
-  const t=TIERS[[0,0,1,2,3][it.rarity]],c={};
+  const t=TIERS[[0,0,1,2,3,3][it.rarity]],c={};
   for(const [k,v] of Object.entries(t.cost)) c[k]=Math.round(v*(1+it.ilvl/15));
   for(let u=0;u<(it.up||0);u++) for(const [k,v] of Object.entries(upCost({ilvl:it.ilvl,up:u}))) if(v) c[k]=(c[k]||0)+v;
   return c;
@@ -967,11 +1015,12 @@ async function finish(r){
     gold=Math.round(gold*(1+goldF/100)); xp=Math.round(xp);
     S.gold+=gold; S.kills+=enemies.length;
     const ups=[];
-    for(const h of S.heroes){const inP=S.party.includes(h.id);const n=gainXp(h,inP?xp:Math.round(xp*.4));if(n)ups.push(`Niveau ${h.lvl} atteint !`)}
+    for(const h of S.heroes){const inP=S.party.includes(h.id);const n=gainXp(h,inP?xp:Math.round(xp*.4));if(n){ups.push(`Niveau ${h.lvl} atteint !`);S.lvlDot=true;lvlToast(h,n)}}
     const mats={},zm=ZONES[C.zone].mats;
     const amt=()=>ri(1,3)+Math.floor(L/8);
     mats[zm[0]]=amt()*(boss?3:1); mats[zm[1]]=Math.max(1,Math.round(amt()*(zm[1]==='rune'?.3:1)))*(boss?3:1);
     if(boss&&Math.random()<.5) mats.rune=(mats.rune||0)+1;
+    if(boss&&C.zone===ZONES.length-1&&Math.random()<.1){mats.prisme=1;setTimeout(()=>toast('✦ Le Dévoreur a laissé un Prisme divin !'),300)}
     gain(mats);
     const items=[]; /* l’équipement ne s’obtient qu’à la Forge */
     if(C.zone===S.prog.zone&&C.stage===S.prog.stage){
@@ -1017,7 +1066,7 @@ function collectSite(id,quiet){
   return {got,items};
 }
 /* place restante pour un matériau dans l’inventaire */
-const matRoom=k=>S.bag.reduce((a,c)=>a+(!c?STACK:c.mat===k?STACK-c.n:0),0);
+const matRoom=k=>freeCells()*STACK+S.bag.reduce((a,e)=>a+(e.o.mat===k?STACK-e.o.n:0),0);
 /* une ressource attend en zone de collecte mais l’inventaire n’a plus de place */
 function collectBlocked(){
   for(const si of SITES){const st=S.sites[si.id]; if(!st||st.lvl<1) continue;
@@ -1054,7 +1103,7 @@ function renderHeader(){
 function renderTabs(){
   const el=$('#tabs'),g=$('#gear'); if(!S||!S.heroes.length){el.innerHTML='';g.hidden=true;return}
   g.hidden=false; g.classList.toggle('on',UI.tab==='opts');
-  el.innerHTML=TABS.map(([k,n])=>`<button role="tab" aria-selected="${UI.tab===k}" data-act="tab" data-t="${k}">${n}${k==='bag'&&S.bagDot&&UI.tab!=='bag'?'<span class="ndot" aria-label="Nouveaux objets"></span>':''}${k==='sites'&&collectBlocked()?'<span class="ndot" aria-label="Inventaire plein"></span>':''}</button>`).join('');
+  el.innerHTML=TABS.map(([k,n])=>`<button role="tab" aria-selected="${UI.tab===k}" data-act="tab" data-t="${k}">${n}${k==='bag'&&S.bagDot&&UI.tab!=='bag'?'<span class="ndot" aria-label="Nouveaux objets"></span>':''}${k==='heroes'&&S.lvlDot&&UI.tab!=='heroes'?'<span class="ndot" aria-label="Niveau gagné"></span>':''}${k==='sites'&&collectBlocked()?'<span class="ndot" aria-label="Inventaire plein"></span>':''}</button>`).join('');
 }
 function render(){
   hideTip(); renderTabs(); renderHeader();
@@ -1062,6 +1111,10 @@ function render(){
   if(!S||!S.heroes.length){v.innerHTML=viewCreator();return}
   v.innerHTML=({combat:viewCombat,heroes:viewHeroes,bag:viewBag,forge:viewForge,sites:viewSites,opts:viewOpts})[UI.tab]();
   if(UI.tab==='combat'&&C.phase!=='idle'){C.units.forEach(refresh);renderActbar();const l=$('#log');if(l){l.scrollTop=l.scrollHeight}}
+}
+function lvlToast(h,n){
+  const e=document.createElement('div');e.className='toast lvl';e.innerHTML=`<b>★ Niveau ${h.lvl} ★</b>${esc(h.name)} gagne ${n>1?n+' niveaux':'un niveau'} : +${n} point${n>1?'s':''} de compétence.`;
+  $('#toasts').append(e);setTimeout(()=>e.remove(),5000);
 }
 function toast(m){
   const e=document.createElement('div');e.className='toast';e.textContent=m;$('#toasts').append(e);setTimeout(()=>e.remove(),3600);
@@ -1230,29 +1283,37 @@ const itemBtns=i=>`<button class="btn sm pri" data-act="equip" data-id="${i.id}"
 /* --- inventaire en grille --- */
 const cellName=c=>c.mat?MAT_OBJ[c.mat]:c.name;
 const matSvg=k=>`<svg viewBox="0 0 24 24" aria-hidden="true">${MI[k]||''}</svg>`;
-function cellHTML(c,i){
-  if(!c) return `<div class="cell" data-i="${i}"></div>`;
-  const sel=UI.multi?(UI.pick.has(i)?' pick':''):UI.tab==='forge'?(c.id&&c.id===UI.fItem?' sel':''):(UI.bagSel===i?' sel':'');
-  if(c.mat) return `<button class="cell full mat${sel}" data-act="bagCell" data-i="${i}" data-tip="bag:${i}" aria-label="${MAT_OBJ[c.mat]}, ${c.n}">${matSvg(c.mat)}<span class="q">${c.n}</span></button>`;
-  return `<button class="cell full it${sel}" style="--rc:var(--r${c.rarity})" data-act="bagCell" data-i="${i}" data-tip="bag:${i}" aria-label="${esc(c.name)}${c.up?' +'+c.up:''}, ${RAR[c.rarity].n}">${icon(itemIcon(c))}${c.up?`<span class="u">+${c.up}</span>`:''}</button>`;
+const TALL={sword:'<path d="M10 3l3 4v58l-3 4-3-4V7z"/><path d="M2 67h16v4H2z"/><path d="M8.5 71h3v17h-3z"/><circle cx="10" cy="91.5" r="3.2"/>',
+  staff:'<circle cx="10" cy="11" r="7"/><path d="M8.6 17h2.8v79h-2.8z"/><path d="M4 22q6 5 12 0v3q-6 5-12 0z"/>'};
+const bigIcon=c=>c.slot==='weapon'?`<svg viewBox="0 0 20 100" aria-hidden="true">${TALL[itemIcon(c)==='staff'?'staff':'sword']}</svg>`:icon(itemIcon(c));
+function gridHTML(){
+  let bg=''; for(let y=0;y<GH;y++) for(let x=0;x<GW;x++) bg+=`<div class="cell" style="grid-column:${x+1};grid-row:${y+1}"></div>`;
+  const items=S.bag.map((e,i)=>{
+    const c=e.o,[w,h]=SIZE(c),pos=`grid-column:${e.x+1}/span ${w};grid-row:${e.y+1}/span ${h}`;
+    const sel=UI.multi?(UI.pick.has(c)?' pick':''):UI.tab==='forge'?(c.id&&c.id===UI.fItem?' sel':''):(UI.bagSel===c?' sel':'');
+    if(c.mat) return `<button class="cell full gi mat${sel}" style="${pos}" data-act="bagCell" data-i="${i}" data-tip="bag:${i}" aria-label="${MAT_OBJ[c.mat]}, ${c.n}">${matSvg(c.mat)}<span class="q">${c.n}</span></button>`;
+    return `<button class="cell full gi it${sel}" style="${pos};--rc:var(--r${c.rarity})" data-act="bagCell" data-i="${i}" data-tip="bag:${i}" aria-label="${esc(c.name)}${c.up?' +'+c.up:''}, ${RAR[c.rarity].n}">${bigIcon(c)}${c.up?`<span class="u">+${c.up}</span>`:''}</button>`;
+  }).join('');
+  return `<div class="bagwrap"><div class="bag ${UI.multi?'multi':''}" id="bag">${bg}${items}</div></div>`;
 }
 function matCard(c,foot=''){
   return `<article class="it" style="--rc:var(--line2)"><header><b>${MAT_OBJ[c.mat]}</b><small>Matériau · Pile ${c.n} / ${STACK}</small></header><ul><li>Total possédé : <b class="num">${fmt(matCount(c.mat))}</b></li><li class="imp">${MAT_D[c.mat]}</li></ul>${foot?`<div class="foot">${foot}</div>`:''}</article>`;
 }
 function viewBag(){
-  const h=S.heroes[0],st=heroStats(h),used=BAG-freeCells(),so=UI.bagSort;
+  const h=S.heroes[0],st=heroStats(h),bs=heroStats(Object.assign({},h,{equip:{}})),used=BAG-freeCells(),so=UI.bagSort;
   const arrow=k=>so.k!==k?'':k==='name'?(so.dir>0?' A→Z':' Z→A'):(so.dir>0?' ↓':' ↑');
-  const c=UI.bagSel!=null?S.bag[UI.bagSel]:null,k=UI.invSel,eq=k?h.equip[k]:null;
+  const si=UI.bagSel?entryOf(UI.bagSel):-1,c=si>=0?UI.bagSel:null,k=UI.invSel,eq=k?h.equip[k]:null;
   let detail='<p class="hint">Cliquez sur une case ou un emplacement pour voir son contenu.</p>';
-  if(c&&c.mat) detail=matCard(c,`<button class="btn sm" data-act="bagSplit" data-i="${UI.bagSel}" ${c.n<2||!freeCells()?'disabled':''}>Diviser la pile</button>`+(UI.confirm==='mat'+UI.bagSel?`<button class="btn sm warn" data-act="matDel" data-i="${UI.bagSel}">Confirmer (${c.n} perdus)</button><button class="btn sm" data-act="noConfirm">Annuler</button>`:`<button class="btn sm danger" data-act="matDel" data-i="${UI.bagSel}">Détruire la pile</button>`));
+  if(c&&c.mat) detail=matCard(c,`<button class="btn sm" data-act="bagSplit" data-i="${si}" ${c.n<2||!freeCells()?'disabled':''}>Diviser la pile</button>`+(UI.confirm==='mat'+si?`<button class="btn sm warn" data-act="matDel" data-i="${si}">Confirmer (${c.n} perdus)</button><button class="btn sm" data-act="noConfirm">Annuler</button>`:`<button class="btn sm danger" data-act="matDel" data-i="${si}">Détruire la pile</button>`));
   else if(c) detail=itemCard(c,itemBtns(c),swapDelta(h,c));
   else if(k) detail=`<p style="margin:0 0 6px"><b>${SLOT_N[k]}</b></p>`+(eq?itemCard(eq,`<button class="btn sm" data-act="unequip" data-slot="${k}">Retirer</button><button class="btn sm" data-act="toForge" data-id="${eq.id}">Forge</button>`):'<p class="hint">Emplacement vide. Glissez-y un objet de l’inventaire.</p>');
-  const mini=[['PV',st.hp],['Force',st.atk],['Intelligence',st.mag],['Défense',st.def],['Résistance',st.res],['Vitesse',st.spd]].map(([n,v])=>`<dt>${n}</dt><dd>${Math.round(v)}</dd>`).join('')+`<dt>Critique</dt><dd>${r1(st.crit)}%</dd><dt>Puissance</dt><dd><b>${Math.round(heroPower(h))}</b></dd>`;
+  const gb=(t,b,pct)=>{const d=pct?r1(t-b):Math.round(t)-Math.round(b);return (pct?r1(b)+'%':Math.round(b))+(d>0?` <span class="gb">(+${d}${pct?'%':''})</span>`:'')};
+  const mini=[['PV','hp'],['Force','atk'],['Intelligence','mag'],['Défense','def'],['Résistance','res'],['Vitesse','spd']].map(([n,k])=>`<dt>${n}</dt><dd>${gb(st[k],bs[k])}</dd>`).join('')+`<dt>Critique</dt><dd>${gb(st.crit,bs.crit,1)}</dd><dt>Puissance</dt><dd><b>${Math.round(heroPower(h))}</b></dd>`;
   const mats=MATS.map(m=>`<div>${matIcon(m)}<span>${MAT_OBJ[m]}</span><b>${fmt(matCount(m))}</b></div>`).join('');
   return `<div class="inv-layout" style="margin-bottom:16px">
       <section class="panel"><h2>${esc(h.name)}</h2><small>${CLASSES[h.cls].n} · Niv ${h.lvl}</small>${dollHTML(h)}</section>
       <div class="grid" style="gap:14px">
-        <section class="panel"><h3 style="margin-bottom:8px">Caractéristiques</h3><dl class="stats two">${mini}</dl></section>
+        <section class="panel"><h3 style="margin-bottom:8px">Caractéristiques</h3><dl class="stats two">${mini}</dl><p class="hint" style="margin-top:10px">Chaque valeur est celle de votre héros sans équipement. Le nombre <span class="gb">(+X)</span> en vert indique le bonus apporté par l’équipement que vous portez.</p></section>
         <section class="panel"><h3 style="margin-bottom:8px">Détail</h3><div style="max-width:340px">${detail}</div></section>
         <p class="hint">Glissez un objet de l’inventaire sur le mannequin pour l’équiper, ou faites un clic droit dessus. Clic droit ou glisser vers l’inventaire sur un emplacement pour le retirer.</p>
       </div></div>
@@ -1262,12 +1323,12 @@ function viewBag(){
       <button class="chip ${so.k==='qty'?'on':''}" data-act="bagSort" data-k="qty">Quantité${arrow('qty')}</button>
       <button class="btn sm ${UI.multi?'warn':'danger'}" style="margin-left:auto" data-act="multiToggle">${UI.multi?'Quitter la destruction':'Détruire plusieurs objets'}</button></div>
     ${UI.multi?multiBar():''}
-    <div class="bagwrap"><div class="bag ${UI.multi?'multi':''}" id="bag">${S.bag.map(cellHTML).join('')}</div></div>
-    <p class="hint" style="margin:8px 0 14px">${UI.multi?'Cliquez sur les cases à détruire. Les matériaux détruits sont perdus ; les armes et armures rendent 25 % des ressources ayant servi à leur création.':''}Glissez-déposez une case pour la déplacer ou l’échanger. Déposez une pile sur une pile du même matériau pour les fusionner (${STACK} max par pile). Un second clic sur un tri inverse l’ordre.</p>
+    ${gridHTML()}
+    <p class="hint" style="margin:8px 0 14px">${UI.multi?'Cliquez sur les cases à détruire. Les matériaux détruits sont perdus ; les armes et armures rendent 25 % des ressources ayant servi à leur création.':''}Les objets occupent plusieurs cases (arme 1×5, armure 2×3, casque et bottes 2×2). Glissez-déposez pour ranger ou échanger. Déposez une pile sur une pile du même matériau pour les fusionner (${STACK} max par pile). Un second clic sur un tri inverse l’ordre.</p>
     <section class="panel"><h3 style="margin-bottom:10px">Matériaux</h3><div class="matlist">${mats}</div></section>`;
 }
 function multiBar(){
-  const sel=[...UI.pick].map(i=>S.bag[i]).filter(Boolean),tot={};let it=0,mt=0,mq=0;
+  const sel=[...UI.pick].filter(o=>entryOf(o)>=0),tot={};let it=0,mt=0,mq=0;
   for(const c of sel){ if(c.mat){mt++;mq+=c.n} else {it++;for(const [k,v] of Object.entries(salvageValue(c)))tot[k]=(tot[k]||0)+v} }
   const conf=UI.confirm==='multi';
   return `<div class="panel" style="margin-bottom:10px;border-color:var(--blood)"><div class="row between">
@@ -1277,49 +1338,89 @@ function multiBar(){
     <div style="margin-top:6px"><small class="mute">Ressources récupérées :</small>${resChips(tot)}</div></div>`;
 }
 function sortBag(){
-  const {k,dir}=UI.bagSort,tot={},ent=[];
-  for(const c of S.bag){ if(!c) continue; if(c.mat) tot[c.mat]=(tot[c.mat]||0)+c.n; else ent.push(c) }
-  for(const [m,n] of Object.entries(tot)){let r=n;while(r>0){const s=Math.min(STACK,r);ent.push({mat:m,n:s});r-=s}}
+  const {k,dir}=UI.bagSort,tot={},ent=[],old=S.bag;
+  for(const e of S.bag){ if(e.o.mat) tot[e.o.mat]=(tot[e.o.mat]||0)+e.o.n; else ent.push(e.o) }
+  for(const [m,n] of Object.entries(tot)){let r=n;while(r>0){const q=Math.min(STACK,r);ent.push({mat:m,n:q});r-=q}}
   const q=c=>c.mat?c.n:1;
   const byName=(a,b)=>cellName(a).localeCompare(cellName(b),'fr',{sensitivity:'base'});
   const tie=(a,b)=>(b.rarity||0)-(a.rarity||0)||(b.ilvl||0)-(a.ilvl||0);
   ent.sort(k==='name'?(a,b)=>dir*(byName(a,b)||q(b)-q(a)||tie(a,b)):(a,b)=>dir*(q(b)-q(a)||byName(a,b)||tie(a,b)));
-  S.bag=bagNew(); ent.forEach((c,i)=>{S.bag[i]=c});
+  const place=list=>{const b=[];for(const o of list){const sp=findSpot(b,...SIZE(o)); if(!sp) return null; b.push({x:sp[0],y:sp[1],o})} return b};
+  const area=o=>{const [w,h]=SIZE(o);return w*h};
+  S.bag=place(ent)||place(ent.slice().sort((a,b)=>area(b)-area(a)))||old;
+  if(S.bag===old) toast('Impossible de tout ranger : faites un peu de place.');
 }
-function moveCell(a,b){
-  if(a===b) return; const A=S.bag[a],B=S.bag[b]; if(!A) return;
-  if(!B){S.bag[b]=A;S.bag[a]=null}
-  else if(A.mat&&B.mat===A.mat&&B.n<STACK){const m=Math.min(STACK-B.n,A.n);B.n+=m;A.n-=m;if(!A.n)S.bag[a]=null}
-  else {S.bag[a]=B;S.bag[b]=A}
-  if(UI.bagSel===a) UI.bagSel=S.bag[b]?b:null; else if(UI.bagSel===b) UI.bagSel=S.bag[a]?a:null;
+/* déplacer une entrée vers (tx,ty) : déplacement, fusion de piles ou échange */
+function overlaps(x,y,w,h,skip){return S.bag.filter(e=>{ if(e===skip) return false; const [ew,eh]=SIZE(e.o); return x<e.x+ew&&e.x<x+w&&y<e.y+eh&&e.y<y+h })}
+function moveEntry(i,tx,ty){
+  const E=S.bag[i]; if(!E) return; const [w,h]=SIZE(E.o);
+  if(tx===E.x&&ty===E.y) return;
+  if(tx<0||ty<0||tx+w>GW||ty+h>GH){toast('Pas assez de place ici.');return}
+  const ov=overlaps(tx,ty,w,h,E);
+  if(!ov.length){E.x=tx;E.y=ty}
+  else if(ov.length===1&&E.o.mat&&ov[0].o.mat===E.o.mat){
+    const B=ov[0].o; if(B.n>=STACK){toast('Cette pile est pleine.');return}
+    const m=Math.min(STACK-B.n,E.o.n); B.n+=m; E.o.n-=m; if(!E.o.n){S.bag.splice(i,1); if(UI.bagSel===E.o) UI.bagSel=B}
+  }else if(ov.length===1){
+    const B=ov[0],ox=E.x,oy=E.y,bx=B.x,by=B.y,[bw,bh]=SIZE(B.o);
+    E.x=tx;E.y=ty;
+    const rest=S.bag.filter(e=>e!==E&&e!==B);
+    if(fitsAt(rest,tx,ty,w,h)&&fitsAt([...rest,E],ox,oy,bw,bh)){B.x=ox;B.y=oy}
+    else{ const sp=fitsAt(rest,tx,ty,w,h)?findSpot([...rest,E],bw,bh):null;
+      if(sp){B.x=sp[0];B.y=sp[1]} else {E.x=ox;E.y=oy;B.x=bx;B.y=by;toast('Pas assez de place pour échanger.');return} }
+  }else{toast('Pas assez de place ici.');return}
   save(); render();
 }
 /* glisser-déposer (souris et tactile) entre l'inventaire et le mannequin */
 let DRAG=null,noClick=false;
-const dragItem=d=>d.src==='bag'?S.bag[d.from]:S.heroes[0].equip[d.from];
+const dragItem=d=>d.src==='bag'?(S.bag[d.from]&&S.bag[d.from].o):S.heroes[0].equip[d.from];
 function equipFromCell(i,slot){
-  const h=S.heroes[0],it=S.bag[i]; if(!it||it.mat) return;
+  const h=S.heroes[0],E=S.bag[i],it=E&&E.o; if(!it||it.mat) return;
   if(slotType(slot)!==it.slot){toast('Cet objet ne va pas dans cet emplacement.');return}
   if(!canWear(it)){toast(`Réservé au ${CLASSES[it.cls].n}.`);return}
-  const old=h.equip[slot]; h.equip[slot]=it; S.bag[i]=old||null;
-  if(UI.bagSel===i&&!old) UI.bagSel=null; save(); render();
+  const old=h.equip[slot];
+  S.bag.splice(i,1);
+  if(old){
+    if(fitsAt(S.bag,E.x,E.y,...SIZE(old))) S.bag.push({x:E.x,y:E.y,o:old});
+    else if(!bagAddItem(S.bag,old)){S.bag.splice(i,0,E);toast('Pas de place pour ranger l’objet porté.');return}
+  }
+  h.equip[slot]=it; if(UI.bagSel===it) UI.bagSel=null; save(); render();
 }
-function unequipTo(slot,i){
-  const h=S.heroes[0],it=h.equip[slot]; if(!it) return;
-  const tgt=i==null?null:S.bag[i];
-  if(i!=null&&!tgt){S.bag[i]=it;delete h.equip[slot]}
-  else if(tgt&&!tgt.mat&&tgt.slot===it.slot&&canWear(tgt)){h.equip[slot]=tgt;S.bag[i]=it}
-  else if(!bagAddItem(S.bag,it)){toast('Inventaire plein.');return}
-  else delete h.equip[slot];
-  save(); render();
+function unequipTo(slot,tx,ty){
+  const h=S.heroes[0],it=h.equip[slot]; if(!it) return; const [w,hh]=SIZE(it);
+  if(tx!=null){
+    const ov=overlaps(tx,ty,w,hh,null),inb=tx>=0&&ty>=0&&tx+w<=GW&&ty+hh<=GH;
+    if(inb&&!ov.length){S.bag.push({x:tx,y:ty,o:it});delete h.equip[slot];save();render();return}
+    if(inb&&ov.length===1&&!ov[0].o.mat&&ov[0].o.slot===it.slot&&canWear(ov[0].o)){
+      const B=ov[0],rest=S.bag.filter(e=>e!==B);
+      if(fitsAt(rest,tx,ty,w,hh)){S.bag=rest;S.bag.push({x:tx,y:ty,o:it});h.equip[slot]=B.o;save();render();return}
+    }
+  }
+  if(!bagAddItem(S.bag,it)){toast('Inventaire plein.');return}
+  delete h.equip[slot]; save(); render();
 }
+function gridCellAt(px,py){
+  const b=$('#bag'); if(!b) return null; const r=b.getBoundingClientRect();
+  if(px<r.left||px>r.right||py<r.top||py>r.bottom) return null;
+  const pad=8,gap=3,cw=(r.width-2*pad-(GW-1)*gap)/GW;
+  return [clamp(Math.floor((px-r.left-pad+gap/2)/(cw+gap)),0,GW-1),clamp(Math.floor((py-r.top-pad+gap/2)/(cw+gap)),0,GH-1)];
+}
+function showFoot(tx,ty,w,h,ok){
+  let f=$('#foot'); const b=$('#bag'); if(!b) return;
+  if(!f){f=document.createElement('div');f.id='foot';b.append(f)}
+  const cx=clamp(tx,0,GW-1),cy=clamp(ty,0,GH-1),cw=Math.max(1,Math.min(w,GW-cx)),ch=Math.max(1,Math.min(h,GH-cy));
+  f.style.gridColumn=`${cx+1}/span ${cw}`; f.style.gridRow=`${cy+1}/span ${ch}`; f.className=ok?'ok':'bad';
+}
+const hideFoot=()=>{const f=$('#foot'); if(f) f.remove()};
 document.addEventListener('pointerdown',e=>{
   if(e.button>0||!e.target.closest) return;
-  const c=e.target.closest('#bag .cell.full'),s=e.target.closest('#doll .dslot.full');
-  if(c){ if(UI.multi) return; DRAG={src:'bag',from:+c.dataset.i,el:c} }
-  else if(s) DRAG={src:'eq',from:s.dataset.slot,el:s};
+  const c=e.target.closest('#bag .gi'),s=e.target.closest('#doll .dslot.full');
+  if(c){ if(UI.multi) return; const E=S.bag[+c.dataset.i]; if(!E) return; const gc=gridCellAt(e.clientX,e.clientY)||[E.x,E.y];
+    DRAG={src:'bag',from:+c.dataset.i,el:c,off:[clamp(gc[0]-E.x,0,SIZE(E.o)[0]-1),clamp(gc[1]-E.y,0,SIZE(E.o)[1]-1)]} }
+  else if(s){ const it=S.heroes[0].equip[s.dataset.slot]; const [w,h]=SIZE(it); DRAG={src:'eq',from:s.dataset.slot,el:s,off:[Math.floor(w/2),Math.floor(h/2)],big:true} }
   else return;
-  Object.assign(DRAG,{x:e.clientX,y:e.clientY,on:false,ghost:null,over:null});
+  const r=DRAG.el.getBoundingClientRect();
+  Object.assign(DRAG,{x:e.clientX,y:e.clientY,gx:e.clientX-r.left,gy:e.clientY-r.top,on:false,ghost:null,over:null,tgt:null});
 });
 document.addEventListener('pointermove',e=>{
   if(!DRAG) return;
@@ -1328,40 +1429,48 @@ document.addEventListener('pointermove',e=>{
     DRAG.on=true; hideTip();
     const g=DRAG.el.cloneNode(true); g.id='ghost'; g.removeAttribute('data-act'); g.removeAttribute('data-tip'); g.classList.remove('sel');
     g.style.width=DRAG.el.offsetWidth+'px'; g.style.height=DRAG.el.offsetHeight+'px'; document.body.append(g); DRAG.ghost=g; DRAG.el.classList.add('drag');
+    if(DRAG.src==='eq'){g.style.width='46px';g.style.height='46px';DRAG.gx=23;DRAG.gy=23}
     const it=dragItem(DRAG);
     if(DRAG.src==='bag'&&it&&!it.mat&&canWear(it)) document.querySelectorAll('#doll .dslot').forEach(d=>{if(slotType(d.dataset.slot)===it.slot)d.classList.add('fit')});
   }
   e.preventDefault();
-  DRAG.ghost.style.left=e.clientX+'px'; DRAG.ghost.style.top=e.clientY+'px';
-  const t=document.elementFromPoint(e.clientX,e.clientY),cell=t&&t.closest&&t.closest('#bag .cell, #doll .dslot, #fslot');
+  DRAG.ghost.style.left=(e.clientX-DRAG.gx)+'px'; DRAG.ghost.style.top=(e.clientY-DRAG.gy)+'px';
+  const t=document.elementFromPoint(e.clientX,e.clientY),cell=t&&t.closest&&t.closest('#doll .dslot, #fslot');
   const ok=cell&&cell!==DRAG.el?cell:null;
   if(DRAG.over&&DRAG.over!==ok) DRAG.over.classList.remove('over');
   if(ok) ok.classList.add('over');
-  DRAG.over=ok;
+  DRAG.over=ok; DRAG.tgt=null;
+  const gc=!ok&&gridCellAt(e.clientX,e.clientY);
+  if(gc){ const it=dragItem(DRAG),[w,h]=SIZE(it),tx=gc[0]-DRAG.off[0],ty=gc[1]-DRAG.off[1];
+    const self=DRAG.src==='bag'?S.bag[DRAG.from]:null,inb=tx>=0&&ty>=0&&tx+w<=GW&&ty+h<=GH,ov=inb?overlaps(tx,ty,w,h,self):[];
+    DRAG.tgt=[tx,ty]; showFoot(tx,ty,w,h,inb&&ov.length<=1) }
+  else hideFoot();
 },{passive:false});
 function endDrag(e,drop){
   if(!DRAG) return; const d=DRAG; DRAG=null;
   if(!d.on) return;
   noClick=true; setTimeout(()=>{noClick=false},0);
-  if(d.ghost) d.ghost.remove(); d.el.classList.remove('drag'); if(d.over) d.over.classList.remove('over');
+  if(d.ghost) d.ghost.remove(); d.el.classList.remove('drag'); if(d.over) d.over.classList.remove('over'); hideFoot();
   document.querySelectorAll('#doll .fit').forEach(x=>x.classList.remove('fit'));
-  if(!drop||!d.over) return;
-  const o=d.over,toBag=o.classList.contains('cell');
+  if(!drop) return;
+  if(!d.over&&d.tgt){ if(d.src==='bag') moveEntry(d.from,d.tgt[0],d.tgt[1]); else unequipTo(d.from,d.tgt[0],d.tgt[1]); return }
+  if(!d.over) return;
+  const o=d.over,toBag=false;
   if(o.id==='fslot'){const it=dragItem(d); if(it&&!it.mat){UI.fItem=it.id;UI.fMode='up';render()} else if(it) toast('Les matériaux ne peuvent pas être améliorés.'); return}
-  if(d.src==='bag'){ if(toBag) moveCell(d.from,+o.dataset.i); else equipFromCell(d.from,o.dataset.slot) }
+  if(d.src==='bag'){ equipFromCell(d.from,o.dataset.slot) }
   else{
-    if(toBag) unequipTo(d.from,+o.dataset.i);
-    else{ const h=S.heroes[0],to=o.dataset.slot; if(slotType(to)!==slotType(d.from)) return; [h.equip[d.from],h.equip[to]]=[h.equip[to],h.equip[d.from]]; if(!h.equip[d.from])delete h.equip[d.from]; save(); render() }
+    { const h=S.heroes[0],to=o.dataset.slot; if(slotType(to)!==slotType(d.from)) return; [h.equip[d.from],h.equip[to]]=[h.equip[to],h.equip[d.from]]; if(!h.equip[d.from])delete h.equip[d.from]; save(); render() }
   }
 }
 document.addEventListener('pointerup',e=>endDrag(e,true));
 /* clic droit : équiper / retirer */
 document.addEventListener('contextmenu',e=>{
   if(!e.target.closest) return;
-  const c=e.target.closest('#bag .cell.full'),s=e.target.closest('#doll .dslot');
+  const c=e.target.closest('#bag .gi'),s=e.target.closest('#doll .dslot');
   if(!c&&!s) return; e.preventDefault(); hideTip();
-  if(c&&UI.tab==='forge'){const it=S.bag[+c.dataset.i]; if(it&&!it.mat){UI.fItem=it.id;UI.fMode='up';render()} return}
-  if(c){const it=S.bag[+c.dataset.i]; if(it&&!it.mat) equipFromCell(+c.dataset.i,targetSlot(S.heroes[0],it))}
+  const it=c&&S.bag[+c.dataset.i]&&S.bag[+c.dataset.i].o;
+  if(c&&UI.tab==='forge'){ if(it&&!it.mat){UI.fItem=it.id;UI.fMode='up';render()} return}
+  if(c){ if(it&&!it.mat) equipFromCell(+c.dataset.i,targetSlot(S.heroes[0],it))}
   else if(s.classList.contains('full')) unequipTo(s.dataset.slot,null);
 });
 document.addEventListener('pointercancel',e=>endDrag(e,false));
@@ -1375,20 +1484,26 @@ function allItems(){
 const upCost=it=>{const n=it.up+1;return {gold:Math.round(25*it.ilvl*Math.pow(n,1.25)),fer:8*n+it.ilvl,cuir:4*n,cristal:n>=4?(n-3)*3:0,essence:n>=7?(n-6)*2:0,rune:n>=10?3:0}};
 const rerollCost=it=>({cristal:4+Math.round(it.ilvl/4)});
 const replCost=it=>({essence:3+Math.round(it.ilvl/6),cristal:4+Math.round(it.ilvl/6)});
-const forgeLvl=()=>Math.min(MAXL+3,S.heroes[0].lvl+UI.fTier);
+/* niveau d’objet forgé : tiré au hasard dans la plage du type de forge ; le coût se base sur le milieu de la plage */
+const forgeLvl=()=>Math.round((TIERS[UI.fTier].lv[0]+TIERS[UI.fTier].lv[1])/2);
+const rollForgeLvl=()=>ri(...TIERS[UI.fTier].lv);
+/* Prisme divin : forge légendaire uniquement, objet niveau 60 de rareté Divin */
+const PRISM={lv:[60,60],odds:[0,0,0,0,0,1]};
+const prismOn=()=>UI.fTier===3&&UI.fPrism&&matCount('prisme')>0;
+const forgeCost=()=>{const c=tierCost(UI.fTier,forgeLvl()); if(prismOn()) c.prisme=1; return c};
 const tierCost=(i,l)=>Object.fromEntries(Object.entries(TIERS[i].cost).map(([k,v])=>[k,Math.round(v*(1+l/15))]));
 function bagBlock(){
   const mats=MATS.map(m=>`<span class="rs2" title="${MAT_OBJ[m]}">${matIcon(m)}<b class="num">${fmt(matCount(m))}</b></span>`).join('');
   return `<div class="row between" style="margin:18px 0 10px"><h2>Inventaire</h2><small class="num">${BAG-freeCells()} / ${BAG} cases · ${freeCells()} libre${freeCells()>1?'s':''}</small></div>
     <div class="row" style="gap:14px;margin-bottom:10px">${mats}</div>
-    <div class="bagwrap"><div class="bag" id="bag">${S.bag.map(cellHTML).join('')}</div></div>`;
+    ${gridHTML()}`;
 }
 function viewForge(){
   const h=S.heroes[0],fl=forgeLvl();
   const seg=`<div class="seg" role="tablist"><button class="${UI.fMode==='forge'?'on':''}" data-act="fMode" data-m="forge">Forge</button><button class="${UI.fMode==='up'?'on':''}" data-act="fMode" data-m="up">Amélioration</button></div>`;
   let body;
   if(UI.fMode==='forge'){
-    const t=TIERS[UI.fTier],tot=t.odds.reduce((a,b)=>a+b,0),tc=tierCost(UI.fTier,fl),fb=baseFor(UI.fSlot,h.cls);
+    const t=TIERS[UI.fTier],pr=prismOn(),odds=pr?PRISM.odds:t.odds,lv=pr?PRISM.lv:t.lv,tot=odds.reduce((a,b)=>a+b,0),tc=forgeCost(),fb=baseFor(UI.fSlot,h.cls),np=matCount('prisme');
     const last=UI.fLast?itemCard(UI.fLast):'<p class="hint">Votre création apparaîtra ici.</p>';
     body=`<section class="panel forge-row">
       <div class="fcol"><h3>Équipement de ${CLASSES[h.cls].n}</h3>
@@ -1397,14 +1512,15 @@ function viewForge(){
       </div>
       <div class="fcol"><h3>Type de forge</h3>
         <div class="carousel"><button class="arw" data-act="forgeTierStep" data-d="-1" aria-label="Forge précédente">‹</button>
-          <div class="ctr"><b>${t.n}</b><small class="num">${t.odds.map((o,j)=>o?`<span style="color:var(--r${j})">${RAR[j].n} ${r1(o/tot*100)}%</span>`:'').filter(Boolean).join(' · ')}</small><span class="dots">${TIERS.map((_,i)=>`<i class="${i===UI.fTier?'on':''}"></i>`).join('')}</span></div>
+          <div class="ctr"><b>${t.n}</b><small class="num">${odds.map((o,j)=>o?`<span style="color:var(--r${j})">${RAR[j].n} ${r1(o/tot*100)}%</span>`:'').filter(Boolean).join(' · ')}</small><span class="dots">${TIERS.map((_,i)=>`<i class="${i===UI.fTier?'on':''}"></i>`).join('')}</span></div>
           <button class="arw" data-act="forgeTierStep" data-d="1" aria-label="Forge suivante">›</button></div>
-        <div class="row between" style="margin-top:12px"><span>Niveau d’objet</span><b class="num" style="font-size:1.2rem;color:var(--brass)">${fl}</b></div>
-        <small class="mute">Niveau du héros (${h.lvl})${UI.fTier?` + ${UI.fTier} (${t.n.toLowerCase()})`:''}</small>
+        <div class="row between" style="margin-top:12px"><span>Niveau d’objet</span><b class="num" style="font-size:1.2rem;color:var(--brass)">${lv[0]===lv[1]?lv[0]:`${lv[0]} à ${lv[1]}`}</b></div>
+        <small class="mute">${pr?'Le Prisme divin fixe le niveau d’objet à 60 et la rareté Divin.':'Tiré au hasard dans cette plage, quel que soit le niveau du héros.'}</small>
+        ${UI.fTier===3?`<label class="prism ${pr?'on':''}"><input type="checkbox" data-act="fPrism" ${pr?'checked':''} ${np?'':'disabled'}> ${matIcon('prisme')} Ajouter un Prisme divin <small class="mute">(${np} en stock)</small></label>`:''}
       </div>
       <div class="fcol"><h3>Coût</h3><div style="margin-bottom:10px">${costHTML(tc)}</div>
-        <button class="btn pri" data-act="forgeDo" ${canPay(tc)&&freeCells()?'':'disabled'}>Forger : ${fb.n.toLowerCase()}</button>
-        ${freeCells()?'':'<p class="hint" style="margin-top:6px">Inventaire plein.</p>'}
+        <button class="btn pri" data-act="forgeDo" ${canPay(tc)&&canFit(...SIZE({slot:UI.fSlot}))?'':'disabled'}>Forger : ${fb.n.toLowerCase()}</button>
+        ${canFit(...SIZE({slot:UI.fSlot}))?'':`<p class="hint" style="margin-top:6px">Pas assez de place dans l’inventaire (${SIZE({slot:UI.fSlot}).join('×')} cases).</p>`}
       </div>
       <div class="fcol">${last}</div>
     </section>`;
@@ -1478,7 +1594,7 @@ function viewOpts(){
 function tipHTML(k){
   const h=S.heroes[0];
   if(k.startsWith('f:')){const r=findItem(+k.slice(2)); return r?itemCard(r.it):''}
-  if(k.startsWith('bag:')){const c=S.bag[+k.slice(4)]; if(!c) return ''; return c.mat?matCard(c):itemCard(c,'',swapDelta(h,c))}
+  if(k.startsWith('bag:')){const E=S.bag[+k.slice(4)]; if(!E) return ''; const c=E.o; return c.mat?matCard(c):itemCard(c,'',swapDelta(h,c))}
   const it=h&&h.equip[k];
   if(it) return itemCard(it);
   return `<article class="it" style="--rc:var(--line)"><header><b>${SLOT_N[k]}</b><small>Emplacement vide</small></header></article>`;
@@ -1501,7 +1617,7 @@ document.addEventListener('scroll',hideTip,true);
 
 /* ============ actions ============ */
 const A={
-  tab:d=>{UI.tab=d.t;if(d.t==='bag')S.bagDot=false;if(d.t==='forge')UI.fMode='forge';UI.recruit=false;UI.multi=false;UI.pick=new Set();if(UI.confirm!=='reset')UI.confirm=null;render()},
+  tab:d=>{UI.tab=d.t;if(d.t==='bag')S.bagDot=false;if(d.t==='heroes')S.lvlDot=false;if(d.t==='forge')UI.fMode='forge';UI.recruit=false;UI.multi=false;UI.pick=new Set();if(UI.confirm!=='reset')UI.confirm=null;render()},
   pickClass:d=>{UI.cc=d.c;render()},
   pickHue:d=>{UI.chue=+d.h;render()},
   createHero:()=>{
@@ -1554,21 +1670,22 @@ const A={
     if(!bagAddItem(S.bag,it)){toast('Inventaire plein.');return} delete h.equip[d.slot]; save(); render();
   },
   bagCell:d=>{const i=+d.i;UI.confirm=null;
-    if(UI.multi){UI.pick.has(i)?UI.pick.delete(i):UI.pick.add(i);render();return}
-    UI.bagSel=UI.bagSel===i?null:i;UI.invSel=null;render()},
+    const E=S.bag[i]; if(!E) return; const o=E.o;
+    if(UI.multi){UI.pick.has(o)?UI.pick.delete(o):UI.pick.add(o);render();return}
+    UI.bagSel=UI.bagSel===o?null:o;UI.invSel=null;render()},
   noConfirm:()=>{UI.confirm=null;render()},
   matDel:d=>{
-    const i=+d.i,c=S.bag[i]; if(!c||!c.mat) return;
+    const i=+d.i,c=S.bag[i]&&S.bag[i].o; if(!c||!c.mat) return;
     if(UI.confirm!=='mat'+i){UI.confirm='mat'+i;render();return}
-    UI.confirm=null; S.bag[i]=null; UI.bagSel=null; save(); render(); toast(`${c.n} × ${MAT_OBJ[c.mat]} détruit${c.n>1?'s':''}.`);
+    UI.confirm=null; S.bag.splice(i,1); UI.bagSel=null; save(); render(); toast(`${c.n} × ${MAT_OBJ[c.mat]} détruit${c.n>1?'s':''}.`);
   },
   multiToggle:()=>{UI.multi=!UI.multi;UI.pick=new Set();UI.confirm=null;UI.bagSel=null;render()},
-  multiPick:d=>{UI.confirm=null;UI.pick=new Set();S.bag.forEach((c,i)=>{if(c&&(d.w==='items'&&!c.mat||d.w==='mats'&&c.mat))UI.pick.add(i)});render()},
+  multiPick:d=>{UI.confirm=null;UI.pick=new Set();S.bag.forEach(e=>{const c=e.o;if(d.w==='items'&&!c.mat||d.w==='mats'&&c.mat)UI.pick.add(c)});render()},
   multiDel:()=>{
     if(!UI.pick.size) return;
     if(UI.confirm!=='multi'){UI.confirm='multi';render();return}
     const tot={};let n=0;
-    for(const i of UI.pick){const c=S.bag[i]; if(!c) continue; if(!c.mat) for(const [k,v] of Object.entries(salvageValue(c)))tot[k]=(tot[k]||0)+v; if(UI.fItem===c.id)UI.fItem=null; S.bag[i]=null; n++}
+    for(const c of UI.pick){const i=entryOf(c); if(i<0) continue; if(!c.mat) for(const [k,v] of Object.entries(salvageValue(c)))tot[k]=(tot[k]||0)+v; if(UI.fItem===c.id)UI.fItem=null; S.bag.splice(i,1); n++}
     gain(tot); UI.pick=new Set(); UI.confirm=null; save(); render();
     toast(`${n} case${n>1?'s':''} détruite${n>1?'s':''}. Récupéré : ${resTxt(tot)}.`);
   },
@@ -1577,22 +1694,20 @@ const A={
     sortBag(); UI.bagSel=null; save(); render();
   },
   bagSplit:d=>{
-    const i=+d.i,c=S.bag[i],j=S.bag.indexOf(null); if(!c||!c.mat||c.n<2||j<0) return;
-    const half=Math.floor(c.n/2); c.n-=half; S.bag[j]={mat:c.mat,n:half}; save(); render();
+    const i=+d.i,c=S.bag[i]&&S.bag[i].o,sp=findSpot(S.bag,1,1); if(!c||!c.mat||c.n<2||!sp) return;
+    const half=Math.floor(c.n/2); c.n-=half; S.bag.push({x:sp[0],y:sp[1],o:{mat:c.mat,n:half}}); save(); render();
   },
   changeItem:d=>{UI.invSel=d.slot;UI.bagSel=null;UI.tab='bag';render()},
   dollSlot:d=>{UI.invSel=UI.invSel===d.slot?null:d.slot;UI.bagSel=null;render()},
   equip:d=>{
     const h=S.heroes[0],i=cellOf(+d.id); if(i<0) return;
-    const it=S.bag[i]; if(!canWear(it)){toast(`Réservé au ${CLASSES[it.cls].n}.`);return}
-    const ts=targetSlot(h,it),old=h.equip[ts]; S.bag[i]=old||null; h.equip[ts]=it;
-    if(!old&&UI.bagSel===i) UI.bagSel=null; save(); render();
+    equipFromCell(i,targetSlot(h,S.bag[i].o));
   },
   salv:d=>{
-    const i=cellOf(+d.id); if(i<0) return; const it=S.bag[i];
+    const i=cellOf(+d.id); if(i<0) return; const it=S.bag[i].o;
     if(UI.confirm!=='del'+it.id){UI.confirm='del'+it.id;render();return}
-    UI.confirm=null; if(UI.fItem===it.id)UI.fItem=null; if(UI.bagSel===i)UI.bagSel=null;
-    S.bag[i]=null; const v=salvageValue(it); gain(v); save(); render();
+    UI.confirm=null; if(UI.fItem===it.id)UI.fItem=null; if(UI.bagSel===it)UI.bagSel=null;
+    S.bag.splice(i,1); const v=salvageValue(it); gain(v); save(); render();
     toast(`${it.name} détruit. Récupéré : ${resTxt(v)}.`);
   },
   toForge:d=>{UI.fItem=+d.id;UI.fMode='up';UI.tab='forge';render()},
@@ -1602,10 +1717,11 @@ const A={
   forgeTierStep:d=>{UI.fTier=(UI.fTier+(+d.d)+TIERS.length)%TIERS.length;render()},
   forgeSlot:d=>{UI.fSlot=d.s;render()},
   forgeTier:d=>{UI.fTier=+d.i;render()},
+  fPrism:()=>{UI.fPrism=!UI.fPrism;render()},
   forgeDo:()=>{
-    const t=TIERS[UI.fTier],fl=forgeLvl(),cost=tierCost(UI.fTier,fl);
+    const t=TIERS[UI.fTier],pr=prismOn(),cost=forgeCost();
     if(!canPay(cost)) return; pay(cost);
-    const it=genItem(UI.fSlot,fl,wpick(t.odds)); it.cost={...cost}; const ok=addInv(it); UI.fLast=it; UI.fLast.where=ok?'inv':'lost';
+    const it=genItem(UI.fSlot,pr?PRISM.lv[0]:rollForgeLvl(),pr?5:wpick(t.odds)); if(!matCount('prisme')) UI.fPrism=false; it.cost={...cost}; const ok=addInv(it); UI.fLast=it; UI.fLast.where=ok?'inv':'lost';
     save(); render();
     toast(ok?`${it.name} ajouté à l’inventaire.`:'Inventaire plein : objet détruit automatiquement (25 % des ressources rendues).');
   },
@@ -1623,8 +1739,8 @@ const A={
   },
   salvBelow:d=>{
     const rr=+d.r,tot={}; let n=0;
-    S.bag=S.bag.map(it=>{ if(it&&!it.mat&&it.rarity<=rr){const v=salvageValue(it);for(const [k,x] of Object.entries(v))tot[k]=(tot[k]||0)+x;n++;return null} return it });
-    gain(tot); if(UI.bagSel!=null&&!S.bag[UI.bagSel])UI.bagSel=null; if(UI.fItem&&!findItem(UI.fItem))UI.fItem=null; save(); render();
+    S.bag=S.bag.filter(e=>{const it=e.o; if(!it.mat&&it.rarity<=rr){const v=salvageValue(it);for(const [k,x] of Object.entries(v))tot[k]=(tot[k]||0)+x;n++;return false} return true });
+    gain(tot); if(UI.bagSel&&entryOf(UI.bagSel)<0)UI.bagSel=null; if(UI.fItem&&!findItem(UI.fItem))UI.fItem=null; save(); render();
     toast(n?`${n} objets détruits. Récupéré : ${resTxt(tot)}.`:'Rien à détruire.');
   },
   siteBuy:d=>{const si=SITES.find(s=>s.id===d.id);if(S.gold<si.unlock)return;S.gold-=si.unlock;S.sites[d.id].lvl=1;S.sites[d.id].last=Date.now();save();render()},
@@ -1683,6 +1799,7 @@ if(S.heroes.length){
   if(away>120){const h=Math.floor(away/3600),m=Math.floor(away%3600/60);setTimeout(()=>toast(`Absent ${h?h+' h ':''}${m} min : vos zones de collecte ont travaillé.`),400)}
 }
 S.speed=S.speed||1;
+for(const h of S.heroes) if(h.lvl>MAXL){h.lvl=MAXL;h.xp=0}
 render();
 setInterval(tick,1000);
 setInterval(()=>{if(S.heroes.length)save()},10000);
