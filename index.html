@@ -245,6 +245,29 @@ body.scr-menu #view{background:none;border:0;box-shadow:none;outline:0;padding:0
 .fracts{display:flex;gap:4px;flex:none}
 .frempty{font-size:.88rem;margin:4px 0}
 @media (max-width:640px){.frbtn{padding:7px 12px;font-size:.9rem}}
+.bbar{display:flex;flex-wrap:wrap;gap:10px 18px;align-items:center;padding:10px 12px;margin-bottom:12px;border:1px solid var(--line);border-radius:4px;background:#0000000a;position:sticky;top:0;z-index:3;backdrop-filter:blur(2px)}
+.bbar label{display:flex;align-items:center;gap:6px;font-weight:500}
+.bbar select{font:inherit;padding:4px 6px;background:#efe2c4;border:1px solid var(--line2);border-radius:3px}
+.bdirty{color:var(--blood);font-weight:700;font-size:.9rem}
+.bzone{margin-top:16px}.bzone h3{margin-bottom:8px;color:var(--brass);font-size:1.15rem}
+.bgrid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
+@media (max-width:1100px){.bgrid{grid-template-columns:repeat(2,minmax(0,1fr))}}@media (max-width:560px){.bgrid{grid-template-columns:minmax(0,1fr)}}
+.bcard{display:flex;flex-direction:column;gap:8px;padding:10px;border:1px solid var(--line2);border-radius:6px;background:var(--bg2);box-shadow:inset 0 0 20px #9a6a2a22;min-width:0}
+.bcard.boss{border-color:var(--brass);background:#e9d7ad;box-shadow:0 0 0 1px var(--brass),inset 0 0 24px #7b2a1a22}
+.bcard header{display:flex;align-items:center;gap:8px}.bcard header>div{flex:1;min-width:0;display:flex;flex-direction:column}.bcard header small{color:var(--mute);font-size:.78rem}
+.bic{width:38px;height:38px;flex:none;border-radius:6px;display:grid;place-items:center;background:#3a2817;color:#e8c982;border:1px solid #1d1209}.bcard.boss .bic{background:#5e1c10}
+.bic svg{width:24px;height:24px;fill:currentColor}
+.binp{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+.binp label,.bfx{display:flex;flex-direction:column;gap:2px;font-size:.75rem;color:var(--mute)}
+.binp input,.btable input{font:inherit;width:100%;min-width:56px;padding:4px 6px;background:#efe2c4;border:1px solid var(--line2);border-radius:3px;color:var(--fg)}
+.bvals{display:grid;grid-template-columns:repeat(4,1fr);gap:4px}.bvals span{display:flex;flex-direction:column;align-items:center;padding:4px 2px;border-radius:4px;background:#3a2817;color:#f1e2bd}.bvals small{font-size:.68rem;color:#c9ae82}.bvals b{font-size:.95rem}
+.bcmp{display:flex;justify-content:space-between;font-size:.82rem;padding:4px 8px;border-radius:4px}.bcmp.ok{background:#3d7a3422;color:var(--ok)}.bcmp.bad{background:#a5351f22;color:var(--blood)}
+.bsk{display:flex;flex-wrap:wrap;gap:4px}
+.bchip{font:inherit;font-size:.74rem;padding:3px 8px;border-radius:99px;border:1px solid var(--line2);background:transparent;color:var(--mute);cursor:pointer}
+.bchip.on{background:var(--brass);border-color:var(--brass);color:#f7e9c6;font-weight:700}.bchip.lock{border-style:dashed;cursor:default}
+.btable{overflow-x:auto}.btable table{width:100%;border-collapse:collapse;font-size:.88rem}.btable th,.btable td{padding:6px;border-bottom:1px solid #a88d5b55;text-align:left;vertical-align:top}
+.btable td:has(.bfx){display:flex;gap:6px;flex-wrap:wrap}.bfx{width:84px}
+code.uid{font-size:.8rem;padding:2px 6px;background:#0000000f;border-radius:3px;word-break:break-all}
 /* generic */
 .panel{background:var(--bg2);border:1px solid var(--line);border-radius:3px;padding:16px;min-width:0;box-shadow:inset 0 0 26px #9a6a2a22}
 .panel>h2,.panel>h3{margin-bottom:10px}
@@ -1199,7 +1222,8 @@ function mkEnemies(z,st,n,diff){
     def:enStat('def',L)*t.def*(isBoss?D.bDef:1),res:enStat('def',L)*.9*t.def*(isBoss?D.bDef:1),spd:(8+.15*L)*(t.spd||1)*rand(.95,1.05),
     crit:5,critDmg:150,dodge:0,lifesteal:0,dmgPct:0,regen:0,healPow:0,
     skills:[...(t.sk||[]),...(isBoss&&D.extra?[D.extra]:[])],ranks:{},cds:Object.fromEntries([...(t.sk||[]),...(isBoss&&D.extra?[D.extra]:[])].map(id=>[id,SK[id].cd>=4?2:1])),st:[],shield:0});
-  if(boss){
+  if(C.force){ const F=C.force; C.force=null; list.push(F.j<0?mk(ZONES[F.z].boss,1,1,true):mk(ZONES[F.z].enemies[F.j],1,1,false)) }
+  else if(boss){
     list.push(mk(Z.boss,1,1,true));
     if(n>=2) list.push(mk(Z.enemies[0],.6,.8,false));
   }else{
@@ -1402,6 +1426,7 @@ async function startBattle(){
 }
 async function finish(r){
   C.pending=null;C.waiting=null;C.turn=null;
+  if(C.test){ C.test=false; C.result={win:r==='win',test:true}; logLine(r==='win'?'Victoire (combat de test, sans récompense).':'Défaite (combat de test).',r==='win'?'hl':'cr'); C.phase='result'; if(UI.tab==='combat') render(); return }
   const D=DIFF[C.diff||'normal'],party=partyHeroes(),L=D.L||C.zone*10+C.stage,boss=C.stage===10,lb=(1+(C.bonus?C.bonus.loot:0)/100)*D.rw;
   const enemies=C.units.filter(u=>u.team==='e');
   if(r==='win'){
@@ -1536,7 +1561,7 @@ function render(){
   renderTabs(); if(UI.scr) $('#res').innerHTML=''; else renderHeader();
   const v=$('#view');
   renderFriends();
-  if(UI.scr){v.innerHTML=({menu:viewMenu,login:viewLogin,pseudo:viewPseudo,select:viewSelect,create:viewCreator,opts:viewOpts,news:viewNews})[UI.scr]();return}
+  if(UI.scr){v.innerHTML=({menu:viewMenu,login:viewLogin,pseudo:viewPseudo,best:viewBest,select:viewSelect,create:viewCreator,opts:viewOpts,news:viewNews})[UI.scr]();return}
   if(!S||!S.heroes.length){UI.scr='menu';return render()}
   if(UI.tab==='opts'||UI.tab==='news') UI.tab='combat';
   v.innerHTML=({combat:viewCombat,heroes:viewHeroes,bag:viewBag,shop:viewShop,forge:viewForge,sites:viewSites,help:viewHelp,opts:viewOpts,news:viewNews})[UI.tab]();
@@ -1565,7 +1590,7 @@ async function fbInit(){
     await Promise.race([load,timer]);
     firebase.initializeApp(FB_CFG); FB.auth=firebase.auth(); FB.auth.languageCode='fr'; FB.db=firebase.firestore(); FB.ready=true;
     FB.auth.getRedirectResult().catch(e=>{UI.lerr=fbErr(e); if(UI.scr==='login') render()});
-    FB.auth.onAuthStateChanged(onFbUser);
+    bestLoad(); FB.auth.onAuthStateChanged(onFbUser);
   }catch(e){FB.fail=true}
   if(UI.scr==='login'||UI.scr==='menu') render();
 }
@@ -1582,6 +1607,7 @@ async function onFbUser(u){
 function afterProfile(fromLogin){
   if(fromLogin||UI.scr==='login'||UI.scr==='pseudo'){UI.scr='menu'; toast('Connecté : '+(FB.prof?FB.prof.name:(FB.user.email||'compte'))+'.')}
   if(FB.prof){ presence(); startFriends() }
+  adminCheck().then(()=>{ if(UI.scr==='opts'||UI.scr==='best') render() });
   render();
 }
 /* ============ pseudo (nom de compte) ============ */
@@ -1838,6 +1864,7 @@ function renderActbar(){
   const el=$('#actbar'); if(!el) return;
   if(C.phase==='result'){
     const r=C.result,nextOk=r.win&&(UI.zone!==C.zone||UI.stage!==C.stage);
+    if(r.test){ el.innerHTML=`<div class="result ${r.win?'':'lose'}"><h2 class="${r.win?'':'lose'}" style="margin-bottom:6px">${r.win?'Victoire':'Défaite'} — combat de test</h2><p style="margin:0 0 10px">Aucune récompense ni progression.</p><div class="row"><button class="btn pri" data-act="bestBack">Retour au Bestiaire</button><button class="btn" data-act="back">Fermer</button></div></div>`; return }
     if(r.win){
       const m=Object.entries(r.mats).map(([k,v])=>matChip(k,v)).join('');
       el.innerHTML=`<div class="result"><h2 style="margin-bottom:6px">Victoire</h2>
@@ -2492,7 +2519,11 @@ function viewOpts(){
       <textarea id="impTxt" placeholder="Code de sauvegarde"></textarea><div class="row" style="margin-top:8px"><button class="btn" data-act="import">Importer</button></div></section>
     <section class="panel"><h2>Tout effacer</h2><p class="hint" style="margin-bottom:8px">Efface définitivement tous les personnages, leurs objets, leur progression et l’or.</p>
       ${UI.confirm==='reset'?`<div class="row"><button class="btn danger" data-act="reset">Oui, tout effacer</button><button class="btn" data-act="cancelReset">Annuler</button></div>`:`<button class="btn danger" data-act="reset">Recommencer à zéro</button>`}</section></div>
-    ${dbgPanel()}`;
+    ${adminPanel()}${dbgPanel()}`;
+}
+function adminPanel(){
+  if(!FB.user) return '';
+  return `<h3 style="margin:22px 0 4px">Administration</h3><section class="panel"><p class="hint" style="margin-bottom:8px">Identifiant de votre compte (UID) : <code class="uid">${esc(FB.user.uid)}</code> <button class="btn sm" data-act="copyUid">Copier</button></p>${FB.admin?'<button class="btn pri" data-act="scr" data-s="best">Ouvrir le Bestiaire</button> <small class="mute">Réglez les statistiques et les compétences des ennemis pour tous les joueurs.</small>':'<p class="hint" style="margin:0">Le Bestiaire est réservé aux administrateurs.</p>'}</section>`;
 }
 function dbgPanel(){
   const ok=S&&S.heroes&&S.heroes.length,d=DBG(),h=ok&&S.heroes[0];
@@ -2511,6 +2542,93 @@ function dbgPanel(){
       <section class="panel"><h2>Divers</h2><div class="row">${B('news','Revoir le point « Nouveautés »')}</div><div class="row" style="margin-top:10px">${rp}</div>
         ${UI.confirm==='dbgReset'?'<p class="hint" style="color:var(--blood);margin-top:6px">Niveau, compétences, équipement, inventaire, matériaux, collecte et Aventure seront remis à zéro. Le nom, la classe et l’or partagé sont conservés.</p>':''}</section>
     </div>`;
+}
+
+
+/* ============ Bestiaire (réglages des ennemis, publiés par l’administrateur) ============ */
+const EFX=['v','dur','ch'];
+const bestSnap=()=>JSON.parse(JSON.stringify({
+  zones:ZONES.map(z=>({enemies:z.enemies.map(e=>({hp:e.hp,atk:e.atk,def:e.def,spd:e.spd||1,sk:[...(e.sk||[])]})),boss:{hp:z.boss.hp,atk:z.boss.atk,def:z.boss.def,spd:z.boss.spd||1,sk:[...(z.boss.sk||[])]}})),
+  sk:Object.fromEntries(Object.entries(ENSK).map(([id,k])=>[id,{cd:k.cd,mult:k.mult==null?null:k.mult,fx:(k.fx||[]).map(f=>Object.fromEntries(EFX.filter(x=>f[x]!=null).map(x=>[x,f[x]])))}])),
+  enf:{hp:[...ENF.hp],atk:[...ENF.atk],def:[...ENF.def]},
+  diff:Object.fromEntries(['hero','myth'].map(d=>[d,{hp:DIFF[d].hp,atk:DIFF[d].atk,bHp:DIFF[d].bHp,bAtk:DIFF[d].bAtk,bDef:DIFF[d].bDef,rage:DIFF[d].rage}]))}));
+const BEST_DEF=bestSnap();
+function applyBest(cfg){
+  const src=[BEST_DEF,cfg].filter(Boolean);
+  for(const c of src){
+    (c.zones||[]).forEach((z,i)=>{const Z=ZONES[i]; if(!Z||!z) return;
+      (z.enemies||[]).forEach((e,j)=>{if(Z.enemies[j]&&e) Object.assign(Z.enemies[j],{hp:+e.hp,atk:+e.atk,def:+e.def,spd:+e.spd||1,sk:(e.sk||[]).filter(x=>ENSK[x])})});
+      if(z.boss) Object.assign(Z.boss,{hp:+z.boss.hp,atk:+z.boss.atk,def:+z.boss.def,spd:+z.boss.spd||1,sk:(z.boss.sk||[]).filter(x=>ENSK[x])})});
+    for(const [id,k] of Object.entries(c.sk||{})){const E=ENSK[id]; if(!E) continue; E.cd=+k.cd; if(k.mult!=null) E.mult=+k.mult;
+      (k.fx||[]).forEach((f,i)=>{if(E.fx&&E.fx[i]) for(const x of EFX) if(f[x]!=null) E.fx[i][x]=+f[x]}); SK[id]={id,...E}}
+    if(c.enf) for(const k of ['hp','atk','def']) if(c.enf[k]) ENF[k]=c.enf[k].map(Number);
+    if(c.diff) for(const d of ['hero','myth']) if(c.diff[d]) Object.assign(DIFF[d],Object.fromEntries(Object.entries(c.diff[d]).map(([k,v])=>[k,+v])));
+  }
+}
+const BEST_KEY='cendrelame_best';
+{const r=lsGet(BEST_KEY); if(r){try{applyBest(JSON.parse(r))}catch(e){}}}
+async function bestLoad(){
+  try{ const d=await FB.db.collection('config').doc('bestiary').get(); if(d.exists&&d.data().json){ lsSet(BEST_KEY,d.data().json); applyBest(JSON.parse(d.data().json)); FB.bestTs=d.data().ts||null } }catch(e){}
+}
+async function adminCheck(){
+  FB.admin=false; if(!FB.user) return;
+  try{ const d=await FB.db.collection('config').doc('admin').get(); FB.admin=!!(d.exists&&(d.data().uids||[]).includes(FB.user.uid)) }catch(e){}
+}
+const ROLE_N={atk:'Physique',mag:'Magique'};
+const skDescE=id=>{const k=ENSK[id]; if(!k) return ''; const t=[]; if(k.mult) t.push(`${Math.round(k.mult*100)} % de l’attaque`+(k.tg==='all'?' sur tous':''));
+  for(const f of k.fx||[]){ if(f.k==='dot') t.push(`${f.n} ${Math.round(f.v*100)} % / tour, ${f.dur} tours`); else if(f.k==='stun') t.push(`${f.ch} % d’étourdir ${f.dur} tour`); else if(f.k==='heal') t.push(`soigne un allié (×${f.v})`); else if(f.k==='buff') t.push(`+${f.v} % ${f.stat==='atk'?'attaque':f.stat} aux alliés, ${f.dur} tours`); else if(f.k==='debuff') t.push(`${f.v} % ${f.stat==='def'?'défense':f.stat}, ${f.dur} tours`) }
+  return t.join(' · ')+` · recharge ${k.cd}`};
+function bestCalc(t,isBoss,zi){
+  const dk=UI.bdiff||'normal',D=DIFF[dk],st=isBoss?10:(UI.bstage||5),L=D.L||zi*10+st;
+  const hp=Math.round(enStat('hp',L)*t.hp*(isBoss?.8*D.bHp:D.hp)),atk=enStat('atk',L)*t.atk*(isBoss?.88*D.bAtk:D.atk),def=enStat('def',L)*t.def*(isBoss?D.bDef:1),spd=(8+.15*L)*(t.spd||1);
+  let cmp='';
+  if(S&&S.heroes&&S.heroes[0]){ const h=S.heroes[0],hs=heroStats(h),mag=CLASSES[h.cls].role==='mag',ha=mag?hs.mag:hs.atk,ed=mag?def*.9:def,Kh=100+15*h.lvl,dh=Math.max(1,ha*Kh/(Kh+ed));
+    const Ke=100+15*L,hd=t.role==='mag'?hs.res:hs.def,de=Math.max(1,atk*Ke/(Ke+hd)),n1=Math.ceil(hp/dh),n2=Math.ceil(hs.hp/de);
+    cmp=`<div class="bcmp ${n1<=n2?'ok':'bad'}"><span>Vous : <b>${n1}</b> coup${n1>1?'s':''}</span><span>Lui : <b>${n2}</b> coup${n2>1?'s':''}</span></div>` }
+  return `<div class="bvals"><span><small>PV</small><b>${fmt(hp)}</b></span><span><small>${t.role==='mag'?'INT':'ATQ'}</small><b>${fmt(Math.round(atk))}</b></span><span><small>DEF</small><b>${fmt(Math.round(def))}</b></span><span><small>VIT</small><b>${r1(spd)}</b></span></div><small class="mute">Niveau ${L}</small>${cmp}`;
+}
+function bestCard(zi,j){
+  const Z=ZONES[zi],boss=j<0,t=boss?Z.boss:Z.enemies[j],key=zi+'.'+(boss?'b':j),w=boss?UI.bw.zones[zi].boss:UI.bw.zones[zi].enemies[j];
+  const inp=(k,lab,step)=>`<label><span>${lab}</span><input type="number" step="${step}" min="0" data-bf="z.${key}.${k}" value="${w[k]}"></label>`;
+  const extra=boss&&DIFF[UI.bdiff||'normal'].extra;
+  return `<article class="bcard ${boss?'boss':''}"><header><span class="bic">${icon(t.ic)}</span><div><b>${esc(t.n)}</b><small>${boss?'Boss · ':''}${ROLE_N[t.role]||t.role}</small></div><button class="btn sm" data-act="bestTest" data-k="${key}" title="Lancer un combat de test contre cet ennemi">⚔ Tester</button></header>
+    <div class="binp">${inp('hp','PV ×',.05)}${inp('atk','Attaque ×',.05)}${inp('def','Défense ×',.05)}${inp('spd','Vitesse ×',.05)}</div>
+    <div data-bstat="${key}">${bestCalc(t,boss,zi)}</div>
+    <div class="bsk">${Object.keys(ENSK).map(id=>`<button class="bchip ${w.sk.includes(id)?'on':''}" data-act="bestSk" data-k="${key}" data-s="${id}" title="${esc(skDescE(id))}">${esc(ENSK[id].n)}</button>`).join('')}${extra?`<span class="bchip lock" title="Ajoutée par la difficulté">${esc(ENSK[extra].n)} (difficulté)</span>`:''}</div></article>`;
+}
+function viewBest(){
+  if(!UI.bw) UI.bw=bestSnap();
+  const dk=UI.bdiff||'normal',W=UI.bw;
+  const zones=ZONES.map((z,i)=>`<section class="bzone"><h3>${esc(z.n)} <small class="mute">· niveaux ${i*10+1} à ${i*10+10}</small></h3><div class="bgrid">${z.enemies.map((_,j)=>bestCard(i,j)).join('')}${bestCard(i,-1)}</div></section>`).join('');
+  const skRows=Object.entries(ENSK).map(([id,k])=>{const w=W.sk[id];return `<tr><td><b>${esc(k.n)}</b><br><small class="mute">${esc(skDescE(id))}</small></td>
+    <td><input type="number" step="1" min="0" data-bf="s.${id}.cd" value="${w.cd}"></td>
+    <td>${w.mult==null?'—':`<input type="number" step=".05" min="0" data-bf="s.${id}.mult" value="${w.mult}">`}</td>
+    <td>${(w.fx||[]).map((f,i)=>EFX.filter(x=>f[x]!=null).map(x=>`<label class="bfx"><span>${x==='v'?'Valeur':x==='dur'?'Durée':'Chance %'}</span><input type="number" step="${x==='v'&&Math.abs(f[x])<5?'.05':'1'}" data-bf="s.${id}.fx.${i}.${x}" value="${f[x]}"></label>`).join('')).join('')||'—'}</td></tr>`}).join('');
+  const enfRows=['hp','atk','def'].map(k=>`<tr><td><b>${k==='hp'?'PV':k==='atk'?'Attaque':'Défense'}</b></td>${[0,1,2].map(i=>`<td><input type="number" step="${i===2?'.01':'.1'}" data-bf="e.${k}.${i}" value="${W.enf[k][i]}"></td>`).join('')}</tr>`).join('');
+  const dfRows=['hero','myth'].map(d=>`<tr><td><b>${DIFF[d].n}</b></td>${['hp','atk','bHp','bAtk','bDef','rage'].map(k=>`<td><input type="number" step="${k==='rage'?1:.05}" data-bf="d.${d}.${k}" value="${W.diff[d][k]}"></td>`).join('')}</tr>`).join('');
+  return `<div class="scrhead"><h2>Bestiaire</h2><div class="row">${UI.bdirty?'<span class="bdirty">Modifications non publiées</span>':''}<button class="btn pri" data-act="bestPub" ${FB.admin?'':'disabled'}>Publier pour tous les joueurs</button><button class="btn" data-act="bestUndo">Annuler les modifications</button><button class="btn" data-act="bestDef">Valeurs d’origine</button>${backBtn('opts')}</div></div>
+    <p class="hint" style="margin-bottom:12px">Les changements s’appliquent tout de suite sur votre appareil pour tester. « Publier » les envoie à tous les joueurs (au prochain chargement du jeu). Survolez une compétence pour voir son effet ; cliquez pour l’ajouter ou la retirer.</p>
+    <div class="bbar"><label>Difficulté <select id="bdiff">${Object.entries(DIFF).map(([k,d])=>`<option value="${k}" ${k===dk?'selected':''}>${d.n}</option>`).join('')}</select></label>
+      ${dk==='normal'?`<label>Étape des monstres <input type="range" id="bstage" min="1" max="9" value="${UI.bstage||5}"><b>${UI.bstage||5}</b></label>`:`<span class="mute">Monstres niveau ${DIFF[dk].L}</span>`}
+      <span class="mute">${S&&S.heroes&&S.heroes[0]?`Comparaison avec ${esc(S.heroes[0].name)} (niveau ${S.heroes[0].lvl}) : coups pour vaincre l’ennemi / coups qu’il lui faut pour vous vaincre.`:'Chargez un personnage pour voir la comparaison avec votre héros.'}</span></div>
+    ${zones}
+    <section class="panel" style="margin-top:18px"><h3 style="margin-bottom:8px">Compétences des ennemis</h3><div class="btable"><table><thead><tr><th>Compétence</th><th>Recharge</th><th>Dégâts ×</th><th>Effets</th></tr></thead><tbody>${skRows}</tbody></table></div></section>
+    <div class="grid g2" style="margin-top:14px">
+      <section class="panel"><h3 style="margin-bottom:6px">Formules de niveau</h3><p class="hint" style="margin-bottom:8px">Valeur = base + par niveau × niveau + quadratique × niveau².</p><div class="btable"><table><thead><tr><th></th><th>Base</th><th>Par niveau</th><th>Quadratique</th></tr></thead><tbody>${enfRows}</tbody></table></div></section>
+      <section class="panel"><h3 style="margin-bottom:6px">Difficultés</h3><p class="hint" style="margin-bottom:8px">Multiplicateurs des monstres, des boss, et tour où les boss entrent en rage.</p><div class="btable"><table><thead><tr><th></th><th>PV</th><th>ATQ</th><th>PV boss</th><th>ATQ boss</th><th>DEF boss</th><th>Rage</th></tr></thead><tbody>${dfRows}</tbody></table></div></section>
+    </div>`;
+}
+function bestSet(path,val){
+  const p=path.split('.'),W=UI.bw,v=val===''?0:+val; if(!isFinite(v)) return;
+  if(p[0]==='z'){const z=W.zones[+p[1]],o=p[2]==='b'?z.boss:z.enemies[+p[2]]; o[p[3]]=v}
+  else if(p[0]==='s'){const k=W.sk[p[1]]; if(p[2]==='fx') k.fx[+p[3]][p[4]]=v; else k[p[2]]=v}
+  else if(p[0]==='e'){W.enf[p[1]][+p[2]]=v}
+  else if(p[0]==='d'){W.diff[p[1]][p[2]]=v}
+  applyBest(UI.bw); UI.bdirty=true;
+}
+function bestRefreshStats(){
+  document.querySelectorAll('[data-bstat]').forEach(el=>{const [zi,j]=el.dataset.bstat.split('.'),Z=ZONES[+zi],b=j==='b';el.innerHTML=bestCalc(b?Z.boss:Z.enemies[+j],b,+zi)});
+  const d=$('.bdirty'); if(!d&&UI.bdirty){const r=$('.scrhead .row'); if(r) r.insertAdjacentHTML('afterbegin','<span class="bdirty">Modifications non publiées</span>')}
 }
 
 /* ============ infobulle ============ */
@@ -2771,6 +2889,17 @@ const A={
   frDel:async d=>{ if(!d.now&&UI.frdel!==d.id){UI.frdel=d.id; renderFriends(); return} UI.frdel=null;
     try{ await FB.db.collection('friendships').doc(d.id).delete() }catch(e){ UI.frerr=true; UI.frmsg='Erreur : '+(e.code||'inconnue') } renderFriends() },
   frDelNo:()=>{UI.frdel=null; renderFriends()},
+  copyUid:()=>{try{navigator.clipboard.writeText(FB.user.uid).then(()=>toast('Identifiant copié.'),()=>toast(FB.user.uid))}catch(e){toast(FB.user.uid)}},
+  bestSk:d=>{const [zi,j]=d.k.split('.'),z=UI.bw.zones[+zi],o=j==='b'?z.boss:z.enemies[+j],i=o.sk.indexOf(d.s); if(i>=0) o.sk.splice(i,1); else o.sk.push(d.s); applyBest(UI.bw); UI.bdirty=true; const y=scrollY; render(); scrollTo(0,y)},
+  bestUndo:()=>{let pub=null; try{pub=JSON.parse(lsGet(BEST_KEY)||'null')}catch(e){} applyBest(pub); UI.bw=bestSnap(); UI.bdirty=false; const y=scrollY; render(); scrollTo(0,y); toast('Modifications annulées.')},
+  bestDef:()=>{UI.bw=JSON.parse(JSON.stringify(BEST_DEF)); applyBest(UI.bw); UI.bdirty=true; const y=scrollY; render(); scrollTo(0,y); toast('Valeurs d’origine rétablies (pensez à publier).')},
+  bestPub:async()=>{ if(!FB.admin) return; const json=JSON.stringify(UI.bw||bestSnap());
+    try{ await FB.db.collection('config').doc('bestiary').set({json,ts:firebase.firestore.FieldValue.serverTimestamp(),by:FB.user.uid}); lsSet(BEST_KEY,json); UI.bdirty=false; const y=scrollY; render(); scrollTo(0,y); toast('Bestiaire publié pour tous les joueurs.') }
+    catch(e){ toast('Publication impossible ('+((e&&e.code)||'erreur')+'). Vérifiez les règles Firestore et le document config/admin.') } },
+  bestTest:d=>{ if(!S||!S.heroes||!S.heroes.length){toast('Chargez d’abord un personnage (Jouer).');return}
+    const [zi,j]=d.k.split('.'); C.force={z:+zi,j:j==='b'?-1:+j}; C.test=true; UI.bestFrom=true;
+    S.diff=UI.bdiff||'normal'; UI.zone=+zi; UI.stage=j==='b'?10:(UI.bstage||5); UI.scr=null; UI.tab='combat'; C.phase='idle'; render(); scrollTo(0,0); startBattle() },
+  bestBack:()=>{C.phase='idle'; C.result=null; UI.scr='best'; UI.fromGame=true; render()},
   dbgT:d=>{const D=DBG(); D[d.k]=!D[d.k]; saveAcc(); render(); toast((d.k==='free'?'Aucun coût':'Récoltes accélérées')+(D[d.k]?' : activé.':' : désactivé.'))},
   dbg:d=>{
     if(!S||!S.heroes||!S.heroes.length) return; const h=S.heroes[0],k=d.k; let msg='';
@@ -2843,8 +2972,11 @@ document.addEventListener('keydown',e=>{ if(e.key==='Enter'&&e.target.id==='frna
 document.addEventListener('mousedown',e=>{ if(FR.open&&!e.target.closest('#friends')){FR.open=false;renderFriends()} });
 document.addEventListener('input',e=>{
   if(e.target.id==='cname') UI.cname=e.target.value;
+  if(e.target.dataset&&e.target.dataset.bf){ bestSet(e.target.dataset.bf,e.target.value); bestRefreshStats() }
+  if(e.target.id==='bstage'){ UI.bstage=+e.target.value; const b=e.target.nextElementSibling; if(b) b.textContent=UI.bstage; bestRefreshStats() }
 });
 document.addEventListener('change',e=>{
+  if(e.target.id==='bdiff'){ UI.bdiff=e.target.value; const y=scrollY; render(); scrollTo(0,y) }
   if(e.target.id==='flvl'){UI.fLvl=+e.target.value;render()}
 });
 
