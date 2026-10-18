@@ -283,6 +283,18 @@ dl.cats dt.spow,dl.cats dd.spow{margin-top:8px;padding-top:6px;border-top:1px so
 .stats .spl{color:#8a8274;font-size:.85em;font-weight:400}
 .btn.endturn{align-self:center;background:#3a2817;color:var(--gold);border-color:#1d1209;font-weight:700}
 .btn.endturn:hover{background:#4a3220}
+.frname{font:inherit;background:none;border:0;padding:0;color:inherit;cursor:pointer;text-align:left;display:inline-flex;align-items:center;gap:6px;max-width:100%}
+.frname:hover b{color:var(--brass);text-decoration:underline}
+.frud{width:9px;height:9px;border-radius:50%;background:#e0412a;box-shadow:0 0 0 2px var(--paper);flex:none}
+.frn{position:relative}
+.frpop{position:absolute;left:0;top:100%;z-index:3;margin-top:4px;padding:6px;background:var(--paper);border:1px solid #1d1209;border-radius:6px;box-shadow:0 8px 20px #0009}
+.frchat{position:fixed;z-index:36;right:calc(max(12px,env(safe-area-inset-right,0px)) + min(340px,calc(100vw - 24px)) + 10px);bottom:max(12px,env(safe-area-inset-bottom,0px));width:min(320px,calc(100vw - 24px));height:min(440px,70vh);display:flex;flex-direction:column;background:var(--paper);color:var(--fg);border:1px solid #1d1209;border-radius:6px;box-shadow:0 14px 34px #000c,inset 0 0 30px #7a521f44;padding:10px 12px}
+.chlog{flex:1;overflow-y:auto;display:flex;flex-direction:column;gap:6px;padding:6px 2px;margin-bottom:8px;border-top:1px solid #a88d5b55;border-bottom:1px solid #a88d5b55}
+.chm{align-self:flex-start;max-width:85%;display:flex;flex-direction:column;gap:1px}
+.chm span{padding:6px 10px;border-radius:10px 10px 10px 2px;background:#cab283;word-wrap:break-word;white-space:pre-wrap}
+.chm.me{align-self:flex-end;align-items:flex-end}.chm.me span{background:var(--brass);color:#f7e9c6;border-radius:10px 10px 2px 10px}
+.chm small{font-size:.68rem;color:var(--mute)}
+@media (max-width:760px){.frchat{right:12px;bottom:64px;height:min(420px,60vh)}}
 /* generic */
 .panel{background:var(--bg2);border:1px solid var(--line);border-radius:3px;padding:16px;min-width:0;box-shadow:inset 0 0 26px #9a6a2a22}
 .panel>h2,.panel>h3{margin-bottom:10px}
@@ -1690,7 +1702,7 @@ function presence(state){
   FB.db.collection(COL('profiles')).doc(FB.user.uid).set({name:FB.prof.name,nameLower:FB.prof.nameLower,lastSeen:firebase.firestore.FieldValue.serverTimestamp(),online:state!=='off',char:ch},{merge:true}).catch(()=>{});
 }
 setInterval(()=>presence(),60000);
-function stopFriends(){ if(FR.unsub){FR.unsub();FR.unsub=null} for(const k in FR.pun){FR.pun[k]();delete FR.pun[k]} FR.list=[]; FR.prof={}; FR.open=false; renderFriends() }
+function stopFriends(){ closeChat(); if(FR.unsub){FR.unsub();FR.unsub=null} for(const k in FR.pun){FR.pun[k]();delete FR.pun[k]} FR.list=[]; FR.prof={}; FR.open=false; renderFriends() }
 function startFriends(){
   if(!FB.user||FR.unsub) return; const me=FB.user.uid;
   FR.unsub=FB.db.collection(COL('friendships')).where('users','array-contains',me).onSnapshot(qs=>{
@@ -1698,13 +1710,16 @@ function startFriends(){
     const want=new Set(FR.list.filter(f=>f.status==='accepted').map(f=>f.users.find(x=>x!==me)));
     for(const k in FR.pun) if(!want.has(k)){FR.pun[k]();delete FR.pun[k];delete FR.prof[k]}
     for(const k of want) if(!FR.pun[k]) FR.pun[k]=FB.db.collection(COL('profiles')).doc(k).onSnapshot(d=>{FR.prof[k]=d.exists?d.data():null; renderFriends()},()=>{});
-    renderFriends();
+    for(const f of FR.list){ const t=f.lastMsg&&tsMs(f.lastMsg.ts); if(FR.seen&&t&&t>(FR.seen[f.id]||0)&&isUnread(f)&&CH.id!==f.id) toast('💬 '+otherName(f)+' : '+(f.lastMsg.text||'')); }
+    FR.seen=Object.fromEntries(FR.list.map(f=>[f.id,(f.lastMsg&&tsMs(f.lastMsg.ts))||0]));
+    renderFriends(); if(CH.id){renderChat(); markRead()}
   },e=>{FR.err='Liste d’amis indisponible ('+(e.code||'erreur')+'). Vérifiez les règles Firestore.'; renderFriends()});
   renderFriends();
 }
 setInterval(()=>{ if(FR.open) renderFriends(true) },30000);
 const tsMs=t=>!t?0:t.toMillis?t.toMillis():t.seconds?t.seconds*1000:+t||0;
 const isOnline=p=>!!p&&p.online!==false&&Date.now()-tsMs(p.lastSeen)<3*60*1000;
+const isUnread=f=>{const me=FB.user&&FB.user.uid,lm=f.lastMsg; return !!(me&&lm&&lm.from!==me&&tsMs(lm.ts)>tsMs((f.lastRead||{})[me]))};
 const otherName=f=>{const me=FB.user.uid,o=f.users.find(x=>x!==me);return (f.names&&f.names[o])||'?'};
 function renderFriends(){
   let w=$('#friends');
@@ -1718,17 +1733,55 @@ function renderFriends(){
       <button class="frbtn" data-act="frToggle" aria-expanded="false"><span class="frdot"></span><span id="frcnt"></span></button>`; }
   $('#frme').textContent=FB.prof.name;
   const b=w.querySelector('.frbtn'); b.setAttribute('aria-expanded',FR.open); $('#frpanel').hidden=!FR.open;
-  $('#frcnt').innerHTML=`Amis <b>${on}</b> / ${acc.length} en ligne${inc.length?`<span class="ndot" aria-label="${inc.length} demande(s)"></span>`:''}`;
+  const unr=acc.filter(isUnread).length;
+  $('#frcnt').innerHTML=`Amis <b>${on}</b> / ${acc.length} en ligne${inc.length||unr?`<span class="ndot" aria-label="${inc.length} demande(s), ${unr} message(s) non lu(s)"></span>`:''}`;
   b.classList.toggle('has',on>0);
   const msg=$('#frmsg'); msg.textContent=FR.err||UI.frmsg||''; msg.className='frmsg '+(FR.err||UI.frerr?'bad':'ok');
   const row=(f,body,btns)=>`<li class="frrow">${body}<span class="fracts">${btns}</span></li>`;
-  const accH=acc.map(f=>{const o=f.users.find(x=>x!==me),p=FR.prof[o],ol=isOnline(p),ch=p&&p.char;
-      return {ol,h:row(f,`<span class="st ${ol?'on':''}" aria-label="${ol?'En ligne':'Hors ligne'}"></span><span class="frn"><b>${esc(otherName(f))}</b><small>${ol?(ch?`Joue ${esc(ch.name)} · ${(CLASSES[ch.cls]||{n:''}).n} niv. ${ch.lvl}`:'Dans le menu'):'Hors ligne'+(p&&p.char?` · ${esc(p.char.name)} niv. ${p.char.lvl}`:'')}</small></span>`,
-        UI.frdel===f.id?`<button class="btn sm danger" data-act="frDel" data-id="${f.id}">Retirer</button><button class="btn sm" data-act="frDelNo">Non</button>`:`<button class="frx sm" data-act="frDel" data-id="${f.id}" title="Retirer de mes amis" aria-label="Retirer ${esc(otherName(f))}">×</button>`)}}).sort((a,b)=>b.ol-a.ol).map(x=>x.h).join('');
+  const accL=acc.map(f=>{const o=f.users.find(x=>x!==me),p=FR.prof[o],ol=isOnline(p),ch=p&&p.char,ur=isUnread(f);
+      return {ol,h:row(f,`<span class="st ${ol?'on':''}" aria-label="${ol?'En ligne':'Hors ligne'}"></span><span class="frn"><button class="frname" data-act="frMenu" data-id="${f.id}" aria-expanded="${UI.frMenu===f.id}"><b>${esc(otherName(f))}</b>${ur?'<span class="frud" aria-label="Nouveau message"></span>':''}</button>${UI.frMenu===f.id?`<span class="frpop" role="menu"><button class="btn sm pri" data-act="frChat" data-id="${f.id}">💬 Chat${ur?' (nouveau)':''}</button></span>`:''}<small>${ol?(ch?`Joue ${esc(ch.name)} · ${(CLASSES[ch.cls]||{n:''}).n} niv. ${ch.lvl}`:'Dans le menu'):'Hors ligne'+(p&&p.char?` · ${esc(p.char.name)} niv. ${p.char.lvl}`:'')}</small></span>`,
+        UI.frdel===f.id?`<button class="btn sm danger" data-act="frDel" data-id="${f.id}">Retirer</button><button class="btn sm" data-act="frDelNo">Non</button>`:`<button class="frx sm" data-act="frDel" data-id="${f.id}" title="Retirer de mes amis" aria-label="Retirer ${esc(otherName(f))}">×</button>`)}});
+  const onL=accL.filter(x=>x.ol),offL=accL.filter(x=>!x.ol);
   $('#frlist').innerHTML=
     (inc.length?`<h4>Demandes reçues</h4><ul>${inc.map(f=>row(f,`<span class="frn"><b>${esc(otherName(f))}</b><small>veut devenir votre ami</small></span>`,`<button class="btn sm pri" data-act="frAcc" data-id="${f.id}">Accepter</button><button class="btn sm" data-act="frDel" data-id="${f.id}" data-now="1">Refuser</button>`)).join('')}</ul>`:'')+
-    `<h4>Mes amis</h4>${acc.length?`<ul>${accH}</ul>`:'<p class="mute frempty">Aucun ami pour l’instant. Ajoutez un joueur avec son nom de compte.</p>'}`+
+    (acc.length?`<h4>En ligne (${onL.length})</h4>${onL.length?`<ul>${onL.map(x=>x.h).join('')}</ul>`:'<p class="mute frempty">Aucun ami connecté.</p>'}<h4>Hors ligne (${offL.length})</h4>${offL.length?`<ul>${offL.map(x=>x.h).join('')}</ul>`:'<p class="mute frempty">Tous vos amis sont connectés.</p>'}`:'<h4>Mes amis</h4><p class="mute frempty">Aucun ami pour l’instant. Ajoutez un joueur avec son nom de compte.</p>')+
     (out.length?`<h4>Demandes envoyées</h4><ul>${out.map(f=>row(f,`<span class="frn"><b>${esc(otherName(f))}</b><small>en attente</small></span>`,`<button class="btn sm" data-act="frDel" data-id="${f.id}" data-now="1">Annuler</button>`)).join('')}</ul>`:'');
+}
+/* ---- chat ---- */
+const CH={id:null,unsub:null,msgs:[],err:''};
+const fdoc=id=>FB.db.collection(COL('friendships')).doc(id);
+function openChat(id){
+  if(CH.unsub){CH.unsub();CH.unsub=null}
+  CH.id=id; CH.msgs=[]; CH.err=''; UI.frMenu=null;
+  CH.unsub=fdoc(id).collection('messages').orderBy('ts').limitToLast(60).onSnapshot(qs=>{CH.msgs=qs.docs.map(d=>d.data()); renderChat(); markRead()},e=>{CH.err='Chat indisponible ('+(e.code||'erreur')+'). Vérifiez les règles Firestore.'; renderChat()});
+  renderChat(true); markRead();
+}
+function closeChat(){ if(CH.unsub){CH.unsub();CH.unsub=null} CH.id=null; const w=$('#frchat'); if(w) w.remove() }
+let readT=null;
+function markRead(){
+  const f=FR.list.find(x=>x.id===CH.id); if(!f||!isUnread(f)) return;
+  clearTimeout(readT); readT=setTimeout(()=>{fdoc(CH.id).update({['lastRead.'+FB.user.uid]:firebase.firestore.FieldValue.serverTimestamp()}).catch(()=>{})},300);
+}
+function renderChat(focus){
+  if(!CH.id) return; const f=FR.list.find(x=>x.id===CH.id); if(!f||f.status!=='accepted'){closeChat();return}
+  const me=FB.user.uid; let w=$('#frchat');
+  if(!w){ w=document.createElement('div'); w.id='frchat'; w.className='frchat'; w.setAttribute('role','dialog'); document.body.append(w);
+    w.innerHTML=`<div class="frhead"><b id="chname"></b><small id="chst"></small><button class="frx" data-act="chClose" aria-label="Fermer le chat">×</button></div><div class="chlog" id="chlog" aria-live="polite"></div>
+      <div class="fradd"><input type="text" id="chin" maxlength="300" placeholder="Votre message…" aria-label="Message"><button class="btn sm pri" data-act="chSend">Envoyer</button></div>`; focus=true }
+  const o=f.users.find(x=>x!==me),p=FR.prof[o];
+  $('#chname').textContent=otherName(f); $('#chst').textContent=isOnline(p)?'En ligne':'Hors ligne';
+  const log=$('#chlog'),stick=log.scrollTop+log.clientHeight>=log.scrollHeight-20;
+  const hm=t=>{const d=new Date(tsMs(t)||Date.now());return d.toLocaleDateString('fr-FR',{day:'2-digit',month:'2-digit'})+' '+d.toLocaleTimeString('fr-FR',{hour:'2-digit',minute:'2-digit'})};
+  log.innerHTML=(CH.err?`<p class="frmsg bad">${esc(CH.err)}</p>`:'')+(CH.msgs.length?CH.msgs.map(m=>`<div class="chm ${m.from===me?'me':''}"><span>${esc(m.text)}</span><small>${hm(m.ts)}</small></div>`).join(''):'<p class="mute frempty">Aucun message. Dites bonjour !</p>');
+  if(stick||focus) log.scrollTop=log.scrollHeight;
+  if(focus){const i=$('#chin'); if(i) i.focus()}
+}
+async function sendChat(){
+  const i=$('#chin'),t=(i.value||'').trim().slice(0,300); if(!t||!CH.id) return; i.value='';
+  const me=FB.user.uid,TS=firebase.firestore.FieldValue.serverTimestamp();
+  try{ await fdoc(CH.id).collection('messages').add({from:me,text:t,ts:TS});
+    await fdoc(CH.id).update({lastMsg:{from:me,ts:TS,text:t.slice(0,80)},['lastRead.'+me]:TS}) }
+  catch(e){ CH.err='Envoi impossible ('+(e.code||'erreur')+').'; renderChat() }
 }
 async function frSendReq(name){
   const me=FB.user.uid,low=name.toLowerCase();
@@ -2504,7 +2557,7 @@ const PATCH=[
  {v:'0.1.1',t:'Fiche de personnage',sec:[
   ['Combat',['Points d’action (PA) : 5 de base pour chaque classe. Les compétences coûtent des PA, l’attaque de base est gratuite mais utilisable une seule fois par tour, et chaque unité récupère 1 PA au début de son tour.','Votre héros peut enchaîner plusieurs actions dans le même tour tant qu’il lui reste des PA ; nouveau bouton « Fin de tour ».','Barre de PA segmentée sous la barre de vie de chaque combattant ; le coût en PA est affiché sur chaque compétence.','Nouvelles statistiques : Résistance physique, Résistance magique et résistances au Feu, à la Glace, à la Foudre et à la Terre (en %, plafonnées à 75 %). L’ancienne Résistance devient « Défense magique ».','Compétences élémentaires : Boule de feu (Feu), Éclair en chaîne (Foudre), Météore (Terre) ; côté ennemis, Trait de feu, Crachat toxique et Déferlante. Certains monstres résistent à un élément, d’autres y sont faibles.','Nouveaux affixes de résistance sur l’équipement.']],
   ['Forge',['Nouvelles chances de rareté : Forge ordinaire 80 % Commun / 20 % Magique ; Forge fine 40 % Commun / 50 % Magique / 10 % Rare ; Forge de maître 10 % Magique / 45 % Rare / 45 % Épique ; Forge légendaire 20 % Rare / 70 % Épique / 10 % Légendaire.','Affixes aléatoires : Commun 0, Magique 1, Rare 2, Épique 3, Légendaire 3 + un pouvoir légendaire.','Pouvoir légendaire (écrit en orange) : +6 % de chances de coup critique et +10 % de dégâts critiques. Un pouvoir nommé pour chaque type d’équipement ; les objets légendaires existants le reçoivent aussi.']],
-  ['Amis',['Nouveau système d’amis : liste fixée en bas à droite de l’écran, avec le nombre d’amis connectés.','Ajoutez un joueur avec son nom de compte ; il accepte ou refuse la demande. Vous voyez si vos amis sont en ligne et quel personnage ils jouent.','Nom de compte : à la première connexion, chaque joueur choisit un nom unique, commun à tous ses personnages.']],
+  ['Amis',['Nouveau système d’amis : liste fixée en bas à droite de l’écran, avec le nombre d’amis connectés.','Amis classés en deux catégories : En ligne et Hors ligne.','Chat entre amis : cliquez sur le nom d’un ami puis sur « Chat ». Une pastille rouge signale un nouveau message sur le bouton Amis et sur l’ami concerné.','Ajoutez un joueur avec son nom de compte ; il accepte ou refuse la demande. Vous voyez si vos amis sont en ligne et quel personnage ils jouent.','Nom de compte : à la première connexion, chaque joueur choisit un nom unique, commun à tous ses personnages.']],
   ['Personnage',['Les onglets Personnage et Inventaire sont fusionnés dans l’onglet Personnage.','En haut : l’équipement (roue) à gauche et la présentation du héros à droite (portrait, niveau, statistiques avec le bonus d’équipement en vert, ascension).','En dessous : l’inventaire, puis les compétences. La zone de détails s’affiche sous l’équipement quand un objet est sélectionné.','La roue d’équipement est agrandie et occupe toute la hauteur de la présentation du héros.','Caractéristiques regroupées en trois catégories : Principale, Secondaire et Résistance. « Défense » devient « Défense physique ».','Les valeurs affichées sont les totaux (base + équipement) ; un bouton affiche le détail entre parenthèses (base + équipement).','« Or trouvé » et « Dégâts bonus » ne sont plus affichés dans la fiche.']],
  ]},
  {v:'0.0.9',t:'Entrepôts et débogage',sec:[
@@ -2955,6 +3008,10 @@ const A={
   frDel:async d=>{ if(!d.now&&UI.frdel!==d.id){UI.frdel=d.id; renderFriends(); return} UI.frdel=null;
     try{ await FB.db.collection(COL('friendships')).doc(d.id).delete() }catch(e){ UI.frerr=true; UI.frmsg='Erreur : '+(e.code||'inconnue') } renderFriends() },
   frDelNo:()=>{UI.frdel=null; renderFriends()},
+  frMenu:d=>{UI.frMenu=UI.frMenu===d.id?null:d.id; renderFriends()},
+  frChat:d=>{openChat(d.id); renderFriends()},
+  chClose:()=>closeChat(),
+  chSend:()=>sendChat(),
   copyUid:()=>{try{navigator.clipboard.writeText(FB.user.uid).then(()=>toast('Identifiant copié.'),()=>toast(FB.user.uid))}catch(e){toast(FB.user.uid)}},
   bestSk:d=>{const [zi,j]=d.k.split('.'),z=UI.bw.zones[+zi],o=j==='b'?z.boss:z.enemies[+j],i=o.sk.indexOf(d.s); if(i>=0) o.sk.splice(i,1); else o.sk.push(d.s); applyBest(UI.bw); UI.bdirty=true; const y=scrollY; render(); scrollTo(0,y)},
   bestUndo:()=>{let pub=null; try{pub=JSON.parse(lsGet(BEST_KEY)||'null')}catch(e){} applyBest(pub); UI.bw=bestSnap(); UI.bdirty=false; const y=scrollY; render(); scrollTo(0,y); toast('Modifications annulées.')},
@@ -3034,8 +3091,8 @@ document.addEventListener('mousedown',e=>{ if(e.target.id==='mconf') A.menuNo();
   if($('#menudd')&&!e.target.closest('#menudd,#menubtn')) closeMenuDD();
   if(UI.siteOpt&&!e.target.closest('#sopt,.sgear')) A.optClose() });
 document.addEventListener('submit',e=>e.preventDefault());
-document.addEventListener('keydown',e=>{ if(e.key==='Enter'&&e.target.id==='frname'){e.preventDefault();A.frAdd()} });
-document.addEventListener('mousedown',e=>{ if(FR.open&&!e.target.closest('#friends')){FR.open=false;renderFriends()} });
+document.addEventListener('keydown',e=>{ if(e.key==='Enter'&&e.target.id==='frname'){e.preventDefault();A.frAdd()} if(e.key==='Enter'&&e.target.id==='chin'){e.preventDefault();sendChat()} if(e.key==='Escape'&&CH.id&&e.target.id==='chin') closeChat() });
+document.addEventListener('mousedown',e=>{ if(FR.open&&!e.target.closest('#friends,#frchat')){FR.open=false;UI.frMenu=null;renderFriends()} else if(UI.frMenu&&!e.target.closest('.frpop,.frname')){UI.frMenu=null;renderFriends()} });
 document.addEventListener('input',e=>{
   if(e.target.id==='cname') UI.cname=e.target.value;
   if(e.target.dataset&&e.target.dataset.bf){ bestSet(e.target.dataset.bf,e.target.value); bestRefreshStats() }
