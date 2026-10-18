@@ -287,7 +287,11 @@ dl.cats dt.spow,dl.cats dd.spow{margin-top:8px;padding-top:6px;border-top:1px so
 .frname:hover b{color:var(--brass);text-decoration:underline}
 .frud{width:9px;height:9px;border-radius:50%;background:#e0412a;box-shadow:0 0 0 2px var(--paper);flex:none}
 .frn{position:relative}
-.frpop{position:absolute;left:0;top:100%;z-index:3;margin-top:4px;padding:6px;background:var(--paper);border:1px solid #1d1209;border-radius:6px;box-shadow:0 8px 20px #0009}
+.frpop{position:fixed;z-index:40;padding:6px;background:var(--paper);border:1px solid #1d1209;border-radius:6px;box-shadow:0 8px 20px #0009;visibility:hidden}
+.frpop::after{content:'';position:absolute;right:-6px;top:50%;width:10px;height:10px;background:var(--paper);border-right:1px solid #1d1209;border-top:1px solid #1d1209;transform:translateY(-50%) rotate(45deg)}
+.chatb{display:inline-flex;align-items:center;justify-content:flex-start;gap:6px;padding:5px 12px 5px 8px;line-height:1}
+.chatb svg{width:16px;height:16px;fill:currentColor;flex:none;display:block}
+.chatb span{display:block}
 .frchat{position:fixed;z-index:36;right:calc(max(12px,env(safe-area-inset-right,0px)) + min(340px,calc(100vw - 24px)) + 10px);bottom:max(12px,env(safe-area-inset-bottom,0px));width:min(320px,calc(100vw - 24px));height:min(440px,70vh);display:flex;flex-direction:column;background:var(--paper);color:var(--fg);border:1px solid #1d1209;border-radius:6px;box-shadow:0 14px 34px #000c,inset 0 0 30px #7a521f44;padding:10px 12px}
 .chlog{flex:1;overflow-y:auto;display:flex;flex-direction:column;gap:6px;padding:6px 2px;margin-bottom:8px;border-top:1px solid #a88d5b55;border-bottom:1px solid #a88d5b55}
 .chm{align-self:flex-start;max-width:85%;display:flex;flex-direction:column;gap:1px}
@@ -1706,7 +1710,7 @@ function stopFriends(){ closeChat(); if(FR.unsub){FR.unsub();FR.unsub=null} for(
 function startFriends(){
   if(!FB.user||FR.unsub) return; const me=FB.user.uid;
   FR.unsub=FB.db.collection(COL('friendships')).where('users','array-contains',me).onSnapshot(qs=>{
-    FR.list=qs.docs.map(d=>Object.assign({id:d.id},d.data())); FR.err='';
+    FR.list=qs.docs.map(d=>Object.assign({id:d.id},d.data({serverTimestamps:'estimate'}))); FR.err='';
     const want=new Set(FR.list.filter(f=>f.status==='accepted').map(f=>f.users.find(x=>x!==me)));
     for(const k in FR.pun) if(!want.has(k)){FR.pun[k]();delete FR.pun[k];delete FR.prof[k]}
     for(const k of want) if(!FR.pun[k]) FR.pun[k]=FB.db.collection(COL('profiles')).doc(k).onSnapshot(d=>{FR.prof[k]=d.exists?d.data():null; renderFriends()},()=>{});
@@ -1719,7 +1723,7 @@ function startFriends(){
 setInterval(()=>{ if(FR.open) renderFriends(true) },30000);
 const tsMs=t=>!t?0:t.toMillis?t.toMillis():t.seconds?t.seconds*1000:+t||0;
 const isOnline=p=>!!p&&p.online!==false&&Date.now()-tsMs(p.lastSeen)<3*60*1000;
-const isUnread=f=>{const me=FB.user&&FB.user.uid,lm=f.lastMsg; return !!(me&&lm&&lm.from!==me&&tsMs(lm.ts)>tsMs((f.lastRead||{})[me]))};
+const isUnread=f=>{const me=FB.user&&FB.user.uid,lm=f.lastMsg; if(!me||!lm||lm.from===me||(CH.id===f.id&&$('#frchat'))) return false; const r=(f.lastRead||{})[me]; return r===null?false:tsMs(lm.ts)>tsMs(r)};
 const otherName=f=>{const me=FB.user.uid,o=f.users.find(x=>x!==me);return (f.names&&f.names[o])||'?'};
 function renderFriends(){
   let w=$('#friends');
@@ -1739,13 +1743,15 @@ function renderFriends(){
   const msg=$('#frmsg'); msg.textContent=FR.err||UI.frmsg||''; msg.className='frmsg '+(FR.err||UI.frerr?'bad':'ok');
   const row=(f,body,btns)=>`<li class="frrow">${body}<span class="fracts">${btns}</span></li>`;
   const accL=acc.map(f=>{const o=f.users.find(x=>x!==me),p=FR.prof[o],ol=isOnline(p),ch=p&&p.char,ur=isUnread(f);
-      return {ol,h:row(f,`<span class="st ${ol?'on':''}" aria-label="${ol?'En ligne':'Hors ligne'}"></span><span class="frn"><button class="frname" data-act="frMenu" data-id="${f.id}" aria-expanded="${UI.frMenu===f.id}"><b>${esc(otherName(f))}</b>${ur?'<span class="frud" aria-label="Nouveau message"></span>':''}</button>${UI.frMenu===f.id?`<span class="frpop" role="menu"><button class="btn sm pri" data-act="frChat" data-id="${f.id}">💬 Chat${ur?' (nouveau)':''}</button></span>`:''}<small>${ol?(ch?`Joue ${esc(ch.name)} · ${(CLASSES[ch.cls]||{n:''}).n} niv. ${ch.lvl}`:'Dans le menu'):'Hors ligne'+(p&&p.char?` · ${esc(p.char.name)} niv. ${p.char.lvl}`:'')}</small></span>`,
+      return {ol,h:row(f,`<span class="st ${ol?'on':''}" aria-label="${ol?'En ligne':'Hors ligne'}"></span><span class="frn"><button class="frname" data-act="frMenu" data-id="${f.id}" aria-expanded="${UI.frMenu===f.id}"><b>${esc(otherName(f))}</b>${ur?'<span class="frud" aria-label="Nouveau message"></span>':''}</button>${UI.frMenu===f.id?`<span class="frpop" role="menu"><button class="btn sm pri chatb" data-act="frChat" data-id="${f.id}"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4h16a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H9l-5 4v-4H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2zm3 5v2h2V9zm4 0v2h2V9zm4 0v2h2V9z"/></svg><span>Chat${ur?' (nouveau)':''}</span></button></span>`:''}<small>${ol?(ch?`Joue ${esc(ch.name)} · ${(CLASSES[ch.cls]||{n:''}).n} niv. ${ch.lvl}`:'Dans le menu'):'Hors ligne'+(p&&p.char?` · ${esc(p.char.name)} niv. ${p.char.lvl}`:'')}</small></span>`,
         UI.frdel===f.id?`<button class="btn sm danger" data-act="frDel" data-id="${f.id}">Retirer</button><button class="btn sm" data-act="frDelNo">Non</button>`:`<button class="frx sm" data-act="frDel" data-id="${f.id}" title="Retirer de mes amis" aria-label="Retirer ${esc(otherName(f))}">×</button>`)}});
   const onL=accL.filter(x=>x.ol),offL=accL.filter(x=>!x.ol);
   $('#frlist').innerHTML=
     (inc.length?`<h4>Demandes reçues</h4><ul>${inc.map(f=>row(f,`<span class="frn"><b>${esc(otherName(f))}</b><small>veut devenir votre ami</small></span>`,`<button class="btn sm pri" data-act="frAcc" data-id="${f.id}">Accepter</button><button class="btn sm" data-act="frDel" data-id="${f.id}" data-now="1">Refuser</button>`)).join('')}</ul>`:'')+
     (acc.length?`<h4>En ligne (${onL.length})</h4>${onL.length?`<ul>${onL.map(x=>x.h).join('')}</ul>`:'<p class="mute frempty">Aucun ami connecté.</p>'}<h4>Hors ligne (${offL.length})</h4>${offL.length?`<ul>${offL.map(x=>x.h).join('')}</ul>`:'<p class="mute frempty">Tous vos amis sont connectés.</p>'}`:'<h4>Mes amis</h4><p class="mute frempty">Aucun ami pour l’instant. Ajoutez un joueur avec son nom de compte.</p>')+
     (out.length?`<h4>Demandes envoyées</h4><ul>${out.map(f=>row(f,`<span class="frn"><b>${esc(otherName(f))}</b><small>en attente</small></span>`,`<button class="btn sm" data-act="frDel" data-id="${f.id}" data-now="1">Annuler</button>`)).join('')}</ul>`:'');
+  const pop=$('#frlist .frpop'); if(pop){ const nb=pop.parentElement.querySelector('.frname'),r=nb.getBoundingClientRect(),row=pop.closest('.frrow').getBoundingClientRect(),pw=pop.offsetWidth,ph=pop.offsetHeight;
+    pop.style.left=Math.max(8,row.left-pw-12)+'px'; pop.style.top=Math.max(8,r.top+r.height/2-ph/2)+'px'; pop.style.visibility='visible' }
 }
 /* ---- chat ---- */
 const CH={id:null,unsub:null,msgs:[],err:''};
@@ -1753,13 +1759,14 @@ const fdoc=id=>FB.db.collection(COL('friendships')).doc(id);
 function openChat(id){
   if(CH.unsub){CH.unsub();CH.unsub=null}
   CH.id=id; CH.msgs=[]; CH.err=''; UI.frMenu=null;
-  CH.unsub=fdoc(id).collection('messages').orderBy('ts').limitToLast(60).onSnapshot(qs=>{CH.msgs=qs.docs.map(d=>d.data()); renderChat(); markRead()},e=>{CH.err='Chat indisponible ('+(e.code||'erreur')+'). Vérifiez les règles Firestore.'; renderChat()});
+  CH.readFor=null; CH.unsub=fdoc(id).collection('messages').orderBy('ts').limitToLast(60).onSnapshot(qs=>{CH.msgs=qs.docs.map(d=>d.data({serverTimestamps:'estimate'})); renderChat(); markRead()},e=>{CH.err='Chat indisponible ('+(e.code||'erreur')+'). Vérifiez les règles Firestore.'; renderChat()});
   renderChat(true); markRead();
 }
-function closeChat(){ if(CH.unsub){CH.unsub();CH.unsub=null} CH.id=null; const w=$('#frchat'); if(w) w.remove() }
+function closeChat(){ if(CH.unsub){CH.unsub();CH.unsub=null} CH.id=null; const w=$('#frchat'); if(w) w.remove(); renderFriends() }
 let readT=null;
 function markRead(){
-  const f=FR.list.find(x=>x.id===CH.id); if(!f||!isUnread(f)) return;
+  const f=FR.list.find(x=>x.id===CH.id),me=FB.user&&FB.user.uid; if(!f||!me||!f.lastMsg||f.lastMsg.from===me) return;
+  const lt=tsMs(f.lastMsg.ts),r=(f.lastRead||{})[me]; if(r!==null&&tsMs(r)>=lt) return; if(CH.readFor===lt) return; CH.readFor=lt;
   clearTimeout(readT); readT=setTimeout(()=>{fdoc(CH.id).update({['lastRead.'+FB.user.uid]:firebase.firestore.FieldValue.serverTimestamp()}).catch(()=>{})},300);
 }
 function renderChat(focus){
