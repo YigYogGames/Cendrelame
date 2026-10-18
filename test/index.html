@@ -292,6 +292,9 @@ dl.cats dt.spow,dl.cats dd.spow{margin-top:8px;padding-top:6px;border-top:1px so
 .chatb{display:inline-flex;align-items:center;justify-content:flex-start;gap:6px;padding:5px 12px 5px 8px;line-height:1}
 .chatb svg{width:16px;height:16px;fill:currentColor;flex:none;display:block}
 .chatb span{display:block}
+.frpop{display:flex;flex-direction:column;gap:5px}
+.frpop .chatb{width:100%}
+.duelb{background:#3a2817;color:var(--gold);border-color:#1d1209}.duelb:hover{background:#4a3220}
 .frchat{position:fixed;z-index:36;right:calc(max(12px,env(safe-area-inset-right,0px)) + min(340px,calc(100vw - 24px)) + 10px);bottom:max(12px,env(safe-area-inset-bottom,0px));width:min(320px,calc(100vw - 24px));height:min(440px,70vh);display:flex;flex-direction:column;background:var(--paper);color:var(--fg);border:1px solid #1d1209;border-radius:6px;box-shadow:0 14px 34px #000c,inset 0 0 30px #7a521f44;padding:10px 12px}
 .chlog{flex:1;overflow-y:auto;display:flex;flex-direction:column;gap:6px;padding:6px 2px;margin-bottom:8px;border-top:1px solid #a88d5b55;border-bottom:1px solid #a88d5b55}
 .chm{align-self:flex-start;max-width:85%;display:flex;flex-direction:column;gap:1px}
@@ -299,6 +302,29 @@ dl.cats dt.spow,dl.cats dd.spow{margin-top:8px;padding-top:6px;border-top:1px so
 .chm.me{align-self:flex-end;align-items:flex-end}.chm.me span{background:var(--brass);color:#f7e9c6;border-radius:10px 10px 2px 10px}
 .chm small{font-size:.68rem;color:var(--mute)}
 @media (max-width:760px){.frchat{right:12px;bottom:64px;height:min(420px,60vh)}}
+.advmode{margin-bottom:12px}
+.pvpanel{display:flex;flex-direction:column;align-items:center;text-align:center}
+.pvsearch{display:flex;align-items:center;gap:12px;flex-wrap:wrap;justify-content:center}
+.spin{width:20px;height:20px;border-radius:50%;border:3px solid #a88d5b55;border-top-color:var(--brass);animation:spin 1s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.pvpm{z-index:45}
+.pvpm .box{width:min(100%,760px);max-height:calc(100vh - 24px);overflow-y:auto;text-align:left}
+.pvconf{text-align:center!important;max-width:420px}
+.pvarena{display:grid;grid-template-columns:1fr auto 1fr;gap:10px;align-items:center}
+.pvvs{font-family:var(--display);font-size:1.6rem;color:var(--brass)}
+.pvcard{display:flex;flex-direction:column;align-items:center;gap:4px;padding:10px;border:1px solid var(--line2);border-radius:6px;background:var(--bg2);text-align:center;min-width:0}
+.pvcard.me{border-color:var(--verd)}.pvcard.turn{box-shadow:0 0 0 2px var(--gold),0 0 14px #e8c98288}.pvcard.dead{opacity:.55;filter:grayscale(.6)}
+.pvcard img{width:84px;height:84px;filter:drop-shadow(0 3px 6px #0006)}
+.pvcard small{color:var(--mute);font-size:.8rem}
+.pvcard .hp,.pvcard .apbar{width:100%}.pvcard.me .hp i{background:var(--verd)}
+.pvcard .stt{display:flex;flex-wrap:wrap;gap:3px;justify-content:center;min-height:16px}.pvcard .stt em{font-style:normal;font-size:.7rem;padding:0 5px;border-radius:3px;background:#0002}
+.pvacts{margin:12px 0 8px;min-height:60px}
+.pvacts .acts{display:flex;flex-wrap:wrap;gap:6px;align-items:stretch}
+.pvacts .potbar{margin-top:8px}
+.pvwin{text-align:center;font-family:var(--display);font-size:1.6rem;color:var(--brass);padding:12px}
+.pvlog{max-height:150px;overflow-y:auto}
+.box.loot{text-align:center;max-width:360px}.lootg{display:flex;align-items:center;justify-content:center;gap:8px;font-size:1.6rem;margin:12px 0 16px;color:var(--brass)}.lootg svg{width:30px;height:30px}
+@media (max-width:560px){.pvarena{grid-template-columns:1fr}.pvvs{text-align:center}}
 /* generic */
 .panel{background:var(--bg2);border:1px solid var(--line);border-radius:3px;padding:16px;min-width:0;box-shadow:inset 0 0 26px #9a6a2a22}
 .panel>h2,.panel>h3{margin-bottom:10px}
@@ -1673,7 +1699,7 @@ async function onFbUser(u){
 }
 function afterProfile(fromLogin){
   if(fromLogin||UI.scr==='login'||UI.scr==='pseudo'){UI.scr='menu'; toast('Connecté : '+(FB.prof?FB.prof.name:(FB.user.email||'compte'))+'.')}
-  if(FB.prof){ presence(); startFriends() }
+  if(FB.prof){ presence(); startFriends(); startPvp() }
   adminCheck().then(()=>{ if(UI.scr==='opts'||UI.scr==='best') render() });
   render();
 }
@@ -1743,7 +1769,7 @@ function renderFriends(){
   const msg=$('#frmsg'); msg.textContent=FR.err||UI.frmsg||''; msg.className='frmsg '+(FR.err||UI.frerr?'bad':'ok');
   const row=(f,body,btns)=>`<li class="frrow">${body}<span class="fracts">${btns}</span></li>`;
   const accL=acc.map(f=>{const o=f.users.find(x=>x!==me),p=FR.prof[o],ol=isOnline(p),ch=p&&p.char,ur=isUnread(f);
-      return {ol,h:row(f,`<span class="st ${ol?'on':''}" aria-label="${ol?'En ligne':'Hors ligne'}"></span><span class="frn"><button class="frname" data-act="frMenu" data-id="${f.id}" aria-expanded="${UI.frMenu===f.id}"><b>${esc(otherName(f))}</b>${ur?'<span class="frud" aria-label="Nouveau message"></span>':''}</button>${UI.frMenu===f.id?`<span class="frpop" role="menu"><button class="btn sm pri chatb" data-act="frChat" data-id="${f.id}"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4h16a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H9l-5 4v-4H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2zm3 5v2h2V9zm4 0v2h2V9zm4 0v2h2V9z"/></svg><span>Chat${ur?' (nouveau)':''}</span></button></span>`:''}<small>${ol?(ch?`Joue ${esc(ch.name)} · ${(CLASSES[ch.cls]||{n:''}).n} niv. ${ch.lvl}`:'Dans le menu'):'Hors ligne'+(p&&p.char?` · ${esc(p.char.name)} niv. ${p.char.lvl}`:'')}</small></span>`,
+      return {ol,h:row(f,`<span class="st ${ol?'on':''}" aria-label="${ol?'En ligne':'Hors ligne'}"></span><span class="frn"><button class="frname" data-act="frMenu" data-id="${f.id}" aria-expanded="${UI.frMenu===f.id}"><b>${esc(otherName(f))}</b>${ur?'<span class="frud" aria-label="Nouveau message"></span>':''}</button>${UI.frMenu===f.id?`<span class="frpop" role="menu"><button class="btn sm pri chatb" data-act="frChat" data-id="${f.id}"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4h16a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H9l-5 4v-4H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2zm3 5v2h2V9zm4 0v2h2V9zm4 0v2h2V9z"/></svg><span>Chat${ur?' (nouveau)':''}</span></button><button class="btn sm chatb duelb" data-act="frDuel" data-id="${f.id}"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 3l7.5 7.5-1.4 1.4L4 6.8V3zm18 0v3.8l-9.6 9.6 1.4 1.4L21 9.6V3h0zM5.3 14.6l4.1 4.1-1.4 1.4-1.4-1.4L4 21.3 2.7 20l2.6-2.6-1.4-1.4zm13.4 0l1.4 1.4-1.4 1.4L21.3 20 20 21.3l-2.6-2.6-1.4 1.4-1.4-1.4z"/></svg><span>Duel</span></button></span>`:''}<small>${ol?(ch?`Joue ${esc(ch.name)} · ${(CLASSES[ch.cls]||{n:''}).n} niv. ${ch.lvl}`:'Dans le menu'):'Hors ligne'+(p&&p.char?` · ${esc(p.char.name)} niv. ${p.char.lvl}`:'')}</small></span>`,
         UI.frdel===f.id?`<button class="btn sm danger" data-act="frDel" data-id="${f.id}">Retirer</button><button class="btn sm" data-act="frDelNo">Non</button>`:`<button class="frx sm" data-act="frDel" data-id="${f.id}" title="Retirer de mes amis" aria-label="Retirer ${esc(otherName(f))}">×</button>`)}});
   const onL=accL.filter(x=>x.ol),offL=accL.filter(x=>!x.ol);
   $('#frlist').innerHTML=
@@ -1753,6 +1779,207 @@ function renderFriends(){
   const pop=$('#frlist .frpop'); if(pop){ const nb=pop.parentElement.querySelector('.frname'),r=nb.getBoundingClientRect(),row=pop.closest('.frrow').getBoundingClientRect(),pw=pop.offsetWidth,ph=pop.offsetHeight;
     pop.style.left=Math.max(8,row.left-pw-12)+'px'; pop.style.top=Math.max(8,r.top+r.height/2-ph/2)+'px'; pop.style.visibility='visible' }
 }
+/* ============ Duels PvP ============ */
+const PVP_GOLD=500,PVP_TURN=90;
+const PV={unsub:null,match:null,searching:false,qT:null,pT:null,busy:false,ending:null,seen:{}};
+const pvpCol=()=>FB.db.collection(COL('pvp'));
+const pvpQ=()=>FB.db.collection(COL('pvpQueue'));
+const pvpMe=()=>FB.user&&FB.user.uid;
+const pvpOp=m=>m.players.find(x=>x!==pvpMe());
+const pvpTS=()=>firebase.firestore.FieldValue.serverTimestamp();
+const pvpReady=()=>!!(FB.user&&FB.prof&&S&&S.heroes&&S.heroes[0]);
+function pvpSnap(){
+  const h=S.heroes[0],u=mkHeroUnit(h),keys=['hp','maxHp','atk','mag','def','res','spd','crit','critDmg','dodge','lifesteal','dmgPct','ap','maxAp',...RES_K];
+  const o={acct:FB.prof.name,name:h.name,cls:h.cls,lvl:h.lvl,role:u.role,skills:u.skills.slice(),ranks:Object.fromEntries(u.skills.map(id=>[id,h.learned[id]||1])),cds:{},st:[],shield:0,atkUsed:false,stun:false};
+  for(const k of keys) o[k]=Math.round((u[k]||0)*10)/10;
+  return o;
+}
+function startPvp(){
+  if(PV.unsub||!FB.user) return; const me=pvpMe();
+  PV.unsub=pvpCol().where('players','array-contains',me).onSnapshot(qs=>{
+    const now=Date.now();
+    for(const d of qs.docs){ const m=Object.assign({id:d.id},d.data({serverTimestamps:'estimate'}));
+      const age=now-(m.cms||now);
+      if(PV.match&&PV.match.id===m.id){ PV.match=m; continue }
+      if(m.state==='confirm'&&age<45000&&!PV.match){ PV.match=m; pvpStopSearch(true); if(m.from!==me) toast('⚔ '+(m.names&&m.names[m.from]||'Un joueur')+' vous propose un duel !'); continue }
+      if((m.state!=='fight'&&age>60000)||(m.state==='fight'&&now-tsMs(m.turnAt)>15*60000)) d.ref.delete().catch(()=>{});
+    }
+    if(PV.match&&!qs.docs.some(d=>d.id===PV.match.id)){ if(PV.match.state==='confirm') toast('Le duel a été annulé.'); PV.match=null }
+    pvpTick();
+  },()=>{});
+  clearInterval(PV.pT); PV.pT=setInterval(pvpTimer,1000);
+}
+function stopPvp(){ if(PV.unsub){PV.unsub();PV.unsub=null} pvpStopSearch(); PV.match=null; clearInterval(PV.pT); const w=$('#pvp'); if(w) w.remove() }
+/* recherche d’adversaire */
+async function pvpSearch(){
+  if(!pvpReady()){toast('Chargez un personnage pour faire un duel.');return}
+  if(C.phase==='fight'){toast('Terminez d’abord votre combat en cours.');return}
+  if(PV.match) return; PV.searching=true; render();
+  const h=S.heroes[0],me=pvpMe();
+  const put=()=>pvpQ().doc(me).set({uid:me,name:FB.prof.name,char:{name:h.name,cls:h.cls,lvl:h.lvl},ts:pvpTS(),tms:Date.now()}).catch(()=>{});
+  await put(); let n=0;
+  const poll=async()=>{
+    if(!PV.searching||PV.match) return;
+    if(++n%7===0) put();
+    try{ const qs=await pvpQ().orderBy('ts').limit(25).get();
+      const c=qs.docs.map(d=>d.data()).filter(x=>x.uid!==me&&Date.now()-(x.tms||0)<60000);
+      const o=c[0]; if(o&&me>o.uid&&!PV.match) await pvpPropose(o.uid,o.name,o.char,'search');
+    }catch(e){}
+    if(PV.searching&&!PV.match) PV.qT=setTimeout(poll,3000);
+  };
+  PV.qT=setTimeout(poll,1200);
+}
+function pvpStopSearch(){ clearTimeout(PV.qT); if(PV.searching&&FB.user) pvpQ().doc(pvpMe()).delete().catch(()=>{}); const was=PV.searching; PV.searching=false; if(was&&UI.tab==='combat'&&!UI.scr&&C.phase==='idle') render() }
+async function pvpPropose(o,oname,ochar,kind){
+  const me=pvpMe(),h=S.heroes[0],auto=kind==='friend';
+  const doc={players:[me,o].sort(),from:me,kind,state:'confirm',names:{[me]:FB.prof.name,[o]:oname},chars:{[me]:{name:h.name,cls:h.cls,lvl:h.lvl},[o]:ochar||null},acc:auto?{[me]:true}:{},u:auto?{[me]:pvpSnap()}:{},log:[],created:pvpTS(),cms:Date.now()};
+  const ref=await pvpCol().add(doc); return ref;
+}
+async function pvpUpd(data){ if(!PV.match) return; try{ await pvpCol().doc(PV.match.id).update(data) }catch(e){ toast('Duel : erreur ('+(e.code||'réseau')+').') } }
+/* confirmation, démarrage */
+async function pvpAccept(){
+  if(!PV.match) return; if(!pvpReady()){toast('Chargez un personnage (Jouer) pour accepter le duel.');return}
+  if(C.phase==='fight'){toast('Terminez d’abord votre combat en cours.');return}
+  const me=pvpMe(); await pvpUpd({['acc.'+me]:true,['u.'+me]:pvpSnap()});
+}
+async function pvpRefuse(){ if(!PV.match) return; await pvpUpd({state:'cancel',by:pvpMe()}); PV.match=null; renderPvp() }
+function pvpTick(){
+  const m=PV.match; renderPvp(); if(!m) return; const me=pvpMe();
+  if(m.state==='confirm'&&m.players[0]===me&&m.players.every(p=>m.acc&&m.acc[p]&&m.u&&m.u[p])&&!PV.busy){
+    PV.busy=true; const [a,b]=m.players,ua=m.u[a],ub=m.u[b],first=ua.spd>=ub.spd?a:b;
+    pvpUpd({state:'fight',turn:first,first,round:1,turnAt:pvpTS(),log:['⚔ Le duel commence ! '+(m.names[first])+' agit en premier.']}).finally(()=>{PV.busy=false});
+  }
+  if(m.state==='cancel'){ if(m.by!==me) toast('Le duel a été refusé.'); PV.match=null; renderPvp() }
+  if(m.state==='done'&&PV.ending!==m.id){ PV.ending=m.id; pvpEnd(m) }
+}
+/* moteur de combat (calculé par le joueur actif) */
+const pvEff=(u,k)=>{let x=0; for(const s of u.st||[]) if(s.k==='buff'&&s.stat===k) x+=s.v; return (u[k]||0)*Math.max(.25,1+x/100)};
+function pvHit(u,t,mult,st,sk,L){
+  if(Math.random()*100<(t.dodge||0)){L.push(`${t.name} esquive.`);return}
+  const K=100+15*(u.lvl||1),ds=st==='mag'?'res':'def';
+  let d=pvEff(u,st)*mult*K/(K+pvEff(t,ds)); d*=1+(u.dmgPct||0)/100; d*=resMul(t,st,sk&&sk.el); d*=rand(.92,1.08);
+  const cr=Math.random()*100<(u.crit||0); if(cr) d*=(u.critDmg||150)/100; d=Math.max(1,Math.round(d));
+  let a=d; if(t.shield>0){const s=Math.min(t.shield,a); t.shield-=s; a-=s}
+  t.hp=Math.max(0,t.hp-a); L.push(`${t.name} subit ${d} dégâts${cr?' (critique !)':''}.`);
+  if(u.lifesteal&&u.hp>0){const hh=Math.min(u.maxHp-u.hp,Math.round(d*u.lifesteal/100)); if(hh>0){u.hp+=hh}}
+}
+function pvExec(u,t,sk,L){
+  const k=sk.id==='atk'?1:sc((u.ranks&&u.ranks[sk.id])||1),st=sk.st||u.role;
+  if(sk.cd) u.cds[sk.id]=sk.cd+1; if(sk.ap) u.ap=Math.max(0,u.ap-sk.ap); if(sk.id==='atk') u.atkUsed=true;
+  L.push(sk.id==='atk'?`${u.name} attaque.`:`${u.name} utilise ${sk.n}.`);
+  if(sk.mult) for(let i=0;i<(sk.hits||1)&&t.hp>0;i++) pvHit(u,t,sk.mult*k,st,sk,L);
+  for(const f of sk.fx||[]){
+    const on=f.on||(sk.tg==='one'||sk.tg==='all'?'foe':'friend'),tg=on==='foe'?t:u; if(tg.hp<=0) continue;
+    if(f.k==='dot'){tg.st=tg.st.filter(s=>!(s.k==='dot'&&s.n===f.n)); tg.st.push({k:'dot',n:f.n,v:Math.round(pvEff(u,st)*f.v*k*resMul(tg,st,sk.el)),dur:f.dur}); L.push(`${tg.name} subit ${f.n}.`)}
+    else if(f.k==='stun'){ if(Math.random()*100<(f.ch||100)){tg.st=tg.st.filter(s=>s.k!=='stun'); tg.st.push({k:'stun',dur:f.dur}); L.push(`${tg.name} est étourdi !`)} }
+    else if(f.k==='shield'){const a=f.of==='hp'?tg.maxHp*f.v*k:pvEff(u,'mag')*f.v*k; tg.shield=Math.round(Math.min(tg.maxHp,(tg.shield||0)+a)); L.push(`${tg.name} gagne un bouclier.`)}
+    else if(f.k==='heal'){const a=Math.round(Math.min(tg.maxHp-tg.hp,pvEff(u,f.of||'mag')*f.v*k)); tg.hp+=a; L.push(`${tg.name} récupère ${a} PV.`)}
+    else if(f.k==='buff'||f.k==='debuff'){const v=f.k==='debuff'?-Math.abs(f.v):f.v*k; tg.st=tg.st.filter(s=>!(s.k==='buff'&&s.stat===f.stat&&Math.sign(s.v)===Math.sign(v))); tg.st.push({k:'buff',stat:f.stat,v:Math.round(v),dur:f.dur})}
+  }
+}
+function pvState(){ const m=PV.match,me=pvpMe(),o=pvpOp(m),u=JSON.parse(JSON.stringify(m.u)); return {m,me,o,u,U:u[me],T:u[o],L:[]} }
+function pvCommit(x,extra){
+  const log=(x.m.log||[]).concat(x.L).slice(-40),data=Object.assign({u:x.u,log},extra||{});
+  if(x.T.hp<=0||x.U.hp<=0){ const w=x.T.hp<=0?x.me:x.o; data.state='done'; data.winner=w; data.log=log.concat(['🏆 '+x.m.names[w]+' remporte le duel !']).slice(-40) }
+  return pvpUpd(data);
+}
+const pvMyTurn=()=>PV.match&&PV.match.state==='fight'&&PV.match.turn===pvpMe();
+async function pvAct(id){
+  if(!pvMyTurn()||PV.busy) return; const x=pvState(),sk=SK[id];
+  if(!sk||x.U.stun) return; if(id!=='atk'&&!x.U.skills.includes(id)) return;
+  if((sk.ap||0)>x.U.ap||(x.U.cds[id]||0)||(id==='atk'&&x.U.atkUsed)) return;
+  PV.busy=true; pvExec(x.U,x.T,sk,x.L); await pvCommit(x); PV.busy=false;
+}
+async function pvPot(k){
+  if(!pvMyTurn()||PV.busy) return; if(matCount(k)<1) return; const x=pvState(),U=x.U;
+  if(k==='p_vie'){const a=Math.round(Math.min(U.maxHp-U.hp,U.maxHp*.4)); U.hp+=a; x.L.push(`${U.name} boit une Potion de vie (+${a} PV).`)}
+  else if(k==='p_res'){U.st=U.st.filter(s=>!(s.k==='buff'&&(s.stat==='def'||s.stat==='res')&&s.v>0)); U.st.push({k:'buff',stat:'def',v:40,dur:3},{k:'buff',stat:'res',v:40,dur:3}); x.L.push(`${U.name} boit une Potion de résistance.`)}
+  else if(k==='p_for'||k==='p_int'){const stt=k==='p_for'?'atk':'mag'; U.st=U.st.filter(s=>!(s.k==='buff'&&s.stat===stt&&s.v>0)); U.st.push({k:'buff',stat:stt,v:30,dur:3}); x.L.push(`${U.name} boit une ${POTS[k].n}.`)}
+  else return;
+  PV.busy=true; removeMat(k,1); save(); await pvCommit(x); PV.busy=false;
+}
+async function pvEnd(){
+  if(!pvMyTurn()||PV.busy) return; const x=pvState(),U=x.U,T=x.T;
+  U.st.forEach(s=>s.dur--); U.st=U.st.filter(s=>s.dur>0); for(const k in U.cds) U.cds[k]=Math.max(0,U.cds[k]-1); U.stun=false; U.atkUsed=false;
+  /* début du tour adverse */
+  T.ap=Math.min(T.maxAp,T.ap+AP_REGEN);
+  for(const s of T.st.filter(s=>s.k==='dot')){ T.hp=Math.max(0,T.hp-Math.max(1,s.v)); x.L.push(`${T.name} subit ${Math.max(1,s.v)} dégâts (${s.n}).`) }
+  T.stun=T.st.some(s=>s.k==='stun'); if(T.stun) x.L.push(`${T.name} est étourdi et ne peut pas agir.`);
+  const round=(x.m.round||1)+(x.o===x.m.first?1:0);
+  PV.busy=true; await pvCommit(x,{turn:x.o,round,turnAt:pvpTS()}); PV.busy=false;
+}
+async function pvForfeit(){ if(!PV.match||PV.match.state!=='fight') return; const o=pvpOp(PV.match); await pvpUpd({state:'done',winner:o,log:(PV.match.log||[]).concat([PV.match.names[pvpMe()]+' abandonne.','🏆 '+PV.match.names[o]+' remporte le duel !']).slice(-40)}) }
+async function pvClaim(){ const m=PV.match; if(!m||m.state!=='fight'||m.turn===pvpMe()||Date.now()-tsMs(m.turnAt)<PVP_TURN*1000) return; const me=pvpMe(); await pvpUpd({state:'done',winner:me,log:(m.log||[]).concat([m.names[m.turn]+' n’a pas joué à temps.','🏆 '+m.names[me]+' remporte le duel !']).slice(-40)}) }
+function pvpEnd(m){
+  const me=pvpMe(),win=m.winner===me;
+  renderPvp();
+  setTimeout(()=>{
+    const w=$('#pvp'); if(w) w.remove(); PV.match=null;
+    const done=JSON.parse(lsGet(KP+'pvpdone_'+me)||'[]');
+    if(win&&!done.includes(m.id)&&S&&S.heroes&&S.heroes[0]){ done.push(m.id); lsSet(KP+'pvpdone_'+me,JSON.stringify(done.slice(-50))); S.gold+=PVP_GOLD; S.pvp=S.pvp||{w:0,l:0}; S.pvp.w++; save(); renderHeader(); pvpLoot(m) }
+    else if(!win&&S&&S.heroes&&S.heroes[0]){ if(!done.includes(m.id)){done.push(m.id); lsSet(KP+'pvpdone_'+me,JSON.stringify(done.slice(-50))); S.pvp=S.pvp||{w:0,l:0}; S.pvp.l++; save()} toast('Défaite contre '+(m.names[pvpOp(m)]||'votre adversaire')+'.') }
+    if(m.players[0]===me) setTimeout(()=>pvpCol().doc(m.id).delete().catch(()=>{}),8000);
+    if(UI.tab==='combat'&&!UI.scr) render();
+  },3200);
+}
+function pvpLoot(m){
+  const d=document.createElement('div'); d.className='modal'; d.id='pvploot';
+  d.innerHTML=`<div class="box loot"><h2>Butin du duel</h2><p>Victoire contre <b>${esc(m.names[pvpOp(m)]||'')}</b> !</p><div class="lootg">${matIcon('gold')}<b>+${fmt(PVP_GOLD)}</b> or</div><div class="row"><button class="btn pri" data-act="pvpLootOk">Récupérer</button></div></div>`;
+  document.body.append(d); d.querySelector('button').focus();
+}
+/* affichage */
+function pvCard(u,name,me,turn){
+  if(!u) return `<div class="pvcard wait"><b>${esc(name||'?')}</b><small>En attente…</small></div>`;
+  const aps=Array.from({length:u.maxAp||0},(_,i)=>`<i class="${i<u.ap?'on':''}"></i>`).join(''),sts=(u.st||[]).map(s=>`<em class="b-${s.k}">${esc(s.k==='dot'?s.n:s.k==='stun'?'Étourdi':(s.v>0?'+':'')+s.v+'% '+(STAT_N[s.stat]||s.stat))} ${s.dur}</em>`).join('');
+  return `<div class="pvcard ${me?'me':''} ${turn?'turn':''} ${u.hp<=0?'dead':''}">${PORTRAIT[u.cls]?`<img src="${PORTRAIT[u.cls]}" alt="" width="84" height="84">`:''}<b>${esc(u.acct)}</b><small>${esc(u.name)} · ${(CLASSES[u.cls]||{n:''}).n} niv. ${u.lvl}</small>
+    <div class="hp"><i style="width:${Math.max(0,u.hp/u.maxHp*100)}%"></i><span>${Math.ceil(u.hp)} / ${Math.ceil(u.maxHp)}${u.shield>0?' (+'+Math.ceil(u.shield)+')':''}</span></div><div class="apbar" title="${u.ap} / ${u.maxAp} PA">${aps}</div><div class="stt">${sts}</div></div>`;
+}
+function pvpTimer(){
+  const m=PV.match; if(!m) return; const el=document.querySelector('#pvp [data-pvt]');
+  if(m.state==='confirm'){ const left=45-Math.floor((Date.now()-(m.cms||Date.now()))/1000); if(left<=0) return renderPvp(); if(el) el.textContent='('+left+' s)'; return }
+  if(m.state==='fight'){ const t=Math.max(0,PVP_TURN-Math.floor((Date.now()-tsMs(m.turnAt))/1000)); if(el) el.textContent='('+t+' s)'; if(t===0&&m.turn!==pvpMe()&&!document.querySelector('[data-act=pvpClaim]')) renderPvp() }
+}
+function renderPvp(){
+  const m=PV.match; let w=$('#pvp');
+  if(!m||!FB.user){ if(w) w.remove(); return }
+  if(!w){ w=document.createElement('div'); w.id='pvp'; w.className='modal pvpm'; w.setAttribute('role','dialog'); w.setAttribute('aria-modal','true'); document.body.append(w) }
+  const me=pvpMe(),o=pvpOp(m),nm=m.names||{},ch=(m.chars||{})[o];
+  if(m.state==='confirm'){
+    const left=Math.max(0,45-Math.floor((Date.now()-(m.cms||Date.now()))/1000)),mine=m.acc&&m.acc[me];
+    if(left<=0&&m.state==='confirm'){ if(m.from===me) pvpUpd({state:'cancel',by:me}); PV.match=null; w.remove(); return }
+    w.innerHTML=`<div class="box pvconf"><h2>${m.kind==='friend'?(m.from===me?'Demande de duel envoyée':'Demande de duel'):'Adversaire trouvé !'}</h2>
+      <p><b>${esc(nm[o]||'?')}</b>${ch?` · ${esc(ch.name)}, ${(CLASSES[ch.cls]||{n:''}).n} niveau ${ch.lvl}`:''}</p>
+      <p class="mute">${mine?(m.acc&&m.acc[o]?'Le duel va commencer…':'En attente de la réponse de votre adversaire…'):'Acceptez-vous le duel ?'} <span class="num" data-pvt>(${left} s)</span></p>
+      <div class="row">${mine?'':'<button class="btn pri" data-act="pvpAcc">Accepter</button>'}<button class="btn" data-act="pvpRef">${mine?'Annuler':'Refuser'}</button></div></div>`;
+    return;
+  }
+  if(m.state!=='fight'&&m.state!=='done'){ w.remove(); return }
+  const U=m.u[me],T=m.u[o],my=m.state==='fight'&&m.turn===me,late=m.state==='fight'&&!my&&Date.now()-tsMs(m.turnAt)>PVP_TURN*1000,tl=Math.max(0,PVP_TURN-Math.floor((Date.now()-tsMs(m.turnAt))/1000));
+  let acts='';
+  if(m.state==='done') acts=`<div class="pvwin">🏆 ${esc(nm[m.winner]||'')} remporte le duel !</div>`;
+  else if(my&&U.stun) acts=`<p class="mute">Vous êtes étourdi : vous passez ce tour.</p><div class="row"><button class="btn endturn" data-act="pvpEndT">Fin de tour</button></div>`;
+  else if(my){
+    const ids=['atk',...U.skills];
+    acts=`<div class="acts">${ids.map(id=>{const s=SK[id],cd=U.cds[id]||0,c=s.ap||0,no=c>U.ap,used=id==='atk'&&U.atkUsed;return `<button class="skb" data-act="pvpSk" data-id="${id}" ${cd||no||used?'disabled':''} title="${esc(skDesc(s,U.ranks[id]||1,U.role))}"><b>${s.n}${s.el&&ELEM[s.el]?` <em class="elt" style="--ec:${ELEM[s.el].c}">${ELEM[s.el].n}</em>`:''}</b><small>${c?`<span class="apc">${c} PA</span> · `:''}${used?'Déjà utilisée':cd?`Recharge : ${cd}`:no?'PA insuffisants':id==='atk'?'1 fois par tour':'Prête'}</small></button>`}).join('')}<button class="btn endturn" data-act="pvpEndT">Fin de tour</button></div>
+      <div class="potbar">${['p_vie','p_res',CLASSES[U.cls].role==='mag'?'p_int':'p_for'].filter(k=>matCount(k)>0).map(k=>`<button class="potb" data-act="pvpPot" data-k="${k}" title="${esc(POTS[k].n)} : ${esc(POTS[k].d)}">${matIcon(k)}<span class="num">${matCount(k)}</span></button>`).join('')||'<small class="mute">Aucune potion utilisable.</small>'}</div>`;
+  } else acts=`<p class="mute">Tour de <b>${esc(nm[o]||'')}</b>… <span class="num" data-pvt>(${tl} s)</span></p>${late?'<div class="row"><button class="btn pri" data-act="pvpClaim">Réclamer la victoire (adversaire inactif)</button></div>':''}`;
+  const keep=w.querySelector('.pvlog'),sc0=keep?keep.scrollTop:0;
+  w.innerHTML=`<div class="box pvbox"><div class="row between" style="margin-bottom:8px"><h2>Duel</h2><small class="num">Tour ${m.round||1}${my?' · <b class="apc">À vous de jouer</b>':''}</small></div>
+    <div class="pvarena">${pvCard(U,nm[me],true,m.turn===me&&m.state==='fight')}<span class="pvvs">VS</span>${pvCard(T,nm[o],false,m.turn===o&&m.state==='fight')}</div>
+    <div class="pvacts">${acts}</div>
+    <div class="pvlog log">${(m.log||[]).slice(-12).map(l=>`<p>${esc(l)}</p>`).join('')}</div>
+    ${m.state==='fight'?'<div class="row" style="justify-content:flex-end;margin-top:6px"><button class="btn sm danger" data-act="pvpGiveUp">Abandonner</button></div>':''}</div>`;
+  const lg=w.querySelector('.pvlog'); if(lg) lg.scrollTop=lg.scrollHeight;
+}
+function viewPvp(){
+  const on=!!(FB.user&&FB.prof),S0=S.pvp||{w:0,l:0};
+  return `<section class="panel pvpanel"><h2 style="margin-bottom:6px">Duel PvP</h2>
+    <p class="hint" style="margin-bottom:12px">Affrontez un autre joueur au tour par tour avec votre personnage actuel. Chaque joueur agit à son tour : compétences, PA et potions. Victoire : <b>+${PVP_GOLD} or</b>.</p>
+    ${!on?'<p class="lerr">Connectez-vous à un compte (menu) pour faire des duels.</p>':PV.searching?`<div class="pvsearch"><span class="spin" aria-hidden="true"></span><b>Recherche d’un adversaire…</b><button class="btn" data-act="pvpCancel">Annuler</button></div>`:`<button class="btn pri big" data-act="pvpFind" style="max-width:320px">⚔ Rechercher un adversaire</button>`}
+    <p class="mute" style="margin-top:12px">Bilan : <b>${S0.w}</b> victoire${S0.w>1?'s':''} · <b>${S0.l}</b> défaite${S0.l>1?'s':''}</p>
+    <p class="hint">Vous pouvez aussi défier un ami : cliquez sur son nom dans la liste d’amis, puis sur « Duel ». Un joueur qui ne joue pas pendant ${PVP_TURN} secondes peut être déclaré perdant.</p></section>`;
+}
+
 /* ---- chat ---- */
 const CH={id:null,unsub:null,msgs:[],err:''};
 const fdoc=id=>FB.db.collection(COL('friendships')).doc(id);
@@ -1950,7 +2177,8 @@ function viewCombatIdle(){
   const diffNote=dk==='hero'?`<p class="hint" style="color:var(--blood)"><b>Mode héroïque :</b> monstres niveau ${D.L}, bien plus agressifs. Les boss frappent fort et entrent en rage dès le tour ${D.rage+1}. Progression séparée.</p>`
     :dk==='myth'?`<p class="hint" style="color:var(--r3)"><b>Mode mythique :</b> monstres niveau ${D.L}. Les boss gagnent la Frappe dévastatrice et entrent en rage dès le tour ${D.rage+1}. Récompenses : or, XP et matériaux ×2, Prisme divin à 25 % sur Le Dévoreur.</p>`:heroOpen()?'':`<p class="hint">🔒 Le mode Héroïque se débloque au niveau ${HERO_L} (vous êtes niveau ${S.heroes[0].lvl}).</p>`;
   const mstat=c.role==='mag'?['Intelligence',st.mag]:['Force',st.atk];
-  return `<div class="adv-layout">
+  const mode=UI.advMode||'pve';
+  return `<div class="seg advmode" role="tablist"><button class="${mode==='pve'?'on':''}" data-act="advMode" data-m="pve">Aventure</button><button class="${mode==='pvp'?'on':''}" data-act="advMode" data-m="pvp">⚔ Duel PvP</button></div><div class="adv-layout">
     <section class="panel herocol">
       <h2 style="margin:0 0 10px;font-size:1.6rem">${esc(h.name)}</h2>
       ${PORTRAIT[h.cls]?`<img class="portrait" src="${PORTRAIT[h.cls]}" alt="Portrait : ${c.n}" width="114" height="114">`:`<span class="tile xl" style="--h:${h.hue}">${icon(c.ic)}</span>`}
@@ -1963,14 +2191,14 @@ function viewCombatIdle(){
       <label class="row" style="gap:6px"><input type="checkbox" id="chkFarm" data-act="farm" ${S.farm?'checked':''} ${S.auto?'':'disabled'}> Enchaîner les combats</label>
       <p class="hint" style="margin-top:10px">Vos PV sont restaurés après chaque combat.</p>
     </section>
-    <section class="panel ${hero?dk+'panel':''}"><h2 style="margin-bottom:12px">Choix de zone</h2>
+    ${mode==='pvp'?viewPvp():`<section class="panel ${hero?dk+'panel':''}"><h2 style="margin-bottom:12px">Choix de zone</h2>
       <div class="seg wide"><button class="${dk==='normal'?'on':''}" data-act="diff" data-d="normal">Normal</button><button class="${dk==='hero'?'on hero':''}" data-act="diff" data-d="hero" ${heroOpen()?'':`disabled title="Atteignez le niveau ${HERO_L} pour débloquer le mode Héroïque."`}>${heroOpen()?'':'🔒 '}Héroïque</button><button class="${dk==='myth'?'on myth':''}" data-act="diff" data-d="myth" ${mythOpen()?'':'disabled title="Atteignez le dernier boss en mode héroïque pour débloquer le mode Mythique."'}>${mythOpen()?'':'🔒 '}Mythique</button></div>
       ${diffNote?`<div style="margin-top:8px">${diffNote}</div>`:''}
       <div class="zgrid">${zones}</div>
       <h3 style="margin:16px 0 8px">Niveau de la zone : ${z.n}</h3>
       <div class="stages">${stg}</div>
       <p class="hint" style="margin-top:12px">Niveau des ennemis : <b class="num">${L}</b> · ${UI.stage===10?`Boss : ${z.boss.n}`:z.enemies.map(e=>e.n).join(', ')}</p>
-    </section></div>`;
+    </section>`}</div>`;
 }
 function renderActbar(){
   const el=$('#actbar'); if(!el) return;
@@ -2562,6 +2790,7 @@ function viewHelp(){
 const VERSION='0.1.1';
 const PATCH=[
  {v:'0.1.1',t:'Fiche de personnage',sec:[
+  ['Duels PvP',['Nouveau mode « Duel PvP » dans l’onglet Aventure : recherchez un adversaire parmi les joueurs connectés.','Une confirmation s’affiche quand un adversaire est trouvé. Le duel se joue au tour par tour dans une fenêtre au centre de l’écran : PV, PA, compétences et potions des deux joueurs.','À la fin, le nom du vainqueur s’affiche puis un butin de 500 or récompense la victoire.','Défiez directement un ami : cliquez sur son nom dans la liste d’amis, puis sur « Duel ».','Un joueur qui ne joue pas pendant 90 secondes peut être déclaré perdant ; bouton « Abandonner » disponible.']],
   ['Combat',['Points d’action (PA) : 5 de base pour chaque classe. Les compétences coûtent des PA, l’attaque de base est gratuite mais utilisable une seule fois par tour, et chaque unité récupère 1 PA au début de son tour.','Votre héros peut enchaîner plusieurs actions dans le même tour tant qu’il lui reste des PA ; nouveau bouton « Fin de tour ».','Barre de PA segmentée sous la barre de vie de chaque combattant ; le coût en PA est affiché sur chaque compétence.','Nouvelles statistiques : Résistance physique, Résistance magique et résistances au Feu, à la Glace, à la Foudre et à la Terre (en %, plafonnées à 75 %). L’ancienne Résistance devient « Défense magique ».','Compétences élémentaires : Boule de feu (Feu), Éclair en chaîne (Foudre), Météore (Terre) ; côté ennemis, Trait de feu, Crachat toxique et Déferlante. Certains monstres résistent à un élément, d’autres y sont faibles.','Nouveaux affixes de résistance sur l’équipement.']],
   ['Forge',['Nouvelles chances de rareté : Forge ordinaire 80 % Commun / 20 % Magique ; Forge fine 40 % Commun / 50 % Magique / 10 % Rare ; Forge de maître 10 % Magique / 45 % Rare / 45 % Épique ; Forge légendaire 20 % Rare / 70 % Épique / 10 % Légendaire.','Affixes aléatoires : Commun 0, Magique 1, Rare 2, Épique 3, Légendaire 3 + un pouvoir légendaire.','Pouvoir légendaire (écrit en orange) : +6 % de chances de coup critique et +10 % de dégâts critiques. Un pouvoir nommé pour chaque type d’équipement ; les objets légendaires existants le reçoivent aussi.']],
   ['Amis',['Nouveau système d’amis : liste fixée en bas à droite de l’écran, avec le nombre d’amis connectés.','Amis classés en deux catégories : En ligne et Hors ligne.','Chat entre amis : cliquez sur le nom d’un ami puis sur « Chat ». Une pastille rouge signale un nouveau message sur le bouton Amis et sur l’ami concerné.','Ajoutez un joueur avec son nom de compte ; il accepte ou refuse la demande. Vous voyez si vos amis sont en ligne et quel personnage ils jouent.','Nom de compte : à la première connexion, chaque joueur choisit un nom unique, commun à tous ses personnages.']],
@@ -2995,7 +3224,7 @@ const A={
   },
   fbLogout:async()=>{
     try{ await cloudPush(true) }catch(e){ toast('Synchronisation impossible : déconnexion annulée pour ne rien perdre. Réessayez.'); return }
-    presence('off'); stopFriends(); FB.prof=null; await FB.auth.signOut(); clearLocalChars(); ACC.offline=false; saveAcc(); UI.scr='login'; UI.lmode='login'; render(); toast('Déconnecté.') },
+    presence('off'); stopFriends(); stopPvp(); FB.prof=null; await FB.auth.signOut(); clearLocalChars(); ACC.offline=false; saveAcc(); UI.scr='login'; UI.lmode='login'; render(); toast('Déconnecté.') },
   pseudoOk:async()=>{
     if(UI.lbusy) return; const n=($('#pname').value||'').trim(); UI.pname=n; UI.perr='';
     if(!NAME_RE.test(n)){UI.perr='Le nom doit faire 3 à 16 caractères : lettres, chiffres, - ou _ (sans espace).'; render(); return}
@@ -3018,6 +3247,21 @@ const A={
   frMenu:d=>{UI.frMenu=UI.frMenu===d.id?null:d.id; renderFriends()},
   frChat:d=>{openChat(d.id); renderFriends()},
   chClose:()=>closeChat(),
+  frDuel:async d=>{ UI.frMenu=null; renderFriends(); const f=FR.list.find(x=>x.id===d.id); if(!f) return;
+    if(!pvpReady()){toast('Chargez un personnage (Jouer) pour lancer un duel.');return} if(C.phase==='fight'){toast('Terminez d’abord votre combat en cours.');return} if(PV.match){toast('Un duel est déjà en cours.');return}
+    const o=f.users.find(x=>x!==pvpMe()),p=FR.prof[o];
+    try{ await pvpPropose(o,otherName(f),p&&p.char?p.char:null,'friend'); toast('Demande de duel envoyée à '+otherName(f)+'.') }catch(e){ toast('Impossible d’envoyer la demande ('+(e.code||'erreur')+').') } },
+  advMode:d=>{UI.advMode=d.m; render()},
+  pvpFind:()=>pvpSearch(),
+  pvpCancel:()=>pvpStopSearch(),
+  pvpAcc:()=>pvpAccept(),
+  pvpRef:()=>pvpRefuse(),
+  pvpSk:d=>pvAct(d.id),
+  pvpPot:d=>pvPot(d.k),
+  pvpEndT:()=>pvEnd(),
+  pvpGiveUp:()=>{ if(UI.confirm!=='giveup'){UI.confirm='giveup'; toast('Cliquez à nouveau sur « Abandonner » pour confirmer.'); setTimeout(()=>{if(UI.confirm==='giveup')UI.confirm=null},4000); return} UI.confirm=null; pvForfeit() },
+  pvpClaim:()=>pvClaim(),
+  pvpLootOk:()=>{const d=$('#pvploot'); if(d) d.remove()},
   chSend:()=>sendChat(),
   copyUid:()=>{try{navigator.clipboard.writeText(FB.user.uid).then(()=>toast('Identifiant copié.'),()=>toast(FB.user.uid))}catch(e){toast(FB.user.uid)}},
   bestSk:d=>{const [zi,j]=d.k.split('.'),z=UI.bw.zones[+zi],o=j==='b'?z.boss:z.enemies[+j],i=o.sk.indexOf(d.s); if(i>=0) o.sk.splice(i,1); else o.sk.push(d.s); applyBest(UI.bw); UI.bdirty=true; const y=scrollY; render(); scrollTo(0,y)},
