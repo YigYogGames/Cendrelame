@@ -263,12 +263,20 @@ body.scr-menu #view{background:none;border:0;box-shadow:none;outline:0;padding:0
 .bvals{display:grid;grid-template-columns:repeat(4,1fr);gap:4px}.bvals span{display:flex;flex-direction:column;align-items:center;padding:4px 2px;border-radius:4px;background:#3a2817;color:#f1e2bd}.bvals small{font-size:.68rem;color:#c9ae82}.bvals b{font-size:.95rem}
 .bcmp{display:flex;justify-content:space-between;font-size:.82rem;padding:4px 8px;border-radius:4px}.bcmp.ok{background:#3d7a3422;color:var(--ok)}.bcmp.bad{background:#a5351f22;color:var(--blood)}
 .bsk{display:flex;flex-wrap:wrap;gap:4px}
+.bres summary{cursor:pointer;font-size:.8rem;color:var(--mute)}.bres em{font-style:normal;margin-left:6px;color:var(--brass);font-weight:700}.binp.b3{grid-template-columns:repeat(3,1fr);margin-top:6px}
 .bchip{font:inherit;font-size:.74rem;padding:3px 8px;border-radius:99px;border:1px solid var(--line2);background:transparent;color:var(--mute);cursor:pointer}
 .bchip.on{background:var(--brass);border-color:var(--brass);color:#f7e9c6;font-weight:700}.bchip.lock{border-style:dashed;cursor:default}
 .btable{overflow-x:auto}.btable table{width:100%;border-collapse:collapse;font-size:.88rem}.btable th,.btable td{padding:6px;border-bottom:1px solid #a88d5b55;text-align:left;vertical-align:top}
 .btable td:has(.bfx){display:flex;gap:6px;flex-wrap:wrap}.bfx{width:84px}
 code.uid{font-size:.8rem;padding:2px 6px;background:#0000000f;border-radius:3px;word-break:break-all}
 .testbar{position:fixed;top:0;left:50%;transform:translateX(-50%);z-index:60;padding:3px 14px;border-radius:0 0 6px 6px;background:#b8471f;color:#fff3d6;font-weight:700;font-size:.78rem;letter-spacing:.08em;box-shadow:0 2px 10px #0008;pointer-events:none;white-space:nowrap}
+.apbar{display:flex;gap:2px;height:7px;margin-top:3px}
+.apbar i{flex:1;border-radius:2px;background:#3a2a1a;border:1px solid #1d1209}
+.apbar i.on{background:linear-gradient(#ffd56a,#d39a1c);border-color:#7a5310;box-shadow:0 0 4px #e8b13a88}
+.apc{color:#b8760e;font-weight:700}
+.elt{font-style:normal;font-size:.7rem;font-weight:700;color:#fff;background:var(--ec);padding:0 5px;border-radius:99px;margin-left:4px;vertical-align:1px}
+.it li.legp{color:#d9701a;font-weight:500;margin-top:4px}.it li.legp b{color:#e07b12}
+dt.rsep{margin-top:6px;font-family:var(--display);color:var(--brass)}dd.rsep{margin-top:6px}
 /* generic */
 .panel{background:var(--bg2);border:1px solid var(--line);border-radius:3px;padding:16px;min-width:0;box-shadow:inset 0 0 26px #9a6a2a22}
 .panel>h2,.panel>h3{margin-bottom:10px}
@@ -684,13 +692,13 @@ const MAT_D={prisme:'Relique céleste, lâchée rarement par Le Dévoreur (10 %)
 const GW=14,GH=5,BAG=GW*GH,STACK=500;
 /* taille d'un objet dans la grille (largeur x hauteur) */
 const SIZE=o=>o.mat?[1,1]:({weapon:[1,5],armor:[2,3],legs:[2,3],helm:[2,2],boots:[2,2],ring:[1,1],amulet:[1,1]})[o.slot]||[1,1];
-const STAT_N={hp:'PV',atk:'Force',mag:'Intelligence',def:'Défense',res:'Résistance',spd:'Vitesse',crit:'Critique',critDmg:'Dégâts critiques',dodge:'Esquive',lifesteal:'Vol de vie',hpPct:'PV',dmgPct:'Dégâts',goldFind:'Or trouvé',dropRate:'Butin trouvé'};
-const PCT=new Set(['crit','critDmg','dodge','lifesteal','hpPct','dmgPct','goldFind','dropRate']);
+const STAT_N={hp:'PV',atk:'Force',mag:'Intelligence',def:'Défense',res:'Défense magique',ap:'Points d’action',rPhys:'Résistance physique',rMag:'Résistance magique',rFeu:'Résistance au feu',rGlace:'Résistance à la glace',rFoudre:'Résistance à la foudre',rTerre:'Résistance à la terre',spd:'Vitesse',crit:'Critique',critDmg:'Dégâts critiques',dodge:'Esquive',lifesteal:'Vol de vie',hpPct:'PV',dmgPct:'Dégâts',goldFind:'Or trouvé',dropRate:'Butin trouvé'};
+const PCT=new Set(['rPhys','rMag','rFeu','rGlace','rFoudre','rTerre','crit','critDmg','dodge','lifesteal','hpPct','dmgPct','goldFind','dropRate']);
 const fmtStat=(s,v)=>PCT.has(s)?`+${r1(v)}% ${STAT_N[s]}`:`+${Math.round(v)} ${STAT_N[s]}`;
 const MAXL=50;
 
 const RAR=[
-  {n:'Commun',aff:1,m:1},{n:'Magique',aff:2,m:1.05},{n:'Rare',aff:3,m:1.12},{n:'Épique',aff:4,m:1.22},{n:'Légendaire',aff:5,m:1.35},{n:'Divin',aff:6,m:1.5}
+  {n:'Commun',aff:0,m:1},{n:'Magique',aff:1,m:1.05},{n:'Rare',aff:2,m:1.12},{n:'Épique',aff:3,m:1.22},{n:'Légendaire',aff:3,m:1.35,leg:1},{n:'Divin',aff:4,m:1.5,leg:1}
 ];
 const BASES=[
   {n:'Épée',slot:'weapon',cls:'guerrier',imp:[['atk',6,1.8]]},
@@ -714,7 +722,15 @@ const AFX=[
   {s:'critDmg',b:6,p:.5,ep:'de Ruine'},{s:'dodge',b:1.2,p:.04,ep:'du Vent'},{s:'lifesteal',b:.8,p:.025,ep:'du Vampire'},
   {s:'goldFind',b:3,p:.5,ep:'d’Opulence'},
 ];
+AFX.push({s:'rPhys',b:1.5,p:.06,ep:'du Rempart'},{s:'rMag',b:1.5,p:.06,ep:'de l’Égide'},{s:'rFeu',b:3,p:.12,ep:'Ignifugé'},{s:'rGlace',b:3,p:.12,ep:'du Givre'},{s:'rFoudre',b:3,p:.12,ep:'de l’Orage'},{s:'rTerre',b:3,p:.12,ep:'de la Roche'});
 const AFXM=Object.fromEntries(AFX.map(a=>[a.s,a]));
+/* éléments et résistances */
+const ELEM={feu:{n:'Feu',k:'rFeu',c:'#e0612a'},glace:{n:'Glace',k:'rGlace',c:'#4fa8d8'},foudre:{n:'Foudre',k:'rFoudre',c:'#c9a814'},terre:{n:'Terre',k:'rTerre',c:'#8a6a3a'}};
+const RES_K=['rPhys','rMag','rFeu','rGlace','rFoudre','rTerre'],RES_CAP=75;
+const RES_S={rPhys:'Physique',rMag:'Magique',rFeu:'Feu',rGlace:'Glace',rFoudre:'Foudre',rTerre:'Terre'};
+/* pouvoir légendaire (même effet pour l’instant, un nom par type d’équipement) */
+const LEGP={weapon:'Fil du destin',helm:'Regard du prédateur',armor:'Cœur de braise',legs:'Foulée du chasseur',boots:'Course fatale',ring:'Sceau du bourreau',amulet:'Œil de l’oracle'};
+const LEG_FX={crit:6,critDmg:10},LEG_D='Augmente les chances de coup critique de 6 % et les dégâts critiques de 10 %.';
 /* affixes possibles : pas d’Intelligence sur l’équipement de Guerrier, pas de Force sur celui du Sorcier */
 const affPool=c=>AFX.filter(a=>!(c==='guerrier'&&a.s==='mag')&&!(c==='mage'&&a.s==='atk'));
 const EPITHETS=['de Cendre','des Damnés','du Crépuscule','de l’Aube','d’Aldrec','des Abysses','du Gardien','de la Braise','du Dernier Siège'];
@@ -723,10 +739,10 @@ const CLASSES={
   guerrier:{n:'Guerrier',ic:'sword',role:'atk',hue:8,desc:'Rempart robuste. Encaisse, provoque et frappe fort au corps à corps. Épées, heaumes, cuirasses et bottes.',
     base:{hp:120,atk:14,mag:0,def:10,res:5,spd:9},grow:{hp:14,atk:2.4,mag:0,def:1.8,res:1,spd:.2},
     skills:[
-      {id:'g1',n:'Frappe puissante',t:'a',lvl:1,cd:2,mult:1.7,tg:'one'},
-      {id:'g2',n:'Cri de guerre',t:'a',lvl:3,cd:4,tg:'allies',fx:[{k:'buff',stat:'atk',v:25,dur:3}]},
-      {id:'g3',n:'Mur de boucliers',t:'a',lvl:6,cd:5,tg:'self',fx:[{k:'shield',v:.3,of:'hp'},{k:'taunt',dur:2}]},
-      {id:'g4',n:'Tourbillon',t:'a',lvl:10,cd:4,mult:1.15,tg:'all'},
+      {id:'g1',ap:2,n:'Frappe puissante',t:'a',lvl:1,cd:2,mult:1.7,tg:'one'},
+      {id:'g2',ap:2,n:'Cri de guerre',t:'a',lvl:3,cd:4,tg:'allies',fx:[{k:'buff',stat:'atk',v:25,dur:3}]},
+      {id:'g3',ap:3,n:'Mur de boucliers',t:'a',lvl:6,cd:5,tg:'self',fx:[{k:'shield',v:.3,of:'hp'},{k:'taunt',dur:2}]},
+      {id:'g4',ap:3,n:'Tourbillon',t:'a',lvl:10,cd:4,mult:1.15,tg:'all'},
       {id:'gp1',n:'Peau de fer',t:'p',lvl:2,mods:{defPct:8,resPct:3}},
       {id:'gp2',n:'Soif de sang',t:'p',lvl:5,mods:{lifesteal:3}},
       {id:'gp3',n:'Vétéran',t:'p',lvl:8,mods:{hpPct:8,atkPct:3}},
@@ -734,28 +750,28 @@ const CLASSES={
   mage:{n:'Sorcier',ic:'staff',role:'mag',hue:260,desc:'Canon de verre. Brûle, foudroie et se protège par des barrières arcaniques. Bâtons, capuches, robes et sandales.',
     base:{hp:90,atk:0,mag:16,def:5,res:10,spd:10},grow:{hp:10.5,atk:0,mag:2.8,def:1,res:1.8,spd:.25},
     skills:[
-      {id:'m1',n:'Boule de feu',t:'a',lvl:1,cd:2,mult:1.5,tg:'one',fx:[{k:'dot',n:'Brûlure',v:.3,dur:3}]},
-      {id:'m2',n:'Éclair en chaîne',t:'a',lvl:3,cd:3,mult:.95,tg:'all'},
-      {id:'m3',n:'Barrière arcanique',t:'a',lvl:6,cd:5,tg:'allies',fx:[{k:'shield',v:1.6,of:'mag'}]},
-      {id:'m4',n:'Météore',t:'a',lvl:10,cd:6,mult:2.1,tg:'all',fx:[{k:'stun',ch:30,dur:1}]},
+      {id:'m1',ap:2,el:'feu',n:'Boule de feu',t:'a',lvl:1,cd:2,mult:1.5,tg:'one',fx:[{k:'dot',n:'Brûlure',v:.3,dur:3}]},
+      {id:'m2',ap:3,el:'foudre',n:'Éclair en chaîne',t:'a',lvl:3,cd:3,mult:.95,tg:'all'},
+      {id:'m3',ap:3,n:'Barrière arcanique',t:'a',lvl:6,cd:5,tg:'allies',fx:[{k:'shield',v:1.6,of:'mag'}]},
+      {id:'m4',ap:4,el:'terre',n:'Météore',t:'a',lvl:10,cd:6,mult:2.1,tg:'all',fx:[{k:'stun',ch:30,dur:1}]},
       {id:'mp1',n:'Savoir arcanique',t:'p',lvl:2,mods:{magPct:8}},
       {id:'mp2',n:'Surcharge',t:'p',lvl:5,mods:{crit:3,critDmg:6}},
       {id:'mp3',n:'Esprit vif',t:'p',lvl:8,mods:{spdPct:5,resPct:6}},
     ]},
 };
-const SK={atk:{id:'atk',n:'Attaque',mult:1,tg:'one',cd:0}};
+const SK={atk:{id:'atk',n:'Attaque',mult:1,tg:'one',cd:0,ap:0}};
 for(const c of Object.values(CLASSES))for(const s of c.skills)SK[s.id]=s;
 const ENSK={
-  e_heavy:{n:'Coup brutal',cd:3,mult:1.7,tg:'one'},
-  e_bleed:{n:'Morsure sanglante',cd:3,mult:1,tg:'one',fx:[{k:'dot',n:'Saignement',v:.3,dur:3}]},
-  e_burn:{n:'Trait de feu',cd:3,mult:1.1,tg:'one',fx:[{k:'dot',n:'Brûlure',v:.35,dur:3}]},
-  e_poison:{n:'Crachat toxique',cd:3,mult:.8,tg:'one',fx:[{k:'dot',n:'Poison',v:.4,dur:4}]},
-  e_stun:{n:'Coup assommant',cd:4,mult:1.2,tg:'one',fx:[{k:'stun',ch:45,dur:1}]},
-  e_heal:{n:'Soin sombre',cd:4,tg:'lowAlly',fx:[{k:'heal',v:1.6,of:'mag'}]},
-  e_cry:{n:'Hurlement',cd:5,tg:'allies',fx:[{k:'buff',stat:'atk',v:30,dur:3}]},
-  e_aoe:{n:'Déferlante',cd:4,mult:.75,tg:'all'},
-  e_smash:{n:'Frappe dévastatrice',cd:4,mult:2.3,tg:'one'},
-  e_curse:{n:'Malédiction',cd:4,mult:.8,tg:'one',fx:[{k:'debuff',stat:'def',v:-30,dur:3}]},
+  e_heavy:{ap:2,n:'Coup brutal',cd:3,mult:1.7,tg:'one'},
+  e_bleed:{ap:2,n:'Morsure sanglante',cd:3,mult:1,tg:'one',fx:[{k:'dot',n:'Saignement',v:.3,dur:3}]},
+  e_burn:{ap:2,el:'feu',n:'Trait de feu',cd:3,mult:1.1,tg:'one',fx:[{k:'dot',n:'Brûlure',v:.35,dur:3}]},
+  e_poison:{ap:2,el:'terre',n:'Crachat toxique',cd:3,mult:.8,tg:'one',fx:[{k:'dot',n:'Poison',v:.4,dur:4}]},
+  e_stun:{ap:3,n:'Coup assommant',cd:4,mult:1.2,tg:'one',fx:[{k:'stun',ch:45,dur:1}]},
+  e_heal:{ap:2,n:'Soin sombre',cd:4,tg:'lowAlly',fx:[{k:'heal',v:1.6,of:'mag'}]},
+  e_cry:{ap:2,n:'Hurlement',cd:5,tg:'allies',fx:[{k:'buff',stat:'atk',v:30,dur:3}]},
+  e_aoe:{ap:3,el:'glace',n:'Déferlante',cd:4,mult:.75,tg:'all'},
+  e_smash:{ap:3,n:'Frappe dévastatrice',cd:4,mult:2.3,tg:'one'},
+  e_curse:{ap:2,n:'Malédiction',cd:4,mult:.8,tg:'one',fx:[{k:'debuff',stat:'def',v:-30,dur:3}]},
 };
 for(const [id,s] of Object.entries(ENSK))SK[id]={id,...s};
 
@@ -763,28 +779,28 @@ const ZONES=[
   {n:'Forêt des Murmures',mats:['fer','cuir'],enemies:[
     {n:'Gobelin',ic:'brute',role:'atk',hp:1,atk:1,def:1},
     {n:'Loup affamé',ic:'beast',role:'atk',hp:.85,atk:1.1,def:.8,spd:1.25,sk:['e_bleed']},
-    {n:'Chaman gobelin',ic:'hood',role:'mag',hp:.8,atk:1.1,def:.7,sk:['e_burn','e_heal']}],
+    {n:'Chaman gobelin',res:{rFeu:20},ic:'hood',role:'mag',hp:.8,atk:1.1,def:.7,sk:['e_burn','e_heal']}],
    boss:{n:'Roi Gobelin',ic:'boss',role:'atk',hp:3.2,atk:1.25,def:1.2,sk:['e_heavy','e_cry']}},
   {n:'Catacombes oubliées',mats:['fer','cristal'],enemies:[
-    {n:'Squelette',ic:'skull',role:'atk',hp:1,atk:1,def:1.1},
-    {n:'Revenant',ic:'brute',role:'atk',hp:1.2,atk:.95,def:1,sk:['e_stun']},
-    {n:'Nécromancien',ic:'hood',role:'mag',hp:.8,atk:1.15,def:.7,sk:['e_poison','e_heal']}],
-   boss:{n:'Le Roi sans nom',ic:'boss',role:'atk',hp:3.3,atk:1.3,def:1.2,sk:['e_heavy','e_stun','e_cry']}},
+    {n:'Squelette',res:{rPhys:15,rGlace:25},ic:'skull',role:'atk',hp:1,atk:1,def:1.1},
+    {n:'Revenant',res:{rGlace:20},ic:'brute',role:'atk',hp:1.2,atk:.95,def:1,sk:['e_stun']},
+    {n:'Nécromancien',res:{rMag:15},ic:'hood',role:'mag',hp:.8,atk:1.15,def:.7,sk:['e_poison','e_heal']}],
+   boss:{n:'Le Roi sans nom',res:{rPhys:10,rGlace:30},ic:'boss',role:'atk',hp:3.3,atk:1.3,def:1.2,sk:['e_heavy','e_stun','e_cry']}},
   {n:'Marais putride',mats:['cuir','essence'],enemies:[
-    {n:'Crapaud géant',ic:'blob',role:'atk',hp:1.2,atk:.9,def:.9,sk:['e_poison']},
-    {n:'Sorcière des tourbières',ic:'hood',role:'mag',hp:.85,atk:1.15,def:.7,sk:['e_curse','e_heal']},
+    {n:'Crapaud géant',res:{rTerre:25},ic:'blob',role:'atk',hp:1.2,atk:.9,def:.9,sk:['e_poison']},
+    {n:'Sorcière des tourbières',res:{rMag:15,rTerre:20},ic:'hood',role:'mag',hp:.85,atk:1.15,def:.7,sk:['e_curse','e_heal']},
     {n:'Goule',ic:'beast',role:'atk',hp:1,atk:1.1,def:.9,spd:1.2,sk:['e_bleed']}],
-   boss:{n:'Hydre des marais',ic:'boss',role:'atk',hp:3.4,atk:1.25,def:1.2,sk:['e_aoe','e_poison','e_heavy']}},
+   boss:{n:'Hydre des marais',res:{rTerre:30,rGlace:15},ic:'boss',role:'atk',hp:3.4,atk:1.25,def:1.2,sk:['e_aoe','e_poison','e_heavy']}},
   {n:'Pic de Cendre',mats:['cristal','essence'],enemies:[
-    {n:'Salamandre',ic:'beast',role:'atk',hp:1,atk:1.1,def:.9,spd:1.15,sk:['e_burn']},
-    {n:'Golem de lave',ic:'brute',role:'atk',hp:1.5,atk:1,def:1.3,spd:.8,sk:['e_heavy','e_stun']},
-    {n:'Mage de braise',ic:'hood',role:'mag',hp:.8,atk:1.2,def:.7,sk:['e_burn','e_aoe']}],
-   boss:{n:'Seigneur de Cendre',ic:'boss',role:'mag',hp:3.5,atk:1.35,def:1.2,sk:['e_aoe','e_heavy','e_burn']}},
+    {n:'Salamandre',res:{rFeu:40},ic:'beast',role:'atk',hp:1,atk:1.1,def:.9,spd:1.15,sk:['e_burn']},
+    {n:'Golem de lave',res:{rFeu:50,rPhys:20,rGlace:-20},ic:'brute',role:'atk',hp:1.5,atk:1,def:1.3,spd:.8,sk:['e_heavy','e_stun']},
+    {n:'Mage de braise',res:{rFeu:40,rMag:10},ic:'hood',role:'mag',hp:.8,atk:1.2,def:.7,sk:['e_burn','e_aoe']}],
+   boss:{n:'Seigneur de Cendre',res:{rFeu:50,rMag:15},ic:'boss',role:'mag',hp:3.5,atk:1.35,def:1.2,sk:['e_aoe','e_heavy','e_burn']}},
   {n:'Abysses du Néant',mats:['essence','rune'],enemies:[
-    {n:'Rôdeur du vide',ic:'beast',role:'atk',hp:1,atk:1.15,def:.9,spd:1.25,sk:['e_bleed']},
-    {n:'Abomination',ic:'blob',role:'atk',hp:1.6,atk:1,def:1.1,sk:['e_heavy','e_poison']},
-    {n:'Oracle déchu',ic:'hood',role:'mag',hp:.9,atk:1.2,def:.8,sk:['e_curse','e_heal']}],
-   boss:{n:'Le Dévoreur',ic:'boss',role:'atk',hp:3.8,atk:1.4,def:1.25,sk:['e_aoe','e_heavy','e_cry','e_curse']}},
+    {n:'Rôdeur du vide',res:{rMag:20},ic:'beast',role:'atk',hp:1,atk:1.15,def:.9,spd:1.25,sk:['e_bleed']},
+    {n:'Abomination',res:{rPhys:20},ic:'blob',role:'atk',hp:1.6,atk:1,def:1.1,sk:['e_heavy','e_poison']},
+    {n:'Oracle déchu',res:{rMag:25,rFoudre:20},ic:'hood',role:'mag',hp:.9,atk:1.2,def:.8,sk:['e_curse','e_heal']}],
+   boss:{n:'Le Dévoreur',res:{rPhys:15,rMag:15,rFeu:15,rGlace:15,rFoudre:15,rTerre:15},ic:'boss',role:'atk',hp:3.8,atk:1.4,def:1.25,sk:['e_aoe','e_heavy','e_cry','e_curse']}},
 ];
 
 const PM=1/60; /* taux exprimés par minute */
@@ -795,10 +811,10 @@ const SITES=[
   {id:'marais',n:'Marais des brumes',unlock:1400,out:{essence:6,rune:1},cache:.0012,desc:'On y récolte l’essence qui suinte des racines.'},
 ];
 const TIERS=[
-  {n:'Forge ordinaire',lv:[1,15],cost:{fer:15,cuir:8},odds:[60,30,9,1,0]},
-  {n:'Forge fine',lv:[10,30],cost:{fer:25,cuir:12,cristal:6},odds:[25,45,25,5,0]},
-  {n:'Forge de maître',lv:[25,45],cost:{fer:35,cuir:18,cristal:12,essence:4},odds:[5,25,45,22,3]},
-  {n:'Forge légendaire',lv:[40,53],cost:{fer:45,cuir:22,cristal:18,essence:8,rune:3},odds:[0,5,30,50,15]},
+  {n:'Forge ordinaire',lv:[1,15],cost:{fer:15,cuir:8},odds:[80,20,0,0,0]},
+  {n:'Forge fine',lv:[10,30],cost:{fer:25,cuir:12,cristal:6},odds:[40,50,10,0,0]},
+  {n:'Forge de maître',lv:[25,45],cost:{fer:35,cuir:18,cristal:12,essence:4},odds:[0,10,45,45,0]},
+  {n:'Forge légendaire',lv:[40,53],cost:{fer:45,cuir:22,cristal:18,essence:8,rune:3},odds:[0,0,20,70,10]},
 ];
 const HUES=[8,38,140,190,260,320];
 const ICONS={
@@ -1024,7 +1040,9 @@ function genItem(slot,ilvl,rarity,baseName,cls){
   let ep='';
   if(rarity>=3) ep=' '+pick(EPITHETS);
   else {const a=aff.find(x=>AFXM[x.s].ep); if(a) ep=' '+AFXM[a.s].ep}
-  return {id:++S.uid,slot,base:base.n,cls:base.cls||null,ilvl,rarity,imp,aff,up:0,name:base.n+ep};
+  const it={id:++S.uid,slot,base:base.n,cls:base.cls||null,ilvl,rarity,imp,aff,up:0,name:base.n+ep};
+  if(RAR[rarity].leg) it.leg=slot;
+  return it;
 }
 const canWear=it=>!it||!it.cls||!S.heroes[0]||it.cls===S.heroes[0].cls;
 const upMul=it=>1+.05*it.up;
@@ -1032,6 +1050,7 @@ function itemStats(it){
   const k=upMul(it), r={};
   for(const [s,v] of Object.entries(it.imp)) r[s]=(r[s]||0)+v*k;
   for(const a of it.aff) r[a.s]=(r[a.s]||0)+a.v*k;
+  if(it.leg) for(const [k,v] of Object.entries(LEG_FX)) r[k]=(r[k]||0)+v;
   return r;
 }
 const invItems=()=>S.bag.filter(e=>!e.o.mat).map(e=>e.o);
@@ -1078,7 +1097,7 @@ function affRange(it,a,k){
 }
 function itemCard(it,foot='',delta=null){
   const k=upMul(it);
-  const lines=[...Object.entries(it.imp).map(([s,v])=>`<li class="imp">${fmtStat(s,v*k)}</li>`),...it.aff.map(a=>`<li>${fmtStat(a.s,a.v*k)}${SHIFT||NOHOVER?affRange(it,a,k):''}</li>`)].join('')+(it.aff.length&&!NOHOVER?`<li class="shk">${SHIFT?'Plages possibles des affixes (Maj)':'Maj : voir les plages des affixes'}</li>`:'');
+  const lines=[...Object.entries(it.imp).map(([s,v])=>`<li class="imp">${fmtStat(s,v*k)}</li>`),...it.aff.map(a=>`<li>${fmtStat(a.s,a.v*k)}${SHIFT||NOHOVER?affRange(it,a,k):''}</li>`),...(it.leg?[`<li class="legp"><b>${esc(LEGP[it.leg]||'Pouvoir légendaire')}</b> : ${LEG_D}</li>`]:[])].join('')+(it.aff.length&&!NOHOVER?`<li class="shk">${SHIFT?'Plages possibles des affixes (Maj)':'Maj : voir les plages des affixes'}</li>`:'');
   const dl=delta===null?'':`<span class="dl ${delta>=0?'up':'dn'}">${delta>=0?'▲':'▼'} ${Math.abs(Math.round(delta))}</span>`;
   return `<article class="it" style="--rc:var(--r${it.rarity})"><header><b>${esc(it.name)}${it.up?` <em>+${it.up}</em>`:''}</b> ${dl}<small>${SLOT_N[it.slot]}${it.cls?` · <span style="${canWear(it)?'':'color:var(--blood);font-weight:700'}">${CLASSES[it.cls].n}</span>`:''} · ${RAR[it.rarity].n}</small><small>Niveau d’objet <b class="num">${it.ilvl}</b></small></header><ul>${lines}</ul>${foot?`<div class="foot">${foot}</div>`:''}</article>`;
 }
@@ -1155,6 +1174,8 @@ function heroStats(h){
     lifesteal:Math.min(20,(g.lifesteal||0)+(p.lifesteal||0)),
     dmgPct:g.dmgPct||0,goldFind:g.goldFind||0,dropRate:g.dropRate||0,
     regen:p.regen||0,healPow:p.healPow||0,
+    ap:5+(g.ap||0)+(p.ap||0),
+    ...Object.fromEntries(RES_K.map(k=>[k,Math.min(RES_CAP,(g[k]||0)+(p[k]||0))])),
   };
 }
 function heroPower(h){
@@ -1172,6 +1193,8 @@ function skDesc(sk,rank,role){
   const k=sc(rank),p=x=>Math.round(x*100*k),stN=(sk.st||role)==='mag'?'INT':'FOR';
   const tgN={one:'un ennemi',all:'tous les ennemis',self:'vous',allies:'tous les alliés',lowAlly:'l’allié le plus blessé'}[sk.tg];
   const out=[];
+  if(sk.ap) out.push(`Coût : ${sk.ap} PA.`);
+  if(sk.el&&ELEM[sk.el]) out.push(`Élément : ${ELEM[sk.el].n}.`);
   if(sk.mult) out.push(`Inflige ${p(sk.mult)}% ${stN}${sk.hits>1?' ×'+sk.hits:''} à ${tgN}${sk.exec?` (dégâts doublés sous ${sk.exec.thr}% PV)`:''}.`);
   const sn={atk:'Force',def:'Défense',res:'Résistance',spd:'Vitesse',mag:'Intelligence'};
   for(const f of sk.fx||[]){
@@ -1202,7 +1225,7 @@ function mkHeroUnit(h){
   const sk=h.loadout.filter(id=>h.learned[id]);
   const cds={}; for(const id of sk) cds[id]=SK[id].cd>=4?Math.ceil(SK[id].cd/2):0;
   return {id:'h'+h.id,team:'h',hero:h,name:h.name,lvl:h.lvl,ic:cl.ic,hue:h.hue,role:cl.role,...s,
-    hp:Math.round(s.hp),maxHp:Math.round(s.hp),skills:sk,ranks:h.learned,cds,st:[],shield:0};
+    hp:Math.round(s.hp),maxHp:Math.round(s.hp),skills:sk,ranks:h.learned,cds,st:[],shield:0,ap:s.ap,maxAp:s.ap};
 }
 /* difficultés : niveau des monstres, multiplicateurs (monstres / boss), début de la rage des boss, récompenses */
 const DIFF={
@@ -1225,7 +1248,8 @@ function mkEnemies(z,st,n,diff){
     id:'e'+(list.length+1),team:'e',name:t.n,lvl:L,ic:t.ic,hue:isBoss?40:8,role:t.role,boss:isBoss,
     hp:Math.round(enStat('hp',L)*t.hp*cm*(isBoss?.8*D.bHp:D.hp)),atk:enStat('atk',L)*t.atk*am*(isBoss?.88*D.bAtk:D.atk),mag:enStat('atk',L)*t.atk*am*(isBoss?.88*D.bAtk:D.atk),
     def:enStat('def',L)*t.def*(isBoss?D.bDef:1),res:enStat('def',L)*.9*t.def*(isBoss?D.bDef:1),spd:(8+.15*L)*(t.spd||1)*rand(.95,1.05),
-    crit:5,critDmg:150,dodge:0,lifesteal:0,dmgPct:0,regen:0,healPow:0,
+    crit:5,critDmg:150,dodge:0,lifesteal:0,dmgPct:0,regen:0,healPow:0,ap:5,maxAp:5,
+    ...Object.fromEntries(RES_K.map(k=>[k,Math.min(RES_CAP,(t.res&&t.res[k])||0)])),
     skills:[...(t.sk||[]),...(isBoss&&D.extra?[D.extra]:[])],ranks:{},cds:Object.fromEntries([...(t.sk||[]),...(isBoss&&D.extra?[D.extra]:[])].map(id=>[id,SK[id].cd>=4?2:1])),st:[],shield:0});
   if(C.force){ const F=C.force; C.force=null; list.push(F.j<0?mk(ZONES[F.z].boss,1,1,true):mk(ZONES[F.z].enemies[F.j],1,1,false)) }
   else if(boss){
@@ -1255,6 +1279,7 @@ function refresh(u){
   el.classList.toggle('turn',C.turn===u.id);
   el.classList.toggle('selectable',!!C.pending&&u.team==='e'&&u.hp>0);
   $('.hp i',el).style.width=Math.max(0,u.hp/u.maxHp*100)+'%';
+  {const ab=$('.apbar',el); if(ab){ ab.querySelectorAll('i').forEach((x,i)=>x.classList.toggle('on',i<(u.ap||0))); ab.title=(u.ap||0)+' / '+(u.maxAp||0)+' PA' }}
   $('.hp span',el).textContent=Math.max(0,Math.ceil(u.hp))+' / '+Math.ceil(u.maxHp)+(u.shield>0?' (+'+Math.ceil(u.shield)+')':'');
   const sn={atk:'FOR',def:'DEF',res:'RÉS',spd:'VIT',mag:'INT'};
   $('.stt',el).innerHTML=u.st.map(s=>{
@@ -1283,12 +1308,14 @@ function heal(t,a,silent){
   const real=Math.min(a,t.maxHp-t.hp); t.hp+=real;
   floatTxt(t,'+'+real,'heal'); if(!silent||real>0) logLine(`${t.name} récupère ${real} PV.`,'hl'); refresh(t);
 }
+const resMul=(t,st,el)=>(1-Math.min(RES_CAP,t[st==='mag'?'rMag':'rPhys']||0)/100)*(el&&ELEM[el]?1-Math.min(RES_CAP,t[ELEM[el].k]||0)/100:1);
 function hit(u,t,mult,st,sk){
   if(Math.random()*100<(t.dodge||0)){floatTxt(t,'Esquive','miss');logLine(`${t.name} esquive l’attaque.`);return}
   const ds=st==='mag'?'res':'def';
   const K=100+15*(u.lvl||1); /* plus l’attaquant est haut niveau, moins la défense le freine */
   let d=effStat(u,st)*mult*K/(K+effStat(t,ds));
   d*=1+(u.dmgPct||0)/100;
+  d*=resMul(t,st,sk&&sk.el);
   const rs=u.boss?DIFF[C.diff||'normal'].rage:30;
   if(u.team==='e'&&C.round>rs) d*=1+(C.round-rs)*(u.boss&&rs<30?.08:.1);
   if(sk&&sk.exec&&t.hp/t.maxHp<sk.exec.thr/100) d*=1+sk.exec.bonus;
@@ -1303,7 +1330,7 @@ function applyFx(u,t,f,k,sk){
   const st=sk.st||u.role;
   if(f.k==='dot'){
     t.st=t.st.filter(s=>!(s.k==='dot'&&s.n===f.n));
-    t.st.push({k:'dot',n:f.n,v:effStat(u,st)*f.v*k,dur:f.dur});
+    t.st.push({k:'dot',n:f.n,v:effStat(u,st)*f.v*k*resMul(t,st,sk.el),dur:f.dur});
   }else if(f.k==='stun'){
     const ch=(f.ch||100)*(t.boss?.5:1);
     if(Math.random()*100<ch&&!t.st.some(s=>s.k==='stun')){t.st.push({k:'stun',dur:f.dur});logLine(`${t.name} est étourdi !`,'ev')}
@@ -1324,6 +1351,7 @@ function applyFx(u,t,f,k,sk){
 async function exec(u,sk,tgt){
   const rank=sk.id==='atk'?1:(u.ranks[sk.id]||1),k=sc(rank);
   if(sk.cd) u.cds[sk.id]=sk.cd+1;
+  if(sk.ap) u.ap=Math.max(0,(u.ap||0)-sk.ap);
   const foesA=alive(foes(u)),friA=alive(friends(u));
   if((sk.tg==='one')&&(!tgt||tgt.hp<=0)) tgt=foesA[0];
   let fT=[],aT=[];
@@ -1345,10 +1373,11 @@ async function exec(u,sk,tgt){
   refreshAll();
   await sleep(420);
 }
+const AP_REGEN=1;
 function tauntOf(list){return list.find(x=>x.hp>0&&x.st.some(s=>s.k==='taunt'))}
 function ai(u){
   const foesA=alive(foes(u)),friA=alive(friends(u));
-  const usable=u.skills.filter(id=>(u.cds[id]||0)===0).map(id=>({sk:SK[id],rank:u.ranks[id]||1}));
+  const usable=u.skills.filter(id=>(u.cds[id]||0)===0&&(u.ap||0)>=(SK[id].ap||0)).map(id=>({sk:SK[id],rank:u.ranks[id]||1}));
   const isHeal=x=>x.sk.tg==='lowAlly'&&x.sk.fx&&x.sk.fx.some(f=>f.k==='heal');
   const low=friA.slice().sort((a,b)=>a.hp/a.maxHp-b.hp/b.maxHp)[0];
   const healer=usable.find(isHeal);
@@ -1378,7 +1407,7 @@ function playerChoice(u){
   return new Promise(res=>{C.waiting={u,res};C.pending=null;renderActbar();refreshAll()});
 }
 async function turn(u){
-  C.turn=u.id; refreshAll();
+  C.turn=u.id; if(C.round>1&&u.maxAp) u.ap=Math.min(u.maxAp,(u.ap||0)+AP_REGEN); refreshAll();
   for(const s of u.st.filter(s=>s.k==='dot')) if(u.hp>0) dmg(u,Math.max(1,Math.round(s.v)),false,null,s.n);
   if(u.regen&&u.hp>0) heal(u,u.maxHp*u.regen/100,true);
   if(u.hp<=0){C.turn=null;refreshAll();return}
@@ -1789,6 +1818,7 @@ function bootChar(){
   S.bag.forEach(e=>fixL(e.o)); for(const h of S.heroes) Object.values(h.equip||{}).forEach(fixL);
   for(const h of S.heroes) for(const sk of CLASSES[h.cls].skills) if(sk.t==='a'&&h.learned[sk.id]&&!h.loadout.includes(sk.id)) h.loadout.push(sk.id);
   for(const h of S.heroes) if(h.lvl>MAXL){h.lvl=MAXL;h.xp=0}
+  {const lg=it=>{if(it&&!it.mat&&it.rarity>=4&&!it.leg) it.leg=it.slot}; S.bag.forEach(e=>lg(e.o)); for(const h of S.heroes) Object.values(h.equip||{}).forEach(lg)}
   {let cut=0; for(const k of Object.keys(S.mats||{})) if(S.mats[k]>matCap(k)){cut++; S.mats[k]=matCap(k)}
    if(cut) setTimeout(()=>toast(`Stock maximum réduit à ${MATCAP.toLocaleString('fr-FR')} par matériau : les surplus ont été retirés.`),1600)}
   if((S.siteV||1)===2){ let ref=0; for(const si of SITES){const st=S.sites[si.id]; if(!st||!st.tal) continue; const t=st.tal;
@@ -1824,7 +1854,7 @@ function viewCombat(){
   const allies=C.units.filter(u=>u.team==='h'),en=C.units.filter(u=>u.team==='e');
   const card=u=>`<div class="unit ${u.team==='h'?'ally':'foe'} ${u.boss?'boss':''}" data-u="${u.id}" data-act="pick" style="--h:${u.hue}">
     <div class="u-top"><span class="tile">${icon(u.ic)}</span><div class="u-id"><b>${esc(u.name)}</b><small>Niv ${u.lvl}</small></div></div>
-    <div class="hp"><i></i><span></span></div><div class="stt"></div><div class="fl"></div></div>`;
+    <div class="hp"><i></i><span></span></div><div class="apbar" aria-label="Points d’action">${Array.from({length:u.maxAp||0},()=>"<i></i>").join("")}</div><div class="stt"></div><div class="fl"></div></div>`;
   return `<div class="row between" style="margin-bottom:10px"><h2>${ZONES[C.zone].n} · étape ${C.stage}${C.stage===10?' · Boss':''}${C.hero?` <span class="herotag ${C.diff}">${DIFF[C.diff].n}</span>`:''}</h2><small class="num">Tour ${C.round}</small></div>
     <div class="arena"><div class="side">${allies.map(card).join('')}</div><div class="side">${en.map(card).join('')}</div></div>
     <div id="actbar" style="margin:14px 0"></div>
@@ -1887,8 +1917,8 @@ function renderActbar(){
     <button class="btn sm" data-act="speed">Vitesse ×${S.speed}</button><button class="btn sm danger" data-act="flee">Fuir</button>`;
   if(!w){el.innerHTML=`<div class="acts"><small class="mute" style="align-self:center">${S.auto?'Combat automatique en cours…':'Les ennemis agissent…'}</small>${tools}</div><div class="acts" style="margin-top:8px">${potBar()}</div>`;return}
   const u=w.u,ids=['atk',...u.skills];
-  el.innerHTML=`<div class="acts"><div style="align-self:center"><b>${esc(u.name)}</b><br><small>${C.pending?'Choisissez une cible':'À vous de jouer'}</small></div>`+
-    ids.map(id=>{const s=SK[id],cd=u.cds[id]||0;return `<button class="skb ${C.pending&&C.pending.id===id?'sel':''}" data-act="skill" data-id="${id}" ${cd?'disabled':''} title="${esc(skDesc(s,u.ranks[id]||1,u.role))}"><b>${s.n}</b><small>${cd?`Recharge : ${cd}`:s.cd?`Recharge ${s.cd}`:'Aucune recharge'}</small></button>`}).join('')+
+  el.innerHTML=`<div class="acts"><div style="align-self:center"><b>${esc(u.name)}</b><br><small>${C.pending?'Choisissez une cible':'À vous de jouer'} · <b class="apc">${u.ap||0} / ${u.maxAp||0} PA</b></small></div>`+
+    ids.map(id=>{const s=SK[id],cd=u.cds[id]||0,c=s.ap||0,no=c>(u.ap||0);return `<button class="skb ${C.pending&&C.pending.id===id?'sel':''}" data-act="skill" data-id="${id}" ${cd||no?'disabled':''} title="${esc(skDesc(s,u.ranks[id]||1,u.role))}"><b>${s.n}${s.el&&ELEM[s.el]?` <em class="elt" style="--ec:${ELEM[s.el].c}">${ELEM[s.el].n}</em>`:''}</b><small>${c?`<span class="apc">${c} PA</span> · `:''}${cd?`Recharge : ${cd}`:no?'PA insuffisants':s.cd?`Recharge ${s.cd}`:'Aucune recharge'}</small></button>`}).join('')+
     (C.pending?`<button class="btn sm" data-act="cancelPick">Annuler</button>`:'')+tools+`</div><div class="acts" style="margin-top:8px">${potBar()}</div>`;
 }
 
@@ -2067,8 +2097,9 @@ function bagParts(){
   else if(k) detail=(eq?itemCard(eq,`<button class="btn sm" data-act="unequip" data-slot="${k}">Retirer</button><button class="btn sm" data-act="toForge" data-id="${eq.id}">Forge</button>`):'<p class="hint">Emplacement vide. Glissez-y un objet de l’inventaire.</p>');
   const gb=(t,b,pct)=>{const d=pct?r1(t-b):Math.round(t)-Math.round(b);return (pct?r1(b)+'%':Math.round(b))+(d>0?` <span class="gb">(+${d}${pct?'%':''})</span>`:'')};
   const c0=CLASSES[h.cls],mk=c0.role==='mag'?['Intelligence','mag']:['Force','atk'];
-  const mini=[['PV','hp'],mk,['Défense','def'],['Résistance','res'],['Vitesse','spd']].map(([n,k])=>`<dt>${n}</dt><dd>${gb(st[k],bs[k])}</dd>`).join('')+
+  const mini=[['PV','hp'],mk,['Défense','def'],['Défense magique','res'],['Vitesse','spd']].map(([n,k])=>`<dt>${n}</dt><dd>${gb(st[k],bs[k])}</dd>`).join('')+
     [['Critique','crit'],['Dégâts critiques','critDmg'],['Esquive','dodge'],['Vol de vie','lifesteal'],['Dégâts bonus','dmgPct'],['Or trouvé','goldFind']].map(([n,k])=>`<dt>${n}</dt><dd>${gb(st[k],bs[k],1)}</dd>`).join('')+
+    `<dt>Points d’action</dt><dd>${gb(st.ap,bs.ap)}</dd><dt class="rsep">Résistances</dt><dd class="rsep"></dd>`+RES_K.map(k=>`<dt>${RES_S[k]}</dt><dd>${gb(st[k],bs[k],1)}</dd>`).join('')+
     `<dt>Puissance</dt><dd><b>${Math.round(heroPower(h))}</b> <span class="gb">(+${Math.max(0,Math.round(heroPower(h)-heroPower(Object.assign({},h,{equip:{}}))))})</span></dd>`;
   const mats=MATS.map(m=>`<div>${matIcon(m)}<span>${MAT_OBJ[m]}</span><b>${fmt(matCount(m))}</b></div>`).join('');
   const equip=`<section class="panel peq"><h3 class="ptitle">Équipement</h3>${dollHTML(h)}
@@ -2394,7 +2425,11 @@ function viewHelp(){
     ['Force','Dégâts du Guerrier.','Toutes les attaques et compétences du Guerrier se basent sur la Force. Le Sorcier n’a pas de Force.'],
     ['Intelligence','Dégâts du Sorcier.','Toutes les attaques, brûlures et barrières du Sorcier se basent sur l’Intelligence. Le Guerrier n’a pas d’Intelligence.'],
     ['Défense','Réduit les dégâts physiques reçus.','Dégâts reçus × K / (K + Défense), avec K = 100 + 15 × niveau de l’attaquant. La Défense protège donc moins contre les ennemis de haut niveau.'],
-    ['Résistance','Réduit les dégâts magiques reçus.','Même formule que la Défense, contre les ennemis qui utilisent la magie (chamans, nécromanciens, sorcières, mages de braise, oracles, Seigneur de Cendre).'],
+    ['Défense magique','Réduit les dégâts magiques reçus.','Même formule que la Défense, contre les ennemis qui utilisent la magie (chamans, nécromanciens, sorcières, mages de braise, oracles, Seigneur de Cendre).'],
+    ['Points d’action (PA)','Énergie pour lancer les compétences.','5 PA de base pour chaque classe. Le combat commence avec tous les PA ; chaque compétence coûte des PA (l’attaque de base est gratuite) et vous récupérez 1 PA au début de chacun de vos tours. Barre jaune segmentée sous la barre de vie.'],
+    ['Résistance physique','Réduit les dégâts physiques reçus en %.','S’applique après la Défense. Plafonnée à 75 %.'],
+    ['Résistance magique','Réduit les dégâts magiques reçus en %.','S’applique après la Défense magique. Plafonnée à 75 %.'],
+    ['Résistances élémentaires','Feu, Glace, Foudre, Terre.','Réduisent en % les dégâts des compétences de cet élément (brûlures comprises). Plafonnées à 75 %. Une résistance négative est une faiblesse : les dégâts sont augmentés.'],
     ['Vitesse','Ordre d’action.','À chaque tour, les unités agissent de la plus rapide à la plus lente.'],
     ['Critique','Chance de coup critique.','5 % de base. Un coup critique multiplie les dégâts par les Dégâts critiques.'],
     ['Dégâts critiques','Puissance des critiques.','150 % de base : un critique inflige alors 1,5 fois les dégâts.'],
@@ -2406,7 +2441,7 @@ function viewHelp(){
     ['Puissance','Score global.','Indicateur qui résume vos statistiques pour comparer deux équipements (▲ / ▼ dans les infobulles). Il n’a pas d’effet en combat.'],
   ]);
   const dmg=`<p>Pour chaque coup : <b>stat d’attaque × multiplicateur de la compétence × K / (K + Défense ou Résistance de la cible)</b>, puis :</p>
-    <ul><li>× (1 + Dégâts bonus) ;</li><li>× un tirage aléatoire entre 92 % et 108 % ;</li><li>× Dégâts critiques en cas de coup critique ;</li><li>minimum 1 dégât.</li></ul>
+    <ul><li>× (1 + Dégâts bonus) ;</li><li>× (1 − Résistance physique ou magique de la cible) ;</li><li>× (1 − Résistance à l’élément de la compétence, si elle en a un) ;</li><li>× un tirage aléatoire entre 92 % et 108 % ;</li><li>× Dégâts critiques en cas de coup critique ;</li><li>minimum 1 dégât.</li></ul>
     <p>K vaut 100 + 15 × niveau de l’attaquant. Les boucliers absorbent les dégâts avant les PV. Une Esquive réussie annule le coup.</p>`;
   const aff=T(['Effet','Type','Fonctionnement'],[
     ['<span class="b-dot">Saignement</span>','Dégâts sur la durée','Inflige un pourcentage de la stat d’attaque du lanceur au début de chaque tour de la cible. Un nouveau Saignement remplace l’ancien.'],
@@ -2446,6 +2481,8 @@ function viewHelp(){
 const VERSION='0.1.1';
 const PATCH=[
  {v:'0.1.1',t:'Fiche de personnage',sec:[
+  ['Combat',['Points d’action (PA) : 5 de base pour chaque classe. Les compétences coûtent des PA, l’attaque de base est gratuite, et chaque unité récupère 1 PA au début de son tour.','Barre de PA segmentée sous la barre de vie de chaque combattant ; le coût en PA est affiché sur chaque compétence.','Nouvelles statistiques : Résistance physique, Résistance magique et résistances au Feu, à la Glace, à la Foudre et à la Terre (en %, plafonnées à 75 %). L’ancienne Résistance devient « Défense magique ».','Compétences élémentaires : Boule de feu (Feu), Éclair en chaîne (Foudre), Météore (Terre) ; côté ennemis, Trait de feu, Crachat toxique et Déferlante. Certains monstres résistent à un élément, d’autres y sont faibles.','Nouveaux affixes de résistance sur l’équipement.']],
+  ['Forge',['Nouvelles chances de rareté : Forge ordinaire 80 % Commun / 20 % Magique ; Forge fine 40 % Commun / 50 % Magique / 10 % Rare ; Forge de maître 10 % Magique / 45 % Rare / 45 % Épique ; Forge légendaire 20 % Rare / 70 % Épique / 10 % Légendaire.','Affixes aléatoires : Commun 0, Magique 1, Rare 2, Épique 3, Légendaire 3 + un pouvoir légendaire.','Pouvoir légendaire (écrit en orange) : +6 % de chances de coup critique et +10 % de dégâts critiques. Un pouvoir nommé pour chaque type d’équipement ; les objets légendaires existants le reçoivent aussi.']],
   ['Amis',['Nouveau système d’amis : liste fixée en bas à droite de l’écran, avec le nombre d’amis connectés.','Ajoutez un joueur avec son nom de compte ; il accepte ou refuse la demande. Vous voyez si vos amis sont en ligne et quel personnage ils jouent.','Nom de compte : à la première connexion, chaque joueur choisit un nom unique, commun à tous ses personnages.']],
   ['Personnage',['Les onglets Personnage et Inventaire sont fusionnés dans l’onglet Personnage.','En haut : l’équipement (roue) à gauche et la présentation du héros à droite (portrait, niveau, statistiques avec le bonus d’équipement en vert, ascension).','En dessous : l’inventaire, puis les compétences. La zone de détails s’affiche sous l’équipement quand un objet est sélectionné.','La roue d’équipement est agrandie et occupe toute la hauteur de la présentation du héros.']],
  ]},
@@ -2553,8 +2590,8 @@ function dbgPanel(){
 /* ============ Bestiaire (réglages des ennemis, publiés par l’administrateur) ============ */
 const EFX=['v','dur','ch'];
 const bestSnap=()=>JSON.parse(JSON.stringify({
-  zones:ZONES.map(z=>({enemies:z.enemies.map(e=>({hp:e.hp,atk:e.atk,def:e.def,spd:e.spd||1,sk:[...(e.sk||[])]})),boss:{hp:z.boss.hp,atk:z.boss.atk,def:z.boss.def,spd:z.boss.spd||1,sk:[...(z.boss.sk||[])]}})),
-  sk:Object.fromEntries(Object.entries(ENSK).map(([id,k])=>[id,{cd:k.cd,mult:k.mult==null?null:k.mult,fx:(k.fx||[]).map(f=>Object.fromEntries(EFX.filter(x=>f[x]!=null).map(x=>[x,f[x]])))}])),
+  zones:ZONES.map(z=>({enemies:z.enemies.map(e=>({hp:e.hp,atk:e.atk,def:e.def,spd:e.spd||1,sk:[...(e.sk||[])],res:Object.fromEntries(RES_K.map(k=>[k,(e.res&&e.res[k])||0]))})),boss:{hp:z.boss.hp,atk:z.boss.atk,def:z.boss.def,spd:z.boss.spd||1,sk:[...(z.boss.sk||[])],res:Object.fromEntries(RES_K.map(k=>[k,(z.boss.res&&z.boss.res[k])||0]))}})),
+  sk:Object.fromEntries(Object.entries(ENSK).map(([id,k])=>[id,{ap:k.ap||0,cd:k.cd,mult:k.mult==null?null:k.mult,fx:(k.fx||[]).map(f=>Object.fromEntries(EFX.filter(x=>f[x]!=null).map(x=>[x,f[x]])))}])),
   enf:{hp:[...ENF.hp],atk:[...ENF.atk],def:[...ENF.def]},
   diff:Object.fromEntries(['hero','myth'].map(d=>[d,{hp:DIFF[d].hp,atk:DIFF[d].atk,bHp:DIFF[d].bHp,bAtk:DIFF[d].bAtk,bDef:DIFF[d].bDef,rage:DIFF[d].rage}]))}));
 const BEST_DEF=bestSnap();
@@ -2562,9 +2599,9 @@ function applyBest(cfg){
   const src=[BEST_DEF,cfg].filter(Boolean);
   for(const c of src){
     (c.zones||[]).forEach((z,i)=>{const Z=ZONES[i]; if(!Z||!z) return;
-      (z.enemies||[]).forEach((e,j)=>{if(Z.enemies[j]&&e) Object.assign(Z.enemies[j],{hp:+e.hp,atk:+e.atk,def:+e.def,spd:+e.spd||1,sk:(e.sk||[]).filter(x=>ENSK[x])})});
-      if(z.boss) Object.assign(Z.boss,{hp:+z.boss.hp,atk:+z.boss.atk,def:+z.boss.def,spd:+z.boss.spd||1,sk:(z.boss.sk||[]).filter(x=>ENSK[x])})});
-    for(const [id,k] of Object.entries(c.sk||{})){const E=ENSK[id]; if(!E) continue; E.cd=+k.cd; if(k.mult!=null) E.mult=+k.mult;
+      (z.enemies||[]).forEach((e,j)=>{if(Z.enemies[j]&&e) Object.assign(Z.enemies[j],{hp:+e.hp,atk:+e.atk,def:+e.def,spd:+e.spd||1,sk:(e.sk||[]).filter(x=>ENSK[x])},e.res?{res:Object.fromEntries(Object.entries(e.res).map(([k,v])=>[k,+v]))}:{})});
+      if(z.boss) Object.assign(Z.boss,{hp:+z.boss.hp,atk:+z.boss.atk,def:+z.boss.def,spd:+z.boss.spd||1,sk:(z.boss.sk||[]).filter(x=>ENSK[x])},z.boss.res?{res:Object.fromEntries(Object.entries(z.boss.res).map(([k,v])=>[k,+v]))}:{})});
+    for(const [id,k] of Object.entries(c.sk||{})){const E=ENSK[id]; if(!E) continue; E.cd=+k.cd; if(k.ap!=null) E.ap=+k.ap; if(k.mult!=null) E.mult=+k.mult;
       (k.fx||[]).forEach((f,i)=>{if(E.fx&&E.fx[i]) for(const x of EFX) if(f[x]!=null) E.fx[i][x]=+f[x]}); SK[id]={id,...E}}
     if(c.enf) for(const k of ['hp','atk','def']) if(c.enf[k]) ENF[k]=c.enf[k].map(Number);
     if(c.diff) for(const d of ['hero','myth']) if(c.diff[d]) Object.assign(DIFF[d],Object.fromEntries(Object.entries(c.diff[d]).map(([k,v])=>[k,+v])));
@@ -2580,7 +2617,7 @@ async function adminCheck(){
   try{ const d=await FB.db.collection(COL('config')).doc('admin').get(); FB.admin=!!(d.exists&&(d.data().uids||[]).includes(FB.user.uid)) }catch(e){}
 }
 const ROLE_N={atk:'Physique',mag:'Magique'};
-const skDescE=id=>{const k=ENSK[id]; if(!k) return ''; const t=[]; if(k.mult) t.push(`${Math.round(k.mult*100)} % de l’attaque`+(k.tg==='all'?' sur tous':''));
+const skDescE=id=>{const k=ENSK[id]; if(!k) return ''; const t=[]; if(k.ap) t.push(k.ap+' PA'); if(k.el&&ELEM[k.el]) t.push(ELEM[k.el].n); if(k.mult) t.push(`${Math.round(k.mult*100)} % de l’attaque`+(k.tg==='all'?' sur tous':''));
   for(const f of k.fx||[]){ if(f.k==='dot') t.push(`${f.n} ${Math.round(f.v*100)} % / tour, ${f.dur} tours`); else if(f.k==='stun') t.push(`${f.ch} % d’étourdir ${f.dur} tour`); else if(f.k==='heal') t.push(`soigne un allié (×${f.v})`); else if(f.k==='buff') t.push(`+${f.v} % ${f.stat==='atk'?'attaque':f.stat} aux alliés, ${f.dur} tours`); else if(f.k==='debuff') t.push(`${f.v} % ${f.stat==='def'?'défense':f.stat}, ${f.dur} tours`) }
   return t.join(' · ')+` · recharge ${k.cd}`};
 function bestCalc(t,isBoss,zi){
@@ -2598,6 +2635,7 @@ function bestCard(zi,j){
   const extra=boss&&DIFF[UI.bdiff||'normal'].extra;
   return `<article class="bcard ${boss?'boss':''}"><header><span class="bic">${icon(t.ic)}</span><div><b>${esc(t.n)}</b><small>${boss?'Boss · ':''}${ROLE_N[t.role]||t.role}</small></div><button class="btn sm" data-act="bestTest" data-k="${key}" title="Lancer un combat de test contre cet ennemi">⚔ Tester</button></header>
     <div class="binp">${inp('hp','PV ×',.05)}${inp('atk','Attaque ×',.05)}${inp('def','Défense ×',.05)}${inp('spd','Vitesse ×',.05)}</div>
+    <details class="bres"><summary>Résistances ${RES_K.filter(k=>w.res&&w.res[k]).map(k=>`<em>${RES_S[k]} ${w.res[k]}%</em>`).join('')}</summary><div class="binp b3">${RES_K.map(k=>`<label><span>${RES_S[k]} %</span><input type="number" step="5" min="-100" max="75" data-bf="z.${key}.res.${k}" value="${(w.res&&w.res[k])||0}"></label>`).join('')}</div></details>
     <div data-bstat="${key}">${bestCalc(t,boss,zi)}</div>
     <div class="bsk">${Object.keys(ENSK).map(id=>`<button class="bchip ${w.sk.includes(id)?'on':''}" data-act="bestSk" data-k="${key}" data-s="${id}" title="${esc(skDescE(id))}">${esc(ENSK[id].n)}</button>`).join('')}${extra?`<span class="bchip lock" title="Ajoutée par la difficulté">${esc(ENSK[extra].n)} (difficulté)</span>`:''}</div></article>`;
 }
@@ -2606,7 +2644,7 @@ function viewBest(){
   const dk=UI.bdiff||'normal',W=UI.bw;
   const zones=ZONES.map((z,i)=>`<section class="bzone"><h3>${esc(z.n)} <small class="mute">· niveaux ${i*10+1} à ${i*10+10}</small></h3><div class="bgrid">${z.enemies.map((_,j)=>bestCard(i,j)).join('')}${bestCard(i,-1)}</div></section>`).join('');
   const skRows=Object.entries(ENSK).map(([id,k])=>{const w=W.sk[id];return `<tr><td><b>${esc(k.n)}</b><br><small class="mute">${esc(skDescE(id))}</small></td>
-    <td><input type="number" step="1" min="0" data-bf="s.${id}.cd" value="${w.cd}"></td>
+    <td><input type="number" step="1" min="0" max="10" data-bf="s.${id}.ap" value="${w.ap||0}"></td><td><input type="number" step="1" min="0" data-bf="s.${id}.cd" value="${w.cd}"></td>
     <td>${w.mult==null?'—':`<input type="number" step=".05" min="0" data-bf="s.${id}.mult" value="${w.mult}">`}</td>
     <td>${(w.fx||[]).map((f,i)=>EFX.filter(x=>f[x]!=null).map(x=>`<label class="bfx"><span>${x==='v'?'Valeur':x==='dur'?'Durée':'Chance %'}</span><input type="number" step="${x==='v'&&Math.abs(f[x])<5?'.05':'1'}" data-bf="s.${id}.fx.${i}.${x}" value="${f[x]}"></label>`).join('')).join('')||'—'}</td></tr>`}).join('');
   const enfRows=['hp','atk','def'].map(k=>`<tr><td><b>${k==='hp'?'PV':k==='atk'?'Attaque':'Défense'}</b></td>${[0,1,2].map(i=>`<td><input type="number" step="${i===2?'.01':'.1'}" data-bf="e.${k}.${i}" value="${W.enf[k][i]}"></td>`).join('')}</tr>`).join('');
@@ -2617,7 +2655,7 @@ function viewBest(){
       ${dk==='normal'?`<label>Étape des monstres <input type="range" id="bstage" min="1" max="9" value="${UI.bstage||5}"><b>${UI.bstage||5}</b></label>`:`<span class="mute">Monstres niveau ${DIFF[dk].L}</span>`}
       <span class="mute">${S&&S.heroes&&S.heroes[0]?`Comparaison avec ${esc(S.heroes[0].name)} (niveau ${S.heroes[0].lvl}) : coups pour vaincre l’ennemi / coups qu’il lui faut pour vous vaincre.`:'Chargez un personnage pour voir la comparaison avec votre héros.'}</span></div>
     ${zones}
-    <section class="panel" style="margin-top:18px"><h3 style="margin-bottom:8px">Compétences des ennemis</h3><div class="btable"><table><thead><tr><th>Compétence</th><th>Recharge</th><th>Dégâts ×</th><th>Effets</th></tr></thead><tbody>${skRows}</tbody></table></div></section>
+    <section class="panel" style="margin-top:18px"><h3 style="margin-bottom:8px">Compétences des ennemis</h3><div class="btable"><table><thead><tr><th>Compétence</th><th>PA</th><th>Recharge</th><th>Dégâts ×</th><th>Effets</th></tr></thead><tbody>${skRows}</tbody></table></div></section>
     <div class="grid g2" style="margin-top:14px">
       <section class="panel"><h3 style="margin-bottom:6px">Formules de niveau</h3><p class="hint" style="margin-bottom:8px">Valeur = base + par niveau × niveau + quadratique × niveau².</p><div class="btable"><table><thead><tr><th></th><th>Base</th><th>Par niveau</th><th>Quadratique</th></tr></thead><tbody>${enfRows}</tbody></table></div></section>
       <section class="panel"><h3 style="margin-bottom:6px">Difficultés</h3><p class="hint" style="margin-bottom:8px">Multiplicateurs des monstres, des boss, et tour où les boss entrent en rage.</p><div class="btable"><table><thead><tr><th></th><th>PV</th><th>ATQ</th><th>PV boss</th><th>ATQ boss</th><th>DEF boss</th><th>Rage</th></tr></thead><tbody>${dfRows}</tbody></table></div></section>
@@ -2625,7 +2663,7 @@ function viewBest(){
 }
 function bestSet(path,val){
   const p=path.split('.'),W=UI.bw,v=val===''?0:+val; if(!isFinite(v)) return;
-  if(p[0]==='z'){const z=W.zones[+p[1]],o=p[2]==='b'?z.boss:z.enemies[+p[2]]; o[p[3]]=v}
+  if(p[0]==='z'){const z=W.zones[+p[1]],o=p[2]==='b'?z.boss:z.enemies[+p[2]]; if(p[3]==='res'){o.res=o.res||{}; o.res[p[4]]=v} else o[p[3]]=v}
   else if(p[0]==='s'){const k=W.sk[p[1]]; if(p[2]==='fx') k.fx[+p[3]][p[4]]=v; else k[p[2]]=v}
   else if(p[0]==='e'){W.enf[p[1]][+p[2]]=v}
   else if(p[0]==='d'){W.diff[p[1]][p[2]]=v}
@@ -2701,7 +2739,7 @@ const A={
   again:()=>{C.phase='idle';startBattle()},
   next:()=>{C.phase='idle';startBattle()},
   skill:d=>{
-    const w=C.waiting; if(!w) return; const sk=SK[d.id];
+    const w=C.waiting; if(!w) return; const sk=SK[d.id]; if((sk.ap||0)>(w.u.ap||0)||(w.u.cds[d.id]||0)) return;
     if(sk.tg==='one'){
       const en=alive(C.units.filter(u=>u.team==='e'));
       if(en.length>1){C.pending=sk;renderActbar();refreshAll();return}
