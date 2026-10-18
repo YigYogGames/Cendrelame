@@ -82,6 +82,42 @@ small,.mute{color:var(--mute)}
   outline:1px dashed var(--stitch); outline-offset:-7px; min-height:60vh;
 }
 
+/* menu & personnages */
+body.scr .top,body.scr .tabs{display:none}
+body.scr:not(.scr-menu) .wrap{padding-top:52px}
+body.scr-menu #view{background:none;border:0;box-shadow:none;outline:0;padding:0}
+.menuscr{min-height:calc(100vh - 40px);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:28px;text-align:center;padding:40px 16px}
+.menuscr .brand{font-size:clamp(2.6rem,9vw,4.2rem)}
+.menuscr .sub{color:#c9ae82;margin:-14px 0 0;letter-spacing:.08em}
+.mbtns{display:flex;flex-direction:column;gap:12px;width:min(100%,300px)}
+.mbtn{position:relative;font:inherit;font-family:var(--display);font-size:1.35rem;letter-spacing:.06em;padding:13px 18px;border-radius:3px;border:1px solid #b8935a;background:linear-gradient(#4a3220,#2c1d10);color:var(--gold);cursor:pointer;box-shadow:0 4px 0 #140b05,0 8px 18px #0008,inset 0 1px 0 #ffffff1c}
+.mbtn:hover{background:linear-gradient(#5c3f28,#382515);color:#fff0c8;border-color:var(--gold)}
+.mbtn:active{transform:translateY(2px);box-shadow:0 2px 0 #140b05,0 4px 10px #0008}
+.mbtn.pri{background:linear-gradient(#93331f,#5e1c10);border-color:#e8c982;color:#fff0d0}
+.mbtn.pri:hover{background:linear-gradient(#a83c25,#6d2213)}
+.mbtn .ndot{top:8px;right:10px}
+.mgold{display:inline-flex;align-items:center;gap:6px;color:var(--gold);font-weight:700}
+.menubtn{position:absolute;top:calc(8px + env(safe-area-inset-top,0px));right:max(10px,env(safe-area-inset-right,0px));height:38px;display:inline-flex;align-items:center;gap:6px;padding:0 14px;border-radius:99px;border:1px solid #5c4228;background:#0003;color:#c9ae82;cursor:pointer;z-index:5;font:inherit;font-weight:500;letter-spacing:.03em}
+.menubtn .ndot{top:2px;right:2px}
+.menubtn svg{width:18px;height:18px;fill:currentColor}
+.menubtn:hover{color:var(--gold);border-color:var(--gold)}
+@media (max-width:640px){.menubtn span{display:none}.menubtn{width:38px;padding:0;justify-content:center}}
+.scrhead{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:16px}
+.slots{display:grid;gap:14px;grid-template-columns:repeat(auto-fill,minmax(min(100%,190px),1fr))}
+.slot{display:flex;flex-direction:column;align-items:center;gap:8px;text-align:center;padding:16px 12px;border:1px solid var(--line);border-radius:4px;background:var(--bg2);box-shadow:inset 0 0 26px #9a6a2a22;min-height:250px}
+.slot.cur{border-color:var(--brass);box-shadow:0 0 0 1px var(--brass),inset 0 0 26px #9a6a2a22}
+.slot h3{font-size:1.25rem;color:var(--brass)}
+.slot .portrait{width:96px;height:96px}
+.slot .acts{display:flex;gap:6px;flex-wrap:wrap;justify-content:center;margin-top:auto}
+.slot.empty{border-style:dashed;justify-content:center;color:var(--mute);cursor:pointer;background:#d8c49655;font:inherit}
+.slot.empty:hover{border-color:var(--brass);color:var(--brass)}
+.slot.empty b{font-size:2.4rem;line-height:1;font-family:var(--display);font-weight:400}
+.modal{position:fixed;inset:0;z-index:50;display:grid;place-items:center;padding:16px;background:#0b0603b3;animation:tin .2s}
+.modal .box{width:min(100%,380px);text-align:center;color:var(--fg);background:var(--paper);border:1px solid #1d1209;border-radius:4px;padding:22px 20px;box-shadow:0 18px 40px #000c,inset 0 0 40px #7a521f55;outline:1px dashed var(--stitch);outline-offset:-7px}
+.modal h2{margin-bottom:8px}
+.modal p{margin:0 0 18px;color:var(--mute)}
+.modal .row{justify-content:center;gap:10px}
+.modal .btn{min-width:110px;padding:9px 16px}
 /* generic */
 .panel{background:var(--bg2);border:1px solid var(--line);border-radius:3px;padding:16px;min-width:0;box-shadow:inset 0 0 26px #9a6a2a22}
 .panel>h2,.panel>h3{margin-bottom:10px}
@@ -227,6 +263,14 @@ input[type=checkbox]{accent-color:var(--brass)}
 .stk .lab{display:inline-flex;align-items:center;gap:5px}
 
 /* équipement : mannequin */
+.det{position:relative;margin-top:12px;border-color:var(--brass)}
+.det .x{position:absolute;top:6px;right:8px;width:28px;height:28px;border-radius:50%;border:1px solid var(--line);background:transparent;color:var(--mute);font-size:1.1rem;line-height:1;cursor:pointer}
+.det .x:hover{color:var(--fg)}
+.det h3{margin:0 30px 8px 0}
+.det .it{max-width:none}
+.det-n{display:none}
+.det.det-w{margin-top:0}
+@media (max-width:860px){.det-w{display:none}.det-n{display:block}}
 .inv-layout{display:grid;gap:16px;grid-template-columns:minmax(0,360px) minmax(0,1fr);align-items:start}
 @media (max-width:860px){.inv-layout{grid-template-columns:minmax(0,1fr)}}
 .stats.two{grid-template-columns:1fr auto 1fr auto}
@@ -371,6 +415,42 @@ input[type=checkbox]{accent-color:var(--brass)}
 .doll.rune .dslot:not(.full){background:#4a3420f2;border:1px solid #d6aa55;color:#e8c982;box-shadow:0 0 10px #d6aa5544}
 .doll.rune .dslot.full{background:color-mix(in srgb,var(--rc) 45%,#4a3420);border:2px solid color-mix(in srgb,var(--rc) 70%,#fff 15%);color:color-mix(in srgb,var(--rc) 25%,#fff0d0);box-shadow:0 0 12px var(--rc)}
 .doll.rune .dslot em{top:-2px;right:-2px;background:#1a1410;border-radius:6px;padding:0 3px}
+.fA{display:grid;gap:16px;grid-template-columns:minmax(0,200px) minmax(0,1fr) minmax(0,270px);align-items:stretch}
+.fA.up{grid-template-columns:minmax(0,290px) minmax(0,1fr) minmax(0,300px)}
+.fA>.panel{display:flex;flex-direction:column;gap:14px}
+.fA h3{font-family:var(--display);font-weight:400;font-size:1.05rem;color:var(--brass);margin:0 0 8px}
+.ftypes{display:flex;flex-direction:column;gap:5px}
+.ftypes button{display:flex;align-items:center;gap:10px;padding:7px 10px;border:1px solid var(--line2);border-radius:3px;background:var(--bg3);cursor:pointer;color:var(--fg);text-align:left;font:inherit}
+.ftypes button svg{width:24px;height:24px;fill:currentColor;flex:none}
+.ftypes button:hover{border-color:var(--brass)}
+.ftypes button.on{background:#3a2817;color:var(--gold);border-color:#1d1209;font-weight:700}
+.anvil{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;text-align:center;background:radial-gradient(circle at 50% 42%,#6b4a2a,#2c1d10 72%);border:1px solid #1d1209;color:#f1e2bd;border-radius:4px;padding:18px 14px;box-shadow:inset 0 0 30px #0008;min-width:0}
+.anvil .tier{display:flex;align-items:center;gap:10px;justify-content:center}
+.anvil .tier b{font-family:var(--display);font-weight:400;font-size:1.4rem;color:var(--gold);min-width:0}
+.anvil .arw{background:transparent;border-color:#d6aa55;color:#e8c982}
+.anvil .arw:hover{background:#d6aa5522;border-color:var(--gold)}
+.anvil .dots i{background:#d6aa5544}.anvil .dots i.on{background:#e8c982}
+.aring{width:170px;height:170px;border-radius:50%;display:grid;place-items:center;border:2px solid #d6aa55;box-shadow:0 0 0 7px #2c1d10,0 0 0 8px #d6aa5588,inset 0 0 40px #f0a23a55;background:radial-gradient(circle,#3a2614,#1a1009);position:relative;flex:none}
+.aring>svg{width:46%;height:46%;fill:#e8c982;filter:drop-shadow(0 0 8px #f0a23a)}
+.aring.full{border-color:color-mix(in srgb,var(--rc) 60%,#e8c982);box-shadow:0 0 0 7px #2c1d10,0 0 0 8px color-mix(in srgb,var(--rc) 70%,#fff 10%),inset 0 0 40px color-mix(in srgb,var(--rc) 60%,transparent),0 0 24px color-mix(in srgb,var(--rc) 50%,transparent)}
+.aring.full>svg{fill:color-mix(in srgb,var(--rc) 25%,#fff0d0);filter:drop-shadow(0 0 8px var(--rc))}
+.aring em{position:absolute;top:18px;font-style:normal;font-weight:700;color:var(--gold);font-size:1.1rem}
+.aring.empty{border-style:dashed}
+.aring.empty span{color:#c9ae82;font-size:.9rem;max-width:110px}
+.aring.over{box-shadow:0 0 0 7px #2c1d10,0 0 0 8px var(--gold),0 0 26px #e8c982}
+.anvil .nm{font-size:1.15rem;font-weight:700}
+.anvil small{color:#c9ae82}
+.anvil .btn.pri{font-size:1.08rem;padding:11px 22px;width:100%;max-width:290px}
+.anvil .prism{color:#bfe9ee;border-color:#3fb6c0}.anvil .prism.on{color:#9ff0f6;background:#0b7c8633}
+.anvil .it{color:var(--fg);text-align:left;width:100%;max-width:310px}
+.anvil .it small{color:var(--mute)}
+.anvil .warnx{color:#ffb39e;font-size:.9rem}
+.odds{display:flex;flex-direction:column;gap:6px}
+.odds .r{display:grid;grid-template-columns:78px minmax(0,1fr) 46px;gap:8px;align-items:center;font-size:.92rem}
+.odds .r b{text-align:right}
+.odds .bar{height:8px;border-radius:99px;background:#00000018;overflow:hidden}.odds .bar i{display:block;height:100%}
+.fA .fwheel .doll.rune{width:min(100%,260px);margin:0 auto}
+@media (max-width:980px){.fA,.fA.up{grid-template-columns:minmax(0,1fr)}.ftypes{flex-direction:row;flex-wrap:wrap}.ftypes button{flex:1 1 120px}}
 .forge-up{display:grid;gap:14px;grid-template-columns:minmax(0,300px) minmax(0,1fr);align-items:start}
 @media (max-width:820px){.forge-up{grid-template-columns:minmax(0,1fr)}}
 .fwheel .doll.rune{width:min(100%,270px)}
@@ -399,6 +479,7 @@ input[type=checkbox]{accent-color:var(--brass)}
 <div class="byline">By Roukette<br><span id="ver"></span></div>
 <button id="news" class="newsbtn" data-act="tab" data-t="news" aria-label="Nouveautés" title="Nouveautés" hidden><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h11a2 2 0 0 1 2 2v13a3 3 0 0 1-3 3H7a3 3 0 0 1-3-3V5a2 2 0 0 1 2-2zm1 4v2h9V7zm0 4v2h9v-2zm0 4v2h6v-2z"/></svg><span>Nouveautés</span></button>
 <button id="gear" class="gear" data-act="tab" data-t="opts" aria-label="Réglages" title="Réglages" hidden><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.07-.94l2.03-1.58a.49.49 0 0 0 .12-.61l-1.92-3.32a.49.49 0 0 0-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54a.48.48 0 0 0-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96a.49.49 0 0 0-.59.22L2.74 8.87a.48.48 0 0 0 .12.61l2.03 1.58c-.05.3-.09.63-.09.94s.02.64.07.94l-2.03 1.58a.49.49 0 0 0-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32a.47.47 0 0 0-.12-.61l-2.01-1.58zM12 15.6A3.6 3.6 0 1 1 12 8.4a3.6 3.6 0 0 1 0 7.2z"/></svg></button>
+<button id="menubtn" class="menubtn" data-act="toMenu" aria-label="Menu du jeu" title="Menu" hidden><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg><span>Menu</span></button>
 <div class="wrap">
   <header class="top">
     <div class="brand">Cendrelame</div>
@@ -745,10 +826,30 @@ function fitBag(d){
   return d;
 }
 const loadData=d=>soloize(fitBag(Object.assign(newGame(),migrate(d))));
-function save(){try{localStorage.setItem(SAVE_KEY,JSON.stringify(S))}catch(e){}}
+/* compte : l’or est partagé, chaque personnage a sa propre sauvegarde */
+const ACC_KEY='cendrelame_acc',CHAR_KEY=i=>'cendrelame_c'+i,MAXCH=5;
+let ACC={gold:80,cur:null,seenVer:null};
+const lsGet=k=>{try{return localStorage.getItem(k)}catch(e){return null}};
+const lsSet=(k,v)=>{try{localStorage.setItem(k,v)}catch(e){}};
+const lsDel=k=>{try{localStorage.removeItem(k)}catch(e){}};
+function saveAcc(){lsSet(ACC_KEY,JSON.stringify(ACC))}
+function save(){
+  if(!S||!S.heroes||!S.heroes.length||ACC.cur==null) return;
+  ACC.gold=S.gold; lsSet(CHAR_KEY(ACC.cur),JSON.stringify(S)); saveAcc();
+}
+function loadAcc(){
+  const raw=lsGet(ACC_KEY);
+  if(raw){try{const a=JSON.parse(raw); if(a&&typeof a==='object'){ACC=Object.assign({gold:80,cur:null,seenVer:null},a);return}}catch(e){}}
+  /* ancienne sauvegarde à un seul héros : elle devient le personnage 1 */
+  const old=lsGet(SAVE_KEY);
+  if(old){try{const d=JSON.parse(old); if(d&&Array.isArray(d.heroes)&&d.heroes.length){lsSet(CHAR_KEY(0),old); ACC={gold:d.gold||0,cur:0,seenVer:d.seenVer||null}}}catch(e){}}
+  saveAcc();
+}
+function charRaw(i){const r=lsGet(CHAR_KEY(i)); if(!r) return null; try{const d=JSON.parse(r); return d&&Array.isArray(d.heroes)&&d.heroes.length?d:null}catch(e){return null}}
+const charSum=i=>{const d=charRaw(i); if(!d) return null; const h=d.heroes[0]; return {name:h.name,cls:h.cls==='voleur'?'guerrier':h.cls==='clerc'?'mage':h.cls,lvl:Math.min(h.lvl||1,MAXL),stars:h.stars||0,hue:h.hue}};
 function loadSave(){
   try{
-    const raw=localStorage.getItem(SAVE_KEY); if(!raw) return null;
+    const raw=ACC.cur==null?null:lsGet(CHAR_KEY(ACC.cur)); if(!raw) return null;
     const d=JSON.parse(raw); if(!d||!Array.isArray(d.heroes)) return null;
     return loadData(d);
   }catch(e){return null}
@@ -807,6 +908,7 @@ function rarityWeights(p){
   return [Math.max(5,60-45*p),30-5*Math.min(p,1.5),8+25*p,1.8+15*p,.2+5*p].map(x=>Math.max(.1,x));
 }
 let SHIFT=false;
+const NOHOVER=!!(window.matchMedia&&matchMedia('(hover:none)').matches);
 /* plage possible d'un affixe (tirage 70 % à 100 %), amélioration comprise */
 function affRange(it,a,k){
   const A=AFXM[a.s]; if(!A) return '';
@@ -817,7 +919,7 @@ function affRange(it,a,k){
 }
 function itemCard(it,foot='',delta=null){
   const k=upMul(it);
-  const lines=[...Object.entries(it.imp).map(([s,v])=>`<li class="imp">${fmtStat(s,v*k)}</li>`),...it.aff.map(a=>`<li>${fmtStat(a.s,a.v*k)}${SHIFT?affRange(it,a,k):''}</li>`)].join('')+(it.aff.length?`<li class="shk">${SHIFT?'Plages possibles des affixes (Maj)':'Maj : voir les plages des affixes'}</li>`:'');
+  const lines=[...Object.entries(it.imp).map(([s,v])=>`<li class="imp">${fmtStat(s,v*k)}</li>`),...it.aff.map(a=>`<li>${fmtStat(a.s,a.v*k)}${SHIFT||NOHOVER?affRange(it,a,k):''}</li>`)].join('')+(it.aff.length&&!NOHOVER?`<li class="shk">${SHIFT?'Plages possibles des affixes (Maj)':'Maj : voir les plages des affixes'}</li>`:'');
   const dl=delta===null?'':`<span class="dl ${delta>=0?'up':'dn'}">${delta>=0?'▲':'▼'} ${Math.abs(Math.round(delta))}</span>`;
   return `<article class="it" style="--rc:var(--r${it.rarity})"><header><b>${esc(it.name)}${it.up?` <em>+${it.up}</em>`:''}</b> ${dl}<small>${SLOT_N[it.slot]}${it.cls?` · <span style="${canWear(it)?'':'color:var(--blood);font-weight:700'}">${CLASSES[it.cls].n}</span>`:''} · ${RAR[it.rarity].n}</small><small>Niveau d’objet <b class="num">${it.ilvl}</b></small></header><ul>${lines}</ul>${foot?`<div class="foot">${foot}</div>`:''}</article>`;
 }
@@ -947,11 +1049,12 @@ const DIFF={
   myth:{n:'Mythique',L:60,hp:2.2,atk:3.6,bHp:2.4,bAtk:3.2,bDef:1.5,rage:8,rw:2,prism:.25,extra:'e_smash'},
 };
 const HERO_L=50;
-const curDiff=()=>DIFF[S.diff]?S.diff:'normal';
+const heroOpen=()=>!!(S.heroes[0]&&S.heroes[0].lvl>=HERO_L);
+const curDiff=()=>DIFF[S.diff]&&(S.diff==='normal'||heroOpen())?S.diff:'normal';
 const isHero=()=>curDiff()!=='normal';
 const progKey=d=>d==='myth'?'progM':d==='hero'?'progH':'prog';
 const prog=(d=curDiff())=>{const k=progKey(d); if(!S[k]) S[k]={zone:0,stage:1}; return S[k]};
-const mythOpen=()=>S.mythOpen||(S.progH&&S.progH.zone===ZONES.length-1&&S.progH.stage===10);
+const mythOpen=()=>heroOpen()&&(S.mythOpen||(S.progH&&S.progH.zone===ZONES.length-1&&S.progH.stage===10));
 const ENF={hp:[30,38,.3],atk:[6,2.6,.06],def:[3,1.2,.01],pair:[.65,.6]};
 const enStat=(k,L)=>ENF[k][0]+ENF[k][1]*L+ENF[k][2]*L*L;
 function mkEnemies(z,st,n,diff){
@@ -1174,7 +1277,7 @@ async function finish(r){
     gold=Math.round(gold*(1+goldF/100)*lb); xp=Math.round(xp*(1+(C.bonus?C.bonus.xp:0)/100));
     S.gold+=gold; S.kills+=enemies.length;
     const ups=[];
-    for(const h of S.heroes){const inP=S.party.includes(h.id);const n=gainXp(h,inP?xp:Math.round(xp*.4));if(n){ups.push(`Niveau ${h.lvl} atteint !`);S.lvlDot=true;lvlToast(h,n)}}
+    for(const h of S.heroes){const inP=S.party.includes(h.id);const n=gainXp(h,inP?xp:Math.round(xp*.4));if(n){ups.push(`Niveau ${h.lvl} atteint !`);S.lvlDot=true;lvlToast(h,n);if(h.lvl>=HERO_L&&h.lvl-n<HERO_L)setTimeout(()=>toast('✦ Mode Héroïque débloqué !'),900)}}
     const mats={},zm=ZONES[C.zone].mats;
     const amt=()=>ri(1,3)+Math.floor(L/8);
     mats[zm[0]]=amt()*(boss?3:1); mats[zm[1]]=Math.max(1,Math.round(amt()*(zm[1]==='rune'?.3:1)))*(boss?3:1);
@@ -1248,8 +1351,8 @@ function autoCollect(){
     toast('Collecte automatique : '+Object.entries(got).map(([k,n])=>n+' '+MAT_N[k].toLowerCase()).join(', ')) }
 }
 function tick(){
+  if(!S||!S.heroes.length||UI.scr) return;
   const now=Date.now(),dt=Math.max(0,(now-S.last)/1000); S.last=now;
-  if(!S||!S.heroes.length) return;
   produce(dt);
   if(S.autoCollect) autoCollect();
   const b=collectBlocked(); if(b!==lastBlocked){lastBlocked=b; if(UI.tab==='sites') render(); else renderTabs()}
@@ -1263,17 +1366,19 @@ function renderHeader(){
   el.innerHTML=['gold',...MATS].map(m=>{const v=m==='gold'?S.gold:matCount(m),full=m!=='gold'&&v>=MATCAP;return `<span class="rs ${full?'full':''}" title="${m==='gold'?'Or':MAT_OBJ[m]+' : '+v.toLocaleString('fr-FR')+' / '+MATCAP.toLocaleString('fr-FR')}">${matIcon(m)}<b>${fmt(v)}</b><span class="sr">${MAT_N[m]}</span></span>`}).join('');
 }
 function renderTabs(){
-  const el=$('#tabs'),g=$('#gear'),nw=$('#news'); $('#ver').textContent='v'+VERSION; if(!S||!S.heroes.length){el.innerHTML='';g.hidden=true;nw.hidden=true;return}
-  g.hidden=false; g.classList.toggle('on',UI.tab==='opts');
-  nw.hidden=false; nw.classList.toggle('on',UI.tab==='news');
-  const nd=nw.querySelector('.ndot'),unseen=S.seenVer!==VERSION&&UI.tab!=='news';
-  if(unseen&&!nd) nw.insertAdjacentHTML('beforeend','<span class="ndot" aria-label="Nouvelle version"></span>'); else if(!unseen&&nd) nd.remove();
+  const el=$('#tabs'),g=$('#gear'),nw=$('#news'),mb=$('#menubtn'); $('#ver').textContent='v'+VERSION; g.hidden=true; nw.hidden=true;
+  mb.hidden=!!UI.scr||!S||!S.heroes.length;
+  {const d=mb.querySelector('.ndot'),u=unseenVer(); if(u&&!d) mb.insertAdjacentHTML('beforeend','<span class="ndot" aria-label="Nouvelle version"></span>'); else if(!u&&d) d.remove()}
+  if(UI.scr||!S||!S.heroes.length){el.innerHTML='';return}
   el.innerHTML=TABS.map(([k,n])=>`<button role="tab" aria-selected="${UI.tab===k}" data-act="tab" data-t="${k}">${n}${k==='bag'&&S.bagDot&&UI.tab!=='bag'?'<span class="ndot" aria-label="Nouveaux objets"></span>':''}${k==='heroes'&&S.lvlDot&&UI.tab!=='heroes'?'<span class="ndot" aria-label="Niveau gagné"></span>':''}${k==='sites'&&collectBlocked()?'<span class="ndot" aria-label="Inventaire plein"></span>':''}</button>`).join('');
 }
 function render(){
-  hideTip(); renderTabs(); renderHeader();
+  hideTip(); document.body.classList.toggle('scr',!!UI.scr); document.body.classList.toggle('scr-menu',UI.scr==='menu');
+  renderTabs(); if(UI.scr) $('#res').innerHTML=''; else renderHeader();
   const v=$('#view');
-  if(!S||!S.heroes.length){v.innerHTML=viewCreator();return}
+  if(UI.scr){v.innerHTML=({menu:viewMenu,select:viewSelect,create:viewCreator,opts:viewOpts,news:viewNews})[UI.scr]();return}
+  if(!S||!S.heroes.length){UI.scr='menu';return render()}
+  if(UI.tab==='opts'||UI.tab==='news') UI.tab='combat';
   v.innerHTML=({combat:viewCombat,heroes:viewHeroes,bag:viewBag,shop:viewShop,forge:viewForge,sites:viewSites,help:viewHelp,opts:viewOpts,news:viewNews})[UI.tab]();
   if(UI.tab==='combat'&&C.phase!=='idle'){C.units.forEach(refresh);renderActbar();const l=$('#log');if(l){l.scrollTop=l.scrollHeight}}
 }
@@ -1285,6 +1390,57 @@ function toast(m){
   const e=document.createElement('div');e.className='toast';e.textContent=m;$('#toasts').append(e);setTimeout(()=>e.remove(),3600);
 }
 
+/* --- menu du jeu --- */
+const unseenVer=()=>ACC.seenVer!==VERSION;
+function viewMenu(){
+  return `<div class="menuscr"><div class="brand">Cendrelame</div><p class="sub" aria-hidden="true" style="visibility:hidden">&nbsp;</p>
+    <div class="mbtns">
+      <button class="mbtn pri" data-act="scr" data-s="select">Jouer</button>
+      <button class="mbtn" data-act="scr" data-s="opts">Options</button>
+      <button class="mbtn" data-act="scr" data-s="news">Nouveautés${unseenVer()?'<span class="ndot" aria-label="Nouvelle version"></span>':''}</button>
+    </div>
+    <span class="mgold" aria-hidden="true" style="visibility:hidden">&nbsp;</span></div>`;
+}
+const backBtn=(to='menu')=>`<button class="btn" data-act="scr" data-s="${to}">‹ Retour</button>`;
+function viewSelect(){
+  const cards=Array.from({length:MAXCH},(_,i)=>{
+    const c=charSum(i);
+    if(!c) return `<button class="slot empty" data-act="newChar" data-i="${i}"><b>+</b><span>Créer un personnage</span><small>Emplacement ${i+1}</small></button>`;
+    const C0=CLASSES[c.cls]||CLASSES.guerrier;
+    const del=UI.confirm==='delc'+i?`<button class="btn sm danger" data-act="delChar" data-i="${i}">Confirmer</button><button class="btn sm" data-act="noConfirm">Annuler</button>`:`<button class="btn sm" data-act="delChar" data-i="${i}">Supprimer</button>`;
+    return `<div class="slot ${ACC.cur===i?'cur':''}"><h3>${esc(c.name)}</h3>
+      ${PORTRAIT[c.cls]?`<img class="portrait" src="${PORTRAIT[c.cls]}" alt="Portrait : ${C0.n}" width="96" height="96">`:`<span class="tile xl" style="--h:${c.hue}">${icon(C0.ic)}</span>`}
+      <small class="mute">${C0.n} · Niveau ${c.lvl}${c.stars?' · '+'★'.repeat(c.stars):''}</small>
+      <div class="acts"><button class="btn sm pri" data-act="playChar" data-i="${i}">Jouer</button>${del}</div>
+      ${UI.confirm==='delc'+i?'<small style="color:var(--blood)">Le personnage, son inventaire, ses matériaux et sa progression seront effacés.</small>':''}</div>`;
+  }).join('');
+  return `<div class="scrhead"><h2>Choisir un personnage</h2>${backBtn()}</div>
+    <p class="hint" style="margin-bottom:14px">Jusqu’à ${MAXCH} personnages. L’or (<b class="num">${fmt(ACC.gold)}</b>) est partagé entre tous ; l’inventaire, les matériaux, la collecte et la progression sont propres à chacun.</p>
+    <div class="slots">${cards}</div>`;
+}
+function startChar(i){
+  C.abort=true;C.id++;C.phase='idle';C.result=null;
+  ACC.cur=i; saveAcc(); MIG_MSG='';
+  S=loadSave();
+  if(!S){S=newGame(); S.gold=ACC.gold; return false}
+  S.gold=ACC.gold; bootChar(); return true;
+}
+function bootChar(){
+  const away=(Date.now()-S.last)/1000;
+  if(away>0) produce(Math.min(away,8*3600));
+  S.last=Date.now();
+  {const P=prog();UI.zone=P.zone; UI.stage=P.stage;}
+  if(MIG_MSG){const m=MIG_MSG;MIG_MSG='';setTimeout(()=>toast(m),900)}
+  if(away>120){const h=Math.floor(away/3600),m=Math.floor(away%3600/60);setTimeout(()=>toast(`Absent ${h?h+' h ':''}${m} min : vos zones de collecte ont travaillé.`),400)}
+  S.speed=S.speed||1;
+  const fixL=it=>{ if(it&&!it.mat&&/^Jambières de (plates|soie)/.test(it.base||'')){it.name=it.name.replace(/^Jambières de (plates|soie)/,'Jambières');it.base='Jambières'} };
+  S.bag.forEach(e=>fixL(e.o)); for(const h of S.heroes) Object.values(h.equip||{}).forEach(fixL);
+  for(const h of S.heroes) for(const sk of CLASSES[h.cls].skills) if(sk.t==='a'&&h.learned[sk.id]&&!h.loadout.includes(sk.id)) h.loadout.push(sk.id);
+  for(const h of S.heroes) if(h.lvl>MAXL){h.lvl=MAXL;h.xp=0}
+  Object.assign(UI,{tab:'combat',bagSel:null,invSel:null,fItem:null,fLast:null,confirm:null,multi:false,pick:new Set(),hero:null,invHero:null});
+  save();
+}
+
 /* --- création --- */
 function viewCreator(){
   const cls=Object.entries(CLASSES).map(([k,c])=>`
@@ -1292,7 +1448,7 @@ function viewCreator(){
       <span class="row"><span class="tile">${icon(c.ic)}</span><h3>${c.n}</h3></span>
       <p>${c.desc}</p><small class="num">PV ${c.base.hp} · ${c.role==='mag'?'INT '+c.base.mag:'FOR '+c.base.atk} · DEF ${c.base.def} · VIT ${c.base.spd}</small>
     </button>`).join('');
-  return `<div class="hero-intro"><h1>Incarnez votre personnage</h1><p>Vous êtes le héros. Affrontez des monstres au tour par tour, puis revenez forger un équipement unique avec les ressources que vos zones de collecte récoltent sans vous.</p></div>
+  return `<div class="scrhead" style="margin-bottom:0">${backBtn('select')}</div><div class="hero-intro"><h1>Incarnez votre personnage</h1><p>Vous êtes le héros. Affrontez des monstres au tour par tour, puis revenez forger un équipement unique avec les ressources que vos zones de collecte récoltent sans vous.</p></div>
     <div class="panel grid" style="gap:16px">
       <div><label for="cname"><h3 style="margin-bottom:6px">Votre nom</h3></label><input type="text" id="cname" maxlength="18" placeholder="Ex. Aldéric" value="${esc(UI.cname)}"></div>
       <div><h3 style="margin-bottom:8px">Votre classe</h3><div class="classes">${cls}</div></div>
@@ -1325,7 +1481,7 @@ function viewCombatIdle(){
     return `<button class="ztile ${i===UI.zone?'on':''} ${cleared?'clear':''}" ${lock?'disabled':''} data-act="zone" data-i="${i}">
       <b>${lock?'🔒 ':''}${zz.n}</b><small>${lv} · Boss : ${zz.boss.n}</small><span class="zp">${pr}</span></button>`}).join('');
   const diffNote=dk==='hero'?`<p class="hint" style="color:var(--blood)"><b>Mode héroïque :</b> monstres niveau ${D.L}, bien plus agressifs. Les boss frappent fort et entrent en rage dès le tour ${D.rage+1}. Progression séparée.</p>`
-    :dk==='myth'?`<p class="hint" style="color:var(--r3)"><b>Mode mythique :</b> monstres niveau ${D.L}. Les boss gagnent la Frappe dévastatrice et entrent en rage dès le tour ${D.rage+1}. Récompenses : or, XP et matériaux ×2, Prisme divin à 25 % sur Le Dévoreur.</p>`:'';
+    :dk==='myth'?`<p class="hint" style="color:var(--r3)"><b>Mode mythique :</b> monstres niveau ${D.L}. Les boss gagnent la Frappe dévastatrice et entrent en rage dès le tour ${D.rage+1}. Récompenses : or, XP et matériaux ×2, Prisme divin à 25 % sur Le Dévoreur.</p>`:heroOpen()?'':`<p class="hint">🔒 Le mode Héroïque se débloque au niveau ${HERO_L} (vous êtes niveau ${S.heroes[0].lvl}).</p>`;
   const mstat=c.role==='mag'?['Intelligence',st.mag]:['Force',st.atk];
   return `<div class="adv-layout">
     <section class="panel herocol">
@@ -1341,7 +1497,7 @@ function viewCombatIdle(){
       <p class="hint" style="margin-top:10px">Vos PV sont restaurés après chaque combat.</p>
     </section>
     <section class="panel ${hero?dk+'panel':''}"><h2 style="margin-bottom:12px">Choix de zone</h2>
-      <div class="seg wide"><button class="${dk==='normal'?'on':''}" data-act="diff" data-d="normal">Normal</button><button class="${dk==='hero'?'on hero':''}" data-act="diff" data-d="hero">Héroïque</button><button class="${dk==='myth'?'on myth':''}" data-act="diff" data-d="myth" ${mythOpen()?'':'disabled title="Atteignez le dernier boss en mode héroïque pour débloquer le mode Mythique."'}>${mythOpen()?'':'🔒 '}Mythique</button></div>
+      <div class="seg wide"><button class="${dk==='normal'?'on':''}" data-act="diff" data-d="normal">Normal</button><button class="${dk==='hero'?'on hero':''}" data-act="diff" data-d="hero" ${heroOpen()?'':`disabled title="Atteignez le niveau ${HERO_L} pour débloquer le mode Héroïque."`}>${heroOpen()?'':'🔒 '}Héroïque</button><button class="${dk==='myth'?'on myth':''}" data-act="diff" data-d="myth" ${mythOpen()?'':'disabled title="Atteignez le dernier boss en mode héroïque pour débloquer le mode Mythique."'}>${mythOpen()?'':'🔒 '}Mythique</button></div>
       ${diffNote?`<div style="margin-top:8px">${diffNote}</div>`:''}
       <div class="zgrid">${zones}</div>
       <h3 style="margin:16px 0 8px">Niveau de la zone : ${z.n}</h3>
@@ -1529,7 +1685,7 @@ function gridHTML(){
   let bg=''; for(let y=0;y<GH;y++) for(let x=0;x<GW;x++) bg+=`<div class="cell" style="grid-column:${x+1};grid-row:${y+1}"></div>`;
   const items=S.bag.map((e,i)=>{
     const c=e.o,[w,h]=SIZE(c),pos=`grid-column:${e.x+1}/span ${w};grid-row:${e.y+1}/span ${h}`;
-    const sel=UI.multi?(UI.pick.has(c)?' pick':''):UI.tab==='forge'?(c.id&&c.id===UI.fItem?' sel':''):(UI.bagSel===c?' sel':'');
+    const sel=UI.multi?(UI.pick.has(c)?' pick':''):UI.tab==='forge'?((UI.bagSel===c||(c.id&&c.id===UI.fItem))?' sel':''):(UI.bagSel===c?' sel':'');
     if(c.mat) return `<button class="cell full gi mat${sel}" style="${pos}" data-act="bagCell" data-i="${i}" data-tip="bag:${i}" aria-label="${MAT_OBJ[c.mat]}, ${c.n}">${matSvg(c.mat)}<span class="q">${c.n}</span></button>`;
     return `<button class="cell full gi it${sel}" style="${pos};--rc:var(--r${c.rarity})" data-act="bagCell" data-i="${i}" data-tip="bag:${i}" aria-label="${esc(c.name)}${c.up?' +'+c.up:''}, ${RAR[c.rarity].n}">${bigIcon(c)}${c.up?`<span class="u">+${c.up}</span>`:''}</button>`;
   }).join('');
@@ -1542,10 +1698,10 @@ function viewBag(){
   const h=S.heroes[0],st=heroStats(h),bs=heroStats(Object.assign({},h,{equip:{}})),used=BAG-freeCells(),so=UI.bagSort;
   const arrow=k=>so.k!==k?'':k==='name'?(so.dir>0?' A→Z':' Z→A'):(so.dir>0?' ↓':' ↑');
   const si=UI.bagSel?entryOf(UI.bagSel):-1,c=si>=0?UI.bagSel:null,k=UI.invSel,eq=k?h.equip[k]:null;
-  let detail='<p class="hint">Cliquez sur une case ou un emplacement pour voir son contenu.</p>';
+  let detail='';
   if(c&&c.mat) detail=matCard(c,`<button class="btn sm" data-act="bagSplit" data-i="${si}" ${c.n<2||!freeCells()?'disabled':''}>Diviser la pile</button>`+(UI.confirm==='mat'+si?`<button class="btn sm warn" data-act="matDel" data-i="${si}">Confirmer (${c.n} perdus)</button><button class="btn sm" data-act="noConfirm">Annuler</button>`:`<button class="btn sm danger" data-act="matDel" data-i="${si}">Détruire la pile</button>`));
   else if(c) detail=itemCard(c,itemBtns(c),swapDelta(h,c));
-  else if(k) detail=`<p style="margin:0 0 6px"><b>${SLOT_N[k]}</b></p>`+(eq?itemCard(eq,`<button class="btn sm" data-act="unequip" data-slot="${k}">Retirer</button><button class="btn sm" data-act="toForge" data-id="${eq.id}">Forge</button>`):'<p class="hint">Emplacement vide. Glissez-y un objet de l’inventaire.</p>');
+  else if(k) detail=(eq?itemCard(eq,`<button class="btn sm" data-act="unequip" data-slot="${k}">Retirer</button><button class="btn sm" data-act="toForge" data-id="${eq.id}">Forge</button>`):'<p class="hint">Emplacement vide. Glissez-y un objet de l’inventaire.</p>');
   const gb=(t,b,pct)=>{const d=pct?r1(t-b):Math.round(t)-Math.round(b);return (pct?r1(b)+'%':Math.round(b))+(d>0?` <span class="gb">(+${d}${pct?'%':''})</span>`:'')};
   const c0=CLASSES[h.cls],mk=c0.role==='mag'?['Intelligence','mag']:['Force','atk'];
   const mini=[['PV','hp'],mk,['Défense','def'],['Résistance','res'],['Vitesse','spd']].map(([n,k])=>`<dt>${n}</dt><dd>${gb(st[k],bs[k])}</dd>`).join('')+
@@ -1555,8 +1711,10 @@ function viewBag(){
   return `<div class="inv-layout" style="margin-bottom:16px">
       <div><section class="panel"><div class="sheethead invhead" style="margin-bottom:8px"><h2>${esc(h.name)}</h2></div>${dollHTML(h)}
         <button class="btn sm" style="display:block;margin:12px auto 0" data-act="togStats" aria-expanded="${S.showStats!==false}">${S.showStats!==false?'Masquer':'Afficher'} les statistiques</button></section>
-        <p class="hint" style="margin-top:10px">Glissez un objet de l’inventaire sur le mannequin pour l’équiper, ou faites un clic droit dessus. Clic droit ou glisser vers l’inventaire sur un emplacement pour le retirer.</p></div>
+        <p class="hint" style="margin-top:10px">Glissez un objet de l’inventaire sur le mannequin pour l’équiper, ou faites un clic droit dessus. Clic droit ou glisser vers l’inventaire sur un emplacement pour le retirer. Touchez un objet pour voir ses détails.</p>
+        ${k?detPanel(SLOT_N[k],detail,'det-n'):''}</div>
       <div class="grid" style="gap:14px">
+        ${detail?detPanel(c?'Détails':SLOT_N[k],detail,'det-w'):''}
         ${S.showStats===false?'':`<section class="panel"><h3 style="margin-bottom:8px">Caractéristiques</h3><dl class="stats">${mini}</dl><p class="hint" style="margin-top:10px">Chaque valeur est celle de votre héros sans équipement. Le nombre <span class="gb">(+X)</span> en vert indique le bonus apporté par l’équipement que vous portez.</p></section>`}
       </div></div>
     <div class="row between" style="margin-bottom:10px"><h2>Inventaire</h2><small class="num">${used} / ${BAG} cases</small></div>
@@ -1566,6 +1724,7 @@ function viewBag(){
       <button class="btn sm ${UI.multi?'warn':'danger'}" style="margin-left:auto" data-act="multiToggle">${UI.multi?'Quitter la destruction':'Détruire plusieurs objets'}</button></div>
     ${UI.multi?multiBar():''}
     ${gridHTML()}
+    ${c&&!UI.multi?detPanel('Détails',detail,'det-n'):''}
     <p class="hint" style="margin:8px 0 14px">${UI.multi?'Cliquez sur les cases à détruire. Les matériaux détruits sont perdus ; les armes et armures rendent 25 % des ressources ayant servi à leur création.':''}Les objets occupent plusieurs cases (arme 1×5, armure et jambières 2×3, casque et bottes 2×2). Glissez-déposez pour ranger ou échanger. Déposez une pile sur une pile du même matériau pour les fusionner (${STACK} max par pile). Un second clic sur un tri inverse l’ordre.</p>`;
 }
 function multiBar(){
@@ -1734,10 +1893,19 @@ const PRISM={lv:[60,60],odds:[0,0,0,0,0,1]};
 const prismOn=()=>UI.fTier===3&&UI.fPrism&&matCount('prisme')>0;
 const forgeCost=()=>{const c=tierCost(UI.fTier,forgeLvl()); if(prismOn()) c.prisme=1; return c};
 const tierCost=(i,l)=>Object.fromEntries(Object.entries(TIERS[i].cost).map(([k,v])=>[k,Math.round(v*(1+l/15))]));
+function detPanel(title,html,cls=''){
+  return `<section class="panel det ${cls}" aria-live="polite"><button class="x" data-act="detClose" aria-label="Fermer les détails">×</button><h3>${title}</h3>${html}</section>`;
+}
+function forgeDetail(){
+  const si=UI.bagSel?entryOf(UI.bagSel):-1,c=si>=0?UI.bagSel:null; if(!c||UI.multi) return '';
+  if(c.mat) return detPanel('Détails',matCard(c,`<button class="btn sm" data-act="bagSplit" data-i="${si}" ${c.n<2||!freeCells()?'disabled':''}>Diviser la pile</button>`));
+  const h=S.heroes[0],btns=`<button class="btn sm pri" data-act="fPut" data-id="${c.id}">Améliorer</button>${canWear(c)?`<button class="btn sm" data-act="equip" data-id="${c.id}">Équiper</button>`:''}`+(UI.confirm==='del'+c.id?`<button class="btn sm warn" data-act="salv" data-id="${c.id}">Confirmer</button><button class="btn sm" data-act="noConfirm">Annuler</button></div><p class="hint" style="width:100%;margin-top:4px">Vous récupérerez : ${resTxt(salvageValue(c))}.</p><div class="foot">`:`<button class="btn sm danger" data-act="salv" data-id="${c.id}">Détruire</button>`);
+  return detPanel('Détails',itemCard(c,btns,swapDelta(h,c)));
+}
 function bagBlock(){
   const mats=MATS.map(m=>`<span class="rs2" title="${MAT_OBJ[m]}">${matIcon(m)}<b class="num">${fmt(matCount(m))}</b></span>`).join('');
   return `<div class="row between" style="margin:18px 0 10px"><h2>Inventaire</h2><small class="num">${BAG-freeCells()} / ${BAG} cases · ${freeCells()} libre${freeCells()>1?'s':''}</small></div>
-    ${gridHTML()}`;
+    ${gridHTML()}${forgeDetail()}`;
 }
 function viewForge(){
   const h=S.heroes[0],fl=forgeLvl();
@@ -1745,44 +1913,44 @@ function viewForge(){
   let body;
   if(UI.fMode==='forge'){
     const t=TIERS[UI.fTier],pr=prismOn(),odds=pr?PRISM.odds:t.odds,lv=pr?PRISM.lv:t.lv,tot=odds.reduce((a,b)=>a+b,0),tc=forgeCost(),fb=baseFor(UI.fSlot,h.cls),np=matCount('prisme');
-    const last=UI.fLast?itemCard(UI.fLast):'<p class="hint">Votre création apparaîtra ici.</p>';
-    body=`<section class="panel forge-row">
-      <div class="fcol"><h3>Équipement de ${CLASSES[h.cls].n}</h3>
-        <div class="row">${ITEM_SLOTS.map(sl=>{const b=baseFor(sl,h.cls);return `<button class="wpick ${UI.fSlot===sl?'on':''}" data-act="forgeSlot" data-s="${sl}" title="${SLOT_N[sl]}">${icon(itemIcon({slot:sl,base:b.n}))}<span>${b.n}</span></button>`}).join('')}</div>
-        <p class="hint" style="margin-top:4px">${fb.imp.length?'Stats fixes : '+fb.imp.map(([s])=>STAT_N[s]).join(' + ')+', plus des affixes aléatoires.':'Aucune stat fixe : uniquement des affixes aléatoires.'}</p>
-      </div>
-      <div class="fcol"><h3>Type de forge</h3>
-        <div class="carousel"><button class="arw" data-act="forgeTierStep" data-d="-1" aria-label="Forge précédente">‹</button>
-          <div class="ctr"><b>${t.n}</b><small class="num">${odds.map((o,j)=>o?`<span style="color:var(--r${j})">${RAR[j].n} ${r1(o/tot*100)}%</span>`:'').filter(Boolean).join(' · ')}</small><span class="dots">${TIERS.map((_,i)=>`<i class="${i===UI.fTier?'on':''}"></i>`).join('')}</span></div>
-          <button class="arw" data-act="forgeTierStep" data-d="1" aria-label="Forge suivante">›</button></div>
-        <div class="row between" style="margin-top:12px"><span>Niveau d’objet</span><b class="num" style="font-size:1.2rem;color:var(--brass)">${lv[0]===lv[1]?lv[0]:`${lv[0]} à ${lv[1]}`}</b></div>
-        <small class="mute">${pr?'Le Prisme divin fixe le niveau d’objet à 60 et la rareté Divin.':'Tiré au hasard dans cette plage, quel que soit le niveau du héros.'}</small>
-        ${UI.fTier===3?`<label class="prism ${pr?'on':''}"><input type="checkbox" data-act="fPrism" ${pr?'checked':''} ${np?'':'disabled'}> ${matIcon('prisme')} Ajouter un Prisme divin <small class="mute">(${np} en stock)</small></label>`:''}
-      </div>
-      <div class="fcol"><h3>Coût</h3><div style="margin-bottom:10px">${costHTML(tc)}</div>
-        <button class="btn pri" data-act="forgeDo" ${canPay(tc)&&canFit(...SIZE({slot:UI.fSlot}))?'':'disabled'}>Forger : ${fb.n.toLowerCase()}</button>
-        ${canFit(...SIZE({slot:UI.fSlot}))?'':`<p class="hint" style="margin-top:6px">Pas assez de place dans l’inventaire (${SIZE({slot:UI.fSlot}).join('×')} cases).</p>`}
-      </div>
-      <div class="fcol">${last}</div>
-    </section>`;
+    const fit=canFit(...SIZE({slot:UI.fSlot})),oddsH=odds.map((o,j)=>o?`<div class="r"><span style="color:var(--r${j})">${RAR[j].n}</span><div class="bar"><i style="width:${o/tot*100}%;background:var(--r${j})"></i></div><b class="num">${r1(o/tot*100)}%</b></div>`:'').join('');
+    body=`<div class="fA">
+      <section class="panel"><div><h3>Objet</h3><div class="ftypes">${ITEM_SLOTS.map(sl=>{const b=baseFor(sl,h.cls);return `<button class="${UI.fSlot===sl?'on':''}" data-act="forgeSlot" data-s="${sl}" aria-pressed="${UI.fSlot===sl}">${icon(itemIcon({slot:sl,base:b.n}))}<span>${b.n}</span></button>`}).join('')}</div></div>
+        <small class="mute">Équipement de ${CLASSES[h.cls].n}</small></section>
+      <section class="anvil">
+        <div class="tier"><button class="arw" data-act="forgeTierStep" data-d="-1" aria-label="Forge précédente">‹</button><b>${t.n}</b><button class="arw" data-act="forgeTierStep" data-d="1" aria-label="Forge suivante">›</button></div>
+        <span class="dots">${TIERS.map((_,i)=>`<i class="${i===UI.fTier?'on':''}"></i>`).join('')}</span>
+        <div class="aring ${pr?'full':''}" ${pr?'style="--rc:var(--r5)"':''}>${icon(itemIcon({slot:UI.fSlot,base:fb.n}))}</div>
+        <div><div class="nm">${fb.n}</div><small>Niveau d’objet ${lv[0]===lv[1]?lv[0]:`${lv[0]} à ${lv[1]}`} · ${fb.imp.length?fb.imp.map(([s])=>STAT_N[s]).join(' + ')+' fixe + affixes aléatoires':'uniquement des affixes aléatoires'}</small></div>
+        ${UI.fTier===3?`<label class="prism ${pr?'on':''}"><input type="checkbox" data-act="fPrism" ${pr?'checked':''} ${np?'':'disabled'}> ${matIcon('prisme')} Ajouter un Prisme divin <small>(${np} en stock)</small></label>`:''}
+        <button class="btn pri" data-act="forgeDo" ${canPay(tc)&&fit?'':'disabled'}>Forger : ${fb.n.toLowerCase()}</button>
+        ${fit?`<small>${pr?'Le Prisme divin fixe le niveau d’objet à 60 et la rareté Divin.':'Niveau tiré au hasard dans la plage, quel que soit le niveau du héros.'}</small>`:`<span class="warnx">Pas assez de place dans l’inventaire (${SIZE({slot:UI.fSlot}).join('×')} cases).</span>`}
+      </section>
+      <section class="panel"><div><h3>Chances de rareté</h3><div class="odds">${oddsH}</div></div>
+        <div><h3>Coût</h3>${costHTML(tc)}</div>
+        <div><h3>Dernière création</h3>${UI.fLast?itemCard(UI.fLast):'<p class="hint">Votre création apparaîtra ici.</p>'}</div></section>
+    </div>`;
   }else{
     const found=UI.fItem?findItem(UI.fItem):null,it=found&&found.it;
   
-    const box=`<div id="fslot" class="fslot ${it?'full':''}" ${it?`style="--rc:var(--r${it.rarity})" data-tip="f:${it.id}"`:''}>${it?icon(itemIcon(it))+(it.up?`<em>+${it.up}</em>`:''):'<span>Déposez un objet ici</span>'}</div>`;
-    let work='<p class="hint">Glissez un objet de l’inventaire dans la case, ou faites un clic droit dessus. Pour un objet porté, cliquez sur son emplacement dans la roue d’équipement.</p>';
+    const box=`<div id="fslot" class="aring ${it?'full':'empty'}" ${it?`style="--rc:var(--r${it.rarity})" data-tip="f:${it.id}"`:''}>${it?icon(itemIcon(it))+(it.up?`<em>+${it.up}</em>`:''):'<span>Déposez un objet ici</span>'}</div>`;
+    let work='<p class="hint">Glissez un objet de l’inventaire sur l’enclume, ou faites un clic droit dessus. Pour un objet porté, cliquez sur son emplacement dans la roue d’équipement.</p>';
     if(it){
       const uc=upCost(it),rc=rerollCost(it),pc=replCost(it);
-      work=`<div class="up-acts">
+      work=`<div class="up-acts" style="grid-template-columns:minmax(0,1fr)">
         <div class="sk"><div class="row between"><b>Améliorer</b><button class="btn sm pri" data-act="upItem" ${it.up>=10||!canPay(uc)?'disabled':''}>${it.up>=10?'Niveau max':`+${it.up+1}`}</button></div><p>+5 % à toutes les stats (jusqu’à +10).</p>${it.up<10?costHTML(uc):''}</div>
         <div class="sk"><div class="row between"><b>Relancer les valeurs</b><button class="btn sm" data-act="rerollVals" ${canPay(rc)?'':'disabled'}>Relancer</button></div><p>Nouvelles valeurs, mêmes types de stats.</p>${costHTML(rc)}</div>
         <div class="sk"><b>Remplacer une affixe</b><p>Échange l’affixe choisie contre une autre au hasard.</p>${costHTML(pc)}<div class="row">${it.aff.map((a,i)=>`<button class="btn sm" data-act="replAff" data-i="${i}" ${canPay(pc)?'':'disabled'}>${fmtStat(a.s,a.v*upMul(it))}</button>`).join('')}</div></div></div>`;
     }
-    body=`<div class="forge-up"><section class="panel fwheel"><h3 style="margin-bottom:8px;text-align:center">Équipement porté</h3>${runeDollHTML(h,true)}<p class="hint" style="margin-top:8px;text-align:center">Cliquez ou glissez un emplacement vers la case d’amélioration.</p></section>
-    <section class="panel forge-row up">
-      <div class="fcol" style="flex:0 0 130px;align-items:center;text-align:center">${box}${it?`<button class="btn sm" style="margin-top:8px" data-act="fClear">Retirer</button>`:''}</div>
-      ${it?`<div class="fcol" style="flex:1 1 240px;max-width:300px">${itemCard(it)}${found.where==='eq'?'<small class="mute" style="margin-top:4px">Objet porté</small>':''}</div>`:''}
-      <div class="fcol" style="flex:2">${work}</div>
-    </section></div>`;
+    body=`<div class="fA up">
+      <section class="panel fwheel"><div><h3 style="text-align:center">Équipement porté</h3>${runeDollHTML(h,true)}</div><p class="hint" style="text-align:center;margin:0">Cliquez ou glissez un emplacement vers l’enclume.</p></section>
+      <section class="anvil">
+        <div class="tier"><b>Amélioration</b></div>
+        ${box}
+        ${it?`${itemCard(it)}${found.where==='eq'?'<small>Objet porté</small>':''}<button class="btn sm" data-act="fClear">Retirer de l’enclume</button>`:'<small>Aucun objet sur l’enclume.</small>'}
+      </section>
+      <section class="panel"><div><h3>Actions</h3>${work}</div></section>
+    </div>`;
   }
   return `<div class="row between" style="margin-bottom:12px"><h2>Forge</h2>${seg}</div>${body}${bagBlock()}
     <section class="panel" style="margin-top:14px"><h3 style="margin-bottom:6px">Détruire en masse</h3><p class="hint" style="margin-bottom:10px">Les objets détruits de l’inventaire rendent 25 % des ressources ayant servi à leur création. Les objets portés ne sont jamais touchés.</p>
@@ -1864,7 +2032,7 @@ function viewHelp(){
   ]);
   const diff=T(['Mode','Niveau des monstres','Particularités','Récompenses'],[
     ['Normal','Zone × 10 + étape (1 à 50)','—','Normales'],
-    ['Héroïque','50','Monstres et surtout boss bien plus forts','Boss : +50 % d’XP et d’or'],
+    ['Héroïque','50','Débloqué au niveau 50 du héros. Monstres et surtout boss bien plus forts','Boss : +50 % d’XP et d’or'],
     ['Mythique','60','Débloqué en atteignant le dernier boss héroïque','Or, XP et matériaux ×2 ; Prisme divin à 25 %'],
   ]);
   const pots=T(['Potion','Effet'],Object.values(POTS).map(p=>[p.n,p.d+(p.cls?` <small class="mute">(${CLASSES[p.cls].n})</small>`:'')]))
@@ -1878,8 +2046,15 @@ function viewHelp(){
 }
 
 /* --- nouveautés --- */
-const VERSION='0.0.6';
+const VERSION='0.0.7';
 const PATCH=[
+ {v:'0.0.7',t:'L’Enclume',sec:[
+  ['Menu du jeu',['Nouvel écran d’accueil au centre de l’écran : Jouer, Options et Nouveautés.','En jeu, le bouton « Menu » en haut à droite ramène à l’écran d’accueil (la partie est sauvegardée).','Les Options (sauvegarde) et les Nouveautés sont maintenant accessibles depuis le menu.']],
+  ['Personnages',['Jusqu’à 5 personnages, de n’importe quelle classe. « Jouer » ouvre l’écran de choix : jouer, créer ou supprimer un personnage.','Seul l’or est partagé entre les personnages. Inventaire, équipement, matériaux, collecte et progression sont propres à chacun.','Votre partie actuelle devient automatiquement le personnage 1. L’export de sauvegarde contient tous les personnages.']],
+  ['Forge',['Forge redessinée (style « Enclume ») : liste des objets à gauche, enclume lumineuse au centre avec le type de forge et le bouton Forger, chances de rareté en barres, coût et dernière création à droite. En Amélioration : roue d’équipement à gauche, objet posé sur l’enclume au centre, actions à droite.']],
+  ['Aventure',['Le mode Héroïque demande maintenant d’atteindre le niveau 50. En dessous, le bouton est verrouillé (le mode Mythique aussi).']],
+  ['Inventaire',['Zone de détails de retour dans l’Inventaire et la Forge : elle s’affiche uniquement quand un objet est sélectionné, avec ses boutons (équiper, améliorer, détruire…). Sur téléphone, elle apparaît juste sous la grille ou sous le mannequin, et les plages des affixes y sont toujours affichées.','Dans l’Inventaire, la zone de détails est alignée avec la zone du personnage.']]
+ ]},
  {v:'0.0.6',t:'Cercle runique',sec:[
   ['Matériaux',['Les matériaux (fer, cuir, herbe, cristal, essence, runes, prismes) quittent l’inventaire : ils sont affichés en haut, à côté de l’or.','Stock maximum : 10 000 par matériau. Les potions restent dans l’inventaire.']],
   ['Forge',['En mode Amélioration, la roue d’équipement s’affiche à gauche : cliquez, glissez ou faites un clic droit sur un emplacement pour améliorer l’objet porté.','Les jambières de soie et de plaque s’appellent désormais simplement « Jambières ».']],
@@ -1918,20 +2093,24 @@ const PATCH=[
  ]},
 ];
 function viewNews(){
-  return `<h2 style="margin-bottom:4px">Nouveautés</h2><p class="hint" style="margin-bottom:18px">Journal des modifications de Cendrelame.</p>`+
+  return `<div class="scrhead" style="margin-bottom:4px"><h2>Nouveautés</h2>${backBtn()}</div><p class="hint" style="margin-bottom:18px">Journal des modifications de Cendrelame.</p>`+
     PATCH.map((p,i)=>`<section class="pn"><h3>Version ${p.v}${i===0?'<span class="tagv">Actuelle</span>':''}</h3><small class="mute">${esc(p.t)}</small>
       ${p.sec.map(([h,l])=>`<h4>${esc(h)}</h4><ul>${l.map(x=>`<li>${esc(x)}</li>`).join('')}</ul>`).join('')}</section>`).join('');
 }
 
 /* --- sauvegarde --- */
+function accExport(){
+  if(S&&S.heroes&&S.heroes.length&&ACC.cur!=null&&!UI.scr) save();
+  const chars=Array.from({length:MAXCH},(_,i)=>charRaw(i));
+  return btoa(unescape(encodeURIComponent(JSON.stringify({acc:1,gold:ACC.gold,seenVer:ACC.seenVer,chars}))));
+}
 function viewOpts(){
-  const exp=btoa(unescape(encodeURIComponent(JSON.stringify(S))));
-  return `<h2 style="margin-bottom:4px">Réglages</h2><p class="hint" style="margin-bottom:14px">D’autres réglages arriveront ici.</p>
-    <h3 style="margin-bottom:10px">Sauvegarde</h3><div class="grid g2"><section class="panel"><h2>Exporter</h2><p class="hint" style="margin-bottom:8px">La partie est enregistrée dans ce navigateur. Copiez ce code pour la garder ailleurs ou la transférer sur un autre appareil.</p>
-      <textarea id="expTxt" readonly>${exp}</textarea><div class="row" style="margin-top:8px"><button class="btn" data-act="copyExp">Copier</button></div></section>
-    <section class="panel"><h2>Importer</h2><p class="hint" style="margin-bottom:8px">Collez un code exporté. Votre partie actuelle sera remplacée.</p>
+  return `<div class="scrhead"><h2>Options</h2>${backBtn()}</div>
+    <h3 style="margin-bottom:10px">Sauvegarde</h3><div class="grid g2"><section class="panel"><h2>Exporter</h2><p class="hint" style="margin-bottom:8px">La partie (tous vos personnages et l’or partagé) est enregistrée dans ce navigateur. Copiez ce code pour la garder ailleurs ou la transférer sur un autre appareil.</p>
+      <textarea id="expTxt" readonly>${accExport()}</textarea><div class="row" style="margin-top:8px"><button class="btn" data-act="copyExp">Copier</button></div></section>
+    <section class="panel"><h2>Importer</h2><p class="hint" style="margin-bottom:8px">Collez un code exporté. Un code complet remplace tous vos personnages ; un ancien code à un seul héros est ajouté dans un emplacement libre.</p>
       <textarea id="impTxt" placeholder="Code de sauvegarde"></textarea><div class="row" style="margin-top:8px"><button class="btn" data-act="import">Importer</button></div></section>
-    <section class="panel"><h2>Nouvelle partie</h2><p class="hint" style="margin-bottom:8px">Efface définitivement héros, objets et progression.</p>
+    <section class="panel"><h2>Tout effacer</h2><p class="hint" style="margin-bottom:8px">Efface définitivement tous les personnages, leurs objets, leur progression et l’or.</p>
       ${UI.confirm==='reset'?`<div class="row"><button class="btn danger" data-act="reset">Oui, tout effacer</button><button class="btn" data-act="cancelReset">Annuler</button></div>`:`<button class="btn danger" data-act="reset">Recommencer à zéro</button>`}</section></div>`;
 }
 
@@ -1947,9 +2126,12 @@ function tipHTML(k){
   if(it) return itemCard(it);
   return `<article class="it" style="--rc:var(--line)"><header><b>${SLOT_N[k]}</b><small>Emplacement vide</small></header></article>`;
 }
-let TIPEL=null;
+let TIPEL=null,TOUCH=false;
+document.addEventListener('pointerdown',e=>{TOUCH=e.pointerType==='touch'},true);
+function detScroll(){ if(window.innerWidth>860) return; requestAnimationFrame(()=>{const d=[...document.querySelectorAll('.det')].find(x=>x.offsetParent); if(d){const r=d.getBoundingClientRect(); if(r.bottom>innerHeight||r.top<0) d.scrollIntoView({behavior:'smooth',block:'nearest'})}}) }
 function showTip(el){
   if(DRAG&&DRAG.on) return;
+  if(TOUCH){hideTip();return}
   const t=$('#tip'),html=tipHTML(el.dataset.tip); if(!html){hideTip();return} t.innerHTML=html; t.hidden=false; TIPEL=el; t.classList.toggle('wide',SHIFT);
   const r=el.getBoundingClientRect(),w=t.offsetWidth,hh=t.offsetHeight,vw=document.documentElement.clientWidth,vh=window.innerHeight;
   let x=r.right+10,y=r.top;
@@ -1970,16 +2152,19 @@ document.addEventListener('scroll',hideTip,true);
 
 /* ============ actions ============ */
 const A={
-  tab:d=>{UI.tab=d.t;if(d.t==='news'){S.seenVer=VERSION;save()}if(d.t==='bag')S.bagDot=false;if(d.t==='heroes')S.lvlDot=false;if(d.t==='forge')UI.fMode='forge';UI.recruit=false;UI.multi=false;UI.pick=new Set();if(UI.confirm!=='reset')UI.confirm=null;render()},
+  tab:d=>{UI.tab=d.t;if(d.t==='bag')S.bagDot=false;if(d.t==='heroes')S.lvlDot=false;if(d.t==='forge')UI.fMode='forge';UI.bagSel=null;UI.invSel=null;UI.recruit=false;UI.multi=false;UI.pick=new Set();if(UI.confirm!=='reset')UI.confirm=null;render()},
   pickClass:d=>{UI.cc=d.c;render()},
   pickHue:d=>{UI.chue=+d.h;render()},
   createHero:()=>{
     const name=(UI.cname||'').trim()||'Héros';
+    S=newGame(); S.gold=ACC.gold; S.seenVer=VERSION;
     S.heroes=[newHero(name,UI.cc,UI.chue,1)]; S.party=[S.heroes[0].id]; S.last=Date.now();
-    UI.tab='combat'; UI.cname=''; save(); render(); toast('Bienvenue, '+name+'. Lancez votre premier combat.');
+    {const P=prog();UI.zone=P.zone;UI.stage=P.stage}
+    Object.assign(UI,{tab:'combat',scr:null,bagSel:null,invSel:null,fItem:null,fLast:null,confirm:null});
+    UI.cname=''; save(); render(); toast('Bienvenue, '+name+'. Lancez votre premier combat.');
   },
   zone:d=>{const P=prog();UI.zone=+d.i;UI.stage=UI.zone===P.zone?P.stage:1;render()},
-  diff:d=>{if(C.phase==='fight')return;if(d.d==='myth'&&!mythOpen())return;S.diff=d.d;const P=prog();UI.zone=P.zone;UI.stage=P.stage;C.phase='idle';save();render()},
+  diff:d=>{if(C.phase==='fight')return;if(d.d==='myth'&&!mythOpen())return;if(d.d==='hero'&&!heroOpen()){toast(`Mode Héroïque : niveau ${HERO_L} requis.`);return}S.diff=d.d;const P=prog();UI.zone=P.zone;UI.stage=P.stage;C.phase='idle';save();render()},
   stage:d=>{UI.stage=+d.s;render()},
   fight:()=>startBattle(),
   togStats:()=>{S.showStats=S.showStats===false;save();render()},
@@ -2030,8 +2215,9 @@ const A={
   bagCell:d=>{const i=+d.i;UI.confirm=null;
     const E=S.bag[i]; if(!E) return; const o=E.o;
     if(UI.multi){UI.pick.has(o)?UI.pick.delete(o):UI.pick.add(o);render();return}
-    UI.bagSel=UI.bagSel===o?null:o;UI.invSel=null;render()},
+    UI.bagSel=UI.bagSel===o?null:o;UI.invSel=null;render();detScroll()},
   noConfirm:()=>{UI.confirm=null;render()},
+  detClose:()=>{UI.bagSel=null;UI.invSel=null;UI.confirm=null;render()},
   matDel:d=>{
     const i=+d.i,c=S.bag[i]&&S.bag[i].o; if(!c||!c.mat) return;
     if(UI.confirm!=='mat'+i){UI.confirm='mat'+i;render();return}
@@ -2056,7 +2242,7 @@ const A={
     const half=Math.floor(c.n/2); c.n-=half; S.bag.push({x:sp[0],y:sp[1],o:{mat:c.mat,n:half}}); save(); render();
   },
   changeItem:d=>{UI.invSel=d.slot;UI.bagSel=null;UI.tab='bag';render()},
-  dollSlot:d=>{UI.invSel=UI.invSel===d.slot?null:d.slot;UI.bagSel=null;render()},
+  dollSlot:d=>{UI.invSel=UI.invSel===d.slot?null:d.slot;UI.bagSel=null;render();detScroll()},
   equip:d=>{
     const h=S.heroes[0],i=cellOf(+d.id); if(i<0) return;
     equipFromCell(i,targetSlot(h,S.bag[i].o));
@@ -2070,7 +2256,7 @@ const A={
   },
   toForge:d=>{UI.fItem=+d.id;UI.fMode='up';UI.tab='forge';render()},
   fMode:d=>{UI.fMode=d.m;render()},
-  fPut:d=>{UI.fItem=+d.id;UI.fMode='up';render()},
+  fPut:d=>{UI.fItem=+d.id;UI.fMode='up';UI.bagSel=null;render()},
   fPutSlot:d=>{const it=S.heroes[0].equip[d.slot]; if(!it){toast('Emplacement vide.');return} UI.fItem=it.id;UI.fMode='up';render()},
   fClear:()=>{UI.fItem=null;render()},
   forgeTierStep:d=>{UI.fTier=(UI.fTier+(+d.d)+TIERS.length)%TIERS.length;render()},
@@ -2122,16 +2308,33 @@ const A={
     const raw=($('#impTxt').value||'').trim(); if(!raw) return;
     try{
       let d; try{d=JSON.parse(decodeURIComponent(escape(atob(raw))))}catch(e){d=JSON.parse(raw)}
+      if(d&&d.acc&&Array.isArray(d.chars)){
+        for(let i=0;i<MAXCH;i++){const c=d.chars[i]; if(c&&Array.isArray(c.heroes)&&c.heroes.length) lsSet(CHAR_KEY(i),JSON.stringify(c)); else lsDel(CHAR_KEY(i))}
+        ACC={gold:d.gold||0,cur:null,seenVer:d.seenVer||null}; S=null; saveAcc(); UI.scr='select'; render(); toast('Sauvegarde importée.'); return;
+      }
       if(!d||!Array.isArray(d.heroes)||!d.heroes.length) throw 0;
-      S=loadData(d); S.last=Date.now(); UI.bagSel=null; if(MIG_MSG){setTimeout(()=>toast(MIG_MSG),400);MIG_MSG=''} C.phase='idle'; UI.zone=S.prog.zone; UI.stage=S.prog.stage; UI.hero=null; UI.invHero=null; save(); UI.tab='combat'; render(); toast('Sauvegarde importée.');
+      let i=0; while(i<MAXCH&&charRaw(i)) i++;
+      if(i>=MAXCH){toast('Aucun emplacement libre : supprimez d’abord un personnage.');return}
+      lsSet(CHAR_KEY(i),JSON.stringify(d)); saveAcc(); UI.scr='select'; render(); toast('Personnage importé dans l’emplacement '+(i+1)+'.');
     }catch(e){toast('Ce code n’est pas une sauvegarde valide.')}
   },
   reset:()=>{
     if(UI.confirm!=='reset'){UI.confirm='reset';render();return}
-    C.abort=true;C.id++;C.phase='idle'; try{localStorage.removeItem(SAVE_KEY)}catch(e){}
-    S=newGame(); UI.confirm=null; UI.bagSel=null; UI.tab='combat'; UI.zone=0; UI.stage=1; UI.hero=null; UI.invHero=null; UI.fItem=null; UI.fLast=null; render();
+    C.abort=true;C.id++;C.phase='idle'; lsDel(SAVE_KEY); for(let i=0;i<MAXCH;i++) lsDel(CHAR_KEY(i));
+    ACC={gold:80,cur:null,seenVer:VERSION}; saveAcc(); S=null; UI.confirm=null; UI.scr='menu'; render(); toast('Toutes les données ont été effacées.');
   },
   cancelReset:()=>{UI.confirm=null;render()},
+  scr:d=>{ if(d.s==='news'){ACC.seenVer=VERSION;saveAcc()} UI.scr=d.s; UI.confirm=null; render(); scrollTo(0,0) },
+  toMenu:()=>{ if($('#mconf')) return; hideTip();
+    const m=document.createElement('div'); m.className='modal'; m.id='mconf'; m.setAttribute('role','dialog'); m.setAttribute('aria-modal','true'); m.setAttribute('aria-labelledby','mconfT');
+    m.innerHTML=`<div class="box"><h2 id="mconfT">Retourner au menu ?</h2><p>${C.phase==='fight'?'Le combat en cours sera interrompu. ':''}Votre partie est sauvegardée.</p><div class="row"><button class="btn pri" data-act="menuYes">Oui</button><button class="btn" data-act="menuNo">Non</button></div></div>`;
+    document.body.append(m); m.querySelector('[data-act=menuNo]').focus(); },
+  menuNo:()=>{const m=$('#mconf'); if(m) m.remove(); const b=$('#menubtn'); if(b) b.focus()},
+  menuYes:()=>{ const m=$('#mconf'); if(m) m.remove(); if(C.phase==='fight'){C.abort=true;C.id++} C.phase='idle'; save(); UI.scr='menu'; UI.confirm=null; render(); scrollTo(0,0) },
+  playChar:d=>{ if(startChar(+d.i)){UI.scr=null; render(); scrollTo(0,0)} },
+  newChar:d=>{ const i=+d.i; if(charRaw(i)) return; if(S&&S.heroes&&S.heroes.length&&!UI.scr) save(); C.abort=true;C.id++;C.phase='idle'; ACC.cur=i; S=newGame(); S.gold=ACC.gold; UI.cname=''; UI.scr='create'; render(); scrollTo(0,0) },
+  delChar:d=>{ const i=+d.i; if(UI.confirm!=='delc'+i){UI.confirm='delc'+i;render();return}
+    lsDel(CHAR_KEY(i)); if(ACC.cur===i){ACC.cur=null; S=null} saveAcc(); UI.confirm=null; render(); toast('Personnage supprimé.') },
 };
 document.addEventListener('click',e=>{
   if(noClick){noClick=false;return}
@@ -2140,6 +2343,8 @@ document.addEventListener('click',e=>{
   if(b.tagName==='INPUT') return;
   if(A[b.dataset.act]) A[b.dataset.act](b.dataset);
 });
+document.addEventListener('keydown',e=>{ if(e.key==='Escape'&&$('#mconf')) A.menuNo() });
+document.addEventListener('mousedown',e=>{ if(e.target.id==='mconf') A.menuNo() });
 document.addEventListener('input',e=>{
   if(e.target.id==='cname') UI.cname=e.target.value;
 });
@@ -2148,26 +2353,12 @@ document.addEventListener('change',e=>{
 });
 
 /* ============ démarrage ============ */
-S=loadSave()||newGame();
-if(S.heroes.length){
-  const away=(Date.now()-S.last)/1000;
-  if(away>0) produce(Math.min(away,8*3600));
-  S.last=Date.now();
-  {const P=prog();UI.zone=P.zone; UI.stage=P.stage;}
-  if(MIG_MSG){const m=MIG_MSG;MIG_MSG='';setTimeout(()=>toast(m),900);save()}
-  if(away>120){const h=Math.floor(away/3600),m=Math.floor(away%3600/60);setTimeout(()=>toast(`Absent ${h?h+' h ':''}${m} min : vos zones de collecte ont travaillé.`),400)}
-}
-S.speed=S.speed||1;
-/* jambières : nom unique « Jambières » pour les deux classes */
-{const fixL=it=>{ if(it&&!it.mat&&/^Jambières de (plates|soie)/.test(it.base||'')){it.name=it.name.replace(/^Jambières de (plates|soie)/,'Jambières');it.base='Jambières'} };
- S.bag.forEach(e=>fixL(e.o)); for(const h of S.heroes) Object.values(h.equip||{}).forEach(fixL);}
-/* toutes les compétences actives apprises sont utilisées en combat */
-for(const h of S.heroes) for(const sk of CLASSES[h.cls].skills) if(sk.t==='a'&&h.learned[sk.id]&&!h.loadout.includes(sk.id)) h.loadout.push(sk.id);
-for(const h of S.heroes) if(h.lvl>MAXL){h.lvl=MAXL;h.xp=0}
+loadAcc();
+S=null; UI.scr='menu';
 render();
 setInterval(tick,1000);
-setInterval(()=>{if(S.heroes.length)save()},10000);
-document.addEventListener('visibilitychange',()=>{if(document.hidden&&S.heroes.length)save()});
+setInterval(()=>{if(!UI.scr)save()},10000);
+document.addEventListener('visibilitychange',()=>{if(document.hidden&&!UI.scr)save()});
 </script>
 
 </body></html>
