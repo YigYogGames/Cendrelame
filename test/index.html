@@ -277,6 +277,12 @@ code.uid{font-size:.8rem;padding:2px 6px;background:#0000000f;border-radius:3px;
 .elt{font-style:normal;font-size:.7rem;font-weight:700;color:#fff;background:var(--ec);padding:0 5px;border-radius:99px;margin-left:4px;vertical-align:1px}
 .it li.legp{color:#d9701a;font-weight:500;margin-top:4px}.it li.legp b{color:#e07b12}
 dt.rsep{margin-top:6px;font-family:var(--display);color:var(--brass)}dd.rsep{margin-top:6px}
+dl.cats dt.scat{grid-column:1/-1;text-align:center;font-family:var(--display);color:var(--brass);font-size:1.02rem;margin:10px 0 2px;padding-bottom:2px;border-bottom:1px solid #a88d5b55}
+dl.cats dd.scat{display:none}
+dl.cats dt.spow,dl.cats dd.spow{margin-top:8px;padding-top:6px;border-top:1px solid #a88d5b55}
+.stats .spl{color:#8a8274;font-size:.85em;font-weight:400}
+.btn.endturn{align-self:center;background:#3a2817;color:var(--gold);border-color:#1d1209;font-weight:700}
+.btn.endturn:hover{background:#4a3220}
 /* generic */
 .panel{background:var(--bg2);border:1px solid var(--line);border-radius:3px;padding:16px;min-width:0;box-shadow:inset 0 0 26px #9a6a2a22}
 .panel>h2,.panel>h3{margin-bottom:10px}
@@ -692,7 +698,7 @@ const MAT_D={prisme:'Relique céleste, lâchée rarement par Le Dévoreur (10 %)
 const GW=14,GH=5,BAG=GW*GH,STACK=500;
 /* taille d'un objet dans la grille (largeur x hauteur) */
 const SIZE=o=>o.mat?[1,1]:({weapon:[1,5],armor:[2,3],legs:[2,3],helm:[2,2],boots:[2,2],ring:[1,1],amulet:[1,1]})[o.slot]||[1,1];
-const STAT_N={hp:'PV',atk:'Force',mag:'Intelligence',def:'Défense',res:'Défense magique',ap:'Points d’action',rPhys:'Résistance physique',rMag:'Résistance magique',rFeu:'Résistance au feu',rGlace:'Résistance à la glace',rFoudre:'Résistance à la foudre',rTerre:'Résistance à la terre',spd:'Vitesse',crit:'Critique',critDmg:'Dégâts critiques',dodge:'Esquive',lifesteal:'Vol de vie',hpPct:'PV',dmgPct:'Dégâts',goldFind:'Or trouvé',dropRate:'Butin trouvé'};
+const STAT_N={hp:'PV',atk:'Force',mag:'Intelligence',def:'Défense physique',res:'Défense magique',ap:'Points d’action',rPhys:'Résistance physique',rMag:'Résistance magique',rFeu:'Résistance au feu',rGlace:'Résistance à la glace',rFoudre:'Résistance à la foudre',rTerre:'Résistance à la terre',spd:'Vitesse',crit:'Critique',critDmg:'Dégâts critiques',dodge:'Esquive',lifesteal:'Vol de vie',hpPct:'PV',dmgPct:'Dégâts',goldFind:'Or trouvé',dropRate:'Butin trouvé'};
 const PCT=new Set(['rPhys','rMag','rFeu','rGlace','rFoudre','rTerre','crit','critDmg','dodge','lifesteal','hpPct','dmgPct','goldFind','dropRate']);
 const fmtStat=(s,v)=>PCT.has(s)?`+${r1(v)}% ${STAT_N[s]}`:`+${Math.round(v)} ${STAT_N[s]}`;
 const MAXL=50;
@@ -1374,8 +1380,9 @@ async function exec(u,sk,tgt){
   await sleep(420);
 }
 const AP_REGEN=1;
+const canAct=u=>u.hp>0&&(!u.atkUsed||u.skills.some(id=>(u.cds[id]||0)===0&&(u.ap||0)>=(SK[id].ap||0)));
 function tauntOf(list){return list.find(x=>x.hp>0&&x.st.some(s=>s.k==='taunt'))}
-function ai(u){
+function ai(u,noAtk){
   const foesA=alive(foes(u)),friA=alive(friends(u));
   const usable=u.skills.filter(id=>(u.cds[id]||0)===0&&(u.ap||0)>=(SK[id].ap||0)).map(id=>({sk:SK[id],rank:u.ranks[id]||1}));
   const isHeal=x=>x.sk.tg==='lowAlly'&&x.sk.fx&&x.sk.fx.some(f=>f.k==='heal');
@@ -1395,6 +1402,7 @@ function ai(u){
     if(u.team==='e'&&Math.random()<.25) s*=.5;
     if(s>bs){bs=s;best=x}
   }
+  if(!best&&noAtk) return null;
   const skill=best?best.sk:SK.atk;
   let target=null;
   if(skill.tg==='one'){
@@ -1414,9 +1422,18 @@ async function turn(u){
   let skip=false;
   if(u.st.some(s=>s.k==='stun')){logLine(`${u.name} est étourdi et passe son tour.`,'ev');skip=true;await sleep(500)}
   if(!skip){
-    if(u.team==='h'&&!S.auto){
-      const ch=await playerChoice(u); if(C.abort) return;
-      await exec(u,ch.skill,ch.target);
+    u.atkUsed=false;
+    if(u.team==='h'){
+      for(let n=0;n<12;n++){
+        if(!canAct(u)) break;
+        let ch;
+        if(!S.auto){ ch=await playerChoice(u); if(C.abort) return; if(!ch||ch.end) break }
+        else { await sleep(300); ch=ai(u,u.atkUsed); if(!ch) break }
+        if(ch.skill.id==='atk') u.atkUsed=true;
+        await exec(u,ch.skill,ch.target);
+        if(C.abort||checkEnd()) break;
+      }
+      C.waiting=null; C.pending=null; renderActbar();
     }else{
       await sleep(380);
       const ch=ai(u); await exec(u,ch.skill,ch.target);
@@ -1918,8 +1935,8 @@ function renderActbar(){
   if(!w){el.innerHTML=`<div class="acts"><small class="mute" style="align-self:center">${S.auto?'Combat automatique en cours…':'Les ennemis agissent…'}</small>${tools}</div><div class="acts" style="margin-top:8px">${potBar()}</div>`;return}
   const u=w.u,ids=['atk',...u.skills];
   el.innerHTML=`<div class="acts"><div style="align-self:center"><b>${esc(u.name)}</b><br><small>${C.pending?'Choisissez une cible':'À vous de jouer'} · <b class="apc">${u.ap||0} / ${u.maxAp||0} PA</b></small></div>`+
-    ids.map(id=>{const s=SK[id],cd=u.cds[id]||0,c=s.ap||0,no=c>(u.ap||0);return `<button class="skb ${C.pending&&C.pending.id===id?'sel':''}" data-act="skill" data-id="${id}" ${cd||no?'disabled':''} title="${esc(skDesc(s,u.ranks[id]||1,u.role))}"><b>${s.n}${s.el&&ELEM[s.el]?` <em class="elt" style="--ec:${ELEM[s.el].c}">${ELEM[s.el].n}</em>`:''}</b><small>${c?`<span class="apc">${c} PA</span> · `:''}${cd?`Recharge : ${cd}`:no?'PA insuffisants':s.cd?`Recharge ${s.cd}`:'Aucune recharge'}</small></button>`}).join('')+
-    (C.pending?`<button class="btn sm" data-act="cancelPick">Annuler</button>`:'')+tools+`</div><div class="acts" style="margin-top:8px">${potBar()}</div>`;
+    ids.map(id=>{const s=SK[id],cd=u.cds[id]||0,c=s.ap||0,no=c>(u.ap||0),used=id==='atk'&&u.atkUsed;return `<button class="skb ${C.pending&&C.pending.id===id?'sel':''}" data-act="skill" data-id="${id}" ${cd||no||used?'disabled':''} title="${esc(skDesc(s,u.ranks[id]||1,u.role))}"><b>${s.n}${s.el&&ELEM[s.el]?` <em class="elt" style="--ec:${ELEM[s.el].c}">${ELEM[s.el].n}</em>`:''}</b><small>${c?`<span class="apc">${c} PA</span> · `:''}${used?'Déjà utilisée ce tour':cd?`Recharge : ${cd}`:no?'PA insuffisants':s.cd?`Recharge ${s.cd}`:id==='atk'?'Gratuite · 1 fois par tour':'Aucune recharge'}</small></button>`}).join('')+
+    (C.pending?`<button class="btn sm" data-act="cancelPick">Annuler</button>`:'')+`<button class="btn endturn" data-act="endTurn">Fin de tour</button>`+tools+`</div><div class="acts" style="margin-top:8px">${potBar()}</div>`;
 }
 
 /* --- potions en combat --- */
@@ -1980,7 +1997,7 @@ function viewHeroes(){
       <div class="pleft">${BP.equip}</div>
       <section class="panel ppres"><div class="sheethead"><h2>${esc(h.name)}</h2>${PORTRAIT[h.cls]?`<img class="portrait" src="${PORTRAIT[h.cls]}" alt="Portrait : ${c.n}" width="114" height="114">`:`<span class="tile xl" style="--h:${h.hue}">${icon(c.ic)}</span>`}<small>${c.n} · Niveau ${h.lvl}</small><span class="stars" title="Ascension">${'★'.repeat(h.stars)}${'☆'.repeat(5-h.stars)}</span></div>
         <div class="bar xp" style="margin-bottom:4px"><i style="width:${h.lvl>=MAXL?100:h.xp/need*100}%"></i></div><small class="num">${h.lvl>=MAXL?'Niveau max':`XP ${fmt(h.xp)} / ${fmt(need)}`}</small>
-        <div class="sep"></div><dl class="stats">${BP.mini}</dl><p class="hint" style="margin-top:6px">Valeur sans équipement, avec le bonus de l’équipement porté en vert <span class="gb">(+X)</span>.</p><div class="sep"></div>
+        <div class="sep"></div><dl class="stats cats">${BP.mini}</dl><div class="row" style="justify-content:center;margin-top:8px"><button class="btn sm" data-act="statSplit" aria-pressed="${!!S.statSplit}">${S.statSplit?'Masquer le détail':'Voir le détail (base + équipement)'}</button></div><div class="sep"></div>
         <h3 style="margin-bottom:6px">Ascension</h3>
         ${h.stars>=5?'<p class="hint">Ascension maximale. +10% de stats de base par étoile.</p>':`<p class="hint" style="margin-bottom:8px">+10 % de stats de base. Niveau maximum (${aReq}) requis${h.lvl<aReq?` — vous êtes niveau ${h.lvl}`:''}.</p><div class="row"><button class="btn" data-act="ascend" ${h.lvl<aReq||!canPay(aCost)?'disabled':''}>Ascension ${h.stars+1}</button>${costHTML(aCost)}</div>`}
       </section>
@@ -2095,12 +2112,16 @@ function bagParts(){
   if(c&&c.mat) detail=matCard(c,`<button class="btn sm" data-act="bagSplit" data-i="${si}" ${c.n<2||!freeCells()?'disabled':''}>Diviser la pile</button>`+(UI.confirm==='mat'+si?`<button class="btn sm warn" data-act="matDel" data-i="${si}">Confirmer (${c.n} perdus)</button><button class="btn sm" data-act="noConfirm">Annuler</button>`:`<button class="btn sm danger" data-act="matDel" data-i="${si}">Détruire la pile</button>`));
   else if(c) detail=itemCard(c,itemBtns(c),swapDelta(h,c));
   else if(k) detail=(eq?itemCard(eq,`<button class="btn sm" data-act="unequip" data-slot="${k}">Retirer</button><button class="btn sm" data-act="toForge" data-id="${eq.id}">Forge</button>`):'<p class="hint">Emplacement vide. Glissez-y un objet de l’inventaire.</p>');
-  const gb=(t,b,pct)=>{const d=pct?r1(t-b):Math.round(t)-Math.round(b);return (pct?r1(b)+'%':Math.round(b))+(d>0?` <span class="gb">(+${d}${pct?'%':''})</span>`:'')};
+  const sep=S.statSplit;
+  const gb=(t,b,pct)=>{const f=v=>pct?r1(v)+'%':fmt(Math.round(v)),d=pct?r1(t-b):Math.round(t)-Math.round(b);
+    return `<b class="tot">${f(t)}</b>`+(sep?` <span class="spl">(${f(b)} + ${pct?r1(d)+'%':fmt(d)})</span>`:'')};
   const c0=CLASSES[h.cls],mk=c0.role==='mag'?['Intelligence','mag']:['Force','atk'];
-  const mini=[['PV','hp'],mk,['Défense','def'],['Défense magique','res'],['Vitesse','spd']].map(([n,k])=>`<dt>${n}</dt><dd>${gb(st[k],bs[k])}</dd>`).join('')+
-    [['Critique','crit'],['Dégâts critiques','critDmg'],['Esquive','dodge'],['Vol de vie','lifesteal'],['Dégâts bonus','dmgPct'],['Or trouvé','goldFind']].map(([n,k])=>`<dt>${n}</dt><dd>${gb(st[k],bs[k],1)}</dd>`).join('')+
-    `<dt>Points d’action</dt><dd>${gb(st.ap,bs.ap)}</dd><dt class="rsep">Résistances</dt><dd class="rsep"></dd>`+RES_K.map(k=>`<dt>${RES_S[k]}</dt><dd>${gb(st[k],bs[k],1)}</dd>`).join('')+
-    `<dt>Puissance</dt><dd><b>${Math.round(heroPower(h))}</b> <span class="gb">(+${Math.max(0,Math.round(heroPower(h)-heroPower(Object.assign({},h,{equip:{}}))))})</span></dd>`;
+  const row=([n,k,pct])=>`<dt>${n}</dt><dd>${gb(st[k],bs[k],pct)}</dd>`;
+  const cat=(t,rows)=>`<dt class="scat">${t}</dt><dd class="scat"></dd>`+rows.map(row).join('');
+  const mini=cat('Principale',[['PV','hp'],mk])+
+    cat('Secondaire',[['Vitesse','spd'],['Critique','crit',1],['Dégâts critiques','critDmg',1],['Esquive','dodge',1],['Vol de vie','lifesteal',1],['Points d’action','ap']])+
+    cat('Résistance',[['Défense physique','def'],['Défense magique','res'],...RES_K.map(k=>[STAT_N[k],k,1])])+
+    `<dt class="spow">Puissance</dt><dd class="spow"><b>${fmt(Math.round(heroPower(h)))}</b>${sep?` <span class="spl">(${fmt(Math.round(heroPower(Object.assign({},h,{equip:{}}))))} + ${fmt(Math.max(0,Math.round(heroPower(h)-heroPower(Object.assign({},h,{equip:{}})))))})</span>`:''}</dd>`;
   const mats=MATS.map(m=>`<div>${matIcon(m)}<span>${MAT_OBJ[m]}</span><b>${fmt(matCount(m))}</b></div>`).join('');
   const equip=`<section class="panel peq"><h3 class="ptitle">Équipement</h3>${dollHTML(h)}
         <p class="hint" style="margin-top:10px;text-align:center">Glissez un objet de l’inventaire sur le mannequin pour l’équiper, ou faites un clic droit dessus. Clic droit ou glisser vers l’inventaire pour le retirer.</p></section>
@@ -2426,7 +2447,7 @@ function viewHelp(){
     ['Intelligence','Dégâts du Sorcier.','Toutes les attaques, brûlures et barrières du Sorcier se basent sur l’Intelligence. Le Guerrier n’a pas d’Intelligence.'],
     ['Défense','Réduit les dégâts physiques reçus.','Dégâts reçus × K / (K + Défense), avec K = 100 + 15 × niveau de l’attaquant. La Défense protège donc moins contre les ennemis de haut niveau.'],
     ['Défense magique','Réduit les dégâts magiques reçus.','Même formule que la Défense, contre les ennemis qui utilisent la magie (chamans, nécromanciens, sorcières, mages de braise, oracles, Seigneur de Cendre).'],
-    ['Points d’action (PA)','Énergie pour lancer les compétences.','5 PA de base pour chaque classe. Le combat commence avec tous les PA ; chaque compétence coûte des PA (l’attaque de base est gratuite) et vous récupérez 1 PA au début de chacun de vos tours. Barre jaune segmentée sous la barre de vie.'],
+    ['Points d’action (PA)','Énergie pour lancer les compétences.','5 PA de base pour chaque classe. Le combat commence avec tous les PA ; chaque compétence coûte des PA (l’attaque de base est gratuite, une fois par tour) et vous récupérez 1 PA au début de chacun de vos tours. Vous pouvez enchaîner plusieurs actions dans le même tour tant qu’il vous reste des PA, puis appuyer sur « Fin de tour ». Barre jaune segmentée sous la barre de vie.'],
     ['Résistance physique','Réduit les dégâts physiques reçus en %.','S’applique après la Défense. Plafonnée à 75 %.'],
     ['Résistance magique','Réduit les dégâts magiques reçus en %.','S’applique après la Défense magique. Plafonnée à 75 %.'],
     ['Résistances élémentaires','Feu, Glace, Foudre, Terre.','Réduisent en % les dégâts des compétences de cet élément (brûlures comprises). Plafonnées à 75 %. Une résistance négative est une faiblesse : les dégâts sont augmentés.'],
@@ -2481,10 +2502,10 @@ function viewHelp(){
 const VERSION='0.1.1';
 const PATCH=[
  {v:'0.1.1',t:'Fiche de personnage',sec:[
-  ['Combat',['Points d’action (PA) : 5 de base pour chaque classe. Les compétences coûtent des PA, l’attaque de base est gratuite, et chaque unité récupère 1 PA au début de son tour.','Barre de PA segmentée sous la barre de vie de chaque combattant ; le coût en PA est affiché sur chaque compétence.','Nouvelles statistiques : Résistance physique, Résistance magique et résistances au Feu, à la Glace, à la Foudre et à la Terre (en %, plafonnées à 75 %). L’ancienne Résistance devient « Défense magique ».','Compétences élémentaires : Boule de feu (Feu), Éclair en chaîne (Foudre), Météore (Terre) ; côté ennemis, Trait de feu, Crachat toxique et Déferlante. Certains monstres résistent à un élément, d’autres y sont faibles.','Nouveaux affixes de résistance sur l’équipement.']],
+  ['Combat',['Points d’action (PA) : 5 de base pour chaque classe. Les compétences coûtent des PA, l’attaque de base est gratuite mais utilisable une seule fois par tour, et chaque unité récupère 1 PA au début de son tour.','Votre héros peut enchaîner plusieurs actions dans le même tour tant qu’il lui reste des PA ; nouveau bouton « Fin de tour ».','Barre de PA segmentée sous la barre de vie de chaque combattant ; le coût en PA est affiché sur chaque compétence.','Nouvelles statistiques : Résistance physique, Résistance magique et résistances au Feu, à la Glace, à la Foudre et à la Terre (en %, plafonnées à 75 %). L’ancienne Résistance devient « Défense magique ».','Compétences élémentaires : Boule de feu (Feu), Éclair en chaîne (Foudre), Météore (Terre) ; côté ennemis, Trait de feu, Crachat toxique et Déferlante. Certains monstres résistent à un élément, d’autres y sont faibles.','Nouveaux affixes de résistance sur l’équipement.']],
   ['Forge',['Nouvelles chances de rareté : Forge ordinaire 80 % Commun / 20 % Magique ; Forge fine 40 % Commun / 50 % Magique / 10 % Rare ; Forge de maître 10 % Magique / 45 % Rare / 45 % Épique ; Forge légendaire 20 % Rare / 70 % Épique / 10 % Légendaire.','Affixes aléatoires : Commun 0, Magique 1, Rare 2, Épique 3, Légendaire 3 + un pouvoir légendaire.','Pouvoir légendaire (écrit en orange) : +6 % de chances de coup critique et +10 % de dégâts critiques. Un pouvoir nommé pour chaque type d’équipement ; les objets légendaires existants le reçoivent aussi.']],
   ['Amis',['Nouveau système d’amis : liste fixée en bas à droite de l’écran, avec le nombre d’amis connectés.','Ajoutez un joueur avec son nom de compte ; il accepte ou refuse la demande. Vous voyez si vos amis sont en ligne et quel personnage ils jouent.','Nom de compte : à la première connexion, chaque joueur choisit un nom unique, commun à tous ses personnages.']],
-  ['Personnage',['Les onglets Personnage et Inventaire sont fusionnés dans l’onglet Personnage.','En haut : l’équipement (roue) à gauche et la présentation du héros à droite (portrait, niveau, statistiques avec le bonus d’équipement en vert, ascension).','En dessous : l’inventaire, puis les compétences. La zone de détails s’affiche sous l’équipement quand un objet est sélectionné.','La roue d’équipement est agrandie et occupe toute la hauteur de la présentation du héros.']],
+  ['Personnage',['Les onglets Personnage et Inventaire sont fusionnés dans l’onglet Personnage.','En haut : l’équipement (roue) à gauche et la présentation du héros à droite (portrait, niveau, statistiques avec le bonus d’équipement en vert, ascension).','En dessous : l’inventaire, puis les compétences. La zone de détails s’affiche sous l’équipement quand un objet est sélectionné.','La roue d’équipement est agrandie et occupe toute la hauteur de la présentation du héros.','Caractéristiques regroupées en trois catégories : Principale, Secondaire et Résistance. « Défense » devient « Défense physique ».','Les valeurs affichées sont les totaux (base + équipement) ; un bouton affiche le détail entre parenthèses (base + équipement).','« Or trouvé » et « Dégâts bonus » ne sont plus affichés dans la fiche.']],
  ]},
  {v:'0.0.9',t:'Entrepôts et débogage',sec:[
   ['Compte',['Connexion par e-mail et mot de passe, ou avec Google (création de compte et mot de passe oublié).','Sauvegarde en ligne : vos personnages et l’or partagé sont liés à votre compte et synchronisés automatiquement entre vos appareils.','« Jouer sans compte » garde la sauvegarde sur l’appareil. À la première connexion, la partie de l’appareil devient celle du compte.','Le compte connecté et un bouton « Se déconnecter » sont affichés en haut à droite du menu.']],
@@ -2728,6 +2749,7 @@ const A={
   stage:d=>{UI.stage=+d.s;render()},
   fight:()=>startBattle(),
   togStats:()=>{S.showStats=S.showStats===false;save();render()},
+  statSplit:()=>{S.statSplit=!S.statSplit;save();render()},
   usePot:d=>usePot(d.k),
   buyPot:d=>{const q=+d.q,c=potPrice(d.k)*q; if(!hasGold(c)) return; if(POTS[d.k].cls&&POTS[d.k].cls!==S.heroes[0].cls){toast(`Réservée au ${CLASSES[POTS[d.k].cls].n}.`);return} if(matRoom(d.k)<q){toast('Inventaire plein.');return}
     if(!FREE()) S.gold-=c; bagAddMat(S.bag,d.k,q); markNew(); save(); render(); toast(`Achat : ${q} × ${POTS[d.k].n}.`)},
@@ -2739,7 +2761,7 @@ const A={
   again:()=>{C.phase='idle';startBattle()},
   next:()=>{C.phase='idle';startBattle()},
   skill:d=>{
-    const w=C.waiting; if(!w) return; const sk=SK[d.id]; if((sk.ap||0)>(w.u.ap||0)||(w.u.cds[d.id]||0)) return;
+    const w=C.waiting; if(!w) return; const sk=SK[d.id]; if((sk.ap||0)>(w.u.ap||0)||(w.u.cds[d.id]||0)||(d.id==='atk'&&w.u.atkUsed)) return;
     if(sk.tg==='one'){
       const en=alive(C.units.filter(u=>u.team==='e'));
       if(en.length>1){C.pending=sk;renderActbar();refreshAll();return}
@@ -2752,6 +2774,7 @@ const A={
     const w=C.waiting,sk=C.pending;C.waiting=null;C.pending=null;w.res({skill:sk,target:t});
   },
   cancelPick:()=>{C.pending=null;renderActbar();refreshAll()},
+  endTurn:()=>{const w=C.waiting; if(!w) return; C.waiting=null; C.pending=null; w.res({end:true})},
   learn:d=>{
     const h=S.heroes[0]; const sk=SK[d.id]; if(h.sp<1||(h.learned[d.id]||0)>=5||h.lvl<sk.lvl) return;
     h.sp--; h.learned[d.id]=(h.learned[d.id]||0)+1;
