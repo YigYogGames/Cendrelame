@@ -125,6 +125,9 @@ small,.mute{color:var(--mute)}
 .it header small{display:block}
 .it ul{list-style:none;margin:0;padding:0;font-size:.95rem}
 .it li.imp{color:var(--mute)}
+.it .rng{color:#8a8274;font-size:.85em;margin-left:4px;white-space:nowrap}
+.it .shk{display:block;margin-top:6px;font-size:.72rem;color:var(--mute);opacity:.75}
+#tip.wide{width:300px}
 .it .foot{display:flex;flex-wrap:wrap;gap:6px;margin-top:auto;padding-top:4px}
 .dl{font-size:.85rem;font-weight:700}
 .dl.up{color:var(--ok)}.dl.dn{color:var(--blood)}
@@ -259,7 +262,7 @@ input[type=checkbox]{accent-color:var(--brass)}
 
 /* inventaire : grille 12 x 4 */
 .bagwrap{overflow-x:auto;padding:2px;scrollbar-width:thin}
-.bag{position:relative;display:grid;grid-template-columns:repeat(17,minmax(30px,1fr));gap:3px;min-width:calc(17 * 30px + 16 * 3px + 16px);padding:7px;background:#3a2817;border:1px solid #1d1209;border-radius:3px;box-shadow:inset 0 0 22px #000b,0 1px 0 #f4e8c855;user-select:none;-webkit-user-select:none}
+.bag{position:relative;display:grid;grid-template-columns:repeat(14,minmax(30px,60px));width:fit-content;margin-left:auto;margin-right:auto;gap:3px;min-width:calc(14 * 30px + 13 * 3px + 16px);padding:7px;background:#3a2817;border:1px solid #1d1209;border-radius:3px;box-shadow:inset 0 0 22px #000b,0 1px 0 #f4e8c855;user-select:none;-webkit-user-select:none}
 .cell{position:relative;aspect-ratio:1/1;min-width:0;display:grid;place-items:center;padding:0;margin:0;background:linear-gradient(160deg,#4d3621,#35251a);border:1px solid #20150c;border-radius:2px;box-shadow:inset 0 0 8px #0009;color:#f3e4c0}
 .cell svg{width:66%;height:66%;pointer-events:none}
 .cell.full{cursor:grab;touch-action:none}
@@ -345,6 +348,7 @@ input[type=checkbox]{accent-color:var(--brass)}
 .ztile:disabled{opacity:.45;cursor:not-allowed}
 .sheethead{display:flex;flex-direction:column;align-items:center;text-align:center;gap:6px;margin-bottom:14px}
 .sheethead h2{font-size:1.7rem}
+.invhead h2{font-size:2.2rem;font-weight:700;letter-spacing:.02em}
 .portrait{width:114px;height:114px;display:block;filter:drop-shadow(0 3px 6px #0006)}
 .sheethead .stars{color:var(--r2);letter-spacing:.15em}
 .hsec{background:var(--bg2);border:1px solid var(--line);border-radius:3px;margin-bottom:10px}
@@ -362,6 +366,15 @@ input[type=checkbox]{accent-color:var(--brass)}
 .doll .dollbg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;pointer-events:none;user-select:none}
 .doll.img .dslot:not(.full){background:#1a1410aa;border:1px dashed #c9b48acc;color:#d8c8a4}
 .doll.img .dslot.full{background:color-mix(in srgb,var(--rc) 40%,#1a1410e6);color:color-mix(in srgb,var(--rc) 30%,#fff0d0)}
+.doll.rune{aspect-ratio:300/340;width:min(100%,330px);border-radius:4px;overflow:hidden;box-shadow:0 4px 14px #0006}
+.doll.rune .dslot{border-radius:50%}
+.doll.rune .dslot:not(.full){background:#4a3420f2;border:1px solid #d6aa55;color:#e8c982;box-shadow:0 0 10px #d6aa5544}
+.doll.rune .dslot.full{background:color-mix(in srgb,var(--rc) 45%,#4a3420);border:2px solid color-mix(in srgb,var(--rc) 70%,#fff 15%);color:color-mix(in srgb,var(--rc) 25%,#fff0d0);box-shadow:0 0 12px var(--rc)}
+.doll.rune .dslot em{top:-2px;right:-2px;background:#1a1410;border-radius:6px;padding:0 3px}
+.forge-up{display:grid;gap:14px;grid-template-columns:minmax(0,300px) minmax(0,1fr);align-items:start}
+@media (max-width:820px){.forge-up{grid-template-columns:minmax(0,1fr)}}
+.fwheel .doll.rune{width:min(100%,270px)}
+.rs.full{border-color:var(--blood);color:#ffb3a3}
 #ghost{position:fixed;z-index:40;pointer-events:none;transform:none;opacity:.92;box-shadow:0 8px 20px #000a;cursor:grabbing}
 .matlist{display:grid;gap:6px}
 .matlist>div{display:flex;align-items:center;gap:8px}
@@ -432,7 +445,7 @@ const POTS={
 const potPrice=k=>Math.round(POTS[k].p*(1+((S&&S.heroes[0]&&S.heroes[0].lvl)||1)/10));
 const MAT_OBJ={fer:'Lingot de fer',cuir:'Peau tannée',plante:'Herbe enchantée',cristal:'Éclat de cristal',essence:'Fiole d’essence',rune:'Pierre runique',prisme:'Prisme divin'};
 const MAT_D={prisme:'Relique céleste, lâchée rarement par Le Dévoreur (10 %). À la forge légendaire, elle crée un objet de niveau 60 et de rareté Divin.',fer:'Sert à forger et à améliorer tout l’équipement.',cuir:'Indispensable à la forge et aux améliorations.',plante:'Herbe luminescente cueillie dans la Forêt Enchantée.',cristal:'Forges fines, relances de valeurs et améliorations avancées.',essence:'Forges de maître et remplacement d’affixes.',rune:'Rare. Forge légendaire, ascension et améliorations ultimes.'};
-const GW=17,GH=6,BAG=GW*GH,STACK=500;
+const GW=14,GH=5,BAG=GW*GH,STACK=500;
 /* taille d'un objet dans la grille (largeur x hauteur) */
 const SIZE=o=>o.mat?[1,1]:({weapon:[1,5],armor:[2,3],legs:[2,3],helm:[2,2],boots:[2,2],ring:[1,1],amulet:[1,1]})[o.slot]||[1,1];
 const STAT_N={hp:'PV',atk:'Force',mag:'Intelligence',def:'Défense',res:'Résistance',spd:'Vitesse',crit:'Critique',critDmg:'Dégâts critiques',dodge:'Esquive',lifesteal:'Vol de vie',hpPct:'PV',dmgPct:'Dégâts',goldFind:'Or trouvé',dropRate:'Butin trouvé'};
@@ -452,8 +465,8 @@ const BASES=[
   {n:'Robe',slot:'armor',cls:'mage',imp:[['hp',15,4.5],['def',3,1]]},
   {n:'Bottes',slot:'boots',cls:'guerrier',imp:[['hp',8,2.5],['def',2,.6]]},
   {n:'Sandales',slot:'boots',cls:'mage',imp:[['hp',7,2.2],['def',1,.5]]},
-  {n:'Jambières de plates',slot:'legs',cls:'guerrier',imp:[['hp',14,4],['def',4,1.1]]},
-  {n:'Jambières de soie',slot:'legs',cls:'mage',imp:[['hp',12,3.6],['def',2,.8]]},
+  {n:'Jambières',slot:'legs',cls:'guerrier',imp:[['hp',14,4],['def',4,1.1]]},
+  {n:'Jambières',slot:'legs',cls:'mage',imp:[['hp',12,3.6],['def',2,.8]]},
   {n:'Anneau',slot:'ring',imp:[]},
   {n:'Amulette',slot:'amulet',imp:[]},
 ];
@@ -634,7 +647,7 @@ function migrate(d){
       for(const [k,n] of Object.entries(tot)) bagAddMat(nb,k,n);
       d.bag=nb; d.gold=(d.gold||0)+gold;
       if(objs.length) MIG_MSG='Nouvel inventaire : les objets occupent maintenant plusieurs cases.'+(sold?` ${sold} objet${sold>1?'s':''} sans place vendu${sold>1?'s':''} pour ${fmt(gold)} or.`:'');
-    }else d.bag=d.bag.filter(e=>e.x>=0&&e.y>=0&&e.x<GW&&e.y<GH);
+    }else d.bag=d.bag.filter(e=>e.x>=0&&e.y>=0);
   }else{
     const bag=bagNew(),mats=d.mats||{}; let lost=0,gold=0;
     for(const k of MATS) lost+=bagAddMat(bag,k,mats[k]||0);
@@ -643,11 +656,18 @@ function migrate(d){
     d.gold=(d.gold||0)+gold; d.bag=bag;
     if(d.mats||d.inv) MIG_MSG='Vos matériaux et objets sont maintenant dans l’onglet Inventaire.'+(sold?` ${sold} objet${sold>1?'s':''} en trop vendu${sold>1?'s':''} pour ${fmt(gold)} or.`:'');
   }
-  delete d.mats; delete d.inv;
+  const keepM=(d.v||1)>=7?d.mats:null; delete d.mats; delete d.inv; if(keepM) d.mats=keepM;
   if((d.v||1)<3) v3(d);
   if((d.v||1)<4) v4(d);
   if((d.v||1)<6) v6(d);
-  d.v=6; return d;
+  if((d.v||1)<7) v7(d);
+  d.v=7; return d;
+}
+/* v7 : les matériaux sortent de l’inventaire et sont stockés à part (max 10 000 chacun) */
+function v7(d){
+  d.mats={}; const keep=[];
+  for(const e of d.bag||[]){ const o=e&&e.o; if(o&&o.mat&&MATS.includes(o.mat)) d.mats[o.mat]=Math.min(MATCAP,(d.mats[o.mat]||0)+o.n); else keep.push(e) }
+  d.bag=keep;
 }
 /* v6 : plus d’Intelligence pour le Guerrier ni de Force pour le Sorcier (bijoux compris) */
 function v6(d){
@@ -698,8 +718,8 @@ function v3(d){
   MIG_MSG=(MIG_MSG?MIG_MSG+' ':'')+'Équipement converti au nouveau système de classes.'+(changed?' Votre héros a changé de classe : ses points de compétence sont remboursés.':'');
 }
 function newGame(){
-  const bag=bagNew(); bagAddMat(bag,'fer',60); bagAddMat(bag,'cuir',30);
-  return {v:6,uid:0,heroes:[],party:[],bag,gold:80,
+  const bag=bagNew(),mats={fer:60,cuir:30};
+  return {v:7,uid:0,heroes:[],party:[],bag,mats,gold:80,
     sites:Object.fromEntries(SITES.map(s=>[s.id,{lvl:s.unlock===0?1:0,stock:{},cache:0}])),
     prog:{zone:0,stage:1},auto:false,farm:false,speed:1,last:Date.now(),kills:0};
 }
@@ -709,7 +729,22 @@ function soloize(d){
   for(const h of d.heroes.slice(1)) for(const sl of Object.keys(h.equip||{})) if(h.equip[sl]) bagAddItem(d.bag,h.equip[sl]);
   d.heroes=[first]; d.party=[first.id]; return d;
 }
-const loadData=d=>soloize(Object.assign(newGame(),migrate(d)));
+function fitBag(d){
+  if(!Array.isArray(d.bag)) return d;
+  const out=d.bag.filter(e=>{const [w,h]=SIZE(e.o);return e.x+w>GW||e.y+h>GH});
+  if(!out.length) return d;
+  d.bag=d.bag.filter(e=>!out.includes(e)); let gold=0,sold=0;
+  out.sort((a,b)=>{const A=SIZE(a.o),B=SIZE(b.o);return (b.o.mat?1:0)-(a.o.mat?1:0)||B[0]*B[1]-A[0]*A[1]});
+  for(const e of out){
+    if(e.o.mat){ const left=bagAddMat(d.bag,e.o.mat,e.o.n); continue }
+    const [w,h]=SIZE(e.o),sp=findSpot(d.bag,w,h);
+    if(sp) d.bag.push({x:sp[0],y:sp[1],o:e.o}); else {gold+=sellValue(e.o);sold++}
+  }
+  d.gold=(d.gold||0)+gold;
+  MIG_MSG=(MIG_MSG?MIG_MSG+' ':'')+'Inventaire réduit à 14 × 5 cases : les objets ont été réorganisés.'+(sold?` ${sold} objet${sold>1?'s':''} sans place vendu${sold>1?'s':''} pour ${fmt(gold)} or.`:'');
+  return d;
+}
+const loadData=d=>soloize(fitBag(Object.assign(newGame(),migrate(d))));
 function save(){try{localStorage.setItem(SAVE_KEY,JSON.stringify(S))}catch(e){}}
 function loadSave(){
   try{
@@ -748,8 +783,12 @@ const freeCells=()=>BAG-S.bag.reduce((a,e)=>{const [w,h]=SIZE(e.o);return a+w*h}
 const cellOf=id=>S.bag.findIndex(e=>!e.o.mat&&e.o.id===id);
 const entryOf=o=>S.bag.findIndex(e=>e.o===o);
 const canFit=(w,h)=>!!findSpot(S.bag,w,h);
-const matCount=k=>S.bag.reduce((a,e)=>a+(e.o.mat===k?e.o.n:0),0);
+const MATCAP=10000;
+const isMatK=k=>MATS.includes(k);
+const matCount=k=>isMatK(k)?((S.mats&&S.mats[k])||0):S.bag.reduce((a,e)=>a+(e.o.mat===k?e.o.n:0),0);
+function storeMat(k,n){ n=Math.max(0,Math.floor(n||0)); if(!S.mats) S.mats={}; const add=Math.min(n,MATCAP-matCount(k)); S.mats[k]=matCount(k)+Math.max(0,add); return n-Math.max(0,add) }
 function removeMat(k,n){
+  if(isMatK(k)){ S.mats[k]=Math.max(0,matCount(k)-n); return }
   const es=S.bag.filter(e=>e.o.mat===k).sort((a,b)=>a.o.n-b.o.n);
   for(const e of es){ if(n<=0) break; const m=Math.min(e.o.n,n); e.o.n-=m; n-=m }
   S.bag=S.bag.filter(e=>!(e.o.mat&&e.o.n<=0));
@@ -757,7 +796,7 @@ function removeMat(k,n){
 const LOST={}; let lostT=0;
 function noteLost(k,n){
   LOST[k]=(LOST[k]||0)+n;
-  if(!lostT) lostT=setTimeout(()=>{toast('Inventaire plein : '+Object.entries(LOST).map(([m,x])=>x+' '+MAT_N[m].toLowerCase()).join(', ')+' perdu(s).');for(const m in LOST)delete LOST[m];lostT=0},60);
+  if(!lostT) lostT=setTimeout(()=>{toast('Stock plein (10 000) : '+Object.entries(LOST).map(([m,x])=>x+' '+MAT_N[m].toLowerCase()).join(', ')+' perdu(s).');for(const m in LOST)delete LOST[m];lostT=0},60);
 }
 function findItem(id){
   let it=invItems().find(i=>i.id===id); if(it) return {it,where:'inv'};
@@ -767,9 +806,18 @@ function findItem(id){
 function rarityWeights(p){
   return [Math.max(5,60-45*p),30-5*Math.min(p,1.5),8+25*p,1.8+15*p,.2+5*p].map(x=>Math.max(.1,x));
 }
+let SHIFT=false;
+/* plage possible d'un affixe (tirage 70 % à 100 %), amélioration comprise */
+function affRange(it,a,k){
+  const A=AFXM[a.s]; if(!A) return '';
+  const base=(A.b+A.p*it.ilvl)*RAR[it.rarity].m,pc=PCT.has(a.s);
+  const lo=pc?Math.max(.5,r1(base*.7)):Math.max(1,Math.round(base*.7)),hi=pc?Math.max(.5,r1(base)):Math.max(1,Math.round(base));
+  const f=v=>pc?r1(v*k)+'%':Math.round(v*k);
+  return `<span class="rng">(${f(lo)} – ${f(hi)})</span>`;
+}
 function itemCard(it,foot='',delta=null){
   const k=upMul(it);
-  const lines=[...Object.entries(it.imp).map(([s,v])=>`<li class="imp">${fmtStat(s,v*k)}</li>`),...it.aff.map(a=>`<li>${fmtStat(a.s,a.v*k)}</li>`)].join('');
+  const lines=[...Object.entries(it.imp).map(([s,v])=>`<li class="imp">${fmtStat(s,v*k)}</li>`),...it.aff.map(a=>`<li>${fmtStat(a.s,a.v*k)}${SHIFT?affRange(it,a,k):''}</li>`)].join('')+(it.aff.length?`<li class="shk">${SHIFT?'Plages possibles des affixes (Maj)':'Maj : voir les plages des affixes'}</li>`:'');
   const dl=delta===null?'':`<span class="dl ${delta>=0?'up':'dn'}">${delta>=0?'▲':'▼'} ${Math.abs(Math.round(delta))}</span>`;
   return `<article class="it" style="--rc:var(--r${it.rarity})"><header><b>${esc(it.name)}${it.up?` <em>+${it.up}</em>`:''}</b> ${dl}<small>${SLOT_N[it.slot]}${it.cls?` · <span style="${canWear(it)?'':'color:var(--blood);font-weight:700'}">${CLASSES[it.cls].n}</span>`:''} · ${RAR[it.rarity].n}</small><small>Niveau d’objet <b class="num">${it.ilvl}</b></small></header><ul>${lines}</ul>${foot?`<div class="foot">${foot}</div>`:''}</article>`;
 }
@@ -793,7 +841,7 @@ function addInv(it){
   gain(salvageValue(it)); return false;
 }
 function markNew(){ if(UI.tab!=='bag') S.bagDot=true }
-function gain(c){for(const [k,v] of Object.entries(c)){ if(k==='gold')S.gold+=v; else {const left=bagAddMat(S.bag,k,v); if(left>0) noteLost(k,left); if(Math.floor(v)-left>0) markNew()} }}
+function gain(c){for(const [k,v] of Object.entries(c)){ if(k==='gold')S.gold+=v; else if(isMatK(k)){const left=storeMat(k,v); if(left>0) noteLost(k,left)} else {const left=bagAddMat(S.bag,k,v); if(left>0) noteLost(k,left); if(Math.floor(v)-left>0) markNew()} }}
 const canPay=c=>Object.entries(c).every(([k,v])=>(k==='gold'?S.gold:matCount(k))>=v);
 function pay(c){for(const [k,v] of Object.entries(c)){ if(k==='gold')S.gold-=v; else removeMat(k,v) }}
 const costHTML=c=>`<span class="cost">${Object.entries(c).filter(([,v])=>v>0).map(([k,v])=>{const have=k==='gold'?S.gold:matCount(k);return `<span class="${have>=v?'ok':'no'}" title="${MAT_N[k]}">${matIcon(k)}${fmt(v)}<span class="sr">${MAT_N[k]}</span></span>`}).join('')}</span>`;
@@ -1171,16 +1219,16 @@ function collectSite(id,quiet){
   let full=false;
   for(const [m,v] of Object.entries(st.stock)){
     const n=Math.floor(v); if(n<=0) continue;
-    const left=m==='gold'?0:bagAddMat(S.bag,m,n); if(m==='gold') S.gold+=n;
+    const left=m==='gold'?0:storeMat(m,n); if(m==='gold') S.gold+=n;
     if(left) full=true;
-    if(n-left>0){got[m]=n-left; if(m!=='gold') markNew()} st.stock[m]=v-(n-left);
+    if(n-left>0) got[m]=n-left; st.stock[m]=v-(n-left);
   }
   const items=[];
-  if(full&&!quiet) setTimeout(()=>toast('Inventaire plein : une partie de la récolte reste dans la zone de collecte.'),50);
+  if(full&&!quiet) setTimeout(()=>toast('Stock plein (10 000) : une partie de la récolte reste dans la zone de collecte.'),50);
   return {got,items};
 }
 /* place restante pour un matériau dans l’inventaire */
-const matRoom=k=>freeCells()*STACK+S.bag.reduce((a,e)=>a+(e.o.mat===k?STACK-e.o.n:0),0);
+const matRoom=k=>isMatK(k)?MATCAP-matCount(k):freeCells()*STACK+S.bag.reduce((a,e)=>a+(e.o.mat===k?STACK-e.o.n:0),0);
 /* une ressource attend en zone de collecte mais l’inventaire n’a plus de place */
 function collectBlocked(){
   for(const si of SITES){const st=S.sites[si.id]; if(!st||st.lvl<1) continue;
@@ -1212,7 +1260,7 @@ function tick(){
 const TABS=[['combat','Aventure'],['heroes','Personnage'],['bag','Inventaire'],['shop','Marchand'],['forge','Forge'],['sites','Collecte'],['help','Aide']];
 function renderHeader(){
   const el=$('#res'); if(!S||!S.heroes.length){el.innerHTML='';return}
-  el.innerHTML=['gold'].map(m=>`<span class="rs" title="${MAT_N[m]}">${matIcon(m)}<b>${fmt(S.gold)}</b><span class="sr">${MAT_N[m]}</span></span>`).join('');
+  el.innerHTML=['gold',...MATS].map(m=>{const v=m==='gold'?S.gold:matCount(m),full=m!=='gold'&&v>=MATCAP;return `<span class="rs ${full?'full':''}" title="${m==='gold'?'Or':MAT_OBJ[m]+' : '+v.toLocaleString('fr-FR')+' / '+MATCAP.toLocaleString('fr-FR')}">${matIcon(m)}<b>${fmt(v)}</b><span class="sr">${MAT_N[m]}</span></span>`}).join('');
 }
 function renderTabs(){
   const el=$('#tabs'),g=$('#gear'),nw=$('#news'); $('#ver').textContent='v'+VERSION; if(!S||!S.heroes.length){el.innerHTML='';g.hidden=true;nw.hidden=true;return}
@@ -1420,8 +1468,25 @@ function dollImgHTML(h,D){
     return `<button class="dslot ${it?'full':''} ${UI.invSel===k?'sel':''}" data-act="dollSlot" data-slot="${k}" data-tip="${k}" aria-label="${SLOT_N[k]}${it?' : '+esc(it.name):' (vide)'}" style="left:${x/3}%;top:${y/4.5}%;width:${sz/3}%;${it?`--rc:var(--r${it.rarity})`:''}">${icon(it?itemIcon(it):slotIcon(k))}${it&&it.up?`<em>+${it.up}</em>`:''}</button>`}).join('');
   return `<div class="doll img" id="doll"><img class="dollbg" src="${D.src}" alt="" aria-hidden="true">${slots}</div>`;
 }
+/* mannequin « cercle runique » : portrait de la classe au centre, emplacements en cercle (sens horaire depuis le haut) */
+const RUNE_ORDER=['helm','amulet','armor','legs','boots','ring2','weapon','ring'];
+function runeDollHTML(h,forge){
+  const W=300,H=340,cx=150,cy=170,R=122,sz=48,c=CLASSES[h.cls];
+  const slots=RUNE_ORDER.map((k,i)=>{const a=-Math.PI/2+i*2*Math.PI/RUNE_ORDER.length,x=cx+R*Math.cos(a)-sz/2,y=cy+R*Math.sin(a)-sz/2,it=h.equip[k];
+    return `<button class="dslot ${it?'full':''} ${(forge?it&&it.id===UI.fItem:UI.invSel===k)?'sel':''}" data-act="${forge?'fPutSlot':'dollSlot'}" data-slot="${k}" data-tip="${k}" aria-label="${SLOT_N[k]}${it?' : '+esc(it.name):' (vide)'}" style="left:${x/W*100}%;top:${y/H*100}%;width:${sz/W*100}%;${it?`--rc:var(--r${it.rarity})`:''}">${icon(it?itemIcon(it):slotIcon(k))}${it&&it.up?`<em>+${it.up}</em>`:''}</button>`}).join('');
+  const center=PORTRAIT[h.cls]?`<image href="${PORTRAIT[h.cls]}" x="${cx-72}" y="${cy-72}" width="144" height="144"/>`:`<circle cx="${cx}" cy="${cy}" r="60" fill="hsl(${h.hue} 30% 26%)"/>`;
+  const runes='ᚠᚢᚦᚨᚱᚲᚷᚹᚺᚾᛁᛃᛇᛈᛉᛊ'.split('').map((r,i)=>{const a=i*2*Math.PI/16+Math.PI/16;return `<text x="${cx+96*Math.cos(a)}" y="${cy+96*Math.sin(a)+4}" text-anchor="middle">${r}</text>`}).join('');
+  return `<div class="doll rune" id="doll"><svg class="body" viewBox="0 0 ${W} ${H}" aria-hidden="true">
+    <defs><radialGradient id="rg" cx="50%" cy="50%" r="62%"><stop offset="0" stop-color="#8a6842"/><stop offset=".65" stop-color="#6a4c2f"/><stop offset="1" stop-color="#4e3622"/></radialGradient></defs>
+    <rect width="${W}" height="${H}" rx="4" fill="url(#rg)"/>
+    <circle cx="${cx}" cy="${cy}" r="${R+6}" fill="none" stroke="#d6aa55" stroke-width="1.5" opacity=".75"/>
+    <circle cx="${cx}" cy="${cy}" r="${R-6}" fill="none" stroke="#d6aa55" stroke-width="1" stroke-dasharray="2 6" opacity=".6"/>
+    <g fill="#d6aa55" opacity=".55" font-size="11" font-family="serif">${runes}</g>
+    <circle cx="${cx}" cy="${cy}" r="80" fill="none" stroke="#d6aa55" stroke-width="1" opacity=".5"/>
+    ${center}</svg>${slots}</div>`;
+}
 function dollHTML(h){
-  if(DOLL_IMG[h.cls]) return dollImgHTML(h,DOLL_IMG[h.cls]);
+  return runeDollHTML(h);
   const cn=DOLL.map(([k,x,y,sz,ax,ay])=>{const sx=x<150?x+sz:x,sy=y+sz/2;return `<path class="cn" d="M${sx} ${sy}L${ax} ${ay}"/><circle class="dot" cx="${ax}" cy="${ay}" r="2.6"/>`}).join('');
   const svg=`<svg class="body adv" viewBox="0 0 300 440" aria-hidden="true">
     <rect class="roll" x="104" y="82" width="92" height="17" rx="8.5"/><path class="tunl" d="M122 83v15M178 83v15"/>
@@ -1488,7 +1553,7 @@ function viewBag(){
     `<dt>Puissance</dt><dd><b>${Math.round(heroPower(h))}</b> <span class="gb">(+${Math.max(0,Math.round(heroPower(h)-heroPower(Object.assign({},h,{equip:{}}))))})</span></dd>`;
   const mats=MATS.map(m=>`<div>${matIcon(m)}<span>${MAT_OBJ[m]}</span><b>${fmt(matCount(m))}</b></div>`).join('');
   return `<div class="inv-layout" style="margin-bottom:16px">
-      <div><section class="panel"><div class="sheethead" style="margin-bottom:8px"><h2>${esc(h.name)}</h2><span class="tile" style="--h:${h.hue}" title="${c0.n}">${icon(c0.ic)}</span><small>${c0.n} · Niveau ${h.lvl}</small></div>${dollHTML(h)}
+      <div><section class="panel"><div class="sheethead invhead" style="margin-bottom:8px"><h2>${esc(h.name)}</h2></div>${dollHTML(h)}
         <button class="btn sm" style="display:block;margin:12px auto 0" data-act="togStats" aria-expanded="${S.showStats!==false}">${S.showStats!==false?'Masquer':'Afficher'} les statistiques</button></section>
         <p class="hint" style="margin-top:10px">Glissez un objet de l’inventaire sur le mannequin pour l’équiper, ou faites un clic droit dessus. Clic droit ou glisser vers l’inventaire sur un emplacement pour le retirer.</p></div>
       <div class="grid" style="gap:14px">
@@ -1501,8 +1566,7 @@ function viewBag(){
       <button class="btn sm ${UI.multi?'warn':'danger'}" style="margin-left:auto" data-act="multiToggle">${UI.multi?'Quitter la destruction':'Détruire plusieurs objets'}</button></div>
     ${UI.multi?multiBar():''}
     ${gridHTML()}
-    <p class="hint" style="margin:8px 0 14px">${UI.multi?'Cliquez sur les cases à détruire. Les matériaux détruits sont perdus ; les armes et armures rendent 25 % des ressources ayant servi à leur création.':''}Les objets occupent plusieurs cases (arme 1×5, armure et jambières 2×3, casque et bottes 2×2). Glissez-déposez pour ranger ou échanger. Déposez une pile sur une pile du même matériau pour les fusionner (${STACK} max par pile). Un second clic sur un tri inverse l’ordre.</p>
-    <section class="panel"><h3 style="margin-bottom:10px">Matériaux</h3><div class="matlist">${mats}</div></section>`;
+    <p class="hint" style="margin:8px 0 14px">${UI.multi?'Cliquez sur les cases à détruire. Les matériaux détruits sont perdus ; les armes et armures rendent 25 % des ressources ayant servi à leur création.':''}Les objets occupent plusieurs cases (arme 1×5, armure et jambières 2×3, casque et bottes 2×2). Glissez-déposez pour ranger ou échanger. Déposez une pile sur une pile du même matériau pour les fusionner (${STACK} max par pile). Un second clic sur un tri inverse l’ordre.</p>`;
 }
 function multiBar(){
   const sel=[...UI.pick].filter(o=>entryOf(o)>=0),tot={};let it=0,mt=0,mq=0;
@@ -1510,7 +1574,7 @@ function multiBar(){
   const conf=UI.confirm==='multi';
   return `<div class="panel" style="margin-bottom:10px;border-color:var(--blood)"><div class="row between">
     <div><b>${sel.length} case${sel.length>1?'s':''} sélectionnée${sel.length>1?'s':''}</b><br><small>${it} objet${it>1?'s':''} · ${mt} pile${mt>1?'s':''} de matériaux${mq?` (${fmt(mq)} perdus)`:''}</small></div>
-    <div class="row"><button class="btn sm" data-act="multiPick" data-w="items">Tous les objets</button><button class="btn sm" data-act="multiPick" data-w="mats">Tous les matériaux</button><button class="btn sm" data-act="multiPick" data-w="none">Aucun</button>
+    <div class="row"><button class="btn sm" data-act="multiPick" data-w="items">Tous les objets</button><button class="btn sm" data-act="multiPick" data-w="mats">Toutes les potions</button><button class="btn sm" data-act="multiPick" data-w="none">Aucun</button>
     ${conf?`<button class="btn sm warn" data-act="multiDel">Confirmer la destruction</button><button class="btn sm" data-act="noConfirm">Annuler</button>`:`<button class="btn sm danger" data-act="multiDel" ${sel.length?'':'disabled'}>Détruire la sélection</button>`}</div></div>
     <div style="margin-top:6px"><small class="mute">Ressources récupérées :</small>${resChips(tot)}</div></div>`;
 }
@@ -1648,6 +1712,7 @@ document.addEventListener('contextmenu',e=>{
   const it=c&&S.bag[+c.dataset.i]&&S.bag[+c.dataset.i].o;
   if(c&&UI.tab==='forge'){ if(it&&!it.mat){UI.fItem=it.id;UI.fMode='up';render()} return}
   if(c){ if(it&&!it.mat) equipFromCell(+c.dataset.i,targetSlot(S.heroes[0],it))}
+  else if(UI.tab==='forge'){const it2=S.heroes[0].equip[s.dataset.slot]; if(it2){UI.fItem=it2.id;render()}}
   else if(s.classList.contains('full')) unequipTo(s.dataset.slot,null);
 });
 document.addEventListener('pointercancel',e=>endDrag(e,false));
@@ -1672,7 +1737,6 @@ const tierCost=(i,l)=>Object.fromEntries(Object.entries(TIERS[i].cost).map(([k,v
 function bagBlock(){
   const mats=MATS.map(m=>`<span class="rs2" title="${MAT_OBJ[m]}">${matIcon(m)}<b class="num">${fmt(matCount(m))}</b></span>`).join('');
   return `<div class="row between" style="margin:18px 0 10px"><h2>Inventaire</h2><small class="num">${BAG-freeCells()} / ${BAG} cases · ${freeCells()} libre${freeCells()>1?'s':''}</small></div>
-    <div class="row" style="gap:14px;margin-bottom:10px">${mats}</div>
     ${gridHTML()}`;
 }
 function viewForge(){
@@ -1703,9 +1767,9 @@ function viewForge(){
     </section>`;
   }else{
     const found=UI.fItem?findItem(UI.fItem):null,it=found&&found.it;
-    const worn=SLOTS.filter(sl=>h.equip[sl]).map(sl=>`<button class="btn sm" data-act="fPut" data-id="${h.equip[sl].id}">${esc(h.equip[sl].name)}</button>`).join('');
+  
     const box=`<div id="fslot" class="fslot ${it?'full':''}" ${it?`style="--rc:var(--r${it.rarity})" data-tip="f:${it.id}"`:''}>${it?icon(itemIcon(it))+(it.up?`<em>+${it.up}</em>`:''):'<span>Déposez un objet ici</span>'}</div>`;
-    let work='<p class="hint">Glissez un objet de l’inventaire dans la case, ou faites un clic droit dessus.</p>'+(worn?`<p class="hint" style="margin:10px 0 6px">Ou prenez un objet porté :</p><div class="row">${worn}</div>`:'');
+    let work='<p class="hint">Glissez un objet de l’inventaire dans la case, ou faites un clic droit dessus. Pour un objet porté, cliquez sur son emplacement dans la roue d’équipement.</p>';
     if(it){
       const uc=upCost(it),rc=rerollCost(it),pc=replCost(it);
       work=`<div class="up-acts">
@@ -1713,11 +1777,12 @@ function viewForge(){
         <div class="sk"><div class="row between"><b>Relancer les valeurs</b><button class="btn sm" data-act="rerollVals" ${canPay(rc)?'':'disabled'}>Relancer</button></div><p>Nouvelles valeurs, mêmes types de stats.</p>${costHTML(rc)}</div>
         <div class="sk"><b>Remplacer une affixe</b><p>Échange l’affixe choisie contre une autre au hasard.</p>${costHTML(pc)}<div class="row">${it.aff.map((a,i)=>`<button class="btn sm" data-act="replAff" data-i="${i}" ${canPay(pc)?'':'disabled'}>${fmtStat(a.s,a.v*upMul(it))}</button>`).join('')}</div></div></div>`;
     }
-    body=`<section class="panel forge-row up">
+    body=`<div class="forge-up"><section class="panel fwheel"><h3 style="margin-bottom:8px;text-align:center">Équipement porté</h3>${runeDollHTML(h,true)}<p class="hint" style="margin-top:8px;text-align:center">Cliquez ou glissez un emplacement vers la case d’amélioration.</p></section>
+    <section class="panel forge-row up">
       <div class="fcol" style="flex:0 0 130px;align-items:center;text-align:center">${box}${it?`<button class="btn sm" style="margin-top:8px" data-act="fClear">Retirer</button>`:''}</div>
       ${it?`<div class="fcol" style="flex:1 1 240px;max-width:300px">${itemCard(it)}${found.where==='eq'?'<small class="mute" style="margin-top:4px">Objet porté</small>':''}</div>`:''}
       <div class="fcol" style="flex:2">${work}</div>
-    </section>`;
+    </section></div>`;
   }
   return `<div class="row between" style="margin-bottom:12px"><h2>Forge</h2>${seg}</div>${body}${bagBlock()}
     <section class="panel" style="margin-top:14px"><h3 style="margin-bottom:6px">Détruire en masse</h3><p class="hint" style="margin-bottom:10px">Les objets détruits de l’inventaire rendent 25 % des ressources ayant servi à leur création. Les objets portés ne sont jamais touchés.</p>
@@ -1737,7 +1802,7 @@ function viewSites(){
       <div class="row"><button class="btn pri" data-act="siteCollect" data-id="${si.id}">Collecter</button><button class="btn" data-act="siteUp" data-id="${si.id}" ${S.gold>=up?'':'disabled'}>Améliorer</button>${costHTML({gold:up})}</div></section>`}).join('');
   setTimeout(liveSites,0);
   lastBlocked=collectBlocked();
-  return `${lastBlocked?'<div class="fullbar" role="alert">Inventaire plein, veuillez faire de la place.</div>':''}
+  return `${lastBlocked?'<div class="fullbar" role="alert">Stock de matériaux plein (10 000 maximum) : utilisez-en à la Forge pour continuer la collecte.</div>':''}
     <div class="row between" style="margin-bottom:6px"><h2>Collecte</h2><div class="row">
       <button class="btn ${S.autoCollect?'pri':''}" data-act="autoCol" aria-pressed="${!!S.autoCollect}">Collecte auto : ${S.autoCollect?'activée':'désactivée'}</button>
       <button class="btn" data-act="siteAll">Tout collecter</button></div></div>
@@ -1813,15 +1878,20 @@ function viewHelp(){
 }
 
 /* --- nouveautés --- */
-const VERSION='0.0.5';
+const VERSION='0.0.6';
 const PATCH=[
+ {v:'0.0.6',t:'Cercle runique',sec:[
+  ['Matériaux',['Les matériaux (fer, cuir, herbe, cristal, essence, runes, prismes) quittent l’inventaire : ils sont affichés en haut, à côté de l’or.','Stock maximum : 10 000 par matériau. Les potions restent dans l’inventaire.']],
+  ['Forge',['En mode Amélioration, la roue d’équipement s’affiche à gauche : cliquez, glissez ou faites un clic droit sur un emplacement pour améliorer l’objet porté.','Les jambières de soie et de plaque s’appellent désormais simplement « Jambières ».']],
+  ['Inventaire',['Nouveau mannequin « cercle runique » pour les deux classes : portrait de la classe au centre, entouré d’anneaux dorés et de runes.','Les 8 emplacements sont disposés en cercle autour du portrait ; les emplacements occupés prennent la couleur de la rareté de l’objet.','Fond de la roue d’équipement éclairci, dans toutes les sections.','Grille réduite à 14 × 5 cases (70 cases). Les objets hors de la nouvelle grille sont replacés automatiquement, ou vendus s’il n’y a plus de place.','En-tête allégé : seul le nom du héros reste, agrandi et en gras, au-dessus du mannequin.','Infobulles d’équipement : maintenez Maj (Shift) pour afficher entre parenthèses grises la plage possible de chaque affixe.']]
+ ]},
  {v:'0.0.5',t:'Équilibrage et mode Mythique',sec:[
   ['Combats',['Nouvelle formule de dégâts : la Défense protège moins contre les monstres de haut niveau.','Les monstres frappent plus fort à haut niveau.','Vol de vie plafonné à 20 % et Esquive à 30 % ; ces affixes sont moins puissants.','Les améliorations d’objets donnent +5 % par niveau au lieu de +8 %.']],
   ['Héroïque',['Monstres plus agressifs. Les boss frappent beaucoup plus fort, ont un peu plus de PV et entrent en rage dès le tour 11.']],
   ['Mythique',['Nouvelle difficulté, débloquée en atteignant le dernier boss en mode héroïque.','Monstres niveau 60. Les boss gagnent la Frappe dévastatrice et entrent en rage dès le tour 9.','Récompenses : or, XP et matériaux ×2. Prisme divin à 25 % sur Le Dévoreur. Progression séparée.']],
   ['Personnage',['Feuille de personnage : nom en titre et icône centrée.','Ascension : niveau maximum requis. Premier palier : 5 000 or et 5 Prismes divins (le coût augmente à chaque palier).','Les compétences apprises ne peuvent plus être retirées : toutes les compétences actives apprises sont utilisées en combat.']],
   ['Inventaire',['Nom du héros centré avec l’icône de classe en dessous.','Bouton sous le mannequin pour afficher ou masquer les statistiques.','Caractéristiques complètes sur une seule colonne, avec le bonus de l’équipement en vert.','Zone Détail supprimée ; les explications de glisser-déposer sont sous le mannequin.','Nouveau mannequin illustré pour le Sorcier, avec les emplacements posés sur le personnage.']],
-  ['Équipement',['Nouvel emplacement : les Jambières (2×3 cases, vie et défense). Jambières de plates pour le Guerrier, Jambières de soie pour le Sorcier, à fabriquer à la Forge.']],
+  ['Équipement',['Nouvel emplacement : les Jambières (2×3 cases, vie et défense). Une version pour chaque classe, à fabriquer à la Forge.']],
   ['Aide',['Nouvel onglet Aide : statistiques, calcul des dégâts, afflictions, bonus et malus, rage, difficultés, potions, rareté et ascension.']],
   ['Interface',['Écran Aventure refait : héros à gauche en colonne, « Choix de zone » à droite avec la difficulté, les zones en cadres rectangulaires puis le niveau de la zone.','Nouveaux portraits illustrés du Guerrier et du Sorcier, dans la feuille de personnage et dans l’Aventure.','Dans l’Aventure, le nom du héros est affiché en titre au-dessus du portrait.']]
  ]},
@@ -1877,9 +1947,10 @@ function tipHTML(k){
   if(it) return itemCard(it);
   return `<article class="it" style="--rc:var(--line)"><header><b>${SLOT_N[k]}</b><small>Emplacement vide</small></header></article>`;
 }
+let TIPEL=null;
 function showTip(el){
   if(DRAG&&DRAG.on) return;
-  const t=$('#tip'),html=tipHTML(el.dataset.tip); if(!html){hideTip();return} t.innerHTML=html; t.hidden=false;
+  const t=$('#tip'),html=tipHTML(el.dataset.tip); if(!html){hideTip();return} t.innerHTML=html; t.hidden=false; TIPEL=el; t.classList.toggle('wide',SHIFT);
   const r=el.getBoundingClientRect(),w=t.offsetWidth,hh=t.offsetHeight,vw=document.documentElement.clientWidth,vh=window.innerHeight;
   let x=r.right+10,y=r.top;
   if(x+w>vw-8) x=r.left-w-10;
@@ -1887,7 +1958,11 @@ function showTip(el){
   y=clamp(y,8,Math.max(8,vh-hh-8));
   t.style.left=x+'px'; t.style.top=y+'px';
 }
-const hideTip=()=>{const t=$('#tip');if(t)t.hidden=true};
+const hideTip=()=>{const t=$('#tip');if(t)t.hidden=true;TIPEL=null};
+function setShift(v){ if(SHIFT===v) return; SHIFT=v; const t=$('#tip'); if(TIPEL&&t&&!t.hidden&&document.contains(TIPEL)) showTip(TIPEL) }
+document.addEventListener('keydown',e=>{if(e.key==='Shift')setShift(true)});
+document.addEventListener('keyup',e=>{if(e.key==='Shift')setShift(false)});
+window.addEventListener('blur',()=>setShift(false));
 document.addEventListener('mouseover',e=>{const el=e.target.closest&&e.target.closest('[data-tip]');if(el)showTip(el);else hideTip()});
 document.addEventListener('focusin',e=>{const el=e.target.closest&&e.target.closest('[data-tip]');if(el)showTip(el)});
 document.addEventListener('focusout',hideTip);
@@ -1996,6 +2071,7 @@ const A={
   toForge:d=>{UI.fItem=+d.id;UI.fMode='up';UI.tab='forge';render()},
   fMode:d=>{UI.fMode=d.m;render()},
   fPut:d=>{UI.fItem=+d.id;UI.fMode='up';render()},
+  fPutSlot:d=>{const it=S.heroes[0].equip[d.slot]; if(!it){toast('Emplacement vide.');return} UI.fItem=it.id;UI.fMode='up';render()},
   fClear:()=>{UI.fItem=null;render()},
   forgeTierStep:d=>{UI.fTier=(UI.fTier+(+d.d)+TIERS.length)%TIERS.length;render()},
   forgeSlot:d=>{UI.fSlot=d.s;render()},
@@ -2082,6 +2158,9 @@ if(S.heroes.length){
   if(away>120){const h=Math.floor(away/3600),m=Math.floor(away%3600/60);setTimeout(()=>toast(`Absent ${h?h+' h ':''}${m} min : vos zones de collecte ont travaillé.`),400)}
 }
 S.speed=S.speed||1;
+/* jambières : nom unique « Jambières » pour les deux classes */
+{const fixL=it=>{ if(it&&!it.mat&&/^Jambières de (plates|soie)/.test(it.base||'')){it.name=it.name.replace(/^Jambières de (plates|soie)/,'Jambières');it.base='Jambières'} };
+ S.bag.forEach(e=>fixL(e.o)); for(const h of S.heroes) Object.values(h.equip||{}).forEach(fixL);}
 /* toutes les compétences actives apprises sont utilisées en combat */
 for(const h of S.heroes) for(const sk of CLASSES[h.cls].skills) if(sk.t==='a'&&h.learned[sk.id]&&!h.loadout.includes(sk.id)) h.loadout.push(sk.id);
 for(const h of S.heroes) if(h.lvl>MAXL){h.lvl=MAXL;h.xp=0}
