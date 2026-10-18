@@ -67,6 +67,23 @@ small,.mute{color:var(--mute)}
 .peq .doll.rune .dslot{border-width:2px}
 .peq .doll.rune .dslot.sel{box-shadow:0 0 0 3px var(--gold),0 0 16px var(--gold)}
 .pinv{margin-top:0}
+.prow1{display:grid;gap:16px;grid-template-columns:minmax(250px,320px) minmax(0,1fr);align-items:stretch;margin-bottom:16px}
+.prow2{display:grid;gap:16px;grid-template-columns:minmax(0,1fr) minmax(0,380px);align-items:start}
+.prow1 .peq .doll.rune{width:min(100%,290px)}
+.prow1 .pleft{display:contents}.prow1 .peq{grid-column:1;grid-row:1}.prow1>.det,.prow1 .pleft>.det{grid-column:1;align-self:start}
+.prow1 .pinv{grid-column:2;grid-row:1;display:flex;flex-direction:column}.prow1 .pinv .bagwrap{flex:1;display:flex;align-items:center}.prow1 .pinv .bag{margin-top:auto;margin-bottom:auto}
+.prow1 .bag{grid-template-columns:repeat(14,minmax(30px,70px));width:100%;min-width:calc(14 * 30px + 13 * 3px + 16px)}
+@media (max-width:1000px){.prow1{grid-template-columns:minmax(0,1fr)}.prow1 .peq,.prow1 .pinv,.prow1 .det{grid-column:1;grid-row:auto}.prow1 .peq .doll.rune{width:min(100%,420px)}}
+@media (max-width:860px){.prow2{grid-template-columns:minmax(0,1fr)}.prow2 .ppres{order:-1}}
+.spsticky{position:sticky;top:8px;z-index:6;padding:2px 0}
+.spbar{display:flex;gap:10px;justify-content:center;padding:10px;margin:0 auto;width:fit-content;background:#3a2817;border:1px solid #1d1209;border-radius:8px;box-shadow:inset 0 0 14px #000a}
+.sbslot{width:56px;height:56px;border-radius:10px;border:2px dashed #a88d5b77;display:grid;place-items:center;color:#a88d5b;font-weight:700;transition:background .12s,border-color .12s}
+.sbslot.full{border-style:solid;border-color:#1d1209}
+.sbslot.over{border-color:var(--gold);background:#e8c98233;box-shadow:0 0 10px var(--gold)}
+.sbslot .skc{width:50px;height:50px;touch-action:none;cursor:grab}
+.sktile.drg{touch-action:none;cursor:grab}
+#skghost{position:fixed;z-index:80;pointer-events:none;width:52px;height:52px;opacity:.9;transform:scale(1.08);margin:0}
+body.skdrag,body.skdrag *{cursor:grabbing!important}
 @media (max-width:860px){.pchar{grid-template-columns:minmax(0,1fr);align-items:start}.ppres{order:-1}.peq .doll.rune{width:min(100%,420px)}}
 @media (max-width:820px){.hero-grid{grid-template-columns:minmax(0,1fr)}}
 .top{display:flex;flex-direction:column;align-items:center;gap:12px;padding-block:26px 14px}
@@ -846,7 +863,7 @@ const affPool=c=>AFX.filter(a=>!(c==='guerrier'&&a.s==='mag')&&!(c==='mage'&&a.s
 const EPITHETS=['de Cendre','des Damnés','du Crépuscule','de l’Aube','d’Aldrec','des Abysses','du Gardien','de la Braise','du Dernier Siège'];
 
 /* compétences : 3 compétences de base par classe (niveaux 1 à 10), puis une spécialisation au niveau 10 (arbre de talents) */
-const SPEC_L=10,LOADOUT_MAX=4,FORGET_COST={gold:5000,prisme:5};
+const SPEC_L=10,LOADOUT_MAX=5,FORGET_COST={gold:5000,prisme:5};
 const CLASSES={
   guerrier:{n:'Guerrier',ic:'sword',role:'atk',hue:8,desc:'Rempart robuste. Encaisse, provoque et frappe fort au corps à corps. Épées, heaumes, cuirasses et bottes.',
     base:{hp:120,atk:14,mag:0,def:10,res:5,spd:9},grow:{hp:13,atk:2.6,mag:0,def:1.8,res:1,spd:.2},
@@ -1472,7 +1489,8 @@ function skCard(sk,h){
 /* tuiles */
 function skTile(sk,h,extra=''){
   const r=h.learned[sk.id]||0,mx=skMax(sk),req=skReq(sk,h),can=!req&&h.sp>0&&r<mx,eq=h.loadout.includes(sk.id);
-  return `<button class="sktile ${sk.t==='p'?'pas':''} ${r?'got':''} ${req?'lock':''} ${can?'avail':''} ${UI.skSel===sk.id?'sel':''}" style="--co:${sk.co};${extra}" data-act="skSel" data-id="${sk.id}" data-tip="sk:${sk.id}" aria-label="${esc(sk.n)}, rang ${r} sur ${mx}${req?', verrouillée':''}">${spIcon(sk)}<span class="rk">${r}/${mx}</span>${eq?'<span class="eqm" aria-hidden="true">✓</span>':''}</button>`;
+  const drag=sk.t==='a'&&r>0&&h.learned===S.heroes[0].learned;
+  return `<button class="sktile ${sk.t==='p'?'pas':''} ${r?'got':''} ${req?'lock':''} ${can?'avail':''} ${UI.skSel===sk.id?'sel':''} ${drag?'drg':''}" style="--co:${sk.co};${extra}" data-act="skSel" data-id="${sk.id}" ${drag?`data-skdrag="${sk.id}"`:''} data-tip="sk:${sk.id}" aria-label="${esc(sk.n)}, rang ${r} sur ${mx}${req?', verrouillée':''}">${spIcon(sk)}<span class="rk">${r}/${mx}</span>${eq?'<span class="eqm" aria-hidden="true">✓</span>':''}</button>`;
 }
 function specTree(cls,sid,h,preview){
   const sp=CLASSES[cls].specs[sid],X=c=>44+c*76,Y=r=>34+r*74;
@@ -1496,7 +1514,11 @@ function viewSkills(h){
     det=`<div class="skdet">${skCard(sel,h)}<div class="row" style="justify-content:center">${`<button class="btn pri" data-act="learn" data-id="${sel.id}" ${req||h.sp<1||r>=skMax(sel)?'disabled':''}>${r>=skMax(sel)?'Rang maximum':r?'Améliorer (+1 rang)':'Apprendre'}</button>`}${sel.t==='a'&&r?`<button class="btn" data-act="equipSk" data-id="${sel.id}">${eq?'Retirer de la barre':'Équiper'}</button>`:''}</div></div>`;
   } else det=`<p class="hint" style="text-align:center">${NOHOVER?'Touchez':'Survolez'} une compétence pour voir ses détails, cliquez dessus pour l’apprendre ou l’équiper.</p>`;
   const fp=matCount('p_oubli');
-  return `<section class="panel skpanel" style="margin-top:16px"><div class="row between" style="margin-bottom:10px"><h2>Compétences</h2><span class="num">Points : <b style="color:var(--brass)">${h.sp}</b> · Barre de combat : ${h.loadout.length} / ${LOADOUT_MAX}</span></div>
+  const bar=Array.from({length:LOADOUT_MAX},(_,i)=>{const id=h.loadout[i],q=id&&SK[id];
+    return `<div class="sbslot ${q?'full':''}" data-sbi="${i}">${q?`<button class="skc" style="--co:${q.co}" data-act="skSel" data-id="${id}" data-skdrag="${id}" data-from="${i}" data-tip="sk:${id}" aria-label="Emplacement ${i+1} : ${esc(q.n)}">${spIcon(q)}${q.ap?`<em class="apk">${q.ap}</em>`:''}</button>`:`<span aria-label="Emplacement ${i+1} vide">${i+1}</span>`}</div>`}).join('');
+  return `<section class="panel skpanel"><div class="row between" style="margin-bottom:10px"><h2>Compétences</h2><span class="num">Points : <b style="color:var(--brass)">${h.sp}</b></span></div>
+    <h3 class="skh">Barre de sorts <small class="mute num">${h.loadout.length} / ${LOADOUT_MAX}</small></h3><div class="spsticky"><div class="spbar" id="spbar">${bar}</div></div>
+    <p class="hint" style="text-align:center;margin:4px 0 0">Glissez-déposez une compétence active apprise dans un emplacement. Glissez un sort hors de la barre pour le retirer, ou d’un emplacement à l’autre pour changer l’ordre.</p>
     <h3 class="skh">Compétences de base</h3><div class="skrow">${base}</div>
     <h3 class="skh">Spécialisation</h3>${spec}
     ${det}
@@ -1511,6 +1533,29 @@ function cTile(id,U,act,sel){
   const s=SK[id],cd=(U.cds&&U.cds[id])||0,c=s.ap||0,no=c>(U.ap||0),used=id==='atk'&&U.atkUsed,off=cd||no||used;
   return `<button class="skc ${off?'off':''} ${sel?'sel':''}" style="--co:${s.co||'#5a5048'}" data-act="${act}" data-id="${id}" ${off?'aria-disabled="true"':''} data-tip="sk:${id}" aria-label="${esc(s.n)}${c?', '+c+' PA':''}${cd?', recharge '+cd+' tours':no?', PA insuffisants':used?', déjà utilisée':''}">${spIcon(s)}${c?`<em class="apk">${c}</em>`:''}${cd?`<span class="cdo">${cd}</span>`:used?'<span class="cdo">✓</span>':''}</button>`;
 }
+
+/* glisser-déposer des sorts vers la barre */
+let SKD=null,SKSUP=false;
+function skDrop(id,from,to){
+  const h=S.heroes[0],sk=SK[id]; if(!h||!sk||sk.t!=='a'||!h.learned[id]) return; const L=h.loadout.slice();
+  if(to==null){ if(from==null) return; if(L.length<=1){toast('Gardez au moins une compétence dans la barre.');return} L.splice(from,1) }
+  else if(from!=null){ if(to>=L.length){ L.splice(from,1); L.push(id) } else { const t=L[to]; L[to]=id; L[from]=t } }
+  else { const at=L.indexOf(id); if(at>=0){ if(to>=L.length){L.splice(at,1);L.push(id)} else {const t=L[to];L[to]=id;L[at]=t} }
+    else if(to<L.length) L[to]=id; else if(L.length<LOADOUT_MAX) L.push(id); else L[LOADOUT_MAX-1]=id }
+  h.loadout=L.filter(Boolean).slice(0,LOADOUT_MAX); save(); const y=scrollY; render(); scrollTo(0,y);
+}
+document.addEventListener('pointerdown',e=>{ const el=e.target.closest&&e.target.closest('[data-skdrag]'); if(!el||e.button>0) return; SKD={id:el.dataset.skdrag,from:el.dataset.from!=null?+el.dataset.from:null,x:e.clientX,y:e.clientY,el,on:false} });
+document.addEventListener('pointermove',e=>{ if(!SKD) return;
+  if(!SKD.on){ if(Math.hypot(e.clientX-SKD.x,e.clientY-SKD.y)<6) return; SKD.on=true; hideTip(); const g=SKD.el.cloneNode(true); g.id='skghost'; ['data-act','data-tip','data-skdrag'].forEach(a=>g.removeAttribute(a)); g.style.setProperty('--co',SKD.el.style.getPropertyValue('--co')); document.body.append(g); document.body.classList.add('skdrag') }
+  const g=$('#skghost'); if(g){ g.style.left=(e.clientX-26)+'px'; g.style.top=(e.clientY-26)+'px' }
+  const t=document.elementFromPoint(e.clientX,e.clientY),sl=t&&t.closest('.sbslot'); document.querySelectorAll('.sbslot.over').forEach(x=>x!==sl&&x.classList.remove('over')); if(sl) sl.classList.add('over');
+});
+document.addEventListener('pointerup',e=>{ if(!SKD) return; const d=SKD; SKD=null; if(!d.on) return;
+  const g=$('#skghost'); if(g) g.remove(); document.body.classList.remove('skdrag');
+  const t=document.elementFromPoint(e.clientX,e.clientY),sl=t&&t.closest('.sbslot'); SKSUP=true; setTimeout(()=>{SKSUP=false},60);
+  skDrop(d.id,d.from,sl?+sl.dataset.sbi:null) });
+document.addEventListener('pointercancel',()=>{ if(!SKD) return; SKD=null; const g=$('#skghost'); if(g) g.remove(); document.body.classList.remove('skdrag') });
+document.addEventListener('click',e=>{ if(SKSUP){ e.stopPropagation(); e.preventDefault(); SKSUP=false } },true);
 
 
 /* ============ combat ============ */
@@ -2833,17 +2878,19 @@ function viewHeroes(){
   const aCost=ascCost(h),aReq=MAXL;
   const slots=SLOTS.map(sl=>{const it=h.equip[sl];return `<div class="slotrow"><span class="lbl">${SLOT_N[sl]}</span><div class="nm">${it?`<b style="color:var(--r${it.rarity})">${esc(it.name)}${it.up?` +${it.up}`:''}</b><br><small>Niv ${it.ilvl} · ${RAR[it.rarity].n}</small>`:'<small>Vide</small>'}</div>
     <button class="btn sm" data-act="changeItem" data-slot="${sl}">Changer</button>${it?`<button class="btn sm" data-act="unequip" data-slot="${sl}">Retirer</button>`:''}</div>`}).join('');
-  return `<div class="pchar">
+  return `<div class="prow1">
       <div class="pleft">${BP.equip}</div>
+      ${BP.inv}
+    </div>
+    <div class="prow2">
+      ${viewSkills(h)}
       <section class="panel ppres"><div class="sheethead"><h2>${esc(h.name)}</h2>${PORTRAIT[h.cls]?`<img class="portrait" src="${PORTRAIT[h.cls]}" alt="Portrait : ${c.n}" width="114" height="114">`:`<span class="tile xl" style="--h:${h.hue}">${icon(c.ic)}</span>`}<small>${c.n} · Niveau ${h.lvl}</small><span class="stars" title="Ascension">${'★'.repeat(h.stars)}${'☆'.repeat(5-h.stars)}</span></div>
         <div class="bar xp" style="margin-bottom:4px"><i style="width:${h.lvl>=MAXL?100:h.xp/need*100}%"></i></div><small class="num">${h.lvl>=MAXL?'Niveau max':`XP ${fmt(h.xp)} / ${fmt(need)}`}</small>
         <div class="sep"></div><dl class="stats cats">${BP.mini}</dl><div class="row" style="justify-content:center;margin-top:8px"><button class="btn sm" data-act="statSplit" aria-pressed="${!!S.statSplit}">${S.statSplit?'Masquer le détail':'Voir le détail (base + équipement)'}</button></div><div class="sep"></div>
         <h3 style="margin-bottom:6px">Ascension</h3>
         ${h.stars>=5?'<p class="hint">Ascension maximale. +10% de stats de base par étoile.</p>':`<p class="hint" style="margin-bottom:8px">+10 % de stats de base. Niveau maximum (${aReq}) requis${h.lvl<aReq?` — vous êtes niveau ${h.lvl}`:''}.</p><div class="row"><button class="btn" data-act="ascend" ${h.lvl<aReq||!canPay(aCost)?'disabled':''}>Ascension ${h.stars+1}</button>${costHTML(aCost)}</div>`}
       </section>
-    </div>
-    ${BP.inv}
-      ${viewSkills(h)}`;
+    </div>`;
 }
 
 /* --- inventaire --- */
@@ -3343,7 +3390,8 @@ function viewHelp(){
 const VERSION='0.3.1';
 const PATCH=[
  {v:'0.3.1',t:"Raids, spécialisations et équilibrage",sec:[
-  ["Compétences et spécialisations",["Nouveau système de compétences pour chaque classe : 3 compétences de base jusqu’au niveau 10, puis une spécialisation à choisir dans la fenêtre Personnage.","Chaque spécialisation a son propre arbre de talents (8 talents, actifs et passifs, reliés par des traits) : un talent se débloque quand le talent auquel il est relié est appris et que le niveau requis est atteint (10, 12, 15, 20, 25 et 30).","Le choix est définitif. La nouvelle Potion d’oubli (Marchand : 5 000 or et 5 Prismes divins) réinitialise toutes les compétences et la spécialisation, avec remboursement des points.","Compétences affichées sous forme d’icônes ; une infobulle détaille l’effet, le rang actuel, le rang suivant et les conditions. Cliquez sur une icône pour l’apprendre ou l’équiper. Les passifs sont ronds, les actives carrées.","Barre de combat : jusqu’à 4 compétences actives (avant 3), affichées en icônes avec le coût en PA et la recharge restante, dans les combats d’aventure, les duels et les raids.","Toutes les sauvegardes existantes : les compétences sont réinitialisées et tous les points de compétence sont remboursés."]],
+  ["Compétences et spécialisations",["Nouveau système de compétences pour chaque classe : 3 compétences de base jusqu’au niveau 10, puis une spécialisation à choisir dans la fenêtre Personnage.","Chaque spécialisation a son propre arbre de talents (8 talents, actifs et passifs, reliés par des traits) : un talent se débloque quand le talent auquel il est relié est appris et que le niveau requis est atteint (10, 12, 15, 20, 25 et 30).","Le choix est définitif. La nouvelle Potion d’oubli (Marchand : 5 000 or et 5 Prismes divins) réinitialise toutes les compétences et la spécialisation, avec remboursement des points.","Compétences affichées sous forme d’icônes ; une infobulle détaille l’effet, le rang actuel, le rang suivant et les conditions. Cliquez sur une icône pour l’apprendre ou l’équiper. Les passifs sont ronds, les actives carrées.","Barre de sorts : jusqu’à 5 compétences actives (avant 3), à placer par glisser-déposer dans la fenêtre Personnage, et affichées en icônes avec le coût en PA et la recharge restante, dans les combats d’aventure, les duels et les raids.","Toutes les sauvegardes existantes : les compétences sont réinitialisées et tous les points de compétence sont remboursés."]],
+  ["Personnage",["Nouvelle disposition : l’équipement est à gauche de l’inventaire, et les compétences à gauche de la présentation du personnage et de ses statistiques.","Nouvelle barre de sorts (5 emplacements) au-dessus des compétences : glissez-déposez une compétence active apprise dans un emplacement, déplacez-la d’un emplacement à l’autre pour changer l’ordre, ou glissez-la hors de la barre pour la retirer. L’ordre de la barre est celui des combats."]],
   ["Guerrier",["Compétences de base : Frappe puissante (niv. 1, 200 % FOR, 2 PA), Mur de boucliers (niv. 3, bouclier de 30 % des PV + provocation), Tourbillon (niv. 6, 130 % FOR sur tous les ennemis).","Spécialisation Saignement : Entaille (150 % FOR, 50 % de chances d’infliger Saignement : 40 % FOR par tour, 3 tours), Lames dentelées (+10 % de chances de Saignement avec Entaille par rang, jusqu’à 100 %), Hémorragie (+10 % de dégâts des Saignements et +1 % de vol de vie par rang), Éventration (160 % FOR, +60 % contre une cible qui saigne), Lacération (100 % FOR sur tous les ennemis, 60 % de chances de Saignement), Odeur du sang (+5 % de dégâts contre les cibles qui saignent et +3 % PV par rang), Plaies profondes (+1 tour de Saignement par rang, 2 rangs), Exsanguination (140 % FOR et détonation : 150 % des dégâts de Saignement restants infligés immédiatement).","Spécialisation Barbarie : Frappe sauvage (160 % FOR, +7 % de dégâts par tranche de 10 % de PV manquants), Fureur (+1,2 % de dégâts par tranche de 10 % de PV manquants par rang), Instinct de survie (−5 % de dégâts subis sous 35 % de PV et +3 % PV par rang), Pacte de sang (sacrifie 10 % des PV max, 210 % FOR, +5 % par tranche de 10 % de PV manquants), Cri de guerre (+25 % de Force pendant 3 tours), Carnage (115 % FOR sur tous les ennemis, +5 % par tranche de 10 % de PV manquants), Berserker (+4 % vitesse, +2 % critique et +1 % vol de vie par rang, 3 rangs), Folie meurtrière (200 % FOR, +8 % par tranche de 10 % de PV manquants, rend 15 % des dégâts en PV)."]],
   ["Sorcier",["Compétences de base : Projectile arcanique (niv. 1, 180 % INT, 2 PA), Barrière arcanique (niv. 3, bouclier de 220 % INT sur les alliés), Nova arcanique (niv. 6, 95 % INT sur tous les ennemis).","Spécialisation Feu : Immolation (150 % INT de feu, 50 % de chances d’infliger Brûlure : 40 % INT par tour, 3 tours), Embrasement (+10 % de chances de Brûlure avec Immolation par rang, jusqu’à 100 %), Chaleur intense (+10 % de dégâts des Brûlures et +3 % INT par rang), Combustion (80 % INT et détonation : 150 % des dégâts de Brûlure restants infligés immédiatement), Vague de flammes (100 % INT sur tous les ennemis, 50 % de chances de Brûlure), Pyromanie (+5 % de dégâts contre les cibles en feu et +1 % critique par rang), Feu persistant (+1 tour de Brûlure par rang, 2 rangs), Météore (220 % INT sur tous les ennemis, 60 % de chances de Brûlure).","Spécialisation Foudre : Arc électrique (180 % INT de foudre, 30 % de chances de paralyser 2 tours), Électricité statique (+7 % de chances de paralyser et +3 % INT par rang), Vif-argent (+4 % vitesse et +2 % critique par rang, 3 rangs), Éclair en chaîne (100 % INT sur tous les ennemis, 15 % de chances de paralyser), Choc nerveux (+10 % de chances qu’une cible paralysée perde son tour par rang, 3 rangs), Surtension (+8 % de dégâts contre les cibles paralysées et +1 % critique par rang), Tempête (140 % INT sur tous les ennemis, 20 % de chances de paralyser), Jugement de foudre (260 % INT, dégâts doublés contre une cible paralysée).","Nouvel effet Paralysie (2 tours) : à chaque tour, la cible a 50 % de chances de perdre son tour (jusqu’à 80 % avec Choc nerveux). Les boss n’ont que la moitié des chances d’être paralysés."]],
   ["Raids",["Nouveau mode « ☠ Raid » dans l’onglet Aventure : combat coopératif à 2 joueurs contre un boss unique et très puissant.","Trois boss de raid : Colosse de Braise (niveau 25, niveau 20 requis), Wyrm des Glaces (niveau 40, niveau 35 requis) et Avatar de l’Abîme (niveau 50, niveau 50 requis).","Paliers : chaque victoire débloque le palier suivant (+1) pour ce boss. La difficulté est exponentielle : PV, attaque et défense du boss ×1,05 par palier (palier +10 : ×1,63 ; palier +20 : ×2,65). Le palier se choisit dans un menu déroulant avant le combat ; les deux joueurs doivent l’avoir débloqué.","Recherchez un partenaire (même boss, même palier) ou invitez un ami depuis la liste d’amis (nouveau bouton « Raid » sous « Duel »).","Le boss agit deux fois par tour et entre en rage au tour 16 (+8 % de dégâts par tour). Les héros étourdis passent leur tour automatiquement.","Récompenses (palier +0, multipliées par 1,05 par palier pour l’or) : Colosse 1 150 or, Wyrm 1 600 or, Avatar 1 900 or, plus 2 runes (+1 tous les 3 paliers), 6 essences et 6 cristaux (+1 par palier).","Un joueur inactif pendant 90 secondes peut voir son tour passé par son partenaire. Si un joueur abandonne, son partenaire peut continuer seul."]],
@@ -3645,13 +3693,13 @@ const A={
   learn:d=>{
     const h=S.heroes[0],sk=SK[d.id]; if(!sk||!heroSkills(h).includes(sk)||h.sp<1||(h.learned[d.id]||0)>=skMax(sk)||skReq(sk,h)) return;
     h.sp--; h.learned[d.id]=(h.learned[d.id]||0)+1;
-    if(sk.t==='a'&&!h.loadout.includes(d.id)){ if(h.loadout.length<LOADOUT_MAX) h.loadout.push(d.id); else toast(`Barre de combat pleine (${LOADOUT_MAX}) : retirez une compétence pour équiper ${sk.n}.`) }
+    if(sk.t==='a'&&!h.loadout.includes(d.id)){ if(h.loadout.length<LOADOUT_MAX) h.loadout.push(d.id); else toast(`Barre de sorts pleine (${LOADOUT_MAX}) : retirez une compétence pour équiper ${sk.n}.`) }
     const y=scrollY; save();render();scrollTo(0,y);
   },
   equipSk:d=>{
     const h=S.heroes[0],sk=SK[d.id]; if(!sk||!h.learned[d.id]||sk.t!=='a') return;
     if(h.loadout.includes(d.id)){ if(h.loadout.length>1)h.loadout=h.loadout.filter(x=>x!==d.id); else toast('Gardez au moins une compétence active.') }
-    else if(h.loadout.length<LOADOUT_MAX) h.loadout.push(d.id); else toast(`Barre de combat pleine (${LOADOUT_MAX} compétences).`);
+    else if(h.loadout.length<LOADOUT_MAX) h.loadout.push(d.id); else toast(`Barre de sorts pleine (${LOADOUT_MAX} compétences).`);
     const y=scrollY; save();render();scrollTo(0,y);
   },
   skSel:d=>{ UI.skSel=UI.skSel===d.id?null:d.id; const y=scrollY; render(); scrollTo(0,y) },
