@@ -323,6 +323,24 @@ dl.cats dt.spow,dl.cats dd.spow{margin-top:8px;padding-top:6px;border-top:1px so
 .pvacts .potbar{margin-top:8px}
 .pvwin{text-align:center;font-family:var(--display);font-size:1.6rem;color:var(--brass);padding:12px}
 .pvlog{max-height:150px;overflow-y:auto}
+.pvpm .box.fbox{width:min(100%,1040px)}
+.fgrid{display:grid;grid-template-columns:minmax(0,1fr) 250px;gap:14px;align-items:stretch}
+.fchat{display:flex;flex-direction:column;min-height:0;max-height:560px;border-left:1px solid var(--line2);padding-left:12px}
+.fchat h3{margin:0 0 4px;font-size:1rem}
+.fchat .chlog{min-height:160px}
+.fchat .fradd{display:flex;gap:6px}.fchat .fradd input{flex:1;min-width:0}
+.potcd{font-size:.75rem;color:var(--mute);align-self:center}
+.rdarena{display:grid;grid-template-columns:minmax(0,2fr) auto minmax(0,1fr);gap:10px;align-items:center}
+.rdteam{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.pvcard.boss{border-color:var(--blood)}.pvcard.boss .hp i{background:var(--blood)}
+.pvcard .tile.xl{width:84px;height:84px}
+.pvcard.left{opacity:.45}
+.rdpanel{text-align:left}
+.rdgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:8px;margin:10px 0 12px}
+.rdsel{display:flex;flex-wrap:wrap;gap:12px;align-items:center;margin:8px 0 12px}
+.rdsel select{padding:6px 8px;font:inherit;border:1px solid var(--line2);border-radius:4px;background:var(--bg2);color:var(--fg)}
+.rdinfo{display:grid;grid-template-columns:auto 1fr;gap:4px 12px;margin:0 0 12px}.rdinfo dt{color:var(--mute)}.rdinfo dd{margin:0}
+@media (max-width:820px){.fgrid{grid-template-columns:1fr}.fchat{border-left:0;padding-left:0;border-top:1px solid var(--line2);padding-top:8px;max-height:300px}.rdarena{grid-template-columns:1fr}.rdarena .pvvs{text-align:center}}
 .box.loot{text-align:center;max-width:360px}.lootg{display:flex;align-items:center;justify-content:center;gap:8px;font-size:1.6rem;margin:12px 0 16px;color:var(--brass)}.lootg svg{width:30px;height:30px}
 @media (max-width:560px){.pvarena{grid-template-columns:1fr}.pvvs{text-align:center}}
 /* generic */
@@ -1457,7 +1475,7 @@ function playerChoice(u){
   return new Promise(res=>{C.waiting={u,res};C.pending=null;renderActbar();refreshAll()});
 }
 async function turn(u){
-  C.turn=u.id; if(C.round>1&&u.maxAp) u.ap=Math.min(u.maxAp,(u.ap||0)+AP_REGEN); refreshAll();
+  C.turn=u.id; if(u.maxAp) u.ap=u.maxAp; refreshAll();
   for(const s of u.st.filter(s=>s.k==='dot')) if(u.hp>0) dmg(u,Math.max(1,Math.round(s.v)),false,null,s.n);
   if(u.regen&&u.hp>0) heal(u,u.maxHp*u.regen/100,true);
   if(u.hp<=0){C.turn=null;refreshAll();return}
@@ -1510,7 +1528,7 @@ async function startBattle(){
   if(C.phase==='fight') return;
   const party=partyHeroes(); if(!party.length){toast('Aucun personnage.');return}
   C.abort=false; C.id++; const id=C.id;
-  C.diff=curDiff(); C.hero=C.diff!=='normal'; C.bonus={xp:0,loot:0}; C.units=[...party.map(mkHeroUnit),...mkEnemies(UI.zone,UI.stage,party.length,C.diff)];
+  C.diff=curDiff(); C.hero=C.diff!=='normal'; C.bonus={xp:0,loot:0}; C.potR=-99; C.units=[...party.map(mkHeroUnit),...mkEnemies(UI.zone,UI.stage,party.length,C.diff)];
   C.round=0; C.logs=[]; C.result=null; C.phase='fight'; C.zone=UI.zone; C.stage=UI.stage; C.pending=null; C.waiting=null; C.turn=null;
   render();
   logLine(`${ZONES[C.zone].n} — étape ${C.stage}${C.hero?' ('+DIFF[C.diff].n.toLowerCase()+')':''}`,'rd');
@@ -1699,7 +1717,7 @@ async function onFbUser(u){
 }
 function afterProfile(fromLogin){
   if(fromLogin||UI.scr==='login'||UI.scr==='pseudo'){UI.scr='menu'; toast('Connecté : '+(FB.prof?FB.prof.name:(FB.user.email||'compte'))+'.')}
-  if(FB.prof){ presence(); startFriends(); startPvp() }
+  if(FB.prof){ presence(); startFriends(); startPvp(); startRaid() }
   adminCheck().then(()=>{ if(UI.scr==='opts'||UI.scr==='best') render() });
   render();
 }
@@ -1769,7 +1787,7 @@ function renderFriends(){
   const msg=$('#frmsg'); msg.textContent=FR.err||UI.frmsg||''; msg.className='frmsg '+(FR.err||UI.frerr?'bad':'ok');
   const row=(f,body,btns)=>`<li class="frrow">${body}<span class="fracts">${btns}</span></li>`;
   const accL=acc.map(f=>{const o=f.users.find(x=>x!==me),p=FR.prof[o],ol=isOnline(p),ch=p&&p.char,ur=isUnread(f);
-      return {ol,h:row(f,`<span class="st ${ol?'on':''}" aria-label="${ol?'En ligne':'Hors ligne'}"></span><span class="frn"><button class="frname" data-act="frMenu" data-id="${f.id}" aria-expanded="${UI.frMenu===f.id}"><b>${esc(otherName(f))}</b>${ur?'<span class="frud" aria-label="Nouveau message"></span>':''}</button>${UI.frMenu===f.id?`<span class="frpop" role="menu"><button class="btn sm pri chatb" data-act="frChat" data-id="${f.id}"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4h16a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H9l-5 4v-4H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2zm3 5v2h2V9zm4 0v2h2V9zm4 0v2h2V9z"/></svg><span>Chat${ur?' (nouveau)':''}</span></button><button class="btn sm chatb duelb" data-act="frDuel" data-id="${f.id}"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 3l7.5 7.5-1.4 1.4L4 6.8V3zm18 0v3.8l-9.6 9.6 1.4 1.4L21 9.6V3h0zM5.3 14.6l4.1 4.1-1.4 1.4-1.4-1.4L4 21.3 2.7 20l2.6-2.6-1.4-1.4zm13.4 0l1.4 1.4-1.4 1.4L21.3 20 20 21.3l-2.6-2.6-1.4 1.4-1.4-1.4z"/></svg><span>Duel</span></button></span>`:''}<small>${ol?(ch?`Joue ${esc(ch.name)} · ${(CLASSES[ch.cls]||{n:''}).n} niv. ${ch.lvl}`:'Dans le menu'):'Hors ligne'+(p&&p.char?` · ${esc(p.char.name)} niv. ${p.char.lvl}`:'')}</small></span>`,
+      return {ol,h:row(f,`<span class="st ${ol?'on':''}" aria-label="${ol?'En ligne':'Hors ligne'}"></span><span class="frn"><button class="frname" data-act="frMenu" data-id="${f.id}" aria-expanded="${UI.frMenu===f.id}"><b>${esc(otherName(f))}</b>${ur?'<span class="frud" aria-label="Nouveau message"></span>':''}</button>${UI.frMenu===f.id?`<span class="frpop" role="menu"><button class="btn sm pri chatb" data-act="frChat" data-id="${f.id}"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4h16a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H9l-5 4v-4H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2zm3 5v2h2V9zm4 0v2h2V9zm4 0v2h2V9z"/></svg><span>Chat${ur?' (nouveau)':''}</span></button><button class="btn sm chatb duelb" data-act="frDuel" data-id="${f.id}"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 3l7.5 7.5-1.4 1.4L4 6.8V3zm18 0v3.8l-9.6 9.6 1.4 1.4L21 9.6V3h0zM5.3 14.6l4.1 4.1-1.4 1.4-1.4-1.4L4 21.3 2.7 20l2.6-2.6-1.4-1.4zm13.4 0l1.4 1.4-1.4 1.4L21.3 20 20 21.3l-2.6-2.6-1.4 1.4-1.4-1.4z"/></svg><span>Duel</span></button><button class="btn sm chatb duelb" data-act="frRaid" data-id="${f.id}"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3 6 6 .9-4.5 4.3 1 6.3L12 16.6 6.5 19.5l1-6.3L3 8.9 9 8z"/></svg><span>Raid</span></button></span>`:''}<small>${ol?(ch?`Joue ${esc(ch.name)} · ${(CLASSES[ch.cls]||{n:''}).n} niv. ${ch.lvl}`:'Dans le menu'):'Hors ligne'+(p&&p.char?` · ${esc(p.char.name)} niv. ${p.char.lvl}`:'')}</small></span>`,
         UI.frdel===f.id?`<button class="btn sm danger" data-act="frDel" data-id="${f.id}">Retirer</button><button class="btn sm" data-act="frDelNo">Non</button>`:`<button class="frx sm" data-act="frDel" data-id="${f.id}" title="Retirer de mes amis" aria-label="Retirer ${esc(otherName(f))}">×</button>`)}});
   const onL=accL.filter(x=>x.ol),offL=accL.filter(x=>!x.ol);
   $('#frlist').innerHTML=
@@ -1814,7 +1832,7 @@ function stopPvp(){ if(PV.unsub){PV.unsub();PV.unsub=null} pvpStopSearch(); PV.m
 async function pvpSearch(){
   if(!pvpReady()){toast('Chargez un personnage pour faire un duel.');return}
   if(C.phase==='fight'){toast('Terminez d’abord votre combat en cours.');return}
-  if(PV.match) return; PV.searching=true; render();
+  if(PV.match||RD.match) return; if(RD.searching) rdStopSearch(); PV.searching=true; render();
   const h=S.heroes[0],me=pvpMe();
   const put=()=>pvpQ().doc(me).set({uid:me,name:FB.prof.name,char:{name:h.name,cls:h.cls,lvl:h.lvl},ts:pvpTS(),tms:Date.now()}).catch(()=>{});
   await put(); let n=0;
@@ -1840,6 +1858,7 @@ async function pvpUpd(data){ if(!PV.match) return; try{ await pvpCol().doc(PV.ma
 async function pvpAccept(){
   if(!PV.match) return; if(!pvpReady()){toast('Chargez un personnage (Jouer) pour accepter le duel.');return}
   if(C.phase==='fight'){toast('Terminez d’abord votre combat en cours.');return}
+  if(RD.match&&RD.match.state==='fight'){toast('Terminez d’abord votre raid.');return}
   const me=pvpMe(); await pvpUpd({['acc.'+me]:true,['u.'+me]:pvpSnap()});
 }
 async function pvpRefuse(){ if(!PV.match) return; await pvpUpd({state:'cancel',by:pvpMe()}); PV.match=null; renderPvp() }
@@ -1869,9 +1888,15 @@ function pvExec(u,t,sk,L){
   L.push(sk.id==='atk'?`${u.name} attaque.`:`${u.name} utilise ${sk.n}.`);
   if(sk.mult) for(let i=0;i<(sk.hits||1)&&t.hp>0;i++) pvHit(u,t,sk.mult*k,st,sk,L);
   for(const f of sk.fx||[]){
-    const on=f.on||(sk.tg==='one'||sk.tg==='all'?'foe':'friend'),tg=on==='foe'?t:u; if(tg.hp<=0) continue;
+    const on=f.on||(sk.tg==='one'||sk.tg==='all'?'foe':'friend'),tg=on==='foe'?t:u; pvFx(u,tg,f,k,sk,L);
+  }
+}
+function pvFx(u,tg,f,k,sk,L){
+  const st=sk.st||u.role; if(tg.hp<=0) return;
+  {
     if(f.k==='dot'){tg.st=tg.st.filter(s=>!(s.k==='dot'&&s.n===f.n)); tg.st.push({k:'dot',n:f.n,v:Math.round(pvEff(u,st)*f.v*k*resMul(tg,st,sk.el)),dur:f.dur}); L.push(`${tg.name} subit ${f.n}.`)}
-    else if(f.k==='stun'){ if(Math.random()*100<(f.ch||100)){tg.st=tg.st.filter(s=>s.k!=='stun'); tg.st.push({k:'stun',dur:f.dur}); L.push(`${tg.name} est étourdi !`)} }
+    else if(f.k==='taunt'){tg.st=tg.st.filter(s=>s.k!=='taunt'); tg.st.push({k:'taunt',dur:f.dur}); L.push(`${tg.name} provoque l’adversaire.`)}
+    else if(f.k==='stun'){ if(Math.random()*100<(f.ch||100)*(tg.boss?.5:1)){tg.st=tg.st.filter(s=>s.k!=='stun'); tg.st.push({k:'stun',dur:f.dur}); L.push(`${tg.name} est étourdi !`)} }
     else if(f.k==='shield'){const a=f.of==='hp'?tg.maxHp*f.v*k:pvEff(u,'mag')*f.v*k; tg.shield=Math.round(Math.min(tg.maxHp,(tg.shield||0)+a)); L.push(`${tg.name} gagne un bouclier.`)}
     else if(f.k==='heal'){const a=Math.round(Math.min(tg.maxHp-tg.hp,pvEff(u,f.of||'mag')*f.v*k)); tg.hp+=a; L.push(`${tg.name} récupère ${a} PV.`)}
     else if(f.k==='buff'||f.k==='debuff'){const v=f.k==='debuff'?-Math.abs(f.v):f.v*k; tg.st=tg.st.filter(s=>!(s.k==='buff'&&s.stat===f.stat&&Math.sign(s.v)===Math.sign(v))); tg.st.push({k:'buff',stat:f.stat,v:Math.round(v),dur:f.dur})}
@@ -1890,19 +1915,23 @@ async function pvAct(id){
   if((sk.ap||0)>x.U.ap||(x.U.cds[id]||0)||(id==='atk'&&x.U.atkUsed)) return;
   PV.busy=true; pvExec(x.U,x.T,sk,x.L); await pvCommit(x); PV.busy=false;
 }
+function potFx(U,k,L){
+  if(k==='p_vie'){const a=Math.round(Math.min(U.maxHp-U.hp,U.maxHp*.4)); U.hp+=a; L.push(`${U.name} boit une Potion de vie (+${a} PV).`)}
+  else if(k==='p_res'){U.st=U.st.filter(s=>!(s.k==='buff'&&(s.stat==='def'||s.stat==='res')&&s.v>0)); U.st.push({k:'buff',stat:'def',v:40,dur:3},{k:'buff',stat:'res',v:40,dur:3}); L.push(`${U.name} boit une Potion de résistance.`)}
+  else if(k==='p_for'||k==='p_int'){const stt=k==='p_for'?'atk':'mag'; U.st=U.st.filter(s=>!(s.k==='buff'&&s.stat===stt&&s.v>0)); U.st.push({k:'buff',stat:stt,v:30,dur:3}); L.push(`${U.name} boit une ${POTS[k].n}.`)}
+  else return false;
+  U.potCd=POT_CD+1; return true;
+}
 async function pvPot(k){
-  if(!pvMyTurn()||PV.busy) return; if(matCount(k)<1) return; const x=pvState(),U=x.U;
-  if(k==='p_vie'){const a=Math.round(Math.min(U.maxHp-U.hp,U.maxHp*.4)); U.hp+=a; x.L.push(`${U.name} boit une Potion de vie (+${a} PV).`)}
-  else if(k==='p_res'){U.st=U.st.filter(s=>!(s.k==='buff'&&(s.stat==='def'||s.stat==='res')&&s.v>0)); U.st.push({k:'buff',stat:'def',v:40,dur:3},{k:'buff',stat:'res',v:40,dur:3}); x.L.push(`${U.name} boit une Potion de résistance.`)}
-  else if(k==='p_for'||k==='p_int'){const stt=k==='p_for'?'atk':'mag'; U.st=U.st.filter(s=>!(s.k==='buff'&&s.stat===stt&&s.v>0)); U.st.push({k:'buff',stat:stt,v:30,dur:3}); x.L.push(`${U.name} boit une ${POTS[k].n}.`)}
-  else return;
+  if(!pvMyTurn()||PV.busy) return; if(matCount(k)<1) return; const x=pvState(),U=x.U; if(U.potCd>0) return;
+  if(!potFx(U,k,x.L)) return;
   PV.busy=true; removeMat(k,1); save(); await pvCommit(x); PV.busy=false;
 }
 async function pvEnd(){
   if(!pvMyTurn()||PV.busy) return; const x=pvState(),U=x.U,T=x.T;
-  U.st.forEach(s=>s.dur--); U.st=U.st.filter(s=>s.dur>0); for(const k in U.cds) U.cds[k]=Math.max(0,U.cds[k]-1); U.stun=false; U.atkUsed=false;
+  U.st.forEach(s=>s.dur--); U.st=U.st.filter(s=>s.dur>0); for(const k in U.cds) U.cds[k]=Math.max(0,U.cds[k]-1); if(U.potCd>0) U.potCd--; U.stun=false; U.atkUsed=false;
   /* début du tour adverse */
-  T.ap=Math.min(T.maxAp,T.ap+AP_REGEN);
+  T.ap=T.maxAp;
   for(const s of T.st.filter(s=>s.k==='dot')){ T.hp=Math.max(0,T.hp-Math.max(1,s.v)); x.L.push(`${T.name} subit ${Math.max(1,s.v)} dégâts (${s.n}).`) }
   T.stun=T.st.some(s=>s.k==='stun'); if(T.stun) x.L.push(`${T.name} est étourdi et ne peut pas agir.`);
   const round=(x.m.round||1)+(x.o===x.m.first?1:0);
@@ -1928,10 +1957,32 @@ function pvpLoot(m){
   document.body.append(d); d.querySelector('button').focus();
 }
 /* affichage */
+function fActs(U,p){
+  const ids=['atk',...U.skills],pc=U.potCd||0,pots=['p_vie','p_res',CLASSES[U.cls].role==='mag'?'p_int':'p_for'].filter(k=>matCount(k)>0);
+  return `<div class="acts">${ids.map(id=>{const s=SK[id],cd=U.cds[id]||0,c=s.ap||0,no=c>U.ap,used=id==='atk'&&U.atkUsed;return `<button class="skb" data-act="${p}Sk" data-id="${id}" ${cd||no||used?'disabled':''} title="${esc(skDesc(s,U.ranks[id]||1,U.role))}"><b>${s.n}${s.el&&ELEM[s.el]?` <em class="elt" style="--ec:${ELEM[s.el].c}">${ELEM[s.el].n}</em>`:''}</b><small>${c?`<span class="apc">${c} PA</span> · `:''}${used?'Déjà utilisée':cd?`Recharge : ${cd}`:no?'PA insuffisants':id==='atk'?'1 fois par tour':'Prête'}</small></button>`}).join('')}<button class="btn endturn" data-act="${p}EndT">Fin de tour</button></div>
+      <div class="potbar">${pots.map(k=>`<button class="potb" data-act="${p}Pot" data-k="${k}" ${pc?'disabled':''} title="${esc(POTS[k].n)} : ${esc(POTS[k].d)}">${matIcon(k)}<span class="num">${matCount(k)}</span></button>`).join('')||'<small class="mute">Aucune potion utilisable.</small>'}${pc?`<small class="potcd">${potCdTxt(pc)}</small>`:pots.length?'<small class="potcd">1 potion par tour, puis 3 tours de recharge.</small>':''}</div>`;
+}
+function fchatHTML(m,k){
+  const me=pvpMe(),hm=t=>new Date(t||Date.now()).toLocaleTimeString('fr-FR',{hour:'2-digit',minute:'2-digit'});
+  return `<aside class="fchat" aria-label="Chat du combat"><h3>Chat</h3><div class="fclog chlog" aria-live="polite">${(m.chat||[]).slice(-40).map(c=>`<div class="chm ${c.f===me?'me':''}"><small>${esc(c.n||'')} · ${hm(c.ts)}</small><span>${esc(c.t)}</span></div>`).join('')||`<p class="mute frempty">Discutez avec votre ${k==='pvp'?'adversaire':'partenaire'}.</p>`}</div>
+    <div class="fradd"><input type="text" id="fcin" data-k="${k}" maxlength="200" placeholder="Votre message…" aria-label="Message du chat de combat"><button class="btn sm pri" data-act="fcSend" data-k="${k}">Envoyer</button></div></aside>`;
+}
+function keepFc(w,fn){
+  const ci=w.querySelector('#fcin'),v=ci?ci.value:'',foc=!!ci&&document.activeElement===ci,ss=ci?ci.selectionStart:0;
+  fn();
+  const ni=w.querySelector('#fcin'); if(ni){ ni.value=v; if(foc){ ni.focus(); try{ni.setSelectionRange(ss,ss)}catch(e){} } }
+  const cl=w.querySelector('.fclog'); if(cl) cl.scrollTop=cl.scrollHeight;
+}
+async function fcSend(k){
+  const i=$('#fcin'); if(!i) return; const t=(i.value||'').trim().slice(0,200); if(!t) return;
+  const m=k==='raid'?RD.match:PV.match; if(!m||!FB.user) return; i.value='';
+  const col=k==='raid'?rdCol():pvpCol();
+  try{ await col.doc(m.id).update({chat:firebase.firestore.FieldValue.arrayUnion({f:pvpMe(),n:FB.prof.name,t,ts:Date.now()})}) }catch(e){ toast('Message non envoyé ('+(e.code||'erreur')+').') }
+}
 function pvCard(u,name,me,turn){
   if(!u) return `<div class="pvcard wait"><b>${esc(name||'?')}</b><small>En attente…</small></div>`;
   const aps=Array.from({length:u.maxAp||0},(_,i)=>`<i class="${i<u.ap?'on':''}"></i>`).join(''),sts=(u.st||[]).map(s=>`<em class="b-${s.k}">${esc(s.k==='dot'?s.n:s.k==='stun'?'Étourdi':(s.v>0?'+':'')+s.v+'% '+(STAT_N[s.stat]||s.stat))} ${s.dur}</em>`).join('');
-  return `<div class="pvcard ${me?'me':''} ${turn?'turn':''} ${u.hp<=0?'dead':''}">${PORTRAIT[u.cls]?`<img src="${PORTRAIT[u.cls]}" alt="" width="84" height="84">`:''}<b>${esc(u.acct)}</b><small>${esc(u.name)} · ${(CLASSES[u.cls]||{n:''}).n} niv. ${u.lvl}</small>
+  return `<div class="pvcard ${me?'me':''} ${turn?'turn':''} ${u.hp<=0?'dead':''} ${u.boss?'boss':''} ${u.left?'left':''}">${PORTRAIT[u.cls]?`<img src="${PORTRAIT[u.cls]}" alt="" width="84" height="84">`:u.boss?`<span class="tile xl" style="--h:40">${icon('boss')}</span>`:''}<b>${esc(u.acct)}</b><small>${u.boss?`Boss de raid · niv. ${u.lvl}`:`${esc(u.name)} · ${(CLASSES[u.cls]||{n:''}).n} niv. ${u.lvl}`}${u.left?' · a abandonné':''}</small>
     <div class="hp"><i style="width:${Math.max(0,u.hp/u.maxHp*100)}%"></i><span>${Math.ceil(u.hp)} / ${Math.ceil(u.maxHp)}${u.shield>0?' (+'+Math.ceil(u.shield)+')':''}</span></div><div class="apbar" title="${u.ap} / ${u.maxAp} PA">${aps}</div><div class="stt">${sts}</div></div>`;
 }
 function pvpTimer(){
@@ -1958,17 +2009,12 @@ function renderPvp(){
   let acts='';
   if(m.state==='done') acts=`<div class="pvwin">🏆 ${esc(nm[m.winner]||'')} remporte le duel !</div>`;
   else if(my&&U.stun) acts=`<p class="mute">Vous êtes étourdi : vous passez ce tour.</p><div class="row"><button class="btn endturn" data-act="pvpEndT">Fin de tour</button></div>`;
-  else if(my){
-    const ids=['atk',...U.skills];
-    acts=`<div class="acts">${ids.map(id=>{const s=SK[id],cd=U.cds[id]||0,c=s.ap||0,no=c>U.ap,used=id==='atk'&&U.atkUsed;return `<button class="skb" data-act="pvpSk" data-id="${id}" ${cd||no||used?'disabled':''} title="${esc(skDesc(s,U.ranks[id]||1,U.role))}"><b>${s.n}${s.el&&ELEM[s.el]?` <em class="elt" style="--ec:${ELEM[s.el].c}">${ELEM[s.el].n}</em>`:''}</b><small>${c?`<span class="apc">${c} PA</span> · `:''}${used?'Déjà utilisée':cd?`Recharge : ${cd}`:no?'PA insuffisants':id==='atk'?'1 fois par tour':'Prête'}</small></button>`}).join('')}<button class="btn endturn" data-act="pvpEndT">Fin de tour</button></div>
-      <div class="potbar">${['p_vie','p_res',CLASSES[U.cls].role==='mag'?'p_int':'p_for'].filter(k=>matCount(k)>0).map(k=>`<button class="potb" data-act="pvpPot" data-k="${k}" title="${esc(POTS[k].n)} : ${esc(POTS[k].d)}">${matIcon(k)}<span class="num">${matCount(k)}</span></button>`).join('')||'<small class="mute">Aucune potion utilisable.</small>'}</div>`;
-  } else acts=`<p class="mute">Tour de <b>${esc(nm[o]||'')}</b>… <span class="num" data-pvt>(${tl} s)</span></p>${late?'<div class="row"><button class="btn pri" data-act="pvpClaim">Réclamer la victoire (adversaire inactif)</button></div>':''}`;
-  const keep=w.querySelector('.pvlog'),sc0=keep?keep.scrollTop:0;
-  w.innerHTML=`<div class="box pvbox"><div class="row between" style="margin-bottom:8px"><h2>Duel</h2><small class="num">Tour ${m.round||1}${my?' · <b class="apc">À vous de jouer</b>':''}</small></div>
-    <div class="pvarena">${pvCard(U,nm[me],true,m.turn===me&&m.state==='fight')}<span class="pvvs">VS</span>${pvCard(T,nm[o],false,m.turn===o&&m.state==='fight')}</div>
+  else if(my) acts=fActs(U,'pvp'); else acts=`<p class="mute">Tour de <b>${esc(nm[o]||'')}</b>… <span class="num" data-pvt>(${tl} s)</span></p>${late?'<div class="row"><button class="btn pri" data-act="pvpClaim">Réclamer la victoire (adversaire inactif)</button></div>':''}`;
+  keepFc(w,()=>{ w.innerHTML=`<div class="box pvbox fbox"><div class="row between" style="margin-bottom:8px"><h2>Duel</h2><small class="num">Tour ${m.round||1}${my?' · <b class="apc">À vous de jouer</b>':''}</small></div>
+    <div class="fgrid"><div class="fmain"><div class="pvarena">${pvCard(U,nm[me],true,m.turn===me&&m.state==='fight')}<span class="pvvs">VS</span>${pvCard(T,nm[o],false,m.turn===o&&m.state==='fight')}</div>
     <div class="pvacts">${acts}</div>
     <div class="pvlog log">${(m.log||[]).slice(-12).map(l=>`<p>${esc(l)}</p>`).join('')}</div>
-    ${m.state==='fight'?'<div class="row" style="justify-content:flex-end;margin-top:6px"><button class="btn sm danger" data-act="pvpGiveUp">Abandonner</button></div>':''}</div>`;
+    ${m.state==='fight'?`<div class="row" style="justify-content:flex-end;margin-top:6px"><button class="btn sm danger" data-act="pvpGiveUp">${UI.confirm==='giveup'?'Confirmer l’abandon':'Abandonner'}</button></div>`:''}</div>${fchatHTML(m,'pvp')}</div></div>` });
   const lg=w.querySelector('.pvlog'); if(lg) lg.scrollTop=lg.scrollHeight;
 }
 function viewPvp(){
@@ -1978,6 +2024,256 @@ function viewPvp(){
     ${!on?'<p class="lerr">Connectez-vous à un compte (menu) pour faire des duels.</p>':PV.searching?`<div class="pvsearch"><span class="spin" aria-hidden="true"></span><b>Recherche d’un adversaire…</b><button class="btn" data-act="pvpCancel">Annuler</button></div>`:`<button class="btn pri big" data-act="pvpFind" style="max-width:320px">⚔ Rechercher un adversaire</button>`}
     <p class="mute" style="margin-top:12px">Bilan : <b>${S0.w}</b> victoire${S0.w>1?'s':''} · <b>${S0.l}</b> défaite${S0.l>1?'s':''}</p>
     <p class="hint">Vous pouvez aussi défier un ami : cliquez sur son nom dans la liste d’amis, puis sur « Duel ». Un joueur qui ne joue pas pendant ${PVP_TURN} secondes peut être déclaré perdant.</p></section>`;
+}
+
+/* ============ Raids (coop 2 joueurs contre un boss) ============ */
+const RAIDS=[
+  {id:'colosse',n:'Colosse de Braise',L:25,req:20,role:'atk',hp:7,atk:1.6,def:1.5,res:{rPhys:20,rFeu:40,rGlace:-15},sk:['e_heavy','e_aoe','e_cry','e_stun'],d:'Un géant de roche en fusion qui écrase tout sur son passage.'},
+  {id:'wyrm',n:'Wyrm des Glaces',L:40,req:35,role:'mag',hp:7.5,atk:1.7,def:1.5,res:{rGlace:50,rMag:20,rFeu:-15},sk:['e_aoe','e_curse','e_stun','e_smash'],d:'Un dragon ancien dont le souffle gèle le sang.'},
+  {id:'avatar',n:'Avatar de l’Abîme',L:50,req:50,role:'atk',hp:8,atk:1.8,def:1.6,res:{rPhys:25,rMag:25,rFeu:20,rGlace:20,rFoudre:20,rTerre:20},sk:['e_smash','e_aoe','e_curse','e_poison','e_cry'],d:'L’incarnation du néant. Seuls les meilleurs duos en reviennent.'},
+];
+const RD_STEP=1.05,RD_RAGE=15,RD_TURN=90,RD_ACTS=2;
+const RD={unsub:null,match:null,searching:null,qT:null,tT:null,busy:false,ending:null,gone:{}};
+const rdCol=()=>FB.db.collection(COL('raid'));
+const rdQ=()=>FB.db.collection(COL('raidQueue'));
+const raidMax=id=>(S&&S.raid&&S.raid[id])||0;
+const rdTier=()=>{const r=RAIDS[UI.raidB||0],mx=raidMax(r.id); return Math.min(mx,UI.raidT==null?mx:UI.raidT)};
+const rdMul=t=>Math.pow(RD_STEP,t);
+const rdRw=(r,t)=>({gold:Math.round((400+30*r.L)*rdMul(t)),rune:2+Math.floor(t/3),essence:6+t,cristal:6+t});
+function mkRaidBoss(r,t){
+  const L=r.L,m=rdMul(t),a=Math.round(enStat('atk',L)*r.atk*m*10)/10;
+  const o={acct:r.n,name:r.n,boss:true,rid:r.id,lvl:L,role:r.role,hp:Math.round(enStat('hp',L)*r.hp*m),atk:a,mag:a,
+    def:Math.round(enStat('def',L)*r.def*m),res:Math.round(enStat('def',L)*.9*r.def*m),spd:Math.round((8+.15*L)*1.05*10)/10,
+    crit:8,critDmg:160,dodge:0,lifesteal:0,dmgPct:0,ap:6,maxAp:6,skills:r.sk.slice(),ranks:{},cds:Object.fromEntries(r.sk.map(id=>[id,1])),st:[],shield:0,atkUsed:false,stun:false};
+  for(const k of RES_K) o[k]=Math.min(RES_CAP,(r.res&&r.res[k])||0);
+  o.maxHp=o.hp; return o;
+}
+function startRaid(){
+  if(RD.unsub||!FB.user) return; const me=pvpMe();
+  RD.unsub=rdCol().where('players','array-contains',me).onSnapshot(qs=>{
+    const now=Date.now();
+    for(const d of qs.docs){ const m=Object.assign({id:d.id},d.data({serverTimestamps:'estimate'})),age=now-(m.cms||now);
+      if(RD.gone[m.id]) continue;
+      if(RD.match&&RD.match.id===m.id){ RD.match=m; continue }
+      if(m.state==='confirm'&&age<45000&&!RD.match){ RD.match=m; rdStopSearch(); if(m.from!==me){ const r=RAIDS.find(x=>x.id===m.boss); toast('☠ '+(m.names&&m.names[m.from]||'Un joueur')+' vous invite au raid '+(r?r.n:'')+' (palier +'+m.tier+') !') } continue }
+      if((m.state!=='fight'&&age>60000)||(m.state==='fight'&&now-tsMs(m.turnAt)>15*60000)) d.ref.delete().catch(()=>{});
+    }
+    if(RD.match&&!qs.docs.some(d=>d.id===RD.match.id)){ if(RD.match.state==='confirm') toast('Le raid a été annulé.'); RD.match=null }
+    rdTick();
+  },()=>{});
+  clearInterval(RD.tT); RD.tT=setInterval(rdTimer,1000);
+}
+function stopRaid(){ if(RD.unsub){RD.unsub();RD.unsub=null} rdStopSearch(); RD.match=null; clearInterval(RD.tT); const w=$('#raid'); if(w) w.remove() }
+async function rdSearch(){
+  if(!pvpReady()){toast('Chargez un personnage pour lancer un raid.');return}
+  if(C.phase==='fight'){toast('Terminez d’abord votre combat en cours.');return}
+  if(RD.match||PV.match) return; if(PV.searching) pvpStopSearch();
+  const r=RAIDS[UI.raidB||0],t=rdTier(),h=S.heroes[0],me=pvpMe();
+  if(h.lvl<r.req){toast('Niveau '+r.req+' requis pour ce raid.');return}
+  RD.searching={b:r.id,t}; render();
+  const put=()=>rdQ().doc(me).set({uid:me,name:FB.prof.name,char:{name:h.name,cls:h.cls,lvl:h.lvl},boss:r.id,tier:t,ts:pvpTS(),tms:Date.now()}).catch(()=>{});
+  await put(); let n=0;
+  const poll=async()=>{
+    if(!RD.searching||RD.match) return;
+    if(++n%7===0) put();
+    try{ const qs=await rdQ().orderBy('ts').limit(40).get();
+      const c=qs.docs.map(d=>d.data()).filter(x=>x.uid!==me&&x.boss===r.id&&x.tier===t&&Date.now()-(x.tms||0)<60000);
+      const o=c[0]; if(o&&me>o.uid&&!RD.match) await rdPropose(o.uid,o.name,o.char,'search',r.id,t);
+    }catch(e){}
+    if(RD.searching&&!RD.match) RD.qT=setTimeout(poll,3000);
+  };
+  RD.qT=setTimeout(poll,1200);
+}
+function rdStopSearch(){ clearTimeout(RD.qT); if(RD.searching&&FB.user) rdQ().doc(pvpMe()).delete().catch(()=>{}); const was=RD.searching; RD.searching=null; if(was&&UI.tab==='combat'&&!UI.scr&&C.phase==='idle') render() }
+async function rdPropose(o,oname,ochar,kind,boss,tier){
+  const me=pvpMe(),h=S.heroes[0],auto=kind==='friend';
+  return rdCol().add({players:[me,o].sort(),from:me,kind,boss,tier,state:'confirm',names:{[me]:FB.prof.name,[o]:oname},chars:{[me]:{name:h.name,cls:h.cls,lvl:h.lvl},[o]:ochar||null},acc:auto?{[me]:true}:{},u:auto?{[me]:pvpSnap()}:{},log:[],chat:[],created:pvpTS(),cms:Date.now()});
+}
+async function rdUpd(data){ if(!RD.match) return; try{ await rdCol().doc(RD.match.id).update(data) }catch(e){ toast('Raid : erreur ('+(e.code||'réseau')+').') } }
+async function rdAccept(){
+  const m=RD.match; if(!m) return; if(!pvpReady()){toast('Chargez un personnage (Jouer) pour rejoindre le raid.');return}
+  if(C.phase==='fight'){toast('Terminez d’abord votre combat en cours.');return}
+  if(PV.match&&PV.match.state==='fight'){toast('Terminez d’abord votre duel.');return}
+  const r=RAIDS.find(x=>x.id===m.boss); if(!r) return;
+  if(S.heroes[0].lvl<r.req){toast('Niveau '+r.req+' requis pour ce raid.');return}
+  if(raidMax(r.id)<m.tier){toast('Vous n’avez pas encore débloqué le palier +'+m.tier+' de ce boss (maximum : +'+raidMax(r.id)+').');return}
+  const me=pvpMe(); await rdUpd({['acc.'+me]:true,['u.'+me]:pvpSnap()});
+}
+async function rdRefuse(){ if(!RD.match) return; await rdUpd({state:'cancel',by:pvpMe()}); RD.match=null; renderRaid() }
+/* moteur (calculé par le joueur actif) */
+const rdHeroes=x=>x.m.players.map(p=>x.u[p]);
+const rdAliveH=x=>rdHeroes(x).filter(h=>h&&h.hp>0&&!h.left);
+const rdOver=x=>x.u.boss.hp<=0?'win':!rdAliveH(x).length?'lose':null;
+function rdState(){ const m=RD.match,me=pvpMe(),u=JSON.parse(JSON.stringify(m.u)); return {m,me,u,U:u[me],L:[],round:m.round||1} }
+function rdEndOf(V){ V.st.forEach(s=>s.dur--); V.st=V.st.filter(s=>s.dur>0); for(const k in V.cds) V.cds[k]=Math.max(0,V.cds[k]-1); if(V.potCd>0) V.potCd--; V.atkUsed=false; V.stun=false }
+function rdExec(u,sk,tgt,x){
+  const L=x.L,B=x.u.boss,heroes=rdAliveH(x),foesA=u.boss?heroes:(B.hp>0?[B]:[]),friA=u.boss?[B]:heroes;
+  const k=sk.id==='atk'?1:sc((u.ranks&&u.ranks[sk.id])||1),st=sk.st||u.role;
+  if(sk.cd) u.cds[sk.id]=sk.cd+1; if(sk.ap) u.ap=Math.max(0,u.ap-sk.ap); if(sk.id==='atk') u.atkUsed=true;
+  let fT=[],aT=[];
+  if(sk.tg==='one') fT=tgt&&tgt.hp>0?[tgt]:foesA.slice(0,1);
+  else if(sk.tg==='all') fT=foesA;
+  else if(sk.tg==='self') aT=[u];
+  else if(sk.tg==='allies') aT=friA;
+  else if(sk.tg==='lowAlly') aT=[friA.slice().sort((a,b)=>a.hp/a.maxHp-b.hp/b.maxHp)[0]].filter(Boolean);
+  L.push(sk.id==='atk'?`${u.name} attaque${fT[0]?' '+fT[0].name:''}.`:`${u.name} utilise ${sk.n}.`);
+  if(sk.mult) for(const t of fT) for(let i=0;i<(sk.hits||1)&&t.hp>0;i++){ pvHit(u,t,sk.mult*k,st,sk,L); if(t.hp<=0) L.push(`${t.name} est vaincu.`) }
+  for(const f of sk.fx||[]){
+    const on=f.on||(sk.tg==='one'||sk.tg==='all'?'foe':'friend'),ts=on==='foe'?fT:on==='allies'?friA:aT;
+    for(const tg of ts) pvFx(u,tg,f,k,sk,L);
+  }
+}
+function rdBossAct(x){
+  const B=x.u.boss; B.dmgPct=x.round>RD_RAGE?(x.round-RD_RAGE)*8:0;
+  if(x.round===RD_RAGE+1) x.L.push(`${B.name} entre en rage : ses dégâts augmentent à chaque tour !`);
+  for(let n=0;n<RD_ACTS;n++){
+    const H=rdAliveH(x); if(!H.length||B.hp<=0) break;
+    const us=B.skills.filter(id=>!(B.cds[id]||0)&&B.ap>=(SK[id].ap||0)&&!(SK[id].tg==='allies'&&B.st.some(s=>s.k==='buff'&&s.v>0)));
+    let sk=null; if(us.length&&(Math.random()<.7||B.atkUsed)) sk=SK[pick(us)]; else if(!B.atkUsed) sk=SK.atk;
+    if(!sk) break;
+    const taunt=H.find(h=>h.st.some(s=>s.k==='taunt'));
+    const tgt=taunt||(Math.random()<.35?H.slice().sort((a,b)=>a.hp/a.maxHp-b.hp/b.maxHp)[0]:pick(H));
+    rdExec(B,sk,tgt,x);
+  }
+}
+/* fin du tour courant -> prochain joueur (les tours du boss sont joués automatiquement) */
+function rdNext(x){
+  const ord=x.m.order; let i=x.m.idx;
+  for(let g=0;g<12&&!rdOver(x);g++){
+    i=(i+1)%ord.length; if(i===0) x.round++;
+    const id=ord[i],V=x.u[id]; if(!V||V.hp<=0||V.left) continue;
+    V.ap=V.maxAp;
+    for(const s of V.st.filter(s=>s.k==='dot')){ const d=Math.max(1,s.v); V.hp=Math.max(0,V.hp-d); x.L.push(`${V.name} subit ${d} dégâts (${s.n}).`) }
+    if(V.hp<=0){ x.L.push(`${V.name} est vaincu.`); continue }
+    if(V.st.some(s=>s.k==='stun')){ x.L.push(`${V.name} est étourdi et passe son tour.`); rdEndOf(V); continue }
+    if(id==='boss'){ rdBossAct(x); rdEndOf(V); continue }
+    return {turn:id,idx:i,round:x.round,turnAt:pvpTS()};
+  }
+  return {idx:i,round:x.round,turnAt:pvpTS()};
+}
+function rdCommit(x,extra){
+  const data=Object.assign({u:x.u},extra||{}); let log=(x.m.log||[]).concat(x.L); const r=rdOver(x);
+  if(r){ data.state='done'; data.win=r==='win'; log=log.concat([r==='win'?'🏆 '+x.u.boss.name+' est vaincu ! Le raid est réussi.':'💀 Le raid a échoué.']) }
+  data.log=log.slice(-50); return rdUpd(data);
+}
+const rdMyTurn=()=>RD.match&&RD.match.state==='fight'&&RD.match.turn===pvpMe();
+function rdTick(){
+  const m=RD.match; renderRaid(); if(!m) return; const me=pvpMe();
+  if(m.state==='confirm'&&m.players[0]===me&&m.players.every(p=>m.acc&&m.acc[p]&&m.u&&m.u[p])&&!RD.busy){
+    const r=RAIDS.find(x=>x.id===m.boss); if(!r) return; RD.busy=true;
+    const u=JSON.parse(JSON.stringify(m.u)); u.boss=mkRaidBoss(r,m.tier||0);
+    const order=[...m.players,'boss'].sort((a,b)=>(u[b].spd||0)-(u[a].spd||0));
+    const x={m:Object.assign({},m,{order,idx:order.length-1}),me,u,L:['☠ Le raid commence : '+r.n+' (palier +'+(m.tier||0)+') !'],round:0};
+    const nx=rdNext(x);
+    rdCommit(x,Object.assign({state:'fight',order,first:order[0]},nx)).finally(()=>{RD.busy=false});
+  }
+  if(m.state==='cancel'){ if(m.by!==me) toast('Le raid a été refusé.'); RD.match=null; renderRaid() }
+  if(m.state==='done'&&RD.ending!==m.id){ RD.ending=m.id; rdFinish(m) }
+}
+async function rdAct(id){
+  if(!rdMyTurn()||RD.busy) return; const x=rdState(),sk=SK[id],U=x.U;
+  if(!sk||!U||U.hp<=0) return; if(id!=='atk'&&!U.skills.includes(id)) return;
+  if((sk.ap||0)>U.ap||(U.cds[id]||0)||(id==='atk'&&U.atkUsed)) return;
+  RD.busy=true; rdExec(U,sk,x.u.boss,x); await rdCommit(x); RD.busy=false;
+}
+async function rdPot(k){
+  if(!rdMyTurn()||RD.busy||matCount(k)<1) return; const x=rdState(),U=x.U; if(U.potCd>0) return;
+  if(!potFx(U,k,x.L)) return;
+  RD.busy=true; removeMat(k,1); save(); await rdCommit(x); RD.busy=false;
+}
+async function rdEnd(){
+  if(!rdMyTurn()||RD.busy) return; const x=rdState(); rdEndOf(x.U);
+  RD.busy=true; await rdCommit(x,rdNext(x)); RD.busy=false;
+}
+async function rdSkip(){
+  const m=RD.match; if(!m||m.state!=='fight'||m.turn===pvpMe()||Date.now()-tsMs(m.turnAt)<RD_TURN*1000||RD.busy) return;
+  const x=rdState(),V=x.u[m.turn]; if(!V) return; x.L.push(`${V.name} n’a pas joué à temps : son tour est passé.`); rdEndOf(V);
+  RD.busy=true; await rdCommit(x,rdNext(x)); RD.busy=false;
+}
+async function rdForfeit(){
+  const m=RD.match; if(!m||m.state!=='fight') return; const x=rdState(),U=x.U;
+  U.hp=0; U.left=true; x.L.push(`${m.names[x.me]} abandonne le raid.`);
+  const extra=m.turn===x.me?rdNext(x):{};
+  RD.gone[m.id]=1; await rdCommit(x,extra);
+  rdCount(m,false); RD.match=null; renderRaid(); toast('Raid abandonné : compté comme une défaite.');
+  if(UI.tab==='combat'&&!UI.scr) render();
+}
+function rdCount(m,win){
+  const me=pvpMe(),key=KP+'raiddone_'+me,done=JSON.parse(lsGet(key)||'[]'); if(done.includes(m.id)||!S||!S.heroes||!S.heroes[0]) return false;
+  done.push(m.id); lsSet(key,JSON.stringify(done.slice(-50))); S.raidS=S.raidS||{w:0,l:0}; S.raidS[win?'w':'l']++; save(); return true;
+}
+function rdFinish(m){
+  const me=pvpMe(),U=m.u&&m.u[me],win=!!m.win&&U&&!U.left,r=RAIDS.find(x=>x.id===m.boss);
+  renderRaid();
+  setTimeout(()=>{
+    const w=$('#raid'); if(w) w.remove(); RD.match=null; RD.gone[m.id]=1;
+    if(win&&r&&rdCount(m,true)){
+      const rw=rdRw(r,m.tier||0); gain(rw); S.raid=S.raid||{}; let up=false;
+      if((m.tier||0)>=raidMax(r.id)){ S.raid[r.id]=(m.tier||0)+1; up=true; if(UI.raidB!=null&&RAIDS[UI.raidB]&&RAIDS[UI.raidB].id===r.id) UI.raidT=S.raid[r.id] }
+      save(); renderHeader(); rdLoot(m,r,rw,up);
+    } else if(!win){ rdCount(m,false); toast('Le raid a échoué.') }
+    setTimeout(()=>rdCol().doc(m.id).delete().catch(()=>{}),8000);
+    if(UI.tab==='combat'&&!UI.scr) render();
+  },3200);
+}
+function rdLoot(m,r,rw,up){
+  const d=document.createElement('div'); d.className='modal'; d.id='rdloot';
+  d.innerHTML=`<div class="box loot"><h2>Raid réussi !</h2><p><b>${esc(r.n)}</b> · palier +${m.tier||0}</p><div class="lootg">${matIcon('gold')}<b>+${fmt(rw.gold)}</b> or</div>
+    <p class="num">${Object.entries(rw).filter(([k])=>k!=='gold').map(([k,v])=>matChip(k,v)).join(' ')}</p>
+    ${up?`<p class="lvup">✦ Palier +${(m.tier||0)+1} débloqué pour ce boss !</p>`:''}<div class="row"><button class="btn pri" data-act="rdLootOk">Récupérer</button></div></div>`;
+  document.body.append(d); d.querySelector('button').focus();
+}
+function rdTimer(){
+  const m=RD.match; if(!m) return; const el=document.querySelector('#raid [data-rdt]');
+  if(m.state==='confirm'){ const left=45-Math.floor((Date.now()-(m.cms||Date.now()))/1000); if(left<=0) return renderRaid(); if(el) el.textContent='('+left+' s)'; return }
+  if(m.state==='fight'){ const t=Math.max(0,RD_TURN-Math.floor((Date.now()-tsMs(m.turnAt))/1000)); if(el) el.textContent='('+t+' s)'; if(t===0&&m.turn!==pvpMe()&&!document.querySelector('[data-act=rdSkip]')) renderRaid() }
+}
+function renderRaid(){
+  const m=RD.match; let w=$('#raid');
+  if(!m||!FB.user){ if(w) w.remove(); return }
+  if(!w){ w=document.createElement('div'); w.id='raid'; w.className='modal pvpm'; w.setAttribute('role','dialog'); w.setAttribute('aria-modal','true'); document.body.append(w) }
+  const me=pvpMe(),o=pvpOp(m),nm=m.names||{},ch=(m.chars||{})[o],r=RAIDS.find(x=>x.id===m.boss)||RAIDS[0];
+  if(m.state==='confirm'){
+    const left=Math.max(0,45-Math.floor((Date.now()-(m.cms||Date.now()))/1000)),mine=m.acc&&m.acc[me];
+    if(left<=0){ if(m.from===me) rdUpd({state:'cancel',by:me}); RD.match=null; w.remove(); return }
+    w.innerHTML=`<div class="box pvconf"><h2>${m.kind==='friend'?(m.from===me?'Invitation au raid envoyée':'Invitation au raid'):'Partenaire trouvé !'}</h2>
+      <p>Raid : <b>${esc(r.n)}</b> · palier +${m.tier||0}</p>
+      <p>Avec <b>${esc(nm[o]||'?')}</b>${ch?` · ${esc(ch.name)}, ${(CLASSES[ch.cls]||{n:''}).n} niveau ${ch.lvl}`:''}</p>
+      <p class="mute">${mine?(m.acc&&m.acc[o]?'Le raid va commencer…':'En attente de votre partenaire…'):'Rejoindre le raid ?'} <span class="num" data-rdt>(${left} s)</span></p>
+      <div class="row">${mine?'':'<button class="btn pri" data-act="rdAcc">Accepter</button>'}<button class="btn" data-act="rdRef">${mine?'Annuler':'Refuser'}</button></div></div>`;
+    return;
+  }
+  if(m.state!=='fight'&&m.state!=='done'){ w.remove(); return }
+  const U=m.u[me],B=m.u.boss,my=m.state==='fight'&&m.turn===me,tn=m.turn&&m.u[m.turn],late=m.state==='fight'&&!my&&Date.now()-tsMs(m.turnAt)>RD_TURN*1000,tl=Math.max(0,RD_TURN-Math.floor((Date.now()-tsMs(m.turnAt))/1000));
+  let acts='';
+  if(m.state==='done') acts=`<div class="pvwin">${m.win?'🏆 Raid réussi !':'💀 Le raid a échoué.'}</div>`;
+  else if(U&&U.hp<=0) acts=`<p class="mute">Votre héros est tombé. Encouragez votre partenaire !</p>`;
+  else if(my) acts=fActs(U,'rd');
+  else acts=`<p class="mute">Tour de <b>${esc(tn?(tn.acct||tn.name):'')}</b>… <span class="num" data-rdt>(${tl} s)</span></p>${late?'<div class="row"><button class="btn pri" data-act="rdSkip">Passer son tour (joueur inactif)</button></div>':''}`;
+  keepFc(w,()=>{ w.innerHTML=`<div class="box pvbox fbox"><div class="row between" style="margin-bottom:8px"><h2>Raid · ${esc(r.n)} <small class="mute">palier +${m.tier||0}</small></h2><small class="num">Tour ${m.round||1}${my?' · <b class="apc">À vous de jouer</b>':''}</small></div>
+    <div class="fgrid"><div class="fmain"><div class="rdarena"><div class="rdteam">${m.players.map(p=>pvCard(m.u[p],nm[p],p===me,m.turn===p&&m.state==='fight')).join('')}</div><span class="pvvs">VS</span>${pvCard(B,B.name,false,false)}</div>
+    <div class="pvacts">${acts}</div>
+    <div class="pvlog log">${(m.log||[]).slice(-14).map(l=>`<p>${esc(l)}</p>`).join('')}</div>
+    ${m.state==='fight'&&U&&!U.left?`<div class="row" style="justify-content:flex-end;margin-top:6px"><button class="btn sm danger" data-act="rdGiveUp">${UI.confirm==='rdgiveup'?'Confirmer l’abandon':'Abandonner'}</button></div>`:''}</div>${fchatHTML(m,'raid')}</div></div>` });
+  const lg=w.querySelector('.pvlog'); if(lg) lg.scrollTop=lg.scrollHeight;
+}
+function viewRaid(){
+  const on=!!(FB.user&&FB.prof),h=S.heroes[0],R0=S.raidS||{w:0,l:0};
+  if(UI.raidB==null||!RAIDS[UI.raidB]) UI.raidB=0;
+  const r=RAIDS[UI.raidB],mx=raidMax(r.id),t=rdTier(),b=mkRaidBoss(r,t),rw=rdRw(r,t),lock=h.lvl<r.req;
+  const tiles=RAIDS.map((x,i)=>`<button class="ztile ${i===UI.raidB?'on':''}" data-act="rdBoss" data-i="${i}"><b>${h.lvl<x.req?'🔒 ':''}${esc(x.n)}</b><small>Niveau ${x.L} · requis : niv. ${x.req}</small><span class="zp">Palier max : +${raidMax(x.id)}</span></button>`).join('');
+  const opts=Array.from({length:mx+1},(_,i)=>`<option value="${i}" ${i===t?'selected':''}>Palier +${i}${i?` (+${Math.round((rdMul(i)-1)*100)} %)`:' (base)'}</option>`).join('');
+  const resl=RES_K.filter(k=>b[k]).map(k=>`${STAT_N[k]||k} ${b[k]>0?'':''}${b[k]} %`).join(', ')||'aucune';
+  const srch=RD.searching;
+  return `<section class="panel rdpanel"><h2 style="margin-bottom:6px">Raid</h2>
+    <p class="hint">Combat coopératif <b>à 2 joueurs</b> contre un boss redoutable, au tour par tour. Le boss agit deux fois par tour et entre en rage au tour ${RD_RAGE+1}. Chaque victoire débloque le palier suivant pour ce boss : +5 % de difficulté par palier, cumulatif.</p>
+    <div class="rdgrid">${tiles}</div>
+    <p class="hint" style="margin:0 0 8px"><i>${esc(r.d)}</i></p>
+    <dl class="rdinfo"><dt>Niveau</dt><dd class="num">${r.L}</dd><dt>PV</dt><dd class="num">${fmt(b.hp)}</dd><dt>${r.role==='mag'?'Intelligence':'Force'}</dt><dd class="num">${fmt(Math.round(b.atk))}</dd><dt>Défense</dt><dd class="num">${fmt(b.def)} / ${fmt(b.res)}</dd><dt>Résistances</dt><dd>${esc(resl)}</dd><dt>Compétences</dt><dd>${r.sk.map(id=>esc(SK[id].n)).join(', ')}</dd><dt>Récompenses</dt><dd class="num">${matChip('gold',rw.gold)}${Object.entries(rw).filter(([k])=>k!=='gold').map(([k,v])=>matChip(k,v)).join('')}</dd></dl>
+    <div class="rdsel"><label for="rdtier"><b>Palier</b></label><select id="rdtier" ${srch?'disabled':''}>${opts}</select>${mx?'':'<small class="mute">Battez ce boss pour débloquer le palier +1.</small>'}</div>
+    ${!on?'<p class="lerr">Connectez-vous à un compte (menu) pour jouer les raids.</p>':lock?`<p class="lerr">Niveau ${r.req} requis (vous êtes niveau ${h.lvl}).</p>`:srch?`<div class="pvsearch" style="justify-content:flex-start"><span class="spin" aria-hidden="true"></span><b>Recherche d’un partenaire (palier +${srch.t})…</b><button class="btn" data-act="rdCancel">Annuler</button></div>`:`<button class="btn pri big" data-act="rdFind" style="max-width:320px">☠ Rechercher un partenaire</button>`}
+    <p class="mute" style="margin-top:12px">Bilan : <b>${R0.w}</b> raid${R0.w>1?'s':''} réussi${R0.w>1?'s':''} · <b>${R0.l}</b> échec${R0.l>1?'s':''}</p>
+    <p class="hint">Vous pouvez aussi inviter un ami : cliquez sur son nom dans la liste d’amis, puis sur « Raid » (boss et palier sélectionnés ici). Les deux joueurs doivent avoir débloqué le palier choisi.</p></section>`;
 }
 
 /* ---- chat ---- */
@@ -2178,7 +2474,7 @@ function viewCombatIdle(){
     :dk==='myth'?`<p class="hint" style="color:var(--r3)"><b>Mode mythique :</b> monstres niveau ${D.L}. Les boss gagnent la Frappe dévastatrice et entrent en rage dès le tour ${D.rage+1}. Récompenses : or, XP et matériaux ×2, Prisme divin à 25 % sur Le Dévoreur.</p>`:heroOpen()?'':`<p class="hint">🔒 Le mode Héroïque se débloque au niveau ${HERO_L} (vous êtes niveau ${S.heroes[0].lvl}).</p>`;
   const mstat=c.role==='mag'?['Intelligence',st.mag]:['Force',st.atk];
   const mode=UI.advMode||'pve';
-  return `<div class="seg advmode" role="tablist"><button class="${mode==='pve'?'on':''}" data-act="advMode" data-m="pve">Aventure</button><button class="${mode==='pvp'?'on':''}" data-act="advMode" data-m="pvp">⚔ Duel PvP</button></div><div class="adv-layout">
+  return `<div class="seg advmode" role="tablist"><button class="${mode==='pve'?'on':''}" data-act="advMode" data-m="pve">Aventure</button><button class="${mode==='pvp'?'on':''}" data-act="advMode" data-m="pvp">⚔ Duel PvP</button><button class="${mode==='raid'?'on':''}" data-act="advMode" data-m="raid">☠ Raid</button></div><div class="adv-layout">
     <section class="panel herocol">
       <h2 style="margin:0 0 10px;font-size:1.6rem">${esc(h.name)}</h2>
       ${PORTRAIT[h.cls]?`<img class="portrait" src="${PORTRAIT[h.cls]}" alt="Portrait : ${c.n}" width="114" height="114">`:`<span class="tile xl" style="--h:${h.hue}">${icon(c.ic)}</span>`}
@@ -2191,7 +2487,7 @@ function viewCombatIdle(){
       <label class="row" style="gap:6px"><input type="checkbox" id="chkFarm" data-act="farm" ${S.farm?'checked':''} ${S.auto?'':'disabled'}> Enchaîner les combats</label>
       <p class="hint" style="margin-top:10px">Vos PV sont restaurés après chaque combat.</p>
     </section>
-    ${mode==='pvp'?viewPvp():`<section class="panel ${hero?dk+'panel':''}"><h2 style="margin-bottom:12px">Choix de zone</h2>
+    ${mode==='pvp'?viewPvp():mode==='raid'?viewRaid():`<section class="panel ${hero?dk+'panel':''}"><h2 style="margin-bottom:12px">Choix de zone</h2>
       <div class="seg wide"><button class="${dk==='normal'?'on':''}" data-act="diff" data-d="normal">Normal</button><button class="${dk==='hero'?'on hero':''}" data-act="diff" data-d="hero" ${heroOpen()?'':`disabled title="Atteignez le niveau ${HERO_L} pour débloquer le mode Héroïque."`}>${heroOpen()?'':'🔒 '}Héroïque</button><button class="${dk==='myth'?'on myth':''}" data-act="diff" data-d="myth" ${mythOpen()?'':'disabled title="Atteignez le dernier boss en mode héroïque pour débloquer le mode Mythique."'}>${mythOpen()?'':'🔒 '}Mythique</button></div>
       ${diffNote?`<div style="margin-top:8px">${diffNote}</div>`:''}
       <div class="zgrid">${zones}</div>
@@ -2213,13 +2509,13 @@ function renderActbar(){
         ${r.items.length?`<div class="itgrid" style="margin:12px 0">${r.items.map(i=>itemCard(i)).join('')}</div>`:''}
         <div class="row" style="margin-top:10px">${nextOk?`<button class="btn pri" data-act="next">Étape suivante</button>`:''}<button class="btn ${nextOk?'':'pri'}" data-act="again">Rejouer</button><button class="btn" data-act="back">Retour</button></div></div>`;
     }else{
-      el.innerHTML=`<div class="result lose"><h2 class="lose" style="margin-bottom:6px">Défaite</h2><p style="margin:0 0 10px">Améliorez votre équipement ou vos compétences, ou gagnez quelques niveaux en rejouant une étape plus facile, puis retentez votre chance.</p>
+      el.innerHTML=`<div class="result lose"><h2 class="lose" style="margin-bottom:6px">Défaite</h2><p style="margin:0 0 10px">${r.ab?'Vous avez abandonné le combat. ':''}Améliorez votre équipement ou vos compétences, ou gagnez quelques niveaux en rejouant une étape plus facile, puis retentez votre chance.</p>
         <div class="row"><button class="btn pri" data-act="again">Réessayer</button><button class="btn" data-act="back">Retour</button></div></div>`;
     }
     return;
   }
   const w=C.waiting,tools=`<label class="row" style="gap:6px;margin-left:auto"><input type="checkbox" data-act="auto" ${S.auto?'checked':''}> Auto</label>
-    <button class="btn sm" data-act="speed">Vitesse ×${S.speed}</button><button class="btn sm danger" data-act="flee">Fuir</button>`;
+    <button class="btn sm" data-act="speed">Vitesse ×${S.speed}</button><button class="btn sm danger" data-act="giveUp">${UI.confirm==='pveGiveUp'?'Confirmer l’abandon':'Abandonner'}</button>`;
   if(!w){el.innerHTML=`<div class="acts"><small class="mute" style="align-self:center">${S.auto?'Combat automatique en cours…':'Les ennemis agissent…'}</small>${tools}</div><div class="acts" style="margin-top:8px">${potBar()}</div>`;return}
   const u=w.u,ids=['atk',...u.skills];
   el.innerHTML=`<div class="acts"><div style="align-self:center"><b>${esc(u.name)}</b><br><small>${C.pending?'Choisissez une cible':'À vous de jouer'} · <b class="apc">${u.ap||0} / ${u.maxAp||0} PA</b></small></div>`+
@@ -2231,11 +2527,15 @@ function renderActbar(){
 const ownPots=()=>Object.keys(POTS).filter(k=>matCount(k)>0&&(!POTS[k].cls||POTS[k].cls===S.heroes[0].cls));
 function potBar(){
   const ks=ownPots(); if(!ks.length) return '<small class="mute" style="align-self:center">Aucune potion : achetez-en chez le Marchand.</small>';
+  const cd=potCdLeft();
   return `<div class="potbar">${ks.map(k=>{const used=(k==='p_xp'&&C.bonus.xp)||(k==='p_loot'&&C.bonus.loot);
-    return `<button class="potb" data-act="usePot" data-k="${k}" ${used?'disabled':''} data-tip="pot:${k}" aria-label="${esc(POTS[k].n)} : ${esc(POTS[k].d)}">${matIcon(k)}<span class="num">${matCount(k)}</span></button>`}).join('')}</div>`;
+    return `<button class="potb" data-act="usePot" data-k="${k}" ${used||cd?'disabled':''} data-tip="pot:${k}" aria-label="${esc(POTS[k].n)} : ${esc(POTS[k].d)}">${matIcon(k)}<span class="num">${matCount(k)}</span></button>`}).join('')}${cd?`<small class="potcd">${potCdTxt(cd)}</small>`:''}</div>`;
 }
+const POT_CD=3;
+const potCdTxt=n=>n>POT_CD?`Potion déjà bue ce tour (recharge : ${POT_CD} tours)`:`Potions : recharge ${n} tour${n>1?'s':''}`;
+const potCdLeft=()=>C.phase==='fight'?Math.max(0,POT_CD+1-(C.round-(C.potR==null?-99:C.potR))):0;
 function usePot(k){
-  if(C.phase!=='fight'||!matCount(k)) return;
+  if(C.phase!=='fight'||!matCount(k)||potCdLeft()) return;
   const u=C.units.find(x=>x.team==='h'&&x.hp>0); if(!u) return;
   const B=(stat,v)=>{u.st=u.st.filter(s=>!(s.k==='buff'&&s.stat===stat&&s.v>0&&s.pot));u.st.push({k:'buff',stat,v,dur:3,pot:1})};
   if(k==='p_vie') heal(u,u.maxHp*.4);
@@ -2244,7 +2544,7 @@ function usePot(k){
   else if(k==='p_int') B('mag',30);
   else if(k==='p_xp'){ if(C.bonus.xp) return; C.bonus.xp=50 }
   else if(k==='p_loot'){ if(C.bonus.loot) return; C.bonus.loot=50 }
-  removeMat(k,1); logLine(`${u.name} boit : ${POTS[k].n}.`,'hl'); floatTxt(u,POTS[k].n,'heal'); refresh(u); save(); renderActbar();
+  C.potR=C.round; removeMat(k,1); logLine(`${u.name} boit : ${POTS[k].n}.`,'hl'); floatTxt(u,POTS[k].n,'heal'); refresh(u); save(); renderActbar();
 }
 
 /* --- marchand --- */
@@ -2735,7 +3035,7 @@ function viewHelp(){
     ['Intelligence','Dégâts du Sorcier.','Toutes les attaques, brûlures et barrières du Sorcier se basent sur l’Intelligence. Le Guerrier n’a pas d’Intelligence.'],
     ['Défense','Réduit les dégâts physiques reçus.','Dégâts reçus × K / (K + Défense), avec K = 100 + 15 × niveau de l’attaquant. La Défense protège donc moins contre les ennemis de haut niveau.'],
     ['Défense magique','Réduit les dégâts magiques reçus.','Même formule que la Défense, contre les ennemis qui utilisent la magie (chamans, nécromanciens, sorcières, mages de braise, oracles, Seigneur de Cendre).'],
-    ['Points d’action (PA)','Énergie pour lancer les compétences.','5 PA de base pour chaque classe. Le combat commence avec tous les PA ; chaque compétence coûte des PA (l’attaque de base est gratuite, une fois par tour) et vous récupérez 1 PA au début de chacun de vos tours. Vous pouvez enchaîner plusieurs actions dans le même tour tant qu’il vous reste des PA, puis appuyer sur « Fin de tour ». Barre jaune segmentée sous la barre de vie.'],
+    ['Points d’action (PA)','Énergie pour lancer les compétences.','5 PA de base pour chaque classe. Chaque compétence coûte des PA (l’attaque de base est gratuite, une fois par tour) et tous vos PA sont rechargés au début de chacun de vos tours. Vous pouvez enchaîner plusieurs actions dans le même tour tant qu’il vous reste des PA, puis appuyer sur « Fin de tour ». Barre jaune segmentée sous la barre de vie.'],
     ['Résistance physique','Réduit les dégâts physiques reçus en %.','S’applique après la Défense. Plafonnée à 75 %.'],
     ['Résistance magique','Réduit les dégâts magiques reçus en %.','S’applique après la Défense magique. Plafonnée à 75 %.'],
     ['Résistances élémentaires','Feu, Glace, Foudre, Terre.','Réduisent en % les dégâts des compétences de cet élément (brûlures comprises). Plafonnées à 75 %. Une résistance négative est une faiblesse : les dégâts sont augmentés.'],
@@ -2777,7 +3077,7 @@ function viewHelp(){
     ['Mythique','60','Débloqué en atteignant le dernier boss héroïque','Or, XP et matériaux ×2 ; Prisme divin à 25 %'],
   ]);
   const pots=T(['Potion','Effet'],Object.values(POTS).map(p=>[p.n,p.d+(p.cls?` <small class="mute">(${CLASSES[p.cls].n})</small>`:'')]))
-    +`<p class="hint">Les potions se boivent en combat sans utiliser votre tour. L’Élixir de savoir et le Philtre de fortune ne s’utilisent qu’une fois par combat.</p>`;
+    +`<p class="hint">Les potions se boivent en combat sans utiliser votre tour : une seule potion par tour, puis 3 tours de recharge avant la suivante. L’Élixir de savoir et le Philtre de fortune ne s’utilisent qu’une fois par combat.</p>`;
   const rar=T(['Rareté','Affixes','Multiplicateur de stats'],RAR.map((r,i)=>[`<span style="color:var(--r${i});font-weight:700">${r.n}</span>`,r.aff,'×'+String(r.m).replace('.',',')]))
     +`<p class="hint">Niveau d’objet : il augmente toutes les valeurs de l’objet. Chaque amélioration (+1 à +10) ajoute 5 % à toutes ses stats. Les armes donnent Force ou Intelligence, les armures de la vie et de la défense, les bijoux uniquement des affixes aléatoires.</p>`;
   const asc=`<p>L’ascension demande le niveau maximum (${MAXL}). Chaque étoile ajoute <b>+10 %</b> aux statistiques de base du héros (hors équipement). Palier n : ${fmt(5000)} × n or et 5 × n Prismes divins, jusqu’à 5 étoiles.</p>`;
@@ -2790,8 +3090,9 @@ function viewHelp(){
 const VERSION='0.3.0';
 const PATCH=[
  {v:'0.3.0',t:"Combat 2.0 - Stat - PVP",sec:[
-  ["Duels PvP",["Nouveau mode « Duel PvP » dans l’onglet Aventure : recherchez un adversaire parmi les joueurs connectés.","Une confirmation s’affiche quand un adversaire est trouvé. Le duel se joue au tour par tour dans une fenêtre au centre de l’écran : PV, PA, compétences et potions des deux joueurs.","À la fin, le nom du vainqueur s’affiche puis un butin de 500 or récompense la victoire.","Défiez directement un ami : cliquez sur son nom dans la liste d’amis, puis sur « Duel ».","Un joueur qui ne joue pas pendant 90 secondes peut être déclaré perdant ; bouton « Abandonner » disponible."]],
-  ["Combat",["Points d’action (PA) : 5 de base pour chaque classe. Les compétences coûtent des PA, l’attaque de base est gratuite mais utilisable une seule fois par tour, et chaque unité récupère 1 PA au début de son tour.","Votre héros peut enchaîner plusieurs actions dans le même tour tant qu’il lui reste des PA ; nouveau bouton « Fin de tour ».","Barre de PA segmentée sous la barre de vie de chaque combattant ; le coût en PA est affiché sur chaque compétence.","Nouvelles statistiques : Résistance physique, Résistance magique et résistances au Feu, à la Glace, à la Foudre et à la Terre (en %, plafonnées à 75 %). L’ancienne Résistance devient « Défense magique ».","Compétences élémentaires : Boule de feu (Feu), Éclair en chaîne (Foudre), Météore (Terre) ; côté ennemis, Trait de feu, Crachat toxique et Déferlante. Certains monstres résistent à un élément, d’autres y sont faibles.","Nouveaux affixes de résistance sur l’équipement."]],
+  ["Duels PvP",["Nouveau mode « Duel PvP » dans l’onglet Aventure : recherchez un adversaire parmi les joueurs connectés.","Une confirmation s’affiche quand un adversaire est trouvé. Le duel se joue au tour par tour dans une fenêtre au centre de l’écran : PV, PA, compétences et potions des deux joueurs.","À la fin, le nom du vainqueur s’affiche puis un butin de 500 or récompense la victoire.","Défiez directement un ami : cliquez sur son nom dans la liste d’amis, puis sur « Duel ».","Un joueur qui ne joue pas pendant 90 secondes peut être déclaré perdant ; bouton « Abandonner » disponible (compté comme une défaite).","Chat de combat à droite de la scène, réservé aux deux joueurs du duel."]],
+  ["Raids",["Nouveau mode « Raid » dans l’onglet Aventure : un combat coopératif à 2 joueurs contre un boss unique et très puissant.","Trois boss de raid : Colosse de Braise (niveau 25), Wyrm des Glaces (niveau 40) et Avatar de l’Abîme (niveau 50).","Chaque victoire débloque le palier suivant (+1) pour ce boss. La difficulté est exponentielle : +5 % par palier, cumulatif. Le palier se choisit avant le combat dans un menu déroulant.","Recherchez un partenaire ou invitez un ami depuis la liste d’amis (bouton « Raid »). Récompenses : or, runes, essences et cristaux, en hausse avec le palier.","Le boss agit deux fois par tour et entre en rage au tour 16. Chat de combat entre les deux joueurs et bouton « Abandonner » (compté comme une défaite)."]],
+  ["Combat",["Points d’action (PA) : 5 de base pour chaque classe. Les compétences coûtent des PA, l’attaque de base est gratuite mais utilisable une seule fois par tour, et chaque unité récupère tous ses PA au début de son tour.","Votre héros peut enchaîner plusieurs actions dans le même tour tant qu’il lui reste des PA ; nouveau bouton « Fin de tour ».","Barre de PA segmentée sous la barre de vie de chaque combattant ; le coût en PA est affiché sur chaque compétence.","Nouvelles statistiques : Résistance physique, Résistance magique et résistances au Feu, à la Glace, à la Foudre et à la Terre (en %, plafonnées à 75 %). L’ancienne Résistance devient « Défense magique ».","Compétences élémentaires : Boule de feu (Feu), Éclair en chaîne (Foudre), Météore (Terre) ; côté ennemis, Trait de feu, Crachat toxique et Déferlante. Certains monstres résistent à un élément, d’autres y sont faibles.","Nouveaux affixes de résistance sur l’équipement.","Potions limitées à une par tour, avec 3 tours de recharge (aventure, duels et raids).","Le bouton « Fuir » devient « Abandonner » : l’abandon est compté comme une défaite."]],
   ["Forge",["Nouvelles chances de rareté : Forge ordinaire 80 % Commun / 20 % Magique ; Forge fine 40 % Commun / 50 % Magique / 10 % Rare ; Forge de maître 10 % Magique / 45 % Rare / 45 % Épique ; Forge légendaire 20 % Rare / 70 % Épique / 10 % Légendaire.","Affixes aléatoires : Commun 0, Magique 1, Rare 2, Épique 3, Légendaire 3 + un pouvoir légendaire.","Pouvoir légendaire (écrit en orange) : +6 % de chances de coup critique et +10 % de dégâts critiques. Un pouvoir nommé pour chaque type d’équipement ; les objets légendaires existants le reçoivent aussi."]],
   ["Personnage",["Caractéristiques regroupées en trois catégories : Principale, Secondaire et Résistance. « Défense » devient « Défense physique ».","Les valeurs affichées sont les totaux (base + équipement) ; un bouton affiche le détail entre parenthèses (base + équipement).","« Or trouvé » et « Dégâts bonus » ne sont plus affichés dans la fiche."]],
   ["Amis",["Amis classés en deux catégories : En ligne et Hors ligne.","Chat entre amis : cliquez sur le nom d’un ami puis sur « Chat ». Une pastille rouge signale un nouveau message sur le bouton Amis et sur l’ami concerné."]]
@@ -3049,6 +3350,11 @@ const A={
   auto:()=>{S.auto=!S.auto;if(!S.auto)S.farm=false;if(S.auto&&C.waiting){const w=C.waiting;C.waiting=null;C.pending=null;w.res(ai(w.u))}render()},
   farm:()=>{S.farm=!S.farm;render()},
   speed:()=>{S.speed=S.speed===1?2:S.speed===2?4:1;renderActbar()},
+  giveUp:()=>{ if(C.phase!=='fight') return;
+    if(UI.confirm!=='pveGiveUp'){UI.confirm='pveGiveUp'; renderActbar(); toast('Cliquez à nouveau pour abandonner : le combat sera compté comme une défaite.'); setTimeout(()=>{if(UI.confirm==='pveGiveUp'){UI.confirm=null; renderActbar()}},4000); return}
+    UI.confirm=null; C.abort=true; C.id++; if(C.waiting){const w=C.waiting;C.waiting=null;w.res({})} C.pending=null; C.turn=null; S.farm=false;
+    if(C.test){C.test=false; C.result={win:false,test:true}} else C.result={win:false,ab:true};
+    logLine('Vous abandonnez le combat.','cr'); C.phase='result'; save(); render() },
   flee:()=>{C.abort=true;C.id++;if(C.waiting){const w=C.waiting;C.waiting=null;w.res({})}C.phase='idle';C.pending=null;S.farm=false;render()},
   back:()=>{C.phase='idle';render()},
   again:()=>{C.phase='idle';startBattle()},
@@ -3228,7 +3534,7 @@ const A={
   },
   fbLogout:async()=>{
     try{ await cloudPush(true) }catch(e){ toast('Synchronisation impossible : déconnexion annulée pour ne rien perdre. Réessayez.'); return }
-    presence('off'); stopFriends(); stopPvp(); FB.prof=null; await FB.auth.signOut(); clearLocalChars(); ACC.offline=false; saveAcc(); UI.scr='login'; UI.lmode='login'; render(); toast('Déconnecté.') },
+    presence('off'); stopFriends(); stopPvp(); stopRaid(); FB.prof=null; await FB.auth.signOut(); clearLocalChars(); ACC.offline=false; saveAcc(); UI.scr='login'; UI.lmode='login'; render(); toast('Déconnecté.') },
   pseudoOk:async()=>{
     if(UI.lbusy) return; const n=($('#pname').value||'').trim(); UI.pname=n; UI.perr='';
     if(!NAME_RE.test(n)){UI.perr='Le nom doit faire 3 à 16 caractères : lettres, chiffres, - ou _ (sans espace).'; render(); return}
@@ -3252,7 +3558,7 @@ const A={
   frChat:d=>{openChat(d.id); renderFriends()},
   chClose:()=>closeChat(),
   frDuel:async d=>{ UI.frMenu=null; renderFriends(); const f=FR.list.find(x=>x.id===d.id); if(!f) return;
-    if(!pvpReady()){toast('Chargez un personnage (Jouer) pour lancer un duel.');return} if(C.phase==='fight'){toast('Terminez d’abord votre combat en cours.');return} if(PV.match){toast('Un duel est déjà en cours.');return}
+    if(!pvpReady()){toast('Chargez un personnage (Jouer) pour lancer un duel.');return} if(C.phase==='fight'){toast('Terminez d’abord votre combat en cours.');return} if(PV.match||RD.match){toast('Un combat en ligne est déjà en cours.');return}
     const o=f.users.find(x=>x!==pvpMe()),p=FR.prof[o];
     try{ await pvpPropose(o,otherName(f),p&&p.char?p.char:null,'friend'); toast('Demande de duel envoyée à '+otherName(f)+'.') }catch(e){ toast('Impossible d’envoyer la demande ('+(e.code||'erreur')+').') } },
   advMode:d=>{UI.advMode=d.m; render()},
@@ -3263,7 +3569,24 @@ const A={
   pvpSk:d=>pvAct(d.id),
   pvpPot:d=>pvPot(d.k),
   pvpEndT:()=>pvEnd(),
-  pvpGiveUp:()=>{ if(UI.confirm!=='giveup'){UI.confirm='giveup'; toast('Cliquez à nouveau sur « Abandonner » pour confirmer.'); setTimeout(()=>{if(UI.confirm==='giveup')UI.confirm=null},4000); return} UI.confirm=null; pvForfeit() },
+  pvpGiveUp:()=>{ if(UI.confirm!=='giveup'){UI.confirm='giveup'; renderPvp(); toast('Cliquez à nouveau pour abandonner : le duel sera compté comme une défaite.'); setTimeout(()=>{if(UI.confirm==='giveup'){UI.confirm=null; renderPvp()}},4000); return} UI.confirm=null; pvForfeit() },
+  fcSend:d=>fcSend(d.k),
+  rdBoss:d=>{UI.raidB=+d.i; UI.raidT=raidMax(RAIDS[UI.raidB].id); render()},
+  rdFind:()=>rdSearch(),
+  rdCancel:()=>rdStopSearch(),
+  rdAcc:()=>rdAccept(),
+  rdRef:()=>rdRefuse(),
+  rdSk:d=>rdAct(d.id),
+  rdPot:d=>rdPot(d.k),
+  rdEndT:()=>rdEnd(),
+  rdSkip:()=>rdSkip(),
+  rdGiveUp:()=>{ if(UI.confirm!=='rdgiveup'){UI.confirm='rdgiveup'; renderRaid(); toast('Cliquez à nouveau pour abandonner : le raid sera compté comme une défaite.'); setTimeout(()=>{if(UI.confirm==='rdgiveup'){UI.confirm=null; renderRaid()}},4000); return} UI.confirm=null; rdForfeit() },
+  rdLootOk:()=>{const d=$('#rdloot'); if(d) d.remove()},
+  frRaid:async d=>{ UI.frMenu=null; renderFriends(); const f=FR.list.find(x=>x.id===d.id); if(!f) return;
+    if(!pvpReady()){toast('Chargez un personnage (Jouer) pour lancer un raid.');return} if(C.phase==='fight'){toast('Terminez d’abord votre combat en cours.');return} if(PV.match||RD.match){toast('Un combat en ligne est déjà en cours.');return}
+    const r=RAIDS[UI.raidB||0],t=rdTier(); if(S.heroes[0].lvl<r.req){toast('Niveau '+r.req+' requis pour le raid '+r.n+'.');return}
+    const o=f.users.find(x=>x!==pvpMe()),p=FR.prof[o];
+    try{ await rdPropose(o,otherName(f),p&&p.char?p.char:null,'friend',r.id,t); toast('Invitation au raid '+r.n+' (palier +'+t+') envoyée à '+otherName(f)+'.') }catch(e){ toast('Impossible d’envoyer l’invitation ('+(e.code||'erreur')+').') } },
   pvpClaim:()=>pvClaim(),
   pvpLootOk:()=>{const d=$('#pvploot'); if(d) d.remove()},
   chSend:()=>sendChat(),
@@ -3346,7 +3669,7 @@ document.addEventListener('mousedown',e=>{ if(e.target.id==='mconf') A.menuNo();
   if($('#menudd')&&!e.target.closest('#menudd,#menubtn')) closeMenuDD();
   if(UI.siteOpt&&!e.target.closest('#sopt,.sgear')) A.optClose() });
 document.addEventListener('submit',e=>e.preventDefault());
-document.addEventListener('keydown',e=>{ if(e.key==='Enter'&&e.target.id==='frname'){e.preventDefault();A.frAdd()} if(e.key==='Enter'&&e.target.id==='chin'){e.preventDefault();sendChat()} if(e.key==='Escape'&&CH.id&&e.target.id==='chin') closeChat() });
+document.addEventListener('keydown',e=>{ if(e.key==='Enter'&&e.target.id==='frname'){e.preventDefault();A.frAdd()} if(e.key==='Enter'&&e.target.id==='chin'){e.preventDefault();sendChat()} if(e.key==='Enter'&&e.target.id==='fcin'){e.preventDefault();fcSend(e.target.dataset.k)} if(e.key==='Escape'&&CH.id&&e.target.id==='chin') closeChat() });
 document.addEventListener('mousedown',e=>{ if(FR.open&&!e.target.closest('#friends,#frchat')){FR.open=false;UI.frMenu=null;renderFriends()} else if(UI.frMenu&&!e.target.closest('.frpop,.frname')){UI.frMenu=null;renderFriends()} });
 document.addEventListener('input',e=>{
   if(e.target.id==='cname') UI.cname=e.target.value;
@@ -3356,6 +3679,7 @@ document.addEventListener('input',e=>{
 document.addEventListener('change',e=>{
   if(e.target.id==='bdiff'){ UI.bdiff=e.target.value; const y=scrollY; render(); scrollTo(0,y) }
   if(e.target.id==='flvl'){UI.fLvl=+e.target.value;render()}
+  if(e.target.id==='rdtier'){UI.raidT=+e.target.value;render()}
 });
 
 /* ============ démarrage ============ */
