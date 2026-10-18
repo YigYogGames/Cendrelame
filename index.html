@@ -118,6 +118,76 @@ body.scr-menu #view{background:none;border:0;box-shadow:none;outline:0;padding:0
 .modal p{margin:0 0 18px;color:var(--mute)}
 .modal .row{justify-content:center;gap:10px}
 .modal .btn{min-width:110px;padding:9px 16px}
+.site{position:relative}
+.site .sname{text-align:center;font-size:1.3rem;color:var(--brass);margin:0 40px 2px}
+.panel.site{padding-bottom:62px}
+.site.ready{border-color:var(--brass);box-shadow:0 0 0 1px var(--brass),inset 0 0 26px #9a6a2a22}
+.thead{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:10px}
+.thead .stitle{margin:0}
+@media (max-width:560px){.thead{grid-template-columns:1fr}.thead>span:first-child{display:none}.thead>*{justify-self:center!important}}
+.stitle{text-align:center;font-size:2rem;font-weight:700;margin:0 0 6px}
+.sicons{position:absolute;left:12px;bottom:12px;display:flex;gap:6px}
+.sicons span{width:36px;height:36px;display:grid;place-items:center;border-radius:6px;background:#3a2817;border:1px solid #1d1209;box-shadow:inset 0 0 8px #000a}
+.sicons svg,.sicons img{width:24px;height:24px}
+.sgear{position:absolute;top:10px;left:10px;width:34px;height:34px;border-radius:50%;display:grid;place-items:center;padding:0;border:1px solid var(--line2);background:var(--bg3);color:var(--mute);cursor:pointer}
+.sgear svg{width:19px;height:19px;fill:currentColor;transition:transform .4s}
+.sgear:hover{color:var(--brass);border-color:var(--brass)}.sgear:hover svg{transform:rotate(60deg)}
+.sgear.on{color:var(--ok);border-color:var(--ok)}
+.sauto{position:absolute;right:12px;bottom:18px;font-weight:700;color:var(--ok);letter-spacing:.06em;text-transform:uppercase;font-size:.75rem}
+.optrow{display:flex;align-items:center;gap:10px;justify-content:flex-start;text-align:left;font-weight:500;margin:10px auto 0;cursor:pointer;max-width:330px}
+.optrow input{flex:none}
+.optrow input{width:18px;height:18px;accent-color:var(--brass)}
+.optrow.lock{opacity:.55;cursor:not-allowed}
+#sopt{animation:none}
+.site .rates{justify-content:center}
+.cyc{display:flex;flex-direction:column;align-items:center;gap:4px;margin:2px auto 14px;width:min(100%,320px)}
+.cyc .bar{width:100%;height:14px;border-radius:7px}.cyc .bar i{display:block;height:100%;background:linear-gradient(90deg,#b8935a,#e8c982);transition:width 1s linear}
+.cyc small{color:var(--mute);font-size:.82rem}
+.supbtn{position:absolute;top:10px;right:10px;width:34px;height:34px;border-radius:50%;display:grid;place-items:center;padding:0;border:1px solid var(--line2);background:var(--bg3);color:var(--brass);cursor:pointer}
+.supbtn svg{width:18px;height:18px;fill:currentColor;transition:transform .2s}
+.supbtn:hover{border-color:var(--brass);background:#efe2c4}.supbtn:hover svg{transform:translateY(-2px)}
+.supbtn .ndot{top:-2px;right:-2px}
+#tree{animation:none}
+.modal .box.tree{width:min(100%,960px);position:relative;text-align:center;max-height:calc(100vh - 32px);overflow-y:auto}
+.modal .box.tree .x{position:absolute;top:10px;right:12px;width:30px;height:30px;border-radius:50%;border:1px solid var(--line);background:transparent;color:var(--mute);font-size:1.2rem;cursor:pointer}
+.tsum{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;margin:10px 0 16px}
+.tsum span{display:flex;flex-direction:column;align-items:center;gap:1px;padding:6px 4px;border:1px solid var(--line);border-radius:4px;background:#0000000a}
+.tsum small{font-size:.75rem;color:var(--mute);text-transform:uppercase;letter-spacing:.05em}
+.tsum b{font-size:1.05rem}
+.tgrid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));grid-template-rows:auto 20px auto;grid-auto-flow:column;column-gap:12px}
+.tcol{display:contents}
+.tnode{display:flex;flex-direction:column;align-items:center;gap:4px;padding:12px 10px;border:1px solid var(--line2);border-radius:6px;background:var(--bg2);box-shadow:inset 0 0 20px #9a6a2a22;min-width:0}
+.tnode.got{border-color:var(--brass)}
+.tnode.max{background:#efe1bd;box-shadow:0 0 0 1px var(--brass),0 4px 14px #7b2a1a33}
+.tnode.lock{opacity:.6;filter:grayscale(.5)}
+.tnode .tic{flex:none;width:42px;height:42px;border-radius:50%;display:grid;place-items:center;font-size:1.3rem;background:radial-gradient(circle,#3a2614,#1a1009);color:var(--gold);border:2px solid #d6aa55;box-shadow:0 0 10px #d6aa5555}
+.tnode .tic svg{width:24px;height:24px;fill:currentColor}
+.tnode.cap .tic{border-radius:8px;transform:rotate(45deg);width:36px;height:36px;margin:3px 0}
+.tnode .tn{font-family:var(--display);font-weight:400;font-size:1.08rem;color:var(--brass);line-height:1.2}
+.tnode .td{font-size:.82rem;color:var(--mute);line-height:1.3;min-height:2.6em;display:flex;align-items:center;justify-content:center}
+.tnode .teff{display:flex;flex-direction:column;align-items:center;font-size:.82rem;color:var(--mute);line-height:1.3;min-height:2.6em}
+.tnode .teff b{font-weight:700;color:var(--ok)}
+.tact{margin-top:auto;padding-top:6px;min-height:56px;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;gap:4px}
+.tact .cost{justify-content:center}
+.tpips{display:flex;gap:3px;margin-top:2px}.tpips i{width:9px;height:9px;border-radius:2px;background:#00000022;border:1px solid var(--line2)}.tpips i.on{background:var(--brass);border-color:var(--brass)}
+.trank{font-weight:700;font-size:.9rem}
+.tmax{font-weight:700;color:var(--ok);font-size:.9rem}
+.tlink{justify-self:center;width:3px;height:100%;background:var(--line);border-radius:2px}.tlink.on{background:var(--brass)}
+.tnode.tauto{flex-direction:row;gap:14px;margin:16px auto 0;max-width:560px;text-align:left;padding:12px 16px}
+.tautotx{flex:1;display:flex;flex-direction:column;gap:2px}.tauto .td{justify-content:flex-start;min-height:0}
+.tauto .tact{margin:0;padding:0;min-height:0}
+@media (max-width:860px){.tgrid{grid-template-columns:repeat(2,minmax(0,1fr));grid-template-rows:none;grid-auto-flow:row;gap:12px}.tcol{display:flex;flex-direction:column}.tcol .tnode{flex:1}.tlink{height:16px;flex:none;align-self:center}.tsum{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:520px){.tgrid{grid-template-columns:minmax(0,1fr)}.tnode.tauto{flex-direction:column;text-align:center}.tauto .td{justify-content:center}}
+.ddmenu{position:absolute;z-index:40;display:flex;flex-direction:column;min-width:220px;padding:6px;background:var(--paper);color:var(--fg);border:1px solid #1d1209;border-radius:4px;box-shadow:0 12px 28px #000b,inset 0 0 30px #7a521f44;animation:tin .15s}
+.ddmenu>button{position:relative;font:inherit;text-align:left;padding:9px 12px;border:0;border-radius:3px;background:transparent;color:var(--fg);cursor:pointer;font-weight:500}
+.ddmenu>button:hover,.ddmenu>button:focus-visible{background:var(--bg3);color:var(--brass);outline:0}
+.ddmenu>button+button{border-top:1px solid #a88d5b55}
+.ddmenu .ndot{top:50%;right:10px;transform:translateY(-50%)}
+#menudd{position:fixed;top:calc(52px + env(safe-area-inset-top,0px));right:max(10px,env(safe-area-inset-right,0px))}
+.sdd{top:50px;left:10px;width:min(300px,calc(100% - 20px));padding:12px;text-align:left}
+.sdd .ddh{display:block;font-family:var(--display);font-weight:400;color:var(--brass);font-size:1.05rem;margin-bottom:4px}
+.sdd .optrow{justify-content:flex-start;margin:6px 0 0;max-width:none}
+.sdd .row{justify-content:flex-start!important}
 /* generic */
 .panel{background:var(--bg2);border:1px solid var(--line);border-radius:3px;padding:16px;min-width:0;box-shadow:inset 0 0 26px #9a6a2a22}
 .panel>h2,.panel>h3{margin-bottom:10px}
@@ -634,16 +704,16 @@ const ZONES=[
 
 const PM=1/60; /* taux exprimés par minute */
 const SITES=[
-  {id:'mine',n:'La Mine',unlock:0,out:{fer:10*PM,gold:10*PM},cache:.0008,desc:'Des galeries étroites où résonnent les pioches. On y extrait du fer et quelques pépites d’or.'},
-  {id:'bois',n:'Forêt Enchantée',unlock:120,out:{plante:6*PM,cuir:6*PM,cristal:10*PM},caps:{cristal:100},cache:.0008,desc:'Des sous-bois baignés de lueurs, riches en herbes rares et en gibier.'},
-  {id:'ruines',n:'Ruines englouties',unlock:450,out:{essence:3*PM,rune:.5*PM,cristal:10*PM},caps:{cristal:100},cache:.001,desc:'Des salles noyées où l’essence suinte entre les glyphes runiques.'},
-  {id:'marais',n:'Marais des brumes',unlock:1400,out:{cristal:10*PM,essence:4*PM,cuir:3*PM,rune:.5*PM,gold:10*PM},caps:{cristal:100},cache:.0012,desc:'On y récolte l’essence qui suinte des racines.'},
+  {id:'mine',n:'La Mine',unlock:0,out:{fer:15,gold:15},cache:.0008,desc:'Des galeries étroites où résonnent les pioches. On y extrait du fer et quelques pépites d’or.'},
+  {id:'bois',n:'Forêt Enchantée',unlock:120,out:{plante:9,cuir:9},cache:.0008,desc:'Des sous-bois baignés de lueurs, riches en herbes rares et en gibier.'},
+  {id:'ruines',n:'Ruines englouties',unlock:450,out:{rune:1,cristal:15},caps:{cristal:100},cache:.001,desc:'Des salles noyées où les cristaux affleurent entre les glyphes runiques.'},
+  {id:'marais',n:'Marais des brumes',unlock:1400,out:{essence:6,rune:1},cache:.0012,desc:'On y récolte l’essence qui suinte des racines.'},
 ];
 const TIERS=[
-  {n:'Forge ordinaire',lv:[1,15],cost:{fer:20,cuir:10},odds:[60,30,9,1,0]},
-  {n:'Forge fine',lv:[10,30],cost:{fer:40,cuir:20,cristal:10},odds:[25,45,25,5,0]},
-  {n:'Forge de maître',lv:[25,45],cost:{fer:60,cuir:30,cristal:25,essence:10},odds:[5,25,45,22,3]},
-  {n:'Forge légendaire',lv:[40,53],cost:{fer:80,cuir:40,cristal:40,essence:25,rune:10},odds:[0,5,30,50,15]},
+  {n:'Forge ordinaire',lv:[1,15],cost:{fer:15,cuir:8},odds:[60,30,9,1,0]},
+  {n:'Forge fine',lv:[10,30],cost:{fer:25,cuir:12,cristal:6},odds:[25,45,25,5,0]},
+  {n:'Forge de maître',lv:[25,45],cost:{fer:35,cuir:18,cristal:12,essence:4},odds:[5,25,45,22,3]},
+  {n:'Forge légendaire',lv:[40,53],cost:{fer:45,cuir:22,cristal:18,essence:8,rune:3},odds:[0,5,30,50,15]},
 ];
 const HUES=[8,38,140,190,260,320];
 const ICONS={
@@ -800,7 +870,7 @@ function v3(d){
 }
 function newGame(){
   const bag=bagNew(),mats={fer:60,cuir:30};
-  return {v:7,uid:0,heroes:[],party:[],bag,mats,gold:80,
+  return {v:7,siteV:3,uid:0,heroes:[],party:[],bag,mats,gold:80,
     sites:Object.fromEntries(SITES.map(s=>[s.id,{lvl:s.unlock===0?1:0,stock:{},cache:0}])),
     prog:{zone:0,stage:1},auto:false,farm:false,speed:1,last:Date.now(),kills:0};
 }
@@ -825,7 +895,7 @@ function fitBag(d){
   MIG_MSG=(MIG_MSG?MIG_MSG+' ':'')+'Inventaire réduit à 14 × 5 cases : les objets ont été réorganisés.'+(sold?` ${sold} objet${sold>1?'s':''} sans place vendu${sold>1?'s':''} pour ${fmt(gold)} or.`:'');
   return d;
 }
-const loadData=d=>soloize(fitBag(Object.assign(newGame(),migrate(d))));
+const loadData=d=>{if(!d.siteV)d.siteV=1; return soloize(fitBag(Object.assign(newGame(),migrate(d))))};
 /* compte : l’or est partagé, chaque personnage a sa propre sauvegarde */
 const ACC_KEY='cendrelame_acc',CHAR_KEY=i=>'cendrelame_c'+i,MAXCH=5;
 let ACC={gold:80,cur:null,seenVer:null};
@@ -884,7 +954,7 @@ const freeCells=()=>BAG-S.bag.reduce((a,e)=>{const [w,h]=SIZE(e.o);return a+w*h}
 const cellOf=id=>S.bag.findIndex(e=>!e.o.mat&&e.o.id===id);
 const entryOf=o=>S.bag.findIndex(e=>e.o===o);
 const canFit=(w,h)=>!!findSpot(S.bag,w,h);
-const MATCAP=10000;
+const MATCAP=1000;
 const isMatK=k=>MATS.includes(k);
 const matCount=k=>isMatK(k)?((S.mats&&S.mats[k])||0):S.bag.reduce((a,e)=>a+(e.o.mat===k?e.o.n:0),0);
 function storeMat(k,n){ n=Math.max(0,Math.floor(n||0)); if(!S.mats) S.mats={}; const add=Math.min(n,MATCAP-matCount(k)); S.mats[k]=matCount(k)+Math.max(0,add); return n-Math.max(0,add) }
@@ -897,7 +967,7 @@ function removeMat(k,n){
 const LOST={}; let lostT=0;
 function noteLost(k,n){
   LOST[k]=(LOST[k]||0)+n;
-  if(!lostT) lostT=setTimeout(()=>{toast('Stock plein (10 000) : '+Object.entries(LOST).map(([m,x])=>x+' '+MAT_N[m].toLowerCase()).join(', ')+' perdu(s).');for(const m in LOST)delete LOST[m];lostT=0},60);
+  if(!lostT) lostT=setTimeout(()=>{toast('Stock plein (1 000) : '+Object.entries(LOST).map(([m,x])=>x+' '+MAT_N[m].toLowerCase()).join(', ')+' perdu(s).');for(const m in LOST)delete LOST[m];lostT=0},60);
 }
 function findItem(id){
   let it=invItems().find(i=>i.id===id); if(it) return {it,where:'inv'};
@@ -926,7 +996,7 @@ function itemCard(it,foot='',delta=null){
 /* coût de création : réel pour les objets forgés/travaillés, estimé sinon (forge équivalente à la rareté + améliorations) */
 function estCost(it){
   const t=TIERS[[0,0,1,2,3,3][it.rarity]],c={};
-  for(const [k,v] of Object.entries(t.cost)) c[k]=Math.round(v*(1+it.ilvl/15));
+  for(const [k,v] of Object.entries(t.cost)) c[k]=Math.round(v*(1+it.ilvl/30));
   for(let u=0;u<(it.up||0);u++) for(const [k,v] of Object.entries(upCost({ilvl:it.ilvl,up:u}))) if(v) c[k]=(c[k]||0)+v;
   return c;
 }
@@ -1305,57 +1375,82 @@ async function finish(r){
 
 /* ============ idle ============ */
 const f=n=>n*(1+.12*(n-1));
-const siteRate=(si,lvl,m)=>(si.out[m]||0)*f(lvl);
-const siteCap=(si,lvl,m)=>(si&&si.caps&&si.caps[m])||50;
+/* arbre d’améliorations des zones de collecte */
+const SITE_M={mine:1,bois:1.5,ruines:2.5,marais:4};
+const TREE=[
+  {k:'spd',n:'Cadence',ic:'⚙',d:'Vitesse : réduit le temps entre deux récoltes',per:r=>`+${5*r} % de vitesse`,max:10,cap:{k:'spdX',n:'Ouvriers infatigables',d:'+25 % de vitesse (récoltes plus rapprochées)'}},
+  {k:'cap',n:'Entrepôt',ic:'▣',d:'Récoltes mises en réserve avant de devoir collecter',per:r=>`+${r} récolte${r>1?'s':''} en réserve`,max:10,cap:{k:'capX',n:'Grand entrepôt',d:'Réserve de récoltes ×2'}},
+];
+const MATX={fer:['Filon de fer','du fer'],gold:['Veine d’or','de l’or'],plante:['Clairière fertile','des herbes'],cuir:['Grand gibier','du cuir'],cristal:['Géode','des cristaux'],essence:['Source vive','de l’essence'],rune:['Glyphe ancien','des runes']};
+const matBranch=m=>({k:'r_'+m,n:MAT_N[m],ic:matIcon(m),mat:m,d:`Quantité ${MATX[m][1]} par récolte`,per:r=>`+${15*r} % ${MATX[m][1]}`,max:10,cap:{k:'r_'+m+'X',n:MATX[m][0],d:`10 % de chances de doubler ${MATX[m][1]} d’une récolte`}});
+const branchesFor=id=>{const si=SITES.find(x=>x.id===id); return [TREE[0],...Object.keys(si.out).map(matBranch),TREE[1]]};
+const tal=st=>st.tal||(st.tal={});
+const talCost=(id,k,r)=>/X$/.test(k)?Math.round((SITE_M[id]||1)*3000):Math.round((SITE_M[id]||1)*60*Math.pow(1.35,r));
+const spdMul=st=>1+.05*(tal(st).spd||0)+(tal(st).spdX?.25:0);
+const QTY_R=.15;
+const qtyM=(st,m)=>1+QTY_R*(tal(st)['r_'+m]||0);
+const CYCLE=300; /* une récolte toutes les 5 minutes */
+const cycleDur=st=>CYCLE/spdMul(st);
+const siteBatch=(si,st,m)=>(si.out[m]||0)*qtyM(st,m);
+const siteRate=(si,st,m)=>siteBatch(si,st,m)/cycleDur(st); /* par seconde */
+const mmss=t=>{t=Math.max(0,Math.ceil(t));return Math.floor(t/60)+':'+String(t%60).padStart(2,'0')};
+const siteRes=st=>(1+(tal(st).cap||0))*(tal(st).capX?2:1); /* récoltes stockables */
+const siteCap=(si,st,m)=>siteRes(st)*siteBatch(si,st,m);
 const siteUpCost=lvl=>Math.round(60*Math.pow(1.7,lvl-1));
+const zoneLvl=st=>Object.entries(tal(st)).reduce((a,[k,v])=>a+(k==='auto'?0:(+v||0)),0);
+const AUTO_L=25;
+const autoOn=st=>!!(tal(st).auto&&st.auto!==false);
 function produce(dt){
   for(const si of SITES){
     const st=S.sites[si.id]; if(!st||st.lvl<1) continue;
-    for(const m of Object.keys(si.out)){
-      const cap=siteCap(si,st.lvl,m);
-      st.stock[m]=Math.min(cap,(st.stock[m]||0)+siteRate(si,st.lvl,m)*dt);
-    }
+    const R=siteRes(st); st.ready=Math.min(st.ready||0,R);
+    if(st.ready>=R){st.t=0;continue}
+    const D=cycleDur(st); st.t=(st.t||0)+dt; const n=Math.min(Math.floor(st.t/D),R-st.ready); if(n<1) continue;
+    st.ready+=n; st.t=st.ready>=R?0:st.t-n*D;
   }
 }
+const readyAny=()=>SITES.some(si=>{const st=S.sites[si.id];return st&&st.lvl>0&&(st.ready||0)>0&&!autoOn(st)});
 function collectSite(id,quiet){
-  const si=SITES.find(s=>s.id===id),st=S.sites[id]; let got={};
-  let full=false;
-  for(const [m,v] of Object.entries(st.stock)){
-    const n=Math.floor(v); if(n<=0) continue;
-    const left=m==='gold'?0:storeMat(m,n); if(m==='gold') S.gold+=n;
-    if(left) full=true;
-    if(n-left>0) got[m]=n-left; st.stock[m]=v-(n-left);
+  const si=SITES.find(s=>s.id===id),st=S.sites[id],got={},items=[]; let lost=false;
+  const n=st.ready||0,amt={};
+  for(const m of Object.keys(si.out)){ let k=n; if(tal(st)['r_'+m+'X']) for(let i=0;i<n;i++) if(Math.random()<.1) k++; amt[m]=k*siteBatch(si,st,m) }
+  for(const [m,v] of Object.entries(st.stock||{})) amt[m]=(amt[m]||0)+v; /* reste des anciennes versions */
+  st.stock={};
+  const frac=st.frac||(st.frac={});
+  for(const [m,v0] of Object.entries(amt)){
+    const v=v0+(frac[m]||0),g=Math.floor(v); frac[m]=v-g; if(g<=0) continue;
+    const left=m==='gold'?0:storeMat(m,g); if(m==='gold') S.gold+=g;
+    if(left) lost=true; if(g-left>0) got[m]=g-left;
   }
-  const items=[];
-  if(full&&!quiet) setTimeout(()=>toast('Stock plein (10 000) : une partie de la récolte reste dans la zone de collecte.'),50);
+  st.ready=0;
+  if(lost&&!quiet) setTimeout(()=>toast('Stock plein (1 000) : une partie de la récolte est perdue.'),50);
   return {got,items};
 }
 /* place restante pour un matériau dans l’inventaire */
 const matRoom=k=>isMatK(k)?MATCAP-matCount(k):freeCells()*STACK+S.bag.reduce((a,e)=>a+(e.o.mat===k?STACK-e.o.n:0),0);
-/* une ressource attend en zone de collecte mais l’inventaire n’a plus de place */
+/* une récolte automatique attend mais tous ses matériaux sont pleins */
 function collectBlocked(){
-  for(const si of SITES){const st=S.sites[si.id]; if(!st||st.lvl<1) continue;
-    for(const m of Object.keys(si.out)){ if(m==='gold') continue; const v=st.stock[m]||0;
-      if(Math.floor(v)>=1&&matRoom(m)===0&&(S.autoCollect||v>=siteCap(si,st.lvl,m)-1e-6)) return true }}
+  for(const si of SITES){const st=S.sites[si.id]; if(!st||st.lvl<1||!(st.ready>0)||!autoOn(st)) continue;
+    const ms=Object.keys(si.out).filter(m=>m!=='gold'); if(ms.length&&ms.every(m=>matRoom(m)===0)) return true}
   return false;
 }
-let lastBlocked=false;
+let lastBlocked=false,lastReady='';
 function autoCollect(){
   const got={};
-  for(const si of SITES){const st=S.sites[si.id]; if(!st||st.lvl<1) continue;
-    const capped=Object.keys(si.out).some(m=>(st.stock[m]||0)>=siteCap(si,st.lvl,m)-1e-6&&(m==='gold'||matRoom(m)>0));
-    if(!capped) continue;
+  for(const si of SITES){const st=S.sites[si.id]; if(!st||st.lvl<1||!(st.ready>0)||!autoOn(st)) continue;
+    const ms=Object.keys(si.out).filter(m=>m!=='gold'); if(ms.length&&ms.every(m=>matRoom(m)===0)) continue;
     const r=collectSite(si.id,true); for(const [k,v] of Object.entries(r.got)) got[k]=(got[k]||0)+v;
   }
   if(Object.keys(got).length){ save(); renderHeader(); if(UI.tab==='bag'||UI.tab==='forge') render(); else renderTabs();
-    toast('Collecte automatique : '+Object.entries(got).map(([k,n])=>n+' '+MAT_N[k].toLowerCase()).join(', ')) }
+    toast('Récolte automatique : '+Object.entries(got).map(([k,n])=>n+' '+MAT_N[k].toLowerCase()).join(', ')) }
 }
 function tick(){
   if(!S||!S.heroes.length||UI.scr) return;
   const now=Date.now(),dt=Math.max(0,(now-S.last)/1000); S.last=now;
   produce(dt);
-  if(S.autoCollect) autoCollect();
-  const b=collectBlocked(); if(b!==lastBlocked){lastBlocked=b; if(UI.tab==='sites') render(); else renderTabs()}
+  autoCollect();
+  const b=collectBlocked(),rs=SITES.map(si=>(S.sites[si.id]||{}).ready||0).join();
+  if(b!==lastBlocked||rs!==lastReady){lastBlocked=b; lastReady=rs; if(UI.tab==='sites'&&!UI.siteTree&&!UI.siteOpt) render(); else renderTabs()}
   if(UI.tab==='sites') liveSites();
 }
 
@@ -1370,7 +1465,7 @@ function renderTabs(){
   mb.hidden=!!UI.scr||!S||!S.heroes.length;
   {const d=mb.querySelector('.ndot'),u=unseenVer(); if(u&&!d) mb.insertAdjacentHTML('beforeend','<span class="ndot" aria-label="Nouvelle version"></span>'); else if(!u&&d) d.remove()}
   if(UI.scr||!S||!S.heroes.length){el.innerHTML='';return}
-  el.innerHTML=TABS.map(([k,n])=>`<button role="tab" aria-selected="${UI.tab===k}" data-act="tab" data-t="${k}">${n}${k==='bag'&&S.bagDot&&UI.tab!=='bag'?'<span class="ndot" aria-label="Nouveaux objets"></span>':''}${k==='heroes'&&S.lvlDot&&UI.tab!=='heroes'?'<span class="ndot" aria-label="Niveau gagné"></span>':''}${k==='sites'&&collectBlocked()?'<span class="ndot" aria-label="Inventaire plein"></span>':''}</button>`).join('');
+  el.innerHTML=TABS.map(([k,n])=>`<button role="tab" aria-selected="${UI.tab===k}" data-act="tab" data-t="${k}">${n}${k==='bag'&&S.bagDot&&UI.tab!=='bag'?'<span class="ndot" aria-label="Nouveaux objets"></span>':''}${k==='heroes'&&S.lvlDot&&UI.tab!=='heroes'?'<span class="ndot" aria-label="Niveau gagné"></span>':''}${k==='sites'&&(collectBlocked()||readyAny())&&UI.tab!=='sites'?'<span class="ndot" aria-label="Récolte prête"></span>':''}</button>`).join('');
 }
 function render(){
   hideTip(); document.body.classList.toggle('scr',!!UI.scr); document.body.classList.toggle('scr-menu',UI.scr==='menu');
@@ -1401,7 +1496,7 @@ function viewMenu(){
     </div>
     <span class="mgold" aria-hidden="true" style="visibility:hidden">&nbsp;</span></div>`;
 }
-const backBtn=(to='menu')=>`<button class="btn" data-act="scr" data-s="${to}">‹ Retour</button>`;
+const backBtn=(to='menu')=>to==='menu'&&UI.fromGame&&S&&S.heroes&&S.heroes.length?`<button class="btn" data-act="backGame">‹ Retour au jeu</button>`:`<button class="btn" data-act="scr" data-s="${to}">‹ Retour</button>`;
 function viewSelect(){
   const cards=Array.from({length:MAXCH},(_,i)=>{
     const c=charSum(i);
@@ -1418,6 +1513,7 @@ function viewSelect(){
     <p class="hint" style="margin-bottom:14px">Jusqu’à ${MAXCH} personnages. L’or (<b class="num">${fmt(ACC.gold)}</b>) est partagé entre tous ; l’inventaire, les matériaux, la collecte et la progression sont propres à chacun.</p>
     <div class="slots">${cards}</div>`;
 }
+function closeMenuDD(){const d=$('#menudd'); if(d) d.remove(); const b=$('#menubtn'); if(b) b.setAttribute('aria-expanded','false')}
 function startChar(i){
   C.abort=true;C.id++;C.phase='idle';C.result=null;
   ACC.cur=i; saveAcc(); MIG_MSG='';
@@ -1437,7 +1533,15 @@ function bootChar(){
   S.bag.forEach(e=>fixL(e.o)); for(const h of S.heroes) Object.values(h.equip||{}).forEach(fixL);
   for(const h of S.heroes) for(const sk of CLASSES[h.cls].skills) if(sk.t==='a'&&h.learned[sk.id]&&!h.loadout.includes(sk.id)) h.loadout.push(sk.id);
   for(const h of S.heroes) if(h.lvl>MAXL){h.lvl=MAXL;h.xp=0}
-  Object.assign(UI,{tab:'combat',bagSel:null,invSel:null,fItem:null,fLast:null,confirm:null,multi:false,pick:new Set(),hero:null,invHero:null});
+  {let cut=0; for(const k of Object.keys(S.mats||{})) if(S.mats[k]>MATCAP){cut++; S.mats[k]=MATCAP}
+   if(cut) setTimeout(()=>toast(`Stock maximum réduit à ${MATCAP.toLocaleString('fr-FR')} par matériau : les surplus ont été retirés.`),1600)}
+  if((S.siteV||1)===2){ let ref=0; for(const si of SITES){const st=S.sites[si.id]; if(!st||!st.tal) continue; const t=st.tal;
+      for(let r=0;r<(t.qty||0);r++) ref+=talCost(si.id,'qty',r); if(t.qtyX) ref+=talCost(si.id,'qtyX',0); delete t.qty; delete t.qtyX}
+    S.siteV=3; if(ref){S.gold+=ref; setTimeout(()=>toast(`La branche Rendement est remplacée par une branche par ressource : ${fmt(ref)} or remboursés.`),1400)} }
+  if((S.siteV||1)<2){ let ref=0; for(const si of SITES){const st=S.sites[si.id]; if(!st) continue; for(let l=1;l<(st.lvl||0);l++) ref+=siteUpCost(l); if(st.lvl>1) st.lvl=1; st.tal=st.tal||{};
+      for(const m of Object.keys(st.stock||{})) st.stock[m]=Math.min(st.stock[m],siteCap(si,st,m))}
+    S.siteV=3; if(ref){S.gold+=ref; setTimeout(()=>toast(`Collecte refaite : les niveaux de zone sont remplacés par un arbre d’améliorations. ${fmt(ref)} or remboursés.`),1200)} }
+  Object.assign(UI,{tab:'combat',siteTree:null,siteOpt:null,bagSel:null,invSel:null,fItem:null,fLast:null,confirm:null,multi:false,pick:new Set(),hero:null,invHero:null});
   save();
 }
 
@@ -1559,7 +1663,7 @@ function viewShop(){
     const b=q=>`<button class="btn sm ${q===1?'pri':''}" data-act="buyPot" data-k="${k}" data-q="${q}" ${!lock&&S.gold>=pr*q?'':'disabled'}>Acheter ×${q} <span class="num">(${fmt(pr*q)} or)</span></button>`;
     return `<article class="shopc ${lock?'lock':''}"><div class="row" style="gap:10px;align-items:flex-start"><span class="potico">${matIcon(k)}</span><div style="flex:1;min-width:0"><b>${p.n}</b><p class="hint" style="margin:2px 0 6px">${p.d}</p>${lock?`<small style="color:var(--blood);font-weight:700">Réservée au ${CLASSES[p.cls].n}</small>`:`<small class="mute">Possédées : <b class="num">${own}</b></small>`}</div></div>
       <div class="row" style="margin-top:10px">${b(1)}${b(5)}</div></article>`}).join('');
-  return `<div class="row between" style="margin-bottom:6px"><h2>Marchand</h2><span class="rs" style="color:var(--fg);background:#0001;border-color:var(--line2)">${matIcon('gold')}<b>${fmt(S.gold)}</b></span></div>
+  return `<div class="thead" style="margin-bottom:6px"><span></span><h2 class="stitle">Marchand</h2><span class="rs" style="justify-self:end;color:var(--fg);background:#0001;border-color:var(--line2)">${matIcon('gold')}<b>${fmt(S.gold)}</b></span></div>
     <p class="hint" style="margin-bottom:14px">« Des potions pour l’aventure, voyageur ? » Les potions vont dans votre inventaire et se boivent en combat, sans utiliser votre tour. Les prix augmentent avec votre niveau.</p>
     <div class="shopgrid">${cards}</div>`;
 }
@@ -1882,9 +1986,9 @@ function allItems(){
   for(const h of S.heroes)for(const s of SLOTS) if(h.equip[s]) l.push({it:h.equip[s],tag:h.name});
   return l;
 }
-const upCost=it=>{const n=it.up+1;return {gold:Math.round(25*it.ilvl*Math.pow(n,1.25)),fer:8*n+it.ilvl,cuir:4*n,cristal:n>=4?(n-3)*3:0,essence:n>=7?(n-6)*2:0,rune:n>=10?3:0}};
-const rerollCost=it=>({cristal:4+Math.round(it.ilvl/4)});
-const replCost=it=>({essence:3+Math.round(it.ilvl/6),cristal:4+Math.round(it.ilvl/6)});
+const upCost=it=>{const n=it.up+1;return {gold:Math.round(25*it.ilvl*Math.pow(n,1.25)),fer:4*n+Math.round(it.ilvl/2),cuir:2*n,cristal:n>=4?(n-3)*2:0,essence:n>=7?n-6:0,rune:n>=10?2:0}};
+const rerollCost=it=>({cristal:3+Math.round(it.ilvl/8)});
+const replCost=it=>({essence:2+Math.round(it.ilvl/10),cristal:2+Math.round(it.ilvl/10)});
 /* niveau d’objet forgé : tiré au hasard dans la plage du type de forge ; le coût se base sur le milieu de la plage */
 const forgeLvl=()=>Math.round((TIERS[UI.fTier].lv[0]+TIERS[UI.fTier].lv[1])/2);
 const rollForgeLvl=()=>ri(...TIERS[UI.fTier].lv);
@@ -1892,7 +1996,7 @@ const rollForgeLvl=()=>ri(...TIERS[UI.fTier].lv);
 const PRISM={lv:[60,60],odds:[0,0,0,0,0,1]};
 const prismOn=()=>UI.fTier===3&&UI.fPrism&&matCount('prisme')>0;
 const forgeCost=()=>{const c=tierCost(UI.fTier,forgeLvl()); if(prismOn()) c.prisme=1; return c};
-const tierCost=(i,l)=>Object.fromEntries(Object.entries(TIERS[i].cost).map(([k,v])=>[k,Math.round(v*(1+l/15))]));
+const tierCost=(i,l)=>Object.fromEntries(Object.entries(TIERS[i].cost).map(([k,v])=>[k,Math.round(v*(1+l/30))]));
 function detPanel(title,html,cls=''){
   return `<section class="panel det ${cls}" aria-live="polite"><button class="x" data-act="detClose" aria-label="Fermer les détails">×</button><h3>${title}</h3>${html}</section>`;
 }
@@ -1952,39 +2056,77 @@ function viewForge(){
       <section class="panel"><div><h3>Actions</h3>${work}</div></section>
     </div>`;
   }
-  return `<div class="row between" style="margin-bottom:12px"><h2>Forge</h2>${seg}</div>${body}${bagBlock()}
+  return `<div class="thead" style="margin-bottom:12px"><span></span><h2 class="stitle">Forge</h2><div style="justify-self:end">${seg}</div></div>${body}${bagBlock()}
     <section class="panel" style="margin-top:14px"><h3 style="margin-bottom:6px">Détruire en masse</h3><p class="hint" style="margin-bottom:10px">Les objets détruits de l’inventaire rendent 25 % des ressources ayant servi à leur création. Les objets portés ne sont jamais touchés.</p>
       <div class="row">${[0,1,2].map(r=>`<button class="btn sm" data-act="salvBelow" data-r="${r}" ${invItems().some(i=>i.rarity<=r)?'':'disabled'}>Tous les objets jusqu’à ${RAR[r].n.toLowerCase()}</button>`).join('')}</div></section>`;
 }
 
 /* --- collecte --- */
+const UPICON='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l8 8h-5v4H9v-4H4zM6 18h12v3H6z"/></svg>';
+const GEARI='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19.14 12.94c.04-.3.06-.61.06-.94s-.02-.64-.07-.94l2.03-1.58a.49.49 0 0 0 .12-.61l-1.92-3.32a.49.49 0 0 0-.59-.22l-2.39.96a7 7 0 0 0-1.62-.94l-.36-2.54a.48.48 0 0 0-.48-.41h-3.84a.48.48 0 0 0-.48.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96a.49.49 0 0 0-.59.22L2.74 8.87a.48.48 0 0 0 .12.61l2.03 1.58c-.05.3-.09.63-.09.94s.02.64.07.94l-2.03 1.58a.49.49 0 0 0-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32a.48.48 0 0 0-.12-.61zM12 15.6A3.6 3.6 0 1 1 12 8.4a3.6 3.6 0 0 1 0 7.2z"/></svg>';
 function viewSites(){
   const cards=SITES.map(si=>{
     const st=S.sites[si.id];
-    if(st.lvl<1) return `<section class="panel site"><h3>${si.n}</h3><p class="hint" style="margin:6px 0 12px">${si.desc}</p><button class="btn pri" data-act="siteBuy" data-id="${si.id}" ${S.gold>=si.unlock?'':'disabled'}>Ouvrir la zone</button> ${costHTML({gold:si.unlock})}</section>`;
-    const up=siteUpCost(st.lvl);
-    const rates=Object.keys(si.out).map(m=>`<span title="${MAT_N[m]}">${matIcon(m)}${r1(siteRate(si,st.lvl,m)*60)}/min<span class="sr">${MAT_N[m]}</span></span>`).join('');
-    const stk=Object.keys(si.out).map(m=>`<div class="stk"><span class="lab">${matIcon(m)}${MAT_N[m]}</span><div class="bar"><i data-bar="${si.id}.${m}" style="width:0%"></i></div><span class="num" data-stk="${si.id}.${m}">0</span></div>`).join('');
-    return `<section class="panel site"><div class="row between"><h3>${si.n}</h3><span class="tag">Niveau ${st.lvl}</span></div><p class="hint" style="margin:4px 0 8px">${si.desc}</p>
-      <div class="rates" style="margin-bottom:10px">${rates}</div><div class="grid" style="gap:6px;margin-bottom:10px">${stk}</div>
-      <div class="row"><button class="btn pri" data-act="siteCollect" data-id="${si.id}">Collecter</button><button class="btn" data-act="siteUp" data-id="${si.id}" ${S.gold>=up?'':'disabled'}>Améliorer</button>${costHTML({gold:up})}</div></section>`}).join('');
+    if(st.lvl<1) return `<section class="panel site"><h3 class="sname">${si.n}</h3><p class="hint" style="margin:6px 0 12px;text-align:center">${si.desc}</p><div class="row" style="justify-content:center"><button class="btn pri" data-act="siteBuy" data-id="${si.id}" ${S.gold>=si.unlock?'':'disabled'}>Ouvrir la zone</button> ${costHTML({gold:si.unlock})}</div><div class="sicons">${Object.keys(si.out).map(m=>`<span title="${MAT_N[m]}">${matIcon(m)}</span>`).join('')}</div></section>`;
+    const rates=Object.keys(si.out).map(m=>`<span title="${MAT_N[m]}">${matIcon(m)}+${r1(siteBatch(si,st,m))}<span class="sr">${MAT_N[m]}</span></span>`).join('');
+    const canUp=branchesFor(si.id).some(b=>{const t=tal(st),r=t[b.k]||0; return r<b.max?S.gold>=talCost(si.id,b.k,r):!t[b.cap.k]&&S.gold>=talCost(si.id,b.cap.k,0)})||(!tal(st).auto&&zoneLvl(st)>=AUTO_L&&S.gold>=autoCost(si.id));
+    const R=siteRes(st),rd=st.ready||0,full=rd>=R,au=autoOn(st);
+    return `<section class="panel site ${rd&&!au?'ready':''}"><button class="sgear ${au?'on':''}" data-act="siteOpt" data-id="${si.id}" aria-label="Options de ${si.n}" aria-expanded="${UI.siteOpt===si.id}" title="Options">${GEARI}</button>${UI.siteOpt===si.id?optDD(si.id):''}
+      <h3 class="sname">${si.n}</h3><button class="supbtn" data-act="siteTree" data-id="${si.id}" aria-label="Améliorations de ${si.n}" title="Améliorations">${UPICON}${canUp?'<span class="ndot" aria-hidden="true"></span>':''}</button>
+      <p class="hint" style="margin:4px 0 8px;text-align:center">${si.desc}</p>
+      <div class="rates" style="margin-bottom:6px">${rates}<span class="mute">par récolte</span></div>
+      <div class="cyc"><div class="bar"><i data-cyc="${si.id}" style="width:${full?100:Math.min(100,(st.t||0)/cycleDur(st)*100)}%"></i></div><small class="num" data-cyct="${si.id}">${cycTxt(st)}</small></div>
+      <div class="row" style="justify-content:center"><button class="btn pri" data-act="siteCollect" data-id="${si.id}" ${rd?'':'disabled'}>Collecter${rd>1?` (${rd})`:''}</button></div>
+      <div class="sicons">${Object.keys(si.out).map(m=>`<span title="${MAT_N[m]}">${matIcon(m)}</span>`).join('')}</div>
+      ${au?'<small class="sauto">Auto</small>':''}</section>`}).join('');
   setTimeout(liveSites,0);
   lastBlocked=collectBlocked();
-  return `${lastBlocked?'<div class="fullbar" role="alert">Stock de matériaux plein (10 000 maximum) : utilisez-en à la Forge pour continuer la collecte.</div>':''}
-    <div class="row between" style="margin-bottom:6px"><h2>Collecte</h2><div class="row">
-      <button class="btn ${S.autoCollect?'pri':''}" data-act="autoCol" aria-pressed="${!!S.autoCollect}">Collecte auto : ${S.autoCollect?'activée':'désactivée'}</button>
-      <button class="btn" data-act="siteAll">Tout collecter</button></div></div>
-    ${S.autoCollect?'<p class="hint" style="margin-bottom:6px">Chaque zone est vidée automatiquement dès qu’une de ses ressources atteint sa limite.</p>':''}
-    <p class="hint" style="margin-bottom:14px">Les zones de collecte produisent sans vous, même hors ligne, jusqu’à 50 unités de chaque ressource (100 pour les cristaux). Pensez à collecter !</p><div class="grid g2">${cards}</div>`;
+  return `${lastBlocked?'<div class="fullbar" role="alert">Stock de matériaux plein (1 000 maximum) : utilisez-en à la Forge pour continuer la récolte automatique.</div>':''}
+    <h2 class="stitle">Collecte</h2>
+    <p class="hint" style="margin:0 auto 14px;text-align:center;max-width:760px">Chaque zone prépare une récolte toutes les 5 minutes, même hors ligne. Quand la jauge est pleine, appuyez sur « Collecter » pour récupérer les ressources ; la zone attend ensuite que vous collectiez avant de recommencer (sauf si l’Entrepôt garde des récoltes en réserve). La flèche en haut à droite ouvre l’arbre d’améliorations ; l’engrenage en haut à gauche donne accès à la récolte automatique, débloquée au niveau de zone ${AUTO_L}.</p><div class="grid g2">${cards}</div>${UI.siteTree?treeModal(UI.siteTree):''}`;
+}
+const autoCost=id=>Math.round((SITE_M[id]||1)*8000);
+function cycTxt(st){
+  const R=siteRes(st),rd=st.ready||0;
+  if(rd>=R) return R>1?`Réserve pleine : ${rd} récoltes prêtes`:'Récolte prête : appuyez sur Collecter';
+  return (rd?`${rd} récolte${rd>1?'s':''} prête${rd>1?'s':''} · `:'')+'Prochaine récolte dans '+mmss(cycleDur(st)-(st.t||0));
+}
+function optDD(id){
+  const si=SITES.find(x=>x.id===id),st=S.sites[id],t=tal(st),lv=zoneLvl(st);
+  const body=t.auto?`<label class="optrow"><input type="checkbox" data-act="siteAutoT" data-id="${id}" ${autoOn(st)?'checked':''}> Récupérer automatiquement les récoltes de cette zone</label><p class="hint" style="margin:8px 0 0">Les ressources sont ajoutées dès qu’une récolte est prête.</p>`
+    :`<label class="optrow lock"><input type="checkbox" disabled> Récupérer automatiquement les récoltes de cette zone</label><p class="hint" style="margin:8px 0 0">🔒 À débloquer dans l’arbre d’améliorations, à partir du niveau de zone ${AUTO_L} (niveau actuel : <b>${lv}</b>).</p><div class="row" style="justify-content:center;margin-top:12px"><button class="btn" data-act="siteTreeFromOpt" data-id="${id}">Ouvrir l’arbre</button></div>`;
+  return `<div class="sdd ddmenu" id="sopt" role="menu"><b class="ddh">Options · ${si.n}</b>${body}</div>`;
+}
+function treeModal(id){
+  const si=SITES.find(x=>x.id===id),st=S.sites[id],t=tal(st);
+  const cols=branchesFor(id).map(b=>{
+    const r=t[b.k]||0,full=r>=b.max,c=talCost(id,b.k,r),cx=b.cap,have=!!t[cx.k],cc=talCost(id,cx.k,0);
+    const pips=Array.from({length:b.max},(_,i)=>`<i class="${i<r?'on':''}"></i>`).join('');
+    return `<div class="tcol">
+      <div class="tnode ${r?'got':''} ${full?'max':''}"><span class="tic">${b.ic}</span><b class="tn">${b.n}</b><small class="td">${b.d}</small>
+        <span class="tpips">${pips}</span><span class="trank num">${r} / ${b.max}</span>
+        <small class="teff"><span>${r?b.per(r):'Aucun bonus'}</span>${full?'':`<b>→ ${b.per(r+1)}</b>`}</small>
+        <div class="tact">${full?'<span class="tmax">Maximum</span>':`<button class="btn sm pri" data-act="talBuy" data-id="${id}" data-k="${b.k}" ${S.gold>=c?'':'disabled'}>Améliorer</button>${costHTML({gold:c})}`}</div></div>
+      <span class="tlink ${full?'on':''}" aria-hidden="true"></span>
+      <div class="tnode cap ${have?'got max':''} ${full?'':'lock'}"><span class="tic">★</span><b class="tn">${cx.n}</b><small class="td">${cx.d}</small>
+        <div class="tact">${have?'<span class="tmax">Acquis</span>':full?`<button class="btn sm pri" data-act="talBuy" data-id="${id}" data-k="${cx.k}" ${S.gold>=cc?'':'disabled'}>Débloquer</button>${costHTML({gold:cc})}`:`<small class="mute">🔒 ${b.n} ${b.max}/${b.max} requis</small>`}</div></div>
+    </div>`}).join('');
+  const lv=zoneLvl(st),ac=autoCost(id),R=siteRes(st);
+  const sum=`<div class="tsum"><span><small>Niveau de zone</small><b>${lv}</b></span><span><small>Récolte toutes les</small><b>${mmss(cycleDur(st))}</b></span><span><small>Réserve</small><b>${R} récolte${R>1?'s':''}</b></span><span><small>Or disponible</small><b>${fmt(S.gold)}</b></span></div>`;
+  const auto=`<div class="tnode tauto ${t.auto?'got max':''} ${lv>=AUTO_L?'':'lock'}"><span class="tic">${GEARI}</span><div class="tautotx"><b class="tn">Récolte automatique</b><small class="td">Débloque l’option de l’engrenage : les récoltes de la zone sont récupérées toutes seules.</small></div>
+    <div class="tact">${t.auto?'<span class="tmax">Acquis</span>':lv>=AUTO_L?`<button class="btn sm pri" data-act="talBuy" data-id="${id}" data-k="auto" ${S.gold>=ac?'':'disabled'}>Débloquer</button>${costHTML({gold:ac})}`:`<small class="mute">🔒 Niveau de zone ${AUTO_L} requis (${lv}/${AUTO_L})</small>`}</div></div>`;
+  return `<div class="modal" id="tree" role="dialog" aria-modal="true" aria-labelledby="treeT"><div class="box tree">
+    <button class="x" data-act="treeClose" aria-label="Fermer">×</button>
+    <h2 id="treeT">Améliorations · ${si.n}</h2>${sum}
+    <div class="tgrid">${cols}</div>${auto}
+    <p class="hint" style="margin:12px 0 0">Chaque rang coûte un peu plus cher. Le talent étoilé se débloque quand sa branche est au maximum. Chaque amélioration achetée augmente le niveau de la zone de 1.</p></div></div>`;
 }
 function liveSites(){
   for(const si of SITES){
     const st=S.sites[si.id]; if(st.lvl<1) continue;
-    for(const m of Object.keys(si.out)){
-      const cap=siteCap(si,st.lvl,m),v=st.stock[m]||0;
-      const a=$(`[data-stk="${si.id}.${m}"]`),b=$(`[data-bar="${si.id}.${m}"]`);
-      if(a)a.textContent=fmt(v)+' / '+fmt(cap); if(b)b.style.width=Math.min(100,v/cap*100)+'%';
-    }
+    const D=cycleDur(st),full=(st.ready||0)>=siteRes(st),cb=$(`[data-cyc="${si.id}"]`),ct=$(`[data-cyct="${si.id}"]`);
+    if(cb){const w=full?100:Math.min(100,(st.t||0)/D*100),o=parseFloat(cb.style.width)||0; if(w<o){cb.style.transition='none';cb.style.width=w+'%';void cb.offsetWidth;cb.style.transition=''} else cb.style.width=w+'%'}
+    if(ct) ct.textContent=cycTxt(st);
   }
 }
 
@@ -2046,10 +2188,16 @@ function viewHelp(){
 }
 
 /* --- nouveautés --- */
-const VERSION='0.0.7';
+const VERSION='0.0.8';
 const PATCH=[
+ {v:'0.0.8',t:'Arbre de collecte',sec:[
+  ['Menu',['Le bouton « Menu » en jeu ouvre un menu déroulant : Options, Nouveautés et Changer de personnage.','Options et Nouveautés s’ouvrent depuis la partie, avec un bouton « Retour au jeu ».','« Changer de personnage » demande une confirmation, puis ouvre l’écran de choix des personnages.']],
+  ['Collecte',['Les niveaux de zone sont remplacés par un arbre d’améliorations : bouton flèche en haut à droite de chaque zone.','Branches de 10 rangs payés en or : Cadence (+5 % de vitesse par rang), Entrepôt (+1 récolte en réserve) et une branche par ressource de la zone (+15 % de cette ressource par récolte). Chaque branche complète débloque un talent étoilé : +25 % de vitesse, réserve ×2, ou 10 % de chances de doubler cette ressource (Filon de fer, Veine d’or, Clairière fertile, Grand gibier, Géode, Source vive, Glyphe ancien).','L’or dépensé dans les anciens niveaux de zone est remboursé.','Nouvelle mise en page des zones : nom centré en haut, bouton Collecter centré.']],
+  ['Équilibrage',['Les branches de ressource donnent maintenant +15 % par rang (+150 % au maximum).','Stock maximum réduit à 1 000 par matériau (au lieu de 10 000).','Coûts de la Forge revus à la baisse : Forge ordinaire ~19 fer et 10 cuirs, Forge légendaire ~115 fer, 56 cuirs, 46 cristaux, 20 essences et 8 runes.','Améliorer, relancer et remplacer une affixe coûtent moins de matériaux (l’or ne change pas).']],
+  ['Récoltes',['Les zones ne produisent plus en continu : elles livrent une récolte toutes les 5 minutes (barre et compte à rebours sur chaque zone).','La Forêt ne donne plus de cristaux, les Ruines plus d’essence, et le Marais ne garde que l’essence et les runes.','Récolte de base : 15 fer et 15 or à la Mine ; 9 herbes et 9 cuirs à la Forêt ; 15 cristaux et 1 rune aux Ruines ; 6 essences et 1 rune au Marais.','La branche Cadence réduit le temps entre deux récoltes (jusqu’à environ 2 min 50 avec le talent étoilé).','Chaque zone affiche la quantité de chaque récolte et une grande jauge avec le temps restant ; les jauges de stock par ressource sont retirées.','Quand la jauge est pleine, la zone attend : il faut appuyer sur « Collecter » pour récupérer la récolte et relancer la jauge. La branche Entrepôt permet de garder des récoltes en réserve (+1 par rang, ×2 avec Grand entrepôt).','Niveau de zone : chaque amélioration achetée dans l’arbre augmente le niveau de la zone de 1.','Récolte automatique : se débloque dans l’arbre à partir du niveau de zone 25, puis s’active avec l’engrenage en haut à gauche de la zone (menu déroulant).','Les icônes des ressources de chaque zone sont affichées en bas à gauche.','Les boutons « Collecte auto » et « Tout collecter » sont retirés ; le titre Collecte est centré et en gras.','Un point rouge sur l’onglet Collecte signale une récolte prête.']]
+ ]},
  {v:'0.0.7',t:'L’Enclume',sec:[
-  ['Menu du jeu',['Nouvel écran d’accueil au centre de l’écran : Jouer, Options et Nouveautés.','En jeu, le bouton « Menu » en haut à droite ramène à l’écran d’accueil (la partie est sauvegardée).','Les Options (sauvegarde) et les Nouveautés sont maintenant accessibles depuis le menu.']],
+  ['Menu du jeu',['Nouvel écran d’accueil au centre de l’écran : Jouer, Options et Nouveautés.','En jeu, le bouton « Menu » en haut à droite ramène à l’écran d’accueil après une fenêtre de confirmation (Oui / Non). La partie est sauvegardée.','Un point rouge sur « Nouveautés » (et sur le bouton « Menu » en jeu) signale une nouvelle version.','Les Options (sauvegarde) et les Nouveautés sont maintenant accessibles depuis le menu.']],
   ['Personnages',['Jusqu’à 5 personnages, de n’importe quelle classe. « Jouer » ouvre l’écran de choix : jouer, créer ou supprimer un personnage.','Seul l’or est partagé entre les personnages. Inventaire, équipement, matériaux, collecte et progression sont propres à chacun.','Votre partie actuelle devient automatiquement le personnage 1. L’export de sauvegarde contient tous les personnages.']],
   ['Forge',['Forge redessinée (style « Enclume ») : liste des objets à gauche, enclume lumineuse au centre avec le type de forge et le bouton Forger, chances de rareté en barres, coût et dernière création à droite. En Amélioration : roue d’équipement à gauche, objet posé sur l’enclume au centre, actions à droite.']],
   ['Aventure',['Le mode Héroïque demande maintenant d’atteindre le niveau 50. En dessous, le bouton est verrouillé (le mode Mythique aussi).']],
@@ -2152,7 +2300,7 @@ document.addEventListener('scroll',hideTip,true);
 
 /* ============ actions ============ */
 const A={
-  tab:d=>{UI.tab=d.t;if(d.t==='bag')S.bagDot=false;if(d.t==='heroes')S.lvlDot=false;if(d.t==='forge')UI.fMode='forge';UI.bagSel=null;UI.invSel=null;UI.recruit=false;UI.multi=false;UI.pick=new Set();if(UI.confirm!=='reset')UI.confirm=null;render()},
+  tab:d=>{UI.tab=d.t;UI.siteTree=null;UI.siteOpt=null;if(d.t==='bag')S.bagDot=false;if(d.t==='heroes')S.lvlDot=false;if(d.t==='forge')UI.fMode='forge';UI.bagSel=null;UI.invSel=null;UI.recruit=false;UI.multi=false;UI.pick=new Set();if(UI.confirm!=='reset')UI.confirm=null;render()},
   pickClass:d=>{UI.cc=d.c;render()},
   pickHue:d=>{UI.chue=+d.h;render()},
   createHero:()=>{
@@ -2289,17 +2437,23 @@ const A={
     toast(n?`${n} objets détruits. Récupéré : ${resTxt(tot)}.`:'Rien à détruire.');
   },
   siteBuy:d=>{const si=SITES.find(s=>s.id===d.id);if(S.gold<si.unlock)return;S.gold-=si.unlock;S.sites[d.id].lvl=1;S.sites[d.id].last=Date.now();save();render()},
-  siteUp:d=>{const st=S.sites[d.id],c=siteUpCost(st.lvl);if(S.gold<c)return;S.gold-=c;st.lvl++;save();render()},
+  siteTree:d=>{UI.siteTree=d.id;render();const b=$('#tree .x');if(b)b.focus()},
+  treeClose:()=>{UI.siteTree=null;render()},
+  talBuy:d=>{const st=S.sites[d.id],t=tal(st),k=d.k,isX=/X$/.test(k);
+    if(k==='auto'){ if(t.auto||zoneLvl(st)<AUTO_L) return; const c=autoCost(d.id); if(S.gold<c) return; S.gold-=c; t.auto=1; st.auto=true; save(); render(); toast('Récolte automatique débloquée : activez-la avec l’engrenage de la zone.'); return }
+    const BR=branchesFor(d.id);
+    if(isX){const b=BR.find(x=>x.cap.k===k); if(!b||t[k]||(t[b.k]||0)<b.max) return}
+    else{const b=BR.find(x=>x.k===k); if(!b||(t[k]||0)>=b.max) return}
+    const c=talCost(d.id,k,t[k]||0); if(S.gold<c) return; S.gold-=c; t[k]=isX?1:(t[k]||0)+1; save(); render()},
   siteCollect:d=>{
     const r=collectSite(d.id); const t=Object.entries(r.got).map(([k,v])=>`${v} ${MAT_N[k].toLowerCase()}`);
     if(r.items.length)t.push(`${r.items.length} objet${r.items.length>1?'s':''}`);
     save();render();toast(t.length?'Récolté : '+t.join(', '):'Rien à collecter pour l’instant.');
   },
-  autoCol:()=>{S.autoCollect=!S.autoCollect; if(S.autoCollect) autoCollect(); save(); render()},
-  siteAll:()=>{
-    let n=0,it=0; for(const si of SITES) if(S.sites[si.id].lvl>0){const r=collectSite(si.id);n+=Object.values(r.got).reduce((a,b)=>a+b,0);it+=r.items.length}
-    save();render();toast(n||it?`Récolté : ${n} ressources${it?`, ${it} objet${it>1?'s':''}`:''}.`:'Rien à collecter pour l’instant.');
-  },
+  siteOpt:d=>{UI.siteOpt=UI.siteOpt===d.id?null:d.id;UI.siteTree=null;render()},
+  optClose:()=>{UI.siteOpt=null;render()},
+  siteTreeFromOpt:d=>{UI.siteOpt=null;UI.siteTree=d.id;render()},
+  siteAutoT:d=>{const st=S.sites[d.id]; if(!tal(st).auto) return; st.auto=!autoOn(st); save(); if(st.auto) autoCollect(); render()},
   copyExp:()=>{
     const t=$('#expTxt'); t.select();
     try{navigator.clipboard.writeText(t.value).then(()=>toast('Code copié.'),()=>toast('Sélectionnez le code et copiez-le.'))}catch(e){toast('Sélectionnez le code et copiez-le.')}
@@ -2324,13 +2478,20 @@ const A={
     ACC={gold:80,cur:null,seenVer:VERSION}; saveAcc(); S=null; UI.confirm=null; UI.scr='menu'; render(); toast('Toutes les données ont été effacées.');
   },
   cancelReset:()=>{UI.confirm=null;render()},
-  scr:d=>{ if(d.s==='news'){ACC.seenVer=VERSION;saveAcc()} UI.scr=d.s; UI.confirm=null; render(); scrollTo(0,0) },
-  toMenu:()=>{ if($('#mconf')) return; hideTip();
+  scr:d=>{ if(d.s==='news'){ACC.seenVer=VERSION;saveAcc()} if(d.s==='menu'||d.s==='select') UI.fromGame=false; UI.scr=d.s; UI.confirm=null; render(); scrollTo(0,0) },
+  toMenu:()=>{ hideTip(); const dd=$('#menudd'); if(dd){closeMenuDD();return}
+    const u=unseenVer(),m=document.createElement('div'); m.id='menudd'; m.className='ddmenu'; m.setAttribute('role','menu');
+    m.innerHTML=`<button role="menuitem" data-act="ddOpt">Options</button><button role="menuitem" data-act="ddNews">Nouveautés${u?'<span class="ndot" aria-label="Nouvelle version"></span>':''}</button><button role="menuitem" data-act="ddChar">Changer de personnage</button>`;
+    document.body.append(m); $('#menubtn').setAttribute('aria-expanded','true'); m.querySelector('button').focus() },
+  ddOpt:()=>{closeMenuDD(); save(); UI.fromGame=true; UI.scr='opts'; UI.confirm=null; render(); scrollTo(0,0)},
+  ddNews:()=>{closeMenuDD(); save(); UI.fromGame=true; ACC.seenVer=VERSION; saveAcc(); UI.scr='news'; render(); scrollTo(0,0)},
+  ddChar:()=>{ closeMenuDD(); if($('#mconf')) return;
     const m=document.createElement('div'); m.className='modal'; m.id='mconf'; m.setAttribute('role','dialog'); m.setAttribute('aria-modal','true'); m.setAttribute('aria-labelledby','mconfT');
-    m.innerHTML=`<div class="box"><h2 id="mconfT">Retourner au menu ?</h2><p>${C.phase==='fight'?'Le combat en cours sera interrompu. ':''}Votre partie est sauvegardée.</p><div class="row"><button class="btn pri" data-act="menuYes">Oui</button><button class="btn" data-act="menuNo">Non</button></div></div>`;
+    m.innerHTML=`<div class="box"><h2 id="mconfT">Changer de personnage ?</h2><p>${C.phase==='fight'?'Le combat en cours sera interrompu. ':''}Votre partie est sauvegardée.</p><div class="row"><button class="btn pri" data-act="menuYes">Oui</button><button class="btn" data-act="menuNo">Non</button></div></div>`;
     document.body.append(m); m.querySelector('[data-act=menuNo]').focus(); },
+  backGame:()=>{UI.fromGame=false; if(!S||!S.heroes||!S.heroes.length){UI.scr='menu';render();return} UI.scr=null; render(); scrollTo(0,0)},
   menuNo:()=>{const m=$('#mconf'); if(m) m.remove(); const b=$('#menubtn'); if(b) b.focus()},
-  menuYes:()=>{ const m=$('#mconf'); if(m) m.remove(); if(C.phase==='fight'){C.abort=true;C.id++} C.phase='idle'; save(); UI.scr='menu'; UI.confirm=null; render(); scrollTo(0,0) },
+  menuYes:()=>{ const m=$('#mconf'); if(m) m.remove(); if(C.phase==='fight'){C.abort=true;C.id++} C.phase='idle'; save(); UI.fromGame=false; UI.scr='select'; UI.confirm=null; render(); scrollTo(0,0) },
   playChar:d=>{ if(startChar(+d.i)){UI.scr=null; render(); scrollTo(0,0)} },
   newChar:d=>{ const i=+d.i; if(charRaw(i)) return; if(S&&S.heroes&&S.heroes.length&&!UI.scr) save(); C.abort=true;C.id++;C.phase='idle'; ACC.cur=i; S=newGame(); S.gold=ACC.gold; UI.cname=''; UI.scr='create'; render(); scrollTo(0,0) },
   delChar:d=>{ const i=+d.i; if(UI.confirm!=='delc'+i){UI.confirm='delc'+i;render();return}
@@ -2343,8 +2504,10 @@ document.addEventListener('click',e=>{
   if(b.tagName==='INPUT') return;
   if(A[b.dataset.act]) A[b.dataset.act](b.dataset);
 });
-document.addEventListener('keydown',e=>{ if(e.key==='Escape'&&$('#mconf')) A.menuNo() });
-document.addEventListener('mousedown',e=>{ if(e.target.id==='mconf') A.menuNo() });
+document.addEventListener('keydown',e=>{ if(e.key==='Escape'){ if($('#menudd')){closeMenuDD();$('#menubtn').focus()} else if($('#mconf')) A.menuNo(); else if(UI.siteTree) A.treeClose(); else if(UI.siteOpt) A.optClose() } });
+document.addEventListener('mousedown',e=>{ if(e.target.id==='mconf') A.menuNo(); else if(e.target.id==='tree') A.treeClose();
+  if($('#menudd')&&!e.target.closest('#menudd,#menubtn')) closeMenuDD();
+  if(UI.siteOpt&&!e.target.closest('#sopt,.sgear')) A.optClose() });
 document.addEventListener('input',e=>{
   if(e.target.id==='cname') UI.cname=e.target.value;
 });
