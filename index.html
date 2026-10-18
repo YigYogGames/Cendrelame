@@ -263,11 +263,68 @@ body.scr-menu #view{background:none;border:0;box-shadow:none;outline:0;padding:0
 .bvals{display:grid;grid-template-columns:repeat(4,1fr);gap:4px}.bvals span{display:flex;flex-direction:column;align-items:center;padding:4px 2px;border-radius:4px;background:#3a2817;color:#f1e2bd}.bvals small{font-size:.68rem;color:#c9ae82}.bvals b{font-size:.95rem}
 .bcmp{display:flex;justify-content:space-between;font-size:.82rem;padding:4px 8px;border-radius:4px}.bcmp.ok{background:#3d7a3422;color:var(--ok)}.bcmp.bad{background:#a5351f22;color:var(--blood)}
 .bsk{display:flex;flex-wrap:wrap;gap:4px}
+.bres summary{cursor:pointer;font-size:.8rem;color:var(--mute)}.bres em{font-style:normal;margin-left:6px;color:var(--brass);font-weight:700}.binp.b3{grid-template-columns:repeat(3,1fr);margin-top:6px}
 .bchip{font:inherit;font-size:.74rem;padding:3px 8px;border-radius:99px;border:1px solid var(--line2);background:transparent;color:var(--mute);cursor:pointer}
 .bchip.on{background:var(--brass);border-color:var(--brass);color:#f7e9c6;font-weight:700}.bchip.lock{border-style:dashed;cursor:default}
 .btable{overflow-x:auto}.btable table{width:100%;border-collapse:collapse;font-size:.88rem}.btable th,.btable td{padding:6px;border-bottom:1px solid #a88d5b55;text-align:left;vertical-align:top}
 .btable td:has(.bfx){display:flex;gap:6px;flex-wrap:wrap}.bfx{width:84px}
 code.uid{font-size:.8rem;padding:2px 6px;background:#0000000f;border-radius:3px;word-break:break-all}
+.testbar{position:fixed;top:0;left:50%;transform:translateX(-50%);z-index:60;padding:3px 14px;border-radius:0 0 6px 6px;background:#b8471f;color:#fff3d6;font-weight:700;font-size:.78rem;letter-spacing:.08em;box-shadow:0 2px 10px #0008;pointer-events:none;white-space:nowrap}
+.apbar{display:flex;gap:2px;height:7px;margin-top:3px}
+.apbar i{flex:1;border-radius:2px;background:#3a2a1a;border:1px solid #1d1209}
+.apbar i.on{background:linear-gradient(#ffd56a,#d39a1c);border-color:#7a5310;box-shadow:0 0 4px #e8b13a88}
+.apc{color:#b8760e;font-weight:700}
+.elt{font-style:normal;font-size:.7rem;font-weight:700;color:#fff;background:var(--ec);padding:0 5px;border-radius:99px;margin-left:4px;vertical-align:1px}
+.it li.legp{color:#d9701a;font-weight:500;margin-top:4px}.it li.legp b{color:#e07b12}
+dt.rsep{margin-top:6px;font-family:var(--display);color:var(--brass)}dd.rsep{margin-top:6px}
+dl.cats dt.scat{grid-column:1/-1;text-align:center;font-family:var(--display);color:var(--brass);font-size:1.02rem;margin:10px 0 2px;padding-bottom:2px;border-bottom:1px solid #a88d5b55}
+dl.cats dd.scat{display:none}
+dl.cats dt.spow,dl.cats dd.spow{margin-top:8px;padding-top:6px;border-top:1px solid #a88d5b55}
+.stats .spl{color:#8a8274;font-size:.85em;font-weight:400}
+.btn.endturn{align-self:center;background:#3a2817;color:var(--gold);border-color:#1d1209;font-weight:700}
+.btn.endturn:hover{background:#4a3220}
+.frname{font:inherit;background:none;border:0;padding:0;color:inherit;cursor:pointer;text-align:left;display:inline-flex;align-items:center;gap:6px;max-width:100%}
+.frname:hover b{color:var(--brass);text-decoration:underline}
+.frud{width:9px;height:9px;border-radius:50%;background:#e0412a;box-shadow:0 0 0 2px var(--paper);flex:none}
+.frn{position:relative}
+.frpop{position:fixed;z-index:40;padding:6px;background:var(--paper);border:1px solid #1d1209;border-radius:6px;box-shadow:0 8px 20px #0009;visibility:hidden}
+.frpop::after{content:'';position:absolute;right:-6px;top:50%;width:10px;height:10px;background:var(--paper);border-right:1px solid #1d1209;border-top:1px solid #1d1209;transform:translateY(-50%) rotate(45deg)}
+.chatb{display:inline-flex;align-items:center;justify-content:flex-start;gap:6px;padding:5px 12px 5px 8px;line-height:1}
+.chatb svg{width:16px;height:16px;fill:currentColor;flex:none;display:block}
+.chatb span{display:block}
+.frpop{display:flex;flex-direction:column;gap:5px}
+.frpop .chatb{width:100%}
+.duelb{background:#3a2817;color:var(--gold);border-color:#1d1209}.duelb:hover{background:#4a3220}
+.frchat{position:fixed;z-index:36;right:calc(max(12px,env(safe-area-inset-right,0px)) + min(340px,calc(100vw - 24px)) + 10px);bottom:max(12px,env(safe-area-inset-bottom,0px));width:min(320px,calc(100vw - 24px));height:min(440px,70vh);display:flex;flex-direction:column;background:var(--paper);color:var(--fg);border:1px solid #1d1209;border-radius:6px;box-shadow:0 14px 34px #000c,inset 0 0 30px #7a521f44;padding:10px 12px}
+.chlog{flex:1;overflow-y:auto;display:flex;flex-direction:column;gap:6px;padding:6px 2px;margin-bottom:8px;border-top:1px solid #a88d5b55;border-bottom:1px solid #a88d5b55}
+.chm{align-self:flex-start;max-width:85%;display:flex;flex-direction:column;gap:1px}
+.chm span{padding:6px 10px;border-radius:10px 10px 10px 2px;background:#cab283;word-wrap:break-word;white-space:pre-wrap}
+.chm.me{align-self:flex-end;align-items:flex-end}.chm.me span{background:var(--brass);color:#f7e9c6;border-radius:10px 10px 2px 10px}
+.chm small{font-size:.68rem;color:var(--mute)}
+@media (max-width:760px){.frchat{right:12px;bottom:64px;height:min(420px,60vh)}}
+.advmode{margin-bottom:12px}
+.pvpanel{display:flex;flex-direction:column;align-items:center;text-align:center}
+.pvsearch{display:flex;align-items:center;gap:12px;flex-wrap:wrap;justify-content:center}
+.spin{width:20px;height:20px;border-radius:50%;border:3px solid #a88d5b55;border-top-color:var(--brass);animation:spin 1s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.pvpm{z-index:45}
+.pvpm .box{width:min(100%,760px);max-height:calc(100vh - 24px);overflow-y:auto;text-align:left}
+.pvconf{text-align:center!important;max-width:420px}
+.pvarena{display:grid;grid-template-columns:1fr auto 1fr;gap:10px;align-items:center}
+.pvvs{font-family:var(--display);font-size:1.6rem;color:var(--brass)}
+.pvcard{display:flex;flex-direction:column;align-items:center;gap:4px;padding:10px;border:1px solid var(--line2);border-radius:6px;background:var(--bg2);text-align:center;min-width:0}
+.pvcard.me{border-color:var(--verd)}.pvcard.turn{box-shadow:0 0 0 2px var(--gold),0 0 14px #e8c98288}.pvcard.dead{opacity:.55;filter:grayscale(.6)}
+.pvcard img{width:84px;height:84px;filter:drop-shadow(0 3px 6px #0006)}
+.pvcard small{color:var(--mute);font-size:.8rem}
+.pvcard .hp,.pvcard .apbar{width:100%}.pvcard.me .hp i{background:var(--verd)}
+.pvcard .stt{display:flex;flex-wrap:wrap;gap:3px;justify-content:center;min-height:16px}.pvcard .stt em{font-style:normal;font-size:.7rem;padding:0 5px;border-radius:3px;background:#0002}
+.pvacts{margin:12px 0 8px;min-height:60px}
+.pvacts .acts{display:flex;flex-wrap:wrap;gap:6px;align-items:stretch}
+.pvacts .potbar{margin-top:8px}
+.pvwin{text-align:center;font-family:var(--display);font-size:1.6rem;color:var(--brass);padding:12px}
+.pvlog{max-height:150px;overflow-y:auto}
+.box.loot{text-align:center;max-width:360px}.lootg{display:flex;align-items:center;justify-content:center;gap:8px;font-size:1.6rem;margin:12px 0 16px;color:var(--brass)}.lootg svg{width:30px;height:30px}
+@media (max-width:560px){.pvarena{grid-template-columns:1fr}.pvvs{text-align:center}}
 /* generic */
 .panel{background:var(--bg2);border:1px solid var(--line);border-radius:3px;padding:16px;min-width:0;box-shadow:inset 0 0 26px #9a6a2a22}
 .panel>h2,.panel>h3{margin-bottom:10px}
@@ -627,6 +684,7 @@ input[type=checkbox]{accent-color:var(--brass)}
 </style>
 
 <div class="byline">By Roukette<br><span id="ver"></span></div>
+<div id="testbar" class="testbar" hidden>VERSION TEST · données séparées de la version des joueurs</div>
 <button id="news" class="newsbtn" data-act="tab" data-t="news" aria-label="Nouveautés" title="Nouveautés" hidden><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h11a2 2 0 0 1 2 2v13a3 3 0 0 1-3 3H7a3 3 0 0 1-3-3V5a2 2 0 0 1 2-2zm1 4v2h9V7zm0 4v2h9v-2zm0 4v2h6v-2z"/></svg><span>Nouveautés</span></button>
 <button id="gear" class="gear" data-act="tab" data-t="opts" aria-label="Réglages" title="Réglages" hidden><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.07-.94l2.03-1.58a.49.49 0 0 0 .12-.61l-1.92-3.32a.49.49 0 0 0-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54a.48.48 0 0 0-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96a.49.49 0 0 0-.59.22L2.74 8.87a.48.48 0 0 0 .12.61l2.03 1.58c-.05.3-.09.63-.09.94s.02.64.07.94l-2.03 1.58a.49.49 0 0 0-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32a.47.47 0 0 0-.12-.61l-2.01-1.58zM12 15.6A3.6 3.6 0 1 1 12 8.4a3.6 3.6 0 0 1 0 7.2z"/></svg></button>
 <button id="menubtn" class="menubtn" data-act="toMenu" aria-label="Menu du jeu" title="Menu" hidden><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg><span>Menu</span></button>
@@ -657,7 +715,10 @@ const r1=v=>Math.round(v*10)/10;
 const sleep=ms=>new Promise(r=>setTimeout(r,ms/(S&&S.speed||1)));
 
 /* ============ données ============ */
-const SAVE_KEY='cendrelame_v1';
+const TEST=/\/test(\/|$|\/index\.html)/i.test(location.pathname)||/[?&]test=1\b/.test(location.search);
+const KP=TEST?'cendrelame_TEST_':'cendrelame_';
+const COL=n=>TEST?'test_'+n:n;
+const SAVE_KEY=KP+'v1';
 const SLOTS=['weapon','helm','armor','legs','boots','ring','ring2','amulet'];
 const ITEM_SLOTS=['weapon','helm','armor','legs','boots','ring','amulet'];
 const slotType=k=>k==='ring2'?'ring':k;
@@ -679,13 +740,13 @@ const MAT_D={prisme:'Relique céleste, lâchée rarement par Le Dévoreur (10 %)
 const GW=14,GH=5,BAG=GW*GH,STACK=500;
 /* taille d'un objet dans la grille (largeur x hauteur) */
 const SIZE=o=>o.mat?[1,1]:({weapon:[1,5],armor:[2,3],legs:[2,3],helm:[2,2],boots:[2,2],ring:[1,1],amulet:[1,1]})[o.slot]||[1,1];
-const STAT_N={hp:'PV',atk:'Force',mag:'Intelligence',def:'Défense',res:'Résistance',spd:'Vitesse',crit:'Critique',critDmg:'Dégâts critiques',dodge:'Esquive',lifesteal:'Vol de vie',hpPct:'PV',dmgPct:'Dégâts',goldFind:'Or trouvé',dropRate:'Butin trouvé'};
-const PCT=new Set(['crit','critDmg','dodge','lifesteal','hpPct','dmgPct','goldFind','dropRate']);
+const STAT_N={hp:'PV',atk:'Force',mag:'Intelligence',def:'Défense physique',res:'Défense magique',ap:'Points d’action',rPhys:'Résistance physique',rMag:'Résistance magique',rFeu:'Résistance au feu',rGlace:'Résistance à la glace',rFoudre:'Résistance à la foudre',rTerre:'Résistance à la terre',spd:'Vitesse',crit:'Critique',critDmg:'Dégâts critiques',dodge:'Esquive',lifesteal:'Vol de vie',hpPct:'PV',dmgPct:'Dégâts',goldFind:'Or trouvé',dropRate:'Butin trouvé'};
+const PCT=new Set(['rPhys','rMag','rFeu','rGlace','rFoudre','rTerre','crit','critDmg','dodge','lifesteal','hpPct','dmgPct','goldFind','dropRate']);
 const fmtStat=(s,v)=>PCT.has(s)?`+${r1(v)}% ${STAT_N[s]}`:`+${Math.round(v)} ${STAT_N[s]}`;
 const MAXL=50;
 
 const RAR=[
-  {n:'Commun',aff:1,m:1},{n:'Magique',aff:2,m:1.05},{n:'Rare',aff:3,m:1.12},{n:'Épique',aff:4,m:1.22},{n:'Légendaire',aff:5,m:1.35},{n:'Divin',aff:6,m:1.5}
+  {n:'Commun',aff:0,m:1},{n:'Magique',aff:1,m:1.05},{n:'Rare',aff:2,m:1.12},{n:'Épique',aff:3,m:1.22},{n:'Légendaire',aff:3,m:1.35,leg:1},{n:'Divin',aff:4,m:1.5,leg:1}
 ];
 const BASES=[
   {n:'Épée',slot:'weapon',cls:'guerrier',imp:[['atk',6,1.8]]},
@@ -709,7 +770,15 @@ const AFX=[
   {s:'critDmg',b:6,p:.5,ep:'de Ruine'},{s:'dodge',b:1.2,p:.04,ep:'du Vent'},{s:'lifesteal',b:.8,p:.025,ep:'du Vampire'},
   {s:'goldFind',b:3,p:.5,ep:'d’Opulence'},
 ];
+AFX.push({s:'rPhys',b:1.5,p:.06,ep:'du Rempart'},{s:'rMag',b:1.5,p:.06,ep:'de l’Égide'},{s:'rFeu',b:3,p:.12,ep:'Ignifugé'},{s:'rGlace',b:3,p:.12,ep:'du Givre'},{s:'rFoudre',b:3,p:.12,ep:'de l’Orage'},{s:'rTerre',b:3,p:.12,ep:'de la Roche'});
 const AFXM=Object.fromEntries(AFX.map(a=>[a.s,a]));
+/* éléments et résistances */
+const ELEM={feu:{n:'Feu',k:'rFeu',c:'#e0612a'},glace:{n:'Glace',k:'rGlace',c:'#4fa8d8'},foudre:{n:'Foudre',k:'rFoudre',c:'#c9a814'},terre:{n:'Terre',k:'rTerre',c:'#8a6a3a'}};
+const RES_K=['rPhys','rMag','rFeu','rGlace','rFoudre','rTerre'],RES_CAP=75;
+const RES_S={rPhys:'Physique',rMag:'Magique',rFeu:'Feu',rGlace:'Glace',rFoudre:'Foudre',rTerre:'Terre'};
+/* pouvoir légendaire (même effet pour l’instant, un nom par type d’équipement) */
+const LEGP={weapon:'Fil du destin',helm:'Regard du prédateur',armor:'Cœur de braise',legs:'Foulée du chasseur',boots:'Course fatale',ring:'Sceau du bourreau',amulet:'Œil de l’oracle'};
+const LEG_FX={crit:6,critDmg:10},LEG_D='Augmente les chances de coup critique de 6 % et les dégâts critiques de 10 %.';
 /* affixes possibles : pas d’Intelligence sur l’équipement de Guerrier, pas de Force sur celui du Sorcier */
 const affPool=c=>AFX.filter(a=>!(c==='guerrier'&&a.s==='mag')&&!(c==='mage'&&a.s==='atk'));
 const EPITHETS=['de Cendre','des Damnés','du Crépuscule','de l’Aube','d’Aldrec','des Abysses','du Gardien','de la Braise','du Dernier Siège'];
@@ -718,10 +787,10 @@ const CLASSES={
   guerrier:{n:'Guerrier',ic:'sword',role:'atk',hue:8,desc:'Rempart robuste. Encaisse, provoque et frappe fort au corps à corps. Épées, heaumes, cuirasses et bottes.',
     base:{hp:120,atk:14,mag:0,def:10,res:5,spd:9},grow:{hp:14,atk:2.4,mag:0,def:1.8,res:1,spd:.2},
     skills:[
-      {id:'g1',n:'Frappe puissante',t:'a',lvl:1,cd:2,mult:1.7,tg:'one'},
-      {id:'g2',n:'Cri de guerre',t:'a',lvl:3,cd:4,tg:'allies',fx:[{k:'buff',stat:'atk',v:25,dur:3}]},
-      {id:'g3',n:'Mur de boucliers',t:'a',lvl:6,cd:5,tg:'self',fx:[{k:'shield',v:.3,of:'hp'},{k:'taunt',dur:2}]},
-      {id:'g4',n:'Tourbillon',t:'a',lvl:10,cd:4,mult:1.15,tg:'all'},
+      {id:'g1',ap:2,n:'Frappe puissante',t:'a',lvl:1,cd:2,mult:1.7,tg:'one'},
+      {id:'g2',ap:2,n:'Cri de guerre',t:'a',lvl:3,cd:4,tg:'allies',fx:[{k:'buff',stat:'atk',v:25,dur:3}]},
+      {id:'g3',ap:3,n:'Mur de boucliers',t:'a',lvl:6,cd:5,tg:'self',fx:[{k:'shield',v:.3,of:'hp'},{k:'taunt',dur:2}]},
+      {id:'g4',ap:3,n:'Tourbillon',t:'a',lvl:10,cd:4,mult:1.15,tg:'all'},
       {id:'gp1',n:'Peau de fer',t:'p',lvl:2,mods:{defPct:8,resPct:3}},
       {id:'gp2',n:'Soif de sang',t:'p',lvl:5,mods:{lifesteal:3}},
       {id:'gp3',n:'Vétéran',t:'p',lvl:8,mods:{hpPct:8,atkPct:3}},
@@ -729,28 +798,28 @@ const CLASSES={
   mage:{n:'Sorcier',ic:'staff',role:'mag',hue:260,desc:'Canon de verre. Brûle, foudroie et se protège par des barrières arcaniques. Bâtons, capuches, robes et sandales.',
     base:{hp:90,atk:0,mag:16,def:5,res:10,spd:10},grow:{hp:10.5,atk:0,mag:2.8,def:1,res:1.8,spd:.25},
     skills:[
-      {id:'m1',n:'Boule de feu',t:'a',lvl:1,cd:2,mult:1.5,tg:'one',fx:[{k:'dot',n:'Brûlure',v:.3,dur:3}]},
-      {id:'m2',n:'Éclair en chaîne',t:'a',lvl:3,cd:3,mult:.95,tg:'all'},
-      {id:'m3',n:'Barrière arcanique',t:'a',lvl:6,cd:5,tg:'allies',fx:[{k:'shield',v:1.6,of:'mag'}]},
-      {id:'m4',n:'Météore',t:'a',lvl:10,cd:6,mult:2.1,tg:'all',fx:[{k:'stun',ch:30,dur:1}]},
+      {id:'m1',ap:2,el:'feu',n:'Boule de feu',t:'a',lvl:1,cd:2,mult:1.5,tg:'one',fx:[{k:'dot',n:'Brûlure',v:.3,dur:3}]},
+      {id:'m2',ap:3,el:'foudre',n:'Éclair en chaîne',t:'a',lvl:3,cd:3,mult:.95,tg:'all'},
+      {id:'m3',ap:3,n:'Barrière arcanique',t:'a',lvl:6,cd:5,tg:'allies',fx:[{k:'shield',v:1.6,of:'mag'}]},
+      {id:'m4',ap:4,el:'terre',n:'Météore',t:'a',lvl:10,cd:6,mult:2.1,tg:'all',fx:[{k:'stun',ch:30,dur:1}]},
       {id:'mp1',n:'Savoir arcanique',t:'p',lvl:2,mods:{magPct:8}},
       {id:'mp2',n:'Surcharge',t:'p',lvl:5,mods:{crit:3,critDmg:6}},
       {id:'mp3',n:'Esprit vif',t:'p',lvl:8,mods:{spdPct:5,resPct:6}},
     ]},
 };
-const SK={atk:{id:'atk',n:'Attaque',mult:1,tg:'one',cd:0}};
+const SK={atk:{id:'atk',n:'Attaque',mult:1,tg:'one',cd:0,ap:0}};
 for(const c of Object.values(CLASSES))for(const s of c.skills)SK[s.id]=s;
 const ENSK={
-  e_heavy:{n:'Coup brutal',cd:3,mult:1.7,tg:'one'},
-  e_bleed:{n:'Morsure sanglante',cd:3,mult:1,tg:'one',fx:[{k:'dot',n:'Saignement',v:.3,dur:3}]},
-  e_burn:{n:'Trait de feu',cd:3,mult:1.1,tg:'one',fx:[{k:'dot',n:'Brûlure',v:.35,dur:3}]},
-  e_poison:{n:'Crachat toxique',cd:3,mult:.8,tg:'one',fx:[{k:'dot',n:'Poison',v:.4,dur:4}]},
-  e_stun:{n:'Coup assommant',cd:4,mult:1.2,tg:'one',fx:[{k:'stun',ch:45,dur:1}]},
-  e_heal:{n:'Soin sombre',cd:4,tg:'lowAlly',fx:[{k:'heal',v:1.6,of:'mag'}]},
-  e_cry:{n:'Hurlement',cd:5,tg:'allies',fx:[{k:'buff',stat:'atk',v:30,dur:3}]},
-  e_aoe:{n:'Déferlante',cd:4,mult:.75,tg:'all'},
-  e_smash:{n:'Frappe dévastatrice',cd:4,mult:2.3,tg:'one'},
-  e_curse:{n:'Malédiction',cd:4,mult:.8,tg:'one',fx:[{k:'debuff',stat:'def',v:-30,dur:3}]},
+  e_heavy:{ap:2,n:'Coup brutal',cd:3,mult:1.7,tg:'one'},
+  e_bleed:{ap:2,n:'Morsure sanglante',cd:3,mult:1,tg:'one',fx:[{k:'dot',n:'Saignement',v:.3,dur:3}]},
+  e_burn:{ap:2,el:'feu',n:'Trait de feu',cd:3,mult:1.1,tg:'one',fx:[{k:'dot',n:'Brûlure',v:.35,dur:3}]},
+  e_poison:{ap:2,el:'terre',n:'Crachat toxique',cd:3,mult:.8,tg:'one',fx:[{k:'dot',n:'Poison',v:.4,dur:4}]},
+  e_stun:{ap:3,n:'Coup assommant',cd:4,mult:1.2,tg:'one',fx:[{k:'stun',ch:45,dur:1}]},
+  e_heal:{ap:2,n:'Soin sombre',cd:4,tg:'lowAlly',fx:[{k:'heal',v:1.6,of:'mag'}]},
+  e_cry:{ap:2,n:'Hurlement',cd:5,tg:'allies',fx:[{k:'buff',stat:'atk',v:30,dur:3}]},
+  e_aoe:{ap:3,el:'glace',n:'Déferlante',cd:4,mult:.75,tg:'all'},
+  e_smash:{ap:3,n:'Frappe dévastatrice',cd:4,mult:2.3,tg:'one'},
+  e_curse:{ap:2,n:'Malédiction',cd:4,mult:.8,tg:'one',fx:[{k:'debuff',stat:'def',v:-30,dur:3}]},
 };
 for(const [id,s] of Object.entries(ENSK))SK[id]={id,...s};
 
@@ -758,28 +827,28 @@ const ZONES=[
   {n:'Forêt des Murmures',mats:['fer','cuir'],enemies:[
     {n:'Gobelin',ic:'brute',role:'atk',hp:1,atk:1,def:1},
     {n:'Loup affamé',ic:'beast',role:'atk',hp:.85,atk:1.1,def:.8,spd:1.25,sk:['e_bleed']},
-    {n:'Chaman gobelin',ic:'hood',role:'mag',hp:.8,atk:1.1,def:.7,sk:['e_burn','e_heal']}],
+    {n:'Chaman gobelin',res:{rFeu:20},ic:'hood',role:'mag',hp:.8,atk:1.1,def:.7,sk:['e_burn','e_heal']}],
    boss:{n:'Roi Gobelin',ic:'boss',role:'atk',hp:3.2,atk:1.25,def:1.2,sk:['e_heavy','e_cry']}},
   {n:'Catacombes oubliées',mats:['fer','cristal'],enemies:[
-    {n:'Squelette',ic:'skull',role:'atk',hp:1,atk:1,def:1.1},
-    {n:'Revenant',ic:'brute',role:'atk',hp:1.2,atk:.95,def:1,sk:['e_stun']},
-    {n:'Nécromancien',ic:'hood',role:'mag',hp:.8,atk:1.15,def:.7,sk:['e_poison','e_heal']}],
-   boss:{n:'Le Roi sans nom',ic:'boss',role:'atk',hp:3.3,atk:1.3,def:1.2,sk:['e_heavy','e_stun','e_cry']}},
+    {n:'Squelette',res:{rPhys:15,rGlace:25},ic:'skull',role:'atk',hp:1,atk:1,def:1.1},
+    {n:'Revenant',res:{rGlace:20},ic:'brute',role:'atk',hp:1.2,atk:.95,def:1,sk:['e_stun']},
+    {n:'Nécromancien',res:{rMag:15},ic:'hood',role:'mag',hp:.8,atk:1.15,def:.7,sk:['e_poison','e_heal']}],
+   boss:{n:'Le Roi sans nom',res:{rPhys:10,rGlace:30},ic:'boss',role:'atk',hp:3.3,atk:1.3,def:1.2,sk:['e_heavy','e_stun','e_cry']}},
   {n:'Marais putride',mats:['cuir','essence'],enemies:[
-    {n:'Crapaud géant',ic:'blob',role:'atk',hp:1.2,atk:.9,def:.9,sk:['e_poison']},
-    {n:'Sorcière des tourbières',ic:'hood',role:'mag',hp:.85,atk:1.15,def:.7,sk:['e_curse','e_heal']},
+    {n:'Crapaud géant',res:{rTerre:25},ic:'blob',role:'atk',hp:1.2,atk:.9,def:.9,sk:['e_poison']},
+    {n:'Sorcière des tourbières',res:{rMag:15,rTerre:20},ic:'hood',role:'mag',hp:.85,atk:1.15,def:.7,sk:['e_curse','e_heal']},
     {n:'Goule',ic:'beast',role:'atk',hp:1,atk:1.1,def:.9,spd:1.2,sk:['e_bleed']}],
-   boss:{n:'Hydre des marais',ic:'boss',role:'atk',hp:3.4,atk:1.25,def:1.2,sk:['e_aoe','e_poison','e_heavy']}},
+   boss:{n:'Hydre des marais',res:{rTerre:30,rGlace:15},ic:'boss',role:'atk',hp:3.4,atk:1.25,def:1.2,sk:['e_aoe','e_poison','e_heavy']}},
   {n:'Pic de Cendre',mats:['cristal','essence'],enemies:[
-    {n:'Salamandre',ic:'beast',role:'atk',hp:1,atk:1.1,def:.9,spd:1.15,sk:['e_burn']},
-    {n:'Golem de lave',ic:'brute',role:'atk',hp:1.5,atk:1,def:1.3,spd:.8,sk:['e_heavy','e_stun']},
-    {n:'Mage de braise',ic:'hood',role:'mag',hp:.8,atk:1.2,def:.7,sk:['e_burn','e_aoe']}],
-   boss:{n:'Seigneur de Cendre',ic:'boss',role:'mag',hp:3.5,atk:1.35,def:1.2,sk:['e_aoe','e_heavy','e_burn']}},
+    {n:'Salamandre',res:{rFeu:40},ic:'beast',role:'atk',hp:1,atk:1.1,def:.9,spd:1.15,sk:['e_burn']},
+    {n:'Golem de lave',res:{rFeu:50,rPhys:20,rGlace:-20},ic:'brute',role:'atk',hp:1.5,atk:1,def:1.3,spd:.8,sk:['e_heavy','e_stun']},
+    {n:'Mage de braise',res:{rFeu:40,rMag:10},ic:'hood',role:'mag',hp:.8,atk:1.2,def:.7,sk:['e_burn','e_aoe']}],
+   boss:{n:'Seigneur de Cendre',res:{rFeu:50,rMag:15},ic:'boss',role:'mag',hp:3.5,atk:1.35,def:1.2,sk:['e_aoe','e_heavy','e_burn']}},
   {n:'Abysses du Néant',mats:['essence','rune'],enemies:[
-    {n:'Rôdeur du vide',ic:'beast',role:'atk',hp:1,atk:1.15,def:.9,spd:1.25,sk:['e_bleed']},
-    {n:'Abomination',ic:'blob',role:'atk',hp:1.6,atk:1,def:1.1,sk:['e_heavy','e_poison']},
-    {n:'Oracle déchu',ic:'hood',role:'mag',hp:.9,atk:1.2,def:.8,sk:['e_curse','e_heal']}],
-   boss:{n:'Le Dévoreur',ic:'boss',role:'atk',hp:3.8,atk:1.4,def:1.25,sk:['e_aoe','e_heavy','e_cry','e_curse']}},
+    {n:'Rôdeur du vide',res:{rMag:20},ic:'beast',role:'atk',hp:1,atk:1.15,def:.9,spd:1.25,sk:['e_bleed']},
+    {n:'Abomination',res:{rPhys:20},ic:'blob',role:'atk',hp:1.6,atk:1,def:1.1,sk:['e_heavy','e_poison']},
+    {n:'Oracle déchu',res:{rMag:25,rFoudre:20},ic:'hood',role:'mag',hp:.9,atk:1.2,def:.8,sk:['e_curse','e_heal']}],
+   boss:{n:'Le Dévoreur',res:{rPhys:15,rMag:15,rFeu:15,rGlace:15,rFoudre:15,rTerre:15},ic:'boss',role:'atk',hp:3.8,atk:1.4,def:1.25,sk:['e_aoe','e_heavy','e_cry','e_curse']}},
 ];
 
 const PM=1/60; /* taux exprimés par minute */
@@ -790,10 +859,10 @@ const SITES=[
   {id:'marais',n:'Marais des brumes',unlock:1400,out:{essence:6,rune:1},cache:.0012,desc:'On y récolte l’essence qui suinte des racines.'},
 ];
 const TIERS=[
-  {n:'Forge ordinaire',lv:[1,15],cost:{fer:15,cuir:8},odds:[60,30,9,1,0]},
-  {n:'Forge fine',lv:[10,30],cost:{fer:25,cuir:12,cristal:6},odds:[25,45,25,5,0]},
-  {n:'Forge de maître',lv:[25,45],cost:{fer:35,cuir:18,cristal:12,essence:4},odds:[5,25,45,22,3]},
-  {n:'Forge légendaire',lv:[40,53],cost:{fer:45,cuir:22,cristal:18,essence:8,rune:3},odds:[0,5,30,50,15]},
+  {n:'Forge ordinaire',lv:[1,15],cost:{fer:15,cuir:8},odds:[80,20,0,0,0]},
+  {n:'Forge fine',lv:[10,30],cost:{fer:25,cuir:12,cristal:6},odds:[40,50,10,0,0]},
+  {n:'Forge de maître',lv:[25,45],cost:{fer:35,cuir:18,cristal:12,essence:4},odds:[0,10,45,45,0]},
+  {n:'Forge légendaire',lv:[40,53],cost:{fer:45,cuir:22,cristal:18,essence:8,rune:3},odds:[0,0,20,70,10]},
 ];
 const HUES=[8,38,140,190,260,320];
 const ICONS={
@@ -977,7 +1046,7 @@ function fitBag(d){
 }
 const loadData=d=>{if(!d.siteV)d.siteV=1; return soloize(fitBag(Object.assign(newGame(),migrate(d))))};
 /* compte : l’or est partagé, chaque personnage a sa propre sauvegarde */
-const ACC_KEY='cendrelame_acc',CHAR_KEY=i=>'cendrelame_c'+i,MAXCH=5;
+const ACC_KEY=KP+'acc',CHAR_KEY=i=>KP+'c'+i,MAXCH=5;
 let ACC={gold:80,cur:null,seenVer:null};
 const lsGet=k=>{try{return localStorage.getItem(k)}catch(e){return null}};
 const lsSet=(k,v)=>{try{localStorage.setItem(k,v)}catch(e){}};
@@ -1019,7 +1088,9 @@ function genItem(slot,ilvl,rarity,baseName,cls){
   let ep='';
   if(rarity>=3) ep=' '+pick(EPITHETS);
   else {const a=aff.find(x=>AFXM[x.s].ep); if(a) ep=' '+AFXM[a.s].ep}
-  return {id:++S.uid,slot,base:base.n,cls:base.cls||null,ilvl,rarity,imp,aff,up:0,name:base.n+ep};
+  const it={id:++S.uid,slot,base:base.n,cls:base.cls||null,ilvl,rarity,imp,aff,up:0,name:base.n+ep};
+  if(RAR[rarity].leg) it.leg=slot;
+  return it;
 }
 const canWear=it=>!it||!it.cls||!S.heroes[0]||it.cls===S.heroes[0].cls;
 const upMul=it=>1+.05*it.up;
@@ -1027,6 +1098,7 @@ function itemStats(it){
   const k=upMul(it), r={};
   for(const [s,v] of Object.entries(it.imp)) r[s]=(r[s]||0)+v*k;
   for(const a of it.aff) r[a.s]=(r[a.s]||0)+a.v*k;
+  if(it.leg) for(const [k,v] of Object.entries(LEG_FX)) r[k]=(r[k]||0)+v;
   return r;
 }
 const invItems=()=>S.bag.filter(e=>!e.o.mat).map(e=>e.o);
@@ -1073,7 +1145,7 @@ function affRange(it,a,k){
 }
 function itemCard(it,foot='',delta=null){
   const k=upMul(it);
-  const lines=[...Object.entries(it.imp).map(([s,v])=>`<li class="imp">${fmtStat(s,v*k)}</li>`),...it.aff.map(a=>`<li>${fmtStat(a.s,a.v*k)}${SHIFT||NOHOVER?affRange(it,a,k):''}</li>`)].join('')+(it.aff.length&&!NOHOVER?`<li class="shk">${SHIFT?'Plages possibles des affixes (Maj)':'Maj : voir les plages des affixes'}</li>`:'');
+  const lines=[...Object.entries(it.imp).map(([s,v])=>`<li class="imp">${fmtStat(s,v*k)}</li>`),...it.aff.map(a=>`<li>${fmtStat(a.s,a.v*k)}${SHIFT||NOHOVER?affRange(it,a,k):''}</li>`),...(it.leg?[`<li class="legp"><b>${esc(LEGP[it.leg]||'Pouvoir légendaire')}</b> : ${LEG_D}</li>`]:[])].join('')+(it.aff.length&&!NOHOVER?`<li class="shk">${SHIFT?'Plages possibles des affixes (Maj)':'Maj : voir les plages des affixes'}</li>`:'');
   const dl=delta===null?'':`<span class="dl ${delta>=0?'up':'dn'}">${delta>=0?'▲':'▼'} ${Math.abs(Math.round(delta))}</span>`;
   return `<article class="it" style="--rc:var(--r${it.rarity})"><header><b>${esc(it.name)}${it.up?` <em>+${it.up}</em>`:''}</b> ${dl}<small>${SLOT_N[it.slot]}${it.cls?` · <span style="${canWear(it)?'':'color:var(--blood);font-weight:700'}">${CLASSES[it.cls].n}</span>`:''} · ${RAR[it.rarity].n}</small><small>Niveau d’objet <b class="num">${it.ilvl}</b></small></header><ul>${lines}</ul>${foot?`<div class="foot">${foot}</div>`:''}</article>`;
 }
@@ -1150,6 +1222,8 @@ function heroStats(h){
     lifesteal:Math.min(20,(g.lifesteal||0)+(p.lifesteal||0)),
     dmgPct:g.dmgPct||0,goldFind:g.goldFind||0,dropRate:g.dropRate||0,
     regen:p.regen||0,healPow:p.healPow||0,
+    ap:5+(g.ap||0)+(p.ap||0),
+    ...Object.fromEntries(RES_K.map(k=>[k,Math.min(RES_CAP,(g[k]||0)+(p[k]||0))])),
   };
 }
 function heroPower(h){
@@ -1167,6 +1241,8 @@ function skDesc(sk,rank,role){
   const k=sc(rank),p=x=>Math.round(x*100*k),stN=(sk.st||role)==='mag'?'INT':'FOR';
   const tgN={one:'un ennemi',all:'tous les ennemis',self:'vous',allies:'tous les alliés',lowAlly:'l’allié le plus blessé'}[sk.tg];
   const out=[];
+  if(sk.ap) out.push(`Coût : ${sk.ap} PA.`);
+  if(sk.el&&ELEM[sk.el]) out.push(`Élément : ${ELEM[sk.el].n}.`);
   if(sk.mult) out.push(`Inflige ${p(sk.mult)}% ${stN}${sk.hits>1?' ×'+sk.hits:''} à ${tgN}${sk.exec?` (dégâts doublés sous ${sk.exec.thr}% PV)`:''}.`);
   const sn={atk:'Force',def:'Défense',res:'Résistance',spd:'Vitesse',mag:'Intelligence'};
   for(const f of sk.fx||[]){
@@ -1197,7 +1273,7 @@ function mkHeroUnit(h){
   const sk=h.loadout.filter(id=>h.learned[id]);
   const cds={}; for(const id of sk) cds[id]=SK[id].cd>=4?Math.ceil(SK[id].cd/2):0;
   return {id:'h'+h.id,team:'h',hero:h,name:h.name,lvl:h.lvl,ic:cl.ic,hue:h.hue,role:cl.role,...s,
-    hp:Math.round(s.hp),maxHp:Math.round(s.hp),skills:sk,ranks:h.learned,cds,st:[],shield:0};
+    hp:Math.round(s.hp),maxHp:Math.round(s.hp),skills:sk,ranks:h.learned,cds,st:[],shield:0,ap:s.ap,maxAp:s.ap};
 }
 /* difficultés : niveau des monstres, multiplicateurs (monstres / boss), début de la rage des boss, récompenses */
 const DIFF={
@@ -1220,7 +1296,8 @@ function mkEnemies(z,st,n,diff){
     id:'e'+(list.length+1),team:'e',name:t.n,lvl:L,ic:t.ic,hue:isBoss?40:8,role:t.role,boss:isBoss,
     hp:Math.round(enStat('hp',L)*t.hp*cm*(isBoss?.8*D.bHp:D.hp)),atk:enStat('atk',L)*t.atk*am*(isBoss?.88*D.bAtk:D.atk),mag:enStat('atk',L)*t.atk*am*(isBoss?.88*D.bAtk:D.atk),
     def:enStat('def',L)*t.def*(isBoss?D.bDef:1),res:enStat('def',L)*.9*t.def*(isBoss?D.bDef:1),spd:(8+.15*L)*(t.spd||1)*rand(.95,1.05),
-    crit:5,critDmg:150,dodge:0,lifesteal:0,dmgPct:0,regen:0,healPow:0,
+    crit:5,critDmg:150,dodge:0,lifesteal:0,dmgPct:0,regen:0,healPow:0,ap:5,maxAp:5,
+    ...Object.fromEntries(RES_K.map(k=>[k,Math.min(RES_CAP,(t.res&&t.res[k])||0)])),
     skills:[...(t.sk||[]),...(isBoss&&D.extra?[D.extra]:[])],ranks:{},cds:Object.fromEntries([...(t.sk||[]),...(isBoss&&D.extra?[D.extra]:[])].map(id=>[id,SK[id].cd>=4?2:1])),st:[],shield:0});
   if(C.force){ const F=C.force; C.force=null; list.push(F.j<0?mk(ZONES[F.z].boss,1,1,true):mk(ZONES[F.z].enemies[F.j],1,1,false)) }
   else if(boss){
@@ -1250,6 +1327,7 @@ function refresh(u){
   el.classList.toggle('turn',C.turn===u.id);
   el.classList.toggle('selectable',!!C.pending&&u.team==='e'&&u.hp>0);
   $('.hp i',el).style.width=Math.max(0,u.hp/u.maxHp*100)+'%';
+  {const ab=$('.apbar',el); if(ab){ ab.querySelectorAll('i').forEach((x,i)=>x.classList.toggle('on',i<(u.ap||0))); ab.title=(u.ap||0)+' / '+(u.maxAp||0)+' PA' }}
   $('.hp span',el).textContent=Math.max(0,Math.ceil(u.hp))+' / '+Math.ceil(u.maxHp)+(u.shield>0?' (+'+Math.ceil(u.shield)+')':'');
   const sn={atk:'FOR',def:'DEF',res:'RÉS',spd:'VIT',mag:'INT'};
   $('.stt',el).innerHTML=u.st.map(s=>{
@@ -1278,12 +1356,14 @@ function heal(t,a,silent){
   const real=Math.min(a,t.maxHp-t.hp); t.hp+=real;
   floatTxt(t,'+'+real,'heal'); if(!silent||real>0) logLine(`${t.name} récupère ${real} PV.`,'hl'); refresh(t);
 }
+const resMul=(t,st,el)=>(1-Math.min(RES_CAP,t[st==='mag'?'rMag':'rPhys']||0)/100)*(el&&ELEM[el]?1-Math.min(RES_CAP,t[ELEM[el].k]||0)/100:1);
 function hit(u,t,mult,st,sk){
   if(Math.random()*100<(t.dodge||0)){floatTxt(t,'Esquive','miss');logLine(`${t.name} esquive l’attaque.`);return}
   const ds=st==='mag'?'res':'def';
   const K=100+15*(u.lvl||1); /* plus l’attaquant est haut niveau, moins la défense le freine */
   let d=effStat(u,st)*mult*K/(K+effStat(t,ds));
   d*=1+(u.dmgPct||0)/100;
+  d*=resMul(t,st,sk&&sk.el);
   const rs=u.boss?DIFF[C.diff||'normal'].rage:30;
   if(u.team==='e'&&C.round>rs) d*=1+(C.round-rs)*(u.boss&&rs<30?.08:.1);
   if(sk&&sk.exec&&t.hp/t.maxHp<sk.exec.thr/100) d*=1+sk.exec.bonus;
@@ -1298,7 +1378,7 @@ function applyFx(u,t,f,k,sk){
   const st=sk.st||u.role;
   if(f.k==='dot'){
     t.st=t.st.filter(s=>!(s.k==='dot'&&s.n===f.n));
-    t.st.push({k:'dot',n:f.n,v:effStat(u,st)*f.v*k,dur:f.dur});
+    t.st.push({k:'dot',n:f.n,v:effStat(u,st)*f.v*k*resMul(t,st,sk.el),dur:f.dur});
   }else if(f.k==='stun'){
     const ch=(f.ch||100)*(t.boss?.5:1);
     if(Math.random()*100<ch&&!t.st.some(s=>s.k==='stun')){t.st.push({k:'stun',dur:f.dur});logLine(`${t.name} est étourdi !`,'ev')}
@@ -1319,6 +1399,7 @@ function applyFx(u,t,f,k,sk){
 async function exec(u,sk,tgt){
   const rank=sk.id==='atk'?1:(u.ranks[sk.id]||1),k=sc(rank);
   if(sk.cd) u.cds[sk.id]=sk.cd+1;
+  if(sk.ap) u.ap=Math.max(0,(u.ap||0)-sk.ap);
   const foesA=alive(foes(u)),friA=alive(friends(u));
   if((sk.tg==='one')&&(!tgt||tgt.hp<=0)) tgt=foesA[0];
   let fT=[],aT=[];
@@ -1340,10 +1421,12 @@ async function exec(u,sk,tgt){
   refreshAll();
   await sleep(420);
 }
+const AP_REGEN=1;
+const canAct=u=>u.hp>0&&(!u.atkUsed||u.skills.some(id=>(u.cds[id]||0)===0&&(u.ap||0)>=(SK[id].ap||0)));
 function tauntOf(list){return list.find(x=>x.hp>0&&x.st.some(s=>s.k==='taunt'))}
-function ai(u){
+function ai(u,noAtk){
   const foesA=alive(foes(u)),friA=alive(friends(u));
-  const usable=u.skills.filter(id=>(u.cds[id]||0)===0).map(id=>({sk:SK[id],rank:u.ranks[id]||1}));
+  const usable=u.skills.filter(id=>(u.cds[id]||0)===0&&(u.ap||0)>=(SK[id].ap||0)).map(id=>({sk:SK[id],rank:u.ranks[id]||1}));
   const isHeal=x=>x.sk.tg==='lowAlly'&&x.sk.fx&&x.sk.fx.some(f=>f.k==='heal');
   const low=friA.slice().sort((a,b)=>a.hp/a.maxHp-b.hp/b.maxHp)[0];
   const healer=usable.find(isHeal);
@@ -1361,6 +1444,7 @@ function ai(u){
     if(u.team==='e'&&Math.random()<.25) s*=.5;
     if(s>bs){bs=s;best=x}
   }
+  if(!best&&noAtk) return null;
   const skill=best?best.sk:SK.atk;
   let target=null;
   if(skill.tg==='one'){
@@ -1373,16 +1457,25 @@ function playerChoice(u){
   return new Promise(res=>{C.waiting={u,res};C.pending=null;renderActbar();refreshAll()});
 }
 async function turn(u){
-  C.turn=u.id; refreshAll();
+  C.turn=u.id; if(C.round>1&&u.maxAp) u.ap=Math.min(u.maxAp,(u.ap||0)+AP_REGEN); refreshAll();
   for(const s of u.st.filter(s=>s.k==='dot')) if(u.hp>0) dmg(u,Math.max(1,Math.round(s.v)),false,null,s.n);
   if(u.regen&&u.hp>0) heal(u,u.maxHp*u.regen/100,true);
   if(u.hp<=0){C.turn=null;refreshAll();return}
   let skip=false;
   if(u.st.some(s=>s.k==='stun')){logLine(`${u.name} est étourdi et passe son tour.`,'ev');skip=true;await sleep(500)}
   if(!skip){
-    if(u.team==='h'&&!S.auto){
-      const ch=await playerChoice(u); if(C.abort) return;
-      await exec(u,ch.skill,ch.target);
+    u.atkUsed=false;
+    if(u.team==='h'){
+      for(let n=0;n<12;n++){
+        if(!canAct(u)) break;
+        let ch;
+        if(!S.auto){ ch=await playerChoice(u); if(C.abort) return; if(!ch||ch.end) break }
+        else { await sleep(300); ch=ai(u,u.atkUsed); if(!ch) break }
+        if(ch.skill.id==='atk') u.atkUsed=true;
+        await exec(u,ch.skill,ch.target);
+        if(C.abort||checkEnd()) break;
+      }
+      C.waiting=null; C.pending=null; renderActbar();
     }else{
       await sleep(380);
       const ch=ai(u); await exec(u,ch.skill,ch.target);
@@ -1600,13 +1693,13 @@ async function onFbUser(u){
   FB.sync='busy'; UI.lbusy=true; if(UI.scr==='login'||UI.scr==='menu') render();
   try{ await cloudPull(u.uid); FB.sync='' }catch(e){ FB.sync='err'; toast('Sauvegarde en ligne indisponible : '+((e&&e.code)||'erreur')) }
   UI.lbusy=false; UI.lerr=''; UI.lok='';
-  try{ const ps=await FB.db.collection('profiles').doc(u.uid).get(); FB.prof=ps.exists?ps.data():null }catch(e){ FB.prof=null; FB.profErr=true }
+  try{ const ps=await FB.db.collection(COL('profiles')).doc(u.uid).get(); FB.prof=ps.exists?ps.data():null }catch(e){ FB.prof=null; FB.profErr=true }
   if(!FB.prof&&!FB.profErr){ UI.scr='pseudo'; UI.perr=''; render(); return }
   afterProfile(UI.scr==='login');
 }
 function afterProfile(fromLogin){
   if(fromLogin||UI.scr==='login'||UI.scr==='pseudo'){UI.scr='menu'; toast('Connecté : '+(FB.prof?FB.prof.name:(FB.user.email||'compte'))+'.')}
-  if(FB.prof){ presence(); startFriends() }
+  if(FB.prof){ presence(); startFriends(); startPvp() }
   adminCheck().then(()=>{ if(UI.scr==='opts'||UI.scr==='best') render() });
   render();
 }
@@ -1624,7 +1717,7 @@ function viewPseudo(){
     </form></div>`;
 }
 async function claimName(name){
-  const low=name.toLowerCase(),uid=FB.user.uid,db=FB.db,nref=db.collection('names').doc(low),pref=db.collection('profiles').doc(uid);
+  const low=name.toLowerCase(),uid=FB.user.uid,db=FB.db,nref=db.collection(COL('names')).doc(low),pref=db.collection(COL('profiles')).doc(uid);
   await db.runTransaction(async tx=>{
     const n=await tx.get(nref); if(n.exists&&n.data().uid!==uid) throw {code:'name-taken'};
     tx.set(nref,{uid}); tx.set(pref,{name,nameLower:low,lastSeen:firebase.firestore.FieldValue.serverTimestamp(),online:true,char:null});
@@ -1636,24 +1729,27 @@ const FR={list:[],prof:{},unsub:null,pun:{},open:false,err:''};
 function presence(state){
   if(!FB.user||!FB.prof) return;
   const ch=(!UI.scr&&S&&S.heroes&&S.heroes[0])?{name:S.heroes[0].name,cls:S.heroes[0].cls,lvl:S.heroes[0].lvl}:null;
-  FB.db.collection('profiles').doc(FB.user.uid).set({name:FB.prof.name,nameLower:FB.prof.nameLower,lastSeen:firebase.firestore.FieldValue.serverTimestamp(),online:state!=='off',char:ch},{merge:true}).catch(()=>{});
+  FB.db.collection(COL('profiles')).doc(FB.user.uid).set({name:FB.prof.name,nameLower:FB.prof.nameLower,lastSeen:firebase.firestore.FieldValue.serverTimestamp(),online:state!=='off',char:ch},{merge:true}).catch(()=>{});
 }
 setInterval(()=>presence(),60000);
-function stopFriends(){ if(FR.unsub){FR.unsub();FR.unsub=null} for(const k in FR.pun){FR.pun[k]();delete FR.pun[k]} FR.list=[]; FR.prof={}; FR.open=false; renderFriends() }
+function stopFriends(){ closeChat(); if(FR.unsub){FR.unsub();FR.unsub=null} for(const k in FR.pun){FR.pun[k]();delete FR.pun[k]} FR.list=[]; FR.prof={}; FR.open=false; renderFriends() }
 function startFriends(){
   if(!FB.user||FR.unsub) return; const me=FB.user.uid;
-  FR.unsub=FB.db.collection('friendships').where('users','array-contains',me).onSnapshot(qs=>{
-    FR.list=qs.docs.map(d=>Object.assign({id:d.id},d.data())); FR.err='';
+  FR.unsub=FB.db.collection(COL('friendships')).where('users','array-contains',me).onSnapshot(qs=>{
+    FR.list=qs.docs.map(d=>Object.assign({id:d.id},d.data({serverTimestamps:'estimate'}))); FR.err='';
     const want=new Set(FR.list.filter(f=>f.status==='accepted').map(f=>f.users.find(x=>x!==me)));
     for(const k in FR.pun) if(!want.has(k)){FR.pun[k]();delete FR.pun[k];delete FR.prof[k]}
-    for(const k of want) if(!FR.pun[k]) FR.pun[k]=FB.db.collection('profiles').doc(k).onSnapshot(d=>{FR.prof[k]=d.exists?d.data():null; renderFriends()},()=>{});
-    renderFriends();
+    for(const k of want) if(!FR.pun[k]) FR.pun[k]=FB.db.collection(COL('profiles')).doc(k).onSnapshot(d=>{FR.prof[k]=d.exists?d.data():null; renderFriends()},()=>{});
+    for(const f of FR.list){ const t=f.lastMsg&&tsMs(f.lastMsg.ts); if(FR.seen&&t&&t>(FR.seen[f.id]||0)&&isUnread(f)&&CH.id!==f.id) toast('💬 '+otherName(f)+' : '+(f.lastMsg.text||'')); }
+    FR.seen=Object.fromEntries(FR.list.map(f=>[f.id,(f.lastMsg&&tsMs(f.lastMsg.ts))||0]));
+    renderFriends(); if(CH.id){renderChat(); markRead()}
   },e=>{FR.err='Liste d’amis indisponible ('+(e.code||'erreur')+'). Vérifiez les règles Firestore.'; renderFriends()});
   renderFriends();
 }
 setInterval(()=>{ if(FR.open) renderFriends(true) },30000);
 const tsMs=t=>!t?0:t.toMillis?t.toMillis():t.seconds?t.seconds*1000:+t||0;
 const isOnline=p=>!!p&&p.online!==false&&Date.now()-tsMs(p.lastSeen)<3*60*1000;
+const isUnread=f=>{const me=FB.user&&FB.user.uid,lm=f.lastMsg; if(!me||!lm||lm.from===me||(CH.id===f.id&&$('#frchat'))) return false; const r=(f.lastRead||{})[me]; return r===null?false:tsMs(lm.ts)>tsMs(r)};
 const otherName=f=>{const me=FB.user.uid,o=f.users.find(x=>x!==me);return (f.names&&f.names[o])||'?'};
 function renderFriends(){
   let w=$('#friends');
@@ -1667,29 +1763,271 @@ function renderFriends(){
       <button class="frbtn" data-act="frToggle" aria-expanded="false"><span class="frdot"></span><span id="frcnt"></span></button>`; }
   $('#frme').textContent=FB.prof.name;
   const b=w.querySelector('.frbtn'); b.setAttribute('aria-expanded',FR.open); $('#frpanel').hidden=!FR.open;
-  $('#frcnt').innerHTML=`Amis <b>${on}</b> / ${acc.length} en ligne${inc.length?`<span class="ndot" aria-label="${inc.length} demande(s)"></span>`:''}`;
+  const unr=acc.filter(isUnread).length;
+  $('#frcnt').innerHTML=`Amis <b>${on}</b> / ${acc.length} en ligne${inc.length||unr?`<span class="ndot" aria-label="${inc.length} demande(s), ${unr} message(s) non lu(s)"></span>`:''}`;
   b.classList.toggle('has',on>0);
   const msg=$('#frmsg'); msg.textContent=FR.err||UI.frmsg||''; msg.className='frmsg '+(FR.err||UI.frerr?'bad':'ok');
   const row=(f,body,btns)=>`<li class="frrow">${body}<span class="fracts">${btns}</span></li>`;
-  const accH=acc.map(f=>{const o=f.users.find(x=>x!==me),p=FR.prof[o],ol=isOnline(p),ch=p&&p.char;
-      return {ol,h:row(f,`<span class="st ${ol?'on':''}" aria-label="${ol?'En ligne':'Hors ligne'}"></span><span class="frn"><b>${esc(otherName(f))}</b><small>${ol?(ch?`Joue ${esc(ch.name)} · ${(CLASSES[ch.cls]||{n:''}).n} niv. ${ch.lvl}`:'Dans le menu'):'Hors ligne'+(p&&p.char?` · ${esc(p.char.name)} niv. ${p.char.lvl}`:'')}</small></span>`,
-        UI.frdel===f.id?`<button class="btn sm danger" data-act="frDel" data-id="${f.id}">Retirer</button><button class="btn sm" data-act="frDelNo">Non</button>`:`<button class="frx sm" data-act="frDel" data-id="${f.id}" title="Retirer de mes amis" aria-label="Retirer ${esc(otherName(f))}">×</button>`)}}).sort((a,b)=>b.ol-a.ol).map(x=>x.h).join('');
+  const accL=acc.map(f=>{const o=f.users.find(x=>x!==me),p=FR.prof[o],ol=isOnline(p),ch=p&&p.char,ur=isUnread(f);
+      return {ol,h:row(f,`<span class="st ${ol?'on':''}" aria-label="${ol?'En ligne':'Hors ligne'}"></span><span class="frn"><button class="frname" data-act="frMenu" data-id="${f.id}" aria-expanded="${UI.frMenu===f.id}"><b>${esc(otherName(f))}</b>${ur?'<span class="frud" aria-label="Nouveau message"></span>':''}</button>${UI.frMenu===f.id?`<span class="frpop" role="menu"><button class="btn sm pri chatb" data-act="frChat" data-id="${f.id}"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4h16a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H9l-5 4v-4H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2zm3 5v2h2V9zm4 0v2h2V9zm4 0v2h2V9z"/></svg><span>Chat${ur?' (nouveau)':''}</span></button><button class="btn sm chatb duelb" data-act="frDuel" data-id="${f.id}"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 3l7.5 7.5-1.4 1.4L4 6.8V3zm18 0v3.8l-9.6 9.6 1.4 1.4L21 9.6V3h0zM5.3 14.6l4.1 4.1-1.4 1.4-1.4-1.4L4 21.3 2.7 20l2.6-2.6-1.4-1.4zm13.4 0l1.4 1.4-1.4 1.4L21.3 20 20 21.3l-2.6-2.6-1.4 1.4-1.4-1.4z"/></svg><span>Duel</span></button></span>`:''}<small>${ol?(ch?`Joue ${esc(ch.name)} · ${(CLASSES[ch.cls]||{n:''}).n} niv. ${ch.lvl}`:'Dans le menu'):'Hors ligne'+(p&&p.char?` · ${esc(p.char.name)} niv. ${p.char.lvl}`:'')}</small></span>`,
+        UI.frdel===f.id?`<button class="btn sm danger" data-act="frDel" data-id="${f.id}">Retirer</button><button class="btn sm" data-act="frDelNo">Non</button>`:`<button class="frx sm" data-act="frDel" data-id="${f.id}" title="Retirer de mes amis" aria-label="Retirer ${esc(otherName(f))}">×</button>`)}});
+  const onL=accL.filter(x=>x.ol),offL=accL.filter(x=>!x.ol);
   $('#frlist').innerHTML=
     (inc.length?`<h4>Demandes reçues</h4><ul>${inc.map(f=>row(f,`<span class="frn"><b>${esc(otherName(f))}</b><small>veut devenir votre ami</small></span>`,`<button class="btn sm pri" data-act="frAcc" data-id="${f.id}">Accepter</button><button class="btn sm" data-act="frDel" data-id="${f.id}" data-now="1">Refuser</button>`)).join('')}</ul>`:'')+
-    `<h4>Mes amis</h4>${acc.length?`<ul>${accH}</ul>`:'<p class="mute frempty">Aucun ami pour l’instant. Ajoutez un joueur avec son nom de compte.</p>'}`+
+    (acc.length?`<h4>En ligne (${onL.length})</h4>${onL.length?`<ul>${onL.map(x=>x.h).join('')}</ul>`:'<p class="mute frempty">Aucun ami connecté.</p>'}<h4>Hors ligne (${offL.length})</h4>${offL.length?`<ul>${offL.map(x=>x.h).join('')}</ul>`:'<p class="mute frempty">Tous vos amis sont connectés.</p>'}`:'<h4>Mes amis</h4><p class="mute frempty">Aucun ami pour l’instant. Ajoutez un joueur avec son nom de compte.</p>')+
     (out.length?`<h4>Demandes envoyées</h4><ul>${out.map(f=>row(f,`<span class="frn"><b>${esc(otherName(f))}</b><small>en attente</small></span>`,`<button class="btn sm" data-act="frDel" data-id="${f.id}" data-now="1">Annuler</button>`)).join('')}</ul>`:'');
+  const pop=$('#frlist .frpop'); if(pop){ const nb=pop.parentElement.querySelector('.frname'),r=nb.getBoundingClientRect(),row=pop.closest('.frrow').getBoundingClientRect(),pw=pop.offsetWidth,ph=pop.offsetHeight;
+    pop.style.left=Math.max(8,row.left-pw-12)+'px'; pop.style.top=Math.max(8,r.top+r.height/2-ph/2)+'px'; pop.style.visibility='visible' }
+}
+/* ============ Duels PvP ============ */
+const PVP_GOLD=500,PVP_TURN=90;
+const PV={unsub:null,match:null,searching:false,qT:null,pT:null,busy:false,ending:null,seen:{}};
+const pvpCol=()=>FB.db.collection(COL('pvp'));
+const pvpQ=()=>FB.db.collection(COL('pvpQueue'));
+const pvpMe=()=>FB.user&&FB.user.uid;
+const pvpOp=m=>m.players.find(x=>x!==pvpMe());
+const pvpTS=()=>firebase.firestore.FieldValue.serverTimestamp();
+const pvpReady=()=>!!(FB.user&&FB.prof&&S&&S.heroes&&S.heroes[0]);
+function pvpSnap(){
+  const h=S.heroes[0],u=mkHeroUnit(h),keys=['hp','maxHp','atk','mag','def','res','spd','crit','critDmg','dodge','lifesteal','dmgPct','ap','maxAp',...RES_K];
+  const o={acct:FB.prof.name,name:h.name,cls:h.cls,lvl:h.lvl,role:u.role,skills:u.skills.slice(),ranks:Object.fromEntries(u.skills.map(id=>[id,h.learned[id]||1])),cds:{},st:[],shield:0,atkUsed:false,stun:false};
+  for(const k of keys) o[k]=Math.round((u[k]||0)*10)/10;
+  return o;
+}
+function startPvp(){
+  if(PV.unsub||!FB.user) return; const me=pvpMe();
+  PV.unsub=pvpCol().where('players','array-contains',me).onSnapshot(qs=>{
+    const now=Date.now();
+    for(const d of qs.docs){ const m=Object.assign({id:d.id},d.data({serverTimestamps:'estimate'}));
+      const age=now-(m.cms||now);
+      if(PV.match&&PV.match.id===m.id){ PV.match=m; continue }
+      if(m.state==='confirm'&&age<45000&&!PV.match){ PV.match=m; pvpStopSearch(true); if(m.from!==me) toast('⚔ '+(m.names&&m.names[m.from]||'Un joueur')+' vous propose un duel !'); continue }
+      if((m.state!=='fight'&&age>60000)||(m.state==='fight'&&now-tsMs(m.turnAt)>15*60000)) d.ref.delete().catch(()=>{});
+    }
+    if(PV.match&&!qs.docs.some(d=>d.id===PV.match.id)){ if(PV.match.state==='confirm') toast('Le duel a été annulé.'); PV.match=null }
+    pvpTick();
+  },()=>{});
+  clearInterval(PV.pT); PV.pT=setInterval(pvpTimer,1000);
+}
+function stopPvp(){ if(PV.unsub){PV.unsub();PV.unsub=null} pvpStopSearch(); PV.match=null; clearInterval(PV.pT); const w=$('#pvp'); if(w) w.remove() }
+/* recherche d’adversaire */
+async function pvpSearch(){
+  if(!pvpReady()){toast('Chargez un personnage pour faire un duel.');return}
+  if(C.phase==='fight'){toast('Terminez d’abord votre combat en cours.');return}
+  if(PV.match) return; PV.searching=true; render();
+  const h=S.heroes[0],me=pvpMe();
+  const put=()=>pvpQ().doc(me).set({uid:me,name:FB.prof.name,char:{name:h.name,cls:h.cls,lvl:h.lvl},ts:pvpTS(),tms:Date.now()}).catch(()=>{});
+  await put(); let n=0;
+  const poll=async()=>{
+    if(!PV.searching||PV.match) return;
+    if(++n%7===0) put();
+    try{ const qs=await pvpQ().orderBy('ts').limit(25).get();
+      const c=qs.docs.map(d=>d.data()).filter(x=>x.uid!==me&&Date.now()-(x.tms||0)<60000);
+      const o=c[0]; if(o&&me>o.uid&&!PV.match) await pvpPropose(o.uid,o.name,o.char,'search');
+    }catch(e){}
+    if(PV.searching&&!PV.match) PV.qT=setTimeout(poll,3000);
+  };
+  PV.qT=setTimeout(poll,1200);
+}
+function pvpStopSearch(){ clearTimeout(PV.qT); if(PV.searching&&FB.user) pvpQ().doc(pvpMe()).delete().catch(()=>{}); const was=PV.searching; PV.searching=false; if(was&&UI.tab==='combat'&&!UI.scr&&C.phase==='idle') render() }
+async function pvpPropose(o,oname,ochar,kind){
+  const me=pvpMe(),h=S.heroes[0],auto=kind==='friend';
+  const doc={players:[me,o].sort(),from:me,kind,state:'confirm',names:{[me]:FB.prof.name,[o]:oname},chars:{[me]:{name:h.name,cls:h.cls,lvl:h.lvl},[o]:ochar||null},acc:auto?{[me]:true}:{},u:auto?{[me]:pvpSnap()}:{},log:[],created:pvpTS(),cms:Date.now()};
+  const ref=await pvpCol().add(doc); return ref;
+}
+async function pvpUpd(data){ if(!PV.match) return; try{ await pvpCol().doc(PV.match.id).update(data) }catch(e){ toast('Duel : erreur ('+(e.code||'réseau')+').') } }
+/* confirmation, démarrage */
+async function pvpAccept(){
+  if(!PV.match) return; if(!pvpReady()){toast('Chargez un personnage (Jouer) pour accepter le duel.');return}
+  if(C.phase==='fight'){toast('Terminez d’abord votre combat en cours.');return}
+  const me=pvpMe(); await pvpUpd({['acc.'+me]:true,['u.'+me]:pvpSnap()});
+}
+async function pvpRefuse(){ if(!PV.match) return; await pvpUpd({state:'cancel',by:pvpMe()}); PV.match=null; renderPvp() }
+function pvpTick(){
+  const m=PV.match; renderPvp(); if(!m) return; const me=pvpMe();
+  if(m.state==='confirm'&&m.players[0]===me&&m.players.every(p=>m.acc&&m.acc[p]&&m.u&&m.u[p])&&!PV.busy){
+    PV.busy=true; const [a,b]=m.players,ua=m.u[a],ub=m.u[b],first=ua.spd>=ub.spd?a:b;
+    pvpUpd({state:'fight',turn:first,first,round:1,turnAt:pvpTS(),log:['⚔ Le duel commence ! '+(m.names[first])+' agit en premier.']}).finally(()=>{PV.busy=false});
+  }
+  if(m.state==='cancel'){ if(m.by!==me) toast('Le duel a été refusé.'); PV.match=null; renderPvp() }
+  if(m.state==='done'&&PV.ending!==m.id){ PV.ending=m.id; pvpEnd(m) }
+}
+/* moteur de combat (calculé par le joueur actif) */
+const pvEff=(u,k)=>{let x=0; for(const s of u.st||[]) if(s.k==='buff'&&s.stat===k) x+=s.v; return (u[k]||0)*Math.max(.25,1+x/100)};
+function pvHit(u,t,mult,st,sk,L){
+  if(Math.random()*100<(t.dodge||0)){L.push(`${t.name} esquive.`);return}
+  const K=100+15*(u.lvl||1),ds=st==='mag'?'res':'def';
+  let d=pvEff(u,st)*mult*K/(K+pvEff(t,ds)); d*=1+(u.dmgPct||0)/100; d*=resMul(t,st,sk&&sk.el); d*=rand(.92,1.08);
+  const cr=Math.random()*100<(u.crit||0); if(cr) d*=(u.critDmg||150)/100; d=Math.max(1,Math.round(d));
+  let a=d; if(t.shield>0){const s=Math.min(t.shield,a); t.shield-=s; a-=s}
+  t.hp=Math.max(0,t.hp-a); L.push(`${t.name} subit ${d} dégâts${cr?' (critique !)':''}.`);
+  if(u.lifesteal&&u.hp>0){const hh=Math.min(u.maxHp-u.hp,Math.round(d*u.lifesteal/100)); if(hh>0){u.hp+=hh}}
+}
+function pvExec(u,t,sk,L){
+  const k=sk.id==='atk'?1:sc((u.ranks&&u.ranks[sk.id])||1),st=sk.st||u.role;
+  if(sk.cd) u.cds[sk.id]=sk.cd+1; if(sk.ap) u.ap=Math.max(0,u.ap-sk.ap); if(sk.id==='atk') u.atkUsed=true;
+  L.push(sk.id==='atk'?`${u.name} attaque.`:`${u.name} utilise ${sk.n}.`);
+  if(sk.mult) for(let i=0;i<(sk.hits||1)&&t.hp>0;i++) pvHit(u,t,sk.mult*k,st,sk,L);
+  for(const f of sk.fx||[]){
+    const on=f.on||(sk.tg==='one'||sk.tg==='all'?'foe':'friend'),tg=on==='foe'?t:u; if(tg.hp<=0) continue;
+    if(f.k==='dot'){tg.st=tg.st.filter(s=>!(s.k==='dot'&&s.n===f.n)); tg.st.push({k:'dot',n:f.n,v:Math.round(pvEff(u,st)*f.v*k*resMul(tg,st,sk.el)),dur:f.dur}); L.push(`${tg.name} subit ${f.n}.`)}
+    else if(f.k==='stun'){ if(Math.random()*100<(f.ch||100)){tg.st=tg.st.filter(s=>s.k!=='stun'); tg.st.push({k:'stun',dur:f.dur}); L.push(`${tg.name} est étourdi !`)} }
+    else if(f.k==='shield'){const a=f.of==='hp'?tg.maxHp*f.v*k:pvEff(u,'mag')*f.v*k; tg.shield=Math.round(Math.min(tg.maxHp,(tg.shield||0)+a)); L.push(`${tg.name} gagne un bouclier.`)}
+    else if(f.k==='heal'){const a=Math.round(Math.min(tg.maxHp-tg.hp,pvEff(u,f.of||'mag')*f.v*k)); tg.hp+=a; L.push(`${tg.name} récupère ${a} PV.`)}
+    else if(f.k==='buff'||f.k==='debuff'){const v=f.k==='debuff'?-Math.abs(f.v):f.v*k; tg.st=tg.st.filter(s=>!(s.k==='buff'&&s.stat===f.stat&&Math.sign(s.v)===Math.sign(v))); tg.st.push({k:'buff',stat:f.stat,v:Math.round(v),dur:f.dur})}
+  }
+}
+function pvState(){ const m=PV.match,me=pvpMe(),o=pvpOp(m),u=JSON.parse(JSON.stringify(m.u)); return {m,me,o,u,U:u[me],T:u[o],L:[]} }
+function pvCommit(x,extra){
+  const log=(x.m.log||[]).concat(x.L).slice(-40),data=Object.assign({u:x.u,log},extra||{});
+  if(x.T.hp<=0||x.U.hp<=0){ const w=x.T.hp<=0?x.me:x.o; data.state='done'; data.winner=w; data.log=log.concat(['🏆 '+x.m.names[w]+' remporte le duel !']).slice(-40) }
+  return pvpUpd(data);
+}
+const pvMyTurn=()=>PV.match&&PV.match.state==='fight'&&PV.match.turn===pvpMe();
+async function pvAct(id){
+  if(!pvMyTurn()||PV.busy) return; const x=pvState(),sk=SK[id];
+  if(!sk||x.U.stun) return; if(id!=='atk'&&!x.U.skills.includes(id)) return;
+  if((sk.ap||0)>x.U.ap||(x.U.cds[id]||0)||(id==='atk'&&x.U.atkUsed)) return;
+  PV.busy=true; pvExec(x.U,x.T,sk,x.L); await pvCommit(x); PV.busy=false;
+}
+async function pvPot(k){
+  if(!pvMyTurn()||PV.busy) return; if(matCount(k)<1) return; const x=pvState(),U=x.U;
+  if(k==='p_vie'){const a=Math.round(Math.min(U.maxHp-U.hp,U.maxHp*.4)); U.hp+=a; x.L.push(`${U.name} boit une Potion de vie (+${a} PV).`)}
+  else if(k==='p_res'){U.st=U.st.filter(s=>!(s.k==='buff'&&(s.stat==='def'||s.stat==='res')&&s.v>0)); U.st.push({k:'buff',stat:'def',v:40,dur:3},{k:'buff',stat:'res',v:40,dur:3}); x.L.push(`${U.name} boit une Potion de résistance.`)}
+  else if(k==='p_for'||k==='p_int'){const stt=k==='p_for'?'atk':'mag'; U.st=U.st.filter(s=>!(s.k==='buff'&&s.stat===stt&&s.v>0)); U.st.push({k:'buff',stat:stt,v:30,dur:3}); x.L.push(`${U.name} boit une ${POTS[k].n}.`)}
+  else return;
+  PV.busy=true; removeMat(k,1); save(); await pvCommit(x); PV.busy=false;
+}
+async function pvEnd(){
+  if(!pvMyTurn()||PV.busy) return; const x=pvState(),U=x.U,T=x.T;
+  U.st.forEach(s=>s.dur--); U.st=U.st.filter(s=>s.dur>0); for(const k in U.cds) U.cds[k]=Math.max(0,U.cds[k]-1); U.stun=false; U.atkUsed=false;
+  /* début du tour adverse */
+  T.ap=Math.min(T.maxAp,T.ap+AP_REGEN);
+  for(const s of T.st.filter(s=>s.k==='dot')){ T.hp=Math.max(0,T.hp-Math.max(1,s.v)); x.L.push(`${T.name} subit ${Math.max(1,s.v)} dégâts (${s.n}).`) }
+  T.stun=T.st.some(s=>s.k==='stun'); if(T.stun) x.L.push(`${T.name} est étourdi et ne peut pas agir.`);
+  const round=(x.m.round||1)+(x.o===x.m.first?1:0);
+  PV.busy=true; await pvCommit(x,{turn:x.o,round,turnAt:pvpTS()}); PV.busy=false;
+}
+async function pvForfeit(){ if(!PV.match||PV.match.state!=='fight') return; const o=pvpOp(PV.match); await pvpUpd({state:'done',winner:o,log:(PV.match.log||[]).concat([PV.match.names[pvpMe()]+' abandonne.','🏆 '+PV.match.names[o]+' remporte le duel !']).slice(-40)}) }
+async function pvClaim(){ const m=PV.match; if(!m||m.state!=='fight'||m.turn===pvpMe()||Date.now()-tsMs(m.turnAt)<PVP_TURN*1000) return; const me=pvpMe(); await pvpUpd({state:'done',winner:me,log:(m.log||[]).concat([m.names[m.turn]+' n’a pas joué à temps.','🏆 '+m.names[me]+' remporte le duel !']).slice(-40)}) }
+function pvpEnd(m){
+  const me=pvpMe(),win=m.winner===me;
+  renderPvp();
+  setTimeout(()=>{
+    const w=$('#pvp'); if(w) w.remove(); PV.match=null;
+    const done=JSON.parse(lsGet(KP+'pvpdone_'+me)||'[]');
+    if(win&&!done.includes(m.id)&&S&&S.heroes&&S.heroes[0]){ done.push(m.id); lsSet(KP+'pvpdone_'+me,JSON.stringify(done.slice(-50))); S.gold+=PVP_GOLD; S.pvp=S.pvp||{w:0,l:0}; S.pvp.w++; save(); renderHeader(); pvpLoot(m) }
+    else if(!win&&S&&S.heroes&&S.heroes[0]){ if(!done.includes(m.id)){done.push(m.id); lsSet(KP+'pvpdone_'+me,JSON.stringify(done.slice(-50))); S.pvp=S.pvp||{w:0,l:0}; S.pvp.l++; save()} toast('Défaite contre '+(m.names[pvpOp(m)]||'votre adversaire')+'.') }
+    if(m.players[0]===me) setTimeout(()=>pvpCol().doc(m.id).delete().catch(()=>{}),8000);
+    if(UI.tab==='combat'&&!UI.scr) render();
+  },3200);
+}
+function pvpLoot(m){
+  const d=document.createElement('div'); d.className='modal'; d.id='pvploot';
+  d.innerHTML=`<div class="box loot"><h2>Butin du duel</h2><p>Victoire contre <b>${esc(m.names[pvpOp(m)]||'')}</b> !</p><div class="lootg">${matIcon('gold')}<b>+${fmt(PVP_GOLD)}</b> or</div><div class="row"><button class="btn pri" data-act="pvpLootOk">Récupérer</button></div></div>`;
+  document.body.append(d); d.querySelector('button').focus();
+}
+/* affichage */
+function pvCard(u,name,me,turn){
+  if(!u) return `<div class="pvcard wait"><b>${esc(name||'?')}</b><small>En attente…</small></div>`;
+  const aps=Array.from({length:u.maxAp||0},(_,i)=>`<i class="${i<u.ap?'on':''}"></i>`).join(''),sts=(u.st||[]).map(s=>`<em class="b-${s.k}">${esc(s.k==='dot'?s.n:s.k==='stun'?'Étourdi':(s.v>0?'+':'')+s.v+'% '+(STAT_N[s.stat]||s.stat))} ${s.dur}</em>`).join('');
+  return `<div class="pvcard ${me?'me':''} ${turn?'turn':''} ${u.hp<=0?'dead':''}">${PORTRAIT[u.cls]?`<img src="${PORTRAIT[u.cls]}" alt="" width="84" height="84">`:''}<b>${esc(u.acct)}</b><small>${esc(u.name)} · ${(CLASSES[u.cls]||{n:''}).n} niv. ${u.lvl}</small>
+    <div class="hp"><i style="width:${Math.max(0,u.hp/u.maxHp*100)}%"></i><span>${Math.ceil(u.hp)} / ${Math.ceil(u.maxHp)}${u.shield>0?' (+'+Math.ceil(u.shield)+')':''}</span></div><div class="apbar" title="${u.ap} / ${u.maxAp} PA">${aps}</div><div class="stt">${sts}</div></div>`;
+}
+function pvpTimer(){
+  const m=PV.match; if(!m) return; const el=document.querySelector('#pvp [data-pvt]');
+  if(m.state==='confirm'){ const left=45-Math.floor((Date.now()-(m.cms||Date.now()))/1000); if(left<=0) return renderPvp(); if(el) el.textContent='('+left+' s)'; return }
+  if(m.state==='fight'){ const t=Math.max(0,PVP_TURN-Math.floor((Date.now()-tsMs(m.turnAt))/1000)); if(el) el.textContent='('+t+' s)'; if(t===0&&m.turn!==pvpMe()&&!document.querySelector('[data-act=pvpClaim]')) renderPvp() }
+}
+function renderPvp(){
+  const m=PV.match; let w=$('#pvp');
+  if(!m||!FB.user){ if(w) w.remove(); return }
+  if(!w){ w=document.createElement('div'); w.id='pvp'; w.className='modal pvpm'; w.setAttribute('role','dialog'); w.setAttribute('aria-modal','true'); document.body.append(w) }
+  const me=pvpMe(),o=pvpOp(m),nm=m.names||{},ch=(m.chars||{})[o];
+  if(m.state==='confirm'){
+    const left=Math.max(0,45-Math.floor((Date.now()-(m.cms||Date.now()))/1000)),mine=m.acc&&m.acc[me];
+    if(left<=0&&m.state==='confirm'){ if(m.from===me) pvpUpd({state:'cancel',by:me}); PV.match=null; w.remove(); return }
+    w.innerHTML=`<div class="box pvconf"><h2>${m.kind==='friend'?(m.from===me?'Demande de duel envoyée':'Demande de duel'):'Adversaire trouvé !'}</h2>
+      <p><b>${esc(nm[o]||'?')}</b>${ch?` · ${esc(ch.name)}, ${(CLASSES[ch.cls]||{n:''}).n} niveau ${ch.lvl}`:''}</p>
+      <p class="mute">${mine?(m.acc&&m.acc[o]?'Le duel va commencer…':'En attente de la réponse de votre adversaire…'):'Acceptez-vous le duel ?'} <span class="num" data-pvt>(${left} s)</span></p>
+      <div class="row">${mine?'':'<button class="btn pri" data-act="pvpAcc">Accepter</button>'}<button class="btn" data-act="pvpRef">${mine?'Annuler':'Refuser'}</button></div></div>`;
+    return;
+  }
+  if(m.state!=='fight'&&m.state!=='done'){ w.remove(); return }
+  const U=m.u[me],T=m.u[o],my=m.state==='fight'&&m.turn===me,late=m.state==='fight'&&!my&&Date.now()-tsMs(m.turnAt)>PVP_TURN*1000,tl=Math.max(0,PVP_TURN-Math.floor((Date.now()-tsMs(m.turnAt))/1000));
+  let acts='';
+  if(m.state==='done') acts=`<div class="pvwin">🏆 ${esc(nm[m.winner]||'')} remporte le duel !</div>`;
+  else if(my&&U.stun) acts=`<p class="mute">Vous êtes étourdi : vous passez ce tour.</p><div class="row"><button class="btn endturn" data-act="pvpEndT">Fin de tour</button></div>`;
+  else if(my){
+    const ids=['atk',...U.skills];
+    acts=`<div class="acts">${ids.map(id=>{const s=SK[id],cd=U.cds[id]||0,c=s.ap||0,no=c>U.ap,used=id==='atk'&&U.atkUsed;return `<button class="skb" data-act="pvpSk" data-id="${id}" ${cd||no||used?'disabled':''} title="${esc(skDesc(s,U.ranks[id]||1,U.role))}"><b>${s.n}${s.el&&ELEM[s.el]?` <em class="elt" style="--ec:${ELEM[s.el].c}">${ELEM[s.el].n}</em>`:''}</b><small>${c?`<span class="apc">${c} PA</span> · `:''}${used?'Déjà utilisée':cd?`Recharge : ${cd}`:no?'PA insuffisants':id==='atk'?'1 fois par tour':'Prête'}</small></button>`}).join('')}<button class="btn endturn" data-act="pvpEndT">Fin de tour</button></div>
+      <div class="potbar">${['p_vie','p_res',CLASSES[U.cls].role==='mag'?'p_int':'p_for'].filter(k=>matCount(k)>0).map(k=>`<button class="potb" data-act="pvpPot" data-k="${k}" title="${esc(POTS[k].n)} : ${esc(POTS[k].d)}">${matIcon(k)}<span class="num">${matCount(k)}</span></button>`).join('')||'<small class="mute">Aucune potion utilisable.</small>'}</div>`;
+  } else acts=`<p class="mute">Tour de <b>${esc(nm[o]||'')}</b>… <span class="num" data-pvt>(${tl} s)</span></p>${late?'<div class="row"><button class="btn pri" data-act="pvpClaim">Réclamer la victoire (adversaire inactif)</button></div>':''}`;
+  const keep=w.querySelector('.pvlog'),sc0=keep?keep.scrollTop:0;
+  w.innerHTML=`<div class="box pvbox"><div class="row between" style="margin-bottom:8px"><h2>Duel</h2><small class="num">Tour ${m.round||1}${my?' · <b class="apc">À vous de jouer</b>':''}</small></div>
+    <div class="pvarena">${pvCard(U,nm[me],true,m.turn===me&&m.state==='fight')}<span class="pvvs">VS</span>${pvCard(T,nm[o],false,m.turn===o&&m.state==='fight')}</div>
+    <div class="pvacts">${acts}</div>
+    <div class="pvlog log">${(m.log||[]).slice(-12).map(l=>`<p>${esc(l)}</p>`).join('')}</div>
+    ${m.state==='fight'?'<div class="row" style="justify-content:flex-end;margin-top:6px"><button class="btn sm danger" data-act="pvpGiveUp">Abandonner</button></div>':''}</div>`;
+  const lg=w.querySelector('.pvlog'); if(lg) lg.scrollTop=lg.scrollHeight;
+}
+function viewPvp(){
+  const on=!!(FB.user&&FB.prof),S0=S.pvp||{w:0,l:0};
+  return `<section class="panel pvpanel"><h2 style="margin-bottom:6px">Duel PvP</h2>
+    <p class="hint" style="margin-bottom:12px">Affrontez un autre joueur au tour par tour avec votre personnage actuel. Chaque joueur agit à son tour : compétences, PA et potions. Victoire : <b>+${PVP_GOLD} or</b>.</p>
+    ${!on?'<p class="lerr">Connectez-vous à un compte (menu) pour faire des duels.</p>':PV.searching?`<div class="pvsearch"><span class="spin" aria-hidden="true"></span><b>Recherche d’un adversaire…</b><button class="btn" data-act="pvpCancel">Annuler</button></div>`:`<button class="btn pri big" data-act="pvpFind" style="max-width:320px">⚔ Rechercher un adversaire</button>`}
+    <p class="mute" style="margin-top:12px">Bilan : <b>${S0.w}</b> victoire${S0.w>1?'s':''} · <b>${S0.l}</b> défaite${S0.l>1?'s':''}</p>
+    <p class="hint">Vous pouvez aussi défier un ami : cliquez sur son nom dans la liste d’amis, puis sur « Duel ». Un joueur qui ne joue pas pendant ${PVP_TURN} secondes peut être déclaré perdant.</p></section>`;
+}
+
+/* ---- chat ---- */
+const CH={id:null,unsub:null,msgs:[],err:''};
+const fdoc=id=>FB.db.collection(COL('friendships')).doc(id);
+function openChat(id){
+  if(CH.unsub){CH.unsub();CH.unsub=null}
+  CH.id=id; CH.msgs=[]; CH.err=''; UI.frMenu=null;
+  CH.readFor=null; CH.unsub=fdoc(id).collection('messages').orderBy('ts').limitToLast(60).onSnapshot(qs=>{CH.msgs=qs.docs.map(d=>d.data({serverTimestamps:'estimate'})); renderChat(); markRead()},e=>{CH.err='Chat indisponible ('+(e.code||'erreur')+'). Vérifiez les règles Firestore.'; renderChat()});
+  renderChat(true); markRead();
+}
+function closeChat(){ if(CH.unsub){CH.unsub();CH.unsub=null} CH.id=null; const w=$('#frchat'); if(w) w.remove(); renderFriends() }
+let readT=null;
+function markRead(){
+  const f=FR.list.find(x=>x.id===CH.id),me=FB.user&&FB.user.uid; if(!f||!me||!f.lastMsg||f.lastMsg.from===me) return;
+  const lt=tsMs(f.lastMsg.ts),r=(f.lastRead||{})[me]; if(r!==null&&tsMs(r)>=lt) return; if(CH.readFor===lt) return; CH.readFor=lt;
+  clearTimeout(readT); readT=setTimeout(()=>{fdoc(CH.id).update({['lastRead.'+FB.user.uid]:firebase.firestore.FieldValue.serverTimestamp()}).catch(()=>{})},300);
+}
+function renderChat(focus){
+  if(!CH.id) return; const f=FR.list.find(x=>x.id===CH.id); if(!f||f.status!=='accepted'){closeChat();return}
+  const me=FB.user.uid; let w=$('#frchat');
+  if(!w){ w=document.createElement('div'); w.id='frchat'; w.className='frchat'; w.setAttribute('role','dialog'); document.body.append(w);
+    w.innerHTML=`<div class="frhead"><b id="chname"></b><small id="chst"></small><button class="frx" data-act="chClose" aria-label="Fermer le chat">×</button></div><div class="chlog" id="chlog" aria-live="polite"></div>
+      <div class="fradd"><input type="text" id="chin" maxlength="300" placeholder="Votre message…" aria-label="Message"><button class="btn sm pri" data-act="chSend">Envoyer</button></div>`; focus=true }
+  const o=f.users.find(x=>x!==me),p=FR.prof[o];
+  $('#chname').textContent=otherName(f); $('#chst').textContent=isOnline(p)?'En ligne':'Hors ligne';
+  const log=$('#chlog'),stick=log.scrollTop+log.clientHeight>=log.scrollHeight-20;
+  const hm=t=>{const d=new Date(tsMs(t)||Date.now());return d.toLocaleDateString('fr-FR',{day:'2-digit',month:'2-digit'})+' '+d.toLocaleTimeString('fr-FR',{hour:'2-digit',minute:'2-digit'})};
+  log.innerHTML=(CH.err?`<p class="frmsg bad">${esc(CH.err)}</p>`:'')+(CH.msgs.length?CH.msgs.map(m=>`<div class="chm ${m.from===me?'me':''}"><span>${esc(m.text)}</span><small>${hm(m.ts)}</small></div>`).join(''):'<p class="mute frempty">Aucun message. Dites bonjour !</p>');
+  if(stick||focus) log.scrollTop=log.scrollHeight;
+  if(focus){const i=$('#chin'); if(i) i.focus()}
+}
+async function sendChat(){
+  const i=$('#chin'),t=(i.value||'').trim().slice(0,300); if(!t||!CH.id) return; i.value='';
+  const me=FB.user.uid,TS=firebase.firestore.FieldValue.serverTimestamp();
+  try{ await fdoc(CH.id).collection('messages').add({from:me,text:t,ts:TS});
+    await fdoc(CH.id).update({lastMsg:{from:me,ts:TS,text:t.slice(0,80)},['lastRead.'+me]:TS}) }
+  catch(e){ CH.err='Envoi impossible ('+(e.code||'erreur')+').'; renderChat() }
 }
 async function frSendReq(name){
   const me=FB.user.uid,low=name.toLowerCase();
   if(low===FB.prof.nameLower) throw {msg:'C’est votre propre nom de compte.'};
-  const n=await FB.db.collection('names').doc(low).get(); if(!n.exists) throw {msg:'Aucun joueur ne porte ce nom de compte.'};
+  const n=await FB.db.collection(COL('names')).doc(low).get(); if(!n.exists) throw {msg:'Aucun joueur ne porte ce nom de compte.'};
   const o=n.data().uid,id=[me,o].sort().join('_'),ex=FR.list.find(f=>f.id===id);
   if(ex) throw {msg:ex.status==='accepted'?'Ce joueur est déjà votre ami.':'Une demande est déjà en cours avec ce joueur.'};
-  const op=await FB.db.collection('profiles').doc(o).get(),oname=op.exists?op.data().name:name;
-  await FB.db.collection('friendships').doc(id).set({users:[me,o].sort(),from:me,status:'pending',names:{[me]:FB.prof.name,[o]:oname},ts:firebase.firestore.FieldValue.serverTimestamp()});
+  const op=await FB.db.collection(COL('profiles')).doc(o).get(),oname=op.exists?op.data().name:name;
+  await FB.db.collection(COL('friendships')).doc(id).set({users:[me,o].sort(),from:me,status:'pending',names:{[me]:FB.prof.name,[o]:oname},ts:firebase.firestore.FieldValue.serverTimestamp()});
   return oname;
 }
-const userDoc=uid=>FB.db.collection('users').doc(uid);
+const userDoc=uid=>FB.db.collection(COL('users')).doc(uid);
 async function cloudPull(uid){
   const snap=await userDoc(uid).get(), d=snap.exists?snap.data():null;
   const localHas=Array.from({length:MAXCH},(_,i)=>charRaw(i)).some(Boolean);
@@ -1698,7 +2036,7 @@ async function cloudPull(uid){
     ACC.owner=uid; ACC.offline=false; saveAcc(); await cloudPush(true); return }
   if(ACC.owner===uid&&(ACC.ts||0)>(d.ts||0)){ ACC.offline=false; await cloudPush(true); return }
   if(localHas&&!ACC.owner){ /* partie hors ligne : on la garde de côté */
-    const bak={acc:ACC,chars:Array.from({length:MAXCH},(_,i)=>lsGet(CHAR_KEY(i)))}; lsSet('cendrelame_bak_'+Date.now(),JSON.stringify(bak));
+    const bak={acc:ACC,chars:Array.from({length:MAXCH},(_,i)=>lsGet(CHAR_KEY(i)))}; lsSet(KP+'bak_'+Date.now(),JSON.stringify(bak));
     setTimeout(()=>toast('Votre partie hors ligne a été mise de côté : la sauvegarde du compte est chargée.'),800) }
   for(let i=0;i<MAXCH;i++){const c=d['c'+i]; if(c) lsSet(CHAR_KEY(i),c); else lsDel(CHAR_KEY(i))}
   ACC=Object.assign({gold:80,cur:null,seenVer:null},d.acc||{},{owner:uid,ts:d.ts||Date.now(),offline:false,cur:null});
@@ -1784,6 +2122,7 @@ function bootChar(){
   S.bag.forEach(e=>fixL(e.o)); for(const h of S.heroes) Object.values(h.equip||{}).forEach(fixL);
   for(const h of S.heroes) for(const sk of CLASSES[h.cls].skills) if(sk.t==='a'&&h.learned[sk.id]&&!h.loadout.includes(sk.id)) h.loadout.push(sk.id);
   for(const h of S.heroes) if(h.lvl>MAXL){h.lvl=MAXL;h.xp=0}
+  {const lg=it=>{if(it&&!it.mat&&it.rarity>=4&&!it.leg) it.leg=it.slot}; S.bag.forEach(e=>lg(e.o)); for(const h of S.heroes) Object.values(h.equip||{}).forEach(lg)}
   {let cut=0; for(const k of Object.keys(S.mats||{})) if(S.mats[k]>matCap(k)){cut++; S.mats[k]=matCap(k)}
    if(cut) setTimeout(()=>toast(`Stock maximum réduit à ${MATCAP.toLocaleString('fr-FR')} par matériau : les surplus ont été retirés.`),1600)}
   if((S.siteV||1)===2){ let ref=0; for(const si of SITES){const st=S.sites[si.id]; if(!st||!st.tal) continue; const t=st.tal;
@@ -1819,7 +2158,7 @@ function viewCombat(){
   const allies=C.units.filter(u=>u.team==='h'),en=C.units.filter(u=>u.team==='e');
   const card=u=>`<div class="unit ${u.team==='h'?'ally':'foe'} ${u.boss?'boss':''}" data-u="${u.id}" data-act="pick" style="--h:${u.hue}">
     <div class="u-top"><span class="tile">${icon(u.ic)}</span><div class="u-id"><b>${esc(u.name)}</b><small>Niv ${u.lvl}</small></div></div>
-    <div class="hp"><i></i><span></span></div><div class="stt"></div><div class="fl"></div></div>`;
+    <div class="hp"><i></i><span></span></div><div class="apbar" aria-label="Points d’action">${Array.from({length:u.maxAp||0},()=>"<i></i>").join("")}</div><div class="stt"></div><div class="fl"></div></div>`;
   return `<div class="row between" style="margin-bottom:10px"><h2>${ZONES[C.zone].n} · étape ${C.stage}${C.stage===10?' · Boss':''}${C.hero?` <span class="herotag ${C.diff}">${DIFF[C.diff].n}</span>`:''}</h2><small class="num">Tour ${C.round}</small></div>
     <div class="arena"><div class="side">${allies.map(card).join('')}</div><div class="side">${en.map(card).join('')}</div></div>
     <div id="actbar" style="margin:14px 0"></div>
@@ -1838,7 +2177,8 @@ function viewCombatIdle(){
   const diffNote=dk==='hero'?`<p class="hint" style="color:var(--blood)"><b>Mode héroïque :</b> monstres niveau ${D.L}, bien plus agressifs. Les boss frappent fort et entrent en rage dès le tour ${D.rage+1}. Progression séparée.</p>`
     :dk==='myth'?`<p class="hint" style="color:var(--r3)"><b>Mode mythique :</b> monstres niveau ${D.L}. Les boss gagnent la Frappe dévastatrice et entrent en rage dès le tour ${D.rage+1}. Récompenses : or, XP et matériaux ×2, Prisme divin à 25 % sur Le Dévoreur.</p>`:heroOpen()?'':`<p class="hint">🔒 Le mode Héroïque se débloque au niveau ${HERO_L} (vous êtes niveau ${S.heroes[0].lvl}).</p>`;
   const mstat=c.role==='mag'?['Intelligence',st.mag]:['Force',st.atk];
-  return `<div class="adv-layout">
+  const mode=UI.advMode||'pve';
+  return `<div class="seg advmode" role="tablist"><button class="${mode==='pve'?'on':''}" data-act="advMode" data-m="pve">Aventure</button><button class="${mode==='pvp'?'on':''}" data-act="advMode" data-m="pvp">⚔ Duel PvP</button></div><div class="adv-layout">
     <section class="panel herocol">
       <h2 style="margin:0 0 10px;font-size:1.6rem">${esc(h.name)}</h2>
       ${PORTRAIT[h.cls]?`<img class="portrait" src="${PORTRAIT[h.cls]}" alt="Portrait : ${c.n}" width="114" height="114">`:`<span class="tile xl" style="--h:${h.hue}">${icon(c.ic)}</span>`}
@@ -1851,14 +2191,14 @@ function viewCombatIdle(){
       <label class="row" style="gap:6px"><input type="checkbox" id="chkFarm" data-act="farm" ${S.farm?'checked':''} ${S.auto?'':'disabled'}> Enchaîner les combats</label>
       <p class="hint" style="margin-top:10px">Vos PV sont restaurés après chaque combat.</p>
     </section>
-    <section class="panel ${hero?dk+'panel':''}"><h2 style="margin-bottom:12px">Choix de zone</h2>
+    ${mode==='pvp'?viewPvp():`<section class="panel ${hero?dk+'panel':''}"><h2 style="margin-bottom:12px">Choix de zone</h2>
       <div class="seg wide"><button class="${dk==='normal'?'on':''}" data-act="diff" data-d="normal">Normal</button><button class="${dk==='hero'?'on hero':''}" data-act="diff" data-d="hero" ${heroOpen()?'':`disabled title="Atteignez le niveau ${HERO_L} pour débloquer le mode Héroïque."`}>${heroOpen()?'':'🔒 '}Héroïque</button><button class="${dk==='myth'?'on myth':''}" data-act="diff" data-d="myth" ${mythOpen()?'':'disabled title="Atteignez le dernier boss en mode héroïque pour débloquer le mode Mythique."'}>${mythOpen()?'':'🔒 '}Mythique</button></div>
       ${diffNote?`<div style="margin-top:8px">${diffNote}</div>`:''}
       <div class="zgrid">${zones}</div>
       <h3 style="margin:16px 0 8px">Niveau de la zone : ${z.n}</h3>
       <div class="stages">${stg}</div>
       <p class="hint" style="margin-top:12px">Niveau des ennemis : <b class="num">${L}</b> · ${UI.stage===10?`Boss : ${z.boss.n}`:z.enemies.map(e=>e.n).join(', ')}</p>
-    </section></div>`;
+    </section>`}</div>`;
 }
 function renderActbar(){
   const el=$('#actbar'); if(!el) return;
@@ -1882,9 +2222,9 @@ function renderActbar(){
     <button class="btn sm" data-act="speed">Vitesse ×${S.speed}</button><button class="btn sm danger" data-act="flee">Fuir</button>`;
   if(!w){el.innerHTML=`<div class="acts"><small class="mute" style="align-self:center">${S.auto?'Combat automatique en cours…':'Les ennemis agissent…'}</small>${tools}</div><div class="acts" style="margin-top:8px">${potBar()}</div>`;return}
   const u=w.u,ids=['atk',...u.skills];
-  el.innerHTML=`<div class="acts"><div style="align-self:center"><b>${esc(u.name)}</b><br><small>${C.pending?'Choisissez une cible':'À vous de jouer'}</small></div>`+
-    ids.map(id=>{const s=SK[id],cd=u.cds[id]||0;return `<button class="skb ${C.pending&&C.pending.id===id?'sel':''}" data-act="skill" data-id="${id}" ${cd?'disabled':''} title="${esc(skDesc(s,u.ranks[id]||1,u.role))}"><b>${s.n}</b><small>${cd?`Recharge : ${cd}`:s.cd?`Recharge ${s.cd}`:'Aucune recharge'}</small></button>`}).join('')+
-    (C.pending?`<button class="btn sm" data-act="cancelPick">Annuler</button>`:'')+tools+`</div><div class="acts" style="margin-top:8px">${potBar()}</div>`;
+  el.innerHTML=`<div class="acts"><div style="align-self:center"><b>${esc(u.name)}</b><br><small>${C.pending?'Choisissez une cible':'À vous de jouer'} · <b class="apc">${u.ap||0} / ${u.maxAp||0} PA</b></small></div>`+
+    ids.map(id=>{const s=SK[id],cd=u.cds[id]||0,c=s.ap||0,no=c>(u.ap||0),used=id==='atk'&&u.atkUsed;return `<button class="skb ${C.pending&&C.pending.id===id?'sel':''}" data-act="skill" data-id="${id}" ${cd||no||used?'disabled':''} title="${esc(skDesc(s,u.ranks[id]||1,u.role))}"><b>${s.n}${s.el&&ELEM[s.el]?` <em class="elt" style="--ec:${ELEM[s.el].c}">${ELEM[s.el].n}</em>`:''}</b><small>${c?`<span class="apc">${c} PA</span> · `:''}${used?'Déjà utilisée ce tour':cd?`Recharge : ${cd}`:no?'PA insuffisants':s.cd?`Recharge ${s.cd}`:id==='atk'?'Gratuite · 1 fois par tour':'Aucune recharge'}</small></button>`}).join('')+
+    (C.pending?`<button class="btn sm" data-act="cancelPick">Annuler</button>`:'')+`<button class="btn endturn" data-act="endTurn">Fin de tour</button>`+tools+`</div><div class="acts" style="margin-top:8px">${potBar()}</div>`;
 }
 
 /* --- potions en combat --- */
@@ -1945,7 +2285,7 @@ function viewHeroes(){
       <div class="pleft">${BP.equip}</div>
       <section class="panel ppres"><div class="sheethead"><h2>${esc(h.name)}</h2>${PORTRAIT[h.cls]?`<img class="portrait" src="${PORTRAIT[h.cls]}" alt="Portrait : ${c.n}" width="114" height="114">`:`<span class="tile xl" style="--h:${h.hue}">${icon(c.ic)}</span>`}<small>${c.n} · Niveau ${h.lvl}</small><span class="stars" title="Ascension">${'★'.repeat(h.stars)}${'☆'.repeat(5-h.stars)}</span></div>
         <div class="bar xp" style="margin-bottom:4px"><i style="width:${h.lvl>=MAXL?100:h.xp/need*100}%"></i></div><small class="num">${h.lvl>=MAXL?'Niveau max':`XP ${fmt(h.xp)} / ${fmt(need)}`}</small>
-        <div class="sep"></div><dl class="stats">${BP.mini}</dl><p class="hint" style="margin-top:6px">Valeur sans équipement, avec le bonus de l’équipement porté en vert <span class="gb">(+X)</span>.</p><div class="sep"></div>
+        <div class="sep"></div><dl class="stats cats">${BP.mini}</dl><div class="row" style="justify-content:center;margin-top:8px"><button class="btn sm" data-act="statSplit" aria-pressed="${!!S.statSplit}">${S.statSplit?'Masquer le détail':'Voir le détail (base + équipement)'}</button></div><div class="sep"></div>
         <h3 style="margin-bottom:6px">Ascension</h3>
         ${h.stars>=5?'<p class="hint">Ascension maximale. +10% de stats de base par étoile.</p>':`<p class="hint" style="margin-bottom:8px">+10 % de stats de base. Niveau maximum (${aReq}) requis${h.lvl<aReq?` — vous êtes niveau ${h.lvl}`:''}.</p><div class="row"><button class="btn" data-act="ascend" ${h.lvl<aReq||!canPay(aCost)?'disabled':''}>Ascension ${h.stars+1}</button>${costHTML(aCost)}</div>`}
       </section>
@@ -2060,11 +2400,16 @@ function bagParts(){
   if(c&&c.mat) detail=matCard(c,`<button class="btn sm" data-act="bagSplit" data-i="${si}" ${c.n<2||!freeCells()?'disabled':''}>Diviser la pile</button>`+(UI.confirm==='mat'+si?`<button class="btn sm warn" data-act="matDel" data-i="${si}">Confirmer (${c.n} perdus)</button><button class="btn sm" data-act="noConfirm">Annuler</button>`:`<button class="btn sm danger" data-act="matDel" data-i="${si}">Détruire la pile</button>`));
   else if(c) detail=itemCard(c,itemBtns(c),swapDelta(h,c));
   else if(k) detail=(eq?itemCard(eq,`<button class="btn sm" data-act="unequip" data-slot="${k}">Retirer</button><button class="btn sm" data-act="toForge" data-id="${eq.id}">Forge</button>`):'<p class="hint">Emplacement vide. Glissez-y un objet de l’inventaire.</p>');
-  const gb=(t,b,pct)=>{const d=pct?r1(t-b):Math.round(t)-Math.round(b);return (pct?r1(b)+'%':Math.round(b))+(d>0?` <span class="gb">(+${d}${pct?'%':''})</span>`:'')};
+  const sep=S.statSplit;
+  const gb=(t,b,pct)=>{const f=v=>pct?r1(v)+'%':fmt(Math.round(v)),d=pct?r1(t-b):Math.round(t)-Math.round(b);
+    return `<b class="tot">${f(t)}</b>`+(sep?` <span class="spl">(${f(b)} + ${pct?r1(d)+'%':fmt(d)})</span>`:'')};
   const c0=CLASSES[h.cls],mk=c0.role==='mag'?['Intelligence','mag']:['Force','atk'];
-  const mini=[['PV','hp'],mk,['Défense','def'],['Résistance','res'],['Vitesse','spd']].map(([n,k])=>`<dt>${n}</dt><dd>${gb(st[k],bs[k])}</dd>`).join('')+
-    [['Critique','crit'],['Dégâts critiques','critDmg'],['Esquive','dodge'],['Vol de vie','lifesteal'],['Dégâts bonus','dmgPct'],['Or trouvé','goldFind']].map(([n,k])=>`<dt>${n}</dt><dd>${gb(st[k],bs[k],1)}</dd>`).join('')+
-    `<dt>Puissance</dt><dd><b>${Math.round(heroPower(h))}</b> <span class="gb">(+${Math.max(0,Math.round(heroPower(h)-heroPower(Object.assign({},h,{equip:{}}))))})</span></dd>`;
+  const row=([n,k,pct])=>`<dt>${n}</dt><dd>${gb(st[k],bs[k],pct)}</dd>`;
+  const cat=(t,rows)=>`<dt class="scat">${t}</dt><dd class="scat"></dd>`+rows.map(row).join('');
+  const mini=cat('Principale',[['PV','hp'],mk])+
+    cat('Secondaire',[['Vitesse','spd'],['Critique','crit',1],['Dégâts critiques','critDmg',1],['Esquive','dodge',1],['Vol de vie','lifesteal',1],['Points d’action','ap']])+
+    cat('Résistance',[['Défense physique','def'],['Défense magique','res'],...RES_K.map(k=>[STAT_N[k],k,1])])+
+    `<dt class="spow">Puissance</dt><dd class="spow"><b>${fmt(Math.round(heroPower(h)))}</b>${sep?` <span class="spl">(${fmt(Math.round(heroPower(Object.assign({},h,{equip:{}}))))} + ${fmt(Math.max(0,Math.round(heroPower(h)-heroPower(Object.assign({},h,{equip:{}})))))})</span>`:''}</dd>`;
   const mats=MATS.map(m=>`<div>${matIcon(m)}<span>${MAT_OBJ[m]}</span><b>${fmt(matCount(m))}</b></div>`).join('');
   const equip=`<section class="panel peq"><h3 class="ptitle">Équipement</h3>${dollHTML(h)}
         <p class="hint" style="margin-top:10px;text-align:center">Glissez un objet de l’inventaire sur le mannequin pour l’équiper, ou faites un clic droit dessus. Clic droit ou glisser vers l’inventaire pour le retirer.</p></section>
@@ -2389,7 +2734,11 @@ function viewHelp(){
     ['Force','Dégâts du Guerrier.','Toutes les attaques et compétences du Guerrier se basent sur la Force. Le Sorcier n’a pas de Force.'],
     ['Intelligence','Dégâts du Sorcier.','Toutes les attaques, brûlures et barrières du Sorcier se basent sur l’Intelligence. Le Guerrier n’a pas d’Intelligence.'],
     ['Défense','Réduit les dégâts physiques reçus.','Dégâts reçus × K / (K + Défense), avec K = 100 + 15 × niveau de l’attaquant. La Défense protège donc moins contre les ennemis de haut niveau.'],
-    ['Résistance','Réduit les dégâts magiques reçus.','Même formule que la Défense, contre les ennemis qui utilisent la magie (chamans, nécromanciens, sorcières, mages de braise, oracles, Seigneur de Cendre).'],
+    ['Défense magique','Réduit les dégâts magiques reçus.','Même formule que la Défense, contre les ennemis qui utilisent la magie (chamans, nécromanciens, sorcières, mages de braise, oracles, Seigneur de Cendre).'],
+    ['Points d’action (PA)','Énergie pour lancer les compétences.','5 PA de base pour chaque classe. Le combat commence avec tous les PA ; chaque compétence coûte des PA (l’attaque de base est gratuite, une fois par tour) et vous récupérez 1 PA au début de chacun de vos tours. Vous pouvez enchaîner plusieurs actions dans le même tour tant qu’il vous reste des PA, puis appuyer sur « Fin de tour ». Barre jaune segmentée sous la barre de vie.'],
+    ['Résistance physique','Réduit les dégâts physiques reçus en %.','S’applique après la Défense. Plafonnée à 75 %.'],
+    ['Résistance magique','Réduit les dégâts magiques reçus en %.','S’applique après la Défense magique. Plafonnée à 75 %.'],
+    ['Résistances élémentaires','Feu, Glace, Foudre, Terre.','Réduisent en % les dégâts des compétences de cet élément (brûlures comprises). Plafonnées à 75 %. Une résistance négative est une faiblesse : les dégâts sont augmentés.'],
     ['Vitesse','Ordre d’action.','À chaque tour, les unités agissent de la plus rapide à la plus lente.'],
     ['Critique','Chance de coup critique.','5 % de base. Un coup critique multiplie les dégâts par les Dégâts critiques.'],
     ['Dégâts critiques','Puissance des critiques.','150 % de base : un critique inflige alors 1,5 fois les dégâts.'],
@@ -2401,7 +2750,7 @@ function viewHelp(){
     ['Puissance','Score global.','Indicateur qui résume vos statistiques pour comparer deux équipements (▲ / ▼ dans les infobulles). Il n’a pas d’effet en combat.'],
   ]);
   const dmg=`<p>Pour chaque coup : <b>stat d’attaque × multiplicateur de la compétence × K / (K + Défense ou Résistance de la cible)</b>, puis :</p>
-    <ul><li>× (1 + Dégâts bonus) ;</li><li>× un tirage aléatoire entre 92 % et 108 % ;</li><li>× Dégâts critiques en cas de coup critique ;</li><li>minimum 1 dégât.</li></ul>
+    <ul><li>× (1 + Dégâts bonus) ;</li><li>× (1 − Résistance physique ou magique de la cible) ;</li><li>× (1 − Résistance à l’élément de la compétence, si elle en a un) ;</li><li>× un tirage aléatoire entre 92 % et 108 % ;</li><li>× Dégâts critiques en cas de coup critique ;</li><li>minimum 1 dégât.</li></ul>
     <p>K vaut 100 + 15 × niveau de l’attaquant. Les boucliers absorbent les dégâts avant les PV. Une Esquive réussie annule le coup.</p>`;
   const aff=T(['Effet','Type','Fonctionnement'],[
     ['<span class="b-dot">Saignement</span>','Dégâts sur la durée','Inflige un pourcentage de la stat d’attaque du lanceur au début de chaque tour de la cible. Un nouveau Saignement remplace l’ancien.'],
@@ -2438,11 +2787,18 @@ function viewHelp(){
 }
 
 /* --- nouveautés --- */
-const VERSION='0.1.1';
+const VERSION='0.3.0';
 const PATCH=[
- {v:'0.1.1',t:'Fiche de personnage',sec:[
-  ['Amis',['Nouveau système d’amis : liste fixée en bas à droite de l’écran, avec le nombre d’amis connectés.','Ajoutez un joueur avec son nom de compte ; il accepte ou refuse la demande. Vous voyez si vos amis sont en ligne et quel personnage ils jouent.','Nom de compte : à la première connexion, chaque joueur choisit un nom unique, commun à tous ses personnages.']],
-  ['Personnage',['Les onglets Personnage et Inventaire sont fusionnés dans l’onglet Personnage.','En haut : l’équipement (roue) à gauche et la présentation du héros à droite (portrait, niveau, statistiques avec le bonus d’équipement en vert, ascension).','En dessous : l’inventaire, puis les compétences. La zone de détails s’affiche sous l’équipement quand un objet est sélectionné.','La roue d’équipement est agrandie et occupe toute la hauteur de la présentation du héros.']],
+ {v:'0.3.0',t:"Combat 2.0 - Stat - PVP",sec:[
+  ["Duels PvP",["Nouveau mode « Duel PvP » dans l’onglet Aventure : recherchez un adversaire parmi les joueurs connectés.","Une confirmation s’affiche quand un adversaire est trouvé. Le duel se joue au tour par tour dans une fenêtre au centre de l’écran : PV, PA, compétences et potions des deux joueurs.","À la fin, le nom du vainqueur s’affiche puis un butin de 500 or récompense la victoire.","Défiez directement un ami : cliquez sur son nom dans la liste d’amis, puis sur « Duel ».","Un joueur qui ne joue pas pendant 90 secondes peut être déclaré perdant ; bouton « Abandonner » disponible."]],
+  ["Combat",["Points d’action (PA) : 5 de base pour chaque classe. Les compétences coûtent des PA, l’attaque de base est gratuite mais utilisable une seule fois par tour, et chaque unité récupère 1 PA au début de son tour.","Votre héros peut enchaîner plusieurs actions dans le même tour tant qu’il lui reste des PA ; nouveau bouton « Fin de tour ».","Barre de PA segmentée sous la barre de vie de chaque combattant ; le coût en PA est affiché sur chaque compétence.","Nouvelles statistiques : Résistance physique, Résistance magique et résistances au Feu, à la Glace, à la Foudre et à la Terre (en %, plafonnées à 75 %). L’ancienne Résistance devient « Défense magique ».","Compétences élémentaires : Boule de feu (Feu), Éclair en chaîne (Foudre), Météore (Terre) ; côté ennemis, Trait de feu, Crachat toxique et Déferlante. Certains monstres résistent à un élément, d’autres y sont faibles.","Nouveaux affixes de résistance sur l’équipement."]],
+  ["Forge",["Nouvelles chances de rareté : Forge ordinaire 80 % Commun / 20 % Magique ; Forge fine 40 % Commun / 50 % Magique / 10 % Rare ; Forge de maître 10 % Magique / 45 % Rare / 45 % Épique ; Forge légendaire 20 % Rare / 70 % Épique / 10 % Légendaire.","Affixes aléatoires : Commun 0, Magique 1, Rare 2, Épique 3, Légendaire 3 + un pouvoir légendaire.","Pouvoir légendaire (écrit en orange) : +6 % de chances de coup critique et +10 % de dégâts critiques. Un pouvoir nommé pour chaque type d’équipement ; les objets légendaires existants le reçoivent aussi."]],
+  ["Personnage",["Caractéristiques regroupées en trois catégories : Principale, Secondaire et Résistance. « Défense » devient « Défense physique ».","Les valeurs affichées sont les totaux (base + équipement) ; un bouton affiche le détail entre parenthèses (base + équipement).","« Or trouvé » et « Dégâts bonus » ne sont plus affichés dans la fiche."]],
+  ["Amis",["Amis classés en deux catégories : En ligne et Hors ligne.","Chat entre amis : cliquez sur le nom d’un ami puis sur « Chat ». Une pastille rouge signale un nouveau message sur le bouton Amis et sur l’ami concerné."]]
+ ]},
+ {v:'0.1.1',t:"Fiche de personnage",sec:[
+  ["Amis",["Nouveau système d’amis : liste fixée en bas à droite de l’écran, avec le nombre d’amis connectés.","Ajoutez un joueur avec son nom de compte ; il accepte ou refuse la demande. Vous voyez si vos amis sont en ligne et quel personnage ils jouent.","Nom de compte : à la première connexion, chaque joueur choisit un nom unique, commun à tous ses personnages."]],
+  ["Personnage",["Les onglets Personnage et Inventaire sont fusionnés dans l’onglet Personnage.","En haut : l’équipement (roue) à gauche et la présentation du héros à droite (portrait, niveau, statistiques avec le bonus d’équipement en vert, ascension).","En dessous : l’inventaire, puis les compétences. La zone de détails s’affiche sous l’équipement quand un objet est sélectionné.","La roue d’équipement est agrandie et occupe toute la hauteur de la présentation du héros."]]
  ]},
  {v:'0.0.9',t:'Entrepôts et débogage',sec:[
   ['Compte',['Connexion par e-mail et mot de passe, ou avec Google (création de compte et mot de passe oublié).','Sauvegarde en ligne : vos personnages et l’or partagé sont liés à votre compte et synchronisés automatiquement entre vos appareils.','« Jouer sans compte » garde la sauvegarde sur l’appareil. À la première connexion, la partie de l’appareil devient celle du compte.','Le compte connecté et un bouton « Se déconnecter » sont affichés en haut à droite du menu.']],
@@ -2548,8 +2904,8 @@ function dbgPanel(){
 /* ============ Bestiaire (réglages des ennemis, publiés par l’administrateur) ============ */
 const EFX=['v','dur','ch'];
 const bestSnap=()=>JSON.parse(JSON.stringify({
-  zones:ZONES.map(z=>({enemies:z.enemies.map(e=>({hp:e.hp,atk:e.atk,def:e.def,spd:e.spd||1,sk:[...(e.sk||[])]})),boss:{hp:z.boss.hp,atk:z.boss.atk,def:z.boss.def,spd:z.boss.spd||1,sk:[...(z.boss.sk||[])]}})),
-  sk:Object.fromEntries(Object.entries(ENSK).map(([id,k])=>[id,{cd:k.cd,mult:k.mult==null?null:k.mult,fx:(k.fx||[]).map(f=>Object.fromEntries(EFX.filter(x=>f[x]!=null).map(x=>[x,f[x]])))}])),
+  zones:ZONES.map(z=>({enemies:z.enemies.map(e=>({hp:e.hp,atk:e.atk,def:e.def,spd:e.spd||1,sk:[...(e.sk||[])],res:Object.fromEntries(RES_K.map(k=>[k,(e.res&&e.res[k])||0]))})),boss:{hp:z.boss.hp,atk:z.boss.atk,def:z.boss.def,spd:z.boss.spd||1,sk:[...(z.boss.sk||[])],res:Object.fromEntries(RES_K.map(k=>[k,(z.boss.res&&z.boss.res[k])||0]))}})),
+  sk:Object.fromEntries(Object.entries(ENSK).map(([id,k])=>[id,{ap:k.ap||0,cd:k.cd,mult:k.mult==null?null:k.mult,fx:(k.fx||[]).map(f=>Object.fromEntries(EFX.filter(x=>f[x]!=null).map(x=>[x,f[x]])))}])),
   enf:{hp:[...ENF.hp],atk:[...ENF.atk],def:[...ENF.def]},
   diff:Object.fromEntries(['hero','myth'].map(d=>[d,{hp:DIFF[d].hp,atk:DIFF[d].atk,bHp:DIFF[d].bHp,bAtk:DIFF[d].bAtk,bDef:DIFF[d].bDef,rage:DIFF[d].rage}]))}));
 const BEST_DEF=bestSnap();
@@ -2557,25 +2913,25 @@ function applyBest(cfg){
   const src=[BEST_DEF,cfg].filter(Boolean);
   for(const c of src){
     (c.zones||[]).forEach((z,i)=>{const Z=ZONES[i]; if(!Z||!z) return;
-      (z.enemies||[]).forEach((e,j)=>{if(Z.enemies[j]&&e) Object.assign(Z.enemies[j],{hp:+e.hp,atk:+e.atk,def:+e.def,spd:+e.spd||1,sk:(e.sk||[]).filter(x=>ENSK[x])})});
-      if(z.boss) Object.assign(Z.boss,{hp:+z.boss.hp,atk:+z.boss.atk,def:+z.boss.def,spd:+z.boss.spd||1,sk:(z.boss.sk||[]).filter(x=>ENSK[x])})});
-    for(const [id,k] of Object.entries(c.sk||{})){const E=ENSK[id]; if(!E) continue; E.cd=+k.cd; if(k.mult!=null) E.mult=+k.mult;
+      (z.enemies||[]).forEach((e,j)=>{if(Z.enemies[j]&&e) Object.assign(Z.enemies[j],{hp:+e.hp,atk:+e.atk,def:+e.def,spd:+e.spd||1,sk:(e.sk||[]).filter(x=>ENSK[x])},e.res?{res:Object.fromEntries(Object.entries(e.res).map(([k,v])=>[k,+v]))}:{})});
+      if(z.boss) Object.assign(Z.boss,{hp:+z.boss.hp,atk:+z.boss.atk,def:+z.boss.def,spd:+z.boss.spd||1,sk:(z.boss.sk||[]).filter(x=>ENSK[x])},z.boss.res?{res:Object.fromEntries(Object.entries(z.boss.res).map(([k,v])=>[k,+v]))}:{})});
+    for(const [id,k] of Object.entries(c.sk||{})){const E=ENSK[id]; if(!E) continue; E.cd=+k.cd; if(k.ap!=null) E.ap=+k.ap; if(k.mult!=null) E.mult=+k.mult;
       (k.fx||[]).forEach((f,i)=>{if(E.fx&&E.fx[i]) for(const x of EFX) if(f[x]!=null) E.fx[i][x]=+f[x]}); SK[id]={id,...E}}
     if(c.enf) for(const k of ['hp','atk','def']) if(c.enf[k]) ENF[k]=c.enf[k].map(Number);
     if(c.diff) for(const d of ['hero','myth']) if(c.diff[d]) Object.assign(DIFF[d],Object.fromEntries(Object.entries(c.diff[d]).map(([k,v])=>[k,+v])));
   }
 }
-const BEST_KEY='cendrelame_best';
+const BEST_KEY=KP+'best';
 {const r=lsGet(BEST_KEY); if(r){try{applyBest(JSON.parse(r))}catch(e){}}}
 async function bestLoad(){
-  try{ const d=await FB.db.collection('config').doc('bestiary').get(); if(d.exists&&d.data().json){ lsSet(BEST_KEY,d.data().json); applyBest(JSON.parse(d.data().json)); FB.bestTs=d.data().ts||null } }catch(e){}
+  try{ const d=await FB.db.collection(COL('config')).doc('bestiary').get(); if(d.exists&&d.data().json){ lsSet(BEST_KEY,d.data().json); applyBest(JSON.parse(d.data().json)); FB.bestTs=d.data().ts||null } }catch(e){}
 }
 async function adminCheck(){
   FB.admin=false; if(!FB.user) return;
-  try{ const d=await FB.db.collection('config').doc('admin').get(); FB.admin=!!(d.exists&&(d.data().uids||[]).includes(FB.user.uid)) }catch(e){}
+  try{ const d=await FB.db.collection(COL('config')).doc('admin').get(); FB.admin=!!(d.exists&&(d.data().uids||[]).includes(FB.user.uid)) }catch(e){}
 }
 const ROLE_N={atk:'Physique',mag:'Magique'};
-const skDescE=id=>{const k=ENSK[id]; if(!k) return ''; const t=[]; if(k.mult) t.push(`${Math.round(k.mult*100)} % de l’attaque`+(k.tg==='all'?' sur tous':''));
+const skDescE=id=>{const k=ENSK[id]; if(!k) return ''; const t=[]; if(k.ap) t.push(k.ap+' PA'); if(k.el&&ELEM[k.el]) t.push(ELEM[k.el].n); if(k.mult) t.push(`${Math.round(k.mult*100)} % de l’attaque`+(k.tg==='all'?' sur tous':''));
   for(const f of k.fx||[]){ if(f.k==='dot') t.push(`${f.n} ${Math.round(f.v*100)} % / tour, ${f.dur} tours`); else if(f.k==='stun') t.push(`${f.ch} % d’étourdir ${f.dur} tour`); else if(f.k==='heal') t.push(`soigne un allié (×${f.v})`); else if(f.k==='buff') t.push(`+${f.v} % ${f.stat==='atk'?'attaque':f.stat} aux alliés, ${f.dur} tours`); else if(f.k==='debuff') t.push(`${f.v} % ${f.stat==='def'?'défense':f.stat}, ${f.dur} tours`) }
   return t.join(' · ')+` · recharge ${k.cd}`};
 function bestCalc(t,isBoss,zi){
@@ -2593,6 +2949,7 @@ function bestCard(zi,j){
   const extra=boss&&DIFF[UI.bdiff||'normal'].extra;
   return `<article class="bcard ${boss?'boss':''}"><header><span class="bic">${icon(t.ic)}</span><div><b>${esc(t.n)}</b><small>${boss?'Boss · ':''}${ROLE_N[t.role]||t.role}</small></div><button class="btn sm" data-act="bestTest" data-k="${key}" title="Lancer un combat de test contre cet ennemi">⚔ Tester</button></header>
     <div class="binp">${inp('hp','PV ×',.05)}${inp('atk','Attaque ×',.05)}${inp('def','Défense ×',.05)}${inp('spd','Vitesse ×',.05)}</div>
+    <details class="bres"><summary>Résistances ${RES_K.filter(k=>w.res&&w.res[k]).map(k=>`<em>${RES_S[k]} ${w.res[k]}%</em>`).join('')}</summary><div class="binp b3">${RES_K.map(k=>`<label><span>${RES_S[k]} %</span><input type="number" step="5" min="-100" max="75" data-bf="z.${key}.res.${k}" value="${(w.res&&w.res[k])||0}"></label>`).join('')}</div></details>
     <div data-bstat="${key}">${bestCalc(t,boss,zi)}</div>
     <div class="bsk">${Object.keys(ENSK).map(id=>`<button class="bchip ${w.sk.includes(id)?'on':''}" data-act="bestSk" data-k="${key}" data-s="${id}" title="${esc(skDescE(id))}">${esc(ENSK[id].n)}</button>`).join('')}${extra?`<span class="bchip lock" title="Ajoutée par la difficulté">${esc(ENSK[extra].n)} (difficulté)</span>`:''}</div></article>`;
 }
@@ -2601,7 +2958,7 @@ function viewBest(){
   const dk=UI.bdiff||'normal',W=UI.bw;
   const zones=ZONES.map((z,i)=>`<section class="bzone"><h3>${esc(z.n)} <small class="mute">· niveaux ${i*10+1} à ${i*10+10}</small></h3><div class="bgrid">${z.enemies.map((_,j)=>bestCard(i,j)).join('')}${bestCard(i,-1)}</div></section>`).join('');
   const skRows=Object.entries(ENSK).map(([id,k])=>{const w=W.sk[id];return `<tr><td><b>${esc(k.n)}</b><br><small class="mute">${esc(skDescE(id))}</small></td>
-    <td><input type="number" step="1" min="0" data-bf="s.${id}.cd" value="${w.cd}"></td>
+    <td><input type="number" step="1" min="0" max="10" data-bf="s.${id}.ap" value="${w.ap||0}"></td><td><input type="number" step="1" min="0" data-bf="s.${id}.cd" value="${w.cd}"></td>
     <td>${w.mult==null?'—':`<input type="number" step=".05" min="0" data-bf="s.${id}.mult" value="${w.mult}">`}</td>
     <td>${(w.fx||[]).map((f,i)=>EFX.filter(x=>f[x]!=null).map(x=>`<label class="bfx"><span>${x==='v'?'Valeur':x==='dur'?'Durée':'Chance %'}</span><input type="number" step="${x==='v'&&Math.abs(f[x])<5?'.05':'1'}" data-bf="s.${id}.fx.${i}.${x}" value="${f[x]}"></label>`).join('')).join('')||'—'}</td></tr>`}).join('');
   const enfRows=['hp','atk','def'].map(k=>`<tr><td><b>${k==='hp'?'PV':k==='atk'?'Attaque':'Défense'}</b></td>${[0,1,2].map(i=>`<td><input type="number" step="${i===2?'.01':'.1'}" data-bf="e.${k}.${i}" value="${W.enf[k][i]}"></td>`).join('')}</tr>`).join('');
@@ -2612,7 +2969,7 @@ function viewBest(){
       ${dk==='normal'?`<label>Étape des monstres <input type="range" id="bstage" min="1" max="9" value="${UI.bstage||5}"><b>${UI.bstage||5}</b></label>`:`<span class="mute">Monstres niveau ${DIFF[dk].L}</span>`}
       <span class="mute">${S&&S.heroes&&S.heroes[0]?`Comparaison avec ${esc(S.heroes[0].name)} (niveau ${S.heroes[0].lvl}) : coups pour vaincre l’ennemi / coups qu’il lui faut pour vous vaincre.`:'Chargez un personnage pour voir la comparaison avec votre héros.'}</span></div>
     ${zones}
-    <section class="panel" style="margin-top:18px"><h3 style="margin-bottom:8px">Compétences des ennemis</h3><div class="btable"><table><thead><tr><th>Compétence</th><th>Recharge</th><th>Dégâts ×</th><th>Effets</th></tr></thead><tbody>${skRows}</tbody></table></div></section>
+    <section class="panel" style="margin-top:18px"><h3 style="margin-bottom:8px">Compétences des ennemis</h3><div class="btable"><table><thead><tr><th>Compétence</th><th>PA</th><th>Recharge</th><th>Dégâts ×</th><th>Effets</th></tr></thead><tbody>${skRows}</tbody></table></div></section>
     <div class="grid g2" style="margin-top:14px">
       <section class="panel"><h3 style="margin-bottom:6px">Formules de niveau</h3><p class="hint" style="margin-bottom:8px">Valeur = base + par niveau × niveau + quadratique × niveau².</p><div class="btable"><table><thead><tr><th></th><th>Base</th><th>Par niveau</th><th>Quadratique</th></tr></thead><tbody>${enfRows}</tbody></table></div></section>
       <section class="panel"><h3 style="margin-bottom:6px">Difficultés</h3><p class="hint" style="margin-bottom:8px">Multiplicateurs des monstres, des boss, et tour où les boss entrent en rage.</p><div class="btable"><table><thead><tr><th></th><th>PV</th><th>ATQ</th><th>PV boss</th><th>ATQ boss</th><th>DEF boss</th><th>Rage</th></tr></thead><tbody>${dfRows}</tbody></table></div></section>
@@ -2620,7 +2977,7 @@ function viewBest(){
 }
 function bestSet(path,val){
   const p=path.split('.'),W=UI.bw,v=val===''?0:+val; if(!isFinite(v)) return;
-  if(p[0]==='z'){const z=W.zones[+p[1]],o=p[2]==='b'?z.boss:z.enemies[+p[2]]; o[p[3]]=v}
+  if(p[0]==='z'){const z=W.zones[+p[1]],o=p[2]==='b'?z.boss:z.enemies[+p[2]]; if(p[3]==='res'){o.res=o.res||{}; o.res[p[4]]=v} else o[p[3]]=v}
   else if(p[0]==='s'){const k=W.sk[p[1]]; if(p[2]==='fx') k.fx[+p[3]][p[4]]=v; else k[p[2]]=v}
   else if(p[0]==='e'){W.enf[p[1]][+p[2]]=v}
   else if(p[0]==='d'){W.diff[p[1]][p[2]]=v}
@@ -2685,6 +3042,7 @@ const A={
   stage:d=>{UI.stage=+d.s;render()},
   fight:()=>startBattle(),
   togStats:()=>{S.showStats=S.showStats===false;save();render()},
+  statSplit:()=>{S.statSplit=!S.statSplit;save();render()},
   usePot:d=>usePot(d.k),
   buyPot:d=>{const q=+d.q,c=potPrice(d.k)*q; if(!hasGold(c)) return; if(POTS[d.k].cls&&POTS[d.k].cls!==S.heroes[0].cls){toast(`Réservée au ${CLASSES[POTS[d.k].cls].n}.`);return} if(matRoom(d.k)<q){toast('Inventaire plein.');return}
     if(!FREE()) S.gold-=c; bagAddMat(S.bag,d.k,q); markNew(); save(); render(); toast(`Achat : ${q} × ${POTS[d.k].n}.`)},
@@ -2696,7 +3054,7 @@ const A={
   again:()=>{C.phase='idle';startBattle()},
   next:()=>{C.phase='idle';startBattle()},
   skill:d=>{
-    const w=C.waiting; if(!w) return; const sk=SK[d.id];
+    const w=C.waiting; if(!w) return; const sk=SK[d.id]; if((sk.ap||0)>(w.u.ap||0)||(w.u.cds[d.id]||0)||(d.id==='atk'&&w.u.atkUsed)) return;
     if(sk.tg==='one'){
       const en=alive(C.units.filter(u=>u.team==='e'));
       if(en.length>1){C.pending=sk;renderActbar();refreshAll();return}
@@ -2709,6 +3067,7 @@ const A={
     const w=C.waiting,sk=C.pending;C.waiting=null;C.pending=null;w.res({skill:sk,target:t});
   },
   cancelPick:()=>{C.pending=null;renderActbar();refreshAll()},
+  endTurn:()=>{const w=C.waiting; if(!w) return; C.waiting=null; C.pending=null; w.res({end:true})},
   learn:d=>{
     const h=S.heroes[0]; const sk=SK[d.id]; if(h.sp<1||(h.learned[d.id]||0)>=5||h.lvl<sk.lvl) return;
     h.sp--; h.learned[d.id]=(h.learned[d.id]||0)+1;
@@ -2869,7 +3228,7 @@ const A={
   },
   fbLogout:async()=>{
     try{ await cloudPush(true) }catch(e){ toast('Synchronisation impossible : déconnexion annulée pour ne rien perdre. Réessayez.'); return }
-    presence('off'); stopFriends(); FB.prof=null; await FB.auth.signOut(); clearLocalChars(); ACC.offline=false; saveAcc(); UI.scr='login'; UI.lmode='login'; render(); toast('Déconnecté.') },
+    presence('off'); stopFriends(); stopPvp(); FB.prof=null; await FB.auth.signOut(); clearLocalChars(); ACC.offline=false; saveAcc(); UI.scr='login'; UI.lmode='login'; render(); toast('Déconnecté.') },
   pseudoOk:async()=>{
     if(UI.lbusy) return; const n=($('#pname').value||'').trim(); UI.pname=n; UI.perr='';
     if(!NAME_RE.test(n)){UI.perr='Le nom doit faire 3 à 16 caractères : lettres, chiffres, - ou _ (sans espace).'; render(); return}
@@ -2885,16 +3244,35 @@ const A={
     catch(e){ UI.frerr=true; UI.frmsg=e.msg||('Erreur : '+(e.code||'inconnue')) }
     renderFriends();
   },
-  frAcc:async d=>{ try{ await FB.db.collection('friendships').doc(d.id).update({status:'accepted'}); UI.frmsg='Ami ajouté.'; UI.frerr=false }catch(e){ UI.frerr=true; UI.frmsg='Erreur : '+(e.code||'inconnue') } renderFriends() },
+  frAcc:async d=>{ try{ await FB.db.collection(COL('friendships')).doc(d.id).update({status:'accepted'}); UI.frmsg='Ami ajouté.'; UI.frerr=false }catch(e){ UI.frerr=true; UI.frmsg='Erreur : '+(e.code||'inconnue') } renderFriends() },
   frDel:async d=>{ if(!d.now&&UI.frdel!==d.id){UI.frdel=d.id; renderFriends(); return} UI.frdel=null;
-    try{ await FB.db.collection('friendships').doc(d.id).delete() }catch(e){ UI.frerr=true; UI.frmsg='Erreur : '+(e.code||'inconnue') } renderFriends() },
+    try{ await FB.db.collection(COL('friendships')).doc(d.id).delete() }catch(e){ UI.frerr=true; UI.frmsg='Erreur : '+(e.code||'inconnue') } renderFriends() },
   frDelNo:()=>{UI.frdel=null; renderFriends()},
+  frMenu:d=>{UI.frMenu=UI.frMenu===d.id?null:d.id; renderFriends()},
+  frChat:d=>{openChat(d.id); renderFriends()},
+  chClose:()=>closeChat(),
+  frDuel:async d=>{ UI.frMenu=null; renderFriends(); const f=FR.list.find(x=>x.id===d.id); if(!f) return;
+    if(!pvpReady()){toast('Chargez un personnage (Jouer) pour lancer un duel.');return} if(C.phase==='fight'){toast('Terminez d’abord votre combat en cours.');return} if(PV.match){toast('Un duel est déjà en cours.');return}
+    const o=f.users.find(x=>x!==pvpMe()),p=FR.prof[o];
+    try{ await pvpPropose(o,otherName(f),p&&p.char?p.char:null,'friend'); toast('Demande de duel envoyée à '+otherName(f)+'.') }catch(e){ toast('Impossible d’envoyer la demande ('+(e.code||'erreur')+').') } },
+  advMode:d=>{UI.advMode=d.m; render()},
+  pvpFind:()=>pvpSearch(),
+  pvpCancel:()=>pvpStopSearch(),
+  pvpAcc:()=>pvpAccept(),
+  pvpRef:()=>pvpRefuse(),
+  pvpSk:d=>pvAct(d.id),
+  pvpPot:d=>pvPot(d.k),
+  pvpEndT:()=>pvEnd(),
+  pvpGiveUp:()=>{ if(UI.confirm!=='giveup'){UI.confirm='giveup'; toast('Cliquez à nouveau sur « Abandonner » pour confirmer.'); setTimeout(()=>{if(UI.confirm==='giveup')UI.confirm=null},4000); return} UI.confirm=null; pvForfeit() },
+  pvpClaim:()=>pvClaim(),
+  pvpLootOk:()=>{const d=$('#pvploot'); if(d) d.remove()},
+  chSend:()=>sendChat(),
   copyUid:()=>{try{navigator.clipboard.writeText(FB.user.uid).then(()=>toast('Identifiant copié.'),()=>toast(FB.user.uid))}catch(e){toast(FB.user.uid)}},
   bestSk:d=>{const [zi,j]=d.k.split('.'),z=UI.bw.zones[+zi],o=j==='b'?z.boss:z.enemies[+j],i=o.sk.indexOf(d.s); if(i>=0) o.sk.splice(i,1); else o.sk.push(d.s); applyBest(UI.bw); UI.bdirty=true; const y=scrollY; render(); scrollTo(0,y)},
   bestUndo:()=>{let pub=null; try{pub=JSON.parse(lsGet(BEST_KEY)||'null')}catch(e){} applyBest(pub); UI.bw=bestSnap(); UI.bdirty=false; const y=scrollY; render(); scrollTo(0,y); toast('Modifications annulées.')},
   bestDef:()=>{UI.bw=JSON.parse(JSON.stringify(BEST_DEF)); applyBest(UI.bw); UI.bdirty=true; const y=scrollY; render(); scrollTo(0,y); toast('Valeurs d’origine rétablies (pensez à publier).')},
   bestPub:async()=>{ if(!FB.admin) return; const json=JSON.stringify(UI.bw||bestSnap());
-    try{ await FB.db.collection('config').doc('bestiary').set({json,ts:firebase.firestore.FieldValue.serverTimestamp(),by:FB.user.uid}); lsSet(BEST_KEY,json); UI.bdirty=false; const y=scrollY; render(); scrollTo(0,y); toast('Bestiaire publié pour tous les joueurs.') }
+    try{ await FB.db.collection(COL('config')).doc('bestiary').set({json,ts:firebase.firestore.FieldValue.serverTimestamp(),by:FB.user.uid}); lsSet(BEST_KEY,json); UI.bdirty=false; const y=scrollY; render(); scrollTo(0,y); toast('Bestiaire publié pour tous les joueurs.') }
     catch(e){ toast('Publication impossible ('+((e&&e.code)||'erreur')+'). Vérifiez les règles Firestore et le document config/admin.') } },
   bestTest:d=>{ if(!S||!S.heroes||!S.heroes.length){toast('Chargez d’abord un personnage (Jouer).');return}
     const [zi,j]=d.k.split('.'); C.force={z:+zi,j:j==='b'?-1:+j}; C.test=true; UI.bestFrom=true;
@@ -2968,8 +3346,8 @@ document.addEventListener('mousedown',e=>{ if(e.target.id==='mconf') A.menuNo();
   if($('#menudd')&&!e.target.closest('#menudd,#menubtn')) closeMenuDD();
   if(UI.siteOpt&&!e.target.closest('#sopt,.sgear')) A.optClose() });
 document.addEventListener('submit',e=>e.preventDefault());
-document.addEventListener('keydown',e=>{ if(e.key==='Enter'&&e.target.id==='frname'){e.preventDefault();A.frAdd()} });
-document.addEventListener('mousedown',e=>{ if(FR.open&&!e.target.closest('#friends')){FR.open=false;renderFriends()} });
+document.addEventListener('keydown',e=>{ if(e.key==='Enter'&&e.target.id==='frname'){e.preventDefault();A.frAdd()} if(e.key==='Enter'&&e.target.id==='chin'){e.preventDefault();sendChat()} if(e.key==='Escape'&&CH.id&&e.target.id==='chin') closeChat() });
+document.addEventListener('mousedown',e=>{ if(FR.open&&!e.target.closest('#friends,#frchat')){FR.open=false;UI.frMenu=null;renderFriends()} else if(UI.frMenu&&!e.target.closest('.frpop,.frname')){UI.frMenu=null;renderFriends()} });
 document.addEventListener('input',e=>{
   if(e.target.id==='cname') UI.cname=e.target.value;
   if(e.target.dataset&&e.target.dataset.bf){ bestSet(e.target.dataset.bf,e.target.value); bestRefreshStats() }
@@ -2981,6 +3359,7 @@ document.addEventListener('change',e=>{
 });
 
 /* ============ démarrage ============ */
+if(TEST){$('#testbar').hidden=false; document.body.classList.add('istest'); document.title='[TEST] '+document.title}
 loadAcc();
 S=null; UI.scr=ACC.offline?'menu':'login';
 render(); fbInit();
