@@ -461,6 +461,7 @@ input[type=checkbox]{accent-color:var(--brass)}
 .stt em{font-style:normal;font-size:.72rem;border:1px solid var(--line2);border-radius:2px;padding:0 5px;background:var(--bg3)}
 .stt .b-dot{border-color:var(--blood);color:var(--blood)}
 .stt .b-stun{border-color:var(--r2);color:var(--r2)}
+.stt .b-para{border-color:#b8960c;color:#8a6d00}
 .stt .b-buff{border-color:var(--verd);color:var(--verd)}
 .stt .b-taunt{border-color:var(--brass);color:var(--brass)}
 .fl{position:absolute;inset:0;pointer-events:none;overflow:visible}
@@ -470,6 +471,41 @@ input[type=checkbox]{accent-color:var(--brass)}
 .fnum.miss{color:var(--mute);font-size:1rem}
 @keyframes fl{to{transform:translate(-50%,-34px);opacity:0}}
 .acts{display:flex;flex-wrap:wrap;gap:8px;align-items:stretch}
+.skpanel .skh{margin:14px 0 8px;font-size:1.05rem;text-align:center}
+.skrow{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;padding:6px 0}
+.sktile{position:relative;width:52px;height:52px;padding:0;border-radius:9px;border:2px solid #1d1209;background:radial-gradient(circle at 35% 30%,color-mix(in srgb,var(--co) 70%,#fff),var(--co) 55%,#1d1209 130%);display:grid;place-items:center;cursor:pointer;color:#fff8e6;box-shadow:inset 0 0 8px #0007,0 2px 4px #0005;transition:transform .12s}
+.sktile:hover{transform:translateY(-2px)}
+.sktile svg{width:30px;height:30px;fill:currentColor;filter:drop-shadow(0 1px 1px #000b)}
+.sktile.pas{border-radius:50%}
+.sktile:not(.got){filter:saturate(.35) brightness(.85)}
+.sktile.lock{filter:grayscale(1) brightness(.55)}
+.sktile.avail{box-shadow:0 0 0 2px var(--gold),0 0 12px #e8c982cc}
+.sktile.sel{outline:3px solid var(--blood);outline-offset:3px}
+.sktile .rk{position:absolute;bottom:-7px;right:-9px;font-size:.66rem;line-height:1.3;background:#1d1209;color:var(--gold);border-radius:8px;padding:0 5px;font-weight:700;font-variant-numeric:tabular-nums}
+.sktile .eqm{position:absolute;top:-7px;left:-7px;width:17px;height:17px;border-radius:50%;background:var(--verd);color:#fff;font-size:.7rem;display:grid;place-items:center;border:1px solid #1d1209}
+.specs{display:grid;grid-template-columns:1fr 1fr;gap:16px}.specs.one{grid-template-columns:1fr;max-width:420px;margin:0 auto}
+.speccol{display:flex;flex-direction:column;align-items:center;gap:6px;border:1px solid var(--line);border-radius:6px;padding:10px;background:#e8d9b522}
+.speccol h4{display:flex;align-items:center;gap:6px;margin:0;font-size:1.15rem;color:var(--co)}.speccol h4 svg{width:22px;height:22px;fill:currentColor}
+.speccol .hint{text-align:center;margin:0}
+.speccol.lockd .tree{opacity:.75}
+.tree{position:relative;width:240px;height:360px;margin:6px auto}
+.tree .links{position:absolute;inset:0;width:100%;height:100%}
+.tree .links line{stroke:#7a6040;stroke-width:3;stroke-linecap:round;opacity:.45}
+.tree .links line.on{stroke:var(--co);opacity:1}
+.tree .sktile{position:absolute}
+.skdet{max-width:460px;margin:14px auto 0;display:flex;flex-direction:column;gap:8px}
+.skdet .it{max-width:none}
+.it.skt .lockr{color:var(--blood);font-weight:700}
+.forget{justify-content:space-between;gap:10px;margin-top:16px;border-top:1px solid var(--line);padding-top:10px;flex-wrap:wrap}
+.skcbar{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.skc{position:relative;width:50px;height:50px;padding:0;border-radius:9px;border:2px solid #1d1209;background:radial-gradient(circle at 35% 30%,color-mix(in srgb,var(--co) 70%,#fff),var(--co) 55%,#1d1209 130%);display:grid;place-items:center;cursor:pointer;color:#fff8e6;box-shadow:inset 0 0 8px #0007,0 2px 4px #0005}
+.skc svg{width:28px;height:28px;fill:currentColor;filter:drop-shadow(0 1px 1px #000b)}
+.skc:hover:not(.off){box-shadow:0 0 0 2px var(--gold),inset 0 0 8px #0007}
+.skc.sel{outline:3px solid var(--blood);outline-offset:2px}
+.skc.off{filter:grayscale(.85) brightness(.6);cursor:not-allowed}
+.skc .apk{position:absolute;bottom:-6px;left:-6px;font-style:normal;font-size:.68rem;font-weight:700;background:#d39a1c;color:#1d1209;border-radius:8px;padding:0 5px;border:1px solid #7a5310}
+.skc .cdo{position:absolute;inset:0;display:grid;place-items:center;font-size:1.3rem;font-weight:700;color:#fff;text-shadow:0 1px 3px #000}
+@media (max-width:620px){.specs{grid-template-columns:1fr}}
 .skb{background:var(--bg3);border:1px solid var(--line2);border-radius:3px;padding:8px 12px;cursor:pointer;text-align:left;min-width:128px;display:flex;flex-direction:column}
 .acts .btn.sm{align-self:center}
 .skb:hover:not(:disabled){border-color:var(--brass)}
@@ -752,6 +788,7 @@ const POTS={
   p_for:{n:'Potion de force',c:'#e07a1f',p:60,d:'+30 % Force pendant 3 tours.',cls:'guerrier'},
   p_int:{n:'Potion d’intelligence',c:'#8a4fd8',p:60,d:'+30 % Intelligence pendant 3 tours.',cls:'mage'},
   p_pa:{n:'Potion d’action',c:'#d9b81f',p:70,d:'+2 PA pendant 3 tours. Aventure et raid : utilisable à tout moment, puis 6 tours de recharge des potions. Duel : uniquement à votre premier tour.'},
+  p_oubli:{n:'Potion d’oubli',c:'#5f7fa8',fix:{gold:5000,prisme:5},nocombat:1,d:'Réinitialise toutes vos compétences et votre spécialisation (points remboursés). Se boit depuis la fenêtre Personnage.'},
   p_xp:{n:'Élixir de savoir',c:'#3fae6a',p:80,d:'+50 % d’expérience gagnée à la fin de ce combat.'},
   p_loot:{n:'Philtre de fortune',c:'#d9a62b',p:80,d:'+50 % d’or et de matériaux gagnés à la fin de ce combat.'},
 };
@@ -765,7 +802,7 @@ const STAT_N={hp:'PV',atk:'Force',mag:'Intelligence',def:'Défense physique',res
 const PCT=new Set(['rPhys','rMag','rFeu','rGlace','rFoudre','rTerre','crit','critDmg','dodge','lifesteal','hpPct','dmgPct','goldFind','dropRate']);
 const fmtStat=(s,v)=>PCT.has(s)?`+${r1(v)}% ${STAT_N[s]}`:`+${Math.round(v)} ${STAT_N[s]}`;
 const MAXL=50;
-const CRIT_CAP=60,CDMG_CAP=200; /* plafonds : 60 % de chances de critique, 200 % de dégâts critiques */
+const CRIT_CAP=70,CDMG_CAP=200; /* plafonds : 70 % de chances de critique, 200 % de dégâts critiques */
 
 const RAR=[
   {n:'Commun',aff:0,m:1},{n:'Magique',aff:1,m:1.05},{n:'Rare',aff:2,m:1.12},{n:'Épique',aff:3,m:1.22},{n:'Légendaire',aff:3,m:1.35,leg:1},{n:'Divin',aff:3,m:1.5,max:1}
@@ -773,27 +810,30 @@ const RAR=[
 const BASES=[
   {n:'Épée',slot:'weapon',cls:'guerrier',imp:[['atk',6,1.8]]},
   {n:'Bâton',slot:'weapon',cls:'mage',imp:[['mag',6,1.8]]},
-  {n:'Heaume',slot:'helm',cls:'guerrier',imp:[['hp',12,4],['def',3,.9]]},
-  {n:'Capuche',slot:'helm',cls:'mage',imp:[['hp',10,3.5],['def',3,.85]]},
-  {n:'Cuirasse',slot:'armor',cls:'guerrier',imp:[['hp',18,5],['def',5,1.3]]},
-  {n:'Robe',slot:'armor',cls:'mage',imp:[['hp',15,4.5],['def',4,1.2]]},
-  {n:'Bottes',slot:'boots',cls:'guerrier',imp:[['hp',8,2.5],['def',2,.6]]},
-  {n:'Sandales',slot:'boots',cls:'mage',imp:[['hp',7,2.2],['def',2,.6]]},
-  {n:'Jambières',slot:'legs',cls:'guerrier',imp:[['hp',14,4],['def',4,1.1]]},
-  {n:'Jambières',slot:'legs',cls:'mage',imp:[['hp',12,3.6],['def',3,.95]]},
+  {n:'Heaume',slot:'helm',cls:'guerrier',imp:[['hp',12,4],['def',3,.9],['rMag',1,.05]]},
+  {n:'Capuche',slot:'helm',cls:'mage',imp:[['hp',10,3.5],['def',3,.85],['rMag',1.5,.07]]},
+  {n:'Cuirasse',slot:'armor',cls:'guerrier',imp:[['hp',18,5],['def',5,1.3],['rMag',1.5,.08]]},
+  {n:'Robe',slot:'armor',cls:'mage',imp:[['hp',15,4.5],['def',4,1.2],['rMag',2,.1]]},
+  {n:'Bottes',slot:'boots',cls:'guerrier',imp:[['hp',8,2.5],['def',2,.6],['rMag',.8,.04]]},
+  {n:'Sandales',slot:'boots',cls:'mage',imp:[['hp',7,2.2],['def',2,.6],['rMag',1,.05]]},
+  {n:'Jambières',slot:'legs',cls:'guerrier',imp:[['hp',14,4],['def',4,1.1],['rMag',1.2,.06]]},
+  {n:'Jambières',slot:'legs',cls:'mage',imp:[['hp',12,3.6],['def',3,.95],['rMag',1.5,.08]]},
   {n:'Anneau',slot:'ring',imp:[]},
   {n:'Amulette',slot:'amulet',imp:[]},
 ];
 const baseFor=(slot,cls)=>BASES.find(b=>b.slot===slot&&(!b.cls||b.cls===cls));
 const AFX=[
-  {s:'hp',b:8,p:2.6},{s:'atk',b:2,p:.6},{s:'mag',b:2,p:.6},{s:'def',b:2,p:.6},
-  {s:'spd',b:1,p:.1,ep:'de Célérité'},
-  {s:'hpPct',b:2,p:.1,ep:'du Titan'},{s:'dmgPct',b:1.5,p:.1,ep:'de Fureur'},{s:'crit',b:1,p:.07,ep:'du Prédateur'},
-  {s:'critDmg',b:2,p:.12,ep:'de Ruine'},{s:'dodge',b:1,p:.035,ep:'du Vent'},{s:'lifesteal',b:.6,p:.02,ep:'du Vampire'},
-  {s:'goldFind',b:3,p:.5,ep:'d’Opulence'},
+  {s:'hp',w:16,b:8,p:2.6},{s:'atk',w:16,b:2,p:.6},{s:'mag',w:16,b:2,p:.6},{s:'def',w:9,b:2,p:.6},
+  {s:'spd',w:9,b:1,p:.1,ep:'de Célérité'},
+  {s:'hpPct',w:5,b:2,p:.1,ep:'du Titan'},{s:'dmgPct',w:4,b:1.5,p:.1,ep:'de Fureur'},{s:'crit',w:3,b:1,p:.07,ep:'du Prédateur'},
+  {s:'critDmg',w:3,b:2,p:.12,ep:'de Ruine'},{s:'dodge',w:3,b:1,p:.035,ep:'du Vent'},{s:'lifesteal',w:2,b:.6,p:.02,ep:'du Vampire'},
+  {s:'goldFind',w:5,b:3,p:.5,ep:'d’Opulence'},
 ];
-AFX.push({s:'rPhys',b:1.5,p:.06,ep:'du Rempart'},{s:'rMag',b:1.5,p:.06,ep:'de l’Égide'},{s:'rFeu',b:3,p:.12,ep:'Ignifugé'},{s:'rGlace',b:3,p:.12,ep:'du Givre'},{s:'rFoudre',b:3,p:.12,ep:'de l’Orage'},{s:'rTerre',b:3,p:.12,ep:'de la Roche'});
+AFX.push({s:'rPhys',w:5,b:1.5,p:.06,ep:'du Rempart'},{s:'rMag',w:5,b:1.5,p:.06,ep:'de l’Égide'},{s:'rFeu',w:7,b:3,p:.12,ep:'Ignifugé'},{s:'rGlace',w:7,b:3,p:.12,ep:'du Givre'},{s:'rFoudre',w:7,b:3,p:.12,ep:'de l’Orage'},{s:'rTerre',w:7,b:3,p:.12,ep:'de la Roche'});
 const AFXM=Object.fromEntries(AFX.map(a=>[a.s,a]));
+/* tirage pondéré sans remise : PV, Force et Intelligence sortent souvent, Critique et Vol de vie rarement */
+function wPick(pool,n){ const a=pool.slice(),out=[]; while(out.length<n&&a.length){ let t=a.reduce((x,y)=>x+(y.w||5),0)*Math.random(),i=0; for(;i<a.length-1;i++){ t-=a[i].w||5; if(t<=0) break } out.push(a.splice(i,1)[0]) } return out }
+const affTier=w=>w>=14?'Très courant':w>=7?'Courant':w>=5?'Peu courant':w>=3?'Rare':'Très rare';
 /* éléments et résistances */
 const ELEM={feu:{n:'Feu',k:'rFeu',c:'#e0612a'},glace:{n:'Glace',k:'rGlace',c:'#4fa8d8'},foudre:{n:'Foudre',k:'rFoudre',c:'#c9a814'},terre:{n:'Terre',k:'rTerre',c:'#8a6a3a'}};
 const RES_K=['rPhys','rMag','rFeu','rGlace','rFoudre','rTerre'],RES_CAP=75;
@@ -805,32 +845,105 @@ const LEG_FX={crit:6,critDmg:10},LEG_D='Augmente les chances de coup critique de
 const affPool=c=>AFX.filter(a=>!(c==='guerrier'&&a.s==='mag')&&!(c==='mage'&&a.s==='atk'));
 const EPITHETS=['de Cendre','des Damnés','du Crépuscule','de l’Aube','d’Aldrec','des Abysses','du Gardien','de la Braise','du Dernier Siège'];
 
+/* compétences : 3 compétences de base par classe (niveaux 1 à 10), puis une spécialisation au niveau 10 (arbre de talents) */
+const SPEC_L=10,LOADOUT_MAX=4,FORGET_COST={gold:5000,prisme:5};
 const CLASSES={
   guerrier:{n:'Guerrier',ic:'sword',role:'atk',hue:8,desc:'Rempart robuste. Encaisse, provoque et frappe fort au corps à corps. Épées, heaumes, cuirasses et bottes.',
     base:{hp:120,atk:14,mag:0,def:10,res:5,spd:9},grow:{hp:13,atk:2.6,mag:0,def:1.8,res:1,spd:.2},
     skills:[
-      {id:'g1',ap:2,n:'Frappe puissante',t:'a',lvl:1,cd:2,mult:2,tg:'one'},
-      {id:'g2',ap:2,n:'Cri de guerre',t:'a',lvl:3,cd:4,tg:'allies',fx:[{k:'buff',stat:'atk',v:25,dur:3}]},
-      {id:'g3',ap:3,n:'Mur de boucliers',t:'a',lvl:6,cd:5,tg:'self',fx:[{k:'shield',v:.3,of:'hp'},{k:'taunt',dur:2}]},
-      {id:'g4',ap:3,n:'Tourbillon',t:'a',lvl:10,cd:4,mult:1.3,tg:'all'},
-      {id:'gp1',n:'Peau de fer',t:'p',lvl:2,mods:{defPct:5,resPct:3}},
-      {id:'gp2',n:'Soif de sang',t:'p',lvl:5,mods:{lifesteal:2}},
-      {id:'gp3',n:'Vétéran',t:'p',lvl:8,mods:{hpPct:8,atkPct:3}},
-    ]},
+      {id:'g_frap',ap:2,n:'Frappe puissante',t:'a',lvl:1,cd:2,mult:2,tg:'one',si:'sword',co:'#7a6448'},
+      {id:'g_mur',ap:3,n:'Mur de boucliers',t:'a',lvl:3,cd:5,tg:'self',fx:[{k:'shield',v:.3,of:'hp'},{k:'taunt',dur:2}],si:'shield',co:'#3f5f80'},
+      {id:'g_tour',ap:3,n:'Tourbillon',t:'a',lvl:6,cd:4,mult:1.3,tg:'all',si:'whirl',co:'#6c6a48'},
+    ],
+    specs:{
+      sang:{n:'Saignement',co:'#9b1c1c',si:'drop',d:'Ouvre des plaies qui saignent à chaque tour, puis achève les cibles ensanglantées.',nodes:[
+        {id:'b_ent',r:0,c:1,t:'a',lvl:10,ap:2,cd:2,n:'Entaille',mult:1.5,tg:'one',fx:[{k:'dot',n:'Saignement',v:.4,dur:3,ch:50}],si:'claw'},
+        {id:'b_dent',r:1,c:0,t:'p',lvl:12,req:'b_ent',max:5,n:'Lames dentelées',gx:{sxCh:{b_ent:10}},si:'saw'},
+        {id:'b_hemo',r:1,c:2,t:'p',lvl:12,req:'b_ent',max:5,n:'Hémorragie',gx:{bleedP:10},mods:{lifesteal:1},si:'drop'},
+        {id:'b_evis',r:2,c:1,t:'a',lvl:15,req:'b_ent',ap:3,cd:3,n:'Éventration',mult:1.6,tg:'one',ifSt:{n:'Saignement',v:.6},si:'dagger'},
+        {id:'b_lac',r:3,c:0,t:'a',lvl:20,req:'b_evis',ap:3,cd:4,n:'Lacération',mult:1,tg:'all',fx:[{k:'dot',n:'Saignement',v:.3,dur:3,ch:60}],si:'claw'},
+        {id:'b_odeur',r:3,c:2,t:'p',lvl:20,req:'b_evis',max:5,n:'Odeur du sang',gx:{vsBleed:5},mods:{hpPct:3},si:'eye'},
+        {id:'b_deep',r:4,c:0,t:'p',lvl:25,req:'b_lac',max:2,n:'Plaies profondes',gx:{bleedDur:1},si:'hour'},
+        {id:'b_exs',r:4,c:2,t:'a',lvl:30,req:'b_odeur',ap:4,cd:5,n:'Exsanguination',mult:1.4,tg:'one',fx:[{k:'det',n:'Saignement',m:1.5}],si:'skull'},
+      ]},
+      barb:{n:'Barbarie',co:'#b5541c',si:'axe',d:'Plus vos PV baissent, plus vos coups sont dévastateurs. Sacrifiez votre vie pour frapper encore plus fort.',nodes:[
+        {id:'k_sauv',r:0,c:1,t:'a',lvl:10,ap:2,cd:2,n:'Frappe sauvage',mult:1.6,lowHp:.7,tg:'one',si:'axe'},
+        {id:'k_fur',r:1,c:0,t:'p',lvl:12,req:'k_sauv',max:5,n:'Fureur',gx:{lowHpDmg:1.2},si:'rage'},
+        {id:'k_inst',r:1,c:2,t:'p',lvl:12,req:'k_sauv',max:5,n:'Instinct de survie',gx:{lowHpDef:5},mods:{hpPct:3},si:'heart'},
+        {id:'k_pact',r:2,c:1,t:'a',lvl:15,req:'k_sauv',ap:2,cd:3,n:'Pacte de sang',self:.1,mult:2.1,lowHp:.5,tg:'one',si:'drop'},
+        {id:'k_cri',r:3,c:0,t:'a',lvl:20,req:'k_pact',ap:2,cd:5,n:'Cri de guerre',tg:'allies',fx:[{k:'buff',stat:'atk',v:25,dur:3}],si:'horn'},
+        {id:'k_carn',r:3,c:2,t:'a',lvl:20,req:'k_pact',ap:3,cd:4,n:'Carnage',mult:1.15,lowHp:.5,tg:'all',si:'whirl'},
+        {id:'k_bers',r:4,c:0,t:'p',lvl:25,req:'k_cri',max:3,n:'Berserker',mods:{spdPct:4,crit:2,lifesteal:1},si:'wind'},
+        {id:'k_folie',r:4,c:2,t:'a',lvl:30,req:'k_carn',ap:4,cd:5,n:'Folie meurtrière',mult:2,lowHp:.8,ls:15,tg:'one',si:'skull'},
+      ]},
+    }},
   mage:{n:'Sorcier',ic:'staff',role:'mag',hue:260,desc:'Canon de verre. Brûle, foudroie et se protège par des barrières arcaniques. Bâtons, capuches, robes et sandales.',
     base:{hp:100,atk:0,mag:16,def:6,res:10,spd:10},grow:{hp:13,atk:0,mag:2.8,def:1.5,res:1.8,spd:.25},
     skills:[
-      {id:'m1',ap:2,el:'feu',n:'Boule de feu',t:'a',lvl:1,cd:2,mult:1.8,tg:'one',fx:[{k:'dot',n:'Brûlure',v:.3,dur:3}]},
-      {id:'m2',ap:3,el:'foudre',n:'Éclair en chaîne',t:'a',lvl:3,cd:3,mult:.95,tg:'all'},
-      {id:'m3',ap:3,n:'Barrière arcanique',t:'a',lvl:6,cd:5,tg:'allies',fx:[{k:'shield',v:2.2,of:'mag'}]},
-      {id:'m4',ap:4,el:'terre',n:'Météore',t:'a',lvl:10,cd:6,mult:2.1,tg:'all',fx:[{k:'stun',ch:30,dur:1}]},
-      {id:'mp1',n:'Savoir arcanique',t:'p',lvl:2,mods:{magPct:8}},
-      {id:'mp2',n:'Surcharge',t:'p',lvl:5,mods:{crit:3,critDmg:6}},
-      {id:'mp3',n:'Esprit vif',t:'p',lvl:8,mods:{spdPct:5,resPct:6,defPct:4}},
-    ]},
+      {id:'m_proj',ap:2,n:'Projectile arcanique',t:'a',lvl:1,cd:2,mult:1.8,tg:'one',si:'star',co:'#5d45a8'},
+      {id:'m_bar',ap:3,n:'Barrière arcanique',t:'a',lvl:3,cd:5,tg:'allies',fx:[{k:'shield',v:2.2,of:'mag'}],si:'shield',co:'#3d5aa8'},
+      {id:'m_nova',ap:3,n:'Nova arcanique',t:'a',lvl:6,cd:3,mult:.95,tg:'all',si:'nova',co:'#7350b8'},
+    ],
+    specs:{
+      feu:{n:'Feu',co:'#c8471a',si:'flame',d:'Enflamme vos ennemis : les Brûlures s’accumulent puis explosent.',nodes:[
+        {id:'f_immo',r:0,c:1,t:'a',lvl:10,ap:2,cd:2,n:'Immolation',el:'feu',mult:1.5,tg:'one',fx:[{k:'dot',n:'Brûlure',v:.4,dur:3,ch:50}],si:'flame'},
+        {id:'f_emb',r:1,c:0,t:'p',lvl:12,req:'f_immo',max:5,n:'Embrasement',gx:{sxCh:{f_immo:10}},si:'flame'},
+        {id:'f_heat',r:1,c:2,t:'p',lvl:12,req:'f_immo',max:5,n:'Chaleur intense',gx:{burnP:10},mods:{magPct:3},si:'sun'},
+        {id:'f_comb',r:2,c:1,t:'a',lvl:15,req:'f_immo',ap:3,cd:4,n:'Combustion',el:'feu',mult:.8,tg:'one',fx:[{k:'det',n:'Brûlure',m:1.5}],si:'burst'},
+        {id:'f_wave',r:3,c:0,t:'a',lvl:20,req:'f_comb',ap:3,cd:4,n:'Vague de flammes',el:'feu',mult:1,tg:'all',fx:[{k:'dot',n:'Brûlure',v:.3,dur:3,ch:50}],si:'wave'},
+        {id:'f_pyro',r:3,c:2,t:'p',lvl:20,req:'f_comb',max:5,n:'Pyromanie',gx:{vsBurn:5},mods:{crit:1},si:'eye'},
+        {id:'f_pers',r:4,c:0,t:'p',lvl:25,req:'f_wave',max:2,n:'Feu persistant',gx:{burnDur:1},si:'hour'},
+        {id:'f_met',r:4,c:2,t:'a',lvl:30,req:'f_pyro',ap:4,cd:6,n:'Météore',el:'feu',mult:2.2,tg:'all',fx:[{k:'dot',n:'Brûlure',v:.35,dur:3,ch:60}],si:'meteor'},
+      ]},
+      foudre:{n:'Foudre',co:'#b8960c',si:'bolt',d:'Paralyse vos ennemis, qui risquent de perdre leur tour, puis foudroie les cibles paralysées.',nodes:[
+        {id:'z_arc',r:0,c:1,t:'a',lvl:10,ap:2,cd:2,n:'Arc électrique',el:'foudre',mult:1.8,tg:'one',fx:[{k:'para',ch:30,dur:2}],si:'bolt'},
+        {id:'z_stat',r:1,c:0,t:'p',lvl:12,req:'z_arc',max:5,n:'Électricité statique',gx:{paraCh:7},mods:{magPct:3},si:'spark'},
+        {id:'z_vif',r:1,c:2,t:'p',lvl:12,req:'z_arc',max:3,n:'Vif-argent',mods:{spdPct:4,crit:2},si:'wind'},
+        {id:'z_chain',r:2,c:1,t:'a',lvl:15,req:'z_arc',ap:3,cd:3,n:'Éclair en chaîne',el:'foudre',mult:1,tg:'all',fx:[{k:'para',ch:15,dur:2}],si:'chain'},
+        {id:'z_choc',r:3,c:0,t:'p',lvl:20,req:'z_chain',max:3,n:'Choc nerveux',gx:{paraPow:10},si:'spark'},
+        {id:'z_sur',r:3,c:2,t:'p',lvl:20,req:'z_chain',max:5,n:'Surtension',gx:{vsPara:8},mods:{crit:1},si:'bolt'},
+        {id:'z_temp',r:4,c:0,t:'a',lvl:25,req:'z_choc',ap:4,cd:4,n:'Tempête',el:'foudre',mult:1.4,tg:'all',fx:[{k:'para',ch:20,dur:2}],si:'storm'},
+        {id:'z_jug',r:4,c:2,t:'a',lvl:30,req:'z_sur',ap:4,cd:5,n:'Jugement de foudre',el:'foudre',mult:2.6,ifSt:{k:'para',v:1},tg:'one',si:'hammer'},
+      ]},
+    }},
 };
-const SK={atk:{id:'atk',n:'Attaque',mult:1,tg:'one',cd:0,ap:0}};
-for(const c of Object.values(CLASSES))for(const s of c.skills)SK[s.id]=s;
+for(const c of Object.values(CLASSES)) for(const [sid,sp] of Object.entries(c.specs)) for(const nd of sp.nodes){ nd.spec=sid; nd.co=nd.co||sp.co }
+const SK={atk:{id:'atk',n:'Attaque',mult:1,tg:'one',cd:0,ap:0,t:'a',si:'fist',co:'#5a5048'}};
+for(const c of Object.values(CLASSES)){ for(const s of c.skills)SK[s.id]=s; for(const sp of Object.values(c.specs)) for(const s of sp.nodes) SK[s.id]=s }
+const skMax=sk=>sk.max||5;
+const heroSkills=h=>[...CLASSES[h.cls].skills,...(h.spec&&CLASSES[h.cls].specs[h.spec]?CLASSES[h.cls].specs[h.spec].nodes:[])];
+/* icônes de sorts */
+const SPI={
+  sword:'<path d="M19 2h3v3L10.5 16.5l-3-3z"/><path d="M5.2 12.8l1.4-1.4 6 6-1.4 1.4zM6 16.6l1.4 1.4L3.4 22 2 20.6z"/>',
+  shield:'<path d="M12 2l8 3v6.5c0 4.8-3.4 8.7-8 10.5-4.6-1.8-8-5.7-8-10.5V5z"/>',
+  whirl:'<path d="M12 3a9 9 0 0 1 8.9 7.6h2.6l-4 4.4-4-4.4h2.6A6.2 6.2 0 0 0 12 5.8zM12 21a9 9 0 0 1-8.9-7.6H.5l4-4.4 4 4.4H5.9A6.2 6.2 0 0 0 12 18.2z"/>',
+  claw:'<path d="M3.5 20.5L12.8 3l1.8.9-9.3 17.5zM8.6 22l8.2-15.6 1.8.9-8.2 15.6zM14 22.4l6-11.5 1.8.9-6 11.5z"/>',
+  saw:'<path d="M4 20L18 3l3 2.5L7 22.5z"/><path d="M15 6.5l-2 .3.8-1.9zM12.6 9.4l-2 .3.8-1.9zM10.2 12.3l-2 .3.8-1.9zM7.8 15.2l-2 .3.8-1.9z"/>',
+  drop:'<path d="M12 2c3.2 4.6 6.6 8.5 6.6 12.4a6.6 6.6 0 0 1-13.2 0C5.4 10.5 8.8 6.6 12 2z"/>',
+  dagger:'<path d="M14.5 2.5L21 3l.5 6.5-8.8 8.8-1.6-1.6zM10 15.9l2.1 2.1-1.4 1.4-.8-.8L5 23.5 3.5 22l4.9-4.9-.8-.8z"/>',
+  skull:'<path d="M12 2a8 8 0 0 0-8 8c0 2.8 1.4 4.6 3 5.6V19h2v2h2v-2h2v2h2v-2h2v-3.4c1.6-1 3-2.8 3-5.6a8 8 0 0 0-8-8zM8.5 9a2 2 0 1 1 0 4 2 2 0 0 1 0-4zm7 0a2 2 0 1 1 0 4 2 2 0 0 1 0-4zM12 13l1.4 2.6h-2.8z" fill-rule="evenodd"/>',
+  axe:'<path d="M3 20.5L14.5 9l1.5 1.5L4.5 22z"/><path d="M12.6 3.4c4.8-1.6 8.6 2.1 8 7.8-1.9-2.7-4.8-3.7-7.8-2.3l-2.3-2.3c1-1 1.6-2.1 2.1-3.2z"/>',
+  fist:'<path d="M7 9V5.5a1.5 1.5 0 0 1 3 0V9h.5V4.5a1.5 1.5 0 0 1 3 0V9h.5V5.5a1.5 1.5 0 0 1 3 0V10h.5V8a1.5 1.5 0 0 1 3 0v6a8 8 0 0 1-8 8h-1a7 7 0 0 1-7-7v-3a2 2 0 0 1 2-2z"/>',
+  rage:'<path d="M12 2c2.4 3 6.3 4.2 6.3 9.3 0 1.4-.5 2.6-1.1 3.4l2.3 1.8c-1.8 3.4-4.3 5.5-7.5 5.5s-5.7-2.1-7.5-5.5l2.3-1.8c-.6-.8-1.1-2-1.1-3.4C5.7 6.2 9.6 5 12 2zM8.5 12.5l2.6 1-.6 1.5zM15.5 12.5l-2.6 1 .6 1.5z"/>',
+  heart:'<path d="M12 21l-1.4-1.3C5.4 15 2 11.9 2 8.1 2 5 4.4 2.6 7.5 2.6c1.7 0 3.4.8 4.5 2.1 1.1-1.3 2.8-2.1 4.5-2.1C19.6 2.6 22 5 22 8.1c0 3.8-3.4 6.9-8.6 11.6z"/>',
+  horn:'<path d="M2.5 9.5L14 4v16L2.5 14.5zM15.8 7.5h2v9h-2zM19.4 5.2l1.4-1 1.2 1.6-1.4 1zM20 11h3v2h-3zM19.4 18.8l1.4 1 1.2-1.6-1.4-1z"/>',
+  wind:'<path d="M2 8.2h12.2a2.6 2.6 0 1 0-2.6-2.6h2a.6.6 0 1 1 .6.6H2zM2 11.4h15.4a2.8 2.8 0 1 1-2.8 2.8h2a.8.8 0 1 0 .8-.8H2zM2 16.4h8.5v2H2z"/>',
+  star:'<path d="M12 2l2.6 6.9 7.4.4-5.7 4.6 1.9 7.1L12 17l-6.2 4 1.9-7.1L2 9.3l7.4-.4z"/>',
+  nova:'<path d="M12 7.5a4.5 4.5 0 1 1 0 9 4.5 4.5 0 0 1 0-9zM11 1h2v4.5h-2zM11 18.5h2V23h-2zM1 11h4.5v2H1zM18.5 11H23v2h-4.5zM4.2 5.6l1.4-1.4 3 3-1.4 1.4zM15.4 16.8l1.4-1.4 3 3-1.4 1.4zM4.2 18.4l3-3 1.4 1.4-3 3zM15.4 7.2l3-3 1.4 1.4-3 3z"/>',
+  flame:'<path d="M12 2c1 3.6 5.2 5.6 5.2 10.6A5.2 5.2 0 0 1 12 22a5.2 5.2 0 0 1-5.2-5.2c0-2.7 1.5-4.1 2.7-5.8.3 1.7 1 2.7 2.2 3.2-.6-3.5-1-8.5.3-12.2z"/>',
+  sun:'<path d="M12 6.5a5.5 5.5 0 1 1 0 11 5.5 5.5 0 0 1 0-11zM11 0h2v4h-2zM11 20h2v4h-2zM0 11h4v2H0zM20 11h4v2h-4z"/>',
+  burst:'<path d="M12 1l2 6 5-4-2 6 6 1-5 3 4 5-6-1v6l-4-5-4 5v-6l-6 1 4-5-5-3 6-1-2-6 5 4z"/>',
+  wave:'<path d="M2 15c3 0 3-3 6-3s3 3 6 3 3-3 6-3h2v3c-3 0-3 3-6 3s-3-3-6-3-3 3-6 3H2zM2 8c3 0 3-3 6-3s3 3 6 3 3-3 6-3h2v3c-3 0-3 3-6 3S11 8 8 8s-3 3-6 3H2z"/>',
+  eye:'<path d="M12 5c5 0 9 4 10.5 7C21 15 17 19 12 19S3 15 1.5 12C3 9 7 5 12 5zm0 3.5a3.5 3.5 0 1 0 0 7 3.5 3.5 0 0 0 0-7z" fill-rule="evenodd"/>',
+  hour:'<path d="M5.5 2h13v2h-1.3v3L13 12l4.2 5v3h1.3v2h-13v-2h1.3v-3L11 12 6.8 7V4H5.5z"/>',
+  meteor:'<path d="M15 9.5a6 6 0 1 1 0 12 6 6 0 0 1 0-12zM2 2l9.5 7.5-1.6 1.6zM6 1l6.5 6.5-1.2 1.2zM1 6l7 5.5-1.2 1.2z"/>',
+  bolt:'<path d="M13.5 1L4 14h6.5L9 23l10-13.5h-6.5z"/>',
+  spark:'<path d="M12 1.5l2 7.6 7.5 2.4-7.5 2.4-2 8.6-2-8.6-7.5-2.4 7.5-2.4z"/>',
+  chain:'<path d="M3 2l8.5 6.5-3.2 1.2 7.4 5.2-3.2 1.3L21 22.5l-11.4-6 3.1-1.3-7.4-5.2 3.2-1.2z"/>',
+  storm:'<path d="M6.5 14.5a4.8 4.8 0 0 1-.4-9.6A6 6 0 0 1 17.6 6a4.3 4.3 0 0 1-.4 8.5zM12.5 13.5h3.2l-2 3.8h2.6L10 24l1.6-5H9z"/>',
+  hammer:'<path d="M2.5 4h12v6.5h-12zM14.5 6h3v2.5h-3zM7.2 10.5h2.6V22H7.2zM19.5 9l1.5-6 1 .3-1.1 5.2 2.6.2-3.6 6.3-.8-.3 1.2-5.4z"/>',
+};
+const spIcon=s=>`<svg viewBox="0 0 24 24" aria-hidden="true">${SPI[s&&s.si]||SPI.star}</svg>`;
 const ENSK={
   e_heavy:{ap:2,n:'Coup brutal',cd:3,mult:1.7,tg:'one'},
   e_bleed:{ap:2,n:'Morsure sanglante',cd:3,mult:1,tg:'one',fx:[{k:'dot',n:'Saignement',v:.3,dur:3}]},
@@ -1041,7 +1154,7 @@ function v3(d){
 }
 function newGame(){
   const bag=bagNew(),mats={fer:60,cuir:30};
-  return {v:7,siteV:3,balV:1,uid:0,heroes:[],party:[],bag,mats,gold:80,
+  return {v:7,siteV:3,balV:2,skV:1,uid:0,heroes:[],party:[],bag,mats,gold:80,
     sites:Object.fromEntries(SITES.map(s=>[s.id,{lvl:s.unlock===0?1:0,stock:{},cache:0}])),
     prog:{zone:0,stage:1},auto:false,farm:false,speed:1,last:Date.now(),kills:0};
 }
@@ -1066,9 +1179,14 @@ function fitBag(d){
   MIG_MSG=(MIG_MSG?MIG_MSG+' ':'')+'Inventaire réduit à 14 × 5 cases : les objets ont été réorganisés.'+(sold?` ${sold} objet${sold>1?'s':''} sans place vendu${sold>1?'s':''} pour ${fmt(gold)} or.`:'');
   return d;
 }
-const loadData=d=>{if(!d.siteV)d.siteV=1; const r=soloize(fitBag(Object.assign(newGame(),{balV:0},migrate(d)))); if((r.balV||0)<1){balMig(r); r.balV=1} return r};
+const loadData=d=>{if(!d.siteV)d.siteV=1; const r=soloize(fitBag(Object.assign(newGame(),{balV:0,skV:0},migrate(d)))); if((r.balV||0)<1){balMig(r); r.balV=1} if((r.balV||0)<2){impMig(r); r.balV=2} if((r.skV||0)<1){ for(const h of r.heroes||[]) resetSkills(h); r.skV=1; if((r.heroes||[]).length) MIG_MSG=(MIG_MSG?MIG_MSG+' ':'')+'Nouveau système de compétences et de spécialisations : vos points de compétence ont été remboursés.' } return r};
 /* rééquilibrage 0.3.0 : les affixes existants gardent leur qualité de tirage dans la nouvelle plage ; objets divins : 3 affixes au maximum, sans pouvoir */
 const AFX_OLD={hp:[8,3.2],atk:[2,.9],mag:[2,.9],def:[2,.75],spd:[1,.12],hpPct:[2,.12],dmgPct:[2,.14],crit:[1.5,.08],critDmg:[6,.5],dodge:[1.2,.04],lifesteal:[.8,.025]};
+function impMig(d){
+  const conv=it=>{ if(!it||it.mat||!it.imp||!RAR[it.rarity]) return; const m=RAR[it.rarity].m,base=BASES.find(b=>b.n===it.base&&(b.cls||null)===(it.cls||null))||BASES.find(b=>b.n===it.base); if(!base) return;
+    for(const [s2,b,p] of base.imp){const v=(b+p*it.ilvl)*m; it.imp[s2]=PCT.has(s2)?Math.max(.5,r1(v)):Math.max(1,Math.round(v))} };
+  (d.bag||[]).forEach(e=>conv(e&&e.o)); for(const h of d.heroes||[]) Object.values(h.equip||{}).forEach(conv);
+}
 function balMig(d){
   const conv=it=>{ if(!it||it.mat||!it.aff||!RAR[it.rarity]) return; const m=RAR[it.rarity].m,div=it.rarity===5;
     const base=BASES.find(b=>b.n===it.base&&(b.cls||null)===(it.cls||null))||BASES.find(b=>b.n===it.base);
@@ -1118,7 +1236,7 @@ function genItem(slot,ilvl,rarity,baseName,cls){
   const base=baseName?BASES.find(b=>b.n===baseName):(baseFor(slot,cls)||pick(BASES.filter(b=>b.slot===slot)));
   const m=RAR[rarity].m, imp={};
   for(const [s,b,p] of base.imp){const v=(b+p*ilvl)*m; imp[s]=PCT.has(s)?Math.max(.5,r1(v)):Math.max(1,Math.round(v))}
-  const aff=shuffle(affPool(base.cls||cls).slice()).slice(0,RAR[rarity].aff).map(a=>({s:a.s,v:rollAff(a,ilvl,m)}));
+  const aff=wPick(affPool(base.cls||cls),RAR[rarity].aff).map(a=>({s:a.s,v:rollAff(a,ilvl,m)}));
   let ep='';
   if(rarity>=3) ep=' '+pick(EPITHETS);
   else {const a=aff.find(x=>AFXM[x.s].ep); if(a) ep=' '+AFXM[a.s].ep}
@@ -1233,8 +1351,8 @@ function gearStats(h){
 }
 function passMods(h){
   const t={};
-  for(const sk of CLASSES[h.cls].skills){
-    if(sk.t!=='p') continue; const r=h.learned[sk.id]||0; if(!r) continue;
+  for(const sk of heroSkills(h)){
+    if(sk.t!=='p'||!sk.mods) continue; const r=h.learned[sk.id]||0; if(!r) continue;
     for(const [k,v] of Object.entries(sk.mods)) t[k]=(t[k]||0)+v*r;
   }
   return t;
@@ -1271,16 +1389,22 @@ function gainXp(h,xp){
   return ups;
 }
 const sc=r=>1+.12*(r-1);
-function skDesc(sk,rank,role){
-  const k=sc(rank),p=x=>Math.round(x*100*k),stN=(sk.st||role)==='mag'?'INT':'FOR';
+function skDesc(sk,rank,role,gx){
+  gx=gx||{}; const k=sc(rank),p=x=>Math.round(x*100*k),stN=(sk.st||role)==='mag'?'INT':'FOR';
   const tgN={one:'un ennemi',all:'tous les ennemis',self:'vous',allies:'tous les alliés',lowAlly:'l’allié le plus blessé'}[sk.tg];
   const out=[];
   if(sk.ap) out.push(`Coût : ${sk.ap} PA.`);
   if(sk.el&&ELEM[sk.el]) out.push(`Élément : ${ELEM[sk.el].n}.`);
+  if(sk.self) out.push(`Sacrifie ${Math.round(sk.self*100)} % de vos PV max.`);
   if(sk.mult) out.push(`Inflige ${p(sk.mult)}% ${stN}${sk.hits>1?' ×'+sk.hits:''} à ${tgN}${sk.exec?` (dégâts doublés sous ${sk.exec.thr}% PV)`:''}.`);
+  if(sk.lowHp) out.push(`+${r1(sk.lowHp*10)} % de dégâts par tranche de 10 % de PV manquants.`);
+  if(sk.ifSt) out.push(`+${Math.round(sk.ifSt.v*100)} % de dégâts contre une cible ${stTxt(sk.ifSt)}.`);
+  if(sk.ls) out.push(`Vous rend ${sk.ls} % des dégâts infligés en PV.`);
   const sn={atk:'Force',def:'Défense',res:'Résistance',spd:'Vitesse',mag:'Intelligence'};
   for(const f of sk.fx||[]){
-    if(f.k==='dot') out.push(`${f.n} : ${p(f.v)}% ${stN} par tour, ${f.dur} tours.`);
+    if(f.k==='dot'){ const ch=fxCh(f,sk,gx); out.push(`${ch<100?ch+' % de chances d’infliger ':''}${f.n} : ${Math.round(p(f.v)*fxPow(f,gx))}% ${stN} par tour, ${fxDur(f,gx)} tours.`) }
+    if(f.k==='para') out.push(`${fxCh(f,sk,gx)} % de chances de paralyser ${f.dur} tours : à chaque tour, la cible a ${paraPow(gx)} % de chances de perdre son tour (chances d’application réduites de moitié sur les boss).`);
+    if(f.k==='det') out.push(`Fait exploser la ${f.n} de la cible : inflige immédiatement ${p(f.m)} % des dégâts qu’elle devait encore infliger.`);
     if(f.k==='stun') out.push(`${f.ch||100}% de chances d’étourdir ${f.dur} tour.`);
     if(f.k==='shield') out.push(f.of==='hp'?`Bouclier de ${p(f.v)}% des PV max.`:`Bouclier de ${p(f.v)}% INT.`);
     if(f.k==='heal') out.push(`Soigne ${p(f.v)}% INT${f.on==='allies'?' à tous les alliés':''}.`);
@@ -1293,6 +1417,101 @@ function skDesc(sk,rank,role){
 }
 const MOD_N={hpPct:'PV',atkPct:'Force',magPct:'Intelligence',defPct:'Défense',resPct:'Résistance',spdPct:'Vitesse',crit:'Critique',critDmg:'Dégâts critiques',dodge:'Esquive',lifesteal:'Vol de vie',regen:'PV max par tour',healPow:'Puissance des soins'};
 const modDesc=(m,r)=>Object.entries(m).map(([k,v])=>`+${v*r}% ${MOD_N[k]}`).join(', ');
+/* bonus de talents (passifs de spécialisation) */
+const GX_N={bleedP:['+',' % de dégâts des Saignements'],burnP:['+',' % de dégâts des Brûlures'],vsBleed:['+',' % de dégâts contre les cibles qui saignent'],vsBurn:['+',' % de dégâts contre les cibles en feu'],vsPara:['+',' % de dégâts contre les cibles paralysées'],
+  lowHpDmg:['+',' % de dégâts par tranche de 10 % de PV manquants'],lowHpDef:['−',' % de dégâts subis sous 35 % de PV'],paraCh:['+',' % de chances de paralyser (toutes vos compétences)'],paraPow:['+',' % de chances qu’une cible paralysée perde son tour'],
+  bleedDur:['+',' tour de durée des Saignements'],burnDur:['+',' tour de durée des Brûlures']};
+function heroGx(h){
+  const g={sxCh:{}}; if(!h) return g;
+  for(const sk of heroSkills(h)){ if(sk.t!=='p'||!sk.gx) continue; const r=h.learned[sk.id]||0; if(!r) continue;
+    for(const [k,v] of Object.entries(sk.gx)){ if(k==='sxCh'){ for(const [id,x] of Object.entries(v)) g.sxCh[id]=(g.sxCh[id]||0)+x*r } else g[k]=(g[k]||0)+v*r } }
+  return g;
+}
+function pasDesc(sk,r){
+  const out=[];
+  for(const [k,v] of Object.entries(sk.mods||{})) out.push(`+${r1(v*r)} % ${MOD_N[k]}`);
+  for(const [k,v] of Object.entries(sk.gx||{})){
+    if(k==='sxCh'){ for(const [id,x] of Object.entries(v)){ const f=(SK[id].fx||[]).find(q=>q.ch!=null); out.push(`+${x*r} % de chances d’infliger ${f&&f.k==='para'?'la Paralysie':f?f.n:'l’effet'} avec ${SK[id].n}`) } }
+    else { const [sg,t]=GX_N[k]; out.push(`${sg}${r1(v*r)}${t}`) } }
+  return out.join(', ')+'.';
+}
+const hasSt=(t,k,n)=>!!(t&&t.st&&t.st.some(s=>s.k===k&&(!n||s.n===n)));
+const stTxt=t=>t.k==='para'?'paralysée':t.n==='Brûlure'?'en feu':'qui saigne';
+const fxDur=(f,g)=>f.dur+((g||{})[f.n==='Brûlure'?'burnDur':f.n==='Saignement'?'bleedDur':'x']||0);
+const fxPow=(f,g)=>1+(((g||{})[f.n==='Brûlure'?'burnP':f.n==='Saignement'?'bleedP':'x']||0)/100);
+const fxCh=(f,sk,g)=>f.ch==null?100:Math.min(100,f.ch+(((g||{}).sxCh||{})[sk.id]||0)+(f.k==='para'?((g||{}).paraCh||0):0));
+const paraPow=g=>Math.min(90,50+((g||{}).paraPow||0));
+/* multiplicateur de dégâts lié aux talents et aux effets (PvE, duels, raids) */
+function skMul(u,t,sk){
+  const g=u.gx||{}; let m=1; const miss=Math.max(0,1-Math.max(0,u.hp)/(u.maxHp||1));
+  if(g.lowHpDmg) m*=1+g.lowHpDmg/100*miss*10;
+  if(sk&&sk.lowHp) m*=1+sk.lowHp*miss;
+  if(g.vsBurn&&hasSt(t,'dot','Brûlure')) m*=1+g.vsBurn/100;
+  if(g.vsBleed&&hasSt(t,'dot','Saignement')) m*=1+g.vsBleed/100;
+  if(g.vsPara&&hasSt(t,'para')) m*=1+g.vsPara/100;
+  if(sk&&sk.ifSt&&(sk.ifSt.k==='para'?hasSt(t,'para'):hasSt(t,'dot',sk.ifSt.n))) m*=1+sk.ifSt.v;
+  const tg=t.gx||{}; if(tg.lowHpDef&&t.hp/t.maxHp<.35) m*=Math.max(.3,1-tg.lowHpDef/100);
+  return m;
+}
+/* fiche (infobulle) d’une compétence */
+function skReq(sk,h){
+  if(!h) return '';
+  if(h.lvl<sk.lvl) return `Niveau ${sk.lvl} requis.`;
+  if(sk.spec&&h.spec!==sk.spec) return `Spécialisation ${CLASSES[h.cls].specs[sk.spec].n} requise.`;
+  if(sk.req&&!(h.learned[sk.req]>0)) return `Requiert : ${SK[sk.req].n}.`;
+  return '';
+}
+function skCard(sk,h){
+  if(sk.id==='atk') return `<article class="it skt" style="--rc:${sk.co}"><header><b>Attaque</b><small>Compétence de base</small></header><ul><li>Inflige 100 % de votre stat principale à un ennemi. Gratuite, une fois par tour.</li></ul></article>`;
+  const r=h?(h.learned[sk.id]||0):0,mx=skMax(sk),role=h?CLASSES[h.cls].role:'atk',gx=heroGx(h);
+  const cur=sk.t==='a'?skDesc(sk,Math.max(1,r),role,gx):pasDesc(sk,Math.max(1,r));
+  const nxt=r>0&&r<mx?(sk.t==='a'?skDesc(sk,r+1,role,gx):pasDesc(sk,r+1)):'',req=skReq(sk,h);
+  const kind=sk.spec?`${sk.t==='a'?'Active':'Passive'} · ${CLASSES[h.cls].specs[sk.spec].n}`:(sk.t==='a'?'Active · Base':'Passive');
+  return `<article class="it skt" style="--rc:${sk.co}"><header><b>${esc(sk.n)}</b><small>${kind} · Rang ${r} / ${mx}${h&&h.loadout.includes(sk.id)?' · Équipée':''}</small></header><ul><li>${r?'':'<b>Rang 1 :</b> '}${cur}</li>${nxt?`<li class="imp">Rang ${r+1} : ${nxt}</li>`:''}${req?`<li class="lockr">${req}</li>`:''}</ul></article>`;
+}
+/* tuiles */
+function skTile(sk,h,extra=''){
+  const r=h.learned[sk.id]||0,mx=skMax(sk),req=skReq(sk,h),can=!req&&h.sp>0&&r<mx,eq=h.loadout.includes(sk.id);
+  return `<button class="sktile ${sk.t==='p'?'pas':''} ${r?'got':''} ${req?'lock':''} ${can?'avail':''} ${UI.skSel===sk.id?'sel':''}" style="--co:${sk.co};${extra}" data-act="skSel" data-id="${sk.id}" data-tip="sk:${sk.id}" aria-label="${esc(sk.n)}, rang ${r} sur ${mx}${req?', verrouillée':''}">${spIcon(sk)}<span class="rk">${r}/${mx}</span>${eq?'<span class="eqm" aria-hidden="true">✓</span>':''}</button>`;
+}
+function specTree(cls,sid,h,preview){
+  const sp=CLASSES[cls].specs[sid],X=c=>44+c*76,Y=r=>34+r*74;
+  const links=sp.nodes.filter(n=>n.req).map(n=>{const p=SK[n.req],on=!preview&&h.learned[n.id]>0;return `<line x1="${X(p.c)}" y1="${Y(p.r)}" x2="${X(n.c)}" y2="${Y(n.r)}" class="${on?'on':''}"/>`}).join('');
+  const tiles=sp.nodes.map(n=>skTile(n,preview?Object.assign({},h,{spec:sid,sp:0}):h,`left:${X(n.c)-26}px;top:${Y(n.r)-26}px`)).join('');
+  return `<div class="tree" style="--co:${sp.co}"><svg class="links" viewBox="0 0 240 360" aria-hidden="true">${links}</svg>${tiles}</div>`;
+}
+function viewSkills(h){
+  const c=CLASSES[h.cls],base=c.skills.map(sk=>skTile(sk,h)).join(''),sel=UI.skSel&&SK[UI.skSel];
+  let spec='';
+  if(!h.spec){
+    spec=`<div class="specs">${Object.entries(c.specs).map(([sid,sp])=>`<div class="speccol ${h.lvl<SPEC_L?'lockd':''}"><h4 style="--co:${sp.co}">${spIcon(sp)}${sp.n}</h4><p class="hint">${sp.d}</p>${specTree(h.cls,sid,h,true)}
+      <button class="btn ${UI.specConf===sid?'danger':'pri'}" data-act="chooseSpec" data-s="${sid}" ${h.lvl<SPEC_L?'disabled':''}>${h.lvl<SPEC_L?`🔒 Niveau ${SPEC_L} requis`:UI.specConf===sid?'Confirmer : choix définitif':'Choisir '+sp.n}</button></div>`).join('')}</div>
+      <p class="hint" style="text-align:center">${h.lvl<SPEC_L?`La spécialisation se débloque au niveau ${SPEC_L}. Vous pouvez déjà découvrir les deux arbres de talents.`:'Choisissez votre spécialisation. Le choix est définitif : seule une Potion d’oubli permet de réinitialiser vos compétences.'}</p>`;
+  } else {
+    const sp=c.specs[h.spec];
+    spec=`<div class="specs one"><div class="speccol"><h4 style="--co:${sp.co}">${spIcon(sp)}Spécialisation : ${sp.n}</h4><p class="hint">${sp.d}</p>${specTree(h.cls,h.spec,h,false)}</div></div>`;
+  }
+  let det='';
+  if(sel&&sel.id!=='atk'){ const r=h.learned[sel.id]||0,req=skReq(sel,h),eq=h.loadout.includes(sel.id);
+    det=`<div class="skdet">${skCard(sel,h)}<div class="row" style="justify-content:center">${`<button class="btn pri" data-act="learn" data-id="${sel.id}" ${req||h.sp<1||r>=skMax(sel)?'disabled':''}>${r>=skMax(sel)?'Rang maximum':r?'Améliorer (+1 rang)':'Apprendre'}</button>`}${sel.t==='a'&&r?`<button class="btn" data-act="equipSk" data-id="${sel.id}">${eq?'Retirer de la barre':'Équiper'}</button>`:''}</div></div>`;
+  } else det=`<p class="hint" style="text-align:center">${NOHOVER?'Touchez':'Survolez'} une compétence pour voir ses détails, cliquez dessus pour l’apprendre ou l’équiper.</p>`;
+  const fp=matCount('p_oubli');
+  return `<section class="panel skpanel" style="margin-top:16px"><div class="row between" style="margin-bottom:10px"><h2>Compétences</h2><span class="num">Points : <b style="color:var(--brass)">${h.sp}</b> · Barre de combat : ${h.loadout.length} / ${LOADOUT_MAX}</span></div>
+    <h3 class="skh">Compétences de base</h3><div class="skrow">${base}</div>
+    <h3 class="skh">Spécialisation</h3>${spec}
+    ${det}
+    <div class="row forget"><span class="hint">Potion d’oubli : réinitialise toutes les compétences et la spécialisation (en vente chez le Marchand). Possédées : <b class="num">${fp}</b></span><button class="btn sm ${UI.forgetConf?'danger':''}" data-act="forget" ${fp?'':'disabled'}>${UI.forgetConf?'Confirmer la réinitialisation':'Boire une potion d’oubli'}</button></div></section>`;
+}
+function resetSkills(h){
+  h.learned={}; h.loadout=[]; h.spec=null; h.sp=h.lvl;
+  const first=CLASSES[h.cls].skills[0]; h.learned[first.id]=1; h.loadout=[first.id];
+}
+/* tuile de combat */
+function cTile(id,U,act,sel){
+  const s=SK[id],cd=(U.cds&&U.cds[id])||0,c=s.ap||0,no=c>(U.ap||0),used=id==='atk'&&U.atkUsed,off=cd||no||used;
+  return `<button class="skc ${off?'off':''} ${sel?'sel':''}" style="--co:${s.co||'#5a5048'}" data-act="${act}" data-id="${id}" ${off?'aria-disabled="true"':''} data-tip="sk:${id}" aria-label="${esc(s.n)}${c?', '+c+' PA':''}${cd?', recharge '+cd+' tours':no?', PA insuffisants':used?', déjà utilisée':''}">${spIcon(s)}${c?`<em class="apk">${c}</em>`:''}${cd?`<span class="cdo">${cd}</span>`:used?'<span class="cdo">✓</span>':''}</button>`;
+}
+
 
 /* ============ combat ============ */
 const alive=l=>l.filter(u=>u.hp>0);
@@ -1304,10 +1523,10 @@ function effStat(u,st){
 }
 function mkHeroUnit(h){
   const s=heroStats(h),cl=CLASSES[h.cls];
-  const sk=h.loadout.filter(id=>h.learned[id]);
+  const okS=new Set(heroSkills(h).filter(x=>x.t==='a').map(x=>x.id)),sk=h.loadout.filter(id=>h.learned[id]&&okS.has(id)).slice(0,LOADOUT_MAX);
   const cds={}; for(const id of sk) cds[id]=SK[id].cd>=4?Math.ceil(SK[id].cd/2):0;
   return {id:'h'+h.id,team:'h',hero:h,name:h.name,lvl:h.lvl,ic:cl.ic,hue:h.hue,role:cl.role,...s,
-    hp:Math.round(s.hp),maxHp:Math.round(s.hp),skills:sk,ranks:h.learned,cds,st:[],shield:0,ap:s.ap,maxAp:s.ap};
+    hp:Math.round(s.hp),maxHp:Math.round(s.hp),skills:sk,ranks:h.learned,cds,st:[],shield:0,ap:s.ap,maxAp:s.ap,gx:heroGx(h)};
 }
 /* difficultés : niveau des monstres, multiplicateurs (monstres / boss), début de la rage des boss, récompenses */
 const DIFF={
@@ -1365,7 +1584,7 @@ function refresh(u){
   $('.hp span',el).textContent=Math.max(0,Math.ceil(u.hp))+' / '+Math.ceil(u.maxHp)+(u.shield>0?' (+'+Math.ceil(u.shield)+')':'');
   const sn={atk:'FOR',def:'DEF',res:'RÉS',spd:'VIT',mag:'INT'};
   $('.stt',el).innerHTML=u.st.map(s=>{
-    const lab=s.k==='dot'?s.n:s.k==='stun'?'Étourdi':s.k==='taunt'?'Provoque':s.k==='apb'?`PA +${s.v}`:`${sn[s.stat]} ${s.v>0?'+':''}${Math.round(s.v)}%`;
+    const lab=s.k==='dot'?s.n:s.k==='para'?'Paralysie':s.k==='stun'?'Étourdi':s.k==='taunt'?'Provoque':s.k==='apb'?`PA +${s.v}`:`${sn[s.stat]} ${s.v>0?'+':''}${Math.round(s.v)}%`;
     return `<em class="b-${s.k}">${esc(lab)} ${s.dur}</em>`}).join('');
 }
 const refreshAll=()=>C.units.forEach(refresh);
@@ -1398,6 +1617,7 @@ function hit(u,t,mult,st,sk){
   let d=effStat(u,st)*mult*K/(K+effStat(t,ds));
   d*=1+(u.dmgPct||0)/100;
   d*=resMul(t,st,sk&&sk.el);
+  d*=skMul(u,t,sk);
   const rs=u.boss?DIFF[C.diff||'normal'].rage:30;
   if(u.team==='e'&&C.round>rs) d*=1+(C.round-rs)*(u.boss&&rs<30?.08:.1);
   if(sk&&sk.exec&&t.hp/t.maxHp<sk.exec.thr/100) d*=1+sk.exec.bonus;
@@ -1406,13 +1626,20 @@ function hit(u,t,mult,st,sk){
   d=Math.max(1,Math.round(d));
   dmg(t,d,crit,u);
   if(u.lifesteal&&u.hp>0) heal(u,d*u.lifesteal/100,true);
+  return d;
 }
 function applyFx(u,t,f,k,sk){
   if(t.hp<=0) return;
   const st=sk.st||u.role;
   if(f.k==='dot'){
+    if(Math.random()*100>=fxCh(f,sk,u.gx)) return;
     t.st=t.st.filter(s=>!(s.k==='dot'&&s.n===f.n));
-    t.st.push({k:'dot',n:f.n,v:effStat(u,st)*f.v*k*resMul(t,st,sk.el),dur:f.dur});
+    t.st.push({k:'dot',n:f.n,v:effStat(u,st)*f.v*k*resMul(t,st,sk.el)*fxPow(f,u.gx),dur:fxDur(f,u.gx)});
+    if(f.ch!=null) logLine(`${t.name} subit ${f.n}.`,'ev');
+  }else if(f.k==='para'){
+    if(Math.random()*100<fxCh(f,sk,u.gx)*(t.boss?.5:1)){ t.st=t.st.filter(s=>s.k!=='para'); t.st.push({k:'para',p:paraPow(u.gx),dur:f.dur}); floatTxt(t,'Paralysie','miss'); logLine(`${t.name} est paralysé !`,'ev') }
+  }else if(f.k==='det'){
+    const q=t.st.find(x=>x.k==='dot'&&x.n===f.n); if(q){ t.st=t.st.filter(x=>x!==q); dmg(t,Math.max(1,Math.round(q.v*q.dur*f.m*k)),false,u,f.n+' : détonation') }
   }else if(f.k==='stun'){
     const ch=(f.ch||100)*(t.boss?.5:1);
     if(Math.random()*100<ch&&!t.st.some(s=>s.k==='stun')){t.st.push({k:'stun',dur:f.dur});logLine(`${t.name} est étourdi !`,'ev')}
@@ -1434,6 +1661,7 @@ async function exec(u,sk,tgt){
   const rank=sk.id==='atk'?1:(u.ranks[sk.id]||1),k=sc(rank);
   if(sk.cd) u.cds[sk.id]=sk.cd+1;
   if(sk.ap) u.ap=Math.max(0,(u.ap||0)-sk.ap);
+  if(sk.self){ const c=Math.min(u.hp-1,Math.round(u.maxHp*sk.self)); if(c>0){ u.hp-=c; floatTxt(u,'-'+c,''); logLine(`${u.name} sacrifie ${c} PV.`,'cr'); refresh(u) } }
   const foesA=alive(foes(u)),friA=alive(friends(u));
   if((sk.tg==='one')&&(!tgt||tgt.hp<=0)) tgt=foesA[0];
   let fT=[],aT=[];
@@ -1446,7 +1674,7 @@ async function exec(u,sk,tgt){
   const el=unitEl(u); if(el){el.style.transform='scale(1.03)';setTimeout(()=>{el.style.transform=''},220)}
   await sleep(260);
   const st=sk.st||u.role;
-  if(sk.mult) for(const t of fT) for(let i=0;i<(sk.hits||1);i++){ if(t.hp<=0)break; hit(u,t,sk.mult*k,st,sk) }
+  if(sk.mult) for(const t of fT) for(let i=0;i<(sk.hits||1);i++){ if(t.hp<=0)break; const d=hit(u,t,sk.mult*k,st,sk); if(sk.ls&&d&&u.hp>0) heal(u,d*sk.ls/100) }
   for(const f of sk.fx||[]){
     const on=f.on||(sk.tg==='one'||sk.tg==='all'?'foe':'friend');
     const ts=on==='foe'?fT:on==='allies'?alive(friends(u)):aT;
@@ -1470,8 +1698,11 @@ function ai(u,noAtk){
   if(healer&&low&&low.hp/low.maxHp<.55) return {skill:healer.sk,target:low};
   let best=null,bs=1;
   for(const x of usable){
-    const sk=x.sk; if(isHeal(x)) continue;
+    const sk=x.sk; if(isHeal(x)) continue; if(sk.self&&u.hp/u.maxHp<.4) continue;
     let s=(sk.mult||0)*(sk.tg==='all'?foesA.length*.8:1)*sc(x.rank);
+    { const dt=(sk.fx||[]).find(f=>f.k==='det'); if(dt) s*=foesA.some(f=>hasSt(f,'dot',dt.n))?2.4:.35; }
+    if(sk.ifSt) s*=foesA.some(f=>sk.ifSt.k==='para'?hasSt(f,'para'):hasSt(f,'dot',sk.ifSt.n))?1+sk.ifSt.v*.8:.9;
+    if(sk.lowHp) s*=1+sk.lowHp*(1-u.hp/u.maxHp);
     if(sk.exec) s*=foesA.some(f=>f.hp/f.maxHp<sk.exec.thr/100)?1.8:.8;
     if(!sk.mult){
       const need=(sk.fx||[]).some(f=>(f.k==='buff'&&friA.every(a=>!a.st.some(q=>q.k==='buff'&&q.stat===f.stat)))||(f.k==='shield'&&u.shield<u.maxHp*.1&&(sk.tg!=='self'||true)));
@@ -1485,7 +1716,8 @@ function ai(u,noAtk){
   const skill=best?best.sk:SK.atk;
   let target=null;
   if(skill.tg==='one'){
-    if(u.team==='h') target=foesA.slice().sort((a,b)=>a.hp-b.hp)[0];
+    if(u.team==='h'){ const dt=(skill.fx||[]).find(f=>f.k==='det'),need=dt?(f=>hasSt(f,'dot',dt.n)):skill.ifSt?(f=>skill.ifSt.k==='para'?hasSt(f,'para'):hasSt(f,'dot',skill.ifSt.n)):null;
+      target=(need&&foesA.find(need))||foesA.slice().sort((a,b)=>a.hp-b.hp)[0] }
     else target=tauntOf(foesA)||(Math.random()<.3?foesA.slice().sort((a,b)=>a.hp/a.maxHp-b.hp/b.maxHp)[0]:pick(foesA));
   }
   return {skill,target};
@@ -1500,6 +1732,7 @@ async function turn(u){
   if(u.hp<=0){C.turn=null;refreshAll();return}
   let skip=false;
   if(u.st.some(s=>s.k==='stun')){logLine(`${u.name} est étourdi et passe son tour.`,'ev');skip=true;await sleep(500)}
+  else { const pa=u.st.find(s=>s.k==='para'); if(pa&&Math.random()*100<(pa.p||50)){ logLine(`${u.name} est paralysé et perd son tour.`,'ev'); floatTxt(u,'Paralysé','miss'); skip=true; await sleep(500) } }
   if(!skip){
     u.atkUsed=false;
     if(u.team==='h'){
@@ -1827,7 +2060,7 @@ const pvpTS=()=>firebase.firestore.FieldValue.serverTimestamp();
 const pvpReady=()=>!!(FB.user&&FB.prof&&S&&S.heroes&&S.heroes[0]);
 function pvpSnap(){
   const h=S.heroes[0],u=mkHeroUnit(h),keys=['hp','maxHp','atk','mag','def','res','spd','crit','critDmg','dodge','lifesteal','dmgPct','ap','maxAp',...RES_K];
-  const o={acct:FB.prof.name,name:h.name,cls:h.cls,lvl:h.lvl,role:u.role,skills:u.skills.slice(),ranks:Object.fromEntries(u.skills.map(id=>[id,h.learned[id]||1])),cds:{},st:[],shield:0,atkUsed:false,stun:false};
+  const o={acct:FB.prof.name,name:h.name,cls:h.cls,lvl:h.lvl,role:u.role,gx:u.gx,skills:u.skills.slice(),ranks:Object.fromEntries(u.skills.map(id=>[id,h.learned[id]||1])),cds:{},st:[],shield:0,atkUsed:false,stun:false};
   for(const k of keys) o[k]=Math.round((u[k]||0)*10)/10;
   return o;
 }
@@ -1895,16 +2128,19 @@ const pvEff=(u,k)=>{let x=0; for(const s of u.st||[]) if(s.k==='buff'&&s.stat===
 function pvHit(u,t,mult,st,sk,L){
   if(Math.random()*100<(t.dodge||0)){L.push(`${t.name} esquive.`);return}
   const K=100+15*(u.lvl||1),ds=st==='mag'?'res':'def';
-  let d=pvEff(u,st)*mult*K/(K+pvEff(t,ds)); d*=1+(u.dmgPct||0)/100; d*=resMul(t,st,sk&&sk.el); d*=rand(.92,1.08);
+  let d=pvEff(u,st)*mult*K/(K+pvEff(t,ds)); d*=1+(u.dmgPct||0)/100; d*=resMul(t,st,sk&&sk.el); d*=skMul(u,t,sk); d*=rand(.92,1.08);
   const cr=Math.random()*100<(u.crit||0); if(cr) d*=(u.critDmg||150)/100; d=Math.max(1,Math.round(d));
   let a=d; if(t.shield>0){const s=Math.min(t.shield,a); t.shield-=s; a-=s}
   t.hp=Math.max(0,t.hp-a); L.push(`${t.name} subit ${d} dégâts${cr?' (critique !)':''}.`);
   if(u.lifesteal&&u.hp>0){const hh=Math.min(u.maxHp-u.hp,Math.round(d*u.lifesteal/100)); if(hh>0){u.hp+=hh}}
+  if(sk&&sk.ls&&u.hp>0){const hh=Math.min(u.maxHp-u.hp,Math.round(d*sk.ls/100)); if(hh>0){u.hp+=hh; L.push(`${u.name} récupère ${hh} PV.`)}}
+  return d;
 }
+function pvSelf(u,sk,L){ if(!sk.self) return; const c=Math.min(u.hp-1,Math.round(u.maxHp*sk.self)); if(c>0){ u.hp-=c; L.push(`${u.name} sacrifie ${c} PV.`) } }
 function pvExec(u,t,sk,L){
   const k=sk.id==='atk'?1:sc((u.ranks&&u.ranks[sk.id])||1),st=sk.st||u.role;
   if(sk.cd) u.cds[sk.id]=sk.cd+1; if(sk.ap) u.ap=Math.max(0,u.ap-sk.ap); if(sk.id==='atk') u.atkUsed=true;
-  L.push(sk.id==='atk'?`${u.name} attaque.`:`${u.name} utilise ${sk.n}.`);
+  L.push(sk.id==='atk'?`${u.name} attaque.`:`${u.name} utilise ${sk.n}.`); pvSelf(u,sk,L);
   if(sk.mult) for(let i=0;i<(sk.hits||1)&&t.hp>0;i++) pvHit(u,t,sk.mult*k,st,sk,L);
   for(const f of sk.fx||[]){
     const on=f.on||(sk.tg==='one'||sk.tg==='all'?'foe':'friend'),tg=on==='foe'?t:u; pvFx(u,tg,f,k,sk,L);
@@ -1913,7 +2149,9 @@ function pvExec(u,t,sk,L){
 function pvFx(u,tg,f,k,sk,L){
   const st=sk.st||u.role; if(tg.hp<=0) return;
   {
-    if(f.k==='dot'){tg.st=tg.st.filter(s=>!(s.k==='dot'&&s.n===f.n)); tg.st.push({k:'dot',n:f.n,v:Math.round(pvEff(u,st)*f.v*k*resMul(tg,st,sk.el)),dur:f.dur}); L.push(`${tg.name} subit ${f.n}.`)}
+    if(f.k==='dot'){ if(Math.random()*100>=fxCh(f,sk,u.gx)) return; tg.st=tg.st.filter(s=>!(s.k==='dot'&&s.n===f.n)); tg.st.push({k:'dot',n:f.n,v:Math.round(pvEff(u,st)*f.v*k*resMul(tg,st,sk.el)*fxPow(f,u.gx)),dur:fxDur(f,u.gx)}); L.push(`${tg.name} subit ${f.n}.`)}
+    else if(f.k==='para'){ if(Math.random()*100<fxCh(f,sk,u.gx)*(tg.boss?.5:1)){ tg.st=tg.st.filter(s=>s.k!=='para'); tg.st.push({k:'para',p:paraPow(u.gx),dur:f.dur}); L.push(`${tg.name} est paralysé !`) } }
+    else if(f.k==='det'){ const q=tg.st.find(x=>x.k==='dot'&&x.n===f.n); if(q){ tg.st=tg.st.filter(x=>x!==q); let a=Math.max(1,Math.round(q.v*q.dur*f.m*k)); const d0=a; if(tg.shield>0){const z=Math.min(tg.shield,a); tg.shield-=z; a-=z} tg.hp=Math.max(0,tg.hp-a); L.push(`${f.n} : détonation, ${tg.name} subit ${d0} dégâts.`) } }
     else if(f.k==='taunt'){tg.st=tg.st.filter(s=>s.k!=='taunt'); tg.st.push({k:'taunt',dur:f.dur}); L.push(`${tg.name} provoque l’adversaire.`)}
     else if(f.k==='stun'){ if(Math.random()*100<(f.ch||100)*(tg.boss?.5:1)){tg.st=tg.st.filter(s=>s.k!=='stun'); tg.st.push({k:'stun',dur:f.dur}); L.push(`${tg.name} est étourdi !`)} }
     else if(f.k==='shield'){const a=f.of==='hp'?tg.maxHp*f.v*k:pvEff(u,'mag')*f.v*k; tg.shield=Math.round(Math.min(tg.maxHp,(tg.shield||0)+a)); L.push(`${tg.name} gagne un bouclier.`)}
@@ -1954,6 +2192,7 @@ async function pvEnd(){
   T.ap=T.maxAp;
   for(const s of T.st.filter(s=>s.k==='dot')){ T.hp=Math.max(0,T.hp-Math.max(1,s.v)); x.L.push(`${T.name} subit ${Math.max(1,s.v)} dégâts (${s.n}).`) }
   T.stun=T.st.some(s=>s.k==='stun'); if(T.stun) x.L.push(`${T.name} est étourdi et ne peut pas agir.`);
+  else { const pa=T.st.find(s=>s.k==='para'); if(pa&&Math.random()*100<(pa.p||50)){ T.stun=true; x.L.push(`${T.name} est paralysé et ne peut pas agir.`) } }
   const round=(x.m.round||1)+(x.o===x.m.first?1:0);
   PV.busy=true; await pvCommit(x,{turn:x.o,round,turnAt:pvpTS()}); PV.busy=false;
 }
@@ -1979,7 +2218,7 @@ function pvpLoot(m){
 /* affichage */
 function fActs(U,p,round){
   const ids=['atk',...U.skills],pc=U.potCd||0,pots=['p_vie','p_res',CLASSES[U.cls].role==='mag'?'p_int':'p_for','p_pa'].filter(k=>matCount(k)>0),paLock=p==='pvp'&&(round||1)>1;
-  return `<div class="acts">${ids.map(id=>{const s=SK[id],cd=U.cds[id]||0,c=s.ap||0,no=c>U.ap,used=id==='atk'&&U.atkUsed;return `<button class="skb" data-act="${p}Sk" data-id="${id}" ${cd||no||used?'disabled':''} title="${esc(skDesc(s,U.ranks[id]||1,U.role))}"><b>${s.n}${s.el&&ELEM[s.el]?` <em class="elt" style="--ec:${ELEM[s.el].c}">${ELEM[s.el].n}</em>`:''}</b><small>${c?`<span class="apc">${c} PA</span> · `:''}${used?'Déjà utilisée':cd?`Recharge : ${cd}`:no?'PA insuffisants':id==='atk'?'1 fois par tour':'Prête'}</small></button>`}).join('')}<button class="btn endturn" data-act="${p}EndT">Fin de tour</button></div>
+  return `<div class="acts"><div class="skcbar">${ids.map(id=>cTile(id,U,p+'Sk')).join('')}</div><span class="apc" style="align-self:center">${U.ap} / ${U.maxAp} PA</span><button class="btn endturn" data-act="${p}EndT">Fin de tour</button></div>
       <div class="potbar">${pots.map(k=>`<button class="potb" data-act="${p}Pot" data-k="${k}" ${pc||(k==='p_pa'&&paLock)?'disabled':''} title="${esc(POTS[k].n)} : ${esc(POTS[k].d)}${k==='p_pa'&&paLock?' (uniquement au premier tour en duel)':''}">${matIcon(k)}<span class="num">${matCount(k)}</span></button>`).join('')||'<small class="mute">Aucune potion utilisable.</small>'}${pc?`<small class="potcd">${potCdTxt(pc,U.potLen||POT_CD)}</small>`:pots.length?'<small class="potcd">1 potion par tour, puis 3 tours de recharge.</small>':''}</div>`;
 }
 function fchatHTML(m,k){
@@ -2001,7 +2240,7 @@ async function fcSend(k){
 }
 function pvCard(u,name,me,turn){
   if(!u) return `<div class="pvcard wait"><b>${esc(name||'?')}</b><small>En attente…</small></div>`;
-  const aps=Array.from({length:u.maxAp||0},(_,i)=>`<i class="${i<u.ap?'on':''}"></i>`).join(''),sts=(u.st||[]).map(s=>`<em class="b-${s.k}">${esc(s.k==='dot'?s.n:s.k==='stun'?'Étourdi':s.k==='taunt'?'Provoque':s.k==='apb'?'PA +'+s.v:(s.v>0?'+':'')+s.v+'% '+(STAT_N[s.stat]||s.stat))} ${s.dur}</em>`).join('');
+  const aps=Array.from({length:u.maxAp||0},(_,i)=>`<i class="${i<u.ap?'on':''}"></i>`).join(''),sts=(u.st||[]).map(s=>`<em class="b-${s.k}">${esc(s.k==='dot'?s.n:s.k==='para'?'Paralysie':s.k==='stun'?'Étourdi':s.k==='taunt'?'Provoque':s.k==='apb'?'PA +'+s.v:(s.v>0?'+':'')+s.v+'% '+(STAT_N[s.stat]||s.stat))} ${s.dur}</em>`).join('');
   return `<div class="pvcard ${me?'me':''} ${turn?'turn':''} ${u.hp<=0?'dead':''} ${u.boss?'boss':''} ${u.left?'left':''}">${PORTRAIT[u.cls]?`<img src="${PORTRAIT[u.cls]}" alt="" width="84" height="84">`:u.boss?`<span class="tile xl" style="--h:40">${icon('boss')}</span>`:''}<b>${esc(u.acct)}</b><small>${u.boss?`Boss de raid · niv. ${u.lvl}`:`${esc(u.name)} · ${(CLASSES[u.cls]||{n:''}).n} niv. ${u.lvl}`}${u.left?' · a abandonné':''}</small>
     <div class="hp"><i style="width:${Math.max(0,u.hp/u.maxHp*100)}%"></i><span>${Math.ceil(u.hp)} / ${Math.ceil(u.maxHp)}${u.shield>0?' (+'+Math.ceil(u.shield)+')':''}</span></div><div class="apbar" title="${u.ap} / ${u.maxAp} PA">${aps}</div><div class="stt">${sts}</div></div>`;
 }
@@ -2136,7 +2375,7 @@ function rdExec(u,sk,tgt,x){
   else if(sk.tg==='self') aT=[u];
   else if(sk.tg==='allies') aT=friA;
   else if(sk.tg==='lowAlly') aT=[friA.slice().sort((a,b)=>a.hp/a.maxHp-b.hp/b.maxHp)[0]].filter(Boolean);
-  L.push(sk.id==='atk'?`${u.name} attaque${fT[0]?' '+fT[0].name:''}.`:`${u.name} utilise ${sk.n}.`);
+  L.push(sk.id==='atk'?`${u.name} attaque${fT[0]?' '+fT[0].name:''}.`:`${u.name} utilise ${sk.n}.`); pvSelf(u,sk,L);
   if(sk.mult) for(const t of fT) for(let i=0;i<(sk.hits||1)&&t.hp>0;i++){ pvHit(u,t,sk.mult*k,st,sk,L); if(t.hp<=0) L.push(`${t.name} est vaincu.`) }
   for(const f of sk.fx||[]){
     const on=f.on||(sk.tg==='one'||sk.tg==='all'?'foe':'friend'),ts=on==='foe'?fT:on==='allies'?friA:aT;
@@ -2166,6 +2405,7 @@ function rdNext(x){
     for(const s of V.st.filter(s=>s.k==='dot')){ const d=Math.max(1,s.v); V.hp=Math.max(0,V.hp-d); x.L.push(`${V.name} subit ${d} dégâts (${s.n}).`) }
     if(V.hp<=0){ x.L.push(`${V.name} est vaincu.`); continue }
     if(V.st.some(s=>s.k==='stun')){ x.L.push(`${V.name} est étourdi et passe son tour.`); rdEndOf(V); continue }
+    { const pa=V.st.find(s=>s.k==='para'); if(pa&&Math.random()*100<(pa.p||50)){ x.L.push(`${V.name} est paralysé et perd son tour.`); rdEndOf(V); continue } }
     if(id==='boss'){ rdBossAct(x); rdEndOf(V); continue }
     return {turn:id,idx:i,round:x.round,turnAt:pvpTS()};
   }
@@ -2436,7 +2676,7 @@ function bootChar(){
   S.speed=S.speed||1;
   const fixL=it=>{ if(it&&!it.mat&&/^Jambières de (plates|soie)/.test(it.base||'')){it.name=it.name.replace(/^Jambières de (plates|soie)/,'Jambières');it.base='Jambières'} };
   S.bag.forEach(e=>fixL(e.o)); for(const h of S.heroes) Object.values(h.equip||{}).forEach(fixL);
-  for(const h of S.heroes) for(const sk of CLASSES[h.cls].skills) if(sk.t==='a'&&h.learned[sk.id]&&!h.loadout.includes(sk.id)) h.loadout.push(sk.id);
+  for(const h of S.heroes){ const ok=new Set(heroSkills(h).filter(x=>x.t==='a').map(x=>x.id)); h.loadout=(h.loadout||[]).filter(id=>ok.has(id)&&h.learned[id]).slice(0,LOADOUT_MAX); if(!h.loadout.length){ const f=heroSkills(h).find(x=>x.t==='a'&&h.learned[x.id]); if(f) h.loadout=[f.id] } }
   for(const h of S.heroes) if(h.lvl>MAXL){h.lvl=MAXL;h.xp=0}
   {const lg=it=>{if(it&&!it.mat&&it.rarity>=4&&!it.leg) it.leg=it.slot}; S.bag.forEach(e=>lg(e.o)); for(const h of S.heroes) Object.values(h.equip||{}).forEach(lg)}
   {let cut=0; for(const k of Object.keys(S.mats||{})) if(S.mats[k]>matCap(k)){cut++; S.mats[k]=matCap(k)}
@@ -2539,12 +2779,12 @@ function renderActbar(){
   if(!w){el.innerHTML=`<div class="acts"><small class="mute" style="align-self:center">${S.auto?'Combat automatique en cours…':'Les ennemis agissent…'}</small>${tools}</div><div class="acts" style="margin-top:8px">${potBar()}</div>`;return}
   const u=w.u,ids=['atk',...u.skills];
   el.innerHTML=`<div class="acts"><div style="align-self:center"><b>${esc(u.name)}</b><br><small>${C.pending?'Choisissez une cible':'À vous de jouer'} · <b class="apc">${u.ap||0} / ${u.maxAp||0} PA</b></small></div>`+
-    ids.map(id=>{const s=SK[id],cd=u.cds[id]||0,c=s.ap||0,no=c>(u.ap||0),used=id==='atk'&&u.atkUsed;return `<button class="skb ${C.pending&&C.pending.id===id?'sel':''}" data-act="skill" data-id="${id}" ${cd||no||used?'disabled':''} title="${esc(skDesc(s,u.ranks[id]||1,u.role))}"><b>${s.n}${s.el&&ELEM[s.el]?` <em class="elt" style="--ec:${ELEM[s.el].c}">${ELEM[s.el].n}</em>`:''}</b><small>${c?`<span class="apc">${c} PA</span> · `:''}${used?'Déjà utilisée ce tour':cd?`Recharge : ${cd}`:no?'PA insuffisants':s.cd?`Recharge ${s.cd}`:id==='atk'?'Gratuite · 1 fois par tour':'Aucune recharge'}</small></button>`}).join('')+
+    `<div class="skcbar">${ids.map(id=>cTile(id,u,'skill',C.pending&&C.pending.id===id)).join('')}</div>`+
     (C.pending?`<button class="btn sm" data-act="cancelPick">Annuler</button>`:'')+`<button class="btn endturn" data-act="endTurn">Fin de tour</button>`+tools+`</div><div class="acts" style="margin-top:8px">${potBar()}</div>`;
 }
 
 /* --- potions en combat --- */
-const ownPots=()=>Object.keys(POTS).filter(k=>matCount(k)>0&&(!POTS[k].cls||POTS[k].cls===S.heroes[0].cls));
+const ownPots=()=>Object.keys(POTS).filter(k=>!POTS[k].nocombat&&matCount(k)>0&&(!POTS[k].cls||POTS[k].cls===S.heroes[0].cls));
 function potBar(){
   const ks=ownPots(); if(!ks.length) return '<small class="mute" style="align-self:center">Aucune potion : achetez-en chez le Marchand.</small>';
   const cd=potCdLeft();
@@ -2573,7 +2813,7 @@ function viewShop(){
   const h=S.heroes[0];
   const cards=Object.entries(POTS).map(([k,p])=>{
     const pr=potPrice(k),own=matCount(k),lock=p.cls&&p.cls!==h.cls;
-    const b=q=>`<button class="btn sm ${q===1?'pri':''}" data-act="buyPot" data-k="${k}" data-q="${q}" ${!lock&&hasGold(pr*q)?'':'disabled'}>Acheter ×${q} <span class="num">(${fmt(pr*q)} or)</span></button>`;
+    const b=q=>p.fix?(q>1?'':`<button class="btn sm pri" data-act="buyPot" data-k="${k}" data-q="1" ${canPay(p.fix)?'':'disabled'}>Acheter</button>${costHTML(p.fix)}`):`<button class="btn sm ${q===1?'pri':''}" data-act="buyPot" data-k="${k}" data-q="${q}" ${!lock&&hasGold(pr*q)?'':'disabled'}>Acheter ×${q} <span class="num">(${fmt(pr*q)} or)</span></button>`;
     return `<article class="shopc ${lock?'lock':''}"><div class="row" style="gap:10px;align-items:flex-start"><span class="potico">${matIcon(k)}</span><div style="flex:1;min-width:0"><b>${p.n}</b><p class="hint" style="margin:2px 0 6px">${p.d}</p>${lock?`<small style="color:var(--blood);font-weight:700">Réservée au ${CLASSES[p.cls].n}</small>`:`<small class="mute">Possédées : <b class="num">${own}</b></small>`}</div></div>
       <div class="row" style="margin-top:10px">${b(1)}${b(5)}</div></article>`}).join('');
   return `<div class="thead" style="margin-bottom:6px"><span></span><h2 class="stitle">Marchand</h2><span class="rs" style="justify-self:end;color:var(--fg);background:#0001;border-color:var(--line2)">${matIcon('gold')}<b>${fmt(S.gold)}</b></span></div>
@@ -2593,15 +2833,6 @@ function viewHeroes(){
   const aCost=ascCost(h),aReq=MAXL;
   const slots=SLOTS.map(sl=>{const it=h.equip[sl];return `<div class="slotrow"><span class="lbl">${SLOT_N[sl]}</span><div class="nm">${it?`<b style="color:var(--r${it.rarity})">${esc(it.name)}${it.up?` +${it.up}`:''}</b><br><small>Niv ${it.ilvl} · ${RAR[it.rarity].n}</small>`:'<small>Vide</small>'}</div>
     <button class="btn sm" data-act="changeItem" data-slot="${sl}">Changer</button>${it?`<button class="btn sm" data-act="unequip" data-slot="${sl}">Retirer</button>`:''}</div>`}).join('');
-  const skills=c.skills.map(sk=>{
-    const r=h.learned[sk.id]||0,lock=h.lvl<sk.lvl,eq=h.loadout.includes(sk.id);
-    const pips=`<span class="pips">${[1,2,3,4,5].map(i=>`<i class="${i<=r?'on':''}"></i>`).join('')}</span>`;
-    const d=sk.t==='a'?skDesc(sk,Math.max(1,r),c.role):`Par rang : ${modDesc(sk.mods,1)}`;
-    const btns=lock?`<small>Niveau ${sk.lvl} requis</small>`:
-      `<button class="btn sm" data-act="learn" data-id="${sk.id}" ${h.sp<1||r>=5?'disabled':''}>${r?(r>=5?'Rang max':'Améliorer'):'Apprendre'}</button>`+
-      '';
-    return `<div class="sk ${lock?'lock':''} ${eq?'eq':''}"><div class="row between"><span><span class="tag ${sk.t==='p'?'p':''}">${sk.t==='a'?'Active':'Passive'}</span><br><b>${sk.n}</b>${pips}</span><span class="row">${btns}</span></div><p>${d}</p></div>`;
-  }).join('');
   return `<div class="pchar">
       <div class="pleft">${BP.equip}</div>
       <section class="panel ppres"><div class="sheethead"><h2>${esc(h.name)}</h2>${PORTRAIT[h.cls]?`<img class="portrait" src="${PORTRAIT[h.cls]}" alt="Portrait : ${c.n}" width="114" height="114">`:`<span class="tile xl" style="--h:${h.hue}">${icon(c.ic)}</span>`}<small>${c.n} · Niveau ${h.lvl}</small><span class="stars" title="Ascension">${'★'.repeat(h.stars)}${'☆'.repeat(5-h.stars)}</span></div>
@@ -2612,8 +2843,7 @@ function viewHeroes(){
       </section>
     </div>
     ${BP.inv}
-      <section class="panel" style="margin-top:16px"><div class="row between" style="margin-bottom:10px"><h2>Compétences</h2><span class="num">Points : <b style="color:var(--brass)">${h.sp}</b> · Compétences actives : ${h.loadout.length}</span></div>
-        <div class="grid" style="gap:10px;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr))">${skills}</div></section>`;
+      ${viewSkills(h)}`;
 }
 
 /* --- inventaire --- */
@@ -3061,7 +3291,7 @@ function viewHelp(){
     ['Résistance magique','Réduit les dégâts magiques reçus en %.','S’applique après la Défense magique. Plafonnée à 75 %.'],
     ['Résistances élémentaires','Feu, Glace, Foudre, Terre.','Réduisent en % les dégâts des compétences de cet élément (brûlures comprises). Plafonnées à 75 %. Une résistance négative est une faiblesse : les dégâts sont augmentés.'],
     ['Vitesse','Ordre d’action.','À chaque tour, les unités agissent de la plus rapide à la plus lente.'],
-    ['Critique','Chance de coup critique.','5 % de base, plafonnée à 60 %. Un coup critique multiplie les dégâts par les Dégâts critiques.'],
+    ['Critique','Chance de coup critique.','5 % de base, plafonnée à 70 %. Un coup critique multiplie les dégâts par les Dégâts critiques.'],
     ['Dégâts critiques','Puissance des critiques.','150 % de base, plafonnés à 200 % : un critique inflige de 1,5 à 2 fois les dégâts.'],
     ['Esquive','Chance d’éviter une attaque.','L’attaque est annulée entièrement. Plafonnée à 30 %.'],
     ['Vol de vie','Soin sur les dégâts infligés.','Rend ce pourcentage des dégâts infligés en PV. Plafonné à 20 %.'],
@@ -3078,6 +3308,7 @@ function viewHelp(){
     ['<span class="b-dot">Brûlure</span>','Dégâts sur la durée','Comme le Saignement. Appliquée par la Boule de feu ou par les ennemis de feu.'],
     ['<span class="b-dot">Poison</span>','Dégâts sur la durée','Comme le Saignement, souvent plus long (4 tours).'],
     ['<span class="b-stun">Étourdi</span>','Contrôle','La cible passe son prochain tour. Les boss n’ont que la moitié des chances d’être étourdis.'],
+    ['<span class="b-stun">Paralysie</span>','Contrôle (2 tours)','À chaque tour, la cible a 50 % de chances de perdre son tour (plus avec le talent Choc nerveux). Les boss n’ont que la moitié des chances d’être paralysés.'],
     ['<span class="b-taunt">Provoque</span>','Contrôle','Les ennemis doivent attaquer l’unité qui provoque (Mur de boucliers du Guerrier).'],
     ['Bouclier','Protection','Absorbe des dégâts avant les PV, jusqu’à épuisement. Ne peut pas dépasser les PV max.'],
   ]);
@@ -3100,7 +3331,8 @@ function viewHelp(){
   const pots=T(['Potion','Effet'],Object.values(POTS).map(p=>[p.n,p.d+(p.cls?` <small class="mute">(${CLASSES[p.cls].n})</small>`:'')]))
     +`<p class="hint">Les potions se boivent en combat sans utiliser votre tour : une seule potion par tour, puis 3 tours de recharge avant la suivante. L’Élixir de savoir et le Philtre de fortune ne s’utilisent qu’une fois par combat.</p>`;
   const rar=T(['Rareté','Affixes','Multiplicateur de stats'],RAR.map((r,i)=>[`<span style="color:var(--r${i});font-weight:700">${r.n}</span>`,r.aff+(r.leg?' + pouvoir légendaire':'')+(r.max?' (au maximum de la plage)':''),'×'+String(r.m).replace('.',',')]))
-    +`<p class="hint">Niveau d’objet : il augmente toutes les valeurs de l’objet. Chaque amélioration (+1 à +10) ajoute 5 % à toutes ses stats. Les armes donnent Force ou Intelligence, les armures de la vie et de la défense, les bijoux uniquement des affixes aléatoires.</p>`;
+    +`<p class="hint">Niveau d’objet : il augmente toutes les valeurs de l’objet. Chaque amélioration (+1 à +10) ajoute 5 % à toutes ses stats. Les armes donnent Force ou Intelligence, les armures de la vie, de la défense et de la résistance magique, les bijoux uniquement des affixes aléatoires.</p>`
+    +T(['Affixe','Rareté','Chances (1er affixe, Guerrier)'],(()=>{const pool=affPool('guerrier'),tot=pool.reduce((x,a)=>x+a.w,0);return AFX.slice().sort((a,b)=>b.w-a.w).map(a=>[STAT_N[a.s]+(PCT.has(a.s)&&!/^r/.test(a.s)?' %':''),affTier(a.w),pool.includes(a)?r1(a.w/tot*100)+' %':'—'])})());
   const asc=`<p>L’ascension demande le niveau maximum (${MAXL}). Chaque étoile ajoute <b>+10 %</b> aux statistiques de base du héros (hors équipement). Palier n : ${fmt(5000)} × n or et 5 × n Prismes divins, jusqu’à 5 étoiles.</p>`;
   return `<h2 style="margin-bottom:4px">Aide</h2><p class="hint" style="margin-bottom:16px">Tout ce qu’il faut savoir sur les statistiques et les effets de combat. Cliquez sur une section pour l’ouvrir ou la fermer.</p>
     ${sec('Statistiques',stats,true)}${sec('Calcul des dégâts',dmg)}${sec('Afflictions et effets de contrôle',aff)}${sec('Bonus et malus',buffs)}
@@ -3110,16 +3342,20 @@ function viewHelp(){
 /* --- nouveautés --- */
 const VERSION='0.3.1';
 const PATCH=[
- {v:'0.3.1',t:"Raids et équilibrage",sec:[
+ {v:'0.3.1',t:"Raids, spécialisations et équilibrage",sec:[
+  ["Compétences et spécialisations",["Nouveau système de compétences pour chaque classe : 3 compétences de base jusqu’au niveau 10, puis une spécialisation à choisir dans la fenêtre Personnage.","Chaque spécialisation a son propre arbre de talents (8 talents, actifs et passifs, reliés par des traits) : un talent se débloque quand le talent auquel il est relié est appris et que le niveau requis est atteint (10, 12, 15, 20, 25 et 30).","Le choix est définitif. La nouvelle Potion d’oubli (Marchand : 5 000 or et 5 Prismes divins) réinitialise toutes les compétences et la spécialisation, avec remboursement des points.","Compétences affichées sous forme d’icônes ; une infobulle détaille l’effet, le rang actuel, le rang suivant et les conditions. Cliquez sur une icône pour l’apprendre ou l’équiper. Les passifs sont ronds, les actives carrées.","Barre de combat : jusqu’à 4 compétences actives (avant 3), affichées en icônes avec le coût en PA et la recharge restante, dans les combats d’aventure, les duels et les raids.","Toutes les sauvegardes existantes : les compétences sont réinitialisées et tous les points de compétence sont remboursés."]],
+  ["Guerrier",["Compétences de base : Frappe puissante (niv. 1, 200 % FOR, 2 PA), Mur de boucliers (niv. 3, bouclier de 30 % des PV + provocation), Tourbillon (niv. 6, 130 % FOR sur tous les ennemis).","Spécialisation Saignement : Entaille (150 % FOR, 50 % de chances d’infliger Saignement : 40 % FOR par tour, 3 tours), Lames dentelées (+10 % de chances de Saignement avec Entaille par rang, jusqu’à 100 %), Hémorragie (+10 % de dégâts des Saignements et +1 % de vol de vie par rang), Éventration (160 % FOR, +60 % contre une cible qui saigne), Lacération (100 % FOR sur tous les ennemis, 60 % de chances de Saignement), Odeur du sang (+5 % de dégâts contre les cibles qui saignent et +3 % PV par rang), Plaies profondes (+1 tour de Saignement par rang, 2 rangs), Exsanguination (140 % FOR et détonation : 150 % des dégâts de Saignement restants infligés immédiatement).","Spécialisation Barbarie : Frappe sauvage (160 % FOR, +7 % de dégâts par tranche de 10 % de PV manquants), Fureur (+1,2 % de dégâts par tranche de 10 % de PV manquants par rang), Instinct de survie (−5 % de dégâts subis sous 35 % de PV et +3 % PV par rang), Pacte de sang (sacrifie 10 % des PV max, 210 % FOR, +5 % par tranche de 10 % de PV manquants), Cri de guerre (+25 % de Force pendant 3 tours), Carnage (115 % FOR sur tous les ennemis, +5 % par tranche de 10 % de PV manquants), Berserker (+4 % vitesse, +2 % critique et +1 % vol de vie par rang, 3 rangs), Folie meurtrière (200 % FOR, +8 % par tranche de 10 % de PV manquants, rend 15 % des dégâts en PV)."]],
+  ["Sorcier",["Compétences de base : Projectile arcanique (niv. 1, 180 % INT, 2 PA), Barrière arcanique (niv. 3, bouclier de 220 % INT sur les alliés), Nova arcanique (niv. 6, 95 % INT sur tous les ennemis).","Spécialisation Feu : Immolation (150 % INT de feu, 50 % de chances d’infliger Brûlure : 40 % INT par tour, 3 tours), Embrasement (+10 % de chances de Brûlure avec Immolation par rang, jusqu’à 100 %), Chaleur intense (+10 % de dégâts des Brûlures et +3 % INT par rang), Combustion (80 % INT et détonation : 150 % des dégâts de Brûlure restants infligés immédiatement), Vague de flammes (100 % INT sur tous les ennemis, 50 % de chances de Brûlure), Pyromanie (+5 % de dégâts contre les cibles en feu et +1 % critique par rang), Feu persistant (+1 tour de Brûlure par rang, 2 rangs), Météore (220 % INT sur tous les ennemis, 60 % de chances de Brûlure).","Spécialisation Foudre : Arc électrique (180 % INT de foudre, 30 % de chances de paralyser 2 tours), Électricité statique (+7 % de chances de paralyser et +3 % INT par rang), Vif-argent (+4 % vitesse et +2 % critique par rang, 3 rangs), Éclair en chaîne (100 % INT sur tous les ennemis, 15 % de chances de paralyser), Choc nerveux (+10 % de chances qu’une cible paralysée perde son tour par rang, 3 rangs), Surtension (+8 % de dégâts contre les cibles paralysées et +1 % critique par rang), Tempête (140 % INT sur tous les ennemis, 20 % de chances de paralyser), Jugement de foudre (260 % INT, dégâts doublés contre une cible paralysée).","Nouvel effet Paralysie (2 tours) : à chaque tour, la cible a 50 % de chances de perdre son tour (jusqu’à 80 % avec Choc nerveux). Les boss n’ont que la moitié des chances d’être paralysés."]],
   ["Raids",["Nouveau mode « ☠ Raid » dans l’onglet Aventure : combat coopératif à 2 joueurs contre un boss unique et très puissant.","Trois boss de raid : Colosse de Braise (niveau 25, niveau 20 requis), Wyrm des Glaces (niveau 40, niveau 35 requis) et Avatar de l’Abîme (niveau 50, niveau 50 requis).","Paliers : chaque victoire débloque le palier suivant (+1) pour ce boss. La difficulté est exponentielle : PV, attaque et défense du boss ×1,05 par palier (palier +10 : ×1,63 ; palier +20 : ×2,65). Le palier se choisit dans un menu déroulant avant le combat ; les deux joueurs doivent l’avoir débloqué.","Recherchez un partenaire (même boss, même palier) ou invitez un ami depuis la liste d’amis (nouveau bouton « Raid » sous « Duel »).","Le boss agit deux fois par tour et entre en rage au tour 16 (+8 % de dégâts par tour). Les héros étourdis passent leur tour automatiquement.","Récompenses (palier +0, multipliées par 1,05 par palier pour l’or) : Colosse 1 150 or, Wyrm 1 600 or, Avatar 1 900 or, plus 2 runes (+1 tous les 3 paliers), 6 essences et 6 cristaux (+1 par palier).","Un joueur inactif pendant 90 secondes peut voir son tour passé par son partenaire. Si un joueur abandonne, son partenaire peut continuer seul."]],
   ["Combat",["Les PA sont désormais entièrement rechargés au début de chaque tour (avant : +1 PA par tour), en aventure, en duel et en raid.","Potions limitées à une par tour, suivie de 3 tours de recharge pour toutes les potions (aventure, duels et raids).","Le bouton « Fuir » devient « Abandonner » (double clic pour confirmer) : l’abandon est compté comme une défaite. Même bouton en duel et en raid.","Chat de combat à droite de la scène, réservé aux deux joueurs du duel ou du raid."]],
-  ["Marchand",["Nouvelle Potion d’action (70 or de base) : +2 PA (et +2 PA maximum) pendant 3 tours.","En aventure et en raid : utilisable à n’importe quel tour, puis 6 tours de recharge des potions.","En duel PvP : utilisable uniquement à votre premier tour (ne coûte pas de PA), puis 3 tours de recharge."]],
-  ["Équilibrage : plafonds",["Chances de coup critique plafonnées à 60 % (base 5 %).","Dégâts critiques plafonnés à 200 % (base 150 %) : un critique inflige au maximum le double des dégâts."]],
+  ["Marchand",["Nouvelle Potion d’action (70 or de base) : +2 PA (et +2 PA maximum) pendant 3 tours.","En aventure et en raid : utilisable à n’importe quel tour, puis 6 tours de recharge des potions.","En duel PvP : utilisable uniquement à votre premier tour (ne coûte pas de PA), puis 3 tours de recharge.","Nouvelle Potion d’oubli : 5 000 or et 5 Prismes divins, réinitialise compétences et spécialisation."]],
+  ["Équipement",["Nouvelle stat fixe sur les armures : Résistance magique. Guerrier (niveau 50, Épique) : heaume 4,3 %, cuirasse 6,7 %, jambières 5,1 %, bottes 3,4 %. Sorcier : capuche 6,1 %, robe 8,5 %, jambières 6,7 %, sandales 4,3 %. Les objets existants la reçoivent aussi.","Rareté des affixes : chaque affixe a désormais un poids de tirage. Très courants : PV, Force, Intelligence (16). Courants : Défense, Vitesse (9), résistances élémentaires (7). Peu courants : PV %, Résistance physique, Résistance magique, Or trouvé (5). Rares : Dégâts % (4), Critique, Dégâts critiques, Esquive (3). Très rare : Vol de vie (2).","Exemple pour le premier affixe d’un objet de Guerrier : PV ou Force ≈ 14 % chacun, Critique ≈ 2,7 %, Vol de vie ≈ 1,8 %. Le tableau complet est dans l’Aide (Rareté et équipement). Le remplacement d’affixe à la Forge suit les mêmes chances."]],
+  ["Équilibrage : plafonds",["Chances de coup critique plafonnées à 70 % (base 5 %).","Dégâts critiques plafonnés à 200 % (base 150 %) : un critique inflige au maximum le double des dégâts."]],
   ["Équilibrage : affixes",["Valeurs maximales d’un affixe sur un objet Épique de niveau 50 (avant → après) :","PV : 205 → 168 (−18 %) · Force / Intelligence : 57 → 39 (−32 %) · Défense : 48 → 39 (−19 %) · Vitesse : 8,5 → 7,3 (−14 %).","PV % : 9,8 → 8,5 (−13 %) · Dégâts % : 11 → 7,9 (−28 %) · Critique : 6,7 → 5,5 % (−18 %) · Dégâts critiques : 37,8 → 9,8 % (−74 %, à cause du nouveau plafond).","Esquive : 3,9 → 3,4 % (−14 %) · Vol de vie : 2,5 → 2 % (−22 %). Résistances et Or trouvé : inchangés.","Objets existants : chaque affixe garde sa qualité de tirage (sa position entre le minimum et le maximum) dans la nouvelle plage. Les stats fixes des objets sont recalculées."]],
   ["Équilibrage : objets divins",["Les objets Divins n’ont plus de pouvoir passif et n’ont plus que 3 affixes aléatoires, mais toujours au maximum de leur plage (multiplicateur ×1,5 inchangé).","Les objets Divins existants sont convertis : pouvoir retiré, 3 premiers affixes conservés et portés à leur valeur maximale."]],
-  ["Équilibrage : classes",["Guerrier : PV +13 par niveau (avant 14) ; Force +2,6 par niveau (avant 2,4).","Guerrier : Frappe puissante 170 % → 200 % ; Tourbillon 115 % → 130 %.","Guerrier : Peau de fer +5 % Défense par rang (avant 8 %) ; Soif de sang +2 % Vol de vie par rang (avant 3 %).","Sorcier : PV de base 100 (avant 90), +13 par niveau (avant 10,5) ; Défense de base 6 (avant 5), +1,5 par niveau (avant 1).","Sorcier : Boule de feu 150 % → 180 % ; Barrière arcanique 160 % → 220 % de l’Intelligence.","Sorcier : Esprit vif donne aussi +4 % Défense par rang.","Équipement du Sorcier plus résistant : Défense fixe des capuches, robes, sandales et jambières augmentée d’environ 20 à 25 %."]],
+  ["Équilibrage : classes",["Guerrier : PV +13 par niveau (avant 14) ; Force +2,6 par niveau (avant 2,4).","Sorcier : PV de base 100 (avant 90), +13 par niveau (avant 10,5) ; Défense de base 6 (avant 5), +1,5 par niveau (avant 1).","Équipement du Sorcier plus résistant : Défense fixe des capuches, robes, sandales et jambières augmentée d’environ 20 à 25 %.","Simulations (équipement Légendaire +10, boss Mythique, 12 à 20 combats par spécialisation) : Barbarie ≈ 50 % de victoires, Saignement ≈ 25 à 40 %, Feu ≈ 30 %, Foudre ≈ 30 %. Barbarie a été réduite après les premiers essais (Fureur 2 → 1,2 %, Folie meurtrière 240 → 200 %, vol de vie 25 → 15 %, Pacte de sang 240 → 210 % et sacrifice 12 → 10 %) et Foudre renforcée (Arc électrique 160 → 180 %, Jugement de foudre 240 → 260 %, Surtension 6 → 8 %)."]],
   ["Équilibrage : ennemis",["Attaque des monstres +14 % environ à tous les niveaux (formule 7 + 2,9 × niv + 0,07 × niv²).","Normal : attaque des boss +15 %.","Héroïque : attaque des monstres ×2,6 (avant ×3,2), PV des boss ×1,6 (avant ×2), attaque des boss ×2,9 (avant ×3,8).","Mythique : attaque des monstres ×2,9 (avant ×3,6), PV des boss ×1,7 (avant ×2,4), attaque des boss ×2,2 (avant ×3,2).","Objectif (simulations avec un équipement du niveau du héros) : en Normal, les boss laissent environ 60 à 90 % des PV ; le Mythique demande un équipement Légendaire +10 et le boss Mythique reste réservé aux meilleurs (environ 1 victoire sur 2 en Guerrier, 1 sur 4 en Sorcier)."]],
-  ["Aide et notes",["L’Aide indique les nouveaux plafonds, la recharge des PA et des potions.","Nouvelle mise en page des notes de mise à jour : titres centrés, plus grands et en gras."]]
+  ["Aide et notes",["L’Aide indique les nouveaux plafonds, la recharge des PA et des potions.","Nouvelle mise en page des notes de mise à jour : titres centrés, plus grands et en gras.","Aide : nouvel effet Paralysie et tableau de rareté des affixes."]]
  ]},
  {v:'0.3.0',t:"Combat 2.0 - Stat - PVP",sec:[
   ["Duels PvP",["Nouveau mode « Duel PvP » dans l’onglet Aventure : recherchez un adversaire parmi les joueurs connectés.","Une confirmation s’affiche quand un adversaire est trouvé. Le duel se joue au tour par tour dans une fenêtre au centre de l’écran : PV, PA, compétences et potions des deux joueurs.","À la fin, le nom du vainqueur s’affiche puis un butin de 500 or récompense la victoire.","Défiez directement un ami : cliquez sur son nom dans la liste d’amis, puis sur « Duel ».","Un joueur qui ne joue pas pendant 90 secondes peut être déclaré perdant ; bouton « Abandonner » disponible."]],
@@ -3326,6 +3562,7 @@ function tipHTML(k){
   if(k.startsWith('pot:')){const q=k.slice(4),P=POTS[q]; if(!P) return '';
     const used=C.bonus&&((q==='p_xp'&&C.bonus.xp)||(q==='p_loot'&&C.bonus.loot));
     return `<article class="it" style="--rc:${P.c}"><header><b>${P.n}</b><small>Potion · ${matCount(q)} en stock</small></header><ul><li>${P.d}</li><li class="imp">${used?'Déjà utilisée pour ce combat.':'Se boit sans utiliser votre tour.'}</li></ul></article>`}
+  if(k.startsWith('sk:')){const q=SK[k.slice(3)]; return q?skCard(q,h):''}
   if(k.startsWith('f:')){const r=findItem(+k.slice(2)); return r?itemCard(r.it):''}
   if(k.startsWith('bag:')){const E=S.bag[+k.slice(4)]; if(!E) return ''; const c=E.o; return c.mat?matCard(c):itemCard(c,'',swapDelta(h,c))}
   const it=h&&h.equip[k];
@@ -3376,7 +3613,7 @@ const A={
   togStats:()=>{S.showStats=S.showStats===false;save();render()},
   statSplit:()=>{S.statSplit=!S.statSplit;save();render()},
   usePot:d=>usePot(d.k),
-  buyPot:d=>{const q=+d.q,c=potPrice(d.k)*q; if(!hasGold(c)) return; if(POTS[d.k].cls&&POTS[d.k].cls!==S.heroes[0].cls){toast(`Réservée au ${CLASSES[POTS[d.k].cls].n}.`);return} if(matRoom(d.k)<q){toast('Inventaire plein.');return}
+  buyPot:d=>{const q=+d.q,P=POTS[d.k]; if(P.fix){ if(!canPay(P.fix)) return; if(matRoom(d.k)<1){toast('Inventaire plein.');return} pay(P.fix); bagAddMat(S.bag,d.k,1); markNew(); save(); render(); toast('Achat : '+P.n+'.'); return } const c=potPrice(d.k)*q; if(!hasGold(c)) return; if(POTS[d.k].cls&&POTS[d.k].cls!==S.heroes[0].cls){toast(`Réservée au ${CLASSES[POTS[d.k].cls].n}.`);return} if(matRoom(d.k)<q){toast('Inventaire plein.');return}
     if(!FREE()) S.gold-=c; bagAddMat(S.bag,d.k,q); markNew(); save(); render(); toast(`Achat : ${q} × ${POTS[d.k].n}.`)},
   auto:()=>{S.auto=!S.auto;if(!S.auto)S.farm=false;if(S.auto&&C.waiting){const w=C.waiting;C.waiting=null;C.pending=null;w.res(ai(w.u))}render()},
   farm:()=>{S.farm=!S.farm;render()},
@@ -3406,17 +3643,24 @@ const A={
   cancelPick:()=>{C.pending=null;renderActbar();refreshAll()},
   endTurn:()=>{const w=C.waiting; if(!w) return; C.waiting=null; C.pending=null; w.res({end:true})},
   learn:d=>{
-    const h=S.heroes[0]; const sk=SK[d.id]; if(h.sp<1||(h.learned[d.id]||0)>=5||h.lvl<sk.lvl) return;
+    const h=S.heroes[0],sk=SK[d.id]; if(!sk||!heroSkills(h).includes(sk)||h.sp<1||(h.learned[d.id]||0)>=skMax(sk)||skReq(sk,h)) return;
     h.sp--; h.learned[d.id]=(h.learned[d.id]||0)+1;
-    if(sk.t==='a'&&!h.loadout.includes(d.id)) h.loadout.push(d.id);
-    save();render();
+    if(sk.t==='a'&&!h.loadout.includes(d.id)){ if(h.loadout.length<LOADOUT_MAX) h.loadout.push(d.id); else toast(`Barre de combat pleine (${LOADOUT_MAX}) : retirez une compétence pour équiper ${sk.n}.`) }
+    const y=scrollY; save();render();scrollTo(0,y);
   },
   equipSk:d=>{
-    const h=S.heroes[0];
+    const h=S.heroes[0],sk=SK[d.id]; if(!sk||!h.learned[d.id]||sk.t!=='a') return;
     if(h.loadout.includes(d.id)){ if(h.loadout.length>1)h.loadout=h.loadout.filter(x=>x!==d.id); else toast('Gardez au moins une compétence active.') }
-    else if(h.loadout.length<3) h.loadout.push(d.id);
-    save();render();
+    else if(h.loadout.length<LOADOUT_MAX) h.loadout.push(d.id); else toast(`Barre de combat pleine (${LOADOUT_MAX} compétences).`);
+    const y=scrollY; save();render();scrollTo(0,y);
   },
+  skSel:d=>{ UI.skSel=UI.skSel===d.id?null:d.id; const y=scrollY; render(); scrollTo(0,y) },
+  chooseSpec:d=>{ const h=S.heroes[0],sp=CLASSES[h.cls].specs[d.s]; if(!sp||h.spec||h.lvl<SPEC_L) return;
+    if(UI.specConf!==d.s){ UI.specConf=d.s; const y=scrollY; render(); scrollTo(0,y); setTimeout(()=>{ if(UI.specConf===d.s){UI.specConf=null; if(UI.tab==='heroes'&&!UI.scr){const y2=scrollY;render();scrollTo(0,y2)}} },5000); return }
+    UI.specConf=null; h.spec=d.s; UI.skSel=sp.nodes[0].id; save(); const y=scrollY; render(); scrollTo(0,y); toast('✦ Spécialisation choisie : '+sp.n+' !') },
+  forget:()=>{ const h=S.heroes[0]; if(matCount('p_oubli')<1) return;
+    if(!UI.forgetConf){ UI.forgetConf=true; const y=scrollY; render(); scrollTo(0,y); setTimeout(()=>{ if(UI.forgetConf){UI.forgetConf=false; if(UI.tab==='heroes'&&!UI.scr){const y2=scrollY;render();scrollTo(0,y2)}} },5000); return }
+    UI.forgetConf=false; removeMat('p_oubli',1); resetSkills(h); UI.skSel=null; save(); const y=scrollY; render(); scrollTo(0,y); toast('Compétences et spécialisation réinitialisées : '+h.sp+' points à redistribuer.') },
   ascend:()=>{
     const h=S.heroes[0],c=ascCost(h);
     if(h.stars>=5||h.lvl<MAXL||!canPay(c)) return; pay(c); h.stars++; save(); render(); toast(h.name+' atteint l’ascension '+h.stars+'.');
@@ -3492,7 +3736,7 @@ const A={
   },
   replAff:d=>{
     const r=findItem(UI.fItem); if(!r) return; const c=replCost(r.it); if(!canPay(c)) return; pay(c); addCost(r.it,c);
-    const have=new Set(r.it.aff.map(a=>a.s)),pool=affPool(r.it.cls||S.heroes[0].cls).filter(a=>!have.has(a.s)),n=pick(pool); if(!n) return;
+    const have=new Set(r.it.aff.map(a=>a.s)),pool=affPool(r.it.cls||S.heroes[0].cls).filter(a=>!have.has(a.s)),n=wPick(pool,1)[0]; if(!n) return;
     r.it.aff[+d.i]={s:n.s,v:rollAff(n,r.it.ilvl,RAR[r.it.rarity].m)}; save(); render();
   },
   salvBelow:d=>{
@@ -3648,7 +3892,7 @@ const A={
       case 'lvlUp': giveLvl(1); msg='Niveau '+h.lvl+'.'; break;
       case 'lvl10': giveLvl(10); msg='Niveau '+h.lvl+'.'; break;
       case 'lvlMax': giveLvl(MAXL); msg='Niveau maximum ('+MAXL+').'; break;
-      case 'lvl1': {const nh=newHero(h.name,h.cls,h.hue,1); Object.assign(h,{lvl:1,xp:0,sp:nh.sp,learned:nh.learned,loadout:nh.loadout}); S.uid--; msg='Retour au niveau 1 (compétences réinitialisées).'; break}
+      case 'lvl1': {const nh=newHero(h.name,h.cls,h.hue,1); Object.assign(h,{lvl:1,xp:0,sp:nh.sp,learned:nh.learned,loadout:nh.loadout,spec:null}); S.uid--; msg='Retour au niveau 1 (compétences réinitialisées).'; break}
       case 'sp5': h.sp+=5; msg='+5 points de compétence.'; break;
       case 'unequip': {let n=0,lost=0; for(const sl of Object.keys(h.equip)){const it=h.equip[sl]; delete h.equip[sl]; if(bagAddItem(S.bag,it)) n++; else {lost++; gain(salvageValue(it))}} msg=`${n} objet${n>1?'s':''} rangé${n>1?'s':''} dans l’inventaire${lost?`, ${lost} détruit${lost>1?'s':''} faute de place`:''}.`; break}
       case 'advAll': S.prog={zone:ZONES.length-1,stage:10}; S.progH={zone:ZONES.length-1,stage:10}; S.progM={zone:ZONES.length-1,stage:10}; S.mythOpen=true; {const P=prog();UI.zone=P.zone;UI.stage=P.stage} msg='Toutes les zones d’Aventure sont débloquées (Héroïque et Mythique demandent toujours le niveau 50).'; break;
