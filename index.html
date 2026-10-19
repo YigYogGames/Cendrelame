@@ -1584,11 +1584,89 @@ header.top .seasont{top:calc(100% - 21px);font-size:.66rem;line-height:1.1;lette
 @media (max-width:760px){header.top .seasont{top:calc(100% - 16px)}}
 #menudd button.ddadm{color:#7b2a1a!important}
 .rdsolo{background:#2a1c10!important;color:#f0d48a!important;border-color:#d6aa55!important}
+/* 0.4.7 */
+.seasont{color:#8dffb0!important;text-shadow:0 0 6px #3aff7a,0 0 14px #1fbf5a,0 0 26px #0f8f3a;animation:seglow 3.2s ease-in-out infinite}
+@keyframes seglow{50%{text-shadow:0 0 9px #6aff9a,0 0 20px #2fdf6a,0 0 36px #1faf4a}}
+header.top .seasont{font-size:.9rem!important;letter-spacing:.2em!important;top:calc(100% - 25px)!important}
+.top .brand{transform:translateY(-6px)}
+@media (min-width:761px){body.hasdock:not(.scr) .byline{top:calc(74px + env(safe-area-inset-top,0px))!important}}
+.menuscr .seasont{font-size:1.5rem!important;letter-spacing:.24em;margin:8px 0 22px!important}
+@media (max-width:760px){header.top .seasont{top:calc(100% - 18px)!important;font-size:.75rem!important}}
+.btn:has(>.uic){display:inline-flex;align-items:center;justify-content:center;gap:7px}.btn>.uic{width:16px;height:16px;flex:none}
+.ndot.sp{background:#9a4dff!important;box-shadow:0 0 8px #b07aff;left:-4px;right:auto}
+/* fiche de zone compacte */
+.amap:not(.mpar) .aminfo .amhead{height:64px}
+.amap:not(.mpar) .aminfo .ambody{gap:3px!important;padding:8px 12px 10px!important;overflow:hidden!important}
+.amap:not(.mpar) .aminfo h4{margin:4px 0 2px!important;font-size:.88rem}
+.amap:not(.mpar) .aminfo .amseg button{padding:4px 6px}
+.amfoes.am4{grid-template-columns:repeat(4,1fr)!important;gap:4px}.amfoes.am4 .tile{width:38px;height:38px}.amfoes.am4 small{font-size:.68rem;line-height:1.1}
+.amfoe.boss .tile{box-shadow:0 0 0 2px #a5351f}
+.amap:not(.mpar) .zloot{grid-template-columns:repeat(auto-fill,minmax(34px,1fr))!important;gap:4px}.amap:not(.mpar) .zlt{height:34px}.amap:not(.mpar) .zlt .mfi,.amap:not(.mpar) .zlt>svg{width:22px;height:22px}.amap:not(.mpar) .zlt em{font-size:.55rem}
+.amfight{position:static!important;margin:auto 0 0!important;padding:6px 0 0!important;background:none!important;gap:4px!important}
+.amfrow{display:flex;gap:6px;align-items:stretch}.amfrow .amgo{flex:1}
+.amtg{width:44px;flex:none;border-radius:10px;display:grid;place-items:center;background:#2a1c10;border:1px solid #8a6a44;color:#e8d4a8;cursor:pointer;padding:0}.amtg .uic{width:22px;height:22px}
+.amtg.on{background:#3a5a22;border-color:#a8d070;color:#efffd8;box-shadow:0 0 10px #a8d07066}.amtg:disabled{opacity:.4;cursor:default}
+.amnote{margin:2px 0!important;font-size:.78rem}
+/* combat : outils sous l'ordre du tour */
+.fttools2{position:absolute;z-index:4;top:60px;left:50%;translate:-50% 0;display:flex;gap:8px}.fttools2 .fttools{margin:0}
+.fttools2 .ftsq{width:38px;height:38px;background:#140b06d9}
+.fttop{top:12px}
+@media (max-width:620px){.fttools2{top:96px}.fttools2 .ftsq{width:32px;height:32px}.ftbar{padding:12px 10px 10px!important}}
+/* collecte : zones fermées */
+.mcrow.soon{opacity:.55;filter:grayscale(.6)}.mcrow.soon .mcsoon{font-weight:700;color:#7b2a1a;display:flex;align-items:center;gap:6px}
+.dkmain{transform:translateY(6px)}
+@media (min-width:761px){.dkl .dkb,.dkr .dkb{flex:0 0 92px!important;width:92px!important}.dkl{gap:0!important}.dkr{gap:0!important}}
+/* 0.4.8 page personnage */
+.h2page{display:flex;flex-direction:column;gap:0}
+.h2ban{display:grid;grid-template-columns:116px minmax(0,1fr) auto;gap:18px;align-items:center;background:radial-gradient(ellipse at 18% 50%,#4a3020,#1a0f08 80%);color:#f1e2bd;border-color:#8a6a44;margin-bottom:14px}
+.h2ban .hart{width:110px;height:150px;border-radius:10px;border:2px solid #8a6a44}
+.h2id h2{margin:0;color:var(--gold);display:flex;align-items:baseline;gap:10px}.h2id h2 .stars{font-size:.9rem}
+.h2id small{color:#cdb68a}
+.h2xp{margin-top:6px;height:9px;border-radius:5px;background:#0006;overflow:hidden}.h2xp i{display:block;height:100%;background:linear-gradient(90deg,#c99a3a,#f0d48a)}
+.h2rib{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+.h2rib span{display:flex;flex-direction:column;align-items:center;min-width:84px;padding:6px 10px;border-radius:10px;background:#0006;border:1px solid #6a4c2a}
+.h2rib small{color:#cdb68a;font-size:.72rem}.h2rib b{font-size:1.08rem;color:#f6e7c4}.h2rib .pw b{color:var(--gold)}
+.h2act{display:flex;flex-direction:column;gap:8px;align-items:stretch;min-width:190px}
+.h2pts{display:inline-flex;justify-content:center;align-items:center;padding:4px 12px;border-radius:12px;background:#5a2a9a;color:#fff;font-weight:700;box-shadow:0 0 12px #9a4dff88}
+.h2pts.z{background:#3a2a4a;box-shadow:none;opacity:.75}
+.h2act .btn.on{border-color:var(--gold);color:var(--gold)}
+.h2tabs{display:flex;gap:6px;padding-left:4px}
+.h2tabs button{padding:8px 18px;border-radius:10px 10px 0 0;border:1px solid var(--line);border-bottom:0;background:#e2d0a8;font:inherit;font-weight:600;color:#5a4a30;cursor:pointer;display:flex;align-items:center;gap:6px}
+.h2tabs button.on{background:#7b2a1a;color:#fff}
+.h2dot{width:9px;height:9px;border-radius:50%;background:#9a4dff;box-shadow:0 0 8px #b07aff}
+.h2body{border-radius:0 14px 14px 14px}
+.h2grid{display:grid;grid-template-columns:minmax(0,1fr) 320px;gap:18px;align-items:start}
+.h2right{position:sticky;top:90px;display:flex;flex-direction:column;gap:6px}
+.h2det{background:#fff8;border:1px solid var(--line);border-radius:12px;padding:10px;min-height:120px}
+.h2det .skdet{margin:0}.h2det .hdhint{text-align:center;margin:30px 6px}
+.h2bar{justify-content:center;flex-wrap:wrap}
+.h2stg{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-bottom:12px}.h2stg.h2two{grid-template-columns:minmax(0,1.3fr) minmax(0,1fr)}
+.h2card{background:#efe2c0;border:1px solid #c9ad7a;border-radius:12px;padding:12px 14px}
+.h2card h3{margin:0 0 8px;color:#7b2a1a;display:flex;align-items:center;gap:8px}.h2card h3 .uic{width:18px;height:18px}
+.h2st{display:grid;grid-template-columns:22px 1fr auto;gap:4px 8px;align-items:center;font-size:.9rem}.h2st .uic{width:16px;height:16px;color:#7b2a1a}.h2st b{text-align:right}
+.h2res{display:grid;grid-template-columns:1fr 1fr;gap:6px 12px}.h2res div{display:grid;grid-template-columns:1fr auto;font-size:.82rem;gap:2px}.h2res i{grid-column:1/-1;height:6px;border-radius:3px;background:#2a1a0c1a;overflow:hidden}.h2res i b{display:block;height:100%;background:#3a78c8}
+@media (max-width:1000px){.h2grid{grid-template-columns:minmax(0,1fr)}.h2right{position:static;order:-1}.h2stg,.h2stg.h2two{grid-template-columns:minmax(0,1fr)}}
+@media (max-width:760px){.h2ban{grid-template-columns:80px minmax(0,1fr)}.h2ban .hart{width:76px;height:104px}.h2act{grid-column:1/-1;flex-direction:row;flex-wrap:wrap;min-width:0}.h2rib span{min-width:64px;padding:4px 6px}}
+/* 0.4.8 inventaire en bas à droite, coffre en bas à gauche */
+#invpop.invpop{top:auto;bottom:112px;right:24px;left:auto;max-height:calc(100vh - 200px)}
+#stashpop.stashpop{top:auto;bottom:112px;left:24px;right:auto;max-height:calc(100vh - 200px)}
+.iptop{display:flex;gap:10px;justify-content:flex-end;align-items:stretch;margin:4px 0 8px}
+.ipwheel{width:230px;flex:none}.ipwheel .doll.rune{width:100%}
+.ipstats{width:230px;flex:none;background:#0004;border:1px solid #a88d5b55;border-radius:8px;padding:8px 10px;display:flex;flex-direction:column;gap:6px;color:#f1e2bd;overflow:auto;max-height:262px}
+.ipstats h4{margin:0;color:var(--gold);font-size:.9rem}
+.ipstats dl.stats{font-size:.76rem;margin:0;row-gap:1px}.ipstats dl.stats dd,.ipstats dl.stats dt{color:#f1e2bd}.ipstats .scat{color:var(--gold)!important}
+.ipstats .btn{align-self:center}
+.ipst.on{border-color:var(--gold);color:var(--gold)}
+@media (max-width:700px){.ipwheel,.ipstats{width:46%}.iptop{justify-content:center}}
+@media (min-width:701px) and (max-width:1700px){#stashpop .bag{grid-template-columns:repeat(15,36px)}#invpop .bag{grid-template-columns:repeat(14,40px)}}
+.h2grid{grid-template-columns:minmax(0,1fr) 380px}
+@media (min-width:701px) and (max-width:1360px){#stashpop .bag{grid-template-columns:repeat(15,31px)}#invpop .bag{grid-template-columns:repeat(14,35px)}.ipwheel,.ipstats{width:200px}.ipstats{max-height:228px}}
+.h2act .btn.on{background:#7b2a1a!important;color:#fff!important;border-color:var(--gold)}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 @media (min-width:760px){.arena{grid-template-columns:1fr 1fr}}
 </style>
 
-<div class="byline">By Roukette<br><span id="ver"></span></div>
+<div class="byline"><span id="ver"></span></div>
 <div id="testbar" class="testbar" hidden>VERSION TEST · données séparées de la version des joueurs</div>
 <button id="news" class="newsbtn" data-act="tab" data-t="news" aria-label="Nouveautés" title="Nouveautés" hidden><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h11a2 2 0 0 1 2 2v13a3 3 0 0 1-3 3H7a3 3 0 0 1-3-3V5a2 2 0 0 1 2-2zm1 4v2h9V7zm0 4v2h9v-2zm0 4v2h6v-2z"/></svg><span>Nouveautés</span></button>
 <button id="gear" class="gear" data-act="tab" data-t="opts" aria-label="Réglages" title="Réglages" hidden><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.07-.94l2.03-1.58a.49.49 0 0 0 .12-.61l-1.92-3.32a.49.49 0 0 0-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54a.48.48 0 0 0-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96a.49.49 0 0 0-.59.22L2.74 8.87a.48.48 0 0 0 .12.61l2.03 1.58c-.05.3-.09.63-.09.94s.02.64.07.94l-2.03 1.58a.49.49 0 0 0-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32a.47.47 0 0 0-.12-.61l-2.01-1.58zM12 15.6A3.6 3.6 0 1 1 12 8.4a3.6 3.6 0 0 1 0 7.2z"/></svg></button>
@@ -1862,12 +1940,13 @@ const ZONES=[
 ];
 
 const PM=1/60; /* taux exprimés par minute */
-const SITES=[
-  {id:'mine',n:'La Mine',unlock:0,out:{fer:4,gold:15},cache:.0008,desc:'Des galeries étroites où résonnent les pioches. On y extrait du fer et quelques pépites d’or.'},
-  {id:'bois',n:'Forêt Enchantée',unlock:120,out:{plante:2,cuir:2},cache:.0008,desc:'Des sous-bois baignés de lueurs, riches en herbes rares et en gibier.'},
-  {id:'ruines',n:'Ruines englouties',unlock:450,out:{rune:1,cristal:4},caps:{cristal:25},cache:.001,desc:'Des salles noyées où les cristaux affleurent entre les glyphes runiques.'},
-  {id:'marais',n:'Marais des brumes',unlock:1400,out:{essence:2,rune:1},cache:.0012,desc:'On y récolte l’essence qui suinte des racines.'},
+const SITES_ALL=[
+  {id:'mine',n:'La Mine',unlock:0,out:{gold:15},cache:.0008,desc:'Des galeries étroites où résonnent les pioches. On y extrait de l’or.'},
+  {id:'bois',off:1,n:'Forêt Enchantée',unlock:120,out:{plante:2,cuir:2},cache:.0008,desc:'Des sous-bois baignés de lueurs, riches en herbes rares et en gibier.'},
+  {id:'ruines',off:1,n:'Ruines englouties',unlock:450,out:{rune:1,cristal:4},caps:{cristal:25},cache:.001,desc:'Des salles noyées où les cristaux affleurent entre les glyphes runiques.'},
+  {id:'marais',off:1,n:'Marais des brumes',unlock:1400,out:{essence:2,rune:1},cache:.0012,desc:'On y récolte l’essence qui suinte des racines.'},
 ];
+const SITES=SITES_ALL.filter(s=>!s.off);
 const TIERS=[
   {n:'Forge ordinaire',lv:[1,15],cost:{fer:15,cuir:8},odds:[80,20,0,0,0]},
   {n:'Forge fine',lv:[10,30],cost:{fer:25,cuir:12,cristal:6},odds:[40,50,10,0,0]},
@@ -2115,7 +2194,7 @@ function genItem(slot,ilvl,rarity,baseName,cls){
   const m=RAR[rarity].m, imp={};
   for(const [s,b,p] of base.imp){const v=(b+p*ilvl)*m; imp[s]=PCT.has(s)?Math.max(.5,r1(v)):Math.max(1,Math.round(v))}
   const ms=CLASSES[base.cls||cls]&&CLASSES[base.cls||cls].role==='mag'?'mag':'atk',s2=Math.random()<.6?'hp':'hpPct';
-  const aff=[{s:ms,v:rollAff(AFXM[ms],ilvl,m),main:1},{s:s2,v:rollAff(AFXM[s2],ilvl,m),main:1}];
+  const aff=[{s:s2,v:rollAff(AFXM[s2],ilvl,m),main:1},{s:ms,v:rollAff(AFXM[ms],ilvl,m),main:1}];
   let ep='';
   if(rarity>=3) ep=' '+pick(EPITHETS);
   else {const a=aff.find(x=>AFXM[x.s].ep); if(a) ep=' '+AFXM[a.s].ep}
@@ -2180,9 +2259,10 @@ function affRange(it,a,k){
   const f=v=>pc?r1(v*k)+'%':Math.round(v*k);
   return `<span class="rng">(${f(lo)} – ${f(hi)})</span>`;
 }
+const affOrd=L=>L.slice().sort((a,b)=>((a.main?(a.s==='hp'||a.s==='hpPct'?0:1):2)-(b.main?(b.s==='hp'||b.s==='hpPct'?0:1):2)));
 function itemCard(it,foot='',delta=null){
   const k=upMul(it);
-  const lines=[...Object.entries(it.imp).map(([s,v])=>`<li class="imp">${fmtStat(s,v*k)}</li>`),...it.aff.map(a=>`<li class="${a.main?'am':''}">${fmtStat(a.s,a.v*k)}${ALTK||NOHOVER?affRange(it,a,k):''}</li>`),...(it.leg?[`<li class="legp"><b>${esc(LEGP[it.leg]||'Pouvoir légendaire')}</b> : ${LEG_D}</li>`]:[])].join('')+(it.aff.length&&!NOHOVER?`<li class="shk">${ALTK?'Plages possibles des affixes (Alt)':'Alt : plages des affixes · Maj : comparer'}</li>`:'');
+  const lines=[...affOrd(it.aff).filter(a=>a.main).map(a=>`<li class="am">${fmtStat(a.s,a.v*k)}${ALTK||NOHOVER?affRange(it,a,k):''}</li>`),...Object.entries(it.imp).map(([s,v])=>`<li class="imp">${fmtStat(s,v*k)}</li>`),...affOrd(it.aff).filter(a=>!a.main).map(a=>`<li class="${a.main?'am':''}">${fmtStat(a.s,a.v*k)}${ALTK||NOHOVER?affRange(it,a,k):''}</li>`),...(it.leg?[`<li class="legp"><b>${esc(LEGP[it.leg]||'Pouvoir légendaire')}</b> : ${LEG_D}</li>`]:[])].join('')+(it.aff.length&&!NOHOVER?`<li class="shk">${ALTK?'Plages possibles des affixes (Alt)':'Alt : plages des affixes · Maj : comparer'}</li>`:'');
   const dl=delta===null?'':`<span class="dl ${delta>=0?'up':'dn'}">${delta>=0?'▲':'▼'} ${Math.abs(Math.round(delta))}</span>`;
   return `<article class="it" style="--rc:var(--r${it.rarity})"><header><b>${esc(it.name)}${it.up?` <em>+${it.up}</em>`:''}</b> ${dl}<small>${SLOT_N[it.slot]}${it.cls?` · <span style="${clsOk(it)?'':'color:var(--blood);font-weight:700'}">${CLASSES[it.cls].n}</span>`:''} · ${RAR[it.rarity].n}</small><small class="${lvlOk(it)?'':'reqno'}">Niveau requis <b class="num">${it.req||it.ilvl}</b></small><small>Niveau d’objet <b class="num">${it.ilvl}</b> · Affixes <b class="num">${it.aff.length} / 5</b></small></header><ul>${lines}</ul>${foot?`<div class="foot">${foot}</div>`:''}</article>`;
 }
@@ -2793,7 +2873,7 @@ const TREE=[
 ];
 const MATX={fer:['Filon de fer','du fer'],gold:['Veine d’or','de l’or'],plante:['Clairière fertile','des herbes'],cuir:['Grand gibier','du cuir'],cristal:['Géode','des cristaux'],essence:['Source vive','de l’essence'],rune:['Glyphe ancien','des runes']};
 const matBranch=m=>({k:'r_'+m,n:MAT_N[m],ic:matIcon(m),mat:m,d:`Quantité ${MATX[m][1]} par récolte`,per:r=>`+${15*r} % ${MATX[m][1]}`,max:10,cap:{k:'r_'+m+'X',n:MATX[m][0],d:`10 % de chances de doubler ${MATX[m][1]} d’une récolte`}});
-const branchesFor=id=>{const si=SITES.find(x=>x.id===id); return [TREE[0],...Object.keys(si.out).map(matBranch),TREE[1]]};
+const branchesFor=id=>{const si=SITES_ALL.find(x=>x.id===id); return [TREE[0],...Object.keys(si.out).map(matBranch),TREE[1]]};
 const tal=st=>st.tal||(st.tal={});
 const talCost=(id,k,r)=>/X$/.test(k)?Math.round((SITE_M[id]||1)*3000):Math.round((SITE_M[id]||1)*60*Math.pow(1.35,r));
 const spdMul=st=>1+.05*(tal(st).spd||0)+(tal(st).spdX?.25:0);
@@ -2967,7 +3047,7 @@ const FR={list:[],prof:{},unsub:null,pun:{},open:false,err:''};
 function presence(state){
   if(!FB.user||!FB.prof) return;
   const ch=(!UI.scr&&S&&S.heroes&&S.heroes[0])?{name:S.heroes[0].name,cls:S.heroes[0].cls,lvl:S.heroes[0].lvl}:null;
-  FB.db.collection(COL('profiles')).doc(FB.user.uid).set({name:FB.prof.name,nameLower:FB.prof.nameLower,lastSeen:firebase.firestore.FieldValue.serverTimestamp(),online:state!=='off',char:ch,...(ch?{card:cardMine()}:{})},{merge:true}).catch(()=>{});
+  FB.db.collection(COL('profiles')).doc(FB.user.uid).set({name:FB.prof.name,nameLower:FB.prof.nameLower,lastSeen:firebase.firestore.FieldValue.serverTimestamp(),online:state!=='off',char:ch,card:cardMine()},{merge:true}).catch(()=>{});
 }
 setInterval(()=>presence(),60000);
 function stopFriends(){ closeChat(); if(FR.unsub){FR.unsub();FR.unsub=null} for(const k in FR.pun){FR.pun[k]();delete FR.pun[k]} FR.list=[]; FR.prof={}; FR.open=false; renderFriends() }
@@ -3608,7 +3688,8 @@ async function cloudPull(uid){
     const bak={acc:ACC,chars:Array.from({length:MAXCH},(_,i)=>lsGet(CHAR_KEY(i)))}; lsSet(KP+'bak_'+Date.now(),JSON.stringify(bak));
     setTimeout(()=>toast('Votre partie hors ligne a été mise de côté : la sauvegarde du compte est chargée.'),800) }
   for(let i=0;i<MAXCH;i++){const c=d['c'+i]; if(c) lsSet(CHAR_KEY(i),c); else lsDel(CHAR_KEY(i))}
-  ACC=Object.assign({gold:80,cur:null,seenVer:null},d.acc||{},{owner:uid,ts:d.ts||Date.now(),offline:false,cur:null});
+  const keep=ACC.owner===uid?Object.fromEntries(Object.entries(ACC).filter(([k])=>!['owner','offline','ts','cur','gold'].includes(k))):{};
+  ACC=Object.assign({gold:80,cur:null,seenVer:null},keep,d.acc||{},{owner:uid,ts:d.ts||Date.now(),offline:false,cur:null});
   lsSet(ACC_KEY,JSON.stringify(ACC)); S=null;
 }
 function clearLocalChars(){for(let i=0;i<MAXCH;i++) lsDel(CHAR_KEY(i)); ACC={gold:80,cur:null,seenVer:ACC.seenVer}; S=null}
@@ -3616,7 +3697,8 @@ function cloudSoon(){ if(!FB.user) return; clearTimeout(FB.t); FB.t=setTimeout((
 async function cloudPush(force){
   if(!FB.user||!FB.db) return; clearTimeout(FB.t);
   if(S&&S.heroes&&S.heroes.length&&ACC.cur!=null&&!UI.scr){ACC.gold=S.gold; lsSet(CHAR_KEY(ACC.cur),JSON.stringify(S))}
-  const doc={ts:ACC.ts||Date.now(),acc:{gold:ACC.gold,season:ACC.season||0,seenVer:ACC.seenVer||null,dbg:ACC.dbg||{},cur:ACC.cur==null?null:ACC.cur}};
+  const acc=JSON.parse(JSON.stringify(ACC)); delete acc.owner; delete acc.offline; delete acc.ts; acc.cur=ACC.cur==null?null:ACC.cur; acc.season=ACC.season||0; acc.dbg=ACC.dbg||{};
+  const doc={ts:ACC.ts||Date.now(),acc};
   for(let i=0;i<MAXCH;i++) doc['c'+i]=lsGet(CHAR_KEY(i))||null;
   try{ await userDoc(FB.user.uid).set(doc); if(FB.sync==='err'){FB.sync=''; if(UI.scr==='menu') render()} }
   catch(e){ FB.sync='err'; if(force) throw e }
@@ -3679,7 +3761,8 @@ function bootChar(){
   {const lg=it=>{if(it&&!it.mat&&it.rarity>=4&&!it.leg) it.leg=it.slot}; S.bag.forEach(e=>lg(e.o)); for(const h of S.heroes) Object.values(h.equip||{}).forEach(lg)}
   {let cut=0; for(const k of Object.keys(S.mats||{})) if(S.mats[k]>matCap(k)){cut++; S.mats[k]=matCap(k)}
    if(cut) setTimeout(()=>toast(`Stock maximum réduit à ${MATCAP.toLocaleString('fr-FR')} par matériau : les surplus ont été retirés.`),1600)}
-  craftMigrate(); { const fx=it=>{ if(it&&!it.mat&&it.req==null) it.req=it.ilvl }; S.bag.forEach(e=>fx(e.o)); for(const h of S.heroes) Object.values(h.equip||{}).forEach(fx);
+  craftMigrate(); { const so=it=>{ if(it&&!it.mat&&it.aff) it.aff=affOrd(it.aff) }; S.bag.forEach(e=>so(e.o)); for(const h of S.heroes) Object.values(h.equip||{}).forEach(so); }
+  { const fx=it=>{ if(it&&!it.mat&&it.req==null) it.req=it.ilvl }; S.bag.forEach(e=>fx(e.o)); for(const h of S.heroes) Object.values(h.equip||{}).forEach(fx);
     for(const h of S.heroes){ const r=(h.learned||{}).m_bar||0; if(r>1){ h.sp=(h.sp||0)+r-1; h.learned.m_bar=1 } } }
   if((S.siteV||1)===2){ let ref=0; for(const si of SITES){const st=S.sites[si.id]; if(!st||!st.tal) continue; const t=st.tal;
       for(let r=0;r<(t.qty||0);r++) ref+=talCost(si.id,'qty',r); if(t.qtyX) ref+=talCost(si.id,'qtyX',0); delete t.qty; delete t.qtyX}
@@ -3747,7 +3830,7 @@ function updFrBtn(){const b=$('.dkfr');if(!b)return;const fo=friendsOnline();let
 function heroChipHTML(){
   const h=S.heroes[0],need=h.lvl>=MAXL?1:xpNeed(h.lvl),pc=h.lvl>=MAXL?100:h.xp/need*100;
   return `${PORTRAIT[h.cls]?`<img src="${PORTRAIT[h.cls]}" alt="" width="50" height="50">`:`<span class="tile" style="--h:${h.hue}">${icon(CLASSES[h.cls].ic)}</span>`}
-   <span class="hcx"><b>${esc(h.name)}</b><small>${CLASSES[h.cls].n} · niveau ${h.lvl}</small><i class="hcxp"><i style="width:${pc}%"></i></i></span>${S.lvlDot&&UI.tab!=='heroes'?'<span class="ndot" aria-label="Niveau gagné"></span>':''}`;
+   <span class="hcx"><b>${esc(h.name)}</b><small>${CLASSES[h.cls].n} · niveau ${h.lvl}</small><i class="hcxp"><i style="width:${pc}%"></i></i></span>${S.lvlDot&&UI.tab!=='heroes'?'<span class="ndot" aria-label="Niveau gagné"></span>':''}${h.sp>0?`<span class="ndot sp" title="${h.sp} point${h.sp>1?'s':''} de compétence à dépenser" aria-label="Points de compétence à dépenser"></span>`:''}`;
 }
 /* décors procéduraux des zones */
 const ZTH=[
@@ -3802,9 +3885,8 @@ function viewAdvMap(){
      <h4>Étapes</h4><div class="amtrail">${trail}</div>
      <h4>${isBoss?'Boss':'Ennemis'} · niveau <span class="num">${L}</span></h4>
      ${isBoss?`<div class="amboss"><span class="tile" style="--h:8">${icon(Z.boss.ic)}</span><span><small>Boss de la zone</small><b>${esc(Z.boss.n)}</b></span></div>`
-       :`<div class="amfoes">${Z.enemies.map(foe).join('')}</div><div class="amboss sm"><span class="tile" style="--h:8">${icon(Z.boss.ic)}</span><span><small>Boss à l’étape 10</small><b>${esc(Z.boss.n)}</b></span></div>`}
-     ${zoneLootHTML(z,isBoss)}<div class="amfight"><button class="btn pri amgo" data-act="fight">${uic('play','pl')} Combattre</button>
-      <div class="amopts"><label><input type="checkbox" id="chkAuto" data-act="auto" ${S.auto?'checked':''}> Combat automatique</label><label><input type="checkbox" id="chkFarm" data-act="farm" ${S.farm?'checked':''} ${S.auto?'':'disabled'}> Enchaîner les combats</label></div>
+       :`<div class="amfoes am4">${Z.enemies.map(foe).join('')}<span class="amfoe boss" ${ttip('Boss à l’étape 10',Z.boss.n)}><span class="tile" style="--h:8">${icon(Z.boss.ic)}</span><small>Boss : ${esc(Z.boss.n)}</small></span></div>`}
+     ${zoneLootHTML(z,isBoss)}<div class="amfight"><div class="amfrow"><button class="btn pri amgo" data-act="fight">${uic('play','pl')} Combattre</button><button class="amtg ${S.auto?'on':''}" data-act="auto" aria-pressed="${!!S.auto}" ${ttip('Combat automatique : '+(S.auto?'activé':'désactivé'),'Votre héros joue seul.')}>${uic('auto')}</button><button class="amtg ${S.farm?'on':''}" data-act="farm" aria-pressed="${!!S.farm}" ${S.auto?'':'disabled'} ${ttip('Enchaîner les combats : '+(S.farm?'activé':'désactivé'),S.auto?'Relance automatiquement le combat après une victoire.':'Activez d’abord le combat automatique.')}>${uic('chain')}</button></div>
       <small class="mute">Puissance de ${esc(h.name)} : <b class="num">${Math.round(heroPower(h))}</b> · PV restaurés après chaque combat.</small></div>
     </div></aside></div>`;
 }
@@ -4248,6 +4330,7 @@ document.addEventListener('visibilitychange',()=>{ if(!document.hidden) updCheck
 
 /* ================= combat : scène avec sprites (PvE, duel, raid) ================= */
 const ENSP={'Gobelin':{f:'gobelin',h:.74},'Loup affamé':{f:'loup',h:.6,flip:1},'Chaman gobelin':{f:'chaman_gobelin',h:.9}};
+UIC.chain='<path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1"/><path d="M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1"/>';
 Object.assign(UIC,{flask:'<path d="M9 3h6M10 3v6L5 18a2 2 0 0 0 1.8 3h10.4A2 2 0 0 0 19 18l-5-9V3"/><path d="M7.5 14h9"/>',
  auto:'<path d="M20 12a8 8 0 0 1-14 5.3M4 12a8 8 0 0 1 14-5.3"/><path d="M18 3v4h-4M6 21v-4h4"/>',
  xx:'<path d="M6 6l12 12M18 6 6 18"/>'});
@@ -4306,7 +4389,7 @@ function viewCombat(){
   const U=u=>`<div class="unit ftu ${u.team==='h'?'ally':'foe'} ${u.boss?'boss':''}" data-u="${u.id}" data-act="pick"><div class="ftpl"><b>${esc(u.name)} <small>niv. ${u.lvl}${u.boss?' · Boss':''}</small></b>${ftHp()}<div class="apbar" ${ttip('Points d’action')}>${Array.from({length:u.maxAp||0},()=>'<i></i>').join('')}</div><div class="stt"></div></div><div class="ftfig">${fighterArt(u.hero?{cls:u.hero.cls,skin:u.hero.skin}:{name:u.name,boss:u.boss,ic:u.ic,hue:u.hue,foe:1})}<i class="ftgr"></i></div><div class="fl"></div></div>`;
   return `<div class="cv ftc ${UI.cbOpen?'bagopen':''}"><div class="ftwrap"><div class="ftsc">${(C.raid?zoneScene(raidSc(RAIDS.find(x=>x.id===C.raid.r)),'rd'):zoneScene(C.zone,'ft'))}
     <div class="fttop"><h2>${C.raid?`Raid · ${esc(RAIDS.find(x=>x.id===C.raid.r).n)} <small>palier +${C.raid.t} · seul</small>`:`${ZONES[C.zone].n} · étape ${C.stage}${C.stage===10?' · Boss':''}`}${C.hero?` <span class="herotag ${C.diff}">${DIFF[C.diff].n}</span>`:''}</h2><span class="cvround num">Tour <b>${C.round}</b></span></div>
-    <div class="cvinit ftinit" id="cvinit">${initBar()}</div>
+    <div class="cvinit ftinit" id="cvinit">${initBar()}</div><div class="fttools2" id="fttools"></div>
     <div class="ftfield"><div class="ftside l">${al.map(U).join('')}</div><div class="ftside r">${en.map(U).join('')}</div></div></div>
     <button class="ftend" id="ftend" data-act="endTurn"></button></div>
    <div class="ftbot"><div id="actbar" class="ftbar"></div><div class="log" id="log">${C.logs.map(l=>`<p class="${l.cls}">${esc(l.t)}</p>`).join('')}</div><div id="cbslot"></div></div></div>`;
@@ -4318,15 +4401,15 @@ const quitBtn=(act,arm)=>`<button class="ftsq quit ${arm?'arm':''}" data-act="${
 function ftEnd(b,{act,label,dis,tip}){ if(!b) return; b.hidden=!act; if(!act) return; b.dataset.act=act; b.disabled=!!dis; b.innerHTML=`<span>${label}</span>`; b.dataset.tip='tx:'+tip; b.setAttribute('aria-label',label.replace(/<br>/g,' ')) }
 function renderActbar(){
   const el=$('#actbar'); if(!el) return; const end=$('#ftend'),slot=$('#cbslot');
-  el.classList.remove('res');
+  el.classList.remove('res'); { const tt=$('#fttools'); if(tt) tt.innerHTML=C.phase==='result'?'':ftTools() }
   if(C.phase==='result'){ UI.cbOpen=false; if(slot) slot.innerHTML=''; $('.ftc')&&$('.ftc').classList.remove('bagopen'); renderActbar0(); el.classList.add('res'); ftEnd(end,{}); return }
   const h=C.units.find(x=>x.team==='h'),w=C.waiting,u=w?w.u:h;
   if(C.phase==='prep'){
-    el.innerHTML=`${cbBtn()}<div class="ftprep"><b>Préparation <span class="num" data-prep>${Math.max(0,Math.ceil((C.prepEnd-Date.now())/1000))} s</span></b><small>Buvez vos potions avant le début du combat : leurs effets et leur recharge commencent maintenant.</small></div>${ftTools()}`;
+    el.innerHTML=`${cbBtn()}<div class="ftprep"><b>Préparation <span class="num" data-prep>${Math.max(0,Math.ceil((C.prepEnd-Date.now())/1000))} s</span></b><small>Buvez vos potions avant le début du combat : leurs effets et leur recharge commencent maintenant.</small></div>`;
     ftEnd(end,{act:'prepGo',label:'Combattre',tip:'Commencer le combat|Lance le combat sans attendre la fin de la préparation.'});
   }else{
     const ids=u?['atk',...u.skills]:[];
-    el.innerHTML=`${cbBtn()}<div class="skcbar ${w?'':'wait'}">${u?ids.map(id=>cTile(id,u,'skill',C.pending&&C.pending.id===id)).join(''):''}</div>${C.pending?`<button class="btn sm" data-act="cancelPick" ${ttip('Annuler','Annule la compétence en cours de ciblage.')}>Annuler</button>`:''}${w?'':`<small class="ftwait">${S.auto?'Combat automatique en cours…':'Les ennemis agissent…'}</small>`}${ftTools()}`;
+    el.innerHTML=`${cbBtn()}<div class="skcbar ${w?'':'wait'}">${u?ids.map(id=>cTile(id,u,'skill',C.pending&&C.pending.id===id)).join(''):''}</div>${C.pending?`<button class="btn sm" data-act="cancelPick" ${ttip('Annuler','Annule la compétence en cours de ciblage.')}>Annuler</button>`:''}${w?'':`<small class="ftwait">${S.auto?'Combat automatique en cours…':'Les ennemis agissent…'}</small>`}`;
     ftEnd(end,{act:'endTurn',label:'Fin de<br>tour',dis:!w,tip:'Fin de tour|Termine votre tour. Les PA non utilisés sont perdus.'});
   }
   if(slot){ const keys=ownPotKeys(); slot.innerHTML=UI.cbOpen?cbPopHTML({keys,act:'usePot',state:k=>{const used=(k==='p_xp'&&C.bonus.xp)||(k==='p_loot'&&C.bonus.loot),cd=potLeft(k);return {off:!!(used||cd),lab:cd?potShow(k,cd):used?'✓':''}}}):''; $('.ftc')&&$('.ftc').classList.toggle('bagopen',!!UI.cbOpen) }
@@ -4354,16 +4437,16 @@ function fArena(m,kind){
   else if(m.state==='prep'){ const left=Math.max(0,Math.ceil((PREP_MS-(Date.now()-tsMs(m.prepAt)))/1000)),rd=m.ready&&m.ready[me],ot=m.players.filter(x=>x!==me).every(x=>m.ready&&m.ready[x]);
     bar=`${U&&U.hp>0?cbBtn():''}<div class="ftprep"><b>Préparation <span class="num" data-prep>${left} s</span></b><small>${rd?'Prêt — en attente…':'Buvez vos potions avant le début du combat.'}${ot?' Votre '+(kind==='pvp'?'adversaire':'partenaire')+' est prêt.':''}</small></div>`;
     end={act:p+'Ready',label:rd?'Prêt':'Je suis<br>prêt',dis:rd,tip:'Je suis prêt|Le combat commence quand tous les joueurs sont prêts ou à la fin du compte à rebours.'} }
-  else if(U&&U.hp<=0) bar=`<small class="ftwait">Votre héros est tombé. Encouragez ${kind==='pvp'?'…':'votre partenaire'} !</small>${quit}`;
-  else if(my&&U.stun){ bar=`${cbBtn()}<small class="ftwait">Vous êtes étourdi : vous passez ce tour.</small>${quit}`; end={act:p+'EndT',label:'Fin de<br>tour',tip:'Fin de tour|Termine votre tour.'} }
-  else if(my){ bar=`${cbBtn()}<div class="skcbar">${['atk',...U.skills].map(id=>cTile(id,U,p+'Sk')).join('')}</div>${quit}`; end={act:p+'EndT',label:'Fin de<br>tour',tip:'Fin de tour|Termine votre tour. Les PA non utilisés sont perdus.'} }
-  else { bar=`${cbBtn()}<small class="ftwait">Tour de <b>${esc(tn?(tn.boss?tn.name:(tn.acct||tn.name)):'')}</b>… <span class="num" ${kind==='pvp'?'data-pvt':'data-rdt'}>(${tl} s)</span></small>${late?`<button class="btn sm pri" data-act="${kind==='pvp'?'pvpClaim':'rdSkip'}">${kind==='pvp'?'Réclamer la victoire':'Passer son tour'}</button>`:''}${quit}`; end={act:p+'EndT',label:'Fin de<br>tour',dis:1,tip:'Fin de tour|Ce n’est pas votre tour.'} }
+  else if(U&&U.hp<=0) bar=`<small class="ftwait">Votre héros est tombé. Encouragez ${kind==='pvp'?'…':'votre partenaire'} !</small>`;
+  else if(my&&U.stun){ bar=`${cbBtn()}<small class="ftwait">Vous êtes étourdi : vous passez ce tour.</small>`; end={act:p+'EndT',label:'Fin de<br>tour',tip:'Fin de tour|Termine votre tour.'} }
+  else if(my){ bar=`${cbBtn()}<div class="skcbar">${['atk',...U.skills].map(id=>cTile(id,U,p+'Sk')).join('')}</div>`; end={act:p+'EndT',label:'Fin de<br>tour',tip:'Fin de tour|Termine votre tour. Les PA non utilisés sont perdus.'} }
+  else { bar=`${cbBtn()}<small class="ftwait">Tour de <b>${esc(tn?(tn.boss?tn.name:(tn.acct||tn.name)):'')}</b>… <span class="num" ${kind==='pvp'?'data-pvt':'data-rdt'}>(${tl} s)</span></small>${late?`<button class="btn sm pri" data-act="${kind==='pvp'?'pvpClaim':'rdSkip'}">${kind==='pvp'?'Réclamer la victoire':'Passer son tour'}</button>`:''}`; end={act:p+'EndT',label:'Fin de<br>tour',dis:1,tip:'Fin de tour|Ce n’est pas votre tour.'} }
   const eb=end.act?`<button class="ftend" data-act="${end.act}" ${end.dis?'disabled':''} data-tip="${esc('tx:'+end.tip)}" aria-label="${esc(end.label.replace(/<br>/g,' '))}"><span>${end.label}</span></button>`:'';
   const pk=U?['p_vie','p_res',CLASSES[U.cls].role==='mag'?'p_int':'p_for','p_pa']:[],paLock=kind==='pvp'&&m.state==='fight'&&(m.round||1)>1;
   const pop=UI.cbOpen&&U&&m.state!=='done'?cbPopHTML({keys:pk,act:p+'Pot',state:k=>{const cd=Math.min((U.pcd||{})[k]||0,POTS[k].cd||99),lk=k==='p_pa'&&paLock;return {off:!!(cd||lk),lab:cd?cd:lk?'✕':''}}}):'';
   const title=kind==='pvp'?`Duel · ${esc(nm[pvpOp(m)]||'')}`:`Raid · ${esc(r.n)} <small>palier +${m.tier||0}</small>`;
   return `<div class="ftc fta2 ${pop?'bagopen':''}"><div class="ftwrap"><div class="ftsc">${kind==='pvp'?zoneScene(6,'pv'):zoneScene(raidSc(r),'rd')}
-     <div class="fttop"><h2>${title}</h2><span class="cvround num">Tour <b>${m.round||1}</b></span></div>${init}
+     <div class="fttop"><h2>${title}</h2><span class="cvround num">Tour <b>${m.round||1}</b></span></div>${init}<div class="fttools2">${quit}</div>
      <div class="ftfield"><div class="ftside l">${left.map(id=>unit(id,false)).join('')}</div><div class="ftside r">${right.map(id=>unit(id,true)).join('')}</div></div></div>${eb}</div>
     <div class="ftbot"><div class="ftbar">${bar}</div><div class="pvlog log">${(m.log||[]).slice(-14).map(l=>`<p>${esc(l)}</p>`).join('')}</div>${pop}</div></div>`;
 }
@@ -4610,7 +4693,7 @@ function seasonCheck(){
   const R=FB.season; if(!R) return; const n=+R.n||0; if((ACC.season||0)>=n) return;
   const had=Array.from({length:MAXCH},(_,i)=>charRaw(i)).some(Boolean);
   if(had) seasonWipe(R);
-  ACC.season=n; saveAcc(); if(FB.user) cloudPush().catch(()=>{});
+  ACC.season=n; saveAcc(); if(FB.user){ cloudPush().catch(()=>{}); if(FB.prof) presence() }
   if(had){ UI.scr='menu'; UI.invOpen=false; render(); seasonModal(R) }
 }
 function seasonModal(R){
@@ -4734,6 +4817,64 @@ function raidSoloFinish(res){
   C.phase='result'; save(); renderHeader(); if(UI.tab==='combat') render();
 }
 
+/* ===== 0.4.8 : page personnage (bandeau + onglets) ===== */
+function hSpecHTML(h){
+  const c=CLASSES[h.cls];
+  if(!h.spec) return `<div class="specs">${Object.entries(c.specs).map(([sid,sp])=>`<div class="speccol ${h.lvl<SPEC_L?'lockd':''}"><h4 style="--co:${sp.co}">${spIcon(sp)}${sp.n}</h4><p class="hint">${sp.d}</p>${specTree(h.cls,sid,h,true)}
+      <button class="btn ${UI.specConf===sid?'danger':'pri'}" data-act="chooseSpec" data-s="${sid}" ${h.lvl<SPEC_L?'disabled':''}>${h.lvl<SPEC_L?`🔒 Niveau ${SPEC_L} requis`:UI.specConf===sid?'Confirmer : choix définitif':'Choisir '+sp.n}</button></div>`).join('')}</div>
+      <p class="hint" style="text-align:center">${h.lvl<SPEC_L?`La spécialisation se débloque au niveau ${SPEC_L}. Vous pouvez déjà découvrir les deux arbres de talents.`:'Choisissez votre spécialisation. Le choix est définitif : seule une Potion d’oubli permet de réinitialiser vos compétences.'}</p>`;
+  const sp=c.specs[h.spec];
+  return `<div class="specs one"><div class="speccol"><h4 style="--co:${sp.co}">${spIcon(sp)}Spécialisation : ${sp.n}</h4><p class="hint">${sp.d}</p>${specTree(h.cls,h.spec,h,false)}</div></div>`;
+}
+function hSkillsTab(h){
+  const c=CLASSES[h.cls],base=c.skills.map(sk=>skTile(sk,h)).join(''),sel=UI.skSel&&SK[UI.skSel];
+  let det='';
+  if(sel&&sel.id!=='atk'){ const r=h.learned[sel.id]||0,req=skReq(sel,h),eq=h.loadout.includes(sel.id);
+    det=`<div class="skdet">${skCard(sel,h)}<div class="row" style="justify-content:center"><button class="btn pri" data-act="learn" data-id="${sel.id}" ${req||h.sp<1||r>=skMax(sel)?'disabled':''}>${r>=skMax(sel)?'Rang maximum':r?'Améliorer (+1 rang)':'Apprendre'}</button>${sel.t==='a'&&r?`<button class="btn" data-act="equipSk" data-id="${sel.id}">${eq?'Retirer de la barre':'Équiper'}</button>`:''}</div></div>`;
+  } else det=`<p class="hint hdhint">${NOHOVER?'Touchez':'Survolez'} une compétence pour voir ses détails, cliquez dessus pour l’apprendre ou l’équiper.</p>`;
+  const fp=matAll('p_oubli');
+  const bar=Array.from({length:LOADOUT_MAX},(_,i)=>{const id=h.loadout[i],q=id&&SK[id];
+    return `<div class="sbslot ${q?'full':''}" data-sbi="${i}">${q?`<button class="skc" style="--co:${q.co}" data-act="skSel" data-id="${id}" data-skdrag="${id}" data-from="${i}" data-tip="sk:${id}" aria-label="Emplacement ${i+1} : ${esc(q.n)}">${spIcon(q)}${q.ap?`<em class="apk">${q.ap}</em>`:''}</button>`:`<span aria-label="Emplacement ${i+1} vide">${i+1}</span>`}</div>`}).join('');
+  return `<div class="h2grid"><div class="h2left">
+      <h3 class="skh">Compétences de base</h3><div class="skrow">${base}</div>
+      <h3 class="skh">Spécialisation</h3>${hSpecHTML(h)}
+      <div class="row forget"><span class="hint">Potion d’oubli : réinitialise toutes les compétences et la spécialisation (en vente chez le Marchand). Possédées : <b class="num">${fp}</b></span><button class="btn sm ${UI.forgetConf?'danger':''}" data-act="forget" ${fp?'':'disabled'}>${UI.forgetConf?'Confirmer la réinitialisation':'Boire une potion d’oubli'}</button></div></div>
+    <div class="h2right"><div class="h2det">${det}</div>
+      <h3 class="skh">Barre de sorts <small class="mute num">${h.loadout.length} / ${LOADOUT_MAX}</small></h3><div class="spsticky"><div class="spbar h2bar" id="spbar">${bar}</div></div>
+      <p class="hint" style="text-align:center;margin:4px 0 0">Glissez-déposez une compétence active apprise dans un emplacement. Glissez un sort hors de la barre pour le retirer, ou d’un emplacement à l’autre pour changer l’ordre.</p></div></div>`;
+}
+function hStatsTab(h){
+  const s=heroStats(h),c=CLASSES[h.cls],ms=c.role==='mag'?['Intelligence',s.mag]:['Force',s.atk],BP=bagParts();
+  const row=(ic,n,v)=>`<span>${uic(ic)}</span><span>${n}</span><b class="num">${v}</b>`;
+  const aCost=ascCost(h);
+  return `<div class="h2stg"><div class="h2card"><h3>${uic('swords')}Attaque</h3><div class="h2st">${row('swords',ms[0],Math.round(ms[1]))}${row('star','Critique',r1(s.crit)+' %')}${row('star','Dégâts critiques',Math.round(s.critDmg)+' %')}${row('auto','Vitesse',Math.round(s.spd))}${row('flask','Vol de vie',r1(s.lifesteal||0)+' %')}${s.dmgPct?row('swords','Dégâts bonus',r1(s.dmgPct)+' %'):''}</div></div>
+    <div class="h2card"><h3>${uic('shieldk')}Défense</h3><div class="h2st">${row('shieldk','PV',Math.round(s.hp))}${row('shieldk','Défense physique',Math.round(s.def))}${row('shieldk','Défense magique',Math.round(s.res))}${row('auto','Esquive',r1(s.dodge)+' %')}${row('star','Points d’action',s.ap)}</div></div>
+    <div class="h2card"><h3>${uic('flag')}Résistances</h3><div class="h2res">${RES_K.map(k=>`<div><span>${STAT_N[k].replace('Résistance ','').replace(/^(à la |au |aux |à l’)/,'')}</span><b class="num">${r1(s[k]||0)} %</b><i><b style="width:${Math.min(100,(s[k]||0)/RES_CAP*100)}%"></b></i></div>`).join('')}</div></div></div>
+    <div class="h2stg h2two"><div class="h2card"><h3>${uic('book')}Base + équipement</h3><dl class="stats cats">${BP.mini}</dl><div class="row" style="justify-content:center;margin-top:8px"><button class="btn sm" data-act="statSplit" aria-pressed="${!!S.statSplit}">${S.statSplit?'Masquer le détail':'Voir le détail (base + équipement)'}</button></div></div>
+    <div class="h2card"><h3>${uic('star')}Ascension <span class="stars" style="margin-left:auto">${'★'.repeat(h.stars)}${'☆'.repeat(5-h.stars)}</span></h3>
+      ${h.stars>=5?'<p class="hint">Ascension maximale. +10% de stats de base par étoile.</p>':`<p class="hint" style="margin-bottom:8px">+10 % de stats de base. Niveau maximum (${MAXL}) requis${h.lvl<MAXL?` — vous êtes niveau ${h.lvl}`:''}.</p><div class="row"><button class="btn" data-act="ascend" ${h.lvl<MAXL||!canPay(aCost)?'disabled':''}>Ascension ${h.stars+1}</button>${costHTML(aCost)}</div>`}</div></div>`;
+}
+function viewHeroes(){
+  const h=S.heroes[0],c=CLASSES[h.cls],s=heroStats(h),need=h.lvl>=MAXL?1:xpNeed(h.lvl),ms=c.role==='mag'?['Intelligence',s.mag]:['Force',s.atk];
+  const tab=UI.heroTab==='stats'?'stats':'skills',aCost=ascCost(h),canAsc=h.stars<5&&h.lvl>=MAXL&&canPay(aCost);
+  const rib=[['PV',Math.round(s.hp)],[ms[0],Math.round(ms[1])],['Défense',Math.round(s.def)],['Déf. magique',Math.round(s.res)],['Vitesse',Math.round(s.spd)],['Critique',r1(s.crit)+' %'],['Puissance',Math.round(heroPower(h))]]
+    .map(([a,b],i)=>`<span class="${i===6?'pw':''}"><small>${a}</small><b class="num">${b}</b></span>`).join('');
+  return `<div class="h2page"><section class="panel h2ban">${heroArt(h.cls,h.skin)}
+    <div class="h2id"><h2>${esc(h.name)} <span class="stars" title="Ascension">${'★'.repeat(h.stars)}${'☆'.repeat(5-h.stars)}</span></h2><small>${c.n} · niveau ${h.lvl} · ${h.lvl>=MAXL?'Niveau max':`XP ${fmt(h.xp)} / ${fmt(need)}`}</small>
+      <div class="h2xp"><i style="width:${h.lvl>=MAXL?100:h.xp/need*100}%"></i></div><div class="h2rib">${rib}</div></div>
+    <div class="h2act"><span class="h2pts ${h.sp?'':'z'}" ${ttip('Points de compétence','Dépensez-les dans l’onglet Compétences.')}>${h.sp} point${h.sp>1?'s':''} à dépenser</span>
+      <button class="btn sm ${tab==='stats'?'on':''}" data-act="heroTab" data-t="${tab==='stats'?'skills':'stats'}" aria-pressed="${tab==='stats'}">${tab==='stats'?'Masquer le détail':'Détail des statistiques'}</button>
+      <button class="btn sm" data-act="${h.stars>=5?'heroTab':'ascend'}" data-t="stats" ${h.stars<5&&!canAsc?'disabled':''} ${ttip(h.stars>=5?'Ascension maximale':'Ascension '+(h.stars+1),h.stars>=5?'+10 % de stats de base par étoile.':`+10 % de stats de base. Niveau ${MAXL} requis.`)}>Ascension ★</button></div></section>
+    <div class="h2tabs" role="tablist"><button role="tab" class="${tab==='skills'?'on':''}" aria-selected="${tab==='skills'}" data-act="heroTab" data-t="skills">Compétences${h.sp?` <span class="h2dot"></span>`:""}</button><button role="tab" class="${tab==='stats'?'on':''}" aria-selected="${tab==='stats'}" data-act="heroTab" data-t="stats">Statistiques détaillées</button></div>
+    <section class="panel h2body skpanel">${tab==='stats'?hStatsTab(h):hSkillsTab(h)}</section></div>`;
+}
+
+/* ===== 0.4.8 : inventaire = sac + roue + stats ; coffre à gauche ===== */
+function invTopHTML(){
+  const h=S.heroes[0];
+  return `<div class="iptop">${UI.invStats?`<div class="ipstats"><h4>Statistiques</h4><dl class="stats cats">${bagParts().mini}</dl><button class="btn sm" data-act="statSplit" aria-pressed="${!!S.statSplit}">${S.statSplit?'Masquer le détail':'Base + équipement'}</button></div>`:''}<div class="ipwheel">${runeDollHTML(h,false)}</div></div>`;
+}
+
 function viewCombatIdle(){
   const P=prog(),dk=curDiff(),D=DIFF[dk],hero=dk!=='normal',z=ZONES[UI.zone],L=D.L||UI.zone*10+UI.stage;
   const h=S.heroes[0],c=CLASSES[h.cls],st=heroStats(h),need=h.lvl>=MAXL?1:xpNeed(h.lvl);
@@ -4828,7 +4969,7 @@ function usePot(k){
 
 /* --- marchand --- */
 /* --- personnage --- */
-function viewHeroes(){
+function viewHeroes0(){
   const h=S.heroes[0],c=CLASSES[h.cls],s=heroStats(h),BP=bagParts();
   const stats=[['PV',s.hp],c.role==='mag'?['Intelligence',s.mag]:['Force',s.atk],['Défense',s.def],['Résistance',s.res],['Vitesse',s.spd]].map(([n,v])=>`<dt>${n}</dt><dd>${Math.round(v)}</dd>`).join('')+
     `<dt>Critique</dt><dd>${r1(s.crit)}%</dd><dt>Dégâts critiques</dt><dd>${Math.round(s.critDmg)}%</dd><dt>Esquive</dt><dd>${r1(s.dodge)}%</dd>`+
@@ -5052,6 +5193,7 @@ function moveEntry(i,tx,ty){
 let DRAG=null,noClick=false;
 const dragItem=d=>d.src==='stash'?(stashTab().bag[d.from]||{}).o:d.src==='bag'?(S.bag[d.from]&&S.bag[d.from].o):d.src==='forge'?(findItem(d.from)||{}).it:S.heroes[0].equip[d.from];
 function equipFromCell(i,slot){
+  if(eqLock()) return;
   const h=S.heroes[0],E=S.bag[i],it=E&&E.o; if(!it||it.mat) return;
   if(slotType(slot)!==it.slot){toast('Cet objet ne va pas dans cet emplacement.');return}
   if(!canWear(it)){toast(clsOk(it)?`Niveau ${it.req} requis pour porter cet objet.`:`Réservé au ${CLASSES[it.cls].n}.`);return}
@@ -5064,6 +5206,7 @@ function equipFromCell(i,slot){
   h.equip[slot]=it; if(UI.bagSel===it) UI.bagSel=null; save(); render();
 }
 function unequipTo(slot,tx,ty){
+  if(eqLock()) return;
   const h=S.heroes[0],it=h.equip[slot]; if(!it) return; const [w,hh]=SIZE(it);
   if(tx!=null){
     const ov=overlaps(tx,ty,w,hh,null),inb=tx>=0&&ty>=0&&tx+w<=GW&&ty+hh<=GH;
@@ -5147,7 +5290,7 @@ function endDrag(e,drop){
   if(o.id==='fslot'){const it=dragItem(d); if(it&&!it.mat){UI.fItem=it.id;UI.fMode='up';render()} else if(it) fPlace(it); return}
   if(d.src==='bag'){ equipFromCell(d.from,o.dataset.slot) }
   else{
-    { const h=S.heroes[0],to=o.dataset.slot; if(slotType(to)!==slotType(d.from)) return; [h.equip[d.from],h.equip[to]]=[h.equip[to],h.equip[d.from]]; if(!h.equip[d.from])delete h.equip[d.from]; save(); render() }
+    { if(eqLock()) return; const h=S.heroes[0],to=o.dataset.slot; if(slotType(to)!==slotType(d.from)) return; [h.equip[d.from],h.equip[to]]=[h.equip[to],h.equip[d.from]]; if(!h.equip[d.from])delete h.equip[d.from]; save(); render() }
   }
 }
 document.addEventListener('pointerup',e=>endDrag(e,true));
@@ -5193,7 +5336,8 @@ function forgeDetail(){
   const h=S.heroes[0],btns=`<button class="btn sm pri" data-act="fPut" data-id="${c.id}">Améliorer</button>${canWear(c)?`<button class="btn sm" data-act="equip" data-id="${c.id}">Équiper</button>`:''}`;
   return detPanel('Détails',itemCard(c,btns,swapDelta(h,c)));
 }
-const invAllowed=()=>!!(S&&S.heroes&&S.heroes.length&&!UI.scr&&!inFight()&&!(PV.match&&['fight','prep'].includes(PV.match.state))&&!(RD.match&&['fight','prep'].includes(RD.match.state)));
+const invAllowed=()=>!!(S&&S.heroes&&S.heroes.length&&!UI.scr);
+const eqLock=()=>{ const l=inFight()||!!(PV.match&&['fight','prep'].includes(PV.match.state))||!!(RD.match&&['fight','prep'].includes(RD.match.state)); if(l) toast('Impossible de changer d’équipement pendant un combat.'); return l };
 function openInv(v){
   if(v&&!invAllowed()){ if(S&&!UI.scr) toast('L’inventaire n’est pas disponible pendant un combat.'); return }
   UI.invOpen=!!v; if(v) S.bagDot=false; if(!v){ UI.invHL=null; UI.bagSel=null; UI.invSel=null; UI.multi=false; UI.confirm=null }
@@ -5204,13 +5348,14 @@ function renderInvPop1(){
   let w=$('#invpop');
   if(!UI.invOpen||!invAllowed()){ if(w) w.remove(); if(UI.invOpen&&S&&S.heroes&&S.heroes.length&&!UI.scr) UI.invOpen=false; renderStashPop(); return }
   const fresh=!w;
+  if(!w&&innerWidth>700) UI.stashOpen=true;
   if(!w){ w=document.createElement('div'); w.id='invpop'; w.className='invpop'; w.setAttribute('role','dialog'); w.setAttribute('aria-label','Inventaire'); document.body.append(w) }
   const P=bagParts(),so=UI.bagSort;
-  w.innerHTML=`<div class="iphead" data-ipdrag><span class="ipt">${icon('chest')}<b>Inventaire</b></span><small class="num ipcnt">${P.used} / ${BAG}</small><span class="ipg"></span><button class="btn sm ipcb ${UI.cbInv?'on':''}" data-act="cbToggle" aria-pressed="${!!UI.cbInv}" ${ttip('Sac de combat','Choisissez les potions emportées en combat (quantités limitées).')}>${uic('flask')}Combat</button><button class="btn sm ipchest ${UI.stashOpen?'on':''}" data-act="stToggle" aria-pressed="${!!UI.stashOpen}" title="Coffre du compte">${icon('chest')}Coffre</button><button class="ipx" data-act="invClose" aria-label="Fermer l’inventaire" title="Fermer (I)">×</button></div>
-    <div class="iptools"><span class="mute">Trier</span><div class="ipseg"><button class="${so.k==='name'?'on':''}" data-act="bagSort" data-k="name">Nom${P.arrow('name')}</button><button class="${so.k==='qty'?'on':''}" data-act="bagSort" data-k="qty">Quantité${P.arrow('qty')}</button></div></div>
+  w.innerHTML=`<div class="iphead" data-ipdrag><span class="ipt">${icon('chest')}<b>Inventaire</b></span><small class="num ipcnt">${P.used} / ${BAG}</small><span class="ipg"></span><button class="btn sm ipcb ${UI.cbInv?'on':''}" data-act="cbToggle" aria-pressed="${!!UI.cbInv}" ${ttip('Sac de combat','Choisissez les potions emportées en combat (quantités limitées).')}>${uic('flask')}Combat</button><button class="btn sm ipst ${UI.invStats?'on':''}" data-act="invStats" aria-pressed="${!!UI.invStats}" ${ttip('Statistiques du personnage','Afficher ou masquer vos statistiques à côté de l’équipement.')}>${uic('book')}Stats</button><button class="btn sm ipchest ${UI.stashOpen?'on':''}" data-act="stToggle" aria-pressed="${!!UI.stashOpen}" title="Coffre du compte">${icon('chest')}Coffre</button><button class="ipx" data-act="invClose" aria-label="Fermer l’inventaire" title="Fermer (I)">×</button></div>
+    ${invTopHTML()}<div class="iptools"><span class="mute">Trier</span><div class="ipseg"><button class="${so.k==='name'?'on':''}" data-act="bagSort" data-k="name">Nom${P.arrow('name')}</button><button class="${so.k==='qty'?'on':''}" data-act="bagSort" data-k="qty">Quantité${P.arrow('qty')}</button></div></div>
     ${UI.multi?multiBar():''}<div class="ipgrid">${gridHTML()}</div>${UI.cbInv?cbPanel():''}<div class="ipres" id="ipres">${goldRow()}</div>
     ${P.detail&&!UI.multi?`<div class="ipdet"><button class="x" data-act="detClose" aria-label="Fermer les détails">×</button>${P.detail}</div>`:''}`;
-  if(fresh&&UI.invPos){ w.style.left=UI.invPos.x+'px'; w.style.top=UI.invPos.y+'px'; w.style.right='auto' }
+  if(fresh&&UI.invPos){ w.style.left=UI.invPos.x+'px'; w.style.top=UI.invPos.y+'px'; w.style.right='auto'; w.style.bottom='auto' }
   if(UI.invPos) ipClamp(w);
   renderStashPop();
 }
@@ -5218,7 +5363,7 @@ function ipClamp(w){ if(innerWidth<=700) return; const r=w.getBoundingClientRect
 let IPD=null,ZTOP=61;
 document.addEventListener('pointerdown',e=>{ const w=e.target.closest&&e.target.closest('#invpop,#stashpop'); if(w&&+(w.style.zIndex||0)<ZTOP){ w.style.zIndex=++ZTOP } },true);
 document.addEventListener('pointerdown',e=>{ const hd=e.target.closest&&e.target.closest('[data-ipdrag]'); if(!hd||e.target.closest('button')||innerWidth<=700) return; const w=$('#invpop'),r=w.getBoundingClientRect(); IPD={dx:e.clientX-r.left,dy:e.clientY-r.top}; w.classList.add('mov'); e.preventDefault() });
-document.addEventListener('pointermove',e=>{ if(!IPD) return; const w=$('#invpop'); if(!w){IPD=null;return} w.style.left=(e.clientX-IPD.dx)+'px'; w.style.top=(e.clientY-IPD.dy)+'px'; w.style.right='auto' });
+document.addEventListener('pointermove',e=>{ if(!IPD) return; const w=$('#invpop'); if(!w){IPD=null;return} w.style.left=(e.clientX-IPD.dx)+'px'; w.style.top=(e.clientY-IPD.dy)+'px'; w.style.bottom='auto'; w.style.right='auto' });
 document.addEventListener('pointerup',()=>{ if(!IPD) return; IPD=null; const w=$('#invpop'); if(w){ w.classList.remove('mov'); ipClamp(w) } });
 document.addEventListener('keydown',e=>{
   if(e.target.closest&&e.target.closest('input,textarea,select,[contenteditable]')) return;
@@ -5286,14 +5431,14 @@ function renderStashPop(){
     <div class="sttabs">${tabs}<button class="sttab ren" data-act="stRen" title="Renommer l’onglet" aria-label="Renommer l’onglet">✎</button>${n<STASH_MAX?`<button class="sttab buy ${UI.stBuy?'conf':''}" data-act="stBuy" ${hasGold(cost)?'':'disabled'} title="Acheter un nouvel onglet">${UI.stBuy?`Confirmer : ${fmt(cost)} or`:`+ Onglet (${fmt(cost)} or)`}</button>`:''}</div>
     <div class="ipgrid">${stashGridHTML()}</div>
     ${sel?`<div class="ipdet"><button class="x" data-act="stDet" aria-label="Fermer les détails">×</button>${sel.o.mat?matCard(sel.o):itemCard(sel.o)}<div class="row" style="margin-top:6px"><button class="btn sm pri" data-act="stTake" data-i="${T.bag.indexOf(sel)}">Récupérer dans l’inventaire</button></div></div>`:''}`;
-  if(fresh&&UI.stPos){ w.style.left=UI.stPos.x+'px'; w.style.top=UI.stPos.y+'px'; w.style.right='auto' }
-  else if(fresh&&innerWidth>700){ const ip=$('#invpop'); if(ip){ const r=ip.getBoundingClientRect(),wr=w.getBoundingClientRect(); let x=r.left,y=r.bottom+8; if(y+wr.height>innerHeight-4){ x=r.right+8; y=r.top; if(x+wr.width>innerWidth-4){ x=Math.max(4,innerWidth-wr.width-4); y=Math.max(4,innerHeight-wr.height-4) } } w.style.left=x+'px'; w.style.top=y+'px'; w.style.right='auto' } }
+  if(fresh&&UI.stPos){ w.style.left=UI.stPos.x+'px'; w.style.top=UI.stPos.y+'px'; w.style.right='auto'; w.style.bottom='auto' }
+  else if(false){ const ip=$('#invpop'); if(ip){ const r=ip.getBoundingClientRect(),wr=w.getBoundingClientRect(); let x=r.left,y=r.bottom+8; if(y+wr.height>innerHeight-4){ x=r.right+8; y=r.top; if(x+wr.width>innerWidth-4){ x=Math.max(4,innerWidth-wr.width-4); y=Math.max(4,innerHeight-wr.height-4) } } w.style.left=x+'px'; w.style.top=y+'px'; w.style.right='auto' } }
   const ri=$('#stren'); if(ri&&document.activeElement!==ri){ ri.focus(); ri.select() }
 }
 function stRenDone(save2){ const ri=$('#stren'); if(ri&&save2){ const v=ri.value.trim().slice(0,16); if(v) stashTab().n=v; saveAcc() } UI.stRen=false; renderStashPop() }
 let STD=null;
 document.addEventListener('pointerdown',e=>{ const hd=e.target.closest&&e.target.closest('[data-stdrag]'); if(!hd||e.target.closest('button')||innerWidth<=700) return; const w=$('#stashpop'),r=w.getBoundingClientRect(); STD={dx:e.clientX-r.left,dy:e.clientY-r.top}; w.classList.add('mov'); e.preventDefault() });
-document.addEventListener('pointermove',e=>{ if(!STD) return; const w=$('#stashpop'); if(!w){STD=null;return} w.style.left=(e.clientX-STD.dx)+'px'; w.style.top=(e.clientY-STD.dy)+'px'; w.style.right='auto' });
+document.addEventListener('pointermove',e=>{ if(!STD) return; const w=$('#stashpop'); if(!w){STD=null;return} w.style.left=(e.clientX-STD.dx)+'px'; w.style.top=(e.clientY-STD.dy)+'px'; w.style.bottom='auto'; w.style.right='auto' });
 document.addEventListener('pointerup',()=>{ if(!STD) return; STD=null; const w=$('#stashpop'); if(w){ w.classList.remove('mov'); const r=w.getBoundingClientRect(),x=clamp(r.left,4,Math.max(4,innerWidth-r.width-4)),y=clamp(r.top,4,Math.max(4,innerHeight-60)); w.style.left=x+'px'; w.style.top=y+'px'; UI.stPos={x,y} } });
 document.addEventListener('keydown',e=>{ if(e.target.id==='stren'){ if(e.key==='Enter'){e.preventDefault();stRenDone(true)} else if(e.key==='Escape'){e.preventDefault();stRenDone(false)} } });
 document.addEventListener('focusout',e=>{ if(e.target.id==='stren') setTimeout(()=>{ if(UI.stRen) stRenDone(true) },0) });
@@ -5392,18 +5537,19 @@ function viewSites(){
       <div class="mcracts"><button class="btn sm mcib" data-act="siteTree" data-id="${si.id}" title="Améliorations" aria-label="Améliorations de ${si.n}">${uic('up')}${siteCanUp(si,st)?'<span class="ndot" aria-hidden="true"></span>':''}</button>
        <button class="btn sm mcib sgear ${au?'on':''}" data-act="siteOpt" data-id="${si.id}" title="Récolte automatique" aria-label="Options de ${si.n}" aria-expanded="${UI.siteOpt===si.id}">${uic('gear')}</button>
        <button class="btn pri" data-act="siteCollect" data-id="${si.id}" ${rd?'':'disabled'}>Collecter${rd>1?` (${rd})`:''}</button>${UI.siteOpt===si.id?optDD(si.id):''}</div></article>`}).join('');
+  const soon=SITES_ALL.filter(x=>x.off).map(si=>`<article class="mcrow lock soon"><span class="mcth">${zoneScene(SITE_SC[si.id]!=null?SITE_SC[si.id]:0,'st')}</span><div class="mcrn"><b>${si.n}</b><small>${si.desc}</small></div><div class="mcrmid"><span class="mcsoon">${uic('lock')} Arrive dans une prochaine mise à jour</span></div><span></span></article>`).join('');
   const ph={};
   for(const si of SITES){const st=S.sites[si.id]; if(st.lvl<1) continue; for(const m of Object.keys(si.out)) ph[m]=(ph[m]||0)+siteBatch(si,st,m)*3600/cycleDur(st)}
   const nReady=SITES.filter(si=>S.sites[si.id].lvl>0&&(S.sites[si.id].ready||0)>0).length;
-  const stocks=['fer','cuir','plante','cristal','essence','rune'].map(m=>{const v=matCount(m),c=matCap(m);return `<div class="mcstk ${v>=c?'full':''}"><span>${matIcon(m)} ${MAT_N[m]}</span><i><b style="width:${Math.min(100,v/c*100)}%"></b></i><em class="num">${fmt(v)} / ${fmt(c)}</em></div>`}).join('');
+  const stocks=[].map(m=>{const v=matCount(m),c=matCap(m);return `<div class="mcstk ${v>=c?'full':''}"><span>${matIcon(m)} ${MAT_N[m]}</span><i><b style="width:${Math.min(100,v/c*100)}%"></b></i><em class="num">${fmt(v)} / ${fmt(c)}</em></div>`}).join('');
   setTimeout(liveSites,0);
   lastBlocked=collectBlocked();
   return `${lastBlocked?'<div class="fullbar" role="alert">Stock de matériaux plein : utilisez-en à la Forge pour continuer la récolte automatique.</div>':''}
-   <div class="mc3"><section><div class="mctop"><h2>Collecte</h2><span class="mute">Une récolte toutes les 5 minutes, même hors ligne. La zone attend que vous collectiez avant de recommencer.</span></div>${rows}</section>
+   <div class="mc3"><section><div class="mctop"><h2>Collecte</h2><span class="mute">Une récolte toutes les 5 minutes, même hors ligne. La zone attend que vous collectiez avant de recommencer.</span></div>${rows}${soon}</section>
    <aside class="aminfo maside"><div class="ambody"><button class="btn pri amgo" data-act="siteAll" ${nReady?'':'disabled'}>${uic('hand')} Tout collecter${nReady?` (${nReady})`:''}</button>
     <h4>Production par heure</h4><div class="mcrates">${Object.entries(ph).map(([m,v])=>`<span class="mcr" title="${MAT_N[m]}">${matIcon(m)}<b class="num">+${fmt(Math.round(v))}</b></span>`).join('')||'<span class="mute">Aucune zone ouverte.</span>'}</div>
-    <h4>Stocks</h4>${stocks}
-    <p class="amnote mute" style="margin-top:auto">La flèche ouvre l’arbre d’améliorations de la zone ; l’Entrepôt augmente le stock maximum. L’engrenage donne accès à la récolte automatique, débloquée au niveau de zone ${AUTO_L}.</p></div></aside></div>${UI.siteTree?treeModal(UI.siteTree):''}`;
+
+    <p class="amnote mute" style="margin-top:auto">La flèche ouvre l’arbre d’améliorations de la Mine (cadence, filon d’or et entrepôt). L’engrenage donne accès à la récolte automatique, débloquée au niveau de zone ${AUTO_L}.</p></div></aside></div>${UI.siteTree?treeModal(UI.siteTree):''}`;
 }
 /* ===== Marchand : étal ===== */
 const SHOP_CAT=k=>k==='sc_blank'?'ench':k==='p_oubli'?'spe':['p_xp','p_loot'].includes(k)?'prog':'comb';
@@ -5541,8 +5687,8 @@ function viewHelp(){
 }
 
 /* --- nouveautés --- */
-const VERSION='0.4.6';
-const BUILD='20261019222413';
+const VERSION='0.4.8';
+const BUILD='20261020001033';
 const PATCH=[
  {v:'0.4.0',t:"Trophées, communauté et nouveaux héros",sec:[
   ["Personnages", ["Nouvel écran de sélection : les cinq emplacements en grandes cartes verticales, chaque héros en pied avec sa classe, son niveau et les boutons Jouer et Supprimer ; le personnage actuel est mis en évidence.", "Nouvel écran de création en forme de registre : nom, classe, apparence, statistiques de départ et aperçu des spécialisations de la classe (description, compétences et talent ultime), avec le héros en grand à droite et le bouton « Créer le personnage ».", "Le Sorcier a deux apparences au choix lors de la création. Le Guerrier garde son portrait en attendant ses illustrations."]],
@@ -5860,7 +6006,9 @@ const A={
   stage:d=>{UI.stage=+d.s;render()},
   fight:()=>startBattle(),
   togStats:()=>{S.showStats=S.showStats===false;save();render()},
-  statSplit:()=>{S.statSplit=!S.statSplit;save();render()},
+  statSplit:()=>{S.statSplit=!S.statSplit;save();const y=scrollY;render();scrollTo(0,y)},
+  heroTab:d=>{UI.heroTab=d.t;const y=scrollY;render();scrollTo(0,y)},
+  invStats:()=>{UI.invStats=!UI.invStats;renderInvPop()},
   usePot:d=>usePot(d.k),
   cbPop:()=>{UI.cbOpen=!UI.cbOpen; if(PV.match&&['prep','fight'].includes(PV.match.state)) renderPvp(); else if(RD.match&&['prep','fight'].includes(RD.match.state)) renderRaid(); else renderActbar()},
   cbIn:d=>cbIn(d.k,+d.n||1),
@@ -5875,7 +6023,7 @@ const A={
     if(UI.confirm!=='pveGiveUp'){UI.confirm='pveGiveUp'; renderActbar(); toast('Cliquez à nouveau pour abandonner : le combat sera compté comme une défaite.'); setTimeout(()=>{if(UI.confirm==='pveGiveUp'){UI.confirm=null; renderActbar()}},4000); return}
     UI.confirm=null; C.abort=true; C.id++; if(C.waiting){const w=C.waiting;C.waiting=null;w.res({})} C.pending=null; C.turn=null; S.farm=false;
     if(C.test){C.test=false; C.result={win:false,test:true}} else C.result={win:false,ab:true};
-    logLine('Vous abandonnez le combat.','cr'); C.phase='result'; save(); render() },
+    C.phase='idle'; C.raid=null; save(); render(); toast('Combat abandonné.') },
   flee:()=>{C.abort=true;C.id++;if(C.waiting){const w=C.waiting;C.waiting=null;w.res({})}C.phase='idle';C.pending=null;S.farm=false;render()},
   back:()=>{C.phase='idle';render()},
   again:()=>{const r=C.raid;C.phase='idle';startBattle(false,r)},
@@ -5918,7 +6066,7 @@ const A={
     const h=S.heroes[0],c=ascCost(h);
     if(h.stars>=5||h.lvl<MAXL||!canPay(c)) return; pay(c); h.stars++; save(); render(); toast(h.name+' atteint l’ascension '+h.stars+'.');
   },
-  unequip:d=>{
+  unequip:d=>{ if(eqLock()) return;
     const h=S.heroes[0],it=h.equip[d.slot]; if(!it) return;
     if(!bagAddItem(S.bag,it)){toast('Inventaire plein.');return} delete h.equip[d.slot]; save(); render();
   },
@@ -5966,7 +6114,7 @@ const A={
   stDet:()=>{ UI.stSel=null; renderStashPop() },
   stTake:d=>fromStash(+d.i),
   invOpen:()=>openInv(true),
-  equip:d=>{
+  equip:d=>{ if(eqLock()) return;
     const h=S.heroes[0],i=cellOf(+d.id); if(i<0) return;
     equipFromCell(i,targetSlot(h,S.bag[i].o));
   },
