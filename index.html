@@ -47,10 +47,12 @@ small,.mute{color:var(--mute)}
 .newsbtn:hover,.newsbtn.on{color:var(--gold);border-color:var(--gold)}
 .newsbtn .ndot{top:2px;right:2px}
 @media (max-width:640px){.newsbtn span:not(.ndot){display:none}.newsbtn{width:38px;padding:0;justify-content:center}.top{padding-top:52px}}
-.pn{border-left:3px solid var(--brass);padding:2px 0 2px 14px;margin-bottom:18px}
-.pn h3{font-size:1.15rem;color:var(--brass);margin-bottom:2px}
+.pn{border-top:2px solid var(--brass);padding:14px 4px 4px;margin-bottom:26px}
+.pn h3{font-size:1.7rem;font-weight:700;color:var(--brass);margin-bottom:2px;text-align:center}
+.pn>small{display:block;text-align:center;font-size:1.05rem;font-weight:700;margin-bottom:6px}
 .pn .tagv{display:inline-block;font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#fff3d6;background:var(--verd);border-radius:2px;padding:1px 6px;margin-left:8px;vertical-align:middle}
-.pn h4{margin:10px 0 4px;font-size:.92rem;color:var(--fg)}
+.pn h4{margin:16px 0 6px;font-size:1.15rem;font-weight:700;color:var(--fg);text-align:center;letter-spacing:.04em;text-transform:uppercase}
+.pn h4::before,.pn h4::after{content:'';display:inline-block;width:28px;height:1px;background:var(--line2);vertical-align:middle;margin:0 10px}
 .pn ul{margin:0;padding-left:18px}
 .pn li{margin:2px 0}
 .tabs button{position:relative}
@@ -65,6 +67,125 @@ small,.mute{color:var(--mute)}
 .peq .doll.rune .dslot{border-width:2px}
 .peq .doll.rune .dslot.sel{box-shadow:0 0 0 3px var(--gold),0 0 16px var(--gold)}
 .pinv{margin-top:0}
+.prowA .peq .dollv,.prowA .peq .doll.dollv{width:100%;max-width:none}
+.doll.dollv{border-radius:8px;box-shadow:0 6px 22px #0007,0 0 0 1px #1d1209}
+.dollv .dslot svg{width:58%;height:58%}
+.dcap{position:absolute;transform:translateX(-50%);max-width:30%;font-size:.68rem;line-height:1.15;text-align:center;color:#e8c982;text-shadow:0 1px 2px #000;pointer-events:none;overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
+.dcap.full{color:color-mix(in srgb,var(--rc) 35%,#fff0d0);font-weight:700}
+.dA{width:100%;display:flex;flex-direction:column;gap:10px}
+.dA .doll.rune{border-radius:8px;box-shadow:0 6px 22px #0007,0 0 0 1px #1d1209}
+.dlist{list-style:none;margin:0;padding:8px 10px;background:linear-gradient(170deg,#4a3420,#2c1e12);border:1px solid #1d1209;border-radius:8px;display:grid;grid-template-columns:1fr 1fr;gap:4px 14px;color:#f3e4c0}
+.dlist li{display:grid;grid-template-columns:1fr auto;align-items:baseline;border-bottom:1px solid #a88d5b33;padding:3px 0}
+.dlist .dl{grid-column:1/-1;font-size:.66rem;text-transform:uppercase;letter-spacing:.08em;color:#cdb68a}
+.dlist b{font-size:.84rem;color:color-mix(in srgb,var(--rc,#f3e4c0) 40%,#fff0d0);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.dlist b.mute{color:#8a7356}
+.dlist small{font-size:.7rem;color:#cdb68a}
+.dA .dlist{grid-template-columns:1fr;gap:2px}
+
+.prowA .peq{justify-content:flex-start;gap:12px}.prowA .peq .dA{flex:1;justify-content:center}
+.invpop{left:24px;right:auto}.prowA .peq .eqhint{margin-top:auto}
+.dA .dlist{grid-template-columns:1fr;gap:2px}
+.cv .cvhead{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:12px}
+.cv .cvround{font-variant-numeric:tabular-nums}
+.cv .cvp{border-radius:50%;object-fit:cover;filter:drop-shadow(0 3px 6px #0008)}
+.cv .tile.cvt{width:64px;height:64px}.cv .tile.cvt svg{width:60%;height:60%}
+.cv .unit{padding:10px;gap:6px}
+.cv .hp{height:18px;border-radius:9px}.cv .hp span{line-height:16px}
+.cv .apbar{height:8px}
+/* ---------- 1 : Arène sombre ---------- */
+.cv1{background:radial-gradient(ellipse at 50% 40%,#3b2a1c,#140d08 75%);border:1px solid #1d1209;border-radius:10px;padding:16px;color:#f0dfb8;box-shadow:inset 0 0 60px #000c}
+.cv1 h2{color:var(--gold)}.cv1 .cvround{color:#cdb68a}
+.cv1scene{display:grid;grid-template-columns:1fr auto 1fr;gap:18px;align-items:center;min-height:250px;padding:18px 6px;background:radial-gradient(ellipse at 50% 100%,#6a3a1855,transparent 60%)}
+.cv1side{display:flex;flex-direction:column;gap:12px}
+.cv1vs{font-family:var(--display);font-size:2.6rem;color:var(--gold);text-shadow:0 0 18px #e8a13a}
+.cvu{flex-direction:row!important;align-items:center;gap:12px!important;background:linear-gradient(160deg,#ffffff14,#0004)!important;border:1px solid #d6aa5566!important;border-radius:12px!important;backdrop-filter:blur(2px);color:#f3e4c0}
+.cvu.foe{border-color:#c0503a88!important}.cvu.turn{box-shadow:0 0 0 2px var(--gold),0 0 22px #e8c98266!important}
+.cvu .cvinfo{flex:1;display:flex;flex-direction:column;gap:5px;min-width:0}.cvu small{color:#cdb68a}
+.cv1 .cvbar{margin:14px 0;padding:12px;background:linear-gradient(#2b1d12,#1a110a);border:1px solid #d6aa5555;border-radius:10px;box-shadow:0 -4px 20px #0008}
+.cv1 .cvbar .mute,.cv1 .cvbar small{color:#cdb68a}.cv1 .cvbar b{color:#f3e4c0}
+.cv1 .log{background:#0e0905cc;border-color:#d6aa5533}
+.cvinit{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin:0 0 6px;padding:6px 14px;background:#0008;border:1px solid #d6aa5533;border-radius:30px;width:fit-content;color:#cdb68a}
+.cvinit .mute{color:#cdb68a;margin-right:6px;font-size:.85rem}.cvinit i{font-style:normal;color:#8a7356}
+.cvo{width:38px;height:38px;border-radius:50%;display:grid;place-items:center;border:2px solid #4f8a4a;background:#3a2817;overflow:hidden;transition:transform .2s}.cvo.foe{border-color:#b04030}
+.cvo .cvp{width:34px;height:34px}.cvo .cvt{width:30px!important;height:30px!important}.cvo .cvt svg{width:70%;height:70%}
+.cvo.now{transform:scale(1.2);margin:0 6px;box-shadow:0 0 0 2px var(--gold),0 0 12px var(--gold)}.cvo.dead{opacity:.3;filter:grayscale(1)}
+.cvu{position:relative}
+.cvu .cvp{flex:none}.cvu .cvt{flex:none}
+.cvu .stt em{background:#0005}
+.cvu.dead{opacity:.35}.cvu.selectable{box-shadow:0 0 0 2px var(--blood),0 0 18px #e0412a88!important;cursor:pointer}
+.cv1 .cvbar .result{background:#0003;color:#f3e4c0}.cv1 .cvbar .result h2{color:var(--gold)}.cv1 .cvbar .result h2.lose{color:#ff8a70}
+.cv1 .cvbar .hint{color:#cdb68a}.cv1 .cvbar .prepbar{background:#e8c98214}.cv1 .cvbar .prept{color:var(--gold)}
+.cv1 .cvbar .btn:not(.pri):not(.endturn):not(.danger){background:#3a2817;color:#f3e4c0;border-color:#1d1209}
+.cv1 .log p{color:#d9c49a}
+@media (max-width:760px){.cv1scene{grid-template-columns:1fr;min-height:0}.cv1vs{text-align:center;font-size:1.6rem}.cvu .cvp{width:56px;height:56px}}
+/* duels et raids : même ambiance */
+.pvpm .box.fbox{background:radial-gradient(ellipse at 50% 30%,#3b2a1c,#140d08 80%);border:1px solid #d6aa5555;color:#f0dfb8;box-shadow:0 20px 60px #000d,inset 0 0 60px #000c}
+.pvpm .fbox h2{color:var(--gold)}.pvpm .fbox .mute,.pvpm .fbox small{color:#cdb68a}
+.pvpm .fbox .pvcard{background:linear-gradient(160deg,#ffffff14,#0004);border:1px solid #d6aa5566;border-radius:12px;color:#f3e4c0}
+.pvpm .fbox .pvcard.boss{border-color:#c0503a88}.pvpm .fbox .pvcard.turn{box-shadow:0 0 0 2px var(--gold),0 0 22px #e8c98266}
+.pvpm .fbox .pvvs{color:var(--gold);text-shadow:0 0 18px #e8a13a;font-size:2.2rem}
+.pvpm .fbox .pvacts{padding:10px;background:linear-gradient(#2b1d12,#1a110a);border:1px solid #d6aa5555;border-radius:10px}
+.pvpm .fbox .log{background:#0e0905cc;border-color:#d6aa5533}
+.pvpm .fbox .fchat{border-color:#d6aa5533}.pvpm .fbox .fchat .chm span{background:#5a4128;color:#f3e4c0}.pvpm .fbox .fchat .chm.me span{background:var(--brass);color:#1d1209}
+.pvpm .fbox .prepbar{background:#e8c98214}.pvpm .fbox .prept{color:var(--gold)}
+.pvpm .fbox .pvwin{color:var(--gold)}
+.pvpm .fbox .fchat h3,.pvpm .fbox h3{color:var(--gold)}.pvpm .fbox .pvcard .stt em{background:#0005;color:#f3e4c0}
+.pvpm .fbox .cvinit{margin-bottom:10px}
+
+.prowA{display:grid;gap:16px;grid-template-columns:minmax(0,1fr) minmax(0,1fr);align-items:stretch;margin-bottom:16px}
+.prowA .peq{display:flex;flex-direction:column;align-items:center;justify-content:space-between}
+.prowA .peq .doll.rune{width:min(100%,520px)}
+.prowA .ppres{margin:0}
+.eqhint{text-align:center;margin-top:12px}
+kbd{display:inline-block;min-width:1.4em;padding:0 5px;border:1px solid var(--line2);border-bottom-width:2px;border-radius:4px;background:var(--bg2);font:700 .8rem var(--ui,inherit);text-align:center}
+@media (max-width:860px){.prowA{grid-template-columns:minmax(0,1fr)}}
+.invpop{position:fixed;z-index:60;top:84px;right:24px;width:max-content;max-width:calc(100vw - 16px);max-height:calc(100vh - 24px);overflow:auto;background:linear-gradient(170deg,#4a3420,#2c1e12);border:1px solid #1d1209;border-radius:10px;box-shadow:0 18px 50px #000c,0 0 0 1px #a88d5b55 inset;color:#f3e4c0;padding:0 12px 12px}
+.invpop.mov{opacity:.94;cursor:grabbing}
+.iphead{display:flex;align-items:center;gap:12px;margin:0 -12px 10px;padding:10px 12px;background:linear-gradient(#5c4128,#3e2b19);border-bottom:1px solid #1d1209;border-radius:10px 10px 0 0;cursor:grab;user-select:none;touch-action:none}
+.iphead .ipt{display:flex;align-items:center;gap:8px;font-family:var(--display);font-size:1.2rem;color:var(--gold)}
+.iphead .ipt svg{width:22px;height:22px;fill:currentColor}
+.iphead .ipcnt{color:#cdb68a}
+.iphead .ipg{display:flex;align-items:center;gap:5px;margin-left:auto;color:var(--gold)}.iphead .ipg svg{width:18px;height:18px}
+.ipx{width:30px;height:30px;border-radius:50%;border:1px solid #1d1209;background:#2a1c10;color:#f3e4c0;font-size:1.2rem;line-height:1;cursor:pointer}.ipx:hover{background:var(--blood);color:#fff}
+.iptools{display:flex;align-items:center;gap:8px;margin-bottom:10px;flex-wrap:wrap}.iptools .mute{color:#cdb68a}
+.ipseg{display:inline-flex;border:1px solid #1d1209;border-radius:6px;overflow:hidden}
+.ipseg button{background:#2a1c10;color:#e8d6b0;border:0;padding:5px 12px;cursor:pointer;font:inherit;font-size:.86rem}.ipseg button+button{border-left:1px solid #1d1209}.ipseg button.on{background:var(--brass);color:#1d1209;font-weight:700}
+.invpop .bagwrap{padding:0}
+.invpop .bag{grid-template-columns:repeat(14,44px);min-width:0;margin:0}
+.ipdet{position:relative;margin-top:12px;color:var(--fg)}.ipdet .x{position:absolute;top:6px;right:6px;z-index:2}
+.ipdet .it{max-width:none}
+@media (max-width:700px){.invpop{left:6px!important;right:6px!important;top:auto!important;bottom:6px;width:auto;max-height:78vh}.invpop .bag{grid-template-columns:repeat(14,34px)}.iphead{cursor:default}}
+.prepbar{display:flex;flex-direction:column;gap:6px;padding:10px;border:1px dashed var(--brass);border-radius:6px;background:#e8c98222}
+.prept{display:flex;align-items:baseline;gap:10px;font-family:var(--display);font-size:1.25rem;color:var(--brass)}.prept .num{font-size:1.5rem;color:var(--blood)}
+.prepbar .hint{margin:0}
+.potb{position:relative}.potb.off{filter:grayscale(.85) brightness(.7);cursor:not-allowed}
+.potb .cdo{position:absolute;inset:0;display:grid;place-items:center;font-size:1.2rem;font-weight:700;color:#fff;text-shadow:0 1px 3px #000}
+.skt header .skrk{display:block;margin-top:2px}
+.skmeta{display:flex;flex-wrap:wrap;gap:5px;margin:8px 0 2px}
+.skm{font-size:.74rem;font-weight:700;padding:2px 7px;border-radius:10px;background:#0001;border:1px solid var(--line2);color:var(--fg)}
+.skm.ap{background:#d39a1c;border-color:#7a5310;color:#1d1209}.skm.free{background:#4f8a4a22;border-color:#4f8a4a;color:#2c6a28}
+.skm.el{background:var(--ec);border-color:#0004;color:#fff}
+.skbody,.sknext{margin-top:8px;display:flex;flex-direction:column;gap:6px}
+.skbody p,.sknext p{margin:0;line-height:1.4}
+.sknext{padding-top:8px;border-top:1px dashed var(--line2);color:var(--mute)}
+.skt h5{margin:0;font-size:.78rem;text-transform:uppercase;letter-spacing:.08em;color:var(--brass)}
+.skt .lockr{margin:8px 0 0}
+.prow1{display:grid;gap:16px;grid-template-columns:minmax(250px,320px) minmax(0,1fr);align-items:stretch;margin-bottom:16px}
+.prow2{display:grid;gap:16px;grid-template-columns:minmax(0,1fr) minmax(0,380px);align-items:start}
+.prow1 .peq .doll.rune{width:min(100%,290px)}
+.prow1 .pleft{display:contents}.prow1 .peq{grid-column:1;grid-row:1}.prow1>.det,.prow1 .pleft>.det{grid-column:1;align-self:start}
+.prow1 .pinv{grid-column:2;grid-row:1;display:flex;flex-direction:column}.prow1 .pinv .bagwrap{flex:1;display:flex;align-items:center}.prow1 .pinv .bag{margin-top:auto;margin-bottom:auto}
+.prow1 .bag{grid-template-columns:repeat(14,minmax(30px,70px));width:100%;min-width:calc(14 * 30px + 13 * 3px + 16px)}
+@media (max-width:1000px){.prow1{grid-template-columns:minmax(0,1fr)}.prow1 .peq,.prow1 .pinv,.prow1 .det{grid-column:1;grid-row:auto}.prow1 .peq .doll.rune{width:min(100%,420px)}}
+@media (max-width:860px){.prow2{grid-template-columns:minmax(0,1fr)}.prow2 .ppres{order:-1}}
+.spsticky{position:sticky;top:8px;z-index:6;padding:2px 0}
+.spbar{display:flex;gap:10px;justify-content:center;padding:10px;margin:0 auto;width:fit-content;background:#3a2817;border:1px solid #1d1209;border-radius:8px;box-shadow:inset 0 0 14px #000a}
+.sbslot{width:56px;height:56px;border-radius:10px;border:2px dashed #a88d5b77;display:grid;place-items:center;color:#a88d5b;font-weight:700;transition:background .12s,border-color .12s}
+.sbslot.full{border-style:solid;border-color:#1d1209}
+.sbslot.over{border-color:var(--gold);background:#e8c98233;box-shadow:0 0 10px var(--gold)}
+.sbslot .skc{width:50px;height:50px;touch-action:none;cursor:grab}
+.sktile.drg{touch-action:none;cursor:grab}
+#skghost{position:fixed;z-index:80;pointer-events:none;width:52px;height:52px;opacity:.9;transform:scale(1.08);margin:0}
+body.skdrag,body.skdrag *{cursor:grabbing!important}
 @media (max-width:860px){.pchar{grid-template-columns:minmax(0,1fr);align-items:start}.ppres{order:-1}.peq .doll.rune{width:min(100%,420px)}}
 @media (max-width:820px){.hero-grid{grid-template-columns:minmax(0,1fr)}}
 .top{display:flex;flex-direction:column;align-items:center;gap:12px;padding-block:26px 14px}
@@ -454,20 +575,62 @@ input[type=checkbox]{accent-color:var(--brass)}
 .hp{position:relative;height:16px;background:#4b3826;border:1px solid var(--line2);border-radius:2px;overflow:hidden}
 .hp i{position:absolute;inset:0 auto 0 0;background:var(--blood);transition:width .35s}
 .unit.ally .hp i{background:var(--verd)}
+.hp .shl{position:absolute;top:0;bottom:0;left:0;width:0;background:repeating-linear-gradient(-45deg,#6db4ffa6 0 6px,#3f83e6a6 6px 12px);box-shadow:inset 0 0 6px #d6ecff;border-left:1px solid #e0f0ff;border-radius:0 2px 2px 0;transition:left .35s,width .35s;pointer-events:none}
 .hp span{position:relative;display:block;text-align:center;font-size:.76rem;line-height:14px;font-variant-numeric:tabular-nums;color:#fff7e0;text-shadow:0 1px 2px #000}
 .stt{display:flex;flex-wrap:wrap;gap:3px;min-height:18px}
 .stt em{font-style:normal;font-size:.72rem;border:1px solid var(--line2);border-radius:2px;padding:0 5px;background:var(--bg3)}
 .stt .b-dot{border-color:var(--blood);color:var(--blood)}
 .stt .b-stun{border-color:var(--r2);color:var(--r2)}
+.stt .b-para{border-color:#b8960c;color:#8a6d00}
+.stt .b-stk{border-color:#b8860b;color:#7a5a00}.stt .b-ult{border-color:#b8860b;background:#e8b13a44;color:#6b4a00;font-weight:700}
 .stt .b-buff{border-color:var(--verd);color:var(--verd)}
 .stt .b-taunt{border-color:var(--brass);color:var(--brass)}
 .fl{position:absolute;inset:0;pointer-events:none;overflow:visible}
-.fnum{position:absolute;left:50%;top:28%;transform:translateX(-50%);font-weight:700;font-size:1.25rem;text-shadow:0 1px 0 #f5e8c6,0 0 6px #f5e8c6;animation:fl 1.1s forwards;color:#8c1f12;white-space:nowrap}
+.fnum{position:absolute;left:50%;top:28%;transform:translateX(-50%);font-weight:700;font-size:1.35rem;text-shadow:0 1px 0 #f5e8c6,0 0 6px #f5e8c6,0 0 2px #000a;animation:fl 2s ease-out forwards;color:#8c1f12;white-space:nowrap;pointer-events:none}
+.fnum.fx{position:fixed;z-index:96;font-size:1.6rem}
 .fnum.crit{color:#b8400a;font-size:1.6rem}
 .fnum.heal{color:#2c6a28}
 .fnum.miss{color:var(--mute);font-size:1rem}
-@keyframes fl{to{transform:translate(-50%,-34px);opacity:0}}
+@keyframes fl{0%{transform:translate(-50%,6px) scale(.7);opacity:0}12%{transform:translate(-50%,-6px) scale(1.15);opacity:1}55%{transform:translate(-50%,-22px) scale(1);opacity:1}100%{transform:translate(-50%,-48px);opacity:0}}
 .acts{display:flex;flex-wrap:wrap;gap:8px;align-items:stretch}
+.skpanel .skh{margin:14px 0 8px;font-size:1.05rem;text-align:center}
+.skrow{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;padding:6px 0}
+.sktile{position:relative;width:52px;height:52px;padding:0;border-radius:9px;border:2px solid #1d1209;background:radial-gradient(circle at 35% 30%,color-mix(in srgb,var(--co) 70%,#fff),var(--co) 55%,#1d1209 130%);display:grid;place-items:center;cursor:pointer;color:#fff8e6;box-shadow:inset 0 0 8px #0007,0 2px 4px #0005;transition:transform .12s}
+.sktile:hover{transform:translateY(-2px)}
+.sktile svg{width:30px;height:30px;fill:currentColor;filter:drop-shadow(0 1px 1px #000b)}
+.sktile.pas{border-radius:50%}
+.sktile:not(.got){filter:saturate(.35) brightness(.85)}
+.sktile.lock{filter:grayscale(1) brightness(.55)}
+.sktile.avail{box-shadow:0 0 0 2px var(--gold),0 0 12px #e8c982cc}
+.sktile.sel{outline:3px solid var(--blood);outline-offset:3px}
+.sktile .rk{position:absolute;bottom:-7px;right:-9px;font-size:.66rem;line-height:1.3;background:#1d1209;color:var(--gold);border-radius:8px;padding:0 5px;font-weight:700;font-variant-numeric:tabular-nums}
+.sktile .eqm{position:absolute;top:-7px;left:-7px;width:17px;height:17px;border-radius:50%;background:var(--verd);color:#fff;font-size:.7rem;display:grid;place-items:center;border:1px solid #1d1209}
+.specs{display:grid;grid-template-columns:1fr 1fr;gap:16px}.specs.one{grid-template-columns:1fr;max-width:420px;margin:0 auto}
+.speccol{display:flex;flex-direction:column;align-items:center;gap:6px;border:1px solid var(--line);border-radius:6px;padding:10px;background:#e8d9b522}
+.speccol h4{display:flex;align-items:center;gap:6px;margin:0;font-size:1.15rem;color:var(--co)}.speccol h4 svg{width:22px;height:22px;fill:currentColor}
+.speccol .hint{text-align:center;margin:0}
+.speccol.lockd .tree{opacity:.75}
+.tree{position:relative;width:300px;height:570px;margin:6px auto}
+.tree .links line.sep{stroke:var(--line2);stroke-width:1;stroke-dasharray:3 4;opacity:.6}
+.tlab{position:absolute;left:0;right:0;text-align:center;font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--mute)}
+.sktile.ultn{width:60px;height:60px}
+.tree .links{position:absolute;inset:0;width:100%;height:100%}
+.tree .links line{stroke:#7a6040;stroke-width:3;stroke-linecap:round;opacity:.45}
+.tree .links line.on{stroke:var(--co);opacity:1}
+.tree .sktile{position:absolute}
+.skdet{max-width:460px;margin:14px auto 0;display:flex;flex-direction:column;gap:8px}
+.skdet .it{max-width:none}
+.it.skt .lockr{color:var(--blood);font-weight:700}
+.forget{justify-content:space-between;gap:10px;margin-top:16px;border-top:1px solid var(--line);padding-top:10px;flex-wrap:wrap}
+.skcbar{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.skc{position:relative;width:50px;height:50px;padding:0;border-radius:9px;border:2px solid #1d1209;background:radial-gradient(circle at 35% 30%,color-mix(in srgb,var(--co) 70%,#fff),var(--co) 55%,#1d1209 130%);display:grid;place-items:center;cursor:pointer;color:#fff8e6;box-shadow:inset 0 0 8px #0007,0 2px 4px #0005}
+.skc svg{width:28px;height:28px;fill:currentColor;filter:drop-shadow(0 1px 1px #000b)}
+.skc:hover:not(.off){box-shadow:0 0 0 2px var(--gold),inset 0 0 8px #0007}
+.skc.sel{outline:3px solid var(--blood);outline-offset:2px}
+.skc.off{filter:grayscale(.85) brightness(.6);cursor:not-allowed}
+.skc .apk{position:absolute;bottom:-6px;left:-6px;font-style:normal;font-size:.68rem;font-weight:700;background:#d39a1c;color:#1d1209;border-radius:8px;padding:0 5px;border:1px solid #7a5310}
+.skc .cdo{position:absolute;inset:0;display:grid;place-items:center;font-size:1.3rem;font-weight:700;color:#fff;text-shadow:0 1px 3px #000}
+@media (max-width:620px){.specs{grid-template-columns:1fr}}
 .skb{background:var(--bg3);border:1px solid var(--line2);border-radius:3px;padding:8px 12px;cursor:pointer;text-align:left;min-width:128px;display:flex;flex-direction:column}
 .acts .btn.sm{align-self:center}
 .skb:hover:not(:disabled){border-color:var(--brass)}
@@ -526,7 +689,7 @@ input[type=checkbox]{accent-color:var(--brass)}
 .dslot.full{border:2px solid var(--rc);background:color-mix(in srgb,var(--rc) 16%,#ead9b3);color:var(--rc);box-shadow:0 0 10px -3px var(--rc)}
 .dslot:hover,.dslot.sel{outline:2px solid var(--brass);outline-offset:2px}
 .dslot em{position:absolute;top:1px;right:3px;font-style:normal;font-size:.68rem;font-weight:700;color:var(--brass)}
-#tip{position:fixed;z-index:30;width:250px;max-width:calc(100vw - 16px);pointer-events:none;filter:drop-shadow(0 8px 20px #000a);color:var(--fg)}
+#tip{position:fixed;z-index:100;width:250px;max-width:calc(100vw - 16px);pointer-events:none;filter:drop-shadow(0 8px 20px #000a);color:var(--fg)}
 #tip .it{background:var(--bg2);background-image:linear-gradient(160deg,color-mix(in srgb,var(--rc) 14%,var(--bg2)),var(--bg2) 62%)}
 
 /* inventaire : grille 12 x 4 */
@@ -572,6 +735,8 @@ input[type=checkbox]{accent-color:var(--brass)}
 .fslot.full{border:2px solid color-mix(in srgb,var(--rc) 75%,#fff 10%);background:linear-gradient(160deg,color-mix(in srgb,var(--rc) 45%,#4d3621),#35251a 85%);color:color-mix(in srgb,var(--rc) 30%,#fff0d0)}
 .fslot svg{width:60%;height:60%;fill:currentColor}
 .fslot em{position:absolute;left:5px;top:2px;font-style:normal;font-weight:700;color:var(--gold)}
+.fginv{justify-content:space-between;gap:10px;margin:14px 0 0;flex-wrap:wrap}
+#fslot.full{cursor:grab;touch-action:none}
 .fslot.over{border-color:var(--gold);box-shadow:inset 0 0 14px #000a,0 0 14px #e8c982}
 .up-acts{display:grid;gap:8px;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr))}
 .rs2{display:inline-flex;align-items:center;gap:4px}
@@ -745,10 +910,12 @@ const MATS=['fer','cuir','plante','cristal','essence','rune','prisme'];
 const MAT_N={fer:'Fer',cuir:'Cuir',plante:'Plante',cristal:'Cristal',essence:'Essence',rune:'Rune',prisme:'Prisme divin',gold:'Or'};
 /* potions : objets 1x1 empilables, achetés chez le Marchand, utilisables en combat */
 const POTS={
-  p_vie:{n:'Potion de vie',c:'#d8342b',p:30,d:'Rend 40 % des PV max.'},
-  p_res:{n:'Potion de résistance',c:'#4a86c8',p:50,d:'+40 % Défense et Résistance pendant 3 tours.'},
-  p_for:{n:'Potion de force',c:'#e07a1f',p:60,d:'+30 % Force pendant 3 tours.',cls:'guerrier'},
-  p_int:{n:'Potion d’intelligence',c:'#8a4fd8',p:60,d:'+30 % Intelligence pendant 3 tours.',cls:'mage'},
+  p_vie:{n:'Potion de vie',c:'#d8342b',p:30,d:'Rend 40 % des PV max.',cd:4},
+  p_res:{n:'Potion de résistance',c:'#4a86c8',p:50,d:'+40 % Défense et Résistance pendant 3 tours.',cd:4},
+  p_for:{n:'Potion de force',c:'#e07a1f',p:60,d:'+30 % Force pendant 3 tours.',cls:'guerrier',cd:4},
+  p_int:{n:'Potion d’intelligence',c:'#8a4fd8',p:60,d:'+30 % Intelligence pendant 3 tours.',cls:'mage',cd:4},
+  p_pa:{n:'Potion d’action',c:'#d9b81f',p:70,cd:6,d:'+2 PA pendant 3 tours. En duel, uniquement pendant la préparation ou à votre premier tour.'},
+  p_oubli:{n:'Potion d’oubli',c:'#5f7fa8',fix:{gold:5000,prisme:5},nocombat:1,d:'Réinitialise toutes vos compétences et votre spécialisation (points remboursés). Se boit depuis la fenêtre Personnage.'},
   p_xp:{n:'Élixir de savoir',c:'#3fae6a',p:80,d:'+50 % d’expérience gagnée à la fin de ce combat.'},
   p_loot:{n:'Philtre de fortune',c:'#d9a62b',p:80,d:'+50 % d’or et de matériaux gagnés à la fin de ce combat.'},
 };
@@ -762,34 +929,38 @@ const STAT_N={hp:'PV',atk:'Force',mag:'Intelligence',def:'Défense physique',res
 const PCT=new Set(['rPhys','rMag','rFeu','rGlace','rFoudre','rTerre','crit','critDmg','dodge','lifesteal','hpPct','dmgPct','goldFind','dropRate']);
 const fmtStat=(s,v)=>PCT.has(s)?`+${r1(v)}% ${STAT_N[s]}`:`+${Math.round(v)} ${STAT_N[s]}`;
 const MAXL=50;
+const CRIT_CAP=70,CDMG_CAP=200; /* plafonds : 70 % de chances de critique, 200 % de dégâts critiques */
 
 const RAR=[
-  {n:'Commun',aff:0,m:1},{n:'Magique',aff:1,m:1.05},{n:'Rare',aff:2,m:1.12},{n:'Épique',aff:3,m:1.22},{n:'Légendaire',aff:3,m:1.35,leg:1},{n:'Divin',aff:4,m:1.5,leg:1}
+  {n:'Commun',aff:0,m:1},{n:'Magique',aff:1,m:1.05},{n:'Rare',aff:2,m:1.12},{n:'Épique',aff:3,m:1.22},{n:'Légendaire',aff:3,m:1.35,leg:1},{n:'Divin',aff:3,m:1.5,max:1}
 ];
 const BASES=[
   {n:'Épée',slot:'weapon',cls:'guerrier',imp:[['atk',6,1.8]]},
   {n:'Bâton',slot:'weapon',cls:'mage',imp:[['mag',6,1.8]]},
-  {n:'Heaume',slot:'helm',cls:'guerrier',imp:[['hp',12,4],['def',3,.9]]},
-  {n:'Capuche',slot:'helm',cls:'mage',imp:[['hp',10,3.5],['def',2,.7]]},
-  {n:'Cuirasse',slot:'armor',cls:'guerrier',imp:[['hp',18,5],['def',5,1.3]]},
-  {n:'Robe',slot:'armor',cls:'mage',imp:[['hp',15,4.5],['def',3,1]]},
-  {n:'Bottes',slot:'boots',cls:'guerrier',imp:[['hp',8,2.5],['def',2,.6]]},
-  {n:'Sandales',slot:'boots',cls:'mage',imp:[['hp',7,2.2],['def',1,.5]]},
-  {n:'Jambières',slot:'legs',cls:'guerrier',imp:[['hp',14,4],['def',4,1.1]]},
-  {n:'Jambières',slot:'legs',cls:'mage',imp:[['hp',12,3.6],['def',2,.8]]},
+  {n:'Heaume',slot:'helm',cls:'guerrier',imp:[['hp',12,4],['def',3,.9],['rMag',1,.05]]},
+  {n:'Capuche',slot:'helm',cls:'mage',imp:[['hp',10,3.5],['def',3,.85],['rMag',1.5,.07]]},
+  {n:'Cuirasse',slot:'armor',cls:'guerrier',imp:[['hp',18,5],['def',5,1.3],['rMag',1.5,.08]]},
+  {n:'Robe',slot:'armor',cls:'mage',imp:[['hp',15,4.5],['def',4,1.2],['rMag',2,.1]]},
+  {n:'Bottes',slot:'boots',cls:'guerrier',imp:[['hp',8,2.5],['def',2,.6],['rMag',.8,.04]]},
+  {n:'Sandales',slot:'boots',cls:'mage',imp:[['hp',7,2.2],['def',2,.6],['rMag',1,.05]]},
+  {n:'Jambières',slot:'legs',cls:'guerrier',imp:[['hp',14,4],['def',4,1.1],['rMag',1.2,.06]]},
+  {n:'Jambières',slot:'legs',cls:'mage',imp:[['hp',12,3.6],['def',3,.95],['rMag',1.5,.08]]},
   {n:'Anneau',slot:'ring',imp:[]},
   {n:'Amulette',slot:'amulet',imp:[]},
 ];
 const baseFor=(slot,cls)=>BASES.find(b=>b.slot===slot&&(!b.cls||b.cls===cls));
 const AFX=[
-  {s:'hp',b:8,p:3.2},{s:'atk',b:2,p:.9},{s:'mag',b:2,p:.9},{s:'def',b:2,p:.75},
-  {s:'spd',b:1,p:.12,ep:'de Célérité'},
-  {s:'hpPct',b:2,p:.12,ep:'du Titan'},{s:'dmgPct',b:2,p:.14,ep:'de Fureur'},{s:'crit',b:1.5,p:.08,ep:'du Prédateur'},
-  {s:'critDmg',b:6,p:.5,ep:'de Ruine'},{s:'dodge',b:1.2,p:.04,ep:'du Vent'},{s:'lifesteal',b:.8,p:.025,ep:'du Vampire'},
-  {s:'goldFind',b:3,p:.5,ep:'d’Opulence'},
+  {s:'hp',w:16,b:8,p:2.6},{s:'atk',w:16,b:2,p:.6},{s:'mag',w:16,b:2,p:.6},{s:'def',w:9,b:2,p:.6},
+  {s:'spd',w:9,b:1,p:.1,ep:'de Célérité'},
+  {s:'hpPct',w:5,b:2,p:.1,ep:'du Titan'},{s:'dmgPct',w:4,b:1.5,p:.1,ep:'de Fureur'},{s:'crit',w:3,b:1,p:.07,ep:'du Prédateur'},
+  {s:'critDmg',w:3,b:2,p:.12,ep:'de Ruine'},{s:'dodge',w:3,b:1,p:.035,ep:'du Vent'},{s:'lifesteal',w:2,b:.6,p:.02,ep:'du Vampire'},
+  {s:'goldFind',w:5,b:3,p:.5,ep:'d’Opulence'},
 ];
-AFX.push({s:'rPhys',b:1.5,p:.06,ep:'du Rempart'},{s:'rMag',b:1.5,p:.06,ep:'de l’Égide'},{s:'rFeu',b:3,p:.12,ep:'Ignifugé'},{s:'rGlace',b:3,p:.12,ep:'du Givre'},{s:'rFoudre',b:3,p:.12,ep:'de l’Orage'},{s:'rTerre',b:3,p:.12,ep:'de la Roche'});
+AFX.push({s:'rPhys',w:5,b:1.5,p:.06,ep:'du Rempart'},{s:'rMag',w:5,b:1.5,p:.06,ep:'de l’Égide'},{s:'rFeu',w:7,b:3,p:.12,ep:'Ignifugé'},{s:'rGlace',w:7,b:3,p:.12,ep:'du Givre'},{s:'rFoudre',w:7,b:3,p:.12,ep:'de l’Orage'},{s:'rTerre',w:7,b:3,p:.12,ep:'de la Roche'});
 const AFXM=Object.fromEntries(AFX.map(a=>[a.s,a]));
+/* tirage pondéré sans remise : PV, Force et Intelligence sortent souvent, Critique et Vol de vie rarement */
+function wPick(pool,n){ const a=pool.slice(),out=[]; while(out.length<n&&a.length){ let t=a.reduce((x,y)=>x+(y.w||5),0)*Math.random(),i=0; for(;i<a.length-1;i++){ t-=a[i].w||5; if(t<=0) break } out.push(a.splice(i,1)[0]) } return out }
+const affTier=w=>w>=14?'Très courant':w>=7?'Courant':w>=5?'Peu courant':w>=3?'Rare':'Très rare';
 /* éléments et résistances */
 const ELEM={feu:{n:'Feu',k:'rFeu',c:'#e0612a'},glace:{n:'Glace',k:'rGlace',c:'#4fa8d8'},foudre:{n:'Foudre',k:'rFoudre',c:'#c9a814'},terre:{n:'Terre',k:'rTerre',c:'#8a6a3a'}};
 const RES_K=['rPhys','rMag','rFeu','rGlace','rFoudre','rTerre'],RES_CAP=75;
@@ -801,32 +972,125 @@ const LEG_FX={crit:6,critDmg:10},LEG_D='Augmente les chances de coup critique de
 const affPool=c=>AFX.filter(a=>!(c==='guerrier'&&a.s==='mag')&&!(c==='mage'&&a.s==='atk'));
 const EPITHETS=['de Cendre','des Damnés','du Crépuscule','de l’Aube','d’Aldrec','des Abysses','du Gardien','de la Braise','du Dernier Siège'];
 
+/* compétences : 3 compétences de base par classe (niveaux 1 à 10), puis une spécialisation au niveau 10 (arbre de talents) */
+const SPEC_L=10,LOADOUT_MAX=5,FORGET_COST={gold:5000,prisme:5};
 const CLASSES={
   guerrier:{n:'Guerrier',ic:'sword',role:'atk',hue:8,desc:'Rempart robuste. Encaisse, provoque et frappe fort au corps à corps. Épées, heaumes, cuirasses et bottes.',
-    base:{hp:120,atk:14,mag:0,def:10,res:5,spd:9},grow:{hp:14,atk:2.4,mag:0,def:1.8,res:1,spd:.2},
+    base:{hp:120,atk:14,mag:0,def:10,res:5,spd:9},grow:{hp:13,atk:2.6,mag:0,def:1.8,res:1,spd:.2},
     skills:[
-      {id:'g1',ap:2,n:'Frappe puissante',t:'a',lvl:1,cd:2,mult:1.7,tg:'one'},
-      {id:'g2',ap:2,n:'Cri de guerre',t:'a',lvl:3,cd:4,tg:'allies',fx:[{k:'buff',stat:'atk',v:25,dur:3}]},
-      {id:'g3',ap:3,n:'Mur de boucliers',t:'a',lvl:6,cd:5,tg:'self',fx:[{k:'shield',v:.3,of:'hp'},{k:'taunt',dur:2}]},
-      {id:'g4',ap:3,n:'Tourbillon',t:'a',lvl:10,cd:4,mult:1.15,tg:'all'},
-      {id:'gp1',n:'Peau de fer',t:'p',lvl:2,mods:{defPct:8,resPct:3}},
-      {id:'gp2',n:'Soif de sang',t:'p',lvl:5,mods:{lifesteal:3}},
-      {id:'gp3',n:'Vétéran',t:'p',lvl:8,mods:{hpPct:8,atkPct:3}},
-    ]},
+      {id:'g_frap',ap:2,n:'Frappe puissante',t:'a',lvl:1,cd:2,mult:2,tg:'one',si:'sword',co:'#7a6448'},
+      {id:'g_mur',ap:3,n:'Mur de boucliers',t:'a',lvl:3,cd:5,tg:'self',fx:[{k:'shield',v:.3,of:'hp'},{k:'taunt',dur:2}],si:'shield',co:'#3f5f80'},
+      {id:'g_tour',ap:3,n:'Tourbillon',t:'a',lvl:6,cd:4,mult:1.3,tg:'all',si:'whirl',co:'#6c6a48'},
+    ],
+    common:[
+      {id:'gc_main',c:0,n:'Puissance brute',mods:{atkPct:2},max:5,si:'fist'},
+      {id:'gc_crit',c:1,n:'Précision mortelle',mods:{crit:2},max:3,si:'eye'},
+      {id:'gc_hp',c:2,n:'Robustesse',mods:{hpPct:2},max:5,si:'heart'},
+      {id:'gc_spd',c:3,n:'Célérité',mods:{spdPct:2},max:3,si:'wind'},
+      {id:'gc_def',c:4,n:'Peau d’acier',mods:{defPct:2,resPct:2},max:3,si:'shield'},
+    ],
+    specs:{
+      sang:{n:'Saignement',co:'#9b1c1c',si:'drop',d:'Ouvre des plaies qui saignent à chaque tour, puis achève les cibles ensanglantées.',nodes:[
+        {id:'b_ent',r:0,c:1,t:'a',lvl:10,ap:2,cd:2,n:'Entaille',mult:1.5,tg:'one',fx:[{k:'dot',n:'Saignement',v:.4,dur:3,ch:50}],si:'claw'},
+        {id:'b_dent',r:1,c:0,t:'p',lvl:12,req:'b_ent',max:5,n:'Lames dentelées',gx:{sxCh:{b_ent:10}},si:'saw'},
+        {id:'b_hemo',r:1,c:2,t:'p',lvl:12,req:'b_ent',max:5,n:'Hémorragie',gx:{bleedP:10},mods:{lifesteal:1},si:'drop'},
+        {id:'b_evis',r:2,c:1,t:'a',lvl:15,req:'b_ent',ap:3,cd:3,n:'Éventration',mult:1.6,tg:'one',ifSt:{n:'Saignement',v:.6},si:'dagger'},
+        {id:'b_lac',r:3,c:0,t:'a',lvl:20,req:'b_evis',ap:3,cd:4,n:'Lacération',mult:1,tg:'all',fx:[{k:'dot',n:'Saignement',v:.3,dur:3,ch:60}],si:'claw'},
+        {id:'b_odeur',r:3,c:2,t:'p',lvl:20,req:'b_evis',max:5,n:'Odeur du sang',gx:{vsBleed:5},mods:{hpPct:3},si:'eye'},
+        {id:'b_deep',r:4,c:0,t:'p',lvl:25,max:2,n:'Plaies profondes',gx:{bleedDur:1},si:'hour'},
+        {id:'b_ult',r:6,c:1,t:'p',lvl:35,max:1,n:'Frénésie sanglante',ult:{trig:'bleedHit',n:'Soif',max:5,dur:3,buff:{n:'Frénésie',dmg:20,ls:6}},ud:'Chaque compétence qui touche une cible qui saigne octroie 1 charge de Soif. À 5 charges, vous entrez en Frénésie : +20 % de dégâts et +6 % de vol de vie pendant 3 tours.',si:'drop'},
+        {id:'b_exs',r:4,c:2,t:'a',lvl:30,req:'b_odeur',ap:4,cd:5,n:'Exsanguination',mult:1.4,tg:'one',fx:[{k:'det',n:'Saignement',m:1.5}],si:'skull'},
+      ]},
+      barb:{n:'Barbarie',co:'#b5541c',si:'axe',d:'Plus vos PV baissent, plus vos coups sont dévastateurs. Sacrifiez votre vie pour frapper encore plus fort.',nodes:[
+        {id:'k_sauv',r:0,c:1,t:'a',lvl:10,ap:2,cd:2,n:'Frappe sauvage',mult:1.6,lowHp:.7,tg:'one',si:'axe'},
+        {id:'k_fur',r:1,c:0,t:'p',lvl:12,req:'k_sauv',max:5,n:'Fureur',gx:{lowHpDmg:1.2},si:'rage'},
+        {id:'k_inst',r:1,c:2,t:'p',lvl:12,req:'k_sauv',max:5,n:'Instinct de survie',gx:{lowHpDef:5},mods:{hpPct:3},si:'heart'},
+        {id:'k_pact',r:2,c:1,t:'a',lvl:15,req:'k_sauv',ap:2,cd:3,n:'Pacte de sang',self:.1,mult:2.1,lowHp:.5,tg:'one',si:'drop'},
+        {id:'k_cri',r:3,c:0,t:'a',lvl:20,req:'k_pact',ap:2,cd:5,n:'Cri de guerre',tg:'allies',fx:[{k:'buff',stat:'atk',v:25,dur:3}],si:'horn'},
+        {id:'k_carn',r:3,c:2,t:'a',lvl:20,req:'k_pact',ap:3,cd:4,n:'Carnage',mult:1.15,lowHp:.5,tg:'all',si:'whirl'},
+        {id:'k_bers',r:4,c:0,t:'p',lvl:25,max:3,n:'Berserker',mods:{spdPct:4,crit:2,lifesteal:1},si:'wind'},
+        {id:'k_ult',r:6,c:1,t:'p',lvl:35,max:1,n:'Rage indomptable',ult:{trig:'hurt',n:'Rage',max:5,dur:3,buff:{n:'Déchaînement',dmg:20,def:15}},ud:'Chaque coup subi octroie 1 point de Rage. À 5 points, vous vous Déchaînez : +20 % de dégâts et −15 % de dégâts subis pendant 3 tours.',si:'rage'},
+        {id:'k_folie',r:4,c:2,t:'a',lvl:30,req:'k_carn',ap:4,cd:5,n:'Folie meurtrière',mult:2,lowHp:.8,ls:15,tg:'one',si:'skull'},
+      ]},
+    }},
   mage:{n:'Sorcier',ic:'staff',role:'mag',hue:260,desc:'Canon de verre. Brûle, foudroie et se protège par des barrières arcaniques. Bâtons, capuches, robes et sandales.',
-    base:{hp:90,atk:0,mag:16,def:5,res:10,spd:10},grow:{hp:10.5,atk:0,mag:2.8,def:1,res:1.8,spd:.25},
+    base:{hp:100,atk:0,mag:16,def:6,res:10,spd:10},grow:{hp:13,atk:0,mag:2.8,def:1.5,res:1.8,spd:.25},
     skills:[
-      {id:'m1',ap:2,el:'feu',n:'Boule de feu',t:'a',lvl:1,cd:2,mult:1.5,tg:'one',fx:[{k:'dot',n:'Brûlure',v:.3,dur:3}]},
-      {id:'m2',ap:3,el:'foudre',n:'Éclair en chaîne',t:'a',lvl:3,cd:3,mult:.95,tg:'all'},
-      {id:'m3',ap:3,n:'Barrière arcanique',t:'a',lvl:6,cd:5,tg:'allies',fx:[{k:'shield',v:1.6,of:'mag'}]},
-      {id:'m4',ap:4,el:'terre',n:'Météore',t:'a',lvl:10,cd:6,mult:2.1,tg:'all',fx:[{k:'stun',ch:30,dur:1}]},
-      {id:'mp1',n:'Savoir arcanique',t:'p',lvl:2,mods:{magPct:8}},
-      {id:'mp2',n:'Surcharge',t:'p',lvl:5,mods:{crit:3,critDmg:6}},
-      {id:'mp3',n:'Esprit vif',t:'p',lvl:8,mods:{spdPct:5,resPct:6}},
-    ]},
+      {id:'m_proj',ap:2,n:'Projectile arcanique',t:'a',lvl:1,cd:2,mult:1.8,tg:'one',si:'star',co:'#5d45a8'},
+      {id:'m_bar',ap:3,n:'Barrière arcanique',t:'a',lvl:3,cd:5,tg:'allies',fx:[{k:'shield',v:2.2,of:'mag'}],si:'shield',co:'#3d5aa8'},
+      {id:'m_nova',ap:3,n:'Nova arcanique',t:'a',lvl:6,cd:3,mult:.95,tg:'all',si:'nova',co:'#7350b8'},
+    ],
+    common:[
+      {id:'mc_main',c:0,n:'Érudition',mods:{magPct:2},max:5,si:'star'},
+      {id:'mc_crit',c:1,n:'Précision mortelle',mods:{crit:2},max:3,si:'eye'},
+      {id:'mc_hp',c:2,n:'Vitalité',mods:{hpPct:2},max:5,si:'heart'},
+      {id:'mc_spd',c:3,n:'Célérité',mods:{spdPct:2},max:3,si:'wind'},
+      {id:'mc_def',c:4,n:'Égide',mods:{defPct:2,resPct:2},max:3,si:'shield'},
+    ],
+    specs:{
+      feu:{n:'Feu',co:'#c8471a',si:'flame',d:'Enflamme vos ennemis : les Brûlures s’accumulent puis explosent.',nodes:[
+        {id:'f_immo',r:0,c:1,t:'a',lvl:10,ap:2,cd:2,n:'Immolation',el:'feu',mult:1.5,tg:'one',fx:[{k:'dot',n:'Brûlure',v:.4,dur:3,ch:50}],si:'flame'},
+        {id:'f_emb',r:1,c:0,t:'p',lvl:12,req:'f_immo',max:5,n:'Embrasement',gx:{sxCh:{f_immo:10}},si:'flame'},
+        {id:'f_heat',r:1,c:2,t:'p',lvl:12,req:'f_immo',max:5,n:'Chaleur intense',gx:{burnP:10},mods:{magPct:3},si:'sun'},
+        {id:'f_comb',r:2,c:1,t:'a',lvl:15,req:'f_immo',ap:3,cd:4,n:'Combustion',el:'feu',mult:.8,tg:'one',fx:[{k:'det',n:'Brûlure',m:1.5}],si:'burst'},
+        {id:'f_wave',r:3,c:0,t:'a',lvl:20,req:'f_comb',ap:3,cd:4,n:'Vague de flammes',el:'feu',mult:1,tg:'all',fx:[{k:'dot',n:'Brûlure',v:.3,dur:3,ch:50}],si:'wave'},
+        {id:'f_pyro',r:3,c:2,t:'p',lvl:20,req:'f_comb',max:5,n:'Pyromanie',gx:{vsBurn:5},mods:{crit:1},si:'eye'},
+        {id:'f_pers',r:4,c:0,t:'p',lvl:25,max:2,n:'Feu persistant',gx:{burnDur:1},si:'hour'},
+        {id:'f_ult',r:6,c:1,t:'p',lvl:35,max:1,n:'Flamme intérieure',ult:{trig:'cast',el:'feu',n:'Chauffe',max:5,dur:3,buff:{n:'Surchauffe',dmg:20,el:'feu'}},ud:'Chaque sort de feu lancé octroie 1 degré de Chauffe. À 5 degrés, vous obtenez Surchauffe : +20 % de dégâts de feu pendant 3 tours.',si:'sun'},
+        {id:'f_met',r:4,c:2,t:'a',lvl:30,req:'f_pyro',ap:4,cd:6,n:'Météore',el:'feu',mult:2.2,tg:'all',fx:[{k:'dot',n:'Brûlure',v:.35,dur:3,ch:60}],si:'meteor'},
+      ]},
+      foudre:{n:'Foudre',co:'#b8960c',si:'bolt',d:'Paralyse vos ennemis, qui risquent de perdre leur tour, puis foudroie les cibles paralysées.',nodes:[
+        {id:'z_arc',r:0,c:1,t:'a',lvl:10,ap:2,cd:2,n:'Arc électrique',el:'foudre',mult:1.8,tg:'one',fx:[{k:'para',ch:30,dur:2}],si:'bolt'},
+        {id:'z_stat',r:1,c:0,t:'p',lvl:12,req:'z_arc',max:5,n:'Électricité statique',gx:{paraCh:7},mods:{magPct:3},si:'spark'},
+        {id:'z_vif',r:1,c:2,t:'p',lvl:12,max:3,n:'Vif-argent',mods:{spdPct:4,crit:2},si:'wind'},
+        {id:'z_chain',r:2,c:1,t:'a',lvl:15,req:'z_arc',ap:3,cd:3,n:'Éclair en chaîne',el:'foudre',mult:1,tg:'all',fx:[{k:'para',ch:15,dur:2}],si:'chain'},
+        {id:'z_choc',r:3,c:0,t:'p',lvl:20,max:3,n:'Choc nerveux',gx:{paraPow:10},si:'spark'},
+        {id:'z_sur',r:3,c:2,t:'p',lvl:20,req:'z_chain',max:5,n:'Surtension',gx:{vsPara:8},mods:{crit:1},si:'bolt'},
+        {id:'z_temp',r:4,c:0,t:'a',lvl:25,req:'z_choc',ap:4,cd:4,n:'Tempête',el:'foudre',mult:1.4,tg:'all',fx:[{k:'para',ch:20,dur:2}],si:'storm'},
+        {id:'z_ult',r:6,c:1,t:'p',lvl:35,max:1,n:'Cœur de l’orage',ult:{trig:'cast',el:'foudre',n:'Charge',max:5,dur:3,buff:{n:'Surcharge',dmg:20,el:'foudre',paraCh:15}},ud:'Chaque sort de foudre lancé octroie 1 Charge. À 5 Charges, vous entrez en Surcharge : +20 % de dégâts de foudre et +15 % de chances de paralyser pendant 3 tours.',si:'storm'},
+        {id:'z_jug',r:4,c:2,t:'a',lvl:30,req:'z_sur',ap:4,cd:5,n:'Jugement de foudre',el:'foudre',mult:2.6,ifSt:{k:'para',v:1},tg:'one',si:'hammer'},
+      ]},
+    }},
 };
-const SK={atk:{id:'atk',n:'Attaque',mult:1,tg:'one',cd:0,ap:0}};
-for(const c of Object.values(CLASSES))for(const s of c.skills)SK[s.id]=s;
+for(const c of Object.values(CLASSES)){ for(const [sid,sp] of Object.entries(c.specs)) for(const nd of sp.nodes){ nd.spec=sid; nd.co=nd.co||sp.co; if(nd.ult) nd.co='#b8860b' } for(const nd of c.common){ Object.assign(nd,{t:'p',r:5,lvl:SPEC_L,spec:'*',co:'#6f5a3e'}) } }
+const ULT_PTS=20;
+const SK={atk:{id:'atk',n:'Attaque',mult:1,tg:'one',cd:0,ap:0,t:'a',si:'fist',co:'#5a5048'}};
+for(const c of Object.values(CLASSES)){ for(const s of c.skills)SK[s.id]=s; for(const sp of Object.values(c.specs)) for(const s of sp.nodes) SK[s.id]=s; for(const s of c.common) SK[s.id]=s }
+const skMax=sk=>sk.max||5;
+const heroSkills=h=>[...CLASSES[h.cls].skills,...(h.spec&&CLASSES[h.cls].specs[h.spec]?[...CLASSES[h.cls].specs[h.spec].nodes,...CLASSES[h.cls].common]:[])];
+const treePts=h=>h.spec&&CLASSES[h.cls].specs[h.spec]?[...CLASSES[h.cls].specs[h.spec].nodes,...CLASSES[h.cls].common].reduce((a,n)=>a+(n.ult?0:(h.learned[n.id]||0)),0):0;
+/* icônes de sorts */
+const SPI={
+  sword:'<path d="M19 2h3v3L10.5 16.5l-3-3z"/><path d="M5.2 12.8l1.4-1.4 6 6-1.4 1.4zM6 16.6l1.4 1.4L3.4 22 2 20.6z"/>',
+  shield:'<path d="M12 2l8 3v6.5c0 4.8-3.4 8.7-8 10.5-4.6-1.8-8-5.7-8-10.5V5z"/>',
+  whirl:'<path d="M12 3a9 9 0 0 1 8.9 7.6h2.6l-4 4.4-4-4.4h2.6A6.2 6.2 0 0 0 12 5.8zM12 21a9 9 0 0 1-8.9-7.6H.5l4-4.4 4 4.4H5.9A6.2 6.2 0 0 0 12 18.2z"/>',
+  claw:'<path d="M3.5 20.5L12.8 3l1.8.9-9.3 17.5zM8.6 22l8.2-15.6 1.8.9-8.2 15.6zM14 22.4l6-11.5 1.8.9-6 11.5z"/>',
+  saw:'<path d="M4 20L18 3l3 2.5L7 22.5z"/><path d="M15 6.5l-2 .3.8-1.9zM12.6 9.4l-2 .3.8-1.9zM10.2 12.3l-2 .3.8-1.9zM7.8 15.2l-2 .3.8-1.9z"/>',
+  drop:'<path d="M12 2c3.2 4.6 6.6 8.5 6.6 12.4a6.6 6.6 0 0 1-13.2 0C5.4 10.5 8.8 6.6 12 2z"/>',
+  dagger:'<path d="M14.5 2.5L21 3l.5 6.5-8.8 8.8-1.6-1.6zM10 15.9l2.1 2.1-1.4 1.4-.8-.8L5 23.5 3.5 22l4.9-4.9-.8-.8z"/>',
+  skull:'<path d="M12 2a8 8 0 0 0-8 8c0 2.8 1.4 4.6 3 5.6V19h2v2h2v-2h2v2h2v-2h2v-3.4c1.6-1 3-2.8 3-5.6a8 8 0 0 0-8-8zM8.5 9a2 2 0 1 1 0 4 2 2 0 0 1 0-4zm7 0a2 2 0 1 1 0 4 2 2 0 0 1 0-4zM12 13l1.4 2.6h-2.8z" fill-rule="evenodd"/>',
+  axe:'<path d="M3 20.5L14.5 9l1.5 1.5L4.5 22z"/><path d="M12.6 3.4c4.8-1.6 8.6 2.1 8 7.8-1.9-2.7-4.8-3.7-7.8-2.3l-2.3-2.3c1-1 1.6-2.1 2.1-3.2z"/>',
+  fist:'<path d="M7 9V5.5a1.5 1.5 0 0 1 3 0V9h.5V4.5a1.5 1.5 0 0 1 3 0V9h.5V5.5a1.5 1.5 0 0 1 3 0V10h.5V8a1.5 1.5 0 0 1 3 0v6a8 8 0 0 1-8 8h-1a7 7 0 0 1-7-7v-3a2 2 0 0 1 2-2z"/>',
+  rage:'<path d="M12 2c2.4 3 6.3 4.2 6.3 9.3 0 1.4-.5 2.6-1.1 3.4l2.3 1.8c-1.8 3.4-4.3 5.5-7.5 5.5s-5.7-2.1-7.5-5.5l2.3-1.8c-.6-.8-1.1-2-1.1-3.4C5.7 6.2 9.6 5 12 2zM8.5 12.5l2.6 1-.6 1.5zM15.5 12.5l-2.6 1 .6 1.5z"/>',
+  heart:'<path d="M12 21l-1.4-1.3C5.4 15 2 11.9 2 8.1 2 5 4.4 2.6 7.5 2.6c1.7 0 3.4.8 4.5 2.1 1.1-1.3 2.8-2.1 4.5-2.1C19.6 2.6 22 5 22 8.1c0 3.8-3.4 6.9-8.6 11.6z"/>',
+  horn:'<path d="M2.5 9.5L14 4v16L2.5 14.5zM15.8 7.5h2v9h-2zM19.4 5.2l1.4-1 1.2 1.6-1.4 1zM20 11h3v2h-3zM19.4 18.8l1.4 1 1.2-1.6-1.4-1z"/>',
+  wind:'<path d="M2 8.2h12.2a2.6 2.6 0 1 0-2.6-2.6h2a.6.6 0 1 1 .6.6H2zM2 11.4h15.4a2.8 2.8 0 1 1-2.8 2.8h2a.8.8 0 1 0 .8-.8H2zM2 16.4h8.5v2H2z"/>',
+  star:'<path d="M12 2l2.6 6.9 7.4.4-5.7 4.6 1.9 7.1L12 17l-6.2 4 1.9-7.1L2 9.3l7.4-.4z"/>',
+  nova:'<path d="M12 7.5a4.5 4.5 0 1 1 0 9 4.5 4.5 0 0 1 0-9zM11 1h2v4.5h-2zM11 18.5h2V23h-2zM1 11h4.5v2H1zM18.5 11H23v2h-4.5zM4.2 5.6l1.4-1.4 3 3-1.4 1.4zM15.4 16.8l1.4-1.4 3 3-1.4 1.4zM4.2 18.4l3-3 1.4 1.4-3 3zM15.4 7.2l3-3 1.4 1.4-3 3z"/>',
+  flame:'<path d="M12 2c1 3.6 5.2 5.6 5.2 10.6A5.2 5.2 0 0 1 12 22a5.2 5.2 0 0 1-5.2-5.2c0-2.7 1.5-4.1 2.7-5.8.3 1.7 1 2.7 2.2 3.2-.6-3.5-1-8.5.3-12.2z"/>',
+  sun:'<path d="M12 6.5a5.5 5.5 0 1 1 0 11 5.5 5.5 0 0 1 0-11zM11 0h2v4h-2zM11 20h2v4h-2zM0 11h4v2H0zM20 11h4v2h-4z"/>',
+  burst:'<path d="M12 1l2 6 5-4-2 6 6 1-5 3 4 5-6-1v6l-4-5-4 5v-6l-6 1 4-5-5-3 6-1-2-6 5 4z"/>',
+  wave:'<path d="M2 15c3 0 3-3 6-3s3 3 6 3 3-3 6-3h2v3c-3 0-3 3-6 3s-3-3-6-3-3 3-6 3H2zM2 8c3 0 3-3 6-3s3 3 6 3 3-3 6-3h2v3c-3 0-3 3-6 3S11 8 8 8s-3 3-6 3H2z"/>',
+  eye:'<path d="M12 5c5 0 9 4 10.5 7C21 15 17 19 12 19S3 15 1.5 12C3 9 7 5 12 5zm0 3.5a3.5 3.5 0 1 0 0 7 3.5 3.5 0 0 0 0-7z" fill-rule="evenodd"/>',
+  hour:'<path d="M5.5 2h13v2h-1.3v3L13 12l4.2 5v3h1.3v2h-13v-2h1.3v-3L11 12 6.8 7V4H5.5z"/>',
+  meteor:'<path d="M15 9.5a6 6 0 1 1 0 12 6 6 0 0 1 0-12zM2 2l9.5 7.5-1.6 1.6zM6 1l6.5 6.5-1.2 1.2zM1 6l7 5.5-1.2 1.2z"/>',
+  bolt:'<path d="M13.5 1L4 14h6.5L9 23l10-13.5h-6.5z"/>',
+  spark:'<path d="M12 1.5l2 7.6 7.5 2.4-7.5 2.4-2 8.6-2-8.6-7.5-2.4 7.5-2.4z"/>',
+  chain:'<path d="M3 2l8.5 6.5-3.2 1.2 7.4 5.2-3.2 1.3L21 22.5l-11.4-6 3.1-1.3-7.4-5.2 3.2-1.2z"/>',
+  storm:'<path d="M6.5 14.5a4.8 4.8 0 0 1-.4-9.6A6 6 0 0 1 17.6 6a4.3 4.3 0 0 1-.4 8.5zM12.5 13.5h3.2l-2 3.8h2.6L10 24l1.6-5H9z"/>',
+  hammer:'<path d="M2.5 4h12v6.5h-12zM14.5 6h3v2.5h-3zM7.2 10.5h2.6V22H7.2zM19.5 9l1.5-6 1 .3-1.1 5.2 2.6.2-3.6 6.3-.8-.3 1.2-5.4z"/>',
+};
+const spIcon=s=>`<svg viewBox="0 0 24 24" aria-hidden="true">${SPI[s&&s.si]||SPI.star}</svg>`;
 const ENSK={
   e_heavy:{ap:2,n:'Coup brutal',cd:3,mult:1.7,tg:'one'},
   e_bleed:{ap:2,n:'Morsure sanglante',cd:3,mult:1,tg:'one',fx:[{k:'dot',n:'Saignement',v:.3,dur:3}]},
@@ -1037,7 +1301,7 @@ function v3(d){
 }
 function newGame(){
   const bag=bagNew(),mats={fer:60,cuir:30};
-  return {v:7,siteV:3,uid:0,heroes:[],party:[],bag,mats,gold:80,
+  return {v:7,siteV:3,balV:2,skV:1,uid:0,heroes:[],party:[],bag,mats,gold:80,
     sites:Object.fromEntries(SITES.map(s=>[s.id,{lvl:s.unlock===0?1:0,stock:{},cache:0}])),
     prog:{zone:0,stage:1},auto:false,farm:false,speed:1,last:Date.now(),kills:0};
 }
@@ -1062,7 +1326,24 @@ function fitBag(d){
   MIG_MSG=(MIG_MSG?MIG_MSG+' ':'')+'Inventaire réduit à 14 × 5 cases : les objets ont été réorganisés.'+(sold?` ${sold} objet${sold>1?'s':''} sans place vendu${sold>1?'s':''} pour ${fmt(gold)} or.`:'');
   return d;
 }
-const loadData=d=>{if(!d.siteV)d.siteV=1; return soloize(fitBag(Object.assign(newGame(),migrate(d))))};
+const loadData=d=>{if(!d.siteV)d.siteV=1; const r=soloize(fitBag(Object.assign(newGame(),{balV:0,skV:0},migrate(d)))); if((r.balV||0)<1){balMig(r); r.balV=1} if((r.balV||0)<2){impMig(r); r.balV=2} if((r.skV||0)<1){ for(const h of r.heroes||[]) resetSkills(h); r.skV=1; if((r.heroes||[]).length) MIG_MSG=(MIG_MSG?MIG_MSG+' ':'')+'Nouveau système de compétences et de spécialisations : vos points de compétence ont été remboursés.' } return r};
+/* rééquilibrage 0.3.0 : les affixes existants gardent leur qualité de tirage dans la nouvelle plage ; objets divins : 3 affixes au maximum, sans pouvoir */
+const AFX_OLD={hp:[8,3.2],atk:[2,.9],mag:[2,.9],def:[2,.75],spd:[1,.12],hpPct:[2,.12],dmgPct:[2,.14],crit:[1.5,.08],critDmg:[6,.5],dodge:[1.2,.04],lifesteal:[.8,.025]};
+function impMig(d){
+  const conv=it=>{ if(!it||it.mat||!it.imp||!RAR[it.rarity]) return; const m=RAR[it.rarity].m,base=BASES.find(b=>b.n===it.base&&(b.cls||null)===(it.cls||null))||BASES.find(b=>b.n===it.base); if(!base) return;
+    for(const [s2,b,p] of base.imp){const v=(b+p*it.ilvl)*m; it.imp[s2]=PCT.has(s2)?Math.max(.5,r1(v)):Math.max(1,Math.round(v))} };
+  (d.bag||[]).forEach(e=>conv(e&&e.o)); for(const h of d.heroes||[]) Object.values(h.equip||{}).forEach(conv);
+}
+function balMig(d){
+  const conv=it=>{ if(!it||it.mat||!it.aff||!RAR[it.rarity]) return; const m=RAR[it.rarity].m,div=it.rarity===5;
+    const base=BASES.find(b=>b.n===it.base&&(b.cls||null)===(it.cls||null))||BASES.find(b=>b.n===it.base);
+    if(base&&it.imp) for(const [s2,b,p] of base.imp){const v=(b+p*it.ilvl)*m; it.imp[s2]=PCT.has(s2)?Math.max(.5,r1(v)):Math.max(1,Math.round(v))}
+    if(div){ delete it.leg; it.aff=it.aff.slice(0,3) }
+    for(const a of it.aff){ const A=AFXM[a.s],O=AFX_OLD[a.s]; if(!A) continue;
+      const nmax=(A.b+A.p*it.ilvl)*m; let q=div?1:O?a.v/((O[0]+O[1]*it.ilvl)*m):a.v/nmax; q=clamp(q,.7,1);
+      a.v=PCT.has(a.s)?Math.max(.5,r1(nmax*q)):Math.max(1,Math.round(nmax*q)) } };
+  (d.bag||[]).forEach(e=>conv(e&&e.o)); for(const h of d.heroes||[]) Object.values(h.equip||{}).forEach(conv);
+}
 /* compte : l’or est partagé, chaque personnage a sa propre sauvegarde */
 const ACC_KEY=KP+'acc',CHAR_KEY=i=>KP+'c'+i,MAXCH=5;
 let ACC={gold:80,cur:null,seenVer:null};
@@ -1094,7 +1375,7 @@ function loadSave(){
 
 /* ============ objets ============ */
 function rollAff(a,ilvl,m){
-  const v=(a.b+a.p*ilvl)*m*rand(.7,1);
+  const v=(a.b+a.p*ilvl)*m*(m>=RAR[5].m?1:rand(.7,1)); /* Divin : toujours au maximum de la plage */
   return PCT.has(a.s)?Math.max(.5,r1(v)):Math.max(1,Math.round(v));
 }
 function genItem(slot,ilvl,rarity,baseName,cls){
@@ -1102,7 +1383,7 @@ function genItem(slot,ilvl,rarity,baseName,cls){
   const base=baseName?BASES.find(b=>b.n===baseName):(baseFor(slot,cls)||pick(BASES.filter(b=>b.slot===slot)));
   const m=RAR[rarity].m, imp={};
   for(const [s,b,p] of base.imp){const v=(b+p*ilvl)*m; imp[s]=PCT.has(s)?Math.max(.5,r1(v)):Math.max(1,Math.round(v))}
-  const aff=shuffle(affPool(base.cls||cls).slice()).slice(0,RAR[rarity].aff).map(a=>({s:a.s,v:rollAff(a,ilvl,m)}));
+  const aff=wPick(affPool(base.cls||cls),RAR[rarity].aff).map(a=>({s:a.s,v:rollAff(a,ilvl,m)}));
   let ep='';
   if(rarity>=3) ep=' '+pick(EPITHETS);
   else {const a=aff.find(x=>AFXM[x.s].ep); if(a) ep=' '+AFXM[a.s].ep}
@@ -1217,8 +1498,8 @@ function gearStats(h){
 }
 function passMods(h){
   const t={};
-  for(const sk of CLASSES[h.cls].skills){
-    if(sk.t!=='p') continue; const r=h.learned[sk.id]||0; if(!r) continue;
+  for(const sk of heroSkills(h)){
+    if(sk.t!=='p'||!sk.mods) continue; const r=h.learned[sk.id]||0; if(!r) continue;
     for(const [k,v] of Object.entries(sk.mods)) t[k]=(t[k]||0)+v*r;
   }
   return t;
@@ -1234,8 +1515,8 @@ function heroStats(h){
     def:(b('def')+(g.def||0))*(1+pc('def')/100),
     res:(b('res')+(g.res||0))*(1+pc('res')/100),
     spd:(b('spd')+(g.spd||0))*(1+pc('spd')/100),
-    crit:5+(g.crit||0)+(p.crit||0),
-    critDmg:150+(g.critDmg||0)+(p.critDmg||0),
+    crit:Math.min(CRIT_CAP,5+(g.crit||0)+(p.crit||0)),
+    critDmg:Math.min(CDMG_CAP,150+(g.critDmg||0)+(p.critDmg||0)),
     dodge:Math.min(30,(g.dodge||0)+(p.dodge||0)),
     lifesteal:Math.min(20,(g.lifesteal||0)+(p.lifesteal||0)),
     dmgPct:g.dmgPct||0,goldFind:g.goldFind||0,dropRate:g.dropRate||0,
@@ -1255,16 +1536,22 @@ function gainXp(h,xp){
   return ups;
 }
 const sc=r=>1+.12*(r-1);
-function skDesc(sk,rank,role){
-  const k=sc(rank),p=x=>Math.round(x*100*k),stN=(sk.st||role)==='mag'?'INT':'FOR';
+function skDesc(sk,rank,role,gx,asLines){
+  gx=gx||{}; const k=sc(rank),p=x=>Math.round(x*100*k),stN=(sk.st||role)==='mag'?'INT':'FOR';
   const tgN={one:'un ennemi',all:'tous les ennemis',self:'vous',allies:'tous les alliés',lowAlly:'l’allié le plus blessé'}[sk.tg];
   const out=[];
-  if(sk.ap) out.push(`Coût : ${sk.ap} PA.`);
-  if(sk.el&&ELEM[sk.el]) out.push(`Élément : ${ELEM[sk.el].n}.`);
+  if(sk.ap&&!asLines) out.push(`Coût : ${sk.ap} PA.`);
+  if(sk.el&&ELEM[sk.el]&&!asLines) out.push(`Élément : ${ELEM[sk.el].n}.`);
+  if(sk.self) out.push(`Sacrifie ${Math.round(sk.self*100)} % de vos PV max.`);
   if(sk.mult) out.push(`Inflige ${p(sk.mult)}% ${stN}${sk.hits>1?' ×'+sk.hits:''} à ${tgN}${sk.exec?` (dégâts doublés sous ${sk.exec.thr}% PV)`:''}.`);
+  if(sk.lowHp) out.push(`+${r1(sk.lowHp*10)} % de dégâts par tranche de 10 % de PV manquants.`);
+  if(sk.ifSt) out.push(`+${Math.round(sk.ifSt.v*100)} % de dégâts contre une cible ${stTxt(sk.ifSt)}.`);
+  if(sk.ls) out.push(`Vous rend ${sk.ls} % des dégâts infligés en PV.`);
   const sn={atk:'Force',def:'Défense',res:'Résistance',spd:'Vitesse',mag:'Intelligence'};
   for(const f of sk.fx||[]){
-    if(f.k==='dot') out.push(`${f.n} : ${p(f.v)}% ${stN} par tour, ${f.dur} tours.`);
+    if(f.k==='dot'){ const ch=fxCh(f,sk,gx); out.push(`${ch<100?ch+' % de chances d’infliger ':''}${f.n} : ${Math.round(p(f.v)*fxPow(f,gx))}% ${stN} par tour, ${fxDur(f,gx)} tours.`) }
+    if(f.k==='para') out.push(`${fxCh(f,sk,gx)} % de chances de paralyser ${f.dur} tours : à chaque tour, la cible a ${paraPow(gx)} % de chances de perdre son tour (chances d’application réduites de moitié sur les boss).`);
+    if(f.k==='det') out.push(`Fait exploser la ${f.n} de la cible : inflige immédiatement ${p(f.m)} % des dégâts qu’elle devait encore infliger.`);
     if(f.k==='stun') out.push(`${f.ch||100}% de chances d’étourdir ${f.dur} tour.`);
     if(f.k==='shield') out.push(f.of==='hp'?`Bouclier de ${p(f.v)}% des PV max.`:`Bouclier de ${p(f.v)}% INT.`);
     if(f.k==='heal') out.push(`Soigne ${p(f.v)}% INT${f.on==='allies'?' à tous les alliés':''}.`);
@@ -1273,10 +1560,165 @@ function skDesc(sk,rank,role){
     if(f.k==='taunt') out.push(`Provoque les ennemis ${f.dur} tours.`);
   }
   if(!sk.mult&&!(sk.fx||[]).length) out.push('');
+  if(asLines) return out.filter(Boolean);
   return out.join(' ')+(sk.cd?` Recharge : ${sk.cd} tours.`:'');
 }
 const MOD_N={hpPct:'PV',atkPct:'Force',magPct:'Intelligence',defPct:'Défense',resPct:'Résistance',spdPct:'Vitesse',crit:'Critique',critDmg:'Dégâts critiques',dodge:'Esquive',lifesteal:'Vol de vie',regen:'PV max par tour',healPow:'Puissance des soins'};
 const modDesc=(m,r)=>Object.entries(m).map(([k,v])=>`+${v*r}% ${MOD_N[k]}`).join(', ');
+/* bonus de talents (passifs de spécialisation) */
+const GX_N={bleedP:['+',' % de dégâts des Saignements'],burnP:['+',' % de dégâts des Brûlures'],vsBleed:['+',' % de dégâts contre les cibles qui saignent'],vsBurn:['+',' % de dégâts contre les cibles en feu'],vsPara:['+',' % de dégâts contre les cibles paralysées'],
+  lowHpDmg:['+',' % de dégâts par tranche de 10 % de PV manquants'],lowHpDef:['−',' % de dégâts subis sous 35 % de PV'],paraCh:['+',' % de chances de paralyser (toutes vos compétences)'],paraPow:['+',' % de chances qu’une cible paralysée perde son tour'],
+  bleedDur:['+',' tour de durée des Saignements'],burnDur:['+',' tour de durée des Brûlures']};
+function heroGx(h){
+  const g={sxCh:{}}; if(!h) return g;
+  for(const sk of heroSkills(h)){ if(sk.t!=='p'||!(sk.gx||sk.ult)) continue; const r=h.learned[sk.id]||0; if(!r) continue;
+    if(sk.ult){ g.ult=sk.ult; continue }
+    for(const [k,v] of Object.entries(sk.gx)){ if(k==='sxCh'){ for(const [id,x] of Object.entries(v)) g.sxCh[id]=(g.sxCh[id]||0)+x*r } else g[k]=(g[k]||0)+v*r } }
+  return g;
+}
+function pasLines(sk,r){
+  const out=[];
+  if(sk.ud) out.push(sk.ud.replace(/\.$/,''));
+  for(const [k,v] of Object.entries(sk.mods||{})) out.push(`+${r1(v*r)} % ${MOD_N[k]}`);
+  for(const [k,v] of Object.entries(sk.gx||{})){
+    if(k==='sxCh'){ for(const [id,x] of Object.entries(v)){ const f=(SK[id].fx||[]).find(q=>q.ch!=null); out.push(`+${x*r} % de chances d’infliger ${f&&f.k==='para'?'la Paralysie':f?f.n:'l’effet'} avec ${SK[id].n}`) } }
+    else { const [sg,t]=GX_N[k]; out.push(`${sg}${r1(v*r)}${t}`) } }
+  return out;
+}
+const pasDesc=(sk,r)=>pasLines(sk,r).join(', ')+'.';
+const hasSt=(t,k,n)=>!!(t&&t.st&&t.st.some(s=>s.k===k&&(!n||s.n===n)));
+const stTxt=t=>t.k==='para'?'paralysée':t.n==='Brûlure'?'en feu':'qui saigne';
+const fxDur=(f,g)=>f.dur+((g||{})[f.n==='Brûlure'?'burnDur':f.n==='Saignement'?'bleedDur':'x']||0);
+const fxPow=(f,g)=>1+(((g||{})[f.n==='Brûlure'?'burnP':f.n==='Saignement'?'bleedP':'x']||0)/100);
+const fxCh=(f,sk,g)=>f.ch==null?100:Math.min(100,f.ch+(((g||{}).sxCh||{})[sk.id]||0)+(f.k==='para'?((g||{}).paraCh||0):0));
+const paraPow=g=>Math.min(90,50+((g||{}).paraPow||0));
+/* multiplicateur de dégâts lié aux talents et aux effets (PvE, duels, raids) */
+function skMul(u,t,sk){
+  const g=u.gx||{}; let m=1; const miss=Math.max(0,1-Math.max(0,u.hp)/(u.maxHp||1));
+  if(g.lowHpDmg) m*=1+g.lowHpDmg/100*miss*10;
+  if(sk&&sk.lowHp) m*=1+sk.lowHp*miss;
+  if(g.vsBurn&&hasSt(t,'dot','Brûlure')) m*=1+g.vsBurn/100;
+  if(g.vsBleed&&hasSt(t,'dot','Saignement')) m*=1+g.vsBleed/100;
+  if(g.vsPara&&hasSt(t,'para')) m*=1+g.vsPara/100;
+  if(sk&&sk.ifSt&&(sk.ifSt.k==='para'?hasSt(t,'para'):hasSt(t,'dot',sk.ifSt.n))) m*=1+sk.ifSt.v;
+  const tg=t.gx||{}; if(tg.lowHpDef&&t.hp/t.maxHp<.35) m*=Math.max(.3,1-tg.lowHpDef/100);
+  for(const q of u.st||[]) if(q.k==='ult'&&q.dmg&&(!q.el||(sk&&sk.el===q.el))) m*=1+q.dmg/100;
+  for(const q of t.st||[]) if(q.k==='ult'&&q.def) m*=1-q.def/100;
+  return m;
+}
+/* fiche (infobulle) d’une compétence */
+function skReq(sk,h){
+  if(!h) return '';
+  if(h.lvl<sk.lvl) return `Niveau ${sk.lvl} requis.`;
+  if(sk.spec==='*'){ if(!h.spec) return 'Choisissez d’abord une spécialisation.' }
+  else if(sk.spec&&h.spec!==sk.spec) return `Spécialisation ${CLASSES[h.cls].specs[sk.spec].n} requise.`;
+  if(sk.ult){ const n=treePts(h); if(n<ULT_PTS) return `${ULT_PTS} points requis dans l’arbre de talents (${n} / ${ULT_PTS}).` }
+  if(sk.req&&!(h.learned[sk.req]>0)) return `Requiert : ${SK[sk.req].n}.`;
+  return '';
+}
+const TG_N={one:'Un ennemi',all:'Tous les ennemis',self:'Vous-même',allies:'Vos alliés',lowAlly:'L’allié le plus blessé'};
+function skCard(sk,h){
+  const chip=(ic,t,c='')=>`<span class="skm ${c}">${ic?`<i>${ic}</i>`:''}${t}</span>`;
+  if(sk.id==='atk') return `<article class="it skt" style="--rc:${sk.co}"><header><b>Attaque</b><small>Compétence de base</small></header><div class="skmeta">${chip('','Gratuite','free')}${chip('','1 fois par tour')}${chip('','Un ennemi')}</div><div class="skbody"><p>Inflige 100 % de votre stat principale à la cible.</p></div></article>`;
+  const r=h?(h.learned[sk.id]||0):0,mx=skMax(sk),role=h?CLASSES[h.cls].role:'atk',gx=heroGx(h),rk=Math.max(1,r);
+  const L=x=>sk.t==='a'?skDesc(sk,x,role,gx,true):pasLines(sk,x).map(t=>t+'.');
+  const cur=L(rk),nxt=r>0&&r<mx?L(r+1):null,req=skReq(sk,h);
+  const kind=sk.ult?'Talent ultime':sk.spec==='*'?'Talent commun':sk.spec?`${sk.t==='a'?'Active':'Passive'} · ${CLASSES[h.cls].specs[sk.spec].n}`:(sk.t==='a'?'Active · Base':'Passive');
+  const meta=sk.ult?chip('','Ultime','ap')+chip('',`${ULT_PTS} points dans l’arbre`):sk.t==='a'?chip('',sk.ap?`${sk.ap} PA`:'Gratuite',sk.ap?'ap':'free')+chip('',sk.cd?`Recharge ${sk.cd} tours`:'Sans recharge')+(sk.el&&ELEM[sk.el]?`<span class="skm el" style="--ec:${ELEM[sk.el].c}">${ELEM[sk.el].n}</span>`:'')+chip('',TG_N[sk.tg]||''):chip('','Effet permanent');
+  const same=nxt?nxt.filter(t=>!cur.includes(t)):[];
+  return `<article class="it skt" style="--rc:${sk.co}"><header><b>${esc(sk.n)}</b><small>${kind}</small><small class="skrk">Rang <b>${r}</b> / ${mx}${h&&h.loadout.includes(sk.id)?' · Dans la barre de sorts':''}</small></header>
+    <div class="skmeta">${meta}</div>
+    <div class="skbody">${r?'':'<h5>Au rang 1</h5>'}${cur.map(t=>`<p>${t}</p>`).join('')}</div>
+    ${same.length?`<div class="sknext"><h5>Rang ${r+1}</h5>${same.map(t=>`<p>${t}</p>`).join('')}</div>`:''}
+    ${req?`<p class="lockr">🔒 ${req}</p>`:''}</article>`;
+}
+/* tuiles */
+function skTile(sk,h,extra=''){
+  const r=h.learned[sk.id]||0,mx=skMax(sk),req=skReq(sk,h),can=!req&&h.sp>0&&r<mx,eq=h.loadout.includes(sk.id);
+  const drag=sk.t==='a'&&r>0&&h.learned===S.heroes[0].learned;
+  return `<button class="sktile ${sk.t==='p'?'pas':''} ${r?'got':''} ${req?'lock':''} ${can?'avail':''} ${UI.skSel===sk.id?'sel':''} ${drag?'drg':''}" style="--co:${sk.co};${extra}" data-act="skSel" data-id="${sk.id}" ${drag?`data-skdrag="${sk.id}"`:''} data-tip="sk:${sk.id}" aria-label="${esc(sk.n)}, rang ${r} sur ${mx}${req?', verrouillée':''}">${spIcon(sk)}<span class="rk">${r}/${mx}</span>${eq?'<span class="eqm" aria-hidden="true">✓</span>':''}</button>`;
+}
+function specTree(cls,sid,h,preview){
+  const sp=CLASSES[cls].specs[sid],nodes=[...sp.nodes,...CLASSES[cls].common];
+  const X=n=>n.r===5?30+n.c*60:60+n.c*90,Y=n=>n.r===5?428:n.r===6?524:34+n.r*74;
+  const links=sp.nodes.filter(n=>n.req).map(n=>{const p=SK[n.req],on=!preview&&h.learned[n.id]>0;return `<line x1="${X(p)}" y1="${Y(p)}" x2="${X(n)}" y2="${Y(n)}" class="${on?'on':''}"/>`}).join('');
+  const hh=preview?Object.assign({},h,{spec:sid,sp:0}):h;
+  const tiles=nodes.map(n=>skTile(n,hh,`left:${X(n)-26}px;top:${Y(n)-26}px`)+(n.ult?'':'')).join('');
+  return `<div class="tree" style="--co:${sp.co}"><svg class="links" viewBox="0 0 300 570" aria-hidden="true">${links}<line x1="20" y1="378" x2="280" y2="378" class="sep"/><line x1="20" y1="474" x2="280" y2="474" class="sep"/></svg><span class="tlab" style="top:382px">Talents communs</span><span class="tlab" style="top:478px">Talent ultime</span>${tiles}</div>`;
+}
+/* talent ultime : charges puis bonus temporaire */
+function ultGain(u,log){
+  const U=u.gx&&u.gx.ult; if(!U||u.hp<=0) return; u.st=u.st||[];
+  if(u.st.some(x=>x.k==='ult')) return;
+  let q=u.st.find(x=>x.k==='stk'&&x.n===U.n); if(!q){ q={k:'stk',n:U.n,v:0,max:U.max,dur:999}; u.st.push(q) }
+  q.v++; q.dur=999;
+  if(q.v>=U.max){ u.st=u.st.filter(x=>x!==q); u.st.push(Object.assign({k:'ult',dur:U.dur},U.buff)); log(`${u.name} : ${U.buff.n} !`) }
+}
+function ultAfterCast(u,sk,targets,log){
+  const U=u.gx&&u.gx.ult; if(!U||!sk||sk.id==='atk'&&U.trig==='cast') return;
+  if(U.trig==='cast'&&sk.el===U.el) ultGain(u,log);
+  else if(U.trig==='bleedHit'&&(targets||[]).some(t=>hasSt(t,'dot','Saignement'))) ultGain(u,log);
+}
+const ulPara=u=>(((u.st||[]).find(s=>s.k==='ult'&&s.paraCh))||{}).paraCh||0;
+function viewSkills(h){
+  const c=CLASSES[h.cls],base=c.skills.map(sk=>skTile(sk,h)).join(''),sel=UI.skSel&&SK[UI.skSel];
+  let spec='';
+  if(!h.spec){
+    spec=`<div class="specs">${Object.entries(c.specs).map(([sid,sp])=>`<div class="speccol ${h.lvl<SPEC_L?'lockd':''}"><h4 style="--co:${sp.co}">${spIcon(sp)}${sp.n}</h4><p class="hint">${sp.d}</p>${specTree(h.cls,sid,h,true)}
+      <button class="btn ${UI.specConf===sid?'danger':'pri'}" data-act="chooseSpec" data-s="${sid}" ${h.lvl<SPEC_L?'disabled':''}>${h.lvl<SPEC_L?`🔒 Niveau ${SPEC_L} requis`:UI.specConf===sid?'Confirmer : choix définitif':'Choisir '+sp.n}</button></div>`).join('')}</div>
+      <p class="hint" style="text-align:center">${h.lvl<SPEC_L?`La spécialisation se débloque au niveau ${SPEC_L}. Vous pouvez déjà découvrir les deux arbres de talents.`:'Choisissez votre spécialisation. Le choix est définitif : seule une Potion d’oubli permet de réinitialiser vos compétences.'}</p>`;
+  } else {
+    const sp=c.specs[h.spec];
+    spec=`<div class="specs one"><div class="speccol"><h4 style="--co:${sp.co}">${spIcon(sp)}Spécialisation : ${sp.n}</h4><p class="hint">${sp.d}</p>${specTree(h.cls,h.spec,h,false)}</div></div>`;
+  }
+  let det='';
+  if(sel&&sel.id!=='atk'){ const r=h.learned[sel.id]||0,req=skReq(sel,h),eq=h.loadout.includes(sel.id);
+    det=`<div class="skdet">${skCard(sel,h)}<div class="row" style="justify-content:center">${`<button class="btn pri" data-act="learn" data-id="${sel.id}" ${req||h.sp<1||r>=skMax(sel)?'disabled':''}>${r>=skMax(sel)?'Rang maximum':r?'Améliorer (+1 rang)':'Apprendre'}</button>`}${sel.t==='a'&&r?`<button class="btn" data-act="equipSk" data-id="${sel.id}">${eq?'Retirer de la barre':'Équiper'}</button>`:''}</div></div>`;
+  } else det=`<p class="hint" style="text-align:center">${NOHOVER?'Touchez':'Survolez'} une compétence pour voir ses détails, cliquez dessus pour l’apprendre ou l’équiper.</p>`;
+  const fp=matCount('p_oubli');
+  const bar=Array.from({length:LOADOUT_MAX},(_,i)=>{const id=h.loadout[i],q=id&&SK[id];
+    return `<div class="sbslot ${q?'full':''}" data-sbi="${i}">${q?`<button class="skc" style="--co:${q.co}" data-act="skSel" data-id="${id}" data-skdrag="${id}" data-from="${i}" data-tip="sk:${id}" aria-label="Emplacement ${i+1} : ${esc(q.n)}">${spIcon(q)}${q.ap?`<em class="apk">${q.ap}</em>`:''}</button>`:`<span aria-label="Emplacement ${i+1} vide">${i+1}</span>`}</div>`}).join('');
+  return `<section class="panel skpanel"><div class="row between" style="margin-bottom:10px"><h2>Compétences</h2><span class="num">Points : <b style="color:var(--brass)">${h.sp}</b></span></div>
+    <h3 class="skh">Barre de sorts <small class="mute num">${h.loadout.length} / ${LOADOUT_MAX}</small></h3><div class="spsticky"><div class="spbar" id="spbar">${bar}</div></div>
+    <p class="hint" style="text-align:center;margin:4px 0 0">Glissez-déposez une compétence active apprise dans un emplacement. Glissez un sort hors de la barre pour le retirer, ou d’un emplacement à l’autre pour changer l’ordre.</p>
+    <h3 class="skh">Compétences de base</h3><div class="skrow">${base}</div>
+    <h3 class="skh">Spécialisation</h3>${spec}
+    ${det}
+    <div class="row forget"><span class="hint">Potion d’oubli : réinitialise toutes les compétences et la spécialisation (en vente chez le Marchand). Possédées : <b class="num">${fp}</b></span><button class="btn sm ${UI.forgetConf?'danger':''}" data-act="forget" ${fp?'':'disabled'}>${UI.forgetConf?'Confirmer la réinitialisation':'Boire une potion d’oubli'}</button></div></section>`;
+}
+function resetSkills(h){
+  h.learned={}; h.loadout=[]; h.spec=null; h.sp=h.lvl;
+  const first=CLASSES[h.cls].skills[0]; h.learned[first.id]=1; h.loadout=[first.id];
+}
+/* tuile de combat */
+function cTile(id,U,act,sel){
+  const s=SK[id],cd=(U.cds&&U.cds[id])||0,c=s.ap||0,no=c>(U.ap||0),used=id==='atk'&&U.atkUsed,off=cd||no||used;
+  return `<button class="skc ${off?'off':''} ${sel?'sel':''}" style="--co:${s.co||'#5a5048'}" data-act="${act}" data-id="${id}" ${off?'aria-disabled="true"':''} data-tip="sk:${id}" aria-label="${esc(s.n)}${c?', '+c+' PA':''}${cd?', recharge '+cd+' tours':no?', PA insuffisants':used?', déjà utilisée':''}">${spIcon(s)}${c?`<em class="apk">${c}</em>`:''}${cd?`<span class="cdo">${cd}</span>`:used?'<span class="cdo">✓</span>':''}</button>`;
+}
+
+/* glisser-déposer des sorts vers la barre */
+let SKD=null,SKSUP=false;
+function skDrop(id,from,to){
+  const h=S.heroes[0],sk=SK[id]; if(!h||!sk||sk.t!=='a'||!h.learned[id]) return; const L=h.loadout.slice();
+  if(to==null){ if(from==null) return; if(L.length<=1){toast('Gardez au moins une compétence dans la barre.');return} L.splice(from,1) }
+  else if(from!=null){ if(to>=L.length){ L.splice(from,1); L.push(id) } else { const t=L[to]; L[to]=id; L[from]=t } }
+  else { const at=L.indexOf(id); if(at>=0){ if(to>=L.length){L.splice(at,1);L.push(id)} else {const t=L[to];L[to]=id;L[at]=t} }
+    else if(to<L.length) L[to]=id; else if(L.length<LOADOUT_MAX) L.push(id); else L[LOADOUT_MAX-1]=id }
+  h.loadout=L.filter(Boolean).slice(0,LOADOUT_MAX); save(); const y=scrollY; render(); scrollTo(0,y);
+}
+document.addEventListener('pointerdown',e=>{ const el=e.target.closest&&e.target.closest('[data-skdrag]'); if(!el||e.button>0) return; SKD={id:el.dataset.skdrag,from:el.dataset.from!=null?+el.dataset.from:null,x:e.clientX,y:e.clientY,el,on:false} });
+document.addEventListener('pointermove',e=>{ if(!SKD) return;
+  if(!SKD.on){ if(Math.hypot(e.clientX-SKD.x,e.clientY-SKD.y)<6) return; SKD.on=true; hideTip(); const g=SKD.el.cloneNode(true); g.id='skghost'; ['data-act','data-tip','data-skdrag'].forEach(a=>g.removeAttribute(a)); g.style.setProperty('--co',SKD.el.style.getPropertyValue('--co')); document.body.append(g); document.body.classList.add('skdrag') }
+  const g=$('#skghost'); if(g){ g.style.left=(e.clientX-26)+'px'; g.style.top=(e.clientY-26)+'px' }
+  const t=document.elementFromPoint(e.clientX,e.clientY),sl=t&&t.closest('.sbslot'); document.querySelectorAll('.sbslot.over').forEach(x=>x!==sl&&x.classList.remove('over')); if(sl) sl.classList.add('over');
+});
+document.addEventListener('pointerup',e=>{ if(!SKD) return; const d=SKD; SKD=null; if(!d.on) return;
+  const g=$('#skghost'); if(g) g.remove(); document.body.classList.remove('skdrag');
+  const t=document.elementFromPoint(e.clientX,e.clientY),sl=t&&t.closest('.sbslot'); SKSUP=true; setTimeout(()=>{SKSUP=false},60);
+  skDrop(d.id,d.from,sl?+sl.dataset.sbi:null) });
+document.addEventListener('pointercancel',()=>{ if(!SKD) return; SKD=null; const g=$('#skghost'); if(g) g.remove(); document.body.classList.remove('skdrag') });
+document.addEventListener('click',e=>{ if(SKSUP){ e.stopPropagation(); e.preventDefault(); SKSUP=false } },true);
+
 
 /* ============ combat ============ */
 const alive=l=>l.filter(u=>u.hp>0);
@@ -1288,16 +1730,16 @@ function effStat(u,st){
 }
 function mkHeroUnit(h){
   const s=heroStats(h),cl=CLASSES[h.cls];
-  const sk=h.loadout.filter(id=>h.learned[id]);
-  const cds={}; for(const id of sk) cds[id]=SK[id].cd>=4?Math.ceil(SK[id].cd/2):0;
+  const okS=new Set(heroSkills(h).filter(x=>x.t==='a').map(x=>x.id)),sk=h.loadout.filter(id=>h.learned[id]&&okS.has(id)).slice(0,LOADOUT_MAX);
+  const cds={}; for(const id of sk) cds[id]=0;
   return {id:'h'+h.id,team:'h',hero:h,name:h.name,lvl:h.lvl,ic:cl.ic,hue:h.hue,role:cl.role,...s,
-    hp:Math.round(s.hp),maxHp:Math.round(s.hp),skills:sk,ranks:h.learned,cds,st:[],shield:0,ap:s.ap,maxAp:s.ap};
+    hp:Math.round(s.hp),maxHp:Math.round(s.hp),skills:sk,ranks:h.learned,cds,st:[],shield:0,ap:s.ap,maxAp:s.ap,gx:heroGx(h)};
 }
 /* difficultés : niveau des monstres, multiplicateurs (monstres / boss), début de la rage des boss, récompenses */
 const DIFF={
-  normal:{n:'Normal',L:null,hp:1,atk:1,bHp:1,bAtk:1,bDef:1,rage:30,rw:1,prism:.1},
-  hero:{n:'Héroïque',L:50,hp:1.6,atk:3.2,bHp:2,bAtk:3.8,bDef:1.3,rage:10,rw:1,prism:.1},
-  myth:{n:'Mythique',L:60,hp:2.2,atk:3.6,bHp:2.4,bAtk:3.2,bDef:1.5,rage:8,rw:2,prism:.25,extra:'e_smash'},
+  normal:{n:'Normal',L:null,hp:1,atk:1,bHp:1,bAtk:1.15,bDef:1,rage:30,rw:1,prism:.1},
+  hero:{n:'Héroïque',L:50,hp:1.6,atk:2.6,bHp:1.6,bAtk:2.9,bDef:1.3,rage:10,rw:1,prism:.1},
+  myth:{n:'Mythique',L:60,hp:2.2,atk:2.9,bHp:1.7,bAtk:2.2,bDef:1.5,rage:8,rw:2,prism:.25,extra:'e_smash'},
 };
 const HERO_L=50;
 const heroOpen=()=>!!(S.heroes[0]&&S.heroes[0].lvl>=HERO_L);
@@ -1306,7 +1748,7 @@ const isHero=()=>curDiff()!=='normal';
 const progKey=d=>d==='myth'?'progM':d==='hero'?'progH':'prog';
 const prog=(d=curDiff())=>{const k=progKey(d); if(!S[k]) S[k]={zone:0,stage:1}; return S[k]};
 const mythOpen=()=>heroOpen()&&(S.mythOpen||(S.progH&&S.progH.zone===ZONES.length-1&&S.progH.stage===10));
-const ENF={hp:[30,38,.3],atk:[6,2.6,.06],def:[3,1.2,.01],pair:[.65,.6]};
+const ENF={hp:[30,38,.3],atk:[7,2.9,.07],def:[3,1.2,.01],pair:[.65,.6]};
 const enStat=(k,L)=>ENF[k][0]+ENF[k][1]*L+ENF[k][2]*L*L;
 function mkEnemies(z,st,n,diff){
   const D=DIFF[diff]||DIFF.normal,Z=ZONES[z],L=D.L||z*10+st,boss=st===10,list=[];
@@ -1345,19 +1787,20 @@ function refresh(u){
   el.classList.toggle('turn',C.turn===u.id);
   el.classList.toggle('selectable',!!C.pending&&u.team==='e'&&u.hp>0);
   $('.hp i',el).style.width=Math.max(0,u.hp/u.maxHp*100)+'%';
-  {const ab=$('.apbar',el); if(ab){ ab.querySelectorAll('i').forEach((x,i)=>x.classList.toggle('on',i<(u.ap||0))); ab.title=(u.ap||0)+' / '+(u.maxAp||0)+' PA' }}
+  {const sb=$('.hp .shl',el); if(sb){const m=u.maxHp||1,sh=Math.min(Math.max(0,u.shield||0),m),st=Math.min(Math.max(0,u.hp),m-sh); sb.style.left=st/m*100+'%'; sb.style.width=sh/m*100+'%'}}
+  {const ab=$('.apbar',el); if(ab){ if(ab.children.length!==(u.maxAp||0)) ab.innerHTML=Array.from({length:u.maxAp||0},()=>'<i></i>').join(''); ab.querySelectorAll('i').forEach((x,i)=>x.classList.toggle('on',i<(u.ap||0))); ab.title=(u.ap||0)+' / '+(u.maxAp||0)+' PA' }}
   $('.hp span',el).textContent=Math.max(0,Math.ceil(u.hp))+' / '+Math.ceil(u.maxHp)+(u.shield>0?' (+'+Math.ceil(u.shield)+')':'');
   const sn={atk:'FOR',def:'DEF',res:'RÉS',spd:'VIT',mag:'INT'};
   $('.stt',el).innerHTML=u.st.map(s=>{
-    const lab=s.k==='dot'?s.n:s.k==='stun'?'Étourdi':s.k==='taunt'?'Provoque':`${sn[s.stat]} ${s.v>0?'+':''}${Math.round(s.v)}%`;
+    const lab=s.k==='stk'?`${s.n} ${s.v}/${s.max||5}`:s.k==='ult'?s.n:s.k==='dot'?s.n:s.k==='para'?'Paralysie':s.k==='stun'?'Étourdi':s.k==='taunt'?'Provoque':s.k==='apb'?`PA +${s.v}`:`${sn[s.stat]} ${s.v>0?'+':''}${Math.round(s.v)}%`;
     return `<em class="b-${s.k}">${esc(lab)} ${s.dur}</em>`}).join('');
 }
-const refreshAll=()=>C.units.forEach(refresh);
+const refreshAll=()=>{C.units.forEach(refresh); renderInit(); const r=$('.cvround b'); if(r) r.textContent=C.round};
 function floatTxt(u,txt,cls){
   const el=unitEl(u); if(!el) return;
   const f=$('.fl',el); if(!f) return;
   const s=document.createElement('span'); s.className='fnum '+cls; s.textContent=txt; f.append(s);
-  setTimeout(()=>s.remove(),1100);
+  setTimeout(()=>s.remove(),2100);
 }
 function dmg(t,d,crit,src,label){
   let left=d;
@@ -1367,6 +1810,7 @@ function dmg(t,d,crit,src,label){
   const el=unitEl(t); if(el){el.classList.add('hit');setTimeout(()=>el.classList.remove('hit'),300)}
   logLine(`${t.name} subit ${d} dégâts${label?' ('+label+')':''}${crit?' — coup critique !':''}`,crit?'cr':'');
   if(t.hp<=0){logLine(`${t.name} est vaincu.`,'ev');t.st=[]}
+  else if(src&&t.gx&&t.gx.ult&&t.gx.ult.trig==='hurt') ultGain(t,m=>{logLine(m,'hl')});
   refresh(t);
 }
 function heal(t,a,silent){
@@ -1382,6 +1826,7 @@ function hit(u,t,mult,st,sk){
   let d=effStat(u,st)*mult*K/(K+effStat(t,ds));
   d*=1+(u.dmgPct||0)/100;
   d*=resMul(t,st,sk&&sk.el);
+  d*=skMul(u,t,sk);
   const rs=u.boss?DIFF[C.diff||'normal'].rage:30;
   if(u.team==='e'&&C.round>rs) d*=1+(C.round-rs)*(u.boss&&rs<30?.08:.1);
   if(sk&&sk.exec&&t.hp/t.maxHp<sk.exec.thr/100) d*=1+sk.exec.bonus;
@@ -1390,13 +1835,21 @@ function hit(u,t,mult,st,sk){
   d=Math.max(1,Math.round(d));
   dmg(t,d,crit,u);
   if(u.lifesteal&&u.hp>0) heal(u,d*u.lifesteal/100,true);
+  { const ul=(u.st||[]).find(q=>q.k==='ult'&&q.ls); if(ul&&u.hp>0) heal(u,d*ul.ls/100,true) }
+  return d;
 }
 function applyFx(u,t,f,k,sk){
   if(t.hp<=0) return;
   const st=sk.st||u.role;
   if(f.k==='dot'){
+    if(Math.random()*100>=fxCh(f,sk,u.gx)) return;
     t.st=t.st.filter(s=>!(s.k==='dot'&&s.n===f.n));
-    t.st.push({k:'dot',n:f.n,v:effStat(u,st)*f.v*k*resMul(t,st,sk.el),dur:f.dur});
+    t.st.push({k:'dot',n:f.n,v:effStat(u,st)*f.v*k*resMul(t,st,sk.el)*fxPow(f,u.gx),dur:fxDur(f,u.gx)});
+    if(f.ch!=null) logLine(`${t.name} subit ${f.n}.`,'ev');
+  }else if(f.k==='para'){
+    if(Math.random()*100<(fxCh(f,sk,u.gx)+ulPara(u))*(t.boss?.5:1)){ t.st=t.st.filter(s=>s.k!=='para'); t.st.push({k:'para',p:paraPow(u.gx),dur:f.dur}); floatTxt(t,'Paralysie','miss'); logLine(`${t.name} est paralysé !`,'ev') }
+  }else if(f.k==='det'){
+    const q=t.st.find(x=>x.k==='dot'&&x.n===f.n); if(q){ t.st=t.st.filter(x=>x!==q); dmg(t,Math.max(1,Math.round(q.v*q.dur*f.m*k)),false,u,f.n+' : détonation') }
   }else if(f.k==='stun'){
     const ch=(f.ch||100)*(t.boss?.5:1);
     if(Math.random()*100<ch&&!t.st.some(s=>s.k==='stun')){t.st.push({k:'stun',dur:f.dur});logLine(`${t.name} est étourdi !`,'ev')}
@@ -1418,6 +1871,7 @@ async function exec(u,sk,tgt){
   const rank=sk.id==='atk'?1:(u.ranks[sk.id]||1),k=sc(rank);
   if(sk.cd) u.cds[sk.id]=sk.cd+1;
   if(sk.ap) u.ap=Math.max(0,(u.ap||0)-sk.ap);
+  if(sk.self){ const c=Math.min(u.hp-1,Math.round(u.maxHp*sk.self)); if(c>0){ u.hp-=c; floatTxt(u,'-'+c,''); logLine(`${u.name} sacrifie ${c} PV.`,'cr'); refresh(u) } }
   const foesA=alive(foes(u)),friA=alive(friends(u));
   if((sk.tg==='one')&&(!tgt||tgt.hp<=0)) tgt=foesA[0];
   let fT=[],aT=[];
@@ -1430,16 +1884,20 @@ async function exec(u,sk,tgt){
   const el=unitEl(u); if(el){el.style.transform='scale(1.03)';setTimeout(()=>{el.style.transform=''},220)}
   await sleep(260);
   const st=sk.st||u.role;
-  if(sk.mult) for(const t of fT) for(let i=0;i<(sk.hits||1);i++){ if(t.hp<=0)break; hit(u,t,sk.mult*k,st,sk) }
+  if(sk.mult) for(const t of fT) for(let i=0;i<(sk.hits||1);i++){ if(t.hp<=0)break; const d=hit(u,t,sk.mult*k,st,sk); if(sk.ls&&d&&u.hp>0) heal(u,d*sk.ls/100) }
   for(const f of sk.fx||[]){
     const on=f.on||(sk.tg==='one'||sk.tg==='all'?'foe':'friend');
     const ts=on==='foe'?fT:on==='allies'?alive(friends(u)):aT;
     for(const t of ts) applyFx(u,t,f,k,sk);
   }
+  ultAfterCast(u,sk,fT,m=>{logLine(m,'hl');floatTxt(u,m.split(' : ').pop(),'heal')});
   refreshAll();
   await sleep(420);
 }
 const AP_REGEN=1;
+const PA_POT=2,PA_CD=6;
+function stTick(u){ u.st.forEach(s=>s.dur--); for(const s of u.st) if(s.k==='apb'&&s.dur<=0){ u.maxAp=Math.max(0,(u.maxAp||0)-s.v); u.ap=Math.min(u.ap||0,u.maxAp) } u.st=u.st.filter(s=>s.dur>0) }
+function addApb(u){ u.st=u.st.filter(s=>{ if(s.k==='apb'){u.maxAp-=s.v; return false} return true }); u.st.push({k:'apb',v:PA_POT,dur:3}); u.maxAp=(u.maxAp||0)+PA_POT; u.ap=(u.ap||0)+PA_POT }
 const canAct=u=>u.hp>0&&(!u.atkUsed||u.skills.some(id=>(u.cds[id]||0)===0&&(u.ap||0)>=(SK[id].ap||0)));
 function tauntOf(list){return list.find(x=>x.hp>0&&x.st.some(s=>s.k==='taunt'))}
 function ai(u,noAtk){
@@ -1451,8 +1909,11 @@ function ai(u,noAtk){
   if(healer&&low&&low.hp/low.maxHp<.55) return {skill:healer.sk,target:low};
   let best=null,bs=1;
   for(const x of usable){
-    const sk=x.sk; if(isHeal(x)) continue;
+    const sk=x.sk; if(isHeal(x)) continue; if(sk.self&&u.hp/u.maxHp<.4) continue;
     let s=(sk.mult||0)*(sk.tg==='all'?foesA.length*.8:1)*sc(x.rank);
+    { const dt=(sk.fx||[]).find(f=>f.k==='det'); if(dt) s*=foesA.some(f=>hasSt(f,'dot',dt.n))?2.4:.35; }
+    if(sk.ifSt) s*=foesA.some(f=>sk.ifSt.k==='para'?hasSt(f,'para'):hasSt(f,'dot',sk.ifSt.n))?1+sk.ifSt.v*.8:.9;
+    if(sk.lowHp) s*=1+sk.lowHp*(1-u.hp/u.maxHp);
     if(sk.exec) s*=foesA.some(f=>f.hp/f.maxHp<sk.exec.thr/100)?1.8:.8;
     if(!sk.mult){
       const need=(sk.fx||[]).some(f=>(f.k==='buff'&&friA.every(a=>!a.st.some(q=>q.k==='buff'&&q.stat===f.stat)))||(f.k==='shield'&&u.shield<u.maxHp*.1&&(sk.tg!=='self'||true)));
@@ -1466,7 +1927,8 @@ function ai(u,noAtk){
   const skill=best?best.sk:SK.atk;
   let target=null;
   if(skill.tg==='one'){
-    if(u.team==='h') target=foesA.slice().sort((a,b)=>a.hp-b.hp)[0];
+    if(u.team==='h'){ const dt=(skill.fx||[]).find(f=>f.k==='det'),need=dt?(f=>hasSt(f,'dot',dt.n)):skill.ifSt?(f=>skill.ifSt.k==='para'?hasSt(f,'para'):hasSt(f,'dot',skill.ifSt.n)):null;
+      target=(need&&foesA.find(need))||foesA.slice().sort((a,b)=>a.hp-b.hp)[0] }
     else target=tauntOf(foesA)||(Math.random()<.3?foesA.slice().sort((a,b)=>a.hp/a.maxHp-b.hp/b.maxHp)[0]:pick(foesA));
   }
   return {skill,target};
@@ -1481,6 +1943,7 @@ async function turn(u){
   if(u.hp<=0){C.turn=null;refreshAll();return}
   let skip=false;
   if(u.st.some(s=>s.k==='stun')){logLine(`${u.name} est étourdi et passe son tour.`,'ev');skip=true;await sleep(500)}
+  else { const pa=u.st.find(s=>s.k==='para'); if(pa&&Math.random()*100<(pa.p||50)){ logLine(`${u.name} est paralysé et perd son tour.`,'ev'); floatTxt(u,'Paralysé','miss'); skip=true; await sleep(500) } }
   if(!skip){
     u.atkUsed=false;
     if(u.team==='h'){
@@ -1499,7 +1962,7 @@ async function turn(u){
       const ch=ai(u); await exec(u,ch.skill,ch.target);
     }
   }
-  u.st.forEach(s=>s.dur--); u.st=u.st.filter(s=>s.dur>0);
+  stTick(u);
   for(const id of Object.keys(u.cds)) u.cds[id]=Math.max(0,u.cds[id]-1);
   C.turn=null; refreshAll();
 }
@@ -1514,7 +1977,7 @@ async function loop(id){
     C.round++; logLine(`Tour ${C.round}`,'rd');
     if(C.round===31) logLine('Les ennemis entrent en rage : leurs dégâts augmentent à chaque tour.','cr');
     { const rb=DIFF[C.diff||'normal'].rage; if(rb<30&&C.round===rb+1&&C.units.some(x=>x.boss&&x.hp>0)) logLine('Le boss entre en rage : ses dégâts augmentent à chaque tour !','cr') }
-    const order=alive(C.units).sort((a,b)=>effStat(b,'spd')-effStat(a,'spd')||Math.random()-.5);
+    const order=alive(C.units).sort((a,b)=>effStat(b,'spd')-effStat(a,'spd')||Math.random()-.5); C.order=order.map(u=>u.id); renderInit();
     for(const u of order){
       if(C.abort||C.id!==id) return;
       if(u.hp<=0) continue;
@@ -1524,14 +1987,21 @@ async function loop(id){
     }
   }
 }
-async function startBattle(){
-  if(C.phase==='fight') return;
+function inFight(){ return C.phase==='fight'||C.phase==='prep' }
+const PREP_MS=10000;
+async function startBattle(chain){
+  if(inFight()) return;
   const party=partyHeroes(); if(!party.length){toast('Aucun personnage.');return}
   C.abort=false; C.id++; const id=C.id;
-  C.diff=curDiff(); C.hero=C.diff!=='normal'; C.bonus={xp:0,loot:0}; C.potR=-99; C.units=[...party.map(mkHeroUnit),...mkEnemies(UI.zone,UI.stage,party.length,C.diff)];
-  C.round=0; C.logs=[]; C.result=null; C.phase='fight'; C.zone=UI.zone; C.stage=UI.stage; C.pending=null; C.waiting=null; C.turn=null;
+  C.diff=curDiff(); C.hero=C.diff!=='normal'; C.bonus={xp:0,loot:0}; C.pcd={}; UI.invOpen=false; C.units=[...party.map(mkHeroUnit),...mkEnemies(UI.zone,UI.stage,party.length,C.diff)];
+  C.round=0; C.order=null; C.logs=[]; C.result=null; C.phase='fight'; C.zone=UI.zone; C.stage=UI.stage; C.pending=null; C.waiting=null; C.turn=null;
   render();
   logLine(`${ZONES[C.zone].n} — étape ${C.stage}${C.hero?' ('+DIFF[C.diff].n.toLowerCase()+')':''}`,'rd');
+  if(!C.test&&!(chain&&S.auto)){
+    C.phase='prep'; C.prepEnd=Date.now()+PREP_MS; C.prepGo=false; renderActbar(); logLine('Préparation : 10 secondes pour boire vos potions avant le combat.','rd');
+    while(!C.abort&&C.id===id&&!C.prepGo&&Date.now()<C.prepEnd){ await new Promise(r=>setTimeout(r,200)); const el=document.querySelector('#actbar [data-prep]'); if(el) el.textContent=Math.max(0,Math.ceil((C.prepEnd-Date.now())/1000))+' s' }
+    if(C.abort||C.id!==id) return; C.phase='fight'; renderActbar();
+  }
   await sleep(500);
   await loop(id);
 }
@@ -1569,7 +2039,7 @@ async function finish(r){
   }
   C.phase='result'; save(); renderHeader(); renderTabs(); if(UI.tab==='combat') render();
   if(r==='win'&&S.farm&&S.auto){
-    const id=C.id; setTimeout(()=>{ if(C.phase==='result'&&C.id===id&&S.farm) startBattle() },1400/(S.speed||1));
+    const id=C.id; setTimeout(()=>{ if(C.phase==='result'&&C.id===id&&S.farm) startBattle(true) },1400/(S.speed||1));
   }
 }
 
@@ -1672,11 +2142,12 @@ function render(){
   renderTabs(); if(UI.scr) $('#res').innerHTML=''; else renderHeader();
   const v=$('#view');
   renderFriends();
-  if(UI.scr){v.innerHTML=({menu:viewMenu,login:viewLogin,pseudo:viewPseudo,best:viewBest,select:viewSelect,create:viewCreator,opts:viewOpts,news:viewNews})[UI.scr]();return}
+  if(UI.scr){v.innerHTML=({menu:viewMenu,login:viewLogin,pseudo:viewPseudo,best:viewBest,select:viewSelect,create:viewCreator,opts:viewOpts,news:viewNews})[UI.scr](); renderInvPop(); return}
   if(!S||!S.heroes.length){UI.scr='menu';return render()}
   if(UI.tab==='opts'||UI.tab==='news') UI.tab='combat';
   v.innerHTML=({combat:viewCombat,heroes:viewHeroes,bag:viewBag,shop:viewShop,forge:viewForge,sites:viewSites,help:viewHelp,opts:viewOpts,news:viewNews})[UI.tab]();
   if(UI.tab==='combat'&&C.phase!=='idle'){C.units.forEach(refresh);renderActbar();const l=$('#log');if(l){l.scrollTop=l.scrollHeight}}
+  renderInvPop();
 }
 function lvlToast(h,n){
   const e=document.createElement('div');e.className='toast lvl';e.innerHTML=`<b>★ Niveau ${h.lvl} ★</b>${esc(h.name)} gagne ${n>1?n+' niveaux':'un niveau'} : +${n} point${n>1?'s':''} de compétence.`;
@@ -1808,7 +2279,7 @@ const pvpTS=()=>firebase.firestore.FieldValue.serverTimestamp();
 const pvpReady=()=>!!(FB.user&&FB.prof&&S&&S.heroes&&S.heroes[0]);
 function pvpSnap(){
   const h=S.heroes[0],u=mkHeroUnit(h),keys=['hp','maxHp','atk','mag','def','res','spd','crit','critDmg','dodge','lifesteal','dmgPct','ap','maxAp',...RES_K];
-  const o={acct:FB.prof.name,name:h.name,cls:h.cls,lvl:h.lvl,role:u.role,skills:u.skills.slice(),ranks:Object.fromEntries(u.skills.map(id=>[id,h.learned[id]||1])),cds:{},st:[],shield:0,atkUsed:false,stun:false};
+  const o={acct:FB.prof.name,name:h.name,cls:h.cls,lvl:h.lvl,role:u.role,gx:u.gx,skills:u.skills.slice(),ranks:Object.fromEntries(u.skills.map(id=>[id,h.learned[id]||1])),cds:{},st:[],shield:0,atkUsed:false,stun:false};
   for(const k of keys) o[k]=Math.round((u[k]||0)*10)/10;
   return o;
 }
@@ -1820,7 +2291,7 @@ function startPvp(){
       const age=now-(m.cms||now);
       if(PV.match&&PV.match.id===m.id){ PV.match=m; continue }
       if(m.state==='confirm'&&age<45000&&!PV.match){ PV.match=m; pvpStopSearch(true); if(m.from!==me) toast('⚔ '+(m.names&&m.names[m.from]||'Un joueur')+' vous propose un duel !'); continue }
-      if((m.state!=='fight'&&age>60000)||(m.state==='fight'&&now-tsMs(m.turnAt)>15*60000)) d.ref.delete().catch(()=>{});
+      if((m.state!=='fight'&&m.state!=='prep'&&age>60000)||(m.state==='prep'&&age>180000)||(m.state==='fight'&&now-tsMs(m.turnAt)>15*60000)) d.ref.delete().catch(()=>{});
     }
     if(PV.match&&!qs.docs.some(d=>d.id===PV.match.id)){ if(PV.match.state==='confirm') toast('Le duel a été annulé.'); PV.match=null }
     pvpTick();
@@ -1831,7 +2302,7 @@ function stopPvp(){ if(PV.unsub){PV.unsub();PV.unsub=null} pvpStopSearch(); PV.m
 /* recherche d’adversaire */
 async function pvpSearch(){
   if(!pvpReady()){toast('Chargez un personnage pour faire un duel.');return}
-  if(C.phase==='fight'){toast('Terminez d’abord votre combat en cours.');return}
+  if(inFight()){toast('Terminez d’abord votre combat en cours.');return}
   if(PV.match||RD.match) return; if(RD.searching) rdStopSearch(); PV.searching=true; render();
   const h=S.heroes[0],me=pvpMe();
   const put=()=>pvpQ().doc(me).set({uid:me,name:FB.prof.name,char:{name:h.name,cls:h.cls,lvl:h.lvl},ts:pvpTS(),tms:Date.now()}).catch(()=>{});
@@ -1857,7 +2328,7 @@ async function pvpUpd(data){ if(!PV.match) return; try{ await pvpCol().doc(PV.ma
 /* confirmation, démarrage */
 async function pvpAccept(){
   if(!PV.match) return; if(!pvpReady()){toast('Chargez un personnage (Jouer) pour accepter le duel.');return}
-  if(C.phase==='fight'){toast('Terminez d’abord votre combat en cours.');return}
+  if(inFight()){toast('Terminez d’abord votre combat en cours.');return}
   if(RD.match&&RD.match.state==='fight'){toast('Terminez d’abord votre raid.');return}
   const me=pvpMe(); await pvpUpd({['acc.'+me]:true,['u.'+me]:pvpSnap()});
 }
@@ -1865,9 +2336,10 @@ async function pvpRefuse(){ if(!PV.match) return; await pvpUpd({state:'cancel',b
 function pvpTick(){
   const m=PV.match; renderPvp(); if(!m) return; const me=pvpMe();
   if(m.state==='confirm'&&m.players[0]===me&&m.players.every(p=>m.acc&&m.acc[p]&&m.u&&m.u[p])&&!PV.busy){
-    PV.busy=true; const [a,b]=m.players,ua=m.u[a],ub=m.u[b],first=ua.spd>=ub.spd?a:b;
-    pvpUpd({state:'fight',turn:first,first,round:1,turnAt:pvpTS(),log:['⚔ Le duel commence ! '+(m.names[first])+' agit en premier.']}).finally(()=>{PV.busy=false});
+    PV.busy=true; pvpUpd({state:'prep',prepAt:pvpTS(),ready:{},log:['⏳ Préparation : 10 secondes pour boire vos potions.']}).finally(()=>{PV.busy=false});
   }
+  if(m.state==='prep') pvPrepCheck();
+  renderInvPop();
   if(m.state==='cancel'){ if(m.by!==me) toast('Le duel a été refusé.'); PV.match=null; renderPvp() }
   if(m.state==='done'&&PV.ending!==m.id){ PV.ending=m.id; pvpEnd(m) }
 }
@@ -1876,25 +2348,33 @@ const pvEff=(u,k)=>{let x=0; for(const s of u.st||[]) if(s.k==='buff'&&s.stat===
 function pvHit(u,t,mult,st,sk,L){
   if(Math.random()*100<(t.dodge||0)){L.push(`${t.name} esquive.`);return}
   const K=100+15*(u.lvl||1),ds=st==='mag'?'res':'def';
-  let d=pvEff(u,st)*mult*K/(K+pvEff(t,ds)); d*=1+(u.dmgPct||0)/100; d*=resMul(t,st,sk&&sk.el); d*=rand(.92,1.08);
+  let d=pvEff(u,st)*mult*K/(K+pvEff(t,ds)); d*=1+(u.dmgPct||0)/100; d*=resMul(t,st,sk&&sk.el); d*=skMul(u,t,sk); d*=rand(.92,1.08);
   const cr=Math.random()*100<(u.crit||0); if(cr) d*=(u.critDmg||150)/100; d=Math.max(1,Math.round(d));
   let a=d; if(t.shield>0){const s=Math.min(t.shield,a); t.shield-=s; a-=s}
   t.hp=Math.max(0,t.hp-a); L.push(`${t.name} subit ${d} dégâts${cr?' (critique !)':''}.`);
+  if(t.hp>0&&t.gx&&t.gx.ult&&t.gx.ult.trig==='hurt') ultGain(t,m=>L.push(m));
+  { const ul=(u.st||[]).find(q=>q.k==='ult'&&q.ls); if(ul&&u.hp>0){ const hh=Math.min(u.maxHp-u.hp,Math.round(d*ul.ls/100)); if(hh>0) u.hp+=hh } }
   if(u.lifesteal&&u.hp>0){const hh=Math.min(u.maxHp-u.hp,Math.round(d*u.lifesteal/100)); if(hh>0){u.hp+=hh}}
+  if(sk&&sk.ls&&u.hp>0){const hh=Math.min(u.maxHp-u.hp,Math.round(d*sk.ls/100)); if(hh>0){u.hp+=hh; L.push(`${u.name} récupère ${hh} PV.`)}}
+  return d;
 }
+function pvSelf(u,sk,L){ if(!sk.self) return; const c=Math.min(u.hp-1,Math.round(u.maxHp*sk.self)); if(c>0){ u.hp-=c; L.push(`${u.name} sacrifie ${c} PV.`) } }
 function pvExec(u,t,sk,L){
   const k=sk.id==='atk'?1:sc((u.ranks&&u.ranks[sk.id])||1),st=sk.st||u.role;
   if(sk.cd) u.cds[sk.id]=sk.cd+1; if(sk.ap) u.ap=Math.max(0,u.ap-sk.ap); if(sk.id==='atk') u.atkUsed=true;
-  L.push(sk.id==='atk'?`${u.name} attaque.`:`${u.name} utilise ${sk.n}.`);
+  L.push(sk.id==='atk'?`${u.name} attaque.`:`${u.name} utilise ${sk.n}.`); pvSelf(u,sk,L);
   if(sk.mult) for(let i=0;i<(sk.hits||1)&&t.hp>0;i++) pvHit(u,t,sk.mult*k,st,sk,L);
   for(const f of sk.fx||[]){
     const on=f.on||(sk.tg==='one'||sk.tg==='all'?'foe':'friend'),tg=on==='foe'?t:u; pvFx(u,tg,f,k,sk,L);
   }
+  ultAfterCast(u,sk,[t],m=>L.push(m));
 }
 function pvFx(u,tg,f,k,sk,L){
   const st=sk.st||u.role; if(tg.hp<=0) return;
   {
-    if(f.k==='dot'){tg.st=tg.st.filter(s=>!(s.k==='dot'&&s.n===f.n)); tg.st.push({k:'dot',n:f.n,v:Math.round(pvEff(u,st)*f.v*k*resMul(tg,st,sk.el)),dur:f.dur}); L.push(`${tg.name} subit ${f.n}.`)}
+    if(f.k==='dot'){ if(Math.random()*100>=fxCh(f,sk,u.gx)) return; tg.st=tg.st.filter(s=>!(s.k==='dot'&&s.n===f.n)); tg.st.push({k:'dot',n:f.n,v:Math.round(pvEff(u,st)*f.v*k*resMul(tg,st,sk.el)*fxPow(f,u.gx)),dur:fxDur(f,u.gx)}); L.push(`${tg.name} subit ${f.n}.`)}
+    else if(f.k==='para'){ if(Math.random()*100<(fxCh(f,sk,u.gx)+ulPara(u))*(tg.boss?.5:1)){ tg.st=tg.st.filter(s=>s.k!=='para'); tg.st.push({k:'para',p:paraPow(u.gx),dur:f.dur}); L.push(`${tg.name} est paralysé !`) } }
+    else if(f.k==='det'){ const q=tg.st.find(x=>x.k==='dot'&&x.n===f.n); if(q){ tg.st=tg.st.filter(x=>x!==q); let a=Math.max(1,Math.round(q.v*q.dur*f.m*k)); const d0=a; if(tg.shield>0){const z=Math.min(tg.shield,a); tg.shield-=z; a-=z} tg.hp=Math.max(0,tg.hp-a); L.push(`${f.n} : détonation, ${tg.name} subit ${d0} dégâts.`) } }
     else if(f.k==='taunt'){tg.st=tg.st.filter(s=>s.k!=='taunt'); tg.st.push({k:'taunt',dur:f.dur}); L.push(`${tg.name} provoque l’adversaire.`)}
     else if(f.k==='stun'){ if(Math.random()*100<(f.ch||100)*(tg.boss?.5:1)){tg.st=tg.st.filter(s=>s.k!=='stun'); tg.st.push({k:'stun',dur:f.dur}); L.push(`${tg.name} est étourdi !`)} }
     else if(f.k==='shield'){const a=f.of==='hp'?tg.maxHp*f.v*k:pvEff(u,'mag')*f.v*k; tg.shield=Math.round(Math.min(tg.maxHp,(tg.shield||0)+a)); L.push(`${tg.name} gagne un bouclier.`)}
@@ -1915,25 +2395,28 @@ async function pvAct(id){
   if((sk.ap||0)>x.U.ap||(x.U.cds[id]||0)||(id==='atk'&&x.U.atkUsed)) return;
   PV.busy=true; pvExec(x.U,x.T,sk,x.L); await pvCommit(x); PV.busy=false;
 }
-function potFx(U,k,L){
+function potFx(U,k,L,ctx){
+  if(k==='p_pa'){ if(ctx&&ctx.pvp&&!ctx.prep&&ctx.round>1) return false; addApb(U); L.push(`${U.name} boit une Potion d’action (+${PA_POT} PA pendant 3 tours).`); U.pcd=U.pcd||{}; U.pcd[k]=POTS[k].cd+(ctx&&ctx.prep?0:1); return true }
   if(k==='p_vie'){const a=Math.round(Math.min(U.maxHp-U.hp,U.maxHp*.4)); U.hp+=a; L.push(`${U.name} boit une Potion de vie (+${a} PV).`)}
   else if(k==='p_res'){U.st=U.st.filter(s=>!(s.k==='buff'&&(s.stat==='def'||s.stat==='res')&&s.v>0)); U.st.push({k:'buff',stat:'def',v:40,dur:3},{k:'buff',stat:'res',v:40,dur:3}); L.push(`${U.name} boit une Potion de résistance.`)}
   else if(k==='p_for'||k==='p_int'){const stt=k==='p_for'?'atk':'mag'; U.st=U.st.filter(s=>!(s.k==='buff'&&s.stat===stt&&s.v>0)); U.st.push({k:'buff',stat:stt,v:30,dur:3}); L.push(`${U.name} boit une ${POTS[k].n}.`)}
   else return false;
-  U.potCd=POT_CD+1; return true;
+  U.pcd=U.pcd||{}; U.pcd[k]=(POTS[k].cd||0)+(ctx&&ctx.prep?0:1); return true;
 }
 async function pvPot(k){
-  if(!pvMyTurn()||PV.busy) return; if(matCount(k)<1) return; const x=pvState(),U=x.U; if(U.potCd>0) return;
-  if(!potFx(U,k,x.L)) return;
+  if(PV.match&&PV.match.state==='prep') return pvPrepPot(k);
+  if(!pvMyTurn()||PV.busy) return; if(matCount(k)<1) return; const x=pvState(),U=x.U; if((U.pcd||{})[k]>0) return;
+  if(!potFx(U,k,x.L,{pvp:true,round:x.m.round||1})) return;
   PV.busy=true; removeMat(k,1); save(); await pvCommit(x); PV.busy=false;
 }
 async function pvEnd(){
   if(!pvMyTurn()||PV.busy) return; const x=pvState(),U=x.U,T=x.T;
-  U.st.forEach(s=>s.dur--); U.st=U.st.filter(s=>s.dur>0); for(const k in U.cds) U.cds[k]=Math.max(0,U.cds[k]-1); if(U.potCd>0) U.potCd--; U.stun=false; U.atkUsed=false;
+  stTick(U); for(const k in U.cds) U.cds[k]=Math.max(0,U.cds[k]-1); for(const q in (U.pcd||{})) U.pcd[q]=Math.max(0,U.pcd[q]-1); U.stun=false; U.atkUsed=false;
   /* début du tour adverse */
   T.ap=T.maxAp;
   for(const s of T.st.filter(s=>s.k==='dot')){ T.hp=Math.max(0,T.hp-Math.max(1,s.v)); x.L.push(`${T.name} subit ${Math.max(1,s.v)} dégâts (${s.n}).`) }
   T.stun=T.st.some(s=>s.k==='stun'); if(T.stun) x.L.push(`${T.name} est étourdi et ne peut pas agir.`);
+  else { const pa=T.st.find(s=>s.k==='para'); if(pa&&Math.random()*100<(pa.p||50)){ T.stun=true; x.L.push(`${T.name} est paralysé et ne peut pas agir.`) } }
   const round=(x.m.round||1)+(x.o===x.m.first?1:0);
   PV.busy=true; await pvCommit(x,{turn:x.o,round,turnAt:pvpTS()}); PV.busy=false;
 }
@@ -1957,10 +2440,52 @@ function pvpLoot(m){
   document.body.append(d); d.querySelector('button').focus();
 }
 /* affichage */
-function fActs(U,p){
-  const ids=['atk',...U.skills],pc=U.potCd||0,pots=['p_vie','p_res',CLASSES[U.cls].role==='mag'?'p_int':'p_for'].filter(k=>matCount(k)>0);
-  return `<div class="acts">${ids.map(id=>{const s=SK[id],cd=U.cds[id]||0,c=s.ap||0,no=c>U.ap,used=id==='atk'&&U.atkUsed;return `<button class="skb" data-act="${p}Sk" data-id="${id}" ${cd||no||used?'disabled':''} title="${esc(skDesc(s,U.ranks[id]||1,U.role))}"><b>${s.n}${s.el&&ELEM[s.el]?` <em class="elt" style="--ec:${ELEM[s.el].c}">${ELEM[s.el].n}</em>`:''}</b><small>${c?`<span class="apc">${c} PA</span> · `:''}${used?'Déjà utilisée':cd?`Recharge : ${cd}`:no?'PA insuffisants':id==='atk'?'1 fois par tour':'Prête'}</small></button>`}).join('')}<button class="btn endturn" data-act="${p}EndT">Fin de tour</button></div>
-      <div class="potbar">${pots.map(k=>`<button class="potb" data-act="${p}Pot" data-k="${k}" ${pc?'disabled':''} title="${esc(POTS[k].n)} : ${esc(POTS[k].d)}">${matIcon(k)}<span class="num">${matCount(k)}</span></button>`).join('')||'<small class="mute">Aucune potion utilisable.</small>'}${pc?`<small class="potcd">${potCdTxt(pc)}</small>`:pots.length?'<small class="potcd">1 potion par tour, puis 3 tours de recharge.</small>':''}</div>`;
+function fPots(U,p,round,prep){
+  const pots=['p_vie','p_res',CLASSES[U.cls].role==='mag'?'p_int':'p_for','p_pa'].filter(k=>matCount(k)>0),paLock=p==='pvp'&&!prep&&(round||1)>1;
+  return `<div class="potbar">${pots.map(k=>{const cd=Math.min((U.pcd||{})[k]||0,POTS[k].cd||99),lk=k==='p_pa'&&paLock,off=cd||lk;return `<button class="potb ${off?'off':''}" data-act="${p}Pot" data-k="${k}" data-tip="pot:${k}" aria-label="${esc(POTS[k].n)}${cd?', recharge '+cd+' tours':lk?', uniquement au premier tour':''}">${matIcon(k)}<span class="num">${matCount(k)}</span>${cd?`<span class="cdo">${cd}</span>`:lk?'<span class="cdo">✕</span>':''}</button>`}).join('')||'<small class="mute">Aucune potion utilisable.</small>'}</div>`;
+}
+function fActs(U,p,round){
+  const ids=['atk',...U.skills];
+  return `<div class="acts"><div class="skcbar">${ids.map(id=>cTile(id,U,p+'Sk')).join('')}</div><span class="apc" style="align-self:center">${U.ap} / ${U.maxAp} PA</span><button class="btn endturn" data-act="${p}EndT">Fin de tour</button></div>${fPots(U,p,round,false)}`;
+}
+function prepActs(U,p,m){
+  const left=Math.max(0,Math.ceil((PREP_MS-(Date.now()-tsMs(m.prepAt)))/1000)),me=pvpMe(),rd=m.ready&&m.ready[me],ot=m.players.filter(x=>x!==me).every(x=>m.ready&&m.ready[x]);
+  return `<div class="prepbar"><div class="prept"><b>Préparation</b><span class="num" data-prep>${left} s</span></div><p class="hint">Les deux joueurs se préparent en même temps : buvez vos potions avant le début du combat.${ot?' Votre '+(p==='pvp'?'adversaire':'partenaire')+' est prêt.':''}</p>${U&&U.hp>0?fPots(U,p,1,true):''}<div class="row" style="justify-content:center;margin-top:8px"><button class="btn pri" data-act="${p}Ready" ${rd?'disabled':''}>${rd?'Prêt — en attente…':'Je suis prêt'}</button></div></div>`;
+}
+/* chiffres de dégâts / soins sur les cartes (duels et raids) */
+function hpFloats(w,m,store){
+  const hp={}; for(const [id,v] of Object.entries(m.u||{})) if(v&&typeof v.hp==='number') hp[id]=v.hp;
+  const pr=store.fl&&store.fl.id===m.id?store.fl.hp:null; store.fl={id:m.id,hp};
+  if(!pr) return;
+  for(const [id,v] of Object.entries(hp)){ if(pr[id]==null) continue; const d=Math.round(pr[id]-v); if(!d) continue; const el=w.querySelector(`[data-pu="${id}"]`); if(el) spawnFloat(el,d>0?'-'+fmt(d):'+'+fmt(-d),d>0?'':'heal') }
+}
+function spawnFloat(el,txt,cls){
+  const r=el.getBoundingClientRect(),f=document.createElement('span'); f.className='fnum fx '+(cls||''); f.textContent=txt;
+  f.style.left=(r.left+r.width/2+(Math.random()*30-15))+'px'; f.style.top=(r.top+r.height*.32)+'px'; document.body.append(f); setTimeout(()=>f.remove(),2200);
+}
+async function pvPrepPot(k){
+  const m=PV.match; if(!m||m.state!=='prep'||matCount(k)<1) return; const me=pvpMe(),U=JSON.parse(JSON.stringify(m.u[me])),L=[]; if((U.pcd||{})[k]>0) return;
+  if(!potFx(U,k,L,{pvp:true,prep:true,round:1})) return; removeMat(k,1); save();
+  await pvpUpd({['u.'+me]:U,log:firebase.firestore.FieldValue.arrayUnion(...L)});
+}
+async function rdPrepPot(k){
+  const m=RD.match; if(!m||m.state!=='prep'||matCount(k)<1) return; const me=pvpMe(),U=JSON.parse(JSON.stringify(m.u[me])),L=[]; if((U.pcd||{})[k]>0) return;
+  if(!potFx(U,k,L,{raid:true,prep:true})) return; removeMat(k,1); save();
+  await rdUpd({['u.'+me]:U,log:firebase.firestore.FieldValue.arrayUnion(...L)});
+}
+function pvPrepCheck(){
+  const m=PV.match; if(!m||m.state!=='prep'||PV.busy) return; const me=pvpMe(),el=Date.now()-tsMs(m.prepAt),both=m.players.every(p=>m.ready&&m.ready[p]);
+  if(!((m.players[0]===me&&(el>=PREP_MS||both))||el>=PREP_MS+6000)) return;
+  PV.busy=true; const [a,b]=m.players,ua=m.u[a],ub=m.u[b],first=pvEff(ua,'spd')>=pvEff(ub,'spd')?a:b;
+  pvpUpd({state:'fight',turn:first,first,round:1,turnAt:pvpTS(),log:(m.log||[]).concat(['⚔ Le duel commence ! '+m.names[first]+' agit en premier.']).slice(-40)}).finally(()=>{PV.busy=false});
+}
+function rdPrepCheck(){
+  const m=RD.match; if(!m||m.state!=='prep'||RD.busy) return; const me=pvpMe(),el=Date.now()-tsMs(m.prepAt),both=m.players.every(p=>m.ready&&m.ready[p]);
+  if(!((m.players[0]===me&&(el>=PREP_MS||both))||el>=PREP_MS+6000)) return;
+  const r=RAIDS.find(x=>x.id===m.boss); if(!r) return; RD.busy=true;
+  const u=JSON.parse(JSON.stringify(m.u)),order=[...m.players,'boss'].sort((a,b)=>pvEff(u[b],'spd')-pvEff(u[a],'spd'));
+  const x={m:Object.assign({},m,{order,idx:order.length-1}),me,u,L:['☠ Le raid commence : '+r.n+' (palier +'+(m.tier||0)+') !'],round:0};
+  const nx=rdNext(x); rdCommit(x,Object.assign({state:'fight',order,first:order[0]},nx)).finally(()=>{RD.busy=false});
 }
 function fchatHTML(m,k){
   const me=pvpMe(),hm=t=>new Date(t||Date.now()).toLocaleTimeString('fr-FR',{hour:'2-digit',minute:'2-digit'});
@@ -1979,15 +2504,16 @@ async function fcSend(k){
   const col=k==='raid'?rdCol():pvpCol();
   try{ await col.doc(m.id).update({chat:firebase.firestore.FieldValue.arrayUnion({f:pvpMe(),n:FB.prof.name,t,ts:Date.now()})}) }catch(e){ toast('Message non envoyé ('+(e.code||'erreur')+').') }
 }
-function pvCard(u,name,me,turn){
+function pvCard(u,name,me,turn,pid){
   if(!u) return `<div class="pvcard wait"><b>${esc(name||'?')}</b><small>En attente…</small></div>`;
-  const aps=Array.from({length:u.maxAp||0},(_,i)=>`<i class="${i<u.ap?'on':''}"></i>`).join(''),sts=(u.st||[]).map(s=>`<em class="b-${s.k}">${esc(s.k==='dot'?s.n:s.k==='stun'?'Étourdi':(s.v>0?'+':'')+s.v+'% '+(STAT_N[s.stat]||s.stat))} ${s.dur}</em>`).join('');
-  return `<div class="pvcard ${me?'me':''} ${turn?'turn':''} ${u.hp<=0?'dead':''} ${u.boss?'boss':''} ${u.left?'left':''}">${PORTRAIT[u.cls]?`<img src="${PORTRAIT[u.cls]}" alt="" width="84" height="84">`:u.boss?`<span class="tile xl" style="--h:40">${icon('boss')}</span>`:''}<b>${esc(u.acct)}</b><small>${u.boss?`Boss de raid · niv. ${u.lvl}`:`${esc(u.name)} · ${(CLASSES[u.cls]||{n:''}).n} niv. ${u.lvl}`}${u.left?' · a abandonné':''}</small>
-    <div class="hp"><i style="width:${Math.max(0,u.hp/u.maxHp*100)}%"></i><span>${Math.ceil(u.hp)} / ${Math.ceil(u.maxHp)}${u.shield>0?' (+'+Math.ceil(u.shield)+')':''}</span></div><div class="apbar" title="${u.ap} / ${u.maxAp} PA">${aps}</div><div class="stt">${sts}</div></div>`;
+  const aps=Array.from({length:u.maxAp||0},(_,i)=>`<i class="${i<u.ap?'on':''}"></i>`).join(''),sts=(u.st||[]).map(s=>`<em class="b-${s.k}">${esc(s.k==='stk'?s.n+' '+s.v+'/'+(s.max||5):s.k==='ult'?s.n:s.k==='dot'?s.n:s.k==='para'?'Paralysie':s.k==='stun'?'Étourdi':s.k==='taunt'?'Provoque':s.k==='apb'?'PA +'+s.v:(s.v>0?'+':'')+s.v+'% '+(STAT_N[s.stat]||s.stat))} ${s.dur}</em>`).join('');
+  return `<div class="pvcard ${me?'me':''} ${turn?'turn':''} ${u.hp<=0?'dead':''} ${u.boss?'boss':''} ${u.left?'left':''}" ${pid?`data-pu="${pid}"`:''}>${PORTRAIT[u.cls]?`<img src="${PORTRAIT[u.cls]}" alt="" width="84" height="84">`:u.boss?`<span class="tile xl" style="--h:40">${icon('boss')}</span>`:''}<b>${esc(u.acct)}</b><small>${u.boss?`Boss de raid · niv. ${u.lvl}`:`${esc(u.name)} · ${(CLASSES[u.cls]||{n:''}).n} niv. ${u.lvl}`}${u.left?' · a abandonné':''}</small>
+    <div class="hp"><i style="width:${Math.max(0,u.hp/u.maxHp*100)}%"></i>${(()=>{const m=u.maxHp||1,sh=Math.min(Math.max(0,u.shield||0),m),st=Math.min(Math.max(0,u.hp),m-sh);return sh>0?`<b class="shl" style="left:${st/m*100}%;width:${sh/m*100}%"></b>`:''})()}<span>${Math.ceil(u.hp)} / ${Math.ceil(u.maxHp)}${u.shield>0?' (+'+Math.ceil(u.shield)+')':''}</span></div><div class="apbar" title="${u.ap} / ${u.maxAp} PA">${aps}</div><div class="stt">${sts}</div></div>`;
 }
 function pvpTimer(){
   const m=PV.match; if(!m) return; const el=document.querySelector('#pvp [data-pvt]');
   if(m.state==='confirm'){ const left=45-Math.floor((Date.now()-(m.cms||Date.now()))/1000); if(left<=0) return renderPvp(); if(el) el.textContent='('+left+' s)'; return }
+  if(m.state==='prep'){ const e2=document.querySelector('#pvp [data-prep]'); if(e2) e2.textContent=Math.max(0,Math.ceil((PREP_MS-(Date.now()-tsMs(m.prepAt)))/1000))+' s'; pvPrepCheck(); return }
   if(m.state==='fight'){ const t=Math.max(0,PVP_TURN-Math.floor((Date.now()-tsMs(m.turnAt))/1000)); if(el) el.textContent='('+t+' s)'; if(t===0&&m.turn!==pvpMe()&&!document.querySelector('[data-act=pvpClaim]')) renderPvp() }
 }
 function renderPvp(){
@@ -2004,18 +2530,19 @@ function renderPvp(){
       <div class="row">${mine?'':'<button class="btn pri" data-act="pvpAcc">Accepter</button>'}<button class="btn" data-act="pvpRef">${mine?'Annuler':'Refuser'}</button></div></div>`;
     return;
   }
-  if(m.state!=='fight'&&m.state!=='done'){ w.remove(); return }
+  if(m.state!=='fight'&&m.state!=='done'&&m.state!=='prep'){ w.remove(); return }
   const U=m.u[me],T=m.u[o],my=m.state==='fight'&&m.turn===me,late=m.state==='fight'&&!my&&Date.now()-tsMs(m.turnAt)>PVP_TURN*1000,tl=Math.max(0,PVP_TURN-Math.floor((Date.now()-tsMs(m.turnAt))/1000));
   let acts='';
   if(m.state==='done') acts=`<div class="pvwin">🏆 ${esc(nm[m.winner]||'')} remporte le duel !</div>`;
+  else if(m.state==='prep') acts=prepActs(U,'pvp',m);
   else if(my&&U.stun) acts=`<p class="mute">Vous êtes étourdi : vous passez ce tour.</p><div class="row"><button class="btn endturn" data-act="pvpEndT">Fin de tour</button></div>`;
-  else if(my) acts=fActs(U,'pvp'); else acts=`<p class="mute">Tour de <b>${esc(nm[o]||'')}</b>… <span class="num" data-pvt>(${tl} s)</span></p>${late?'<div class="row"><button class="btn pri" data-act="pvpClaim">Réclamer la victoire (adversaire inactif)</button></div>':''}`;
+  else if(my) acts=fActs(U,'pvp',m.round); else acts=`<p class="mute">Tour de <b>${esc(nm[o]||'')}</b>… <span class="num" data-pvt>(${tl} s)</span></p>${late?'<div class="row"><button class="btn pri" data-act="pvpClaim">Réclamer la victoire (adversaire inactif)</button></div>':''}`;
   keepFc(w,()=>{ w.innerHTML=`<div class="box pvbox fbox"><div class="row between" style="margin-bottom:8px"><h2>Duel</h2><small class="num">Tour ${m.round||1}${my?' · <b class="apc">À vous de jouer</b>':''}</small></div>
-    <div class="fgrid"><div class="fmain"><div class="pvarena">${pvCard(U,nm[me],true,m.turn===me&&m.state==='fight')}<span class="pvvs">VS</span>${pvCard(T,nm[o],false,m.turn===o&&m.state==='fight')}</div>
+    <div class="fgrid"><div class="fmain">${(()=>{const ord=m.state==='fight'||m.state==='done'?[m.turn,m.turn===me?o:me]:[me,o];return `<div class="cvinit"><span class="mute">Ordre du tour</span>${ord.map(id=>{const q=m.u[id];return q?`<span class="cvo ${id===me?'ally':'foe'} ${m.turn===id&&m.state==='fight'?'now':''}" title="${esc(q.acct||q.name)}">${PORTRAIT[q.cls]?`<img class="cvp" src="${PORTRAIT[q.cls]}" alt="" width="34" height="34">`:''}</span>`:''}).join('<i aria-hidden="true">›</i>')}</div>`})()}<div class="pvarena">${pvCard(U,nm[me],true,m.turn===me&&m.state==='fight',me)}<span class="pvvs">VS</span>${pvCard(T,nm[o],false,m.turn===o&&m.state==='fight',o)}</div>
     <div class="pvacts">${acts}</div>
     <div class="pvlog log">${(m.log||[]).slice(-12).map(l=>`<p>${esc(l)}</p>`).join('')}</div>
     ${m.state==='fight'?`<div class="row" style="justify-content:flex-end;margin-top:6px"><button class="btn sm danger" data-act="pvpGiveUp">${UI.confirm==='giveup'?'Confirmer l’abandon':'Abandonner'}</button></div>`:''}</div>${fchatHTML(m,'pvp')}</div></div>` });
-  const lg=w.querySelector('.pvlog'); if(lg) lg.scrollTop=lg.scrollHeight;
+  const lg=w.querySelector('.pvlog'); if(lg) lg.scrollTop=lg.scrollHeight; hpFloats(w,m,PV);
 }
 function viewPvp(){
   const on=!!(FB.user&&FB.prof),S0=S.pvp||{w:0,l:0};
@@ -2056,7 +2583,7 @@ function startRaid(){
       if(RD.gone[m.id]) continue;
       if(RD.match&&RD.match.id===m.id){ RD.match=m; continue }
       if(m.state==='confirm'&&age<45000&&!RD.match){ RD.match=m; rdStopSearch(); if(m.from!==me){ const r=RAIDS.find(x=>x.id===m.boss); toast('☠ '+(m.names&&m.names[m.from]||'Un joueur')+' vous invite au raid '+(r?r.n:'')+' (palier +'+m.tier+') !') } continue }
-      if((m.state!=='fight'&&age>60000)||(m.state==='fight'&&now-tsMs(m.turnAt)>15*60000)) d.ref.delete().catch(()=>{});
+      if((m.state!=='fight'&&m.state!=='prep'&&age>60000)||(m.state==='prep'&&age>180000)||(m.state==='fight'&&now-tsMs(m.turnAt)>15*60000)) d.ref.delete().catch(()=>{});
     }
     if(RD.match&&!qs.docs.some(d=>d.id===RD.match.id)){ if(RD.match.state==='confirm') toast('Le raid a été annulé.'); RD.match=null }
     rdTick();
@@ -2066,7 +2593,7 @@ function startRaid(){
 function stopRaid(){ if(RD.unsub){RD.unsub();RD.unsub=null} rdStopSearch(); RD.match=null; clearInterval(RD.tT); const w=$('#raid'); if(w) w.remove() }
 async function rdSearch(){
   if(!pvpReady()){toast('Chargez un personnage pour lancer un raid.');return}
-  if(C.phase==='fight'){toast('Terminez d’abord votre combat en cours.');return}
+  if(inFight()){toast('Terminez d’abord votre combat en cours.');return}
   if(RD.match||PV.match) return; if(PV.searching) pvpStopSearch();
   const r=RAIDS[UI.raidB||0],t=rdTier(),h=S.heroes[0],me=pvpMe();
   if(h.lvl<r.req){toast('Niveau '+r.req+' requis pour ce raid.');return}
@@ -2092,7 +2619,7 @@ async function rdPropose(o,oname,ochar,kind,boss,tier){
 async function rdUpd(data){ if(!RD.match) return; try{ await rdCol().doc(RD.match.id).update(data) }catch(e){ toast('Raid : erreur ('+(e.code||'réseau')+').') } }
 async function rdAccept(){
   const m=RD.match; if(!m) return; if(!pvpReady()){toast('Chargez un personnage (Jouer) pour rejoindre le raid.');return}
-  if(C.phase==='fight'){toast('Terminez d’abord votre combat en cours.');return}
+  if(inFight()){toast('Terminez d’abord votre combat en cours.');return}
   if(PV.match&&PV.match.state==='fight'){toast('Terminez d’abord votre duel.');return}
   const r=RAIDS.find(x=>x.id===m.boss); if(!r) return;
   if(S.heroes[0].lvl<r.req){toast('Niveau '+r.req+' requis pour ce raid.');return}
@@ -2105,7 +2632,7 @@ const rdHeroes=x=>x.m.players.map(p=>x.u[p]);
 const rdAliveH=x=>rdHeroes(x).filter(h=>h&&h.hp>0&&!h.left);
 const rdOver=x=>x.u.boss.hp<=0?'win':!rdAliveH(x).length?'lose':null;
 function rdState(){ const m=RD.match,me=pvpMe(),u=JSON.parse(JSON.stringify(m.u)); return {m,me,u,U:u[me],L:[],round:m.round||1} }
-function rdEndOf(V){ V.st.forEach(s=>s.dur--); V.st=V.st.filter(s=>s.dur>0); for(const k in V.cds) V.cds[k]=Math.max(0,V.cds[k]-1); if(V.potCd>0) V.potCd--; V.atkUsed=false; V.stun=false }
+function rdEndOf(V){ stTick(V); for(const k in V.cds) V.cds[k]=Math.max(0,V.cds[k]-1); for(const q in (V.pcd||{})) V.pcd[q]=Math.max(0,V.pcd[q]-1); V.atkUsed=false; V.stun=false }
 function rdExec(u,sk,tgt,x){
   const L=x.L,B=x.u.boss,heroes=rdAliveH(x),foesA=u.boss?heroes:(B.hp>0?[B]:[]),friA=u.boss?[B]:heroes;
   const k=sk.id==='atk'?1:sc((u.ranks&&u.ranks[sk.id])||1),st=sk.st||u.role;
@@ -2116,12 +2643,13 @@ function rdExec(u,sk,tgt,x){
   else if(sk.tg==='self') aT=[u];
   else if(sk.tg==='allies') aT=friA;
   else if(sk.tg==='lowAlly') aT=[friA.slice().sort((a,b)=>a.hp/a.maxHp-b.hp/b.maxHp)[0]].filter(Boolean);
-  L.push(sk.id==='atk'?`${u.name} attaque${fT[0]?' '+fT[0].name:''}.`:`${u.name} utilise ${sk.n}.`);
+  L.push(sk.id==='atk'?`${u.name} attaque${fT[0]?' '+fT[0].name:''}.`:`${u.name} utilise ${sk.n}.`); pvSelf(u,sk,L);
   if(sk.mult) for(const t of fT) for(let i=0;i<(sk.hits||1)&&t.hp>0;i++){ pvHit(u,t,sk.mult*k,st,sk,L); if(t.hp<=0) L.push(`${t.name} est vaincu.`) }
   for(const f of sk.fx||[]){
     const on=f.on||(sk.tg==='one'||sk.tg==='all'?'foe':'friend'),ts=on==='foe'?fT:on==='allies'?friA:aT;
     for(const tg of ts) pvFx(u,tg,f,k,sk,L);
   }
+  ultAfterCast(u,sk,fT,m=>L.push(m));
 }
 function rdBossAct(x){
   const B=x.u.boss; B.dmgPct=x.round>RD_RAGE?(x.round-RD_RAGE)*8:0;
@@ -2146,6 +2674,7 @@ function rdNext(x){
     for(const s of V.st.filter(s=>s.k==='dot')){ const d=Math.max(1,s.v); V.hp=Math.max(0,V.hp-d); x.L.push(`${V.name} subit ${d} dégâts (${s.n}).`) }
     if(V.hp<=0){ x.L.push(`${V.name} est vaincu.`); continue }
     if(V.st.some(s=>s.k==='stun')){ x.L.push(`${V.name} est étourdi et passe son tour.`); rdEndOf(V); continue }
+    { const pa=V.st.find(s=>s.k==='para'); if(pa&&Math.random()*100<(pa.p||50)){ x.L.push(`${V.name} est paralysé et perd son tour.`); rdEndOf(V); continue } }
     if(id==='boss'){ rdBossAct(x); rdEndOf(V); continue }
     return {turn:id,idx:i,round:x.round,turnAt:pvpTS()};
   }
@@ -2162,11 +2691,10 @@ function rdTick(){
   if(m.state==='confirm'&&m.players[0]===me&&m.players.every(p=>m.acc&&m.acc[p]&&m.u&&m.u[p])&&!RD.busy){
     const r=RAIDS.find(x=>x.id===m.boss); if(!r) return; RD.busy=true;
     const u=JSON.parse(JSON.stringify(m.u)); u.boss=mkRaidBoss(r,m.tier||0);
-    const order=[...m.players,'boss'].sort((a,b)=>(u[b].spd||0)-(u[a].spd||0));
-    const x={m:Object.assign({},m,{order,idx:order.length-1}),me,u,L:['☠ Le raid commence : '+r.n+' (palier +'+(m.tier||0)+') !'],round:0};
-    const nx=rdNext(x);
-    rdCommit(x,Object.assign({state:'fight',order,first:order[0]},nx)).finally(()=>{RD.busy=false});
+    rdUpd({state:'prep',u,prepAt:pvpTS(),ready:{},log:['⏳ Préparation : 10 secondes pour boire vos potions.']}).finally(()=>{RD.busy=false});
   }
+  if(m.state==='prep') rdPrepCheck();
+  renderInvPop();
   if(m.state==='cancel'){ if(m.by!==me) toast('Le raid a été refusé.'); RD.match=null; renderRaid() }
   if(m.state==='done'&&RD.ending!==m.id){ RD.ending=m.id; rdFinish(m) }
 }
@@ -2177,8 +2705,9 @@ async function rdAct(id){
   RD.busy=true; rdExec(U,sk,x.u.boss,x); await rdCommit(x); RD.busy=false;
 }
 async function rdPot(k){
-  if(!rdMyTurn()||RD.busy||matCount(k)<1) return; const x=rdState(),U=x.U; if(U.potCd>0) return;
-  if(!potFx(U,k,x.L)) return;
+  if(RD.match&&RD.match.state==='prep') return rdPrepPot(k);
+  if(!rdMyTurn()||RD.busy||matCount(k)<1) return; const x=rdState(),U=x.U; if((U.pcd||{})[k]>0) return;
+  if(!potFx(U,k,x.L,{raid:true})) return;
   RD.busy=true; removeMat(k,1); save(); await rdCommit(x); RD.busy=false;
 }
 async function rdEnd(){
@@ -2226,6 +2755,7 @@ function rdLoot(m,r,rw,up){
 function rdTimer(){
   const m=RD.match; if(!m) return; const el=document.querySelector('#raid [data-rdt]');
   if(m.state==='confirm'){ const left=45-Math.floor((Date.now()-(m.cms||Date.now()))/1000); if(left<=0) return renderRaid(); if(el) el.textContent='('+left+' s)'; return }
+  if(m.state==='prep'){ const e2=document.querySelector('#raid [data-prep]'); if(e2) e2.textContent=Math.max(0,Math.ceil((PREP_MS-(Date.now()-tsMs(m.prepAt)))/1000))+' s'; rdPrepCheck(); return }
   if(m.state==='fight'){ const t=Math.max(0,RD_TURN-Math.floor((Date.now()-tsMs(m.turnAt))/1000)); if(el) el.textContent='('+t+' s)'; if(t===0&&m.turn!==pvpMe()&&!document.querySelector('[data-act=rdSkip]')) renderRaid() }
 }
 function renderRaid(){
@@ -2243,19 +2773,20 @@ function renderRaid(){
       <div class="row">${mine?'':'<button class="btn pri" data-act="rdAcc">Accepter</button>'}<button class="btn" data-act="rdRef">${mine?'Annuler':'Refuser'}</button></div></div>`;
     return;
   }
-  if(m.state!=='fight'&&m.state!=='done'){ w.remove(); return }
+  if(m.state!=='fight'&&m.state!=='done'&&m.state!=='prep'){ w.remove(); return }
   const U=m.u[me],B=m.u.boss,my=m.state==='fight'&&m.turn===me,tn=m.turn&&m.u[m.turn],late=m.state==='fight'&&!my&&Date.now()-tsMs(m.turnAt)>RD_TURN*1000,tl=Math.max(0,RD_TURN-Math.floor((Date.now()-tsMs(m.turnAt))/1000));
   let acts='';
   if(m.state==='done') acts=`<div class="pvwin">${m.win?'🏆 Raid réussi !':'💀 Le raid a échoué.'}</div>`;
+  else if(m.state==='prep') acts=prepActs(U,'rd',m);
   else if(U&&U.hp<=0) acts=`<p class="mute">Votre héros est tombé. Encouragez votre partenaire !</p>`;
   else if(my) acts=fActs(U,'rd');
   else acts=`<p class="mute">Tour de <b>${esc(tn?(tn.acct||tn.name):'')}</b>… <span class="num" data-rdt>(${tl} s)</span></p>${late?'<div class="row"><button class="btn pri" data-act="rdSkip">Passer son tour (joueur inactif)</button></div>':''}`;
   keepFc(w,()=>{ w.innerHTML=`<div class="box pvbox fbox"><div class="row between" style="margin-bottom:8px"><h2>Raid · ${esc(r.n)} <small class="mute">palier +${m.tier||0}</small></h2><small class="num">Tour ${m.round||1}${my?' · <b class="apc">À vous de jouer</b>':''}</small></div>
-    <div class="fgrid"><div class="fmain"><div class="rdarena"><div class="rdteam">${m.players.map(p=>pvCard(m.u[p],nm[p],p===me,m.turn===p&&m.state==='fight')).join('')}</div><span class="pvvs">VS</span>${pvCard(B,B.name,false,false)}</div>
+    <div class="fgrid"><div class="fmain">${m.order?`<div class="cvinit"><span class="mute">Ordre du tour</span>${m.order.map(id=>{const q=m.u[id];if(!q)return '';return `<span class="cvo ${id==='boss'?'foe':'ally'} ${m.turn===id&&m.state==='fight'?'now':''} ${q.hp<=0?'dead':''}" title="${esc(q.acct||q.name)}">${PORTRAIT[q.cls]?`<img class="cvp" src="${PORTRAIT[q.cls]}" alt="" width="34" height="34">`:`<span class="tile cvt" style="--h:40">${icon('boss')}</span>`}</span>`}).join('<i aria-hidden="true">›</i>')}</div>`:''}<div class="rdarena"><div class="rdteam">${m.players.map(p=>pvCard(m.u[p],nm[p],p===me,m.turn===p&&m.state==='fight',p)).join('')}</div><span class="pvvs">VS</span>${pvCard(B,B.name,false,false,'boss')}</div>
     <div class="pvacts">${acts}</div>
     <div class="pvlog log">${(m.log||[]).slice(-14).map(l=>`<p>${esc(l)}</p>`).join('')}</div>
     ${m.state==='fight'&&U&&!U.left?`<div class="row" style="justify-content:flex-end;margin-top:6px"><button class="btn sm danger" data-act="rdGiveUp">${UI.confirm==='rdgiveup'?'Confirmer l’abandon':'Abandonner'}</button></div>`:''}</div>${fchatHTML(m,'raid')}</div></div>` });
-  const lg=w.querySelector('.pvlog'); if(lg) lg.scrollTop=lg.scrollHeight;
+  const lg=w.querySelector('.pvlog'); if(lg) lg.scrollTop=lg.scrollHeight; hpFloats(w,m,RD);
 }
 function viewRaid(){
   const on=!!(FB.user&&FB.prof),h=S.heroes[0],R0=S.raidS||{w:0,l:0};
@@ -2416,7 +2947,7 @@ function bootChar(){
   S.speed=S.speed||1;
   const fixL=it=>{ if(it&&!it.mat&&/^Jambières de (plates|soie)/.test(it.base||'')){it.name=it.name.replace(/^Jambières de (plates|soie)/,'Jambières');it.base='Jambières'} };
   S.bag.forEach(e=>fixL(e.o)); for(const h of S.heroes) Object.values(h.equip||{}).forEach(fixL);
-  for(const h of S.heroes) for(const sk of CLASSES[h.cls].skills) if(sk.t==='a'&&h.learned[sk.id]&&!h.loadout.includes(sk.id)) h.loadout.push(sk.id);
+  for(const h of S.heroes){ const ok=new Set(heroSkills(h).filter(x=>x.t==='a').map(x=>x.id)); h.loadout=(h.loadout||[]).filter(id=>ok.has(id)&&h.learned[id]).slice(0,LOADOUT_MAX); if(!h.loadout.length){ const f=heroSkills(h).find(x=>x.t==='a'&&h.learned[x.id]); if(f) h.loadout=[f.id] } }
   for(const h of S.heroes) if(h.lvl>MAXL){h.lvl=MAXL;h.xp=0}
   {const lg=it=>{if(it&&!it.mat&&it.rarity>=4&&!it.leg) it.leg=it.slot}; S.bag.forEach(e=>lg(e.o)); for(const h of S.heroes) Object.values(h.equip||{}).forEach(lg)}
   {let cut=0; for(const k of Object.keys(S.mats||{})) if(S.mats[k]>matCap(k)){cut++; S.mats[k]=matCap(k)}
@@ -2449,16 +2980,21 @@ function viewCreator(){
 
 /* --- combat --- */
 const unlocked=(z,s)=>{const P=prog();return z<P.zone||(z===P.zone&&s<=P.stage)};
+const cvPort=(u,sz)=>u.team==='h'&&u.hero&&PORTRAIT[u.hero.cls]?`<img class="cvp" src="${PORTRAIT[u.hero.cls]}" alt="" width="${sz}" height="${sz}">`:`<span class="tile cvt" style="--h:${u.hue}">${icon(u.ic)}</span>`;
+function initBar(){
+  const ids=(C.order&&C.order.length?C.order:alive(C.units).sort((a,b)=>effStat(b,'spd')-effStat(a,'spd')).map(u=>u.id)),list=ids.map(id=>C.units.find(u=>u.id===id)).filter(Boolean);
+  return `<span class="mute">Ordre du tour</span>${list.map(u=>`<span class="cvo ${u.team==='h'?'ally':'foe'} ${C.turn===u.id?'now':''} ${u.hp<=0?'dead':''}" title="${esc(u.name)}">${cvPort(u,34)}</span>`).join('<i aria-hidden="true">›</i>')}`;
+}
+function renderInit(){ const el=$('#cvinit'); if(el) el.innerHTML=initBar() }
 function viewCombat(){
   if(C.phase==='idle') return viewCombatIdle();
-  const allies=C.units.filter(u=>u.team==='h'),en=C.units.filter(u=>u.team==='e');
-  const card=u=>`<div class="unit ${u.team==='h'?'ally':'foe'} ${u.boss?'boss':''}" data-u="${u.id}" data-act="pick" style="--h:${u.hue}">
-    <div class="u-top"><span class="tile">${icon(u.ic)}</span><div class="u-id"><b>${esc(u.name)}</b><small>Niv ${u.lvl}</small></div></div>
-    <div class="hp"><i></i><span></span></div><div class="apbar" aria-label="Points d’action">${Array.from({length:u.maxAp||0},()=>"<i></i>").join("")}</div><div class="stt"></div><div class="fl"></div></div>`;
-  return `<div class="row between" style="margin-bottom:10px"><h2>${ZONES[C.zone].n} · étape ${C.stage}${C.stage===10?' · Boss':''}${C.hero?` <span class="herotag ${C.diff}">${DIFF[C.diff].n}</span>`:''}</h2><small class="num">Tour ${C.round}</small></div>
-    <div class="arena"><div class="side">${allies.map(card).join('')}</div><div class="side">${en.map(card).join('')}</div></div>
-    <div id="actbar" style="margin:14px 0"></div>
-    <div class="log" id="log">${C.logs.map(l=>`<p class="${l.cls}">${esc(l.t)}</p>`).join('')}</div>`;
+  const al=C.units.filter(u=>u.team==='h'),en=C.units.filter(u=>u.team==='e');
+  const card=u=>`<div class="unit cvu ${u.team==='h'?'ally':'foe'} ${u.boss?'boss':''}" data-u="${u.id}" data-act="pick" style="--h:${u.hue}">${cvPort(u,76)}<div class="cvinfo"><b>${esc(u.name)}</b><small>Niveau ${u.lvl}${u.boss?' · Boss':''}</small><div class="hp"><i></i><b class="shl"></b><span></span></div><div class="apbar" aria-label="Points d’action">${Array.from({length:u.maxAp||0},()=>"<i></i>").join("")}</div><div class="stt"></div></div><div class="fl"></div></div>`;
+  return `<div class="cv cv1"><div class="cvhead"><h2>${ZONES[C.zone].n} · étape ${C.stage}${C.stage===10?' · Boss':''}${C.hero?` <span class="herotag ${C.diff}">${DIFF[C.diff].n}</span>`:''}</h2><span class="cvround num">Tour <b>${C.round}</b></span></div>
+    <div class="cvinit" id="cvinit">${initBar()}</div>
+    <div class="cv1scene"><div class="cv1side">${al.map(card).join('')}</div><div class="cv1vs">VS</div><div class="cv1side">${en.map(card).join('')}</div></div>
+    <div id="actbar" class="cvbar"></div>
+    <div class="log" id="log">${C.logs.map(l=>`<p class="${l.cls}">${esc(l.t)}</p>`).join('')}</div></div>`;
 }
 function viewCombatIdle(){
   const P=prog(),dk=curDiff(),D=DIFF[dk],hero=dk!=='normal',z=ZONES[UI.zone],L=D.L||UI.zone*10+UI.stage;
@@ -2514,37 +3050,38 @@ function renderActbar(){
     }
     return;
   }
+  if(C.phase==='prep'){ el.innerHTML=`<div class="prepbar"><div class="prept"><b>Préparation</b><span class="num" data-prep>${Math.max(0,Math.ceil((C.prepEnd-Date.now())/1000))} s</span></div><p class="hint">Buvez vos potions avant le début du combat : leurs effets et leur recharge commencent maintenant.</p><div class="acts">${potBar()}<button class="btn pri" data-act="prepGo" style="margin-left:auto">Commencer le combat</button><button class="btn sm danger" data-act="giveUp">${UI.confirm==='pveGiveUp'?'Confirmer l’abandon':'Abandonner'}</button></div></div>`; return }
   const w=C.waiting,tools=`<label class="row" style="gap:6px;margin-left:auto"><input type="checkbox" data-act="auto" ${S.auto?'checked':''}> Auto</label>
     <button class="btn sm" data-act="speed">Vitesse ×${S.speed}</button><button class="btn sm danger" data-act="giveUp">${UI.confirm==='pveGiveUp'?'Confirmer l’abandon':'Abandonner'}</button>`;
   if(!w){el.innerHTML=`<div class="acts"><small class="mute" style="align-self:center">${S.auto?'Combat automatique en cours…':'Les ennemis agissent…'}</small>${tools}</div><div class="acts" style="margin-top:8px">${potBar()}</div>`;return}
   const u=w.u,ids=['atk',...u.skills];
   el.innerHTML=`<div class="acts"><div style="align-self:center"><b>${esc(u.name)}</b><br><small>${C.pending?'Choisissez une cible':'À vous de jouer'} · <b class="apc">${u.ap||0} / ${u.maxAp||0} PA</b></small></div>`+
-    ids.map(id=>{const s=SK[id],cd=u.cds[id]||0,c=s.ap||0,no=c>(u.ap||0),used=id==='atk'&&u.atkUsed;return `<button class="skb ${C.pending&&C.pending.id===id?'sel':''}" data-act="skill" data-id="${id}" ${cd||no||used?'disabled':''} title="${esc(skDesc(s,u.ranks[id]||1,u.role))}"><b>${s.n}${s.el&&ELEM[s.el]?` <em class="elt" style="--ec:${ELEM[s.el].c}">${ELEM[s.el].n}</em>`:''}</b><small>${c?`<span class="apc">${c} PA</span> · `:''}${used?'Déjà utilisée ce tour':cd?`Recharge : ${cd}`:no?'PA insuffisants':s.cd?`Recharge ${s.cd}`:id==='atk'?'Gratuite · 1 fois par tour':'Aucune recharge'}</small></button>`}).join('')+
+    `<div class="skcbar">${ids.map(id=>cTile(id,u,'skill',C.pending&&C.pending.id===id)).join('')}</div>`+
     (C.pending?`<button class="btn sm" data-act="cancelPick">Annuler</button>`:'')+`<button class="btn endturn" data-act="endTurn">Fin de tour</button>`+tools+`</div><div class="acts" style="margin-top:8px">${potBar()}</div>`;
 }
 
 /* --- potions en combat --- */
-const ownPots=()=>Object.keys(POTS).filter(k=>matCount(k)>0&&(!POTS[k].cls||POTS[k].cls===S.heroes[0].cls));
+const ownPots=()=>Object.keys(POTS).filter(k=>!POTS[k].nocombat&&matCount(k)>0&&(!POTS[k].cls||POTS[k].cls===S.heroes[0].cls));
 function potBar(){
   const ks=ownPots(); if(!ks.length) return '<small class="mute" style="align-self:center">Aucune potion : achetez-en chez le Marchand.</small>';
-  const cd=potCdLeft();
-  return `<div class="potbar">${ks.map(k=>{const used=(k==='p_xp'&&C.bonus.xp)||(k==='p_loot'&&C.bonus.loot);
-    return `<button class="potb" data-act="usePot" data-k="${k}" ${used||cd?'disabled':''} data-tip="pot:${k}" aria-label="${esc(POTS[k].n)} : ${esc(POTS[k].d)}">${matIcon(k)}<span class="num">${matCount(k)}</span></button>`}).join('')}${cd?`<small class="potcd">${potCdTxt(cd)}</small>`:''}</div>`;
+  return `<div class="potbar">${ks.map(k=>{const used=(k==='p_xp'&&C.bonus.xp)||(k==='p_loot'&&C.bonus.loot),cd=potLeft(k),cs=potShow(k,cd);
+    return `<button class="potb ${used||cd?'off':''}" data-act="usePot" data-k="${k}" data-tip="pot:${k}" aria-label="${esc(POTS[k].n)}${cd?', recharge '+cs+' tours':used?', déjà utilisée':''}">${matIcon(k)}<span class="num">${matCount(k)}</span>${cd?`<span class="cdo">${cs}</span>`:used?'<span class="cdo">✓</span>':''}</button>`}).join('')}</div>`;
 }
 const POT_CD=3;
-const potCdTxt=n=>n>POT_CD?`Potion déjà bue ce tour (recharge : ${POT_CD} tours)`:`Potions : recharge ${n} tour${n>1?'s':''}`;
-const potCdLeft=()=>C.phase==='fight'?Math.max(0,POT_CD+1-(C.round-(C.potR==null?-99:C.potR))):0;
+const potLeft=k=>{ const P=POTS[k]; if(!P||!C.pcd||C.pcd[k]==null) return 0; return Math.max(0,(P.cd||0)+1-(C.round-C.pcd[k])) };
+const potShow=(k,n)=>Math.min(n,(POTS[k]&&POTS[k].cd)||n);
 function usePot(k){
-  if(C.phase!=='fight'||!matCount(k)||potCdLeft()) return;
+  if(!inFight()||!matCount(k)||potLeft(k)) return;
   const u=C.units.find(x=>x.team==='h'&&x.hp>0); if(!u) return;
   const B=(stat,v)=>{u.st=u.st.filter(s=>!(s.k==='buff'&&s.stat===stat&&s.v>0&&s.pot));u.st.push({k:'buff',stat,v,dur:3,pot:1})};
   if(k==='p_vie') heal(u,u.maxHp*.4);
   else if(k==='p_res'){B('def',40);B('res',40)}
   else if(k==='p_for') B('atk',30);
   else if(k==='p_int') B('mag',30);
+  else if(k==='p_pa') addApb(u);
   else if(k==='p_xp'){ if(C.bonus.xp) return; C.bonus.xp=50 }
   else if(k==='p_loot'){ if(C.bonus.loot) return; C.bonus.loot=50 }
-  C.potR=C.round; removeMat(k,1); logLine(`${u.name} boit : ${POTS[k].n}.`,'hl'); floatTxt(u,POTS[k].n,'heal'); refresh(u); save(); renderActbar();
+  if(POTS[k].cd) C.pcd[k]=C.round; removeMat(k,1); logLine(`${u.name} boit : ${POTS[k].n}.`,'hl'); floatTxt(u,POTS[k].n,'heal'); refresh(u); save(); renderActbar();
 }
 
 /* --- marchand --- */
@@ -2552,7 +3089,7 @@ function viewShop(){
   const h=S.heroes[0];
   const cards=Object.entries(POTS).map(([k,p])=>{
     const pr=potPrice(k),own=matCount(k),lock=p.cls&&p.cls!==h.cls;
-    const b=q=>`<button class="btn sm ${q===1?'pri':''}" data-act="buyPot" data-k="${k}" data-q="${q}" ${!lock&&hasGold(pr*q)?'':'disabled'}>Acheter ×${q} <span class="num">(${fmt(pr*q)} or)</span></button>`;
+    const b=q=>p.fix?(q>1?'':`<button class="btn sm pri" data-act="buyPot" data-k="${k}" data-q="1" ${canPay(p.fix)?'':'disabled'}>Acheter</button>${costHTML(p.fix)}`):`<button class="btn sm ${q===1?'pri':''}" data-act="buyPot" data-k="${k}" data-q="${q}" ${!lock&&hasGold(pr*q)?'':'disabled'}>Acheter ×${q} <span class="num">(${fmt(pr*q)} or)</span></button>`;
     return `<article class="shopc ${lock?'lock':''}"><div class="row" style="gap:10px;align-items:flex-start"><span class="potico">${matIcon(k)}</span><div style="flex:1;min-width:0"><b>${p.n}</b><p class="hint" style="margin:2px 0 6px">${p.d}</p>${lock?`<small style="color:var(--blood);font-weight:700">Réservée au ${CLASSES[p.cls].n}</small>`:`<small class="mute">Possédées : <b class="num">${own}</b></small>`}</div></div>
       <div class="row" style="margin-top:10px">${b(1)}${b(5)}</div></article>`}).join('');
   return `<div class="thead" style="margin-bottom:6px"><span></span><h2 class="stitle">Marchand</h2><span class="rs" style="justify-self:end;color:var(--fg);background:#0001;border-color:var(--line2)">${matIcon('gold')}<b>${fmt(S.gold)}</b></span></div>
@@ -2572,27 +3109,16 @@ function viewHeroes(){
   const aCost=ascCost(h),aReq=MAXL;
   const slots=SLOTS.map(sl=>{const it=h.equip[sl];return `<div class="slotrow"><span class="lbl">${SLOT_N[sl]}</span><div class="nm">${it?`<b style="color:var(--r${it.rarity})">${esc(it.name)}${it.up?` +${it.up}`:''}</b><br><small>Niv ${it.ilvl} · ${RAR[it.rarity].n}</small>`:'<small>Vide</small>'}</div>
     <button class="btn sm" data-act="changeItem" data-slot="${sl}">Changer</button>${it?`<button class="btn sm" data-act="unequip" data-slot="${sl}">Retirer</button>`:''}</div>`}).join('');
-  const skills=c.skills.map(sk=>{
-    const r=h.learned[sk.id]||0,lock=h.lvl<sk.lvl,eq=h.loadout.includes(sk.id);
-    const pips=`<span class="pips">${[1,2,3,4,5].map(i=>`<i class="${i<=r?'on':''}"></i>`).join('')}</span>`;
-    const d=sk.t==='a'?skDesc(sk,Math.max(1,r),c.role):`Par rang : ${modDesc(sk.mods,1)}`;
-    const btns=lock?`<small>Niveau ${sk.lvl} requis</small>`:
-      `<button class="btn sm" data-act="learn" data-id="${sk.id}" ${h.sp<1||r>=5?'disabled':''}>${r?(r>=5?'Rang max':'Améliorer'):'Apprendre'}</button>`+
-      '';
-    return `<div class="sk ${lock?'lock':''} ${eq?'eq':''}"><div class="row between"><span><span class="tag ${sk.t==='p'?'p':''}">${sk.t==='a'?'Active':'Passive'}</span><br><b>${sk.n}</b>${pips}</span><span class="row">${btns}</span></div><p>${d}</p></div>`;
-  }).join('');
-  return `<div class="pchar">
-      <div class="pleft">${BP.equip}</div>
+  return `<div class="prowA">
       <section class="panel ppres"><div class="sheethead"><h2>${esc(h.name)}</h2>${PORTRAIT[h.cls]?`<img class="portrait" src="${PORTRAIT[h.cls]}" alt="Portrait : ${c.n}" width="114" height="114">`:`<span class="tile xl" style="--h:${h.hue}">${icon(c.ic)}</span>`}<small>${c.n} · Niveau ${h.lvl}</small><span class="stars" title="Ascension">${'★'.repeat(h.stars)}${'☆'.repeat(5-h.stars)}</span></div>
         <div class="bar xp" style="margin-bottom:4px"><i style="width:${h.lvl>=MAXL?100:h.xp/need*100}%"></i></div><small class="num">${h.lvl>=MAXL?'Niveau max':`XP ${fmt(h.xp)} / ${fmt(need)}`}</small>
         <div class="sep"></div><dl class="stats cats">${BP.mini}</dl><div class="row" style="justify-content:center;margin-top:8px"><button class="btn sm" data-act="statSplit" aria-pressed="${!!S.statSplit}">${S.statSplit?'Masquer le détail':'Voir le détail (base + équipement)'}</button></div><div class="sep"></div>
         <h3 style="margin-bottom:6px">Ascension</h3>
         ${h.stars>=5?'<p class="hint">Ascension maximale. +10% de stats de base par étoile.</p>':`<p class="hint" style="margin-bottom:8px">+10 % de stats de base. Niveau maximum (${aReq}) requis${h.lvl<aReq?` — vous êtes niveau ${h.lvl}`:''}.</p><div class="row"><button class="btn" data-act="ascend" ${h.lvl<aReq||!canPay(aCost)?'disabled':''}>Ascension ${h.stars+1}</button>${costHTML(aCost)}</div>`}
       </section>
+      <section class="panel peq"><h3 class="ptitle">Équipement</h3>${dollHTML(h)}<p class="hint eqhint">Cliquez sur un emplacement ou appuyez sur <kbd>I</kbd> pour ouvrir l’inventaire.</p></section>
     </div>
-    ${BP.inv}
-      <section class="panel" style="margin-top:16px"><div class="row between" style="margin-bottom:10px"><h2>Compétences</h2><span class="num">Points : <b style="color:var(--brass)">${h.sp}</b> · Compétences actives : ${h.loadout.length}</span></div>
-        <div class="grid" style="gap:10px;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr))">${skills}</div></section>`;
+    ${viewSkills(h)}`;
 }
 
 /* --- inventaire --- */
@@ -2639,8 +3165,29 @@ function runeDollHTML(h,forge){
     <circle cx="${cx}" cy="${cy}" r="80" fill="none" stroke="#d6aa55" stroke-width="1" opacity=".5"/>
     ${center}</svg>${slots}</div>`;
 }
+/* roue d’équipement : grande roue + liste de l’équipement porté */
+/* variantes de la roue d'équipement (mise en page plein cadre) */
+function dvSlot(h,k,x,y,sz,W,H,forge,cap){
+  const it=h.equip[k];
+  return `<button class="dslot ${it?'full':''} ${(forge?it&&it.id===UI.fItem:UI.invSel===k)?'sel':''}" data-act="${forge?'fPutSlot':'dollSlot'}" data-slot="${k}" data-tip="${k}" aria-label="${SLOT_N[k]}${it?' : '+esc(it.name):' (vide)'}" style="left:${(x-sz/2)/W*100}%;top:${(y-sz/2)/H*100}%;width:${sz/W*100}%;${it?`--rc:var(--r${it.rarity})`:''}">${icon(it?itemIcon(it):slotIcon(k))}${it&&it.up?`<em>+${it.up}</em>`:''}</button>`+
+    (cap?`<span class="dcap ${it?'full':''}" style="left:${x/W*100}%;top:${(y+sz/2+4)/H*100}%;${it?`--rc:var(--r${it.rarity})`:''}">${it?esc(it.name):SLOT_N[k]}</span>`:'');
+}
+const dvBg=(W,H)=>`<defs><radialGradient id="rgv" cx="50%" cy="45%" r="70%"><stop offset="0" stop-color="#8a6842"/><stop offset=".6" stop-color="#6a4c2f"/><stop offset="1" stop-color="#3e2a19"/></radialGradient></defs><rect width="${W}" height="${H}" rx="6" fill="url(#rgv)"/><rect x="6" y="6" width="${W-12}" height="${H-12}" rx="4" fill="none" stroke="#d6aa55" stroke-width="1" opacity=".45"/>`;
+const dvPortrait=(h,cx,cy,r)=>PORTRAIT[h.cls]?`<image href="${PORTRAIT[h.cls]}" x="${cx-r}" y="${cy-r}" width="${2*r}" height="${2*r}"/>`:`<circle cx="${cx}" cy="${cy}" r="${r*.8}" fill="hsl(${h.hue} 30% 26%)"/>`;
+const dvRunes=(cx,cy,rx,ry,n=24)=>'ᚠᚢᚦᚨᚱᚲᚷᚹᚺᚾᛁᛃᛇᛈᛉᛊᚠᚢᚦᚨᚱᚲᚷᚹ'.slice(0,n).split('').map((r,i)=>{const a=i*2*Math.PI/n+Math.PI/n;return `<text x="${cx+rx*Math.cos(a)}" y="${cy+ry*Math.sin(a)+4}" text-anchor="middle">${r}</text>`}).join('');
+/* A : grande roue + liste de l'équipement porté */
+function dollA(h,forge){
+  const W=300,H=300,cx=150,cy=150,R=118,sz=58;
+  const slots=RUNE_ORDER.map((k,i)=>{const a=-Math.PI/2+i*2*Math.PI/RUNE_ORDER.length;return dvSlot(h,k,cx+R*Math.cos(a),cy+R*Math.sin(a),sz,W,H,forge)}).join('');
+  const list=SLOTS.map(k=>{const it=h.equip[k];return `<li style="${it?`--rc:var(--r${it.rarity})`:''}"><span class="dl">${SLOT_N[k]}</span><b class="${it?'':'mute'}">${it?esc(it.name)+(it.up?' +'+it.up:''):'—'}</b><small>${it?'Niv '+it.ilvl:''}</small></li>`}).join('');
+  return `<div class="dollv dA"><div class="doll rune" id="doll" style="aspect-ratio:1/1;width:100%"><svg class="body" viewBox="0 0 ${W} ${H}" aria-hidden="true">${dvBg(W,H)}
+    <circle cx="${cx}" cy="${cy}" r="${R+8}" fill="none" stroke="#d6aa55" stroke-width="1.5" opacity=".75"/><circle cx="${cx}" cy="${cy}" r="${R-8}" fill="none" stroke="#d6aa55" stroke-dasharray="2 6" opacity=".6"/>
+    <g fill="#d6aa55" opacity=".55" font-size="11" font-family="serif">${dvRunes(cx,cy,92,92,16)}</g><circle cx="${cx}" cy="${cy}" r="84" fill="none" stroke="#d6aa55" opacity=".5"/>${dvPortrait(h,cx,cy,80)}</svg>${slots}</div>
+    <ul class="dlist">${list}</ul></div>`;
+}
+
 function dollHTML(h){
-  return runeDollHTML(h);
+  return dollA(h);
   const cn=DOLL.map(([k,x,y,sz,ax,ay])=>{const sx=x<150?x+sz:x,sy=y+sz/2;return `<path class="cn" d="M${sx} ${sy}L${ax} ${ay}"/><circle class="dot" cx="${ax}" cy="${ay}" r="2.6"/>`}).join('');
   const svg=`<svg class="body adv" viewBox="0 0 300 440" aria-hidden="true">
     <rect class="roll" x="104" y="82" width="92" height="17" rx="8.5"/><path class="tunl" d="M122 83v15M178 83v15"/>
@@ -2723,7 +3270,7 @@ function bagParts(){
     ${gridHTML()}
     ${c&&!UI.multi?detPanel('Détails',detail,'det-n'):''}
     <p class="hint" style="margin:8px 0 14px">${UI.multi?'Cliquez sur les cases à détruire. Les matériaux détruits sont perdus ; les armes et armures rendent 25 % des ressources ayant servi à leur création.':''}Les objets occupent plusieurs cases (arme 1×5, armure et jambières 2×3, casque et bottes 2×2). Glissez-déposez pour ranger ou échanger. Déposez une pile sur une pile du même matériau pour les fusionner (${STACK} max par pile). Un second clic sur un tri inverse l’ordre.</p></section>`;
-  return {equip,inv,mini};
+  return {equip,inv,mini,detail,arrow,used};
 }
 function viewBag(){return viewHeroes()}
 function multiBar(){
@@ -2772,7 +3319,7 @@ function moveEntry(i,tx,ty){
 }
 /* glisser-déposer (souris et tactile) entre l'inventaire et le mannequin */
 let DRAG=null,noClick=false;
-const dragItem=d=>d.src==='bag'?(S.bag[d.from]&&S.bag[d.from].o):S.heroes[0].equip[d.from];
+const dragItem=d=>d.src==='bag'?(S.bag[d.from]&&S.bag[d.from].o):d.src==='forge'?(findItem(d.from)||{}).it:S.heroes[0].equip[d.from];
 function equipFromCell(i,slot){
   const h=S.heroes[0],E=S.bag[i],it=E&&E.o; if(!it||it.mat) return;
   if(slotType(slot)!==it.slot){toast('Cet objet ne va pas dans cet emplacement.');return}
@@ -2813,7 +3360,8 @@ function showFoot(tx,ty,w,h,ok){
 const hideFoot=()=>{const f=$('#foot'); if(f) f.remove()};
 document.addEventListener('pointerdown',e=>{
   if(e.button>0||!e.target.closest) return;
-  const c=e.target.closest('#bag .gi'),s=e.target.closest('#doll .dslot.full');
+  const c=e.target.closest('#bag .gi'),s=e.target.closest('#doll .dslot.full'),fs=e.target.closest('#fslot.full');
+  if(fs&&UI.fItem!=null&&findItem(UI.fItem)){ DRAG={src:'forge',from:UI.fItem,el:fs,off:[0,0],big:true}; const r=fs.getBoundingClientRect(); Object.assign(DRAG,{x:e.clientX,y:e.clientY,gx:e.clientX-r.left,gy:e.clientY-r.top,on:false,ghost:null,over:null,tgt:null}); return }
   if(c){ if(UI.multi) return; const E=S.bag[+c.dataset.i]; if(!E) return; const gc=gridCellAt(e.clientX,e.clientY)||[E.x,E.y];
     DRAG={src:'bag',from:+c.dataset.i,el:c,off:[clamp(gc[0]-E.x,0,SIZE(E.o)[0]-1),clamp(gc[1]-E.y,0,SIZE(E.o)[1]-1)]} }
   else if(s){ const it=S.heroes[0].equip[s.dataset.slot]; const [w,h]=SIZE(it); DRAG={src:'eq',from:s.dataset.slot,el:s,off:[Math.floor(w/2),Math.floor(h/2)],big:true} }
@@ -2828,18 +3376,18 @@ document.addEventListener('pointermove',e=>{
     DRAG.on=true; hideTip();
     const g=DRAG.el.cloneNode(true); g.id='ghost'; g.removeAttribute('data-act'); g.removeAttribute('data-tip'); g.classList.remove('sel');
     g.style.width=DRAG.el.offsetWidth+'px'; g.style.height=DRAG.el.offsetHeight+'px'; document.body.append(g); DRAG.ghost=g; DRAG.el.classList.add('drag');
-    if(DRAG.src==='eq'){g.style.width='46px';g.style.height='46px';DRAG.gx=23;DRAG.gy=23}
+    if(DRAG.src==='eq'||DRAG.src==='forge'){g.style.width='46px';g.style.height='46px';DRAG.gx=23;DRAG.gy=23}
     const it=dragItem(DRAG);
     if(DRAG.src==='bag'&&it&&!it.mat&&canWear(it)) document.querySelectorAll('#doll .dslot').forEach(d=>{if(slotType(d.dataset.slot)===it.slot)d.classList.add('fit')});
   }
   e.preventDefault();
   DRAG.ghost.style.left=(e.clientX-DRAG.gx)+'px'; DRAG.ghost.style.top=(e.clientY-DRAG.gy)+'px';
-  const t=document.elementFromPoint(e.clientX,e.clientY),cell=t&&t.closest&&t.closest('#doll .dslot, #fslot');
+  const t=document.elementFromPoint(e.clientX,e.clientY),cell=t&&t.closest&&t.closest(DRAG.src==='forge'?'#fslot':'#doll .dslot, #fslot');
   const ok=cell&&cell!==DRAG.el?cell:null;
   if(DRAG.over&&DRAG.over!==ok) DRAG.over.classList.remove('over');
   if(ok) ok.classList.add('over');
   DRAG.over=ok; DRAG.tgt=null;
-  const gc=!ok&&gridCellAt(e.clientX,e.clientY);
+  const gc=!ok&&DRAG.src!=='forge'&&gridCellAt(e.clientX,e.clientY);
   if(gc){ const it=dragItem(DRAG),[w,h]=SIZE(it),tx=gc[0]-DRAG.off[0],ty=gc[1]-DRAG.off[1];
     const self=DRAG.src==='bag'?S.bag[DRAG.from]:null,inb=tx>=0&&ty>=0&&tx+w<=GW&&ty+h<=GH,ov=inb?overlaps(tx,ty,w,h,self):[];
     DRAG.tgt=[tx,ty]; showFoot(tx,ty,w,h,inb&&ov.length<=1) }
@@ -2852,6 +3400,7 @@ function endDrag(e,drop){
   if(d.ghost) d.ghost.remove(); d.el.classList.remove('drag'); if(d.over) d.over.classList.remove('over'); hideFoot();
   document.querySelectorAll('#doll .fit').forEach(x=>x.classList.remove('fit'));
   if(!drop) return;
+  if(d.src==='forge'){ if(!(d.over&&d.over.id==='fslot')){ UI.fItem=null; render(); toast('Objet retiré de l’enclume.') } return }
   if(!d.over&&d.tgt){ if(d.src==='bag') moveEntry(d.from,d.tgt[0],d.tgt[1]); else unequipTo(d.from,d.tgt[0],d.tgt[1]); return }
   if(!d.over) return;
   const o=d.over,toBag=false;
@@ -2901,7 +3450,37 @@ function forgeDetail(){
   const h=S.heroes[0],btns=`<button class="btn sm pri" data-act="fPut" data-id="${c.id}">Améliorer</button>${canWear(c)?`<button class="btn sm" data-act="equip" data-id="${c.id}">Équiper</button>`:''}`+(UI.confirm==='del'+c.id?`<button class="btn sm warn" data-act="salv" data-id="${c.id}">Confirmer</button><button class="btn sm" data-act="noConfirm">Annuler</button></div><p class="hint" style="width:100%;margin-top:4px">Vous récupérerez : ${resTxt(salvageValue(c))}.</p><div class="foot">`:`<button class="btn sm danger" data-act="salv" data-id="${c.id}">Détruire</button>`);
   return detPanel('Détails',itemCard(c,btns,swapDelta(h,c)));
 }
+const invAllowed=()=>!!(S&&S.heroes&&S.heroes.length&&!UI.scr&&!inFight()&&!(PV.match&&['fight','prep'].includes(PV.match.state))&&!(RD.match&&['fight','prep'].includes(RD.match.state)));
+function openInv(v){
+  if(v&&!invAllowed()){ if(S&&!UI.scr) toast('L’inventaire n’est pas disponible pendant un combat.'); return }
+  UI.invOpen=!!v; if(!v){ UI.bagSel=null; UI.invSel=null; UI.multi=false; UI.confirm=null }
+  const y=scrollY; render(); scrollTo(0,y);
+}
+function renderInvPop(){
+  let w=$('#invpop');
+  if(!UI.invOpen||!invAllowed()){ if(w) w.remove(); if(UI.invOpen&&S&&S.heroes&&S.heroes.length&&!UI.scr) UI.invOpen=false; return }
+  const fresh=!w;
+  if(!w){ w=document.createElement('div'); w.id='invpop'; w.className='invpop'; w.setAttribute('role','dialog'); w.setAttribute('aria-label','Inventaire'); document.body.append(w) }
+  const P=bagParts(),so=UI.bagSort;
+  w.innerHTML=`<div class="iphead" data-ipdrag><span class="ipt">${icon('chest')}<b>Inventaire</b></span><small class="num ipcnt">${P.used} / ${BAG}</small><span class="ipg">${matIcon('gold')}<b class="num">${fmt(S.gold)}</b></span><button class="ipx" data-act="invClose" aria-label="Fermer l’inventaire" title="Fermer (I)">×</button></div>
+    <div class="iptools"><span class="mute">Trier</span><div class="ipseg"><button class="${so.k==='name'?'on':''}" data-act="bagSort" data-k="name">Nom${P.arrow('name')}</button><button class="${so.k==='qty'?'on':''}" data-act="bagSort" data-k="qty">Quantité${P.arrow('qty')}</button></div><button class="btn sm ${UI.multi?'warn':''}" style="margin-left:auto" data-act="multiToggle">${UI.multi?'Terminer':'Détruire plusieurs'}</button></div>
+    ${UI.multi?multiBar():''}<div class="ipgrid">${gridHTML()}</div>
+    ${P.detail&&!UI.multi?`<div class="ipdet"><button class="x" data-act="detClose" aria-label="Fermer les détails">×</button>${P.detail}</div>`:''}`;
+  if(fresh&&UI.invPos){ w.style.left=UI.invPos.x+'px'; w.style.top=UI.invPos.y+'px'; w.style.right='auto' }
+  if(UI.invPos) ipClamp(w);
+}
+function ipClamp(w){ if(innerWidth<=700) return; const r=w.getBoundingClientRect(),x=clamp(r.left,4,Math.max(4,innerWidth-r.width-4)),y=clamp(r.top,4,Math.max(4,innerHeight-60)); w.style.left=x+'px'; w.style.top=y+'px'; w.style.right='auto'; UI.invPos={x,y} }
+let IPD=null;
+document.addEventListener('pointerdown',e=>{ const hd=e.target.closest&&e.target.closest('[data-ipdrag]'); if(!hd||e.target.closest('button')||innerWidth<=700) return; const w=$('#invpop'),r=w.getBoundingClientRect(); IPD={dx:e.clientX-r.left,dy:e.clientY-r.top}; w.classList.add('mov'); e.preventDefault() });
+document.addEventListener('pointermove',e=>{ if(!IPD) return; const w=$('#invpop'); if(!w){IPD=null;return} w.style.left=(e.clientX-IPD.dx)+'px'; w.style.top=(e.clientY-IPD.dy)+'px'; w.style.right='auto' });
+document.addEventListener('pointerup',()=>{ if(!IPD) return; IPD=null; const w=$('#invpop'); if(w){ w.classList.remove('mov'); ipClamp(w) } });
+document.addEventListener('keydown',e=>{
+  if(e.target.closest&&e.target.closest('input,textarea,select,[contenteditable]')) return;
+  if((e.key==='i'||e.key==='I')&&!e.ctrlKey&&!e.metaKey&&!e.altKey){ if(!S||!S.heroes||!S.heroes.length||UI.scr) return; e.preventDefault(); openInv(!UI.invOpen) }
+  else if(e.key==='Escape'&&UI.invOpen&&!$('.modal')) openInv(false);
+});
 function bagBlock(){
+  if(UI.invOpen) return `<div class="row between" style="margin:18px 0 10px"><h2>Inventaire</h2></div><p class="hint">L’inventaire est ouvert dans sa fenêtre : glissez vos objets depuis celle-ci.</p>${forgeDetail()}`;
   const mats=MATS.map(m=>`<span class="rs2" title="${MAT_OBJ[m]}">${matIcon(m)}<b class="num">${fmt(matCount(m))}</b></span>`).join('');
   return `<div class="row between" style="margin:18px 0 10px"><h2>Inventaire</h2><small class="num">${BAG-freeCells()} / ${BAG} cases · ${freeCells()} libre${freeCells()>1?'s':''}</small></div>
     ${gridHTML()}${forgeDetail()}`;
@@ -2951,7 +3530,8 @@ function viewForge(){
       <section class="panel"><div><h3>Actions</h3>${work}</div></section>
     </div>`;
   }
-  return `<div class="thead" style="margin-bottom:12px"><span></span><h2 class="stitle">Forge</h2><div style="justify-self:end">${seg}</div></div>${body}${bagBlock()}
+  return `<div class="thead" style="margin-bottom:12px"><span></span><h2 class="stitle">Forge</h2><div style="justify-self:end">${seg}</div></div>${body}
+    <div class="row fginv"><span class="hint">Glissez un objet de l’inventaire sur l’enclume (ou bouton « Forge » dans ses détails). Glissez l’objet hors de l’enclume pour l’en retirer.</span><button class="btn sm" data-act="invOpen">Ouvrir l’inventaire <kbd>I</kbd></button></div>
     <section class="panel" style="margin-top:14px"><h3 style="margin-bottom:6px">Détruire en masse</h3><p class="hint" style="margin-bottom:10px">Les objets détruits de l’inventaire rendent 25 % des ressources ayant servi à leur création. Les objets portés ne sont jamais touchés.</p>
       <div class="row">${[0,1,2].map(r=>`<button class="btn sm" data-act="salvBelow" data-r="${r}" ${invItems().some(i=>i.rarity<=r)?'':'disabled'}>Tous les objets jusqu’à ${RAR[r].n.toLowerCase()}</button>`).join('')}</div></section>`;
 }
@@ -3040,8 +3620,8 @@ function viewHelp(){
     ['Résistance magique','Réduit les dégâts magiques reçus en %.','S’applique après la Défense magique. Plafonnée à 75 %.'],
     ['Résistances élémentaires','Feu, Glace, Foudre, Terre.','Réduisent en % les dégâts des compétences de cet élément (brûlures comprises). Plafonnées à 75 %. Une résistance négative est une faiblesse : les dégâts sont augmentés.'],
     ['Vitesse','Ordre d’action.','À chaque tour, les unités agissent de la plus rapide à la plus lente.'],
-    ['Critique','Chance de coup critique.','5 % de base. Un coup critique multiplie les dégâts par les Dégâts critiques.'],
-    ['Dégâts critiques','Puissance des critiques.','150 % de base : un critique inflige alors 1,5 fois les dégâts.'],
+    ['Critique','Chance de coup critique.','5 % de base, plafonnée à 70 %. Un coup critique multiplie les dégâts par les Dégâts critiques.'],
+    ['Dégâts critiques','Puissance des critiques.','150 % de base, plafonnés à 200 % : un critique inflige de 1,5 à 2 fois les dégâts.'],
     ['Esquive','Chance d’éviter une attaque.','L’attaque est annulée entièrement. Plafonnée à 30 %.'],
     ['Vol de vie','Soin sur les dégâts infligés.','Rend ce pourcentage des dégâts infligés en PV. Plafonné à 20 %.'],
     ['Dégâts bonus','Augmente tous vos dégâts.','+X % appliqué après la réduction par la Défense ou la Résistance.'],
@@ -3057,6 +3637,7 @@ function viewHelp(){
     ['<span class="b-dot">Brûlure</span>','Dégâts sur la durée','Comme le Saignement. Appliquée par la Boule de feu ou par les ennemis de feu.'],
     ['<span class="b-dot">Poison</span>','Dégâts sur la durée','Comme le Saignement, souvent plus long (4 tours).'],
     ['<span class="b-stun">Étourdi</span>','Contrôle','La cible passe son prochain tour. Les boss n’ont que la moitié des chances d’être étourdis.'],
+    ['<span class="b-stun">Paralysie</span>','Contrôle (2 tours)','À chaque tour, la cible a 50 % de chances de perdre son tour (plus avec le talent Choc nerveux). Les boss n’ont que la moitié des chances d’être paralysés.'],
     ['<span class="b-taunt">Provoque</span>','Contrôle','Les ennemis doivent attaquer l’unité qui provoque (Mur de boucliers du Guerrier).'],
     ['Bouclier','Protection','Absorbe des dégâts avant les PV, jusqu’à épuisement. Ne peut pas dépasser les PV max.'],
   ]);
@@ -3077,9 +3658,10 @@ function viewHelp(){
     ['Mythique','60','Débloqué en atteignant le dernier boss héroïque','Or, XP et matériaux ×2 ; Prisme divin à 25 %'],
   ]);
   const pots=T(['Potion','Effet'],Object.values(POTS).map(p=>[p.n,p.d+(p.cls?` <small class="mute">(${CLASSES[p.cls].n})</small>`:'')]))
-    +`<p class="hint">Les potions se boivent en combat sans utiliser votre tour : une seule potion par tour, puis 3 tours de recharge avant la suivante. L’Élixir de savoir et le Philtre de fortune ne s’utilisent qu’une fois par combat.</p>`;
-  const rar=T(['Rareté','Affixes','Multiplicateur de stats'],RAR.map((r,i)=>[`<span style="color:var(--r${i});font-weight:700">${r.n}</span>`,r.aff,'×'+String(r.m).replace('.',',')]))
-    +`<p class="hint">Niveau d’objet : il augmente toutes les valeurs de l’objet. Chaque amélioration (+1 à +10) ajoute 5 % à toutes ses stats. Les armes donnent Force ou Intelligence, les armures de la vie et de la défense, les bijoux uniquement des affixes aléatoires.</p>`;
+    +`<p class="hint">Les potions se boivent en combat (et pendant les 10 secondes de préparation) sans utiliser votre tour. Chaque potion a son propre temps de recharge : vie, résistance, force et intelligence 4 tours, action 6 tours. L’Élixir de savoir et le Philtre de fortune ne s’utilisent qu’une fois par combat.</p>`;
+  const rar=T(['Rareté','Affixes','Multiplicateur de stats'],RAR.map((r,i)=>[`<span style="color:var(--r${i});font-weight:700">${r.n}</span>`,r.aff+(r.leg?' + pouvoir légendaire':'')+(r.max?' (au maximum de la plage)':''),'×'+String(r.m).replace('.',',')]))
+    +`<p class="hint">Niveau d’objet : il augmente toutes les valeurs de l’objet. Chaque amélioration (+1 à +10) ajoute 5 % à toutes ses stats. Les armes donnent Force ou Intelligence, les armures de la vie, de la défense et de la résistance magique, les bijoux uniquement des affixes aléatoires.</p>`
+    +T(['Affixe','Rareté','Chances (1er affixe, Guerrier)'],(()=>{const pool=affPool('guerrier'),tot=pool.reduce((x,a)=>x+a.w,0);return AFX.slice().sort((a,b)=>b.w-a.w).map(a=>[STAT_N[a.s]+(PCT.has(a.s)&&!/^r/.test(a.s)?' %':''),affTier(a.w),pool.includes(a)?r1(a.w/tot*100)+' %':'—'])})());
   const asc=`<p>L’ascension demande le niveau maximum (${MAXL}). Chaque étoile ajoute <b>+10 %</b> aux statistiques de base du héros (hors équipement). Palier n : ${fmt(5000)} × n or et 5 × n Prismes divins, jusqu’à 5 étoiles.</p>`;
   return `<h2 style="margin-bottom:4px">Aide</h2><p class="hint" style="margin-bottom:16px">Tout ce qu’il faut savoir sur les statistiques et les effets de combat. Cliquez sur une section pour l’ouvrir ou la fermer.</p>
     ${sec('Statistiques',stats,true)}${sec('Calcul des dégâts',dmg)}${sec('Afflictions et effets de contrôle',aff)}${sec('Bonus et malus',buffs)}
@@ -3087,12 +3669,27 @@ function viewHelp(){
 }
 
 /* --- nouveautés --- */
-const VERSION='0.3.0';
+const VERSION='0.3.1';
 const PATCH=[
+ {v:'0.3.1',t:"Raids, spécialisations et équilibrage",sec:[
+  ["Compétences et spécialisations",["Nouveau système de compétences pour chaque classe : 3 compétences de base jusqu’au niveau 10, puis une spécialisation à choisir dans la fenêtre Personnage.","Chaque spécialisation a son propre arbre de talents (8 talents, actifs et passifs, reliés par des traits) : un talent se débloque quand le talent auquel il est relié est appris et que le niveau requis est atteint (10, 12, 15, 20, 25 et 30).","Le choix est définitif. La nouvelle Potion d’oubli (Marchand : 5 000 or et 5 Prismes divins) réinitialise toutes les compétences et la spécialisation, avec remboursement des points.","Compétences affichées sous forme d’icônes ; une infobulle détaille l’effet, le rang actuel, le rang suivant et les conditions. Cliquez sur une icône pour l’apprendre ou l’équiper. Les passifs sont ronds, les actives carrées.","Fiches de compétences plus lisibles : coût en PA, recharge, élément et cible en étiquettes, effets en paragraphes séparés et rang suivant à part.","Barre de sorts : jusqu’à 5 compétences actives (avant 3), à placer par glisser-déposer dans la fenêtre Personnage, et affichées en icônes avec le coût en PA et la recharge restante, dans les combats d’aventure, les duels et les raids.","Talents communs (dans chaque arbre, sans lien) : Guerrier — Puissance brute (+2 % Force, 5 rangs), Précision mortelle (+2 % critique, 3 rangs), Robustesse (+2 % PV, 5 rangs), Célérité (+2 % vitesse, 3 rangs), Peau d’acier (+2 % défense physique et magique, 3 rangs). Sorcier — Érudition (+2 % Intelligence, 5 rangs), Précision mortelle, Vitalité (+2 % PV), Célérité, Égide (mêmes valeurs).","Talent ultime dans chaque arbre (niveau 35, 20 points dépensés dans l’arbre requis) : Flamme intérieure (Feu), Cœur de l’orage (Foudre), Frénésie sanglante (Saignement), Rage indomptable (Barbarie).","Les talents qui modifient un effet ou une statistique ne sont plus reliés : Feu persistant, Plaies profondes, Choc nerveux, Vif-argent et Berserker se prennent librement (niveau requis conservé).","Points : un arbre complet demande 57 points (37 de spécialisation, 19 communs, 1 ultime) en plus des 15 points des compétences de base, alors qu’un héros niveau 50 n’en possède que 51 : il faut faire des choix.","Toutes les sauvegardes existantes : les compétences sont réinitialisées et tous les points de compétence sont remboursés."]],
+  ["Personnage",["Nouvelle roue d’équipement : la roue occupe toute la largeur de sa zone, avec en dessous la liste de l’équipement porté (nom, amélioration, niveau d’objet).","Nouvelle disposition : en haut, la présentation du personnage et ses statistiques à gauche, la roue d’équipement à droite, de la même taille ; en dessous, les compétences et talents.","Forge : l’inventaire n’est plus affiché dans l’onglet Forge ; glissez un objet depuis la fenêtre d’inventaire sur l’enclume (bouton « Ouvrir l’inventaire »). Glissez l’objet hors de l’enclume pour l’en retirer.","Inventaire dans une fenêtre que l’on peut déplacer : elle s’ouvre en cliquant sur un emplacement d’équipement ou avec la touche I, depuis n’importe quel onglet (sauf pendant un combat), et se ferme avec la croix, la touche I ou Échap. Boutons de tri et de destruction regroupés en haut, détails de l’objet sélectionné dans la fenêtre.","Nouvelle barre de sorts (5 emplacements) au-dessus des compétences : glissez-déposez une compétence active apprise dans un emplacement, déplacez-la d’un emplacement à l’autre pour changer l’ordre, ou glissez-la hors de la barre pour la retirer. L’ordre de la barre est celui des combats."]],
+  ["Guerrier",["Compétences de base : Frappe puissante (niv. 1, 200 % FOR, 2 PA), Mur de boucliers (niv. 3, bouclier de 30 % des PV + provocation), Tourbillon (niv. 6, 130 % FOR sur tous les ennemis).","Spécialisation Saignement : Entaille (150 % FOR, 50 % de chances d’infliger Saignement : 40 % FOR par tour, 3 tours), Lames dentelées (+10 % de chances de Saignement avec Entaille par rang, jusqu’à 100 %), Hémorragie (+10 % de dégâts des Saignements et +1 % de vol de vie par rang), Éventration (160 % FOR, +60 % contre une cible qui saigne), Lacération (100 % FOR sur tous les ennemis, 60 % de chances de Saignement), Odeur du sang (+5 % de dégâts contre les cibles qui saignent et +3 % PV par rang), Plaies profondes (+1 tour de Saignement par rang, 2 rangs), Exsanguination (140 % FOR et détonation : 150 % des dégâts de Saignement restants infligés immédiatement).","Ultimes du Guerrier : Frénésie sanglante — chaque compétence qui touche une cible qui saigne octroie 1 charge de Soif ; à 5 charges, Frénésie : +20 % de dégâts et +6 % de vol de vie pendant 3 tours. Rage indomptable — chaque coup subi octroie 1 point de Rage ; à 5 points, Déchaînement : +20 % de dégâts et −15 % de dégâts subis pendant 3 tours.","Spécialisation Barbarie : Frappe sauvage (160 % FOR, +7 % de dégâts par tranche de 10 % de PV manquants), Fureur (+1,2 % de dégâts par tranche de 10 % de PV manquants par rang), Instinct de survie (−5 % de dégâts subis sous 35 % de PV et +3 % PV par rang), Pacte de sang (sacrifie 10 % des PV max, 210 % FOR, +5 % par tranche de 10 % de PV manquants), Cri de guerre (+25 % de Force pendant 3 tours), Carnage (115 % FOR sur tous les ennemis, +5 % par tranche de 10 % de PV manquants), Berserker (+4 % vitesse, +2 % critique et +1 % vol de vie par rang, 3 rangs), Folie meurtrière (200 % FOR, +8 % par tranche de 10 % de PV manquants, rend 15 % des dégâts en PV)."]],
+  ["Sorcier",["Compétences de base : Projectile arcanique (niv. 1, 180 % INT, 2 PA), Barrière arcanique (niv. 3, bouclier de 220 % INT sur les alliés), Nova arcanique (niv. 6, 95 % INT sur tous les ennemis).","Spécialisation Feu : Immolation (150 % INT de feu, 50 % de chances d’infliger Brûlure : 40 % INT par tour, 3 tours), Embrasement (+10 % de chances de Brûlure avec Immolation par rang, jusqu’à 100 %), Chaleur intense (+10 % de dégâts des Brûlures et +3 % INT par rang), Combustion (80 % INT et détonation : 150 % des dégâts de Brûlure restants infligés immédiatement), Vague de flammes (100 % INT sur tous les ennemis, 50 % de chances de Brûlure), Pyromanie (+5 % de dégâts contre les cibles en feu et +1 % critique par rang), Feu persistant (+1 tour de Brûlure par rang, 2 rangs), Météore (220 % INT sur tous les ennemis, 60 % de chances de Brûlure).","Spécialisation Foudre : Arc électrique (180 % INT de foudre, 30 % de chances de paralyser 2 tours), Électricité statique (+7 % de chances de paralyser et +3 % INT par rang), Vif-argent (+4 % vitesse et +2 % critique par rang, 3 rangs), Éclair en chaîne (100 % INT sur tous les ennemis, 15 % de chances de paralyser), Choc nerveux (+10 % de chances qu’une cible paralysée perde son tour par rang, 3 rangs), Surtension (+8 % de dégâts contre les cibles paralysées et +1 % critique par rang), Tempête (140 % INT sur tous les ennemis, 20 % de chances de paralyser), Jugement de foudre (260 % INT, dégâts doublés contre une cible paralysée).","Ultimes du Sorcier : Flamme intérieure — chaque sort de feu lancé octroie 1 degré de Chauffe ; à 5 degrés, Surchauffe : +20 % de dégâts de feu pendant 3 tours. Cœur de l’orage — chaque sort de foudre lancé octroie 1 Charge ; à 5 Charges, Surcharge : +20 % de dégâts de foudre et +15 % de chances de paralyser pendant 3 tours.","Nouvel effet Paralysie (2 tours) : à chaque tour, la cible a 50 % de chances de perdre son tour (jusqu’à 80 % avec Choc nerveux). Les boss n’ont que la moitié des chances d’être paralysés."]],
+  ["Raids",["Nouveau mode « ☠ Raid » dans l’onglet Aventure : combat coopératif à 2 joueurs contre un boss unique et très puissant.","Trois boss de raid : Colosse de Braise (niveau 25, niveau 20 requis), Wyrm des Glaces (niveau 40, niveau 35 requis) et Avatar de l’Abîme (niveau 50, niveau 50 requis).","Paliers : chaque victoire débloque le palier suivant (+1) pour ce boss. La difficulté est exponentielle : PV, attaque et défense du boss ×1,05 par palier (palier +10 : ×1,63 ; palier +20 : ×2,65). Le palier se choisit dans un menu déroulant avant le combat ; les deux joueurs doivent l’avoir débloqué.","Recherchez un partenaire (même boss, même palier) ou invitez un ami depuis la liste d’amis (nouveau bouton « Raid » sous « Duel »).","Le boss agit deux fois par tour et entre en rage au tour 16 (+8 % de dégâts par tour). Les héros étourdis passent leur tour automatiquement.","Récompenses (palier +0, multipliées par 1,05 par palier pour l’or) : Colosse 1 150 or, Wyrm 1 600 or, Avatar 1 900 or, plus 2 runes (+1 tous les 3 paliers), 6 essences et 6 cristaux (+1 par palier).","Un joueur inactif pendant 90 secondes peut voir son tour passé par son partenaire. Si un joueur abandonne, son partenaire peut continuer seul."]],
+  ["Combat",["Les PA sont désormais entièrement rechargés au début de chaque tour (avant : +1 PA par tour), en aventure, en duel et en raid.","Chaque potion a désormais son propre temps de recharge (vie, résistance, force et intelligence : 4 tours ; action : 6 tours) : plusieurs potions différentes peuvent être bues dans le même tour.","Préparation de 10 secondes avant chaque combat (aventure, duel et raid) pour boire vos potions. En duel et en raid, les deux joueurs se préparent en même temps ; le combat commence dès que les deux sont prêts. Les combats enchaînés automatiquement n’ont pas de préparation.","Toutes les compétences des héros sont utilisables dès le premier tour ; leur recharge commence une fois lancées.","Nouvelle fenêtre de combat « Arène sombre » : scène nocturne, portraits, cartes vitrées et « VS » central, barre de sorts et journal sombres. L’ordre du tour est affiché en haut (l’unité qui joue est mise en avant). Même ambiance pour les duels et les raids.","Bouclier visible sur la barre de vie : une bande bleue translucide montre la part de vie protégée, en plus du montant entre parenthèses (aventure, duel et raid).","Les dégâts et les soins s’affichent sur la cible puis disparaissent lentement en fondu, en aventure comme en duel et en raid.","Infobulles sur les compétences et les potions pendant les combats (aventure, duel et raid) : coût, recharge, cible et effets.","Le bouton « Fuir » devient « Abandonner » (double clic pour confirmer) : l’abandon est compté comme une défaite. Même bouton en duel et en raid.","Chat de combat à droite de la scène, réservé aux deux joueurs du duel ou du raid."]],
+  ["Marchand",["Nouvelle Potion d’action (70 or de base) : +2 PA (et +2 PA maximum) pendant 3 tours.","En aventure et en raid : utilisable à n’importe quel tour (et pendant la préparation), 6 tours de recharge.","En duel PvP : utilisable uniquement pendant la préparation ou à votre premier tour (ne coûte pas de PA).","Nouvelle Potion d’oubli : 5 000 or et 5 Prismes divins, réinitialise compétences et spécialisation."]],
+  ["Équipement",["Nouvelle stat fixe sur les armures : Résistance magique. Guerrier (niveau 50, Épique) : heaume 4,3 %, cuirasse 6,7 %, jambières 5,1 %, bottes 3,4 %. Sorcier : capuche 6,1 %, robe 8,5 %, jambières 6,7 %, sandales 4,3 %. Les objets existants la reçoivent aussi.","Rareté des affixes : chaque affixe a désormais un poids de tirage. Très courants : PV, Force, Intelligence (16). Courants : Défense, Vitesse (9), résistances élémentaires (7). Peu courants : PV %, Résistance physique, Résistance magique, Or trouvé (5). Rares : Dégâts % (4), Critique, Dégâts critiques, Esquive (3). Très rare : Vol de vie (2).","Exemple pour le premier affixe d’un objet de Guerrier : PV ou Force ≈ 14 % chacun, Critique ≈ 2,7 %, Vol de vie ≈ 1,8 %. Le tableau complet est dans l’Aide (Rareté et équipement). Le remplacement d’affixe à la Forge suit les mêmes chances."]],
+  ["Équilibrage : plafonds",["Chances de coup critique plafonnées à 70 % (base 5 %).","Dégâts critiques plafonnés à 200 % (base 150 %) : un critique inflige au maximum le double des dégâts."]],
+  ["Équilibrage : affixes",["Valeurs maximales d’un affixe sur un objet Épique de niveau 50 (avant → après) :","PV : 205 → 168 (−18 %) · Force / Intelligence : 57 → 39 (−32 %) · Défense : 48 → 39 (−19 %) · Vitesse : 8,5 → 7,3 (−14 %).","PV % : 9,8 → 8,5 (−13 %) · Dégâts % : 11 → 7,9 (−28 %) · Critique : 6,7 → 5,5 % (−18 %) · Dégâts critiques : 37,8 → 9,8 % (−74 %, à cause du nouveau plafond).","Esquive : 3,9 → 3,4 % (−14 %) · Vol de vie : 2,5 → 2 % (−22 %). Résistances et Or trouvé : inchangés.","Objets existants : chaque affixe garde sa qualité de tirage (sa position entre le minimum et le maximum) dans la nouvelle plage. Les stats fixes des objets sont recalculées."]],
+  ["Équilibrage : objets divins",["Les objets Divins n’ont plus de pouvoir passif et n’ont plus que 3 affixes aléatoires, mais toujours au maximum de leur plage (multiplicateur ×1,5 inchangé).","Les objets Divins existants sont convertis : pouvoir retiré, 3 premiers affixes conservés et portés à leur valeur maximale."]],
+  ["Équilibrage : classes",["Guerrier : PV +13 par niveau (avant 14) ; Force +2,6 par niveau (avant 2,4).","Sorcier : PV de base 100 (avant 90), +13 par niveau (avant 10,5) ; Défense de base 6 (avant 5), +1,5 par niveau (avant 1).","Équipement du Sorcier plus résistant : Défense fixe des capuches, robes, sandales et jambières augmentée d’environ 20 à 25 %.","Simulations (équipement Légendaire +10, boss Mythique, 12 à 20 combats par spécialisation) : Barbarie ≈ 50 % de victoires, Saignement ≈ 25 à 40 %, Feu ≈ 30 %, Foudre ≈ 30 %. Barbarie a été réduite après les premiers essais (Fureur 2 → 1,2 %, Folie meurtrière 240 → 200 %, vol de vie 25 → 15 %, Pacte de sang 240 → 210 % et sacrifice 12 → 10 %) et Foudre renforcée (Arc électrique 160 → 180 %, Jugement de foudre 240 → 260 %, Surtension 6 → 8 %)."]],
+  ["Équilibrage : ennemis",["Attaque des monstres +14 % environ à tous les niveaux (formule 7 + 2,9 × niv + 0,07 × niv²).","Normal : attaque des boss +15 %.","Héroïque : attaque des monstres ×2,6 (avant ×3,2), PV des boss ×1,6 (avant ×2), attaque des boss ×2,9 (avant ×3,8).","Mythique : attaque des monstres ×2,9 (avant ×3,6), PV des boss ×1,7 (avant ×2,4), attaque des boss ×2,2 (avant ×3,2).","Objectif (simulations avec un équipement du niveau du héros) : en Normal, les boss laissent environ 60 à 90 % des PV ; le Mythique demande un équipement Légendaire +10 et le boss Mythique reste réservé aux meilleurs (environ 1 victoire sur 2 en Guerrier, 1 sur 4 en Sorcier)."]],
+  ["Aide et notes",["L’Aide indique les nouveaux plafonds, la recharge des PA et des potions.","Nouvelle mise en page des notes de mise à jour : titres centrés, plus grands et en gras.","Aide : nouvel effet Paralysie et tableau de rareté des affixes."]]
+ ]},
  {v:'0.3.0',t:"Combat 2.0 - Stat - PVP",sec:[
-  ["Duels PvP",["Nouveau mode « Duel PvP » dans l’onglet Aventure : recherchez un adversaire parmi les joueurs connectés.","Une confirmation s’affiche quand un adversaire est trouvé. Le duel se joue au tour par tour dans une fenêtre au centre de l’écran : PV, PA, compétences et potions des deux joueurs.","À la fin, le nom du vainqueur s’affiche puis un butin de 500 or récompense la victoire.","Défiez directement un ami : cliquez sur son nom dans la liste d’amis, puis sur « Duel ».","Un joueur qui ne joue pas pendant 90 secondes peut être déclaré perdant ; bouton « Abandonner » disponible (compté comme une défaite).","Chat de combat à droite de la scène, réservé aux deux joueurs du duel."]],
-  ["Raids",["Nouveau mode « Raid » dans l’onglet Aventure : un combat coopératif à 2 joueurs contre un boss unique et très puissant.","Trois boss de raid : Colosse de Braise (niveau 25), Wyrm des Glaces (niveau 40) et Avatar de l’Abîme (niveau 50).","Chaque victoire débloque le palier suivant (+1) pour ce boss. La difficulté est exponentielle : +5 % par palier, cumulatif. Le palier se choisit avant le combat dans un menu déroulant.","Recherchez un partenaire ou invitez un ami depuis la liste d’amis (bouton « Raid »). Récompenses : or, runes, essences et cristaux, en hausse avec le palier.","Le boss agit deux fois par tour et entre en rage au tour 16. Chat de combat entre les deux joueurs et bouton « Abandonner » (compté comme une défaite)."]],
-  ["Combat",["Points d’action (PA) : 5 de base pour chaque classe. Les compétences coûtent des PA, l’attaque de base est gratuite mais utilisable une seule fois par tour, et chaque unité récupère tous ses PA au début de son tour.","Votre héros peut enchaîner plusieurs actions dans le même tour tant qu’il lui reste des PA ; nouveau bouton « Fin de tour ».","Barre de PA segmentée sous la barre de vie de chaque combattant ; le coût en PA est affiché sur chaque compétence.","Nouvelles statistiques : Résistance physique, Résistance magique et résistances au Feu, à la Glace, à la Foudre et à la Terre (en %, plafonnées à 75 %). L’ancienne Résistance devient « Défense magique ».","Compétences élémentaires : Boule de feu (Feu), Éclair en chaîne (Foudre), Météore (Terre) ; côté ennemis, Trait de feu, Crachat toxique et Déferlante. Certains monstres résistent à un élément, d’autres y sont faibles.","Nouveaux affixes de résistance sur l’équipement.","Potions limitées à une par tour, avec 3 tours de recharge (aventure, duels et raids).","Le bouton « Fuir » devient « Abandonner » : l’abandon est compté comme une défaite."]],
+  ["Duels PvP",["Nouveau mode « Duel PvP » dans l’onglet Aventure : recherchez un adversaire parmi les joueurs connectés.","Une confirmation s’affiche quand un adversaire est trouvé. Le duel se joue au tour par tour dans une fenêtre au centre de l’écran : PV, PA, compétences et potions des deux joueurs.","À la fin, le nom du vainqueur s’affiche puis un butin de 500 or récompense la victoire.","Défiez directement un ami : cliquez sur son nom dans la liste d’amis, puis sur « Duel ».","Un joueur qui ne joue pas pendant 90 secondes peut être déclaré perdant ; bouton « Abandonner » disponible."]],
+  ["Combat",["Points d’action (PA) : 5 de base pour chaque classe. Les compétences coûtent des PA, l’attaque de base est gratuite mais utilisable une seule fois par tour, et chaque unité récupère 1 PA au début de son tour.","Votre héros peut enchaîner plusieurs actions dans le même tour tant qu’il lui reste des PA ; nouveau bouton « Fin de tour ».","Barre de PA segmentée sous la barre de vie de chaque combattant ; le coût en PA est affiché sur chaque compétence.","Nouvelles statistiques : Résistance physique, Résistance magique et résistances au Feu, à la Glace, à la Foudre et à la Terre (en %, plafonnées à 75 %). L’ancienne Résistance devient « Défense magique ».","Compétences élémentaires : Boule de feu (Feu), Éclair en chaîne (Foudre), Météore (Terre) ; côté ennemis, Trait de feu, Crachat toxique et Déferlante. Certains monstres résistent à un élément, d’autres y sont faibles.","Nouveaux affixes de résistance sur l’équipement."]],
   ["Forge",["Nouvelles chances de rareté : Forge ordinaire 80 % Commun / 20 % Magique ; Forge fine 40 % Commun / 50 % Magique / 10 % Rare ; Forge de maître 10 % Magique / 45 % Rare / 45 % Épique ; Forge légendaire 20 % Rare / 70 % Épique / 10 % Légendaire.","Affixes aléatoires : Commun 0, Magique 1, Rare 2, Épique 3, Légendaire 3 + un pouvoir légendaire.","Pouvoir légendaire (écrit en orange) : +6 % de chances de coup critique et +10 % de dégâts critiques. Un pouvoir nommé pour chaque type d’équipement ; les objets légendaires existants le reçoivent aussi."]],
   ["Personnage",["Caractéristiques regroupées en trois catégories : Principale, Secondaire et Résistance. « Défense » devient « Défense physique ».","Les valeurs affichées sont les totaux (base + équipement) ; un bouton affiche le détail entre parenthèses (base + équipement).","« Or trouvé » et « Dégâts bonus » ne sont plus affichés dans la fiche."]],
   ["Amis",["Amis classés en deux catégories : En ligne et Hors ligne.","Chat entre amis : cliquez sur le nom d’un ami puis sur « Chat ». Une pastille rouge signale un nouveau message sur le bouton Amis et sur l’ami concerné."]]
@@ -3294,7 +3891,9 @@ function tipHTML(k){
   const h=S.heroes[0];
   if(k.startsWith('pot:')){const q=k.slice(4),P=POTS[q]; if(!P) return '';
     const used=C.bonus&&((q==='p_xp'&&C.bonus.xp)||(q==='p_loot'&&C.bonus.loot));
-    return `<article class="it" style="--rc:${P.c}"><header><b>${P.n}</b><small>Potion · ${matCount(q)} en stock</small></header><ul><li>${P.d}</li><li class="imp">${used?'Déjà utilisée pour ce combat.':'Se boit sans utiliser votre tour.'}</li></ul></article>`}
+    const mm=[PV.match,RD.match].find(x=>x&&['fight','prep'].includes(x.state)),mu=mm&&mm.u&&mm.u[pvpMe()],left=mu?Math.min((mu.pcd||{})[q]||0,P.cd||99):inFight()?potShow(q,potLeft(q)):0;
+    return `<article class="it skt" style="--rc:${P.c}"><header><b>${P.n}</b><small>Potion · ${matCount(q)} en stock</small></header><div class="skmeta"><span class="skm free">Sans PA</span><span class="skm">${P.cd?`Recharge ${P.cd} tours`:'1 fois par combat'}</span></div><div class="skbody"><p>${P.d}</p>${used?'<p class="lockr">Déjà utilisée pour ce combat.</p>':left?`<p class="lockr">Encore ${left} tour${left>1?'s':''} de recharge.</p>`:'<p class="imp">Se boit sans utiliser votre tour.</p>'}</div></article>`}
+  if(k.startsWith('sk:')){const q=SK[k.slice(3)]; return q?skCard(q,h):''}
   if(k.startsWith('f:')){const r=findItem(+k.slice(2)); return r?itemCard(r.it):''}
   if(k.startsWith('bag:')){const E=S.bag[+k.slice(4)]; if(!E) return ''; const c=E.o; return c.mat?matCard(c):itemCard(c,'',swapDelta(h,c))}
   const it=h&&h.equip[k];
@@ -3339,18 +3938,18 @@ const A={
     UI.cname=''; save(); render(); toast('Bienvenue, '+name+'. Lancez votre premier combat.');
   },
   zone:d=>{const P=prog();UI.zone=+d.i;UI.stage=UI.zone===P.zone?P.stage:1;render()},
-  diff:d=>{if(C.phase==='fight')return;if(d.d==='myth'&&!mythOpen())return;if(d.d==='hero'&&!heroOpen()){toast(`Mode Héroïque : niveau ${HERO_L} requis.`);return}S.diff=d.d;const P=prog();UI.zone=P.zone;UI.stage=P.stage;C.phase='idle';save();render()},
+  diff:d=>{if(inFight())return;if(d.d==='myth'&&!mythOpen())return;if(d.d==='hero'&&!heroOpen()){toast(`Mode Héroïque : niveau ${HERO_L} requis.`);return}S.diff=d.d;const P=prog();UI.zone=P.zone;UI.stage=P.stage;C.phase='idle';save();render()},
   stage:d=>{UI.stage=+d.s;render()},
   fight:()=>startBattle(),
   togStats:()=>{S.showStats=S.showStats===false;save();render()},
   statSplit:()=>{S.statSplit=!S.statSplit;save();render()},
   usePot:d=>usePot(d.k),
-  buyPot:d=>{const q=+d.q,c=potPrice(d.k)*q; if(!hasGold(c)) return; if(POTS[d.k].cls&&POTS[d.k].cls!==S.heroes[0].cls){toast(`Réservée au ${CLASSES[POTS[d.k].cls].n}.`);return} if(matRoom(d.k)<q){toast('Inventaire plein.');return}
+  buyPot:d=>{const q=+d.q,P=POTS[d.k]; if(P.fix){ if(!canPay(P.fix)) return; if(matRoom(d.k)<1){toast('Inventaire plein.');return} pay(P.fix); bagAddMat(S.bag,d.k,1); markNew(); save(); render(); toast('Achat : '+P.n+'.'); return } const c=potPrice(d.k)*q; if(!hasGold(c)) return; if(POTS[d.k].cls&&POTS[d.k].cls!==S.heroes[0].cls){toast(`Réservée au ${CLASSES[POTS[d.k].cls].n}.`);return} if(matRoom(d.k)<q){toast('Inventaire plein.');return}
     if(!FREE()) S.gold-=c; bagAddMat(S.bag,d.k,q); markNew(); save(); render(); toast(`Achat : ${q} × ${POTS[d.k].n}.`)},
   auto:()=>{S.auto=!S.auto;if(!S.auto)S.farm=false;if(S.auto&&C.waiting){const w=C.waiting;C.waiting=null;C.pending=null;w.res(ai(w.u))}render()},
   farm:()=>{S.farm=!S.farm;render()},
   speed:()=>{S.speed=S.speed===1?2:S.speed===2?4:1;renderActbar()},
-  giveUp:()=>{ if(C.phase!=='fight') return;
+  giveUp:()=>{ if(!inFight()) return;
     if(UI.confirm!=='pveGiveUp'){UI.confirm='pveGiveUp'; renderActbar(); toast('Cliquez à nouveau pour abandonner : le combat sera compté comme une défaite.'); setTimeout(()=>{if(UI.confirm==='pveGiveUp'){UI.confirm=null; renderActbar()}},4000); return}
     UI.confirm=null; C.abort=true; C.id++; if(C.waiting){const w=C.waiting;C.waiting=null;w.res({})} C.pending=null; C.turn=null; S.farm=false;
     if(C.test){C.test=false; C.result={win:false,test:true}} else C.result={win:false,ab:true};
@@ -3375,17 +3974,24 @@ const A={
   cancelPick:()=>{C.pending=null;renderActbar();refreshAll()},
   endTurn:()=>{const w=C.waiting; if(!w) return; C.waiting=null; C.pending=null; w.res({end:true})},
   learn:d=>{
-    const h=S.heroes[0]; const sk=SK[d.id]; if(h.sp<1||(h.learned[d.id]||0)>=5||h.lvl<sk.lvl) return;
+    const h=S.heroes[0],sk=SK[d.id]; if(!sk||!heroSkills(h).includes(sk)||h.sp<1||(h.learned[d.id]||0)>=skMax(sk)||skReq(sk,h)) return;
     h.sp--; h.learned[d.id]=(h.learned[d.id]||0)+1;
-    if(sk.t==='a'&&!h.loadout.includes(d.id)) h.loadout.push(d.id);
-    save();render();
+    if(sk.t==='a'&&!h.loadout.includes(d.id)){ if(h.loadout.length<LOADOUT_MAX) h.loadout.push(d.id); else toast(`Barre de sorts pleine (${LOADOUT_MAX}) : retirez une compétence pour équiper ${sk.n}.`) }
+    const y=scrollY; save();render();scrollTo(0,y);
   },
   equipSk:d=>{
-    const h=S.heroes[0];
+    const h=S.heroes[0],sk=SK[d.id]; if(!sk||!h.learned[d.id]||sk.t!=='a') return;
     if(h.loadout.includes(d.id)){ if(h.loadout.length>1)h.loadout=h.loadout.filter(x=>x!==d.id); else toast('Gardez au moins une compétence active.') }
-    else if(h.loadout.length<3) h.loadout.push(d.id);
-    save();render();
+    else if(h.loadout.length<LOADOUT_MAX) h.loadout.push(d.id); else toast(`Barre de sorts pleine (${LOADOUT_MAX} compétences).`);
+    const y=scrollY; save();render();scrollTo(0,y);
   },
+  skSel:d=>{ UI.skSel=UI.skSel===d.id?null:d.id; const y=scrollY; render(); scrollTo(0,y) },
+  chooseSpec:d=>{ const h=S.heroes[0],sp=CLASSES[h.cls].specs[d.s]; if(!sp||h.spec||h.lvl<SPEC_L) return;
+    if(UI.specConf!==d.s){ UI.specConf=d.s; const y=scrollY; render(); scrollTo(0,y); setTimeout(()=>{ if(UI.specConf===d.s){UI.specConf=null; if(UI.tab==='heroes'&&!UI.scr){const y2=scrollY;render();scrollTo(0,y2)}} },5000); return }
+    UI.specConf=null; h.spec=d.s; UI.skSel=sp.nodes[0].id; save(); const y=scrollY; render(); scrollTo(0,y); toast('✦ Spécialisation choisie : '+sp.n+' !') },
+  forget:()=>{ const h=S.heroes[0]; if(matCount('p_oubli')<1) return;
+    if(!UI.forgetConf){ UI.forgetConf=true; const y=scrollY; render(); scrollTo(0,y); setTimeout(()=>{ if(UI.forgetConf){UI.forgetConf=false; if(UI.tab==='heroes'&&!UI.scr){const y2=scrollY;render();scrollTo(0,y2)}} },5000); return }
+    UI.forgetConf=false; removeMat('p_oubli',1); resetSkills(h); UI.skSel=null; save(); const y=scrollY; render(); scrollTo(0,y); toast('Compétences et spécialisation réinitialisées : '+h.sp+' points à redistribuer.') },
   ascend:()=>{
     const h=S.heroes[0],c=ascCost(h);
     if(h.stars>=5||h.lvl<MAXL||!canPay(c)) return; pay(c); h.stars++; save(); render(); toast(h.name+' atteint l’ascension '+h.stars+'.');
@@ -3424,7 +4030,9 @@ const A={
     const half=Math.floor(c.n/2); c.n-=half; S.bag.push({x:sp[0],y:sp[1],o:{mat:c.mat,n:half}}); save(); render();
   },
   changeItem:d=>{UI.invSel=d.slot;UI.bagSel=null;UI.tab='heroes';render()},
-  dollSlot:d=>{UI.invSel=UI.invSel===d.slot?null:d.slot;UI.bagSel=null;render();detScroll()},
+  dollSlot:d=>{UI.invSel=d.slot;UI.bagSel=null;UI.confirm=null; if(!invAllowed()){ const y=scrollY; render(); scrollTo(0,y); return } UI.invOpen=true; const y=scrollY; render(); scrollTo(0,y)},
+  invClose:()=>openInv(false),
+  invOpen:()=>openInv(true),
   equip:d=>{
     const h=S.heroes[0],i=cellOf(+d.id); if(i<0) return;
     equipFromCell(i,targetSlot(h,S.bag[i].o));
@@ -3461,7 +4069,7 @@ const A={
   },
   replAff:d=>{
     const r=findItem(UI.fItem); if(!r) return; const c=replCost(r.it); if(!canPay(c)) return; pay(c); addCost(r.it,c);
-    const have=new Set(r.it.aff.map(a=>a.s)),pool=affPool(r.it.cls||S.heroes[0].cls).filter(a=>!have.has(a.s)),n=pick(pool); if(!n) return;
+    const have=new Set(r.it.aff.map(a=>a.s)),pool=affPool(r.it.cls||S.heroes[0].cls).filter(a=>!have.has(a.s)),n=wPick(pool,1)[0]; if(!n) return;
     r.it.aff[+d.i]={s:n.s,v:rollAff(n,r.it.ilvl,RAR[r.it.rarity].m)}; save(); render();
   },
   salvBelow:d=>{
@@ -3558,7 +4166,7 @@ const A={
   frChat:d=>{openChat(d.id); renderFriends()},
   chClose:()=>closeChat(),
   frDuel:async d=>{ UI.frMenu=null; renderFriends(); const f=FR.list.find(x=>x.id===d.id); if(!f) return;
-    if(!pvpReady()){toast('Chargez un personnage (Jouer) pour lancer un duel.');return} if(C.phase==='fight'){toast('Terminez d’abord votre combat en cours.');return} if(PV.match||RD.match){toast('Un combat en ligne est déjà en cours.');return}
+    if(!pvpReady()){toast('Chargez un personnage (Jouer) pour lancer un duel.');return} if(inFight()){toast('Terminez d’abord votre combat en cours.');return} if(PV.match||RD.match){toast('Un combat en ligne est déjà en cours.');return}
     const o=f.users.find(x=>x!==pvpMe()),p=FR.prof[o];
     try{ await pvpPropose(o,otherName(f),p&&p.char?p.char:null,'friend'); toast('Demande de duel envoyée à '+otherName(f)+'.') }catch(e){ toast('Impossible d’envoyer la demande ('+(e.code||'erreur')+').') } },
   advMode:d=>{UI.advMode=d.m; render()},
@@ -3567,6 +4175,9 @@ const A={
   pvpAcc:()=>pvpAccept(),
   pvpRef:()=>pvpRefuse(),
   pvpSk:d=>pvAct(d.id),
+  pvpReady:()=>{ if(PV.match&&PV.match.state==='prep') pvpUpd({['ready.'+pvpMe()]:true}) },
+  rdReady:()=>{ if(RD.match&&RD.match.state==='prep') rdUpd({['ready.'+pvpMe()]:true}) },
+  prepGo:()=>{ C.prepGo=true },
   pvpPot:d=>pvPot(d.k),
   pvpEndT:()=>pvEnd(),
   pvpGiveUp:()=>{ if(UI.confirm!=='giveup'){UI.confirm='giveup'; renderPvp(); toast('Cliquez à nouveau pour abandonner : le duel sera compté comme une défaite.'); setTimeout(()=>{if(UI.confirm==='giveup'){UI.confirm=null; renderPvp()}},4000); return} UI.confirm=null; pvForfeit() },
@@ -3583,7 +4194,7 @@ const A={
   rdGiveUp:()=>{ if(UI.confirm!=='rdgiveup'){UI.confirm='rdgiveup'; renderRaid(); toast('Cliquez à nouveau pour abandonner : le raid sera compté comme une défaite.'); setTimeout(()=>{if(UI.confirm==='rdgiveup'){UI.confirm=null; renderRaid()}},4000); return} UI.confirm=null; rdForfeit() },
   rdLootOk:()=>{const d=$('#rdloot'); if(d) d.remove()},
   frRaid:async d=>{ UI.frMenu=null; renderFriends(); const f=FR.list.find(x=>x.id===d.id); if(!f) return;
-    if(!pvpReady()){toast('Chargez un personnage (Jouer) pour lancer un raid.');return} if(C.phase==='fight'){toast('Terminez d’abord votre combat en cours.');return} if(PV.match||RD.match){toast('Un combat en ligne est déjà en cours.');return}
+    if(!pvpReady()){toast('Chargez un personnage (Jouer) pour lancer un raid.');return} if(inFight()){toast('Terminez d’abord votre combat en cours.');return} if(PV.match||RD.match){toast('Un combat en ligne est déjà en cours.');return}
     const r=RAIDS[UI.raidB||0],t=rdTier(); if(S.heroes[0].lvl<r.req){toast('Niveau '+r.req+' requis pour le raid '+r.n+'.');return}
     const o=f.users.find(x=>x!==pvpMe()),p=FR.prof[o];
     try{ await rdPropose(o,otherName(f),p&&p.char?p.char:null,'friend',r.id,t); toast('Invitation au raid '+r.n+' (palier +'+t+') envoyée à '+otherName(f)+'.') }catch(e){ toast('Impossible d’envoyer l’invitation ('+(e.code||'erreur')+').') } },
@@ -3617,7 +4228,7 @@ const A={
       case 'lvlUp': giveLvl(1); msg='Niveau '+h.lvl+'.'; break;
       case 'lvl10': giveLvl(10); msg='Niveau '+h.lvl+'.'; break;
       case 'lvlMax': giveLvl(MAXL); msg='Niveau maximum ('+MAXL+').'; break;
-      case 'lvl1': {const nh=newHero(h.name,h.cls,h.hue,1); Object.assign(h,{lvl:1,xp:0,sp:nh.sp,learned:nh.learned,loadout:nh.loadout}); S.uid--; msg='Retour au niveau 1 (compétences réinitialisées).'; break}
+      case 'lvl1': {const nh=newHero(h.name,h.cls,h.hue,1); Object.assign(h,{lvl:1,xp:0,sp:nh.sp,learned:nh.learned,loadout:nh.loadout,spec:null}); S.uid--; msg='Retour au niveau 1 (compétences réinitialisées).'; break}
       case 'sp5': h.sp+=5; msg='+5 points de compétence.'; break;
       case 'unequip': {let n=0,lost=0; for(const sl of Object.keys(h.equip)){const it=h.equip[sl]; delete h.equip[sl]; if(bagAddItem(S.bag,it)) n++; else {lost++; gain(salvageValue(it))}} msg=`${n} objet${n>1?'s':''} rangé${n>1?'s':''} dans l’inventaire${lost?`, ${lost} détruit${lost>1?'s':''} faute de place`:''}.`; break}
       case 'advAll': S.prog={zone:ZONES.length-1,stage:10}; S.progH={zone:ZONES.length-1,stage:10}; S.progM={zone:ZONES.length-1,stage:10}; S.mythOpen=true; {const P=prog();UI.zone=P.zone;UI.stage=P.stage} msg='Toutes les zones d’Aventure sont débloquées (Héroïque et Mythique demandent toujours le niveau 50).'; break;
@@ -3647,11 +4258,11 @@ const A={
   ddNews:()=>{closeMenuDD(); save(); UI.fromGame=true; ACC.seenVer=VERSION; saveAcc(); UI.scr='news'; render(); scrollTo(0,0)},
   ddChar:()=>{ closeMenuDD(); if($('#mconf')) return;
     const m=document.createElement('div'); m.className='modal'; m.id='mconf'; m.setAttribute('role','dialog'); m.setAttribute('aria-modal','true'); m.setAttribute('aria-labelledby','mconfT');
-    m.innerHTML=`<div class="box"><h2 id="mconfT">Changer de personnage ?</h2><p>${C.phase==='fight'?'Le combat en cours sera interrompu. ':''}Votre partie est sauvegardée.</p><div class="row"><button class="btn pri" data-act="menuYes">Oui</button><button class="btn" data-act="menuNo">Non</button></div></div>`;
+    m.innerHTML=`<div class="box"><h2 id="mconfT">Changer de personnage ?</h2><p>${inFight()?'Le combat en cours sera interrompu. ':''}Votre partie est sauvegardée.</p><div class="row"><button class="btn pri" data-act="menuYes">Oui</button><button class="btn" data-act="menuNo">Non</button></div></div>`;
     document.body.append(m); m.querySelector('[data-act=menuNo]').focus(); },
   backGame:()=>{UI.fromGame=false; if(!S||!S.heroes||!S.heroes.length){UI.scr='menu';render();return} UI.scr=null; render(); scrollTo(0,0)},
   menuNo:()=>{const m=$('#mconf'); if(m) m.remove(); const b=$('#menubtn'); if(b) b.focus()},
-  menuYes:()=>{ const m=$('#mconf'); if(m) m.remove(); if(C.phase==='fight'){C.abort=true;C.id++} C.phase='idle'; save(); cloudPush(); UI.fromGame=false; UI.scr='select'; UI.confirm=null; render(); scrollTo(0,0) },
+  menuYes:()=>{ const m=$('#mconf'); if(m) m.remove(); if(inFight()){C.abort=true;C.id++} C.phase='idle'; save(); cloudPush(); UI.fromGame=false; UI.scr='select'; UI.confirm=null; render(); scrollTo(0,0) },
   playChar:d=>{ if(startChar(+d.i)){UI.scr=null; render(); scrollTo(0,0); presence()} },
   newChar:d=>{ const i=+d.i; if(charRaw(i)) return; if(S&&S.heroes&&S.heroes.length&&!UI.scr) save(); C.abort=true;C.id++;C.phase='idle'; ACC.cur=i; S=newGame(); S.gold=ACC.gold; UI.cname=''; UI.scr='create'; render(); scrollTo(0,0) },
   delChar:d=>{ const i=+d.i; if(UI.confirm!=='delc'+i){UI.confirm='delc'+i;render();return}
