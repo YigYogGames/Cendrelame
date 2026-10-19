@@ -1283,6 +1283,44 @@ body.scr .mlbtn{display:none}
 .dgrow{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-top:8px}.dgrow>b{width:100px}.dgrow select{width:auto;min-width:150px}.dgrow input.num{width:80px}
 .dgl{display:inline-flex;align-items:center;gap:4px;font-weight:700}.dgl input{width:64px!important}
 
+/* sprites héros */
+.hart{display:block;width:100%;height:100%;overflow:hidden;background:#0d0704}.hart img{display:block;width:100%;height:100%;object-fit:cover;object-position:50% 6%}
+.hart.port img{object-fit:cover;object-position:50% 30%}
+/* sélection */
+.sel5g{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:14px;height:clamp(460px,calc(100vh - 170px),760px)}
+.sel5{position:relative;border-radius:16px;overflow:hidden;border:2px solid #8a6a44;background:#0d0704;min-width:0}
+.sel5.cur{border-color:#f0c66e;box-shadow:0 0 0 2px #7b2a1a,0 0 24px #f0c66e55}
+.sel5>.hart{position:absolute;inset:0}
+.sel5cap{position:absolute;inset:auto 0 0 0;padding:70px 12px 14px;background:linear-gradient(#0000,#000e 42%);display:flex;flex-direction:column;align-items:center;gap:6px;text-align:center;color:#fff}
+.sel5cap h3{font-size:1.5rem;color:#fff;margin:0}.sel5cap>span{color:#e8d4a8}.sel5now{color:#f0c66e;letter-spacing:.1em;text-transform:uppercase;font-size:.72rem}
+.sel5btn{display:flex;gap:6px;flex-wrap:wrap;justify-content:center}.sel5warn{color:#ffb39e;font-size:.75rem}
+.sel5.empty{border-style:dashed;background:#0003;color:#cdb88f;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;cursor:pointer;font:inherit}
+.sel5.empty b{font-size:3rem;color:#e8c982;line-height:1}.sel5.empty:hover{border-color:#e8c982;color:#fff}
+body.scr #view:has(.sel5g){background:none;border:0;box-shadow:none;outline:0;padding:0}body.scr #view:has(.sel5g) .scrhead h2{color:var(--gold)}
+/* création */
+body.scr #view:has(.ccbook){background:none;border:0;box-shadow:none;outline:0;padding:0}
+.ccbook{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);height:clamp(520px,calc(100vh - 110px),860px)}
+.ccl{background:var(--paper);color:var(--fg);border:2px solid #8a6a44;border-right:0;border-radius:16px 0 0 16px;padding:18px 26px;display:flex;flex-direction:column;gap:8px;overflow:auto;box-shadow:inset 0 0 40px #7a521f44}
+.ccl h2{font-size:1.9rem;color:var(--brass);margin:0}.ccl h3{margin:6px 0 0;color:var(--brass);font-size:1.15rem}.ccl h3 small{font-family:var(--body);font-size:.75rem}
+.ccl input{padding:9px 12px;border-radius:10px;border:1px solid #8a6a44;background:#fff8}
+.ccls{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.clsb{display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:12px;border:2px solid #6a4c2a;background:linear-gradient(#3b2716,#21150b);color:#f1e2bd;cursor:pointer;text-align:left;font:inherit}
+.clsb img{width:50px;height:50px;border-radius:50%;border:2px solid #c9a35a;object-fit:cover;flex:none}.clsb.on{border-color:#f0c66e;box-shadow:0 0 0 2px #7b2a1a,0 0 16px #f0c66e55}
+.clsb b{font-family:var(--display);font-weight:400;font-size:1.25rem}.clsb small{display:block;color:#cdb88f;font-size:.75rem;line-height:1.2}
+.ccth{display:flex;gap:10px}.ccthb{width:72px;height:96px;padding:0;border-radius:10px;overflow:hidden;border:2px solid #6a4c2a;cursor:pointer;background:#000}.ccthb.on{border-color:#7b2a1a;box-shadow:0 0 0 2px #f0c66e}
+.ccnone{margin:0;font-size:.85rem}
+.ccstat{display:grid;grid-template-columns:auto 1fr auto;gap:3px 10px;align-items:center;font-size:.88rem}.ccstat i{height:7px;border-radius:4px;background:#0002;overflow:hidden;display:block}.ccstat i b{display:block;height:100%;background:linear-gradient(90deg,#c9a35a,#7b2a1a)}.ccstat em{font-style:normal;font-weight:700}
+.ccsps{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.ccsp{border:1px solid var(--line);border-left:4px solid var(--sc);border-radius:10px;padding:8px 10px;background:#0000000a;display:flex;flex-direction:column;gap:3px}
+.ccsp header{display:flex;align-items:center;gap:8px}.ccsp header b{font-family:var(--display);font-weight:400;font-size:1.15rem;color:var(--sc)}
+.ccspi{width:28px;height:28px;border-radius:50%;display:grid;place-items:center;background:var(--sc);flex:none}.ccspi svg{width:17px;height:17px;fill:#fff}
+.ccsp p{margin:0;font-size:.82rem;line-height:1.3}.ccsp small{font-size:.76rem;color:var(--mute)}
+.sel5or{color:#cdb88f}.ccgo{margin-top:10px;align-self:stretch;padding:10px 26px;font-family:var(--display);font-size:1.2rem}
+.ccr{position:relative;border:2px solid #8a6a44;border-radius:0 16px 16px 0;overflow:hidden;background:#0d0704}
+.ccr>.hart.big{position:absolute;inset:0}.ccr>.hart.big img{object-fit:contain;object-position:50% 50%}.ccr>.hart.big.port img{object-fit:cover}
+.ccrcap{position:absolute;inset:auto 0 0 0;padding:40px 18px 14px;background:linear-gradient(#0000,#000c);display:flex;flex-direction:column;gap:2px;color:#e8d4a8;font-size:.85rem}.ccrcap b{font-family:var(--display);font-weight:400;font-size:1.6rem;color:#fff}
+@media (max-width:900px){.sel5g{grid-template-columns:repeat(2,1fr);height:auto}.sel5{height:380px}.ccbook{grid-template-columns:1fr;height:auto}.ccl{border-right:2px solid #8a6a44;border-radius:16px 16px 0 0}.ccr{height:460px;border-radius:0 0 16px 16px}.ccsps,.ccls{grid-template-columns:1fr}}
+
 .updbar{position:fixed;top:0;left:0;right:0;z-index:95;display:flex;align-items:center;justify-content:center;gap:12px;flex-wrap:wrap;padding:8px 16px;background:linear-gradient(#b8341f,#8a1f10);color:#fff3d6;border-bottom:2px solid #f0c66e;box-shadow:0 4px 16px #000a;text-align:center;font-size:.92rem}
 .updbar[hidden]{display:none}.updbar .btn{background:#fff3d6;color:#7b2a1a;border-color:#f0c66e;font-weight:700}
 body.hasupd{padding-top:44px}body.hasupd .menubtn,body.hasupd .byline{margin-top:44px}
@@ -1796,7 +1834,7 @@ function loadAcc(){
   saveAcc();
 }
 function charRaw(i){const r=lsGet(CHAR_KEY(i)); if(!r) return null; try{const d=JSON.parse(r); return d&&Array.isArray(d.heroes)&&d.heroes.length?d:null}catch(e){return null}}
-const charSum=i=>{const d=charRaw(i); if(!d) return null; const h=d.heroes[0]; return {name:h.name,cls:h.cls==='voleur'?'guerrier':h.cls==='clerc'?'mage':h.cls,lvl:Math.min(h.lvl||1,MAXL),stars:h.stars||0,hue:h.hue}};
+const charSum=i=>{const d=charRaw(i); if(!d) return null; const h=d.heroes[0]; return {name:h.name,cls:h.cls==='voleur'?'guerrier':h.cls==='clerc'?'mage':h.cls,lvl:Math.min(h.lvl||1,MAXL),stars:h.stars||0,hue:h.hue,skin:h.skin}};
 function loadSave(){
   try{
     const raw=ACC.cur==null?null:lsGet(CHAR_KEY(ACC.cur)); if(!raw) return null;
@@ -3352,22 +3390,6 @@ function viewLogin(){
 const FB_ERR={'auth/invalid-email':'Adresse e-mail invalide.','auth/user-not-found':'Aucun compte avec cet e-mail.','auth/wrong-password':'Mot de passe incorrect.','auth/invalid-credential':'E-mail ou mot de passe incorrect.','auth/invalid-login-credentials':'E-mail ou mot de passe incorrect.','auth/email-already-in-use':'Un compte existe déjà avec cet e-mail.','auth/weak-password':'Mot de passe trop faible (6 caractères minimum).','auth/popup-closed-by-user':'Fenêtre Google fermée avant la fin.','auth/cancelled-popup-request':'Connexion Google annulée.','auth/popup-blocked':'Fenêtre bloquée par le navigateur : autorisez les pop-ups.','auth/unauthorized-domain':'Ce site n’est pas autorisé dans Firebase (Domaines autorisés).','auth/network-request-failed':'Problème de réseau. Réessayez.','auth/too-many-requests':'Trop de tentatives : réessayez dans quelques minutes.','auth/operation-not-allowed':'Cette méthode de connexion n’est pas activée dans Firebase.','auth/missing-password':'Entrez votre mot de passe.'};
 const fbErr=e=>FB_ERR[e&&e.code]||('Erreur : '+((e&&(e.code||e.message))||'inconnue'));
 const backBtn=(to='menu')=>to==='menu'&&UI.fromGame&&S&&S.heroes&&S.heroes.length?`<button class="btn" data-act="backGame">‹ Retour au jeu</button>`:`<button class="btn" data-act="scr" data-s="${to}">‹ Retour</button>`;
-function viewSelect(){
-  const cards=Array.from({length:MAXCH},(_,i)=>{
-    const c=charSum(i);
-    if(!c) return `<button class="slot empty" data-act="newChar" data-i="${i}"><b>+</b><span>Créer un personnage</span><small>Emplacement ${i+1}</small></button>`;
-    const C0=CLASSES[c.cls]||CLASSES.guerrier;
-    const del=UI.confirm==='delc'+i?`<button class="btn sm danger" data-act="delChar" data-i="${i}">Confirmer</button><button class="btn sm" data-act="noConfirm">Annuler</button>`:`<button class="btn sm" data-act="delChar" data-i="${i}">Supprimer</button>`;
-    return `<div class="slot ${ACC.cur===i?'cur':''}"><h3>${esc(c.name)}</h3>
-      ${PORTRAIT[c.cls]?`<img class="portrait" src="${PORTRAIT[c.cls]}" alt="Portrait : ${C0.n}" width="96" height="96">`:`<span class="tile xl" style="--h:${c.hue}">${icon(C0.ic)}</span>`}
-      <small class="mute">${C0.n} · Niveau ${c.lvl}${c.stars?' · '+'★'.repeat(c.stars):''}</small>
-      <div class="acts"><button class="btn sm pri" data-act="playChar" data-i="${i}">Jouer</button>${del}</div>
-      ${UI.confirm==='delc'+i?'<small style="color:var(--blood)">Le personnage, son inventaire, ses matériaux et sa progression seront effacés.</small>':''}</div>`;
-  }).join('');
-  return `<div class="scrhead"><h2>Choisir un personnage</h2>${backBtn()}</div>
-    <p class="hint" style="margin-bottom:14px">Jusqu’à ${MAXCH} personnages. L’or (<b class="num">${fmt(ACC.gold)}</b>) est partagé entre tous ; l’inventaire, les matériaux, la collecte et la progression sont propres à chacun.</p>
-    <div class="slots">${cards}</div>`;
-}
 function closeMenuDD(){const d=$('#menudd'); if(d) d.remove(); const b=$('#menubtn'); if(b) b.setAttribute('aria-expanded','false')}
 function startChar(i){
   C.abort=true;C.id++;C.phase='idle';C.result=null;
@@ -3402,20 +3424,6 @@ function bootChar(){
 }
 
 /* --- création --- */
-function viewCreator(){
-  const cls=Object.entries(CLASSES).map(([k,c])=>`
-    <button class="cls ${UI.cc===k?'on':''}" data-act="pickClass" data-c="${k}" style="--h:${c.hue}">
-      <span class="row"><span class="tile">${icon(c.ic)}</span><h3>${c.n}</h3></span>
-      <p>${c.desc}</p><small class="num">PV ${c.base.hp} · ${c.role==='mag'?'INT '+c.base.mag:'FOR '+c.base.atk} · DEF ${c.base.def} · VIT ${c.base.spd}</small>
-    </button>`).join('');
-  return `<div class="scrhead" style="margin-bottom:0">${backBtn('select')}</div><div class="hero-intro"><h1>Incarnez votre personnage</h1><p>Vous êtes le héros. Affrontez des monstres au tour par tour, puis revenez forger un équipement unique avec les ressources que vos zones de collecte récoltent sans vous.</p></div>
-    <div class="panel grid" style="gap:16px">
-      <div><label for="cname"><h3 style="margin-bottom:6px">Votre nom</h3></label><input type="text" id="cname" maxlength="18" placeholder="Ex. Aldéric" value="${esc(UI.cname)}"></div>
-      <div><h3 style="margin-bottom:8px">Votre classe</h3><div class="classes">${cls}</div></div>
-      <div><h3 style="margin-bottom:8px">Couleur d’emblème</h3><div class="hues">${HUES.map(h=>`<button aria-label="Couleur" class="${UI.chue===h?'on':''}" style="--h:${h}" data-act="pickHue" data-h="${h}"></button>`).join('')}</div></div>
-      <div class="row"><button class="btn pri" data-act="createHero">Commencer l’aventure</button></div>
-    </div>`;
-}
 
 /* --- combat --- */
 const unlocked=(z,s)=>{const P=prog();return z<P.zone||(z===P.zone&&s<=P.stage)};
@@ -3909,6 +3917,53 @@ async function mlSend(){
     ML.admMsg=to==='all'?'Message envoyé à tous les joueurs.':`Message envoyé à ${F.name.trim()}.`; ML.form=null;
   }catch(e){ ML.admErr=true; ML.admMsg=e.msg||('Erreur : '+(e.code||'inconnue')+' (vérifiez les règles Firestore de la collection mail).') }
   ML.sending=false; renderMail();
+}
+
+/* ================= Sprites des héros (fichiers du dossier sprites/) ================= */
+const SPRITES={mage:[{id:'mage_f',src:'sprites/mage_f.webp',n:'Apparence 1'},{id:'mage_m',src:'sprites/mage_m.webp',n:'Apparence 2'}],guerrier:[]};
+const skinsOf=cls=>SPRITES[cls]||[];
+const skinOf=(cls,id)=>{const L=skinsOf(cls);return L.find(s=>s.id===id)||L[0]||null};
+/* image en pied ; repli sur le portrait si aucun sprite (ou fichier introuvable) */
+function heroArt(cls,skin,cl=''){
+  const s=skinOf(cls,skin),P=PORTRAIT[cls]||'';
+  if(!s) return `<span class="hart port ${cl}"><img src="${P}" alt=""></span>`;
+  return `<span class="hart ${cl}"><img src="${s.src}" alt="" onerror="this.onerror=null;this.src='${P}';this.parentNode.classList.add('port')"></span>`;
+}
+/* ---------- sélection : cartes verticales ---------- */
+function viewSelect(){
+  const n=Array.from({length:MAXCH},(_,i)=>charSum(i)).filter(Boolean).length;
+  const cards=Array.from({length:MAXCH},(_,i)=>{
+    const c=charSum(i);
+    if(!c) return `<button class="sel5 empty" data-act="newChar" data-i="${i}"><b>+</b><span>Créer un personnage</span><small>Emplacement ${i+1}</small></button>`;
+    const C0=CLASSES[c.cls]||CLASSES.guerrier,cf=UI.confirm==='delc'+i;
+    return `<article class="sel5 ${ACC.cur===i?'cur':''}">${heroArt(c.cls,c.skin)}
+      <div class="sel5cap">${ACC.cur===i?'<small class="sel5now">Personnage actuel</small>':''}<h3>${esc(c.name)}</h3><span>${C0.n} · niveau ${c.lvl}${c.stars?' · '+'★'.repeat(c.stars):''}</span>
+       <div class="sel5btn">${cf?`<button class="btn sm danger" data-act="delChar" data-i="${i}">Confirmer</button><button class="btn sm" data-act="noConfirm">Annuler</button>`:`<button class="btn pri" data-act="playChar" data-i="${i}">Jouer</button><button class="btn sm" data-act="delChar" data-i="${i}">Supprimer</button>`}</div>
+       ${cf?'<small class="sel5warn">Personnage, inventaire, matériaux et progression seront effacés.</small>':''}</div></article>`;
+  }).join('');
+  return `<div class="scrhead"><h2>Vos héros</h2><div class="row" style="gap:14px"><span class="sel5or">Or partagé : <b class="num">${fmt(ACC.gold)}</b> · ${n} / ${MAXCH} emplacements</span>${backBtn()}</div></div>
+    <div class="sel5g">${cards}</div>`;
+}
+/* ---------- création : registre ---------- */
+function viewCreator(){
+  if(!CLASSES[UI.cc]) UI.cc='guerrier';
+  const k=UI.cc,c=CLASSES[k],sk=skinsOf(k); if(sk.length&&!sk.find(s=>s.id===UI.cskin)) UI.cskin=sk[0].id;
+  const mx={hp:Math.max(...Object.values(CLASSES).map(x=>x.base.hp)),a:Math.max(...Object.values(CLASSES).map(x=>Math.max(x.base.atk||0,x.base.mag||0))),def:Math.max(...Object.values(CLASSES).map(x=>x.base.def)),spd:Math.max(...Object.values(CLASSES).map(x=>x.base.spd))};
+  const ms=c.role==='mag'?['Intelligence',c.base.mag]:['Force',c.base.atk];
+  const st=[['PV',c.base.hp,mx.hp],[ms[0],ms[1],mx.a],['Défense',c.base.def,mx.def],['Vitesse',c.base.spd,mx.spd]].map(([n,v,m])=>`<span>${n}</span><i><b style="width:${Math.round(v/m*90)}%"></b></i><em class="num">${v}</em>`).join('');
+  const cls=Object.entries(CLASSES).map(([id,x])=>`<button class="clsb ${k===id?'on':''}" data-act="pickClass" data-c="${id}" aria-pressed="${k===id}"><img src="${PORTRAIT[id]||''}" alt=""><span><b>${x.n}</b><small>${esc((x.desc||'').split('.')[0])}</small></span></button>`).join('');
+  const skins=sk.length?`<h3>Apparence</h3><div class="ccth">${sk.map(s=>`<button class="ccthb ${UI.cskin===s.id?'on':''}" data-act="pickSkin" data-s="${s.id}" aria-pressed="${UI.cskin===s.id}" title="${s.n}">${heroArt(k,s.id)}</button>`).join('')}</div>`:`<h3>Apparence</h3><p class="mute ccnone">D’autres apparences arriveront pour le ${c.n}.</p>`;
+  const specs=Object.values(c.specs||{}).map(sp=>{const act=sp.nodes.filter(n=>n.t==='a'&&!n.ult).map(n=>n.n),ult=sp.nodes.find(n=>n.ult);
+    return `<article class="ccsp" style="--sc:${sp.co}"><header><span class="ccspi">${spIcon(sp)}</span><b>${esc(sp.n)}</b></header><p>${esc(sp.d||'')}</p><small><b>Compétences :</b> ${act.map(esc).join(', ')||'—'}</small>${ult?`<small><b>Ultime :</b> ${esc(ult.n)}</small>`:''}</article>`}).join('');
+  return `<div class="ccbook"><section class="ccl">
+     <div class="row between"><h2>Registre des héros</h2>${backBtn('select')}</div><p class="mute" style="margin:0">Inscrivez votre nom et choisissez votre voie.</p>
+     <h3>Nom</h3><input type="text" id="cname" maxlength="18" placeholder="Ex. Aldéric" value="${esc(UI.cname||'')}" aria-label="Nom du héros">
+     <h3>Classe</h3><div class="ccls">${cls}</div>
+     ${skins}
+     <h3>Statistiques de départ</h3><div class="ccstat">${st}</div>
+     <h3>Spécialisations <small class="mute">choix au niveau 10</small></h3><div class="ccsps">${specs}</div>
+</section>
+    <section class="ccr">${heroArt(k,UI.cskin,'big')}<div class="ccrcap"><b>${c.n}</b><span>${esc(c.desc||'')}</span><button class="btn pri ccgo" data-act="createHero">Signer le registre</button></div></section></div>`;
 }
 
 /* ===== détection d'une nouvelle version déployée ===== */
@@ -4727,9 +4782,10 @@ function viewHelp(){
 
 /* --- nouveautés --- */
 const VERSION='0.3.3';
-const BUILD='20261019115150';
+const BUILD='20261019133028';
 const PATCH=[
  {v:'0.3.3',t:"Trophées et communauté",sec:[
+  ["Personnages", ["Nouvel écran de sélection : les cinq emplacements en grandes cartes verticales, chaque héros en pied avec sa classe, son niveau et les boutons Jouer et Supprimer ; le personnage actuel est mis en évidence.", "Nouvel écran de création en forme de registre : nom, classe, apparence, statistiques de départ et aperçu des spécialisations de la classe (description, compétences et talent ultime), avec le héros en grand à droite.", "Le Sorcier a deux apparences au choix lors de la création. Le Guerrier garde son portrait en attendant ses illustrations."]],
   ["Coffre des Reliques", ["Nouveau butin de raid : le Coffre des Reliques. Chaque raid réussi a une chance d’en donner un : 1 % au palier +0, +0,5 % par palier, jusqu’à 10 % (palier +18 et au-delà). Il arrive dans le sac (ou dans le coffre du compte si le sac est plein).", "Infobulle du coffre : description et chance d’obtention, sans révéler son contenu.", "Clic droit sur le coffre dans le sac : une fenêtre demande confirmation, puis un tirage animé fait défiler les reliques avant de s’arrêter sur la récompense.", "Chances par relique : Or royal 38 % (commun), Saphir 27 % (peu commun), Améthyste 20 % (rare), Braise vivante 11 % (épique), Prisme holographique 4 % (légendaire).", "Relique déjà possédée : convertie en or (2 000, 3 000, 5 000, 8 000 ou 15 000 selon la rareté).", "Les administrateurs peuvent aussi joindre des Coffres des Reliques aux messages système.","Le coffre apparaît dans la liste des récompenses de chaque boss de raid, avec sa chance au palier choisi et une infobulle."]],
   ["Messagerie", ["Nouvelle messagerie du compte : bouton rond avec une enveloppe à droite du portrait (en haut à gauche), avec le nombre de messages non lus.", "Les messages système de l’équipe (informations, alertes de maintenance, cadeaux et compensations) arrivent en direct, avec une notification. Ils peuvent être envoyés à tous les joueurs ou à un seul.", "Fenêtre en deux colonnes : la liste des messages (non lus en gras, icône cadeau s’il reste des pièces jointes) et le message ouvert.", "Pièces jointes : bouton « Récupérer » ou « Tout récupérer ». L’or s’ajoute à votre or ; les matériaux et potions vont dans le coffre du compte (tous onglets). S’il n’y a pas assez de place dans le coffre, un message l’indique et rien n’est récupéré.", "Chaque pièce jointe ne peut être récupérée qu’une fois par compte ; elle peut avoir une date d’expiration. Un message peut être supprimé une fois ses pièces jointes récupérées."]],
   ["Trophées", ["Nouveau bouton « Trophées » dans la barre du bas, avec un point rouge quand un trophée vient d’être obtenu.", "30 trophées répartis en 5 catégories : Aventure, Personnage, Amélioration, Collecte, Duel et raid. Chacun rapporte des points de trophées : 5 à 15 points (bronze), 15 à 49 points (argent), 50 points et plus (or), jusqu’à 100 points pour vaincre Le Dévoreur en difficulté Mythique.", "Page Trophées : à gauche le total de points, la progression et les catégories avec leur compteur ; à droite les 3 derniers trophées obtenus, puis la liste filtrable (Tous, Obtenus, À obtenir) avec la barre d’avancement et la date d’obtention.", "Les trophées sont liés au compte (tous les personnages y contribuent). Ceux déjà mérités avant cette version (niveaux, boss vaincus, zones ouvertes, raids, duels…) sont attribués automatiquement à la connexion.", "Une notification s’affiche à chaque trophée obtenu.", "Certains trophées débloquent un titre à afficher sur votre carte de joueur."]],
@@ -5026,12 +5082,13 @@ document.addEventListener('scroll',hideTip,true);
 /* ============ actions ============ */
 const A={
   tab:d=>{UI.tab=d.t;UI.siteTree=null;UI.siteOpt=null;if(d.t==='heroes'||d.t==='bag'){S.bagDot=false;S.lvlDot=false;d.t='heroes';UI.tab='heroes'}if(d.t==='forge')UI.fMode='forge';UI.bagSel=null;UI.invSel=null;UI.recruit=false;UI.multi=false;UI.pick=new Set();if(UI.confirm!=='reset')UI.confirm=null;render()},
-  pickClass:d=>{UI.cc=d.c;render()},
+  pickClass:d=>{UI.cc=d.c;UI.cskin=null;const n=$('#cname');if(n)UI.cname=n.value;render()},
+  pickSkin:d=>{UI.cskin=d.s;const n=$('#cname');if(n)UI.cname=n.value;render()},
   pickHue:d=>{UI.chue=+d.h;render()},
   createHero:()=>{
     const name=(UI.cname||'').trim()||'Héros';
     S=newGame(); S.gold=ACC.gold; S.seenVer=VERSION;
-    S.heroes=[newHero(name,UI.cc,UI.chue,1)]; S.party=[S.heroes[0].id]; S.last=Date.now();
+    S.heroes=[newHero(name,UI.cc,UI.chue,1)]; {const sk=skinOf(UI.cc,UI.cskin); if(sk) S.heroes[0].skin=sk.id} S.party=[S.heroes[0].id]; S.last=Date.now();
     {const P=prog();UI.zone=P.zone;UI.stage=P.stage}
     Object.assign(UI,{tab:'combat',scr:null,bagSel:null,invSel:null,fItem:null,fLast:null,confirm:null});
     UI.cname=''; save(); render(); toast('Bienvenue, '+name+'. Lancez votre premier combat.');
