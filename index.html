@@ -2850,7 +2850,7 @@ async function fbInit(){
     await Promise.race([load,timer]);
     firebase.initializeApp(FB_CFG); FB.auth=firebase.auth(); FB.auth.languageCode='fr'; FB.db=firebase.firestore(); FB.ready=true;
     FB.auth.getRedirectResult().catch(e=>{UI.lerr=fbErr(e); if(UI.scr==='login') render()});
-    bestLoad(); FB.auth.onAuthStateChanged(onFbUser);
+    bestLoad(); seasonLoad(); FB.auth.onAuthStateChanged(onFbUser);
   }catch(e){FB.fail=true}
   if(UI.scr==='login'||UI.scr==='menu') render();
 }
@@ -2858,7 +2858,7 @@ async function onFbUser(u){
   FB.user=u||null;
   if(!u){ if(UI.scr==='menu'&&!ACC.offline){UI.scr='login'} if(UI.scr==='login'||UI.scr==='menu') render(); return }
   FB.sync='busy'; UI.lbusy=true; if(UI.scr==='login'||UI.scr==='menu') render();
-  try{ await cloudPull(u.uid); FB.sync='' }catch(e){ FB.sync='err'; toast('Sauvegarde en ligne indisponible : '+((e&&e.code)||'erreur')) }
+  try{ await cloudPull(u.uid); FB.sync=''; seasonCheck() }catch(e){ FB.sync='err'; toast('Sauvegarde en ligne indisponible : '+((e&&e.code)||'erreur')) }
   UI.lbusy=false; UI.lerr=''; UI.lok='';
   try{ const ps=await FB.db.collection(COL('profiles')).doc(u.uid).get(); FB.prof=ps.exists?ps.data():null }catch(e){ FB.prof=null; FB.profErr=true }
   if(!FB.prof&&!FB.profErr){ UI.scr='pseudo'; UI.perr=''; render(); return }
@@ -3545,7 +3545,7 @@ function cloudSoon(){ if(!FB.user) return; clearTimeout(FB.t); FB.t=setTimeout((
 async function cloudPush(force){
   if(!FB.user||!FB.db) return; clearTimeout(FB.t);
   if(S&&S.heroes&&S.heroes.length&&ACC.cur!=null&&!UI.scr){ACC.gold=S.gold; lsSet(CHAR_KEY(ACC.cur),JSON.stringify(S))}
-  const doc={ts:ACC.ts||Date.now(),acc:{gold:ACC.gold,seenVer:ACC.seenVer||null,dbg:ACC.dbg||{},cur:ACC.cur==null?null:ACC.cur}};
+  const doc={ts:ACC.ts||Date.now(),acc:{gold:ACC.gold,season:ACC.season||0,seenVer:ACC.seenVer||null,dbg:ACC.dbg||{},cur:ACC.cur==null?null:ACC.cur}};
   for(let i=0;i<MAXCH;i++) doc['c'+i]=lsGet(CHAR_KEY(i))||null;
   try{ await userDoc(FB.user.uid).set(doc); if(FB.sync==='err'){FB.sync=''; if(UI.scr==='menu') render()} }
   catch(e){ FB.sync='err'; if(force) throw e }
@@ -4507,6 +4507,50 @@ function eDo(){
   save(); render(); requestAnimationFrame(()=>fFx('ench',true)); toast(`${NEWI[I.out].n} (${RAR[NEWI[I.out].r].n.toLowerCase()}) créé : il est dans l’inventaire.`);
 }
 
+/* ================= nouvelle saison : remise à zéro de tous les comptes ================= */
+async function seasonLoad(){
+  try{ const d=await FB.db.collection(COL('config')).doc('reset').get(); FB.season=d.exists?d.data():{n:0} }catch(e){ FB.season=null }
+  seasonCheck();
+}
+function seasonWipe(R){
+  for(let i=0;i<MAXCH;i++) lsDel(CHAR_KEY(i));
+  S=null; ACC.cur=null; ACC.gold=80;
+  if(R.troph!==false){ delete ACC.troph; delete ACC.cnt; delete ACC.trNew }
+  if(R.cos!==false){ delete ACC.cos; delete ACC.cardUnl; delete ACC.card; delete ACC.chestQ }
+  if(R.stash!==false){ delete ACC.stash }
+}
+function seasonCheck(){
+  const R=FB.season; if(!R) return; const n=+R.n||0; if((ACC.season||0)>=n) return;
+  const had=Array.from({length:MAXCH},(_,i)=>charRaw(i)).some(Boolean);
+  if(had) seasonWipe(R);
+  ACC.season=n; saveAcc(); if(FB.user) cloudPush().catch(()=>{});
+  if(had){ UI.scr='menu'; UI.invOpen=false; render(); seasonModal(R) }
+}
+function seasonModal(R){
+  const d=document.createElement('div'); d.className='modal'; d.id='season';
+  d.innerHTML=`<div class="box"><h2>Nouvelle saison</h2><p>${R.msg?esc(R.msg):'Tous les comptes ont été remis à zéro : tout le monde repart du même point. Bonne aventure !'}</p><p class="hint">Personnages, or${R.troph!==false?', trophées':''}${R.cos!==false?', cadres et cosmétiques':''}${R.stash!==false?', coffre du compte':''} : remis à zéro. Votre nom de compte et vos amis sont conservés.</p><div class="row" style="justify-content:flex-end"><button class="btn pri" data-act="seasonOk">Commencer</button></div></div>`;
+  document.body.append(d); d.querySelector('button').focus();
+}
+function seasonAdminHTML(){
+  if(!FB.admin) return '';
+  const n=FB.season?(+FB.season.n||0):0,W=UI.wipe=UI.wipe||{troph:true,cos:true,stash:true,msg:''},cf=UI.confirm==='wipe';
+  const ck=(k,l)=>`<label class="row" style="gap:6px"><input type="checkbox" data-wipe="${k}" ${W[k]?'checked':''}> ${l}</label>`;
+  return `<section class="panel" style="margin-top:12px"><h2 style="margin-top:0">Remise à zéro de tous les comptes</h2>
+   <p class="hint">Saison actuelle : <b class="num">${n}</b>. Au prochain chargement du jeu, chaque joueur perd ses personnages et son or, et repart du début. Le nom de compte, les amis, la messagerie et les options sont conservés.</p>
+   <p class="hint" style="margin:6px 0 4px">Remettre aussi à zéro :</p><div class="row" style="gap:16px;flex-wrap:wrap">${ck('troph','Trophées et points')}${ck('cos','Cadres et cosmétiques')}${ck('stash','Coffre du compte')}</div>
+   <label style="display:flex;flex-direction:column;gap:4px;margin-top:8px">Message affiché aux joueurs (facultatif)<input class="pcsel" id="wipemsg" maxlength="300" value="${esc(W.msg||'')}" placeholder="Nouvelle saison : tout le monde repart de zéro !"></label>
+   <div class="row" style="margin-top:10px;gap:8px">${cf?`<button class="btn danger" data-act="wipeGo">Confirmer : remettre TOUS les comptes à zéro</button><button class="btn" data-act="noConfirm">Annuler</button>`:`<button class="btn danger" data-act="wipeAsk">Réinitialiser tous les comptes…</button>`}</div>
+   ${cf?'<p class="lockr" style="margin-top:6px">Action définitive pour tous les joueurs, vous compris.</p>':''}</section>`;
+}
+async function seasonGo(){
+  if(!FB.admin||UI.wiping) return; UI.wiping=true;
+  const W=UI.wipe||{},m=$('#wipemsg'); if(m) W.msg=m.value.trim().slice(0,300);
+  const n=(FB.season?(+FB.season.n||0):0)+1,doc={n,troph:!!W.troph,cos:!!W.cos,stash:!!W.stash,msg:W.msg||'',by:FB.user.uid,ts:firebase.firestore.FieldValue.serverTimestamp()};
+  try{ await FB.db.collection(COL('config')).doc('reset').set(doc); FB.season=doc; UI.confirm=null; toast('Saison '+n+' lancée : tous les comptes repartent de zéro.'); seasonCheck() }
+  catch(e){ toast('Échec ('+((e&&e.code)||'erreur')+') : vérifiez la règle Firestore de config/reset.') }
+  UI.wiping=false; if(UI.scr==='opts') render();
+}
+
 function viewCombatIdle(){
   const P=prog(),dk=curDiff(),D=DIFF[dk],hero=dk!=='normal',z=ZONES[UI.zone],L=D.L||UI.zone*10+UI.stage;
   const h=S.heroes[0],c=CLASSES[h.cls],st=heroStats(h),need=h.lvl>=MAXL?1:xpNeed(h.lvl);
@@ -5313,8 +5357,8 @@ function viewHelp(){
 }
 
 /* --- nouveautés --- */
-const VERSION='0.4.3';
-const BUILD='20261019203224';
+const VERSION='0.4.4';
+const BUILD='20261019205918';
 const PATCH=[
  {v:'0.4.0',t:"Trophées, communauté et nouveaux héros",sec:[
   ["Personnages", ["Nouvel écran de sélection : les cinq emplacements en grandes cartes verticales, chaque héros en pied avec sa classe, son niveau et les boutons Jouer et Supprimer ; le personnage actuel est mis en évidence.", "Nouvel écran de création en forme de registre : nom, classe, apparence, statistiques de départ et aperçu des spécialisations de la classe (description, compétences et talent ultime), avec le héros en grand à droite et le bouton « Créer le personnage ».", "Le Sorcier a deux apparences au choix lors de la création. Le Guerrier garde son portrait en attendant ses illustrations."]],
@@ -5442,12 +5486,12 @@ function viewOpts(){
 }
 function adminPanel(){
   if(!FB.user) return '';
-  return `<h3 style="margin:22px 0 4px">Administration</h3><section class="panel"><p class="hint" style="margin-bottom:8px">Identifiant de votre compte (UID) : <code class="uid">${esc(FB.user.uid)}</code> <button class="btn sm" data-act="copyUid">Copier</button></p>${FB.admin?'<button class="btn pri" data-act="scr" data-s="best">Ouvrir le Bestiaire</button> <small class="mute">Réglez les statistiques et les compétences des ennemis pour tous les joueurs.</small>':'<p class="hint" style="margin:0">Le Bestiaire est réservé aux administrateurs.</p>'}</section>`;
+  return `<h3 style="margin:22px 0 4px">Administration</h3><section class="panel"><p class="hint" style="margin-bottom:8px">Identifiant de votre compte (UID) : <code class="uid">${esc(FB.user.uid)}</code> <button class="btn sm" data-act="copyUid">Copier</button></p>${FB.admin?'<button class="btn pri" data-act="scr" data-s="best">Ouvrir le Bestiaire</button> <small class="mute">Réglez les statistiques et les compétences des ennemis pour tous les joueurs.</small>':'<p class="hint" style="margin:0">Le Bestiaire est réservé aux administrateurs.</p>'}</section>${seasonAdminHTML()}`;
 }
 function dbgGive(ok){
   if(!FB.admin) return `<section class="panel dbggive"><h2>Donner un objet</h2><p class="hint">Réservé aux administrateurs : connectez-vous avec un compte administrateur.</p></section>`;
   const g=UI.dg=UI.dg||{k:'c_relic',n:1,slot:'weapon',rar:3,lvl:50,cls:'',up:0,fr:6};
-  const keys=[...MATS,'c_relic',...Object.keys(POTS)];
+  const keys=[...MATS,'c_relic',...Object.keys(POTS),...Object.keys(NEWI).filter(k=>!POTS[k])];
   const opt=(v,t,sel)=>`<option value="${v}" ${String(sel)===String(v)?'selected':''}>${esc(t)}</option>`;
   const dis=ok?'':'disabled';
   return `<section class="panel dbggive"><h2>Donner un objet <small class="mlad">Admin</small></h2>
@@ -5753,6 +5797,9 @@ const A={
   fPut:d=>{UI.fItem=+d.id;UI.fMode='up';UI.bagSel=null;render()},
   fPutSlot:d=>{const it=S.heroes[0].equip[d.slot]; if(!it){toast('Emplacement vide.');return} UI.fItem=it.id;UI.fMode='up';render()},
   fClear:()=>{UI.fItem=null;render()},
+  wipeAsk:()=>{const m=$('#wipemsg');if(m&&UI.wipe)UI.wipe.msg=m.value;UI.confirm='wipe';render()},
+  wipeGo:()=>seasonGo(),
+  seasonOk:()=>{const w=$('#season');if(w)w.remove()},
   ws:d=>{UI.ws=d.w;if(d.w==='forge'&&UI.fMode==='forge'&&UI.fItem)UI.fMode='up';render()},
   fHelp:()=>{ACC.fHelp=!fHelpOn();saveAcc();render()},
   fsClear:d=>{const m={up:'fUp',bon:'fBon',cat:'eCat',p:'eP',e:'eE',r:'eR'}[d.s];if(m){UI[m]=null;if(d.s==='up')UI.fBon=null}render()},
@@ -6054,6 +6101,7 @@ document.addEventListener('keydown',e=>{ if(e.key==='Escape'&&ML.open&&!$('#pcar
 document.addEventListener('change',e=>{
   if(e.target.dataset&&e.target.dataset.dg&&UI.dg){ UI.dg[e.target.dataset.dg]=e.target.value }
   if(e.target.dataset&&e.target.dataset.mlf&&e.target.tagName==='SELECT'&&ML.form){ ML.form[e.target.dataset.mlf]=e.target.dataset.mlf==='exp'?+e.target.value:e.target.value; renderMail() }
+  if(e.target.dataset&&e.target.dataset.wipe&&UI.wipe){ UI.wipe[e.target.dataset.wipe]=e.target.checked }
   if(e.target.id==='bdiff'){ UI.bdiff=e.target.value; const y=scrollY; render(); scrollTo(0,y) }
   if(e.target.id==='flvl'){UI.fLvl=+e.target.value;render()}
   if(e.target.id==='rdtier'){UI.raidT=+e.target.value;render()}
