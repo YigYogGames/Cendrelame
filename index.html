@@ -1150,7 +1150,7 @@ body:not(.hasdock) #toasts{bottom:calc(14px + env(safe-area-inset-bottom,0px))}
 .toast.trt{display:flex;align-items:center;gap:10px;text-align:left;border-color:#f0c66e}.toast.trt>span:last-child{display:flex;flex-direction:column}.toast.trt small{color:#f0d48a}
 /* communauté et cartes */
 .masub button.lk{opacity:.55;cursor:not-allowed}.masub button.lk .uic:last-child{margin-left:auto;width:16px;height:16px}
-.mt1.comm{height:clamp(500px,calc(100vh - 260px),820px)}.mt1.comm .mtmain{min-height:0}.mt1.comm .mtcm2{min-height:0}.mt1.comm .mtcmc{min-height:0;overflow:auto}.mtcm2 .aminfo.maside .ambody{overflow:auto}
+.mt1.comm{height:clamp(400px,calc(100vh - 260px),820px)}.mt1.comm .mtmain{min-height:0}.mt1.comm .mtcm2{min-height:0}.mt1.comm .mtcmc{min-height:0;overflow:auto}.mtcm2 .aminfo.maside .ambody{overflow:auto}
 .mtcm2{display:grid;grid-template-columns:minmax(0,1fr) 380px;gap:14px;flex:1}.mtcm2.view{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
 .mtcmc{display:grid;place-items:center;border-radius:16px;border:2px solid #8a6a44;background:radial-gradient(circle at 50% 40%,#5a3a20,#140b05 75%);padding:20px;min-height:540px}
 .mtcm2 .aminfo.maside{position:relative;inset:auto;width:auto}.mtcmr{display:flex;flex-direction:column;gap:10px;justify-content:center}.mtcmr h4{margin:0}.mtcmr .btn{align-self:flex-start}
@@ -1209,7 +1209,7 @@ body.scr .mlbtn{display:none}
 .dkl,.dkr{gap:2px}.tabs .dkb{width:104px}
 .tabs .dkb.dklk{opacity:.5;cursor:not-allowed;filter:grayscale(.6)}.tabs .dkb.dklk:hover{background:none;color:#d9c49b}
 .tabs .dkb .dklock{position:absolute;top:6px;right:22px;width:16px;height:16px;color:#e8d4a8}.tabs .dkb .dklock .uic{width:14px;height:14px}
-.pcview{display:flex;flex-direction:column;align-items:center;gap:12px;padding:6px 0 10px}.pcview>h4{margin:6px 0 0}.pcview>.pc2{width:min(640px,100%)}.pcview>.amnote{max-width:640px;text-align:center}
+.mt1.comm .mtmain{min-height:0;display:flex;flex-direction:column}.pcview{flex:1;min-height:0;overflow:hidden;display:flex;justify-content:center;align-items:flex-start}.pcfit{display:flex;flex-direction:column;align-items:center;gap:10px;padding:4px 0 6px}.pcfit>h4{margin:4px 0 0}.mtcmc.pcview{padding:12px;display:flex!important;align-items:flex-start!important;justify-content:center}.mt1.comm .mtcm2{flex:1;min-height:0}.mt1.comm .mtcm2>.aminfo{min-height:0}.pc2l{flex:none}.pcfit>.pc2{width:700px}.pc2m{min-width:220px}.pc2m .pc1t{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.pc2pts{white-space:nowrap}.pc1ch.many{display:grid;grid-template-columns:1fr 1fr;gap:5px;padding:6px 10px 12px}.pc1ch.many li{padding:4px 6px;gap:6px}.pc1ch.many li img,.pc1ch.many li .mpport{width:26px;height:26px}.pc1ch.many b{font-size:.82rem}.pc1ch.many small{font-size:.66rem}.pc1ch.many em{font-size:.75rem}.pc1ch.many li:last-child:nth-child(odd){grid-column:1/-1}.pcfit>.amnote{max-width:640px;text-align:center;margin:0}
 .pcmbox{padding:0;background:none;border:0;border-radius:18px;max-height:100%;overflow:visible;display:flex;flex-direction:column;align-items:center}
 .pcmodal{place-items:center;outline:none}.pcmodal .pc1{margin:auto}.pcnote{margin:10px 0 0;color:#e8d4a8;text-align:center}
 .pcic.lkd,.pcfr.lkd,.pcbg.lkd{cursor:not-allowed;opacity:.75}
@@ -1282,6 +1282,10 @@ body.scr .mlbtn{display:none}
 .aminfo.rd .mprew{gap:2px 6px}.aminfo.rd .mprew .mc{font-size:.85rem}.aminfo.rd .amnote{font-size:.8rem;line-height:1.25}.aminfo.rd .mpchips span{font-size:.7rem}.aminfo.rd .ambody h4{margin:3px 0 2px}.aminfo.rd .mpst{margin-top:2px;font-size:.84rem}.aminfo.rd .amfight{position:static;margin-bottom:0;padding-top:6px;background:none}.chrw{border:1px dashed #c99a3a;border-radius:10px;padding:0 6px;cursor:help}.dbggive{grid-column:1/-1}.dbggive h2{display:flex;align-items:center;gap:8px}
 .dgrow{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-top:8px}.dgrow>b{width:100px}.dgrow select{width:auto;min-width:150px}.dgrow input.num{width:80px}
 .dgl{display:inline-flex;align-items:center;gap:4px;font-weight:700}.dgl input{width:64px!important}
+
+.updbar{position:fixed;top:0;left:0;right:0;z-index:95;display:flex;align-items:center;justify-content:center;gap:12px;flex-wrap:wrap;padding:8px 16px;background:linear-gradient(#b8341f,#8a1f10);color:#fff3d6;border-bottom:2px solid #f0c66e;box-shadow:0 4px 16px #000a;text-align:center;font-size:.92rem}
+.updbar[hidden]{display:none}.updbar .btn{background:#fff3d6;color:#7b2a1a;border-color:#f0c66e;font-weight:700}
+body.hasupd{padding-top:44px}body.hasupd .menubtn,body.hasupd .byline{margin-top:44px}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 @media (min-width:760px){.arena{grid-template-columns:1fr 1fr}}
 </style>
@@ -1303,6 +1307,7 @@ body.scr .mlbtn{display:none}
   <nav class="tabs dock" id="tabs" role="tablist" aria-label="Menu principal"></nav>
   <main id="view"></main>
 </div>
+<div id="updbar" class="updbar" role="alert" hidden><b>Une nouvelle version de Cendrelame est disponible.</b><span>Rafraîchissez la page pour l’installer (votre progression est sauvegardée).</span><button class="btn sm" data-act="updReload">Rafraîchir maintenant</button></div>
 <div id="toasts" aria-live="polite"></div>
 <div id="tip" hidden></div>
 
@@ -2574,7 +2579,7 @@ function render(){
   hideTip(); document.body.classList.toggle('scr',!!UI.scr); document.body.classList.toggle('scr-menu',UI.scr==='menu'||UI.scr==='login'||UI.scr==='pseudo');
   renderTabs(); if(UI.scr) $('#res').innerHTML=''; else renderHeader();
   const v=$('#view');
-  renderFriends(); mlRefresh();
+  renderFriends(); mlRefresh(); if(UI.tab==='comm') requestAnimationFrame(pcFit);
   if(UI.scr){v.innerHTML=({menu:viewMenu,login:viewLogin,pseudo:viewPseudo,best:viewBest,select:viewSelect,create:viewCreator,opts:viewOpts,news:viewNews})[UI.scr](); renderInvPop(); return}
   if(!S||!S.heroes.length){UI.scr='menu';return render()}
   if(UI.tab==='opts'||UI.tab==='news') UI.tab='combat';
@@ -3673,7 +3678,7 @@ function cardColl(d,id='me'){ /* carte de collection : amis */
   return `<article class="pc1 ${pcFr(d.fr)[3]?'pcfx':''}" ${pcFxAttr(d)}><div class="pc1bg">${zoneScene(d.bg??3,'pc'+id)}</div><div class="pc1top">${pcFr(d.fr)[3]==='spark'?PC_SPK:''}${pcIcon(d.icon,96)}<b>${esc(d.name)}</b>${d.title?`<small class="pc1t">« ${esc(d.title)} »</small>`:''}</div>
    <div class="pc1pts">${uic('trophy')}<b class="num">${fmt(d.pts||0)}</b><small>points de trophées</small></div>
    ${(d.show||[]).length?`<div class="pc1show">${d.show.map(i=>TRK[i]?`<span class="mtti sm ${trTier(TRK[i])}" title="${esc(TRK[i].n)}">${uic(trIc(TRK[i]))}</span>`:'').join('')}</div>`:''}
-   <ul class="pc1ch">${(d.chars||[]).map(c=>`<li>${pcPort(c.cls,34)}<span><b>${esc(c.n)}</b><small>${(CLASSES[c.cls]||{n:''}).n}</small></span><em class="num">Niv ${c.lvl}</em></li>`).join('')||'<li class="mute">Aucun personnage.</li>'}</ul></article>`;
+   <ul class="pc1ch ${(d.chars||[]).length>3?'many':''}">${(d.chars||[]).map(c=>`<li>${pcPort(c.cls,34)}<span><b>${esc(c.n)}</b><small>${(CLASSES[c.cls]||{n:''}).n}</small></span><em class="num">Niv ${c.lvl}</em></li>`).join('')||'<li class="mute">Aucun personnage.</li>'}</ul></article>`;
 }
 function cardBanner(d,id='meb',rank){ /* bannière : classement */
   return `<article class="pc2 ${pcFr(d.fr)[3]?'pcfx':''}" ${pcFxAttr(d)}>${pcFr(d.fr)[3]==='spark'?PC_SPK:''}<div class="pc2bg">${zoneScene(d.bg??3,'pb'+id)}</div>${rank?`<span class="pc2rk num">${rank}</span>`:''}<div class="pc2l">${pcIcon(d.icon,96)}</div><div class="pc2m"><small>Joueur</small><b>${esc(d.name)}</b>${d.title?`<span class="pc1t">« ${esc(d.title)} »</span>`:''}<div class="pc2pts">${uic('trophy')}<b class="num">${fmt(d.pts||0)}</b> points de trophées</div></div>
@@ -3706,7 +3711,7 @@ function viewComm(){
     const bgs=PC_BG.map(([i,n,ok])=>{const l=!ok();return `<button class="pcbg ${c.bg===i?'on':''} ${l?'lkd':''}" data-tip="pc:bg:${i}" aria-label="Fond ${n}" data-act="pcSet" data-k="bg" data-v="${i}" aria-pressed="${c.bg===i}">${zoneScene(i,'o'+i)}${l?`<span class="pclk">${uic('lock')}</span>`:''}</button>`}).join('');
     const titles=TROPHIES.filter(t=>t.t);
     const got=TROPHIES.filter(t=>trGot(t.id));
-    main=`<div class="mtcm2"><div class="mtcmc pcprev"><small class="pcprevl">Aperçu${dirty?' · non enregistré':''}</small>${cardColl(pd,'cus')}<small class="pcprevl">Bannière du classement</small><div class="pcbanw">${cardBanner(pd,'cusb')}</div></div><div class="aminfo maside"><div class="ambody">
+    main=`<div class="mtcm2"><div class="mtcmc pcprev pcview"><div class="pcfit"><small class="pcprevl">Aperçu${dirty?' · non enregistré':''}</small>${cardColl(pd,'cus')}<small class="pcprevl">Bannière du classement</small>${cardBanner(pd,'cusb')}</div></div><div class="aminfo maside"><div class="ambody">
       <h4>Icône</h4><div class="pcopt">${icons}</div>
       <h4>Cadre</h4><div class="pcopt">${frs}</div>
       <h4>Fond</h4><div class="pcopt">${bgs}</div>
@@ -3715,7 +3720,7 @@ function viewComm(){
       <div class="pcsave">${lk.length?`<p class="pcwarn">${uic('lock')} Non débloqué : ${lk.map(esc).join(', ')}. Choisissez un élément débloqué pour enregistrer.</p>`:''}
        <div class="row"><button class="btn" data-act="pcReset" ${dirty?'':'disabled'}>Annuler</button><button class="btn pri" data-act="pcConfirm" ${dirty&&!lk.length?'':'disabled'}>Confirmer</button></div></div></div></div></div>`;
   } else {
-    main=`<div class="pcview">${cardColl(d,'v')}<h4>Aperçu dans le classement</h4>${cardBanner(d)}<p class="amnote mute">Votre carte s’affiche quand un joueur clique sur votre nom dans sa liste d’amis, puis sur « Carte ». La bannière sera utilisée dans le classement.</p></div>`;
+    main=`<div class="pcview"><div class="pcfit">${cardColl(d,'v')}<h4>Aperçu dans le classement</h4>${cardBanner(d)}<p class="amnote mute">Votre carte s’affiche quand un joueur clique sur votre nom dans sa liste d’amis, puis sur « Carte ». La bannière sera utilisée dans le classement.</p></div></div>`;
   }
   return `<div class="mt1 comm">${side}<section class="mtmain"><div class="mctop"><h2>${tab==='custom'?'Personnalisation':'Carte de joueur'}</h2><span class="mute">${tab==='custom'?'Icône, cadre, fond, titre et trophées affichés.':'L’aperçu que les autres joueurs voient de vous.'}</span></div>${main}</section></div>`;
 }
@@ -3798,6 +3803,10 @@ function chestOpen(){
     render(); };
   st.addEventListener('transitionend',done,{once:true}); setTimeout(done,quick?600:6600);
 }
+
+/* ajuste la carte + bannière à la zone de jeu */
+function pcFit(){ document.querySelectorAll('.pcview').forEach(v=>{ const f=v.querySelector('.pcfit'); if(!f) return; f.style.zoom=1; const cs=getComputedStyle(v),py=parseFloat(cs.paddingTop)+parseFloat(cs.paddingBottom),px=parseFloat(cs.paddingLeft)+parseFloat(cs.paddingRight),need=f.scrollHeight,av=v.clientHeight-py-6,needW=f.scrollWidth,avW=v.clientWidth-px-6; const z=Math.min(1,av/need,avW/needW); f.style.zoom=z<1?Math.max(.5,z).toFixed(3):1 }) }
+addEventListener('resize',()=>{ if(UI.tab==='comm') pcFit() });
 
 /* ================= Messagerie du compte ================= */
 Object.assign(UIC,{mail:'<rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3.5 6.5 12 13l8.5-6.5"/>',gift:'<rect x="3" y="9" width="18" height="12" rx="1"/><path d="M3 13h18M12 9v12"/><path d="M12 9C10 5 6 5 6.5 7.5S12 9 12 9s4.5-1 5.5-1.5S14 5 12 9z"/>',warn:'<path d="M12 3 2 20h20z"/><path d="M12 10v4M12 17v.5"/>',info:'<circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7.5v.5"/>',send:'<path d="M3 11 21 3l-6 18-3-8z"/><path d="m12 13 9-10"/>',trash:'<path d="M4 7h16M9 7V4h6v3M6 7l1 13h10l1-13"/>'});
@@ -3901,6 +3910,17 @@ async function mlSend(){
   }catch(e){ ML.admErr=true; ML.admMsg=e.msg||('Erreur : '+(e.code||'inconnue')+' (vérifiez les règles Firestore de la collection mail).') }
   ML.sending=false; renderMail();
 }
+
+/* ===== détection d'une nouvelle version déployée ===== */
+const UPD={found:false,busy:false};
+async function updCheck(){
+  if(UPD.found||UPD.busy||!/^https?:$/.test(location.protocol)) return; UPD.busy=true;
+  try{ const r=await fetch(location.pathname+'?v='+Date.now(),{cache:'no-store'}); if(r.ok){ const t=await r.text(),m=t.match(/const BUILD='(\d+)'/); if(m&&m[1]!==BUILD&&m[1]>BUILD) updShow(t.match(/const VERSION='(\d[^']*)'/)) } }catch(e){}
+  UPD.busy=false;
+}
+function updShow(vm){ UPD.found=true; const b=$('#updbar'); if(!b) return; if(vm&&vm[1]&&vm[1]!==VERSION) b.querySelector('b').textContent=`La version ${vm[1]} de Cendrelame est disponible.`; b.hidden=false; document.body.classList.add('hasupd') }
+setInterval(updCheck,120000); setTimeout(updCheck,15000);
+document.addEventListener('visibilitychange',()=>{ if(!document.hidden) updCheck() });
 
 function viewCombatIdle(){
   const P=prog(),dk=curDiff(),D=DIFF[dk],hero=dk!=='normal',z=ZONES[UI.zone],L=D.L||UI.zone*10+UI.stage;
@@ -4707,6 +4727,7 @@ function viewHelp(){
 
 /* --- nouveautés --- */
 const VERSION='0.3.3';
+const BUILD='20261019115150';
 const PATCH=[
  {v:'0.3.3',t:"Trophées et communauté",sec:[
   ["Coffre des Reliques", ["Nouveau butin de raid : le Coffre des Reliques. Chaque raid réussi a une chance d’en donner un : 1 % au palier +0, +0,5 % par palier, jusqu’à 10 % (palier +18 et au-delà). Il arrive dans le sac (ou dans le coffre du compte si le sac est plein).", "Infobulle du coffre : description et chance d’obtention, sans révéler son contenu.", "Clic droit sur le coffre dans le sac : une fenêtre demande confirmation, puis un tirage animé fait défiler les reliques avant de s’arrêter sur la récompense.", "Chances par relique : Or royal 38 % (commun), Saphir 27 % (peu commun), Améthyste 20 % (rare), Braise vivante 11 % (épique), Prisme holographique 4 % (légendaire).", "Relique déjà possédée : convertie en or (2 000, 3 000, 5 000, 8 000 ou 15 000 selon la rareté).", "Les administrateurs peuvent aussi joindre des Coffres des Reliques aux messages système.","Le coffre apparaît dans la liste des récompenses de chaque boss de raid, avec sa chance au palier choisi et une infobulle."]],
@@ -4714,7 +4735,7 @@ const PATCH=[
   ["Trophées", ["Nouveau bouton « Trophées » dans la barre du bas, avec un point rouge quand un trophée vient d’être obtenu.", "30 trophées répartis en 5 catégories : Aventure, Personnage, Amélioration, Collecte, Duel et raid. Chacun rapporte des points de trophées : 5 à 15 points (bronze), 15 à 49 points (argent), 50 points et plus (or), jusqu’à 100 points pour vaincre Le Dévoreur en difficulté Mythique.", "Page Trophées : à gauche le total de points, la progression et les catégories avec leur compteur ; à droite les 3 derniers trophées obtenus, puis la liste filtrable (Tous, Obtenus, À obtenir) avec la barre d’avancement et la date d’obtention.", "Les trophées sont liés au compte (tous les personnages y contribuent). Ceux déjà mérités avant cette version (niveaux, boss vaincus, zones ouvertes, raids, duels…) sont attribués automatiquement à la connexion.", "Une notification s’affiche à chaque trophée obtenu.", "Certains trophées débloquent un titre à afficher sur votre carte de joueur."]],
   ["Communauté", ["La page Communauté a quatre onglets : Carte de joueur, Personnalisation, Classement et Guilde (ces deux derniers arrivent dans une prochaine mise à jour).", "Carte de joueur : votre carte (icône, nom, titre, points de trophées, 3 trophées mis en avant, personnages et leur niveau) et l’aperçu de la bannière qui servira au classement.", "Personnalisation : icône (portraits de classe ou emblèmes), cadre (Or et Argent, puis Azur à 50 points, Améthyste à 150, Émeraude à 300, Braise à 500), fond (débloqué en battant le boss de chaque zone, en réussissant un raid ou en gagnant un duel), titre et 3 trophées affichés. Aperçu en direct."]],
   ["Amis", ["La liste d’amis n’est plus dans Communauté : un bouton rond à côté du sac l’ouvre, avec le nombre d’amis connectés en vert et un point rouge pour les demandes et messages non lus.", "En cliquant sur le nom d’un ami, le nouveau bouton « Carte » affiche sa carte de joueur."]],
-  ["Interface",["Barre du bas : Marchand, Amélioration, Collecte, Aventure (au centre), Communauté, Trophées et Quêtes (verrouillé, arrive dans une prochaine mise à jour). Les deux côtés ont maintenant trois boutons et le médaillon Aventure est centré.","En-tête plus aéré : plus d’espace au-dessus et au-dessous du titre et du portrait.","Le bouton de messagerie est aligné avec le cadre du personnage.","Les objets du coffre du compte sont comptés dans les quantités possédées (Forge, Marchand, coûts) et peuvent être dépensés directement : le sac est utilisé en premier, puis le coffre."]],
+  ["Interface",["Quand une nouvelle version du jeu est mise en ligne pendant que vous jouez, un bandeau rouge apparaît en haut de la page (vérification toutes les 2 minutes et au retour sur l’onglet). Il reste affiché jusqu’au rafraîchissement de la page ; le bouton « Rafraîchir maintenant » sauvegarde puis recharge le jeu.","Barre du bas : Marchand, Amélioration, Collecte, Aventure (au centre), Communauté, Trophées et Quêtes (verrouillé, arrive dans une prochaine mise à jour). Les deux côtés ont maintenant trois boutons et le médaillon Aventure est centré.","En-tête plus aéré : plus d’espace au-dessus et au-dessous du titre et du portrait.","Le bouton de messagerie est aligné avec le cadre du personnage.","Les objets du coffre du compte sont comptés dans les quantités possédées (Forge, Marchand, coûts) et peuvent être dépensés directement : le sac est utilisé en premier, puis le coffre."]],
   ["Personnalisation", ["5 nouveaux cadres animés (reliques), appliqués à la carte de joueur, à la bannière du classement et au contour de l’icône : Or royal (reflet balayant), Saphir (halo tournant), Améthyste (étincelles), Braise vivante (lueur pulsante) et Prisme holographique (arc-en-ciel). Ils s’obtiennent uniquement dans le Coffre des Reliques.","Contour de l’icône de la carte et de la bannière un peu plus fin.","Tous les éléments, même verrouillés, peuvent être sélectionnés pour un aperçu complet de la carte et de la bannière. Les changements ne sont enregistrés qu’avec le nouveau bouton « Confirmer » (« Annuler » revient à la carte actuelle) ; si un élément verrouillé est sélectionné, la confirmation est impossible et l’élément est indiqué.","Chaque icône, cadre, fond et trophée affiché a une infobulle : date et raison du déblocage, ou comment le débloquer.","L’onglet Carte de joueur affiche la carte au centre, sans fond, avec la bannière du classement centrée en dessous.","La carte d’un ami s’affiche seule au centre de l’écran ; un clic en dehors la ferme (plus de croix ni de boutons Duel et Chat)."]]
  ]},
  {v:'0.3.2',t:"Coffre du compte et nouvelle interface",sec:[
@@ -5268,6 +5289,7 @@ const A={
     try{ await pvpPropose(o,otherName(f),p&&p.char?p.char:null,'friend'); toast('Demande de duel envoyée à '+otherName(f)+'.') }catch(e){ toast('Impossible d’envoyer la demande ('+(e.code||'erreur')+').') } },
   advMode:d=>{UI.advMode=d.m; render()},
   invTog:()=>openInv(!UI.invOpen),
+  updReload:()=>{ try{save()}catch(e){} location.reload() },
   dgMat:()=>{ if(!FB.admin||!S||!S.heroes.length) return; const g=UI.dg,n=Math.max(1,Math.floor(+g.n||1)),k=g.k,nm=MAT_OBJ[k]||MAT_N[k]||k;
     if(isMatK(k)){ const left=storeMat(k,n); markNew(); save(); toast(`+${fmt(n-left)} ${nm}${left?` (stock plein, ${fmt(left)} perdus)`:''}.`); return }
     const got=dgPut({[k]:n}); markNew(); save(); toast(got<n?`${fmt(got)} × ${nm} donnés : sac et coffre pleins.`:`${fmt(n)} × ${nm} ajoutés.`) },
