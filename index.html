@@ -1448,7 +1448,7 @@ body.hasupd{padding-top:44px}body.hasupd .menubtn,body.hasupd .byline{margin-top
 .mfs .q{position:absolute;right:6px;bottom:4px;font-weight:700;font-size:.85rem;color:#fff;text-shadow:0 1px 2px #000}
 .mfup{position:absolute;top:18px;right:30px;padding:2px 8px;border-radius:10px;background:#7b2a1a;color:#fff;font-style:normal;font-weight:700}
 .mflink{width:4px;height:42px;background:linear-gradient(#e8c06088,#e8c06022);position:relative}.mflink:after{content:'';position:absolute;left:50%;bottom:-2px;translate:-50% 0;border:7px solid transparent;border-top-color:#e8c06066}
-.mfrow1,.mfrow3{display:flex;gap:18px;align-items:flex-end}.mfrow3 .mfs:nth-child(2){transform:translateY(12px)}
+.mfrow1,.mfrow3{display:flex;gap:18px;align-items:flex-end}
 .mfhint{position:relative;margin-top:8px;color:#b9a27a!important}
 .mfcard{border:1px solid var(--rc);border-left:4px solid var(--rc);border-radius:10px;background:#fff8;padding:8px 10px;font-size:.85rem}.mfcard header{display:flex;flex-direction:column}.mfcard ul{margin:6px 0 0;padding:0;list-style:none;display:flex;flex-direction:column;gap:2px}
 .mfcard li.imp{color:#6a5a40}.mfaff li{padding:2px 6px;border-radius:6px;background:#2a1a0c0d}.mfaff li.mn{font-weight:700}.mfaff li.mn em{font-style:normal;font-size:.7rem;color:#7b2a1a;font-weight:400}.mfaff li.free{color:#9a8a6a;border:1px dashed #c9ad7a;background:none}
@@ -1521,6 +1521,69 @@ body.hasupd{padding-top:44px}body.hasupd .menubtn,body.hasupd .byline{margin-top
 .mfaff{list-style:none;padding:0!important;margin:0;display:flex;flex-direction:column;gap:3px}
 .mfr{display:flex;flex-direction:column}.mfgo{position:sticky;bottom:-14px;margin-top:auto!important;background:#efe2c0;padding-bottom:12px;z-index:2}
 @media (max-width:900px){.mfc{order:-1}}
+
+.mfs.fslot2,#fslot{cursor:pointer}.mfs.pick{border-color:#f0d48a!important;box-shadow:0 0 0 3px #140d08,0 0 24px #f0d48a!important}
+.mfclr{position:absolute;top:-8px;right:-8px;width:22px;height:22px;border-radius:50%;display:grid;place-items:center;padding:0;border:1px solid #d6aa55;background:#2a1c10;color:#f0d48a;cursor:pointer;z-index:2}.mfclr .uic{width:12px;height:12px}
+#bag .gi.hidecraft{opacity:.18;filter:grayscale(1)}
+#bag .gi.dim{opacity:.18;filter:grayscale(1)}
+#bag .gi.hl{z-index:2;box-shadow:0 0 0 2px #f0d48a,0 0 14px #f0d48a!important;animation:hlp 1.2s ease-in-out infinite}
+@keyframes hlp{50%{box-shadow:0 0 0 2px #fff3c0,0 0 22px #f0d48a}}
+.invpop.mov,#stashpop.mov{opacity:1!important}
+#toasts{left:16px!important;right:auto!important;align-items:flex-start!important;padding:0!important;bottom:calc(104px + env(safe-area-inset-bottom,0px))!important;max-width:min(440px,calc(100vw - 32px))}
+#toasts .toast{text-align:left}
+@media (max-width:760px){#toasts{bottom:calc(150px + env(safe-area-inset-bottom,0px))!important}}
+.mcgrid{display:flex!important;flex-wrap:wrap;justify-content:center}.mcgrid .mcslot{flex:0 1 170px}
+@media (max-width:900px){.mcgrid .mcslot{flex:0 1 calc(50% - 6px)}}
+.it .reqno{color:var(--blood);font-weight:700}
+
+.mfhelp{position:static!important;flex:none}
+.mfhead{display:flex!important;flex-wrap:nowrap!important;align-items:center;gap:10px;max-width:calc(100% - 20px)!important}
+.mfht{display:flex;flex-wrap:wrap;align-items:center;column-gap:10px;row-gap:2px;min-width:0}.mfht b{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%}
+.mfht .mfaffc{border-left:0;padding-left:0}
+.mfrow3{align-items:center!important;justify-content:center}.mfrow3 .mfs{transform:none!important}
+.mfcore{position:relative;display:grid;place-items:center}
+.mfcore .mfrc{position:absolute;left:50%;top:50%;width:min(420px,170%);translate:-50% -50%;z-index:0}
+.mfcore .mfs{position:relative;z-index:1}
+.mcph>.mcpot.xl{display:grid!important;place-items:center!important}.mcph>.mcpot.xl>.mi{margin:0!important;position:static!important;align-self:center!important;justify-self:center!important}
+.mfs .mfclr svg,.mfs.big .mfclr svg{width:12px!important;height:12px!important}
+.mfs.big .mfclr{top:12%;right:12%}
+.seasont{font-family:var(--display);color:#cdb68a;font-size:.9rem;letter-spacing:.12em;text-align:center;margin-top:-4px;text-transform:uppercase}
+header.top .seasont{position:absolute;left:50%;top:calc(100% - 16px);translate:-50% 0;white-space:nowrap;font-size:.72rem;pointer-events:none}
+header.top{position:relative}
+.menuscr .seasont{margin:4px 0 18px;font-size:1rem}
+.adm{display:flex;flex-direction:column;gap:14px;max-width:1200px;margin:0 auto;width:100%}
+.admhead{display:flex;align-items:center;gap:14px;padding:14px 18px;border-radius:14px;background:linear-gradient(120deg,#3b2716,#1a0f08);border:1px solid #8a6a44;color:#f1e2bd;box-shadow:0 8px 24px #0006}
+.admhead h2{margin:0;color:var(--gold)}.admhead small{color:#cdb68a}
+.admlogo{width:52px;height:52px;border-radius:50%;display:grid;place-items:center;background:radial-gradient(circle at 50% 35%,#7b2a1a,#2a0d06);border:2px solid #f0d48a;color:#fff3d6}.admlogo .uic{width:28px;height:28px}
+.admbody{display:grid;grid-template-columns:220px minmax(0,1fr);gap:14px;align-items:start}
+.admnav{display:flex;flex-direction:column;gap:6px;padding:10px;border-radius:14px;background:#2a1c10;border:1px solid #6a4c2a;position:sticky;top:10px}
+.admnav button{display:flex;align-items:center;gap:10px;padding:9px 12px;border-radius:10px;border:1px solid transparent;background:none;color:#e8d4a8;cursor:pointer;text-align:left;font:inherit}
+.admnav button .uic{width:18px;height:18px}.admnav button:hover{background:#ffffff0d}.admnav button.on{background:#7b2a1a;color:#fff;border-color:#f0d48a88}
+.admmain{min-width:0;display:flex;flex-direction:column;gap:12px}
+.admstats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
+.adms{display:flex;flex-direction:column;align-items:flex-start;gap:2px;padding:12px 14px;border-radius:12px;background:linear-gradient(160deg,#efe2c0,#e2d0a8);border:1px solid #c9ad7a;position:relative;overflow:hidden}
+.adms span{position:absolute;right:10px;top:10px;color:#7b2a1a55}.adms span .uic{width:30px;height:30px}.adms b{font-size:1.35rem;color:#7b2a1a;max-width:85%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.adms small{color:#6a5a40}
+.admgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.admgrid.one{grid-template-columns:1fr}
+.admc{padding:14px 16px;border-radius:12px;background:#efe2c0;border:1px solid #c9ad7a;display:flex;flex-direction:column;gap:8px;box-shadow:inset 0 0 26px #9a6a2a1a}
+.admc header{display:flex;align-items:center;gap:10px}.admc h3{margin:0;color:#7b2a1a}.admc header small{color:#6a5a40}
+.admci{width:38px;height:38px;border-radius:10px;display:grid;place-items:center;background:#7b2a1a;color:#fff3d6;flex:none}.admci .uic{width:20px;height:20px}
+.admc.danger{border-color:#b0503a;background:linear-gradient(#f2dcc6,#ead0b4)}.admc.danger .admci{background:#a8321e}
+.admc>.btn{align-self:flex-start}
+.admtbl{overflow:auto;border-radius:12px;border:1px solid #c9ad7a;background:#efe2c0;max-height:60vh}
+.admtbl table{width:100%;border-collapse:collapse;font-size:.88rem}.admtbl th{position:sticky;top:0;background:#7b2a1a;color:#fff3d6;text-align:left;padding:7px 8px;font-weight:600}
+.admtbl td{padding:6px 8px;border-bottom:1px solid #c9ad7a66}.admtbl tr:hover td{background:#7b2a1a0d}
+.admtbl .st{display:inline-block;width:10px;height:10px;border-radius:50%;background:#9a8a6a}.admtbl .st.on{background:#3aa860;box-shadow:0 0 6px #3aa860}
+.admlist{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:6px}.admlist li{display:flex;align-items:center;gap:10px;justify-content:space-between;padding:6px 8px;border-radius:8px;background:#2a1a0c0d}
+.admme{font-size:.75rem;padding:1px 8px;border-radius:8px;background:#3aa860;color:#fff}
+.admpre{background:#2a1c10;color:#f0dfb8;padding:10px;border-radius:8px;font-size:.78rem;white-space:pre-wrap;margin:0}
+.admwide>h3:first-child{display:none}.admwide>.hint:nth-child(2){margin-top:0}
+#menudd button.ddadm{color:var(--gold);font-weight:700}
+@media (max-width:860px){.admbody{grid-template-columns:1fr}.admnav{flex-direction:row;overflow:auto;position:static}.admnav button span{white-space:nowrap}.admstats,.admgrid{grid-template-columns:1fr 1fr}}
+header.top .seasont{top:calc(100% - 21px);font-size:.66rem;line-height:1.1;letter-spacing:.16em}
+@media (min-width:761px){body.hasdock:not(.scr) .byline{top:calc(72px + env(safe-area-inset-top,0px));font-size:.58rem}}
+@media (max-width:760px){header.top .seasont{top:calc(100% - 16px)}}
+#menudd button.ddadm{color:#7b2a1a!important}
+.rdsolo{background:#2a1c10!important;color:#f0d48a!important;border-color:#d6aa55!important}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 @media (min-width:760px){.arena{grid-template-columns:1fr 1fr}}
 </style>
@@ -1536,7 +1599,7 @@ body.hasupd{padding-top:44px}body.hasupd .menubtn,body.hasupd .byline{margin-top
     <button id="mehud" class="mehud" data-act="tab" data-t="heroes" aria-label="Personnage" title="Personnage" hidden></button>
     <button id="mailbtn" class="mlbtn" data-act="mlOpen" aria-label="Messagerie" title="Messagerie" hidden><svg class="uic" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3.5 6.5 12 13l8.5-6.5"/></svg><span class="mlcnt" hidden>0</span></button>
     </div>
-    <div class="brand">Cendrelame</div>
+    <div class="brand">Cendrelame</div><div class="seasont"></div>
     <div class="res num" id="res"></div>
   </header>
   <nav class="tabs dock" id="tabs" role="tablist" aria-label="Menu principal"></nav>
@@ -1682,7 +1745,7 @@ const CLASSES={
     base:{hp:100,atk:0,mag:16,def:6,res:10,spd:10},grow:{hp:13,atk:0,mag:2.8,def:1.5,res:1.8,spd:.25},
     skills:[
       {id:'m_proj',ap:2,n:'Projectile arcanique',t:'a',lvl:1,cd:2,mult:1.8,tg:'one',si:'star',co:'#5d45a8'},
-      {id:'m_bar',ap:3,n:'Barrière arcanique',t:'a',lvl:3,cd:5,tg:'allies',fx:[{k:'shield',v:2.2,of:'mag'}],si:'shield',co:'#3d5aa8'},
+      {id:'m_bar',ap:3,n:'Barrière arcanique',t:'a',lvl:3,cd:5,max:1,tg:'allies',fx:[{k:'shield',v:.3,of:'hp'}],si:'shield',co:'#3d5aa8'},
       {id:'m_nova',ap:3,n:'Nova arcanique',t:'a',lvl:6,cd:3,mult:.95,tg:'all',si:'nova',co:'#7350b8'},
     ],
     common:[
@@ -1851,7 +1914,7 @@ const matChip=(k,v)=>`<span class="mc" title="${MAT_N[k]}">+${fmt(v)} ${matIcon(
 /* ============ état ============ */
 let S=null;
 const UI={tab:'combat',zone:0,stage:1,invHero:null,invSlot:'all',hero:null,recruit:false,cc:'guerrier',chue:8,cname:'',
-  invSel:null,multi:false,pick:new Set(),fItem:null,fMode:'forge',fBase:null,fSlot:'weapon',fLvl:1,fTier:0,fLast:null,confirm:null,bagSel:null,bagSort:{k:null,dir:1}};
+  invSel:null,multi:false,pick:new Set(),fItem:null,fMode:'up',fBase:null,fSlot:'weapon',fLvl:1,fTier:0,fLast:null,confirm:null,bagSel:null,bagSort:{k:null,dir:1}};
 const C={phase:'idle',units:[],round:0,turn:null,pending:null,waiting:null,logs:[],result:null,abort:false,id:0,zone:0,stage:1};
 
 /* ---- inventaire (48 cases) : null | {mat,n} | objet ---- */
@@ -2056,11 +2119,13 @@ function genItem(slot,ilvl,rarity,baseName,cls){
   let ep='';
   if(rarity>=3) ep=' '+pick(EPITHETS);
   else {const a=aff.find(x=>AFXM[x.s].ep); if(a) ep=' '+AFXM[a.s].ep}
-  const it={id:++S.uid,slot,base:base.n,cls:base.cls||null,ilvl,rarity,imp,aff,up:0,name:base.n+ep,v2:1};
+  const it={id:++S.uid,slot,base:base.n,cls:base.cls||null,ilvl,rarity,imp,aff,up:0,name:base.n+ep,v2:1,req:ilvl};
   if(RAR[rarity].leg) it.leg=slot;
   return it;
 }
-const canWear=it=>!it||!it.cls||!S.heroes[0]||it.cls===S.heroes[0].cls;
+const clsOk=it=>!it||!it.cls||!S.heroes[0]||it.cls===S.heroes[0].cls;
+const lvlOk=(it,h)=>!it||!(h=h||S.heroes[0])||(it.req||0)<=h.lvl;
+const canWear=it=>clsOk(it)&&lvlOk(it);
 const upMul=it=>1+.05*it.up;
 function itemStats(it){
   const k=upMul(it), r={};
@@ -2119,7 +2184,7 @@ function itemCard(it,foot='',delta=null){
   const k=upMul(it);
   const lines=[...Object.entries(it.imp).map(([s,v])=>`<li class="imp">${fmtStat(s,v*k)}</li>`),...it.aff.map(a=>`<li class="${a.main?'am':''}">${fmtStat(a.s,a.v*k)}${ALTK||NOHOVER?affRange(it,a,k):''}</li>`),...(it.leg?[`<li class="legp"><b>${esc(LEGP[it.leg]||'Pouvoir légendaire')}</b> : ${LEG_D}</li>`]:[])].join('')+(it.aff.length&&!NOHOVER?`<li class="shk">${ALTK?'Plages possibles des affixes (Alt)':'Alt : plages des affixes · Maj : comparer'}</li>`:'');
   const dl=delta===null?'':`<span class="dl ${delta>=0?'up':'dn'}">${delta>=0?'▲':'▼'} ${Math.abs(Math.round(delta))}</span>`;
-  return `<article class="it" style="--rc:var(--r${it.rarity})"><header><b>${esc(it.name)}${it.up?` <em>+${it.up}</em>`:''}</b> ${dl}<small>${SLOT_N[it.slot]}${it.cls?` · <span style="${canWear(it)?'':'color:var(--blood);font-weight:700'}">${CLASSES[it.cls].n}</span>`:''} · ${RAR[it.rarity].n}</small><small>Niveau d’objet <b class="num">${it.ilvl}</b> · Affixes <b class="num">${it.aff.length} / 5</b></small></header><ul>${lines}</ul>${foot?`<div class="foot">${foot}</div>`:''}</article>`;
+  return `<article class="it" style="--rc:var(--r${it.rarity})"><header><b>${esc(it.name)}${it.up?` <em>+${it.up}</em>`:''}</b> ${dl}<small>${SLOT_N[it.slot]}${it.cls?` · <span style="${clsOk(it)?'':'color:var(--blood);font-weight:700'}">${CLASSES[it.cls].n}</span>`:''} · ${RAR[it.rarity].n}</small><small class="${lvlOk(it)?'':'reqno'}">Niveau requis <b class="num">${it.req||it.ilvl}</b></small><small>Niveau d’objet <b class="num">${it.ilvl}</b> · Affixes <b class="num">${it.aff.length} / 5</b></small></header><ul>${lines}</ul>${foot?`<div class="foot">${foot}</div>`:''}</article>`;
 }
 /* coût de création : réel pour les objets forgés/travaillés, estimé sinon (forge équivalente à la rareté + améliorations) */
 function estCost(it){
@@ -2143,7 +2208,7 @@ function addInv(it){
 }
 function markNew(){ if(UI.tab!=='heroes') S.bagDot=true }
 function gain(c){for(const [k,v] of Object.entries(c)){ if(k==='gold')S.gold+=v; else if(isMatK(k)){const left=storeMat(k,v); if(left>0) noteLost(k,left)} else {const left=bagAddMat(S.bag,k,v); if(left>0) noteLost(k,left); if(Math.floor(v)-left>0) markNew()} }}
-const DBG=()=>ACC.dbg||(ACC.dbg={});
+const DBG=()=>FB.admin?(ACC.dbg||(ACC.dbg={})):{};
 const FREE=()=>!!DBG().free;
 const hasGold=c=>FREE()||S.gold>=c;
 const canPay=c=>FREE()||Object.entries(c).every(([k,v])=>(k==='gold'?S.gold:matAll(k))>=v);
@@ -2167,7 +2232,7 @@ function newHero(name,cls,hue,lvl=1){
 const partyHeroes=()=>S.party.map(id=>S.heroes.find(h=>h.id===id)).filter(Boolean);
 function gearStats(h){
   const t={};
-  for(const s of SLOTS){const it=h.equip[s]; if(it) for(const [k,v] of Object.entries(itemStats(it))) t[k]=(t[k]||0)+v}
+  for(const s of SLOTS){const it=h.equip[s]; if(it&&lvlOk(it,h)) for(const [k,v] of Object.entries(itemStats(it))) t[k]=(t[k]||0)+v}
   return t;
 }
 function passMods(h){
@@ -2422,7 +2487,7 @@ const isHero=()=>curDiff()!=='normal';
 const progKey=d=>d==='myth'?'progM':d==='hero'?'progH':'prog';
 const prog=(d=curDiff())=>{const k=progKey(d); if(!S[k]) S[k]={zone:0,stage:1}; return S[k]};
 const mythOpen=()=>heroOpen()&&(S.mythOpen||(S.progH&&S.progH.zone===ZONES.length-1&&S.progH.stage===10));
-const ENF={hp:[30,38,.3],atk:[7,2.9,.07],def:[3,1.2,.01],pair:[.65,.6]};
+const ENF={hp:[50,90,0],atk:[10,5.5,0],def:[4,1.8,0],pair:[.65,.6]};
 const enStat=(k,L)=>ENF[k][0]+ENF[k][1]*L+ENF[k][2]*L*L;
 function mkEnemies(z,st,n,diff){
   const D=DIFF[diff]||DIFF.normal,Z=ZONES[z],L=D.L||z*10+st,boss=st===10,list=[];
@@ -2663,14 +2728,14 @@ async function loop(id){
 }
 function inFight(){ return C.phase==='fight'||C.phase==='prep' }
 const PREP_MS=10000;
-async function startBattle(chain){
+async function startBattle(chain,raid){
   if(inFight()) return;
   const party=partyHeroes(); if(!party.length){toast('Aucun personnage.');return}
   C.abort=false; C.id++; const id=C.id;
-  C.diff=curDiff(); C.hero=C.diff!=='normal'; C.bonus={xp:0,loot:0}; C.pcd={}; UI.invOpen=false; C.units=[...party.map(mkHeroUnit),...mkEnemies(UI.zone,UI.stage,party.length,C.diff)];
+  C.diff=curDiff(); C.hero=C.diff!=='normal'; C.bonus={xp:0,loot:0}; C.pcd={}; UI.invOpen=false; C.raid=raid||null; C.units=[...party.map(mkHeroUnit),...(C.raid?[soloBoss(C.raid)]:mkEnemies(UI.zone,UI.stage,party.length,C.diff))];
   C.round=0; C.order=null; C.logs=[]; C.result=null; C.phase='fight'; C.zone=UI.zone; C.stage=UI.stage; C.pending=null; C.waiting=null; C.turn=null;
   render();
-  logLine(`${ZONES[C.zone].n} — étape ${C.stage}${C.hero?' ('+DIFF[C.diff].n.toLowerCase()+')':''}`,'rd');
+  logLine(C.raid?`Raid en solo : ${RAIDS.find(x=>x.id===C.raid.r).n} (palier +${C.raid.t})`:`${ZONES[C.zone].n} — étape ${C.stage}${C.hero?' ('+DIFF[C.diff].n.toLowerCase()+')':''}`,'rd');
   if(!C.test&&!(chain&&S.auto)){
     C.phase='prep'; C.prepEnd=Date.now()+PREP_MS; C.prepGo=false; renderActbar(); logLine('Préparation : 10 secondes pour boire vos potions avant le combat.','rd');
     while(!C.abort&&C.id===id&&!C.prepGo&&Date.now()<C.prepEnd){ await new Promise(r=>setTimeout(r,200)); const el=document.querySelector('#actbar [data-prep]'); if(el) el.textContent=Math.max(0,Math.ceil((C.prepEnd-Date.now())/1000))+' s' }
@@ -2680,6 +2745,7 @@ async function startBattle(chain){
   await loop(id);
 }
 async function finish(r){
+  if(C.raid&&!C.test) return raidSoloFinish(r);
   C.pending=null;C.waiting=null;C.turn=null;
   if(C.test){ C.test=false; C.result={win:r==='win',test:true}; logLine(r==='win'?'Victoire (combat de test, sans récompense).':'Défaite (combat de test).',r==='win'?'hl':'cr'); C.phase='result'; if(UI.tab==='combat') render(); return }
   const D=DIFF[C.diff||'normal'],party=partyHeroes(),L=D.L||C.zone*10+C.stage,boss=C.stage===10,lb=(1+(C.bonus?C.bonus.loot:0)/100)*D.rw;
@@ -2807,7 +2873,7 @@ function renderHeader(){
   el.innerHTML=['gold',...MATS].map(m=>{const v=m==='gold'?S.gold:matCount(m),full=m!=='gold'&&v>=matCap(m);return `<span class="rs ${full?'full':''}" title="${m==='gold'?'Or':MAT_OBJ[m]+' : '+v.toLocaleString('fr-FR')+' / '+matCap(m).toLocaleString('fr-FR')}">${matIcon(m)}<b>${fmt(v)}</b><span class="sr">${MAT_N[m]}</span></span>`}).join('');
 }
 function renderTabs(){
-  const el=$('#tabs'),g=$('#gear'),nw=$('#news'),mb=$('#menubtn'); $('#ver').textContent='v'+VERSION; g.hidden=true; nw.hidden=true;
+  const el=$('#tabs'),g=$('#gear'),nw=$('#news'),mb=$('#menubtn'); $('#ver').textContent='v'+VERSION; seasonPaint(); g.hidden=true; nw.hidden=true;
   mb.hidden=!!UI.scr||!S||!S.heroes.length;
   {const d=mb.querySelector('.ndot'),u=unseenVer(); if(u&&!d) mb.insertAdjacentHTML('beforeend','<span class="ndot" aria-label="Nouvelle version"></span>'); else if(!u&&d) d.remove()}
   if(UI.scr||!S||!S.heroes.length){el.innerHTML='';$('#mehud').hidden=true;document.body.classList.remove('hasdock');return}
@@ -2815,12 +2881,17 @@ function renderTabs(){
   el.innerHTML=dockHTML();
   {const m=$('#mehud'); m.hidden=false; m.innerHTML=heroChipHTML(); m.setAttribute('aria-current',UI.tab==='heroes'?'page':'false')}
 }
-function render(){
+const scSel=e=>(e.id?'#'+CSS.escape(e.id):'')+[...e.classList].map(c=>'.'+CSS.escape(c)).join('');
+function scrollKeep(){ const out=[]; document.querySelectorAll('body *').forEach(e=>{ if(e.scrollTop>0&&e.scrollHeight>e.clientHeight){ const sel=scSel(e); if(sel) out.push([sel,[...document.querySelectorAll(sel)].indexOf(e),e.scrollTop]) } }); return out }
+function scrollBack(L){ for(const [sel,i,t] of L){ const el=document.querySelectorAll(sel)[i]; if(el) el.scrollTop=t } }
+let RKEY='';
+function render(){ const key=(UI.scr||'')+'|'+UI.tab+'|'+(UI.ws||'')+'|'+(UI.fMode||'')+'|'+(UI.advMode||''),keep=key===RKEY?scrollKeep():[]; RKEY=key; render1(); if(keep.length) scrollBack(keep) }
+function render1(){
   hideTip(); document.body.classList.toggle('scr',!!UI.scr); document.body.classList.toggle('scr-menu',UI.scr==='menu'||UI.scr==='login'||UI.scr==='pseudo');
   renderTabs(); if(UI.scr) $('#res').innerHTML=''; else renderHeader();
   const v=$('#view');
   renderFriends(); mlRefresh(); if(UI.tab==='comm') requestAnimationFrame(pcFit);
-  if(UI.scr){v.innerHTML=({menu:viewMenu,login:viewLogin,pseudo:viewPseudo,best:viewBest,select:viewSelect,create:viewCreator,opts:viewOpts,news:viewNews})[UI.scr](); renderInvPop(); return}
+  if(UI.scr){v.innerHTML=({admin:viewAdmin,menu:viewMenu,login:viewLogin,pseudo:viewPseudo,best:viewBest,select:viewSelect,create:viewCreator,opts:viewOpts,news:viewNews})[UI.scr](); renderInvPop(); return}
   if(!S||!S.heroes.length){UI.scr='menu';return render()}
   if(UI.tab==='opts'||UI.tab==='news') UI.tab='combat';
   v.innerHTML=({comm:viewComm,troph:viewTroph,combat:viewCombat,heroes:viewHeroes,bag:viewBag,shop:viewShop,forge:viewForge,sites:viewSites,help:viewHelp,opts:viewOpts,news:viewNews})[UI.tab]();
@@ -2867,7 +2938,7 @@ async function onFbUser(u){
 function afterProfile(fromLogin){
   if(fromLogin||UI.scr==='login'||UI.scr==='pseudo'){UI.scr='menu'; toast('Connecté : '+(FB.prof?FB.prof.name:(FB.user.email||'compte'))+'.')}
   if(FB.prof){ presence(); startFriends(); startPvp(); startRaid(); startMail() }
-  adminCheck().then(()=>{ if(UI.scr==='opts'||UI.scr==='best') render() });
+  adminCheck().then(()=>{ if(['opts','best','menu','admin'].includes(UI.scr)) render() });
   render();
 }
 /* ============ pseudo (nom de compte) ============ */
@@ -3243,8 +3314,8 @@ const rdTier=()=>{const r=RAIDS[UI.raidB||0],mx=raidMax(r.id); return Math.min(m
 const rdMul=t=>Math.pow(RD_STEP,t);
 const rdRw=(r,t)=>({gold:Math.round((400+30*r.L)*rdMul(t)),rune:2+Math.floor(t/3),essence:6+t,cristal:6+t});
 function mkRaidBoss(r,t){
-  const L=r.L,m=rdMul(t),a=Math.round(enStat('atk',L)*r.atk*m*10)/10;
-  const o={acct:r.n,name:r.n,boss:true,rid:r.id,lvl:L,role:r.role,hp:Math.round(enStat('hp',L)*r.hp*m),atk:a,mag:a,
+  const L=r.L,m=rdMul(t),a=Math.round(enStat('atk',L)*r.atk*m*.8*10)/10;
+  const o={acct:r.n,name:r.n,boss:true,rid:r.id,lvl:L,role:r.role,hp:Math.round(enStat('hp',L)*r.hp*m*.5),atk:a,mag:a,
     def:Math.round(enStat('def',L)*r.def*m),res:Math.round(enStat('def',L)*.9*r.def*m),spd:Math.round((8+.15*L)*1.05*10)/10,
     crit:8,critDmg:160,dodge:0,lifesteal:0,dmgPct:0,ap:6,maxAp:6,skills:r.sk.slice(),ranks:{},cds:Object.fromEntries(r.sk.map(id=>[id,1])),st:[],shield:0,atkUsed:false,stun:false};
   for(const k of RES_K) o[k]=Math.min(RES_CAP,(r.res&&r.res[k])||0);
@@ -3551,10 +3622,11 @@ async function cloudPush(force){
   catch(e){ FB.sync='err'; if(force) throw e }
 }
 function viewMenu(){
-  return `<div class="menuscr"><div class="brand">Cendrelame</div><p class="sub" aria-hidden="true" style="visibility:hidden">&nbsp;</p>
+  return `<div class="menuscr"><div class="brand">Cendrelame</div><div class="seasont">${esc(seasonTitle())}</div>
     <div class="mbtns">
       <button class="mbtn pri" data-act="scr" data-s="select">Jouer</button>
       <button class="mbtn" data-act="scr" data-s="opts">Options</button>
+      ${FB.admin?'<button class="mbtn" data-act="scr" data-s="admin">Admin</button>':''}
       <button class="mbtn" data-act="scr" data-s="news">Nouveautés${unseenVer()?'<span class="ndot" aria-label="Nouvelle version"></span>':''}</button>
     </div>
     <span class="mgold" aria-hidden="true" style="visibility:hidden">&nbsp;</span></div>${accCorner()}`;
@@ -3607,7 +3679,8 @@ function bootChar(){
   {const lg=it=>{if(it&&!it.mat&&it.rarity>=4&&!it.leg) it.leg=it.slot}; S.bag.forEach(e=>lg(e.o)); for(const h of S.heroes) Object.values(h.equip||{}).forEach(lg)}
   {let cut=0; for(const k of Object.keys(S.mats||{})) if(S.mats[k]>matCap(k)){cut++; S.mats[k]=matCap(k)}
    if(cut) setTimeout(()=>toast(`Stock maximum réduit à ${MATCAP.toLocaleString('fr-FR')} par matériau : les surplus ont été retirés.`),1600)}
-  craftMigrate();
+  craftMigrate(); { const fx=it=>{ if(it&&!it.mat&&it.req==null) it.req=it.ilvl }; S.bag.forEach(e=>fx(e.o)); for(const h of S.heroes) Object.values(h.equip||{}).forEach(fx);
+    for(const h of S.heroes){ const r=(h.learned||{}).m_bar||0; if(r>1){ h.sp=(h.sp||0)+r-1; h.learned.m_bar=1 } } }
   if((S.siteV||1)===2){ let ref=0; for(const si of SITES){const st=S.sites[si.id]; if(!st||!st.tal) continue; const t=st.tal;
       for(let r=0;r<(t.qty||0);r++) ref+=talCost(si.id,'qty',r); if(t.qtyX) ref+=talCost(si.id,'qtyX',0); delete t.qty; delete t.qtyX}
     S.siteV=3; if(ref){S.gold+=ref; setTimeout(()=>toast(`La branche Rendement est remplacée par une branche par ressource : ${fmt(ref)} or remboursés.`),1400)} }
@@ -3772,10 +3845,10 @@ function viewRaidMap(){
   const nodes=RAIDS.map((x,k)=>{const lk=H.lvl<x.req,p=pt(k);return `<button class="amnode ${lk?'lock':''} ${k===UI.raidB?'on':''}" style="left:${(p[0]/70*100).toFixed(1)}%;top:${p[1]}%" data-act="rdBoss" data-i="${k}" aria-pressed="${k===UI.raidB}"><span class="ampic big">${zoneScene(raidSc(x),'r')}<span class="ambadge" title="Palier maximum atteint">+${raidMax(x.id)}</span></span><b>${lk?uic('lock'):''}${esc(x.n)}</b><small>Niveau ${x.L} · requis ${x.req}</small></button>`}).join('');
   const resl=RES_K.filter(k=>b[k]).map(k=>`<span class="${b[k]<0?'neg':''}">${esc(STAT_N[k].replace(/^Résistance (au |à la |aux )?/,''))} ${b[k]>0?'+':''}${b[k]} %</span>`).join('')||'<span>aucune</span>';
   const tiers=Array.from({length:mx+1},(_,i)=>`<button class="${i===t?'on':''}" data-act="rdTier" data-t="${i}" ${srch?'disabled':''} aria-pressed="${i===t}" title="${i?`+${Math.round((rdMul(i)-1)*100)} % de difficulté`:'Difficulté de base'}">+${i}</button>`).join('')+`<button disabled title="Battez ce boss au palier +${mx} pour débloquer le palier +${mx+1}.">${uic('lock')}+${mx+1}</button>`;
-  const act=!on?`<p class="mplog dark">Connectez-vous à un compte en ligne (Menu) pour jouer les raids.</p>`
+  const act=lock?`<p class="mplog dark">Niveau ${r.req} requis (vous êtes niveau ${H.lvl}).</p>`:(!on?`<p class="mplog dark">Connectez-vous à un compte en ligne (Menu) pour jouer à deux.</p>`
     :lock?`<p class="mplog dark">Niveau ${r.req} requis (vous êtes niveau ${H.lvl}).</p>`
     :srch?`<div class="mpsearch dark"><span class="spin" aria-hidden="true"></span><b>Recherche d’un partenaire (palier +${srch.t})…</b><button class="btn" data-act="rdCancel">Annuler</button></div>`
-    :`<div class="mpacts"><button class="btn pri amgo" data-act="rdFind">${uic('skull')} Rechercher un partenaire</button><button class="btn mpinv" data-act="rdInv" title="Inviter un ami">${uic('people')}<span>Inviter</span></button></div>`;
+    :`<div class="mpacts"><button class="btn pri amgo" data-act="rdFind">${uic('skull')} Rechercher un partenaire</button><button class="btn mpinv" data-act="rdInv" title="Inviter un ami">${uic('people')}<span>Inviter</span></button></div>`)+(srch?'':`<div class="mpacts"><button class="btn amgo rdsolo" data-act="rdSolo" ${ttip('Combattre seul','Boss affaibli pour un joueur : PV −65 %, attaque −35 %. Récompenses −40 %, même chance de coffre et même progression des paliers.')}>${uic('swords')} Combattre seul</button></div>`);
   return `<div class="amap"><svg class="ambg" viewBox="0 0 1000 500" preserveAspectRatio="none" aria-hidden="true">${amapBg()}<rect width="1000" height="500" fill="url(#amv)"/></svg>
    <div class="amfield"><svg class="amlines" viewBox="0 0 700 500" preserveAspectRatio="none" aria-hidden="true">${segs}</svg>${nodes}</div>
    <aside class="aminfo rd" aria-label="Boss sélectionné"><div class="amhead">${zoneScene(raidSc(r),'rh')}<span><small>Raid à 2 joueurs · palier max +${mx}</small><h2>${esc(r.n)}</h2></span></div>
@@ -4231,8 +4304,8 @@ function viewCombat(){
   if(C.phase==='idle') return viewCombatIdle();
   const al=C.units.filter(u=>u.team==='h').slice(0,3),en=C.units.filter(u=>u.team==='e').slice(0,3);
   const U=u=>`<div class="unit ftu ${u.team==='h'?'ally':'foe'} ${u.boss?'boss':''}" data-u="${u.id}" data-act="pick"><div class="ftpl"><b>${esc(u.name)} <small>niv. ${u.lvl}${u.boss?' · Boss':''}</small></b>${ftHp()}<div class="apbar" ${ttip('Points d’action')}>${Array.from({length:u.maxAp||0},()=>'<i></i>').join('')}</div><div class="stt"></div></div><div class="ftfig">${fighterArt(u.hero?{cls:u.hero.cls,skin:u.hero.skin}:{name:u.name,boss:u.boss,ic:u.ic,hue:u.hue,foe:1})}<i class="ftgr"></i></div><div class="fl"></div></div>`;
-  return `<div class="cv ftc ${UI.cbOpen?'bagopen':''}"><div class="ftwrap"><div class="ftsc">${zoneScene(C.zone,'ft')}
-    <div class="fttop"><h2>${ZONES[C.zone].n} · étape ${C.stage}${C.stage===10?' · Boss':''}${C.hero?` <span class="herotag ${C.diff}">${DIFF[C.diff].n}</span>`:''}</h2><span class="cvround num">Tour <b>${C.round}</b></span></div>
+  return `<div class="cv ftc ${UI.cbOpen?'bagopen':''}"><div class="ftwrap"><div class="ftsc">${(C.raid?zoneScene(raidSc(RAIDS.find(x=>x.id===C.raid.r)),'rd'):zoneScene(C.zone,'ft'))}
+    <div class="fttop"><h2>${C.raid?`Raid · ${esc(RAIDS.find(x=>x.id===C.raid.r).n)} <small>palier +${C.raid.t} · seul</small>`:`${ZONES[C.zone].n} · étape ${C.stage}${C.stage===10?' · Boss':''}`}${C.hero?` <span class="herotag ${C.diff}">${DIFF[C.diff].n}</span>`:''}</h2><span class="cvround num">Tour <b>${C.round}</b></span></div>
     <div class="cvinit ftinit" id="cvinit">${initBar()}</div>
     <div class="ftfield"><div class="ftside l">${al.map(U).join('')}</div><div class="ftside r">${en.map(U).join('')}</div></div></div>
     <button class="ftend" id="ftend" data-act="endTurn"></button></div>
@@ -4385,11 +4458,11 @@ const fsHave=k=>k?matAll(k):0;
 function fsSlot(name,k,label,size='sm',need=1){
   if(k&&fsHave(k)<1){ k=null }
   const ic=k?`<svg class="mfi" viewBox="0 0 24 24">${MI[k]}</svg>`:'';
-  return `<div class="mfs ${size} fslot2 ${k?'full':''} ${k&&fsHave(k)<need?'lack':''}" data-fs="${name}" ${k?`style="--rc:var(--r${nwR(k)})" data-tip="nw:${k}" data-act="fsClear" data-s="${name}"`:''}>${k?`${ic}<span class="q num">${need>1?need+'/':''}${fmt(fsHave(k))}</span>`:`<small>${label}</small>`}</div>`;
+  return `<div class="mfs ${size} fslot2 ${k?'full':''} ${k&&fsHave(k)<need?'lack':''} ${UI.invHL===name&&UI.invOpen?'pick':''}" data-fs="${name}" data-act="fsPick" data-s="${name}" ${k?`style="--rc:var(--r${nwR(k)})" data-tip="nw:${k}"`:`${ttip(label,'Cliquez pour afficher l’inventaire : les objets compatibles sont mis en évidence.')}`}>${k?`${ic}<span class="q num">${need>1?need+'/':''}${fmt(fsHave(k))}</span><button class="mfclr" data-act="fsClear" data-s="${name}" ${ttip('Vider la case')}>${uic('xx')}</button>`:`<small>${label}</small>`}</div>`;
 }
 const pips=(n,max=5)=>`<span class="mfpips" aria-hidden="true">${Array.from({length:max},(_,i)=>`<i class="${i<n?'on':''} ${i<2?'main':''}"></i>`).join('')}</span>`;
 const EXPL={
- up:`<h3>Renforcer un objet</h3><ol class="mfsteps"><li><b>Posez l’objet</b> dans le grand cercle (glisser-déposer ou clic droit depuis l’inventaire). Sa rareté et ses affixes sont détectées automatiquement.</li><li><b>Choisissez l’amélioration</b> dans la case du dessous :<ul><li><b>Parchemin</b> : ajoute une affixe. Un objet a 2 affixes principales et peut en recevoir 3 de plus.</li><li><b>Pierre de rareté</b> : fait monter la rareté d’un cran, +5 % à toutes les affixes.</li><li><b>Pierre de renforcement</b> : +1 niveau (+5 % à toutes les stats).</li></ul></li><li>Avec une pierre de renforcement, ajoutez si besoin un <b>bonus de réussite</b> dans la petite case.</li><li>Vérifiez les chances à droite, puis cliquez sur <b>Renforcer</b>.</li></ol><p class="mftip">Les parchemins se créent dans l’atelier <b>Enchantement</b>. Cliquez sur une case remplie pour la vider.</p>`,
+ up:`<h3>Renforcer un objet</h3><ol class="mfsteps"><li><b>Posez l’objet</b> dans le grand cercle (glisser-déposer ou clic droit depuis l’inventaire). Sa rareté et ses affixes sont détectées automatiquement.</li><li><b>Choisissez l’amélioration</b> dans la case du dessous :<ul><li><b>Parchemin</b> : ajoute une affixe. Un objet a 2 affixes principales et peut en recevoir 3 de plus.</li><li><b>Pierre de rareté</b> : fait monter la rareté d’un cran, +5 % à toutes les affixes.</li><li><b>Pierre de renforcement</b> : +1 niveau (+5 % à toutes les stats).</li></ul></li><li>Avec une pierre de renforcement, ajoutez si besoin un <b>bonus de réussite</b> dans la petite case.</li><li>Vérifiez les chances à droite, puis cliquez sur <b>Renforcer</b>.</li></ol><p class="mftip">Les parchemins se créent dans l’atelier <b>Enchantement</b>. Cliquez sur une case pour ouvrir l’inventaire : les objets compatibles s’illuminent. La croix vide la case.</p>`,
  ench:`<h3>Enchanter un parchemin</h3><ol class="mfsteps"><li>Placez un <b>Parchemin vierge</b> (vendu par le Marchand) en haut : c’est le catalyseur.</li><li>Remplissez les trois cases du bas :<ul><li><b>Poudre runique</b> à gauche (3 nécessaires) ;</li><li><b>Essence magique</b> au centre : elle choisit le type de parchemin (pierre → Robustesse, braise → Fureur, vent → Adresse) ;</li><li><b>Rune</b> à droite : elle choisit la rareté (mineure → Magique, majeure → Rare, ancienne → Épique, primordiale → Légendaire).</li></ul></li><li>Cliquez sur <b>Enchanter</b> : le parchemin rejoint l’inventaire.</li></ol><p class="mftip">Plus la rareté du parchemin est haute, plus l’affixe ajoutée est forte.</p>`};
 const helpBtn=()=>`<button class="mfhelp ${fHelpOn()?'on':''}" data-act="fHelp" aria-pressed="${fHelpOn()}" ${ttip(fHelpOn()?'Masquer les explications':'Afficher les explications','Affiche ou masque le guide à gauche.')}>?</button>`;
 const ANVIL=`<svg class="mfanvil" viewBox="0 0 200 90" aria-hidden="true"><path d="M20 20h120c6 18 22 26 50 28v10h-48l-10 14h12v14H56V72h12l-8-16C34 54 22 42 20 20z"/><path d="M24 22h114" stroke="#e8a13a" stroke-width="2" opacity=".7"/></svg>`;
@@ -4424,9 +4497,9 @@ const affRound=(s,v)=>s==='ap'?v:PCT.has(s)?Math.max(.5,r1(v)):Math.max(1,Math.r
 function forgeUp(){
   const h=S.heroes[0],found=UI.fItem?findItem(UI.fItem):null,it=found&&found.it;
   if(UI.fUp&&fsHave(UI.fUp)<1) UI.fUp=null; if(UI.fBon&&fsHave(UI.fBon)<1) UI.fBon=null;
-  const top=`<div id="fslot" class="mfs big ${it?'full item':''}" ${it?`style="--rc:var(--r${it.rarity})" data-tip="f:${it.id}"`:''}>${it?`${bigIcon(it)}${it.up?`<em class="mfup num">+${it.up}</em>`:''}`:'<small>Déposez l’objet à améliorer</small>'}</div>`;
+  const top=`<div id="fslot" data-act="fsPick" data-s="top" class="mfs big ${it?'full item':''} ${UI.invHL==='top'&&UI.invOpen?'pick':''}" ${it?`style="--rc:var(--r${it.rarity})" data-tip="f:${it.id}"`:''}>${it?`${bigIcon(it)}${it.up?`<em class="mfup num">+${it.up}</em>`:''}`:'<small>Déposez l’objet à améliorer</small>'}</div>`;
   const bottom=`<div class="mfrow1">${fsSlot('up',UI.fUp,'Amélioration')}${UI.fUp==='st_up'?fsSlot('bon',UI.fBon,'Bonus','xs'):''}</div>`;
-  const head=it?`<div class="mfhead">${helpBtn()}<b>${esc(it.name)}</b><small style="color:var(--r${it.rarity})">${RAR[it.rarity].n}</small><span class="mfaffc">Affixes <b class="num">${it.aff.length} / 5</b>${pips(it.aff.length)}</span>${it?`<button class="mfx" data-act="fClear" ${ttip('Retirer l’objet')}>${uic('xx')}</button>`:''}</div>`:`<div class="mfhead">${helpBtn()}<b>Enclume</b><small>Aucun objet posé</small></div>`;
+  const head=it?`<div class="mfhead">${helpBtn()}<span class="mfht"><b>${esc(it.name)}</b><small style="color:var(--r${it.rarity})">${RAR[it.rarity].n}</small><span class="mfaffc">Affixes <b class="num">${it.aff.length} / 5</b>${pips(it.aff.length)}</span></span>${it?`<button class="mfx" data-act="fClear" ${ttip('Retirer l’objet')}>${uic('xx')}</button>`:''}</div>`:`<div class="mfhead">${helpBtn()}<span class="mfht"><b>Enclume</b><small>Aucun objet posé</small></span></div>`;
   let right;
   if(!it){ const eq=SLOTS.map(s=>h.equip[s]).filter(Boolean);
     right=`<h3>Aucun objet</h3><p>Glissez un équipement de l’inventaire dans le grand cercle, ou faites un clic droit dessus.</p><button class="btn" data-act="invOpen">${uic('bag')} Ouvrir l’inventaire <kbd>I</kbd></button><h4>Objets portés</h4><div class="mfeq">${eq.map(x=>`<button class="mfeqb" style="--rc:var(--r${x.rarity})" data-act="fPick" data-id="${x.id}" data-tip="f:${x.id}">${bigIcon(x)}${x.up?`<em>+${x.up}</em>`:''}</button>`).join('')||'<small class="mute">Aucun</small>'}</div>`}
@@ -4447,7 +4520,7 @@ function enchInfo(){
 function forgeEnch(){
   ['eCat','eP','eE','eR'].forEach(k=>{if(UI[k]&&fsHave(UI[k])<1)UI[k]=null});
   const I=enchInfo();
-  const top=fsSlot('cat',UI.eCat,'Parchemin vierge','big');
+  const top=`<div class="mfcore">${RCIRCLE}${fsSlot('cat',UI.eCat,'Parchemin vierge','big')}</div>`;
   const bottom=`<div class="mfrow3">${fsSlot('p',UI.eP,'Poudre runique','sm',3)}${fsSlot('e',UI.eE,'Essence magique')}${fsSlot('r',UI.eR,'Rune')}</div>`;
   const O=I.out&&NEWI[I.out];
   const chk=(ok,txt)=>`<li class="${ok?'ok':'no'}">${uic(ok?'check':'xx')} ${txt}</li>`;
@@ -4457,21 +4530,21 @@ function forgeEnch(){
    <h4>Type selon l’essence</h4><table class="mftab">${Object.entries(SC_T).map(([t,T])=>`<tr class="${I.t===t?'cur':''}"><td>${NEWI[T.es].n.replace('Essence magique ','Essence ')}</td><td>${T.n}</td></tr>`).join('')}</table>
    <div class="mfgo"><span class="mfok">Réussite <b class="num">100 %</b></span><div class="mfcost">Coût : ${costHTML(I.cost)}</div><button class="btn pri amgo" data-act="eDo" ${I.ok&&canPay(I.cost)?'':'disabled'}>${uic('spark')} Enchanter</button></div>`;
   return `<div class="mfwork ${fHelpOn()?'':'nohelp'}">${fHelpOn()?`<aside class="mfl">${EXPL.ench}</aside>`:''}
-   <section class="mfc ench" id="mfc">${RCIRCLE}<div class="mfhead">${helpBtn()}<b>Autel d’enchantement</b><small>Catalyseur et combinaison</small></div><div class="mfalt">${top}<div class="mflink"></div>${bottom}</div><small class="mfhint">Glissez les objets depuis l’inventaire ou faites un clic droit dessus.</small></section>
+   <section class="mfc ench" id="mfc"><div class="mfhead">${helpBtn()}<span class="mfht"><b>Autel d’enchantement</b><small>Catalyseur et combinaison</small></span></div><div class="mfalt">${top}<div class="mflink"></div>${bottom}</div><small class="mfhint">Glissez les objets depuis l’inventaire ou faites un clic droit dessus.</small></section>
    <aside class="mfr">${right}</aside></div>`;
 }
 function viewForge(){
   if(!['forge','ench'].includes(UI.ws)) UI.ws='forge';
-  if(!FSUB.some(([k])=>k===UI.fMode)) UI.fMode='forge';
+  if(!FSUB.some(([k])=>k===UI.fMode)) UI.fMode='up';
   const ws=WORKSHOPS.map(([k,i,n,d],j)=>j>1?`<div class="mawt lock" aria-disabled="true" ${ttip(n,SOON)}><span class="mawi">${uic(i)}</span><span><b>${n}</b><small>${SOON}</small></span>${uic('lock','malk')}</div>`
-    :`<button class="mawt ${UI.ws===k?'on':''}" data-act="ws" data-w="${k}" aria-pressed="${UI.ws===k}"><span class="mawi">${uic(i)}</span><span><b>${n}</b><small>${j?'Créer des parchemins d’amélioration.':d}</small></span></button>`).join('');
+    :`<button class="mawt ${UI.ws===k?'on':''}" data-act="ws" data-w="${k}" aria-pressed="${UI.ws===k}"><span class="mawi">${uic(i)}</span><span><b>${n}</b><small>${j?'Créer des parchemins d’amélioration.':'Renforcer et recycler l’équipement.'}</small></span></button>`).join('');
   if(UI.ws==='ench') return `<div class="ma1"><div class="mawts">${ws}</div><div class="mabody noside">${forgeEnch()}</div></div>`;
   const sub=`<div class="masub" role="tablist" aria-label="Forge">${FSUB.map(([k,i,n])=>`<button role="tab" aria-selected="${UI.fMode===k}" class="${UI.fMode===k?'on':''}" data-act="fMode" data-m="${k}">${uic(i)}<span>${n}</span></button>`).join('')}</div>`;
   return `<div class="ma1"><div class="mawts">${ws}</div><div class="mabody">${sub}${UI.fMode==='up'?forgeUp():UI.fMode==='salv'?forgeSalv():forgeCreate()}</div></div>`;
 }
 /* placement des objets dans les cases */
 function fPlace(o,slot){
-  if(!o) return;
+  if(!o) return; UI.invHL=null;
   if(!o.mat){ UI.ws='forge'; UI.fMode='up'; UI.fItem=o.id; render(); return }
   const k=o.mat,N=NEWI[k];
   const want=k==='sc_blank'?'cat':k==='pd_rune'?'p':N&&N.ess?'e':N&&N.rune?'r':N&&N.bon?'bon':isUpK(k)?'up':null;
@@ -4507,9 +4580,23 @@ function eDo(){
   save(); render(); requestAnimationFrame(()=>fFx('ench',true)); toast(`${NEWI[I.out].n} (${RAR[NEWI[I.out].r].n.toLowerCase()}) créé : il est dans l’inventaire.`);
 }
 
+/* ---------- inventaire filtré pendant l'artisanat ---------- */
+function wantSlot(o){
+  if(!o) return null; if(!o.mat) return 'top';
+  const k=o.mat,N=NEWI[k];
+  return k==='sc_blank'?'cat':k==='pd_rune'?'p':N&&N.ess?'e':N&&N.rune?'r':N&&N.bon?'bon':isUpK(k)?'up':null;
+}
+function craftRel(o){ const w=wantSlot(o); if(!w) return false; if(UI.ws==='ench') return ['cat','p','e','r'].includes(w); return ['top','up','bon'].includes(w) }
+function craftCls(o){
+  if(UI.tab!=='forge'||UI.fMode==='salv'&&UI.ws!=='ench') return '';
+  if(UI.invHL) return wantSlot(o)===UI.invHL?' hl':' dim';
+  return craftRel(o)?'':' hidecraft';
+}
+
 /* ================= nouvelle saison : remise à zéro de tous les comptes ================= */
 async function seasonLoad(){
-  try{ const d=await FB.db.collection(COL('config')).doc('reset').get(); FB.season=d.exists?d.data():{n:0} }catch(e){ FB.season=null }
+  try{ const d=await FB.db.collection(COL('config')).doc('reset').get(); FB.season=d.exists?d.data():{n:0}; lsSet(KP+'seasonc',JSON.stringify({n:FB.season.n||0,title:FB.season.title||''})) }catch(e){ FB.season=null }
+  seasonPaint();
   seasonCheck();
 }
 function seasonWipe(R){
@@ -4549,6 +4636,102 @@ async function seasonGo(){
   try{ await FB.db.collection(COL('config')).doc('reset').set(doc); FB.season=doc; UI.confirm=null; toast('Saison '+n+' lancée : tous les comptes repartent de zéro.'); seasonCheck() }
   catch(e){ toast('Échec ('+((e&&e.code)||'erreur')+') : vérifiez la règle Firestore de config/reset.') }
   UI.wiping=false; if(UI.scr==='opts') render();
+}
+
+/* ================= Administration ================= */
+const seasonTitle=()=>{ const R=FB.season||(()=>{try{return JSON.parse(lsGet(KP+'seasonc')||'null')}catch(e){return null}})(); const n=R?(+R.n||0):0; return (R&&R.title)||('Saison '+Math.max(1,n)) };
+function seasonPaint(){ const t=seasonTitle(); document.querySelectorAll('.seasont').forEach(e=>e.textContent=t) }
+const ADM_TABS=[['home','grid','Vue d’ensemble'],['season','flag','Saison'],['mail','mail','Messages'],['players','people','Joueurs'],['best','skull','Bestiaire'],['give','gift','Donner un objet'],['dbg','anvil','Débogage'],['admins','lock','Administrateurs']];
+Object.assign(UIC,{grid:'<rect x="3" y="3" width="8" height="8" rx="1"/><rect x="13" y="3" width="8" height="8" rx="1"/><rect x="3" y="13" width="8" height="8" rx="1"/><rect x="13" y="13" width="8" height="8" rx="1"/>',
+ shieldk:'<path d="M12 3 4 6v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V6z"/><path d="M9 12l2 2 4-4"/>'});
+UIC.gift=UIC.gift||'<rect x="3" y="9" width="18" height="12" rx="1"/><path d="M3 13h18M12 9v12"/>';
+const ADM={players:null,pErr:'',admins:null,aErr:'',busy:false};
+async function admLoadPlayers(){
+  if(ADM.pLoad) return; ADM.pLoad=true; ADM.pErr=''; ADM.players=null;
+  try{ const qs=await FB.db.collection(COL('profiles')).limit(300).get(); ADM.players=qs.docs.map(d=>({uid:d.id,...d.data()})).sort((a,b)=>(isOnline(b)-isOnline(a))||String(a.name||'').localeCompare(String(b.name||''))) }
+  catch(e){ ADM.pErr=(e&&e.code)||'erreur' }
+  ADM.pLoad=false; if(UI.scr==='admin') render();
+}
+async function admLoadAdmins(){
+  if(ADM.aLoad) return; ADM.aLoad=true;
+  try{ const d=await FB.db.collection(COL('config')).doc('admin').get(); ADM.admins=d.exists?(d.data().uids||[]):[] }catch(e){ ADM.aErr=(e&&e.code)||'erreur' }
+  ADM.aLoad=false; if(UI.scr==='admin') render();
+}
+async function admSetAdmins(list){
+  try{ await FB.db.collection(COL('config')).doc('admin').set({uids:list},{merge:true}); ADM.admins=list; toast('Liste des administrateurs mise à jour.') }
+  catch(e){ toast('Échec ('+((e&&e.code)||'erreur')+').') }
+  render();
+}
+async function admSeasonTitle(){
+  const v=($('#admstitle')||{}).value; const title=String(v||'').trim().slice(0,60);
+  try{ await FB.db.collection(COL('config')).doc('reset').set({title},{merge:true}); FB.season=Object.assign({},FB.season||{n:0},{title}); lsSet(KP+'seasonc',JSON.stringify(FB.season)); seasonPaint(); toast('Titre de la saison mis à jour.') }
+  catch(e){ toast('Échec ('+((e&&e.code)||'erreur')+') : vérifiez la règle Firestore de config/reset.') }
+  render();
+}
+const admCard=(ic,t,d,body,cl='')=>`<section class="admc ${cl}"><header><span class="admci">${uic(ic)}</span><div><h3>${t}</h3>${d?`<small>${d}</small>`:''}</div></header>${body}</section>`;
+function admHome(){
+  const n=FB.season?(+FB.season.n||0):0,on=FR&&FR.prof?Object.values(FR.prof).filter(p=>isOnline(p)).length:0;
+  const st=(v,l,ic)=>`<div class="adms"><span>${uic(ic)}</span><b class="num">${v}</b><small>${l}</small></div>`;
+  return `<div class="admstats">${st(esc(seasonTitle()),'Saison en cours','flag')}${st(n,'Remises à zéro','swords')}${st(ADM.players?ADM.players.filter(isOnline).length:'—','Joueurs en ligne','people')}${st(ADM.players?ADM.players.length:'—','Comptes','people')}</div>
+   <div class="admgrid">${admCard('lock','Votre compte',`Nom : <b>${esc(FB.prof?FB.prof.name:'?')}</b>`,`<p class="hint">Identifiant (UID) : <code class="uid">${esc(FB.user.uid)}</code></p><button class="btn sm" data-act="copyUid">Copier l’UID</button>`)}
+    ${admCard('flag','Saison',esc(seasonTitle()),`<p class="hint">Titre affiché sous « Cendrelame » et remise à zéro de tous les comptes.</p><button class="btn sm pri" data-act="admTab" data-t="season">Gérer la saison</button>`)}
+    ${admCard('mail','Messages système','Informations, alertes et cadeaux',`<button class="btn sm pri" data-act="admMail">${uic('send')} Écrire un message</button>`)}
+    ${admCard('skull','Bestiaire','Statistiques des ennemis',`<button class="btn sm pri" data-act="scr" data-s="best">Ouvrir le Bestiaire</button>`)}</div>`;
+}
+function admSeason(){
+  return `<div class="admgrid one">${admCard('flag','Titre de la saison','Affiché pour tous les joueurs sous le titre du jeu',`<div class="row" style="gap:8px"><input class="pcsel" id="admstitle" maxlength="60" value="${esc((FB.season&&FB.season.title)||'')}" placeholder="${esc('Saison '+Math.max(1,FB.season?(+FB.season.n||0):1))}" style="flex:1"><button class="btn pri" data-act="admSTitle">Enregistrer</button></div><small class="mute">Laissez vide pour afficher « Saison N ».</small>`)}
+   ${seasonAdminHTML().replace('<section class="panel" style="margin-top:12px"><h2 style="margin-top:0">Remise à zéro de tous les comptes</h2>','<section class="admc danger"><header><span class="admci">'+uic('warn')+'</span><div><h3>Remise à zéro de tous les comptes</h3><small>Nouvelle saison</small></div></header>')}</div>`;
+}
+function admPlayers(){
+  if(!ADM.players&&!ADM.pErr){ setTimeout(admLoadPlayers,0); return '<p class="hint">Chargement des joueurs…</p>' }
+  if(ADM.pErr) return admCard('warn','Liste des joueurs indisponible',ADM.pErr,`<p class="hint">Ajoutez cette règle Firestore pour que les administrateurs puissent lister les profils :</p><pre class="admpre">match /profiles/{uid} {\n  allow list: if request.auth != null\n    && request.auth.uid in get(/databases/$(database)/documents/config/admin).data.uids;\n}</pre><button class="btn sm" data-act="admPl">Réessayer</button>`,'danger');
+  const q=(UI.admQ||'').toLowerCase(),L=ADM.players.filter(p=>!q||String(p.name||'').toLowerCase().includes(q));
+  const rows=L.map(p=>{const c=p.char,ol=isOnline(p);return `<tr><td><span class="st ${ol?'on':''}"></span></td><td><b>${esc(p.name||'?')}</b></td><td>${c?`${esc(c.name)} · ${(CLASSES[c.cls]||{n:''}).n} niv. ${c.lvl}`:'<span class="mute">—</span>'}</td><td class="mute">${ol?'En ligne':p.lastSeen?new Date(tsMs(p.lastSeen)).toLocaleString('fr-FR',{dateStyle:'short',timeStyle:'short'}):'—'}</td><td><code class="uid">${esc(p.uid)}</code></td><td><button class="btn sm" data-act="admMailTo" data-n="${esc(p.name||'')}">${uic('mail')}</button></td></tr>`}).join('');
+  return `<div class="row" style="gap:8px;margin-bottom:10px"><input class="pcsel" id="admq" placeholder="Rechercher un joueur" value="${esc(UI.admQ||'')}" style="flex:1"><button class="btn sm" data-act="admPl">Actualiser</button></div>
+   <div class="admtbl"><table><thead><tr><th></th><th>Compte</th><th>Personnage</th><th>Vu</th><th>UID</th><th></th></tr></thead><tbody>${rows||'<tr><td colspan="6" class="mute">Aucun joueur.</td></tr>'}</tbody></table></div>`;
+}
+function admAdmins(){
+  if(ADM.admins==null&&!ADM.aErr){ setTimeout(admLoadAdmins,0); return '<p class="hint">Chargement…</p>' }
+  const L=ADM.admins||[];
+  return admCard('lock','Administrateurs',`${L.length} compte${L.length>1?'s':''}`,`<ul class="admlist">${L.map(u=>`<li><code class="uid">${esc(u)}</code>${u===FB.user.uid?'<span class="admme">vous</span>':`<button class="btn sm danger" data-act="admDel" data-u="${esc(u)}">Retirer</button>`}</li>`).join('')}</ul>
+   <div class="row" style="gap:8px;margin-top:10px"><input class="pcsel" id="admnew" placeholder="UID du nouvel administrateur" style="flex:1"><button class="btn pri" data-act="admAdd">Ajouter</button></div><small class="mute">L’UID se trouve dans Administration → Vue d’ensemble du compte concerné, ou dans l’onglet Joueurs.</small>`);
+}
+function viewAdmin(){
+  if(!FB.admin){ return `<div class="scrhead"><h2>Administration</h2>${backBtn()}</div><p class="hint">Réservé aux administrateurs.</p>` }
+  const t=ADM_TABS.some(x=>x[0]===UI.admT)?UI.admT:'home';
+  const nav=ADM_TABS.map(([k,i,n])=>`<button class="${t===k?'on':''}" data-act="admTab" data-t="${k}">${uic(i)}<span>${n}</span></button>`).join('');
+  const ok=S&&S.heroes&&S.heroes.length;
+  const body=t==='home'?admHome():t==='season'?admSeason():t==='players'?admPlayers():t==='admins'?admAdmins()
+   :t==='mail'?admCard('mail','Messages système','Envoyés dans la messagerie de tous les joueurs ou d’un seul',`<p class="hint">Rédigez un message (information, alerte ou cadeau avec pièces jointes) depuis la fenêtre de messagerie.</p><button class="btn pri" data-act="admMail">${uic('send')} Ouvrir l’éditeur de message</button>`)
+   :t==='best'?admCard('skull','Bestiaire','Réglez les statistiques et les compétences des ennemis pour tous les joueurs',`<button class="btn pri" data-act="scr" data-s="best">Ouvrir le Bestiaire</button>`)
+   :t==='give'?`<div class="admwide">${dbgGive(ok)}</div>`:`<div class="admwide">${dbgPanel()}</div>`;
+  return `<div class="adm"><header class="admhead"><span class="admlogo">${uic('shieldk')}</span><div><h2>Administration</h2><small>${esc(FB.prof?FB.prof.name:'')} · ${esc(seasonTitle())}</small></div><span style="margin-left:auto"></span>${backBtn()}</header>
+   <div class="admbody"><nav class="admnav">${nav}</nav><div class="admmain">${body}</div></div></div>`;
+}
+
+/* ================= raid en solo ================= */
+const SOLO={hp:.35,atk:.65,rw:.6};
+function soloBoss(R){
+  const r=RAIDS.find(x=>x.id===R.r),o=mkRaidBoss(r,R.t);
+  return Object.assign(o,{id:'e1',team:'e',name:r.n,ic:'boss',hue:40,boss:true,hp:Math.round(o.hp*SOLO.hp),maxHp:Math.round(o.hp*SOLO.hp),atk:o.atk*SOLO.atk,mag:o.mag*SOLO.atk,regen:0,healPow:0,shield:0});
+}
+const soloRw=(r,t)=>Object.fromEntries(Object.entries(rdRw(r,t)).map(([k,v])=>[k,Math.max(1,Math.round(v*SOLO.rw))]));
+function raidSolo(){
+  if(inFight()) return; const r=RAIDS[UI.raidB||0],t=rdTier(),h=S.heroes[0];
+  if(h.lvl<r.req){ toast(`Niveau ${r.req} requis.`); return }
+  UI.tab='combat'; startBattle(false,{r:r.id,t});
+}
+function raidSoloFinish(res){
+  C.pending=null;C.waiting=null;C.turn=null; const r=RAIDS.find(x=>x.id===C.raid.r),t=C.raid.t;
+  S.raidS=S.raidS||{w:0,l:0};
+  if(res==='win'){
+    const rw=soloRw(r,t); gain(rw); let up=false; S.raid=S.raid||{};
+    if(t>=raidMax(r.id)){ S.raid[r.id]=t+1; up=true; UI.raidT=S.raid[r.id] }
+    const chest=Math.random()*100<chestRate(t); if(chest) chestGive(1); S.raidS.w++;
+    C.result={win:true,xp:0,gold:rw.gold,mats:Object.fromEntries(Object.entries(rw).filter(([k])=>k!=='gold')),items:[],ups:[]};
+    logLine('Raid réussi !','hl'); setTimeout(()=>rdLoot({tier:t},r,rw,up,chest),500);
+  }else{ S.raidS.l++; C.result={win:false}; logLine('Le raid a échoué.','cr'); S.farm=false }
+  C.phase='result'; save(); renderHeader(); if(UI.tab==='combat') render();
 }
 
 function viewCombatIdle(){
@@ -4765,7 +4948,7 @@ function dollHTML(h){
   }).join('');
   return `<div class="doll" id="doll" style="--h:${h.hue}">${svg}${slots}</div>`;
 }
-const itemBtns=i=>`<button class="btn sm pri" data-act="equip" data-id="${i.id}">Équiper</button><button class="btn sm" data-act="toForge" data-id="${i.id}">Renforcer</button>${UI.confirm==='del'+i.id?`<button class="btn sm warn" data-act="salv" data-id="${i.id}">Confirmer</button><button class="btn sm" data-act="noConfirm">Annuler</button></div><p class="hint" style="width:100%;margin-top:4px">Vous récupérerez : ${resTxt(salvageValue(i))}.</p><div class="foot">`:`<button class="btn sm danger" data-act="salv" data-id="${i.id}">Détruire</button>`}`;
+const itemBtns=i=>`<button class="btn sm pri" data-act="equip" data-id="${i.id}">Équiper</button><button class="btn sm" data-act="toForge" data-id="${i.id}">Renforcer</button>`;
 
 /* --- inventaire en grille --- */
 const cellName=c=>c.mat?MAT_OBJ[c.mat]:c.name;
@@ -4778,8 +4961,8 @@ function gridHTML(){
   const items=S.bag.map((e,i)=>{
     const c=e.o,[w,h]=SIZE(c),pos=`grid-column:${e.x+1}/span ${w};grid-row:${e.y+1}/span ${h}`;
     const sel=UI.multi?(UI.pick.has(c)?' pick':''):UI.tab==='forge'?((UI.bagSel===c||(c.id&&c.id===UI.fItem))?' sel':''):(UI.bagSel===c?' sel':'');
-    if(c.mat) return `<button class="cell full gi mat${sel}${NEWI[c.mat]?' rq':''}" style="${pos}${NEWI[c.mat]?';--rc:var(--r'+NEWI[c.mat].r+')':''}" data-act="bagCell" data-i="${i}" data-tip="bag:${i}" aria-label="${MAT_OBJ[c.mat]}, ${c.n}">${matSvg(c.mat)}<span class="q">${c.n}</span></button>`;
-    return `<button class="cell full gi it${sel}" style="${pos};--rc:var(--r${c.rarity})" data-act="bagCell" data-i="${i}" data-tip="bag:${i}" aria-label="${esc(c.name)}${c.up?' +'+c.up:''}, ${RAR[c.rarity].n}">${bigIcon(c)}${c.up?`<span class="u">+${c.up}</span>`:''}</button>`;
+    if(c.mat) return `<button class="cell full gi mat${sel}${craftCls(c)}${NEWI[c.mat]?' rq':''}" style="${pos}${NEWI[c.mat]?';--rc:var(--r'+NEWI[c.mat].r+')':''}" data-act="bagCell" data-i="${i}" data-tip="bag:${i}" aria-label="${MAT_OBJ[c.mat]}, ${c.n}">${matSvg(c.mat)}<span class="q">${c.n}</span></button>`;
+    return `<button class="cell full gi it${sel}${craftCls(c)}" style="${pos};--rc:var(--r${c.rarity})" data-act="bagCell" data-i="${i}" data-tip="bag:${i}" aria-label="${esc(c.name)}${c.up?' +'+c.up:''}, ${RAR[c.rarity].n}">${bigIcon(c)}${c.up?`<span class="u">+${c.up}</span>`:''}</button>`;
   }).join('');
   return `<div class="bagwrap"><div class="bag ${UI.multi?'multi':''}" id="bag">${bg}${items}</div></div>`;
 }
@@ -4792,7 +4975,7 @@ function bagParts(){
   const arrow=k=>so.k!==k?'':k==='name'?(so.dir>0?' A→Z':' Z→A'):(so.dir>0?' ↓':' ↑');
   const si=UI.bagSel?entryOf(UI.bagSel):-1,c=si>=0?UI.bagSel:null,k=UI.invSel,eq=k?h.equip[k]:null;
   let detail='';
-  if(c&&c.mat) detail=matCard(c,`<button class="btn sm" data-act="bagSplit" data-i="${si}" ${c.n<2||!freeCells()?'disabled':''}>Diviser la pile</button>`+(UI.confirm==='mat'+si?`<button class="btn sm warn" data-act="matDel" data-i="${si}">Confirmer (${c.n} perdus)</button><button class="btn sm" data-act="noConfirm">Annuler</button>`:`<button class="btn sm danger" data-act="matDel" data-i="${si}">Détruire la pile</button>`));
+  if(c&&c.mat) detail=matCard(c,`<button class="btn sm" data-act="bagSplit" data-i="${si}" ${c.n<2||!freeCells()?'disabled':''}>Diviser la pile</button>`);
   else if(c) detail=itemCard(c,itemBtns(c),swapDelta(h,c));
   else if(k) detail=(eq?itemCard(eq,`<button class="btn sm" data-act="unequip" data-slot="${k}">Retirer</button><button class="btn sm" data-act="toForge" data-id="${eq.id}">Renforcer</button>`):'<p class="hint">Emplacement vide. Glissez-y un objet de l’inventaire.</p>');
   const sep=S.statSplit;
@@ -4813,7 +4996,7 @@ function bagParts(){
     <div class="row" style="margin-bottom:10px"><span class="mute">Trier par</span>
       <button class="chip ${so.k==='name'?'on':''}" data-act="bagSort" data-k="name">Nom${arrow('name')}</button>
       <button class="chip ${so.k==='qty'?'on':''}" data-act="bagSort" data-k="qty">Quantité${arrow('qty')}</button>
-      <button class="btn sm ${UI.multi?'warn':'danger'}" style="margin-left:auto" data-act="multiToggle">${UI.multi?'Quitter la destruction':'Détruire plusieurs objets'}</button></div>
+      </div>
     ${UI.multi?multiBar():''}
     ${gridHTML()}
     ${c&&!UI.multi?detPanel('Détails',detail,'det-n'):''}
@@ -4871,7 +5054,7 @@ const dragItem=d=>d.src==='stash'?(stashTab().bag[d.from]||{}).o:d.src==='bag'?(
 function equipFromCell(i,slot){
   const h=S.heroes[0],E=S.bag[i],it=E&&E.o; if(!it||it.mat) return;
   if(slotType(slot)!==it.slot){toast('Cet objet ne va pas dans cet emplacement.');return}
-  if(!canWear(it)){toast(`Réservé au ${CLASSES[it.cls].n}.`);return}
+  if(!canWear(it)){toast(clsOk(it)?`Niveau ${it.req} requis pour porter cet objet.`:`Réservé au ${CLASSES[it.cls].n}.`);return}
   const old=h.equip[slot];
   S.bag.splice(i,1);
   if(old){
@@ -5007,23 +5190,24 @@ function detPanel(title,html,cls=''){
 function forgeDetail(){
   const si=UI.bagSel?entryOf(UI.bagSel):-1,c=si>=0?UI.bagSel:null; if(!c||UI.multi) return '';
   if(c.mat) return detPanel('Détails',matCard(c,`<button class="btn sm" data-act="bagSplit" data-i="${si}" ${c.n<2||!freeCells()?'disabled':''}>Diviser la pile</button>`));
-  const h=S.heroes[0],btns=`<button class="btn sm pri" data-act="fPut" data-id="${c.id}">Améliorer</button>${canWear(c)?`<button class="btn sm" data-act="equip" data-id="${c.id}">Équiper</button>`:''}`+(UI.confirm==='del'+c.id?`<button class="btn sm warn" data-act="salv" data-id="${c.id}">Confirmer</button><button class="btn sm" data-act="noConfirm">Annuler</button></div><p class="hint" style="width:100%;margin-top:4px">Vous récupérerez : ${resTxt(salvageValue(c))}.</p><div class="foot">`:`<button class="btn sm danger" data-act="salv" data-id="${c.id}">Détruire</button>`);
+  const h=S.heroes[0],btns=`<button class="btn sm pri" data-act="fPut" data-id="${c.id}">Améliorer</button>${canWear(c)?`<button class="btn sm" data-act="equip" data-id="${c.id}">Équiper</button>`:''}`;
   return detPanel('Détails',itemCard(c,btns,swapDelta(h,c)));
 }
 const invAllowed=()=>!!(S&&S.heroes&&S.heroes.length&&!UI.scr&&!inFight()&&!(PV.match&&['fight','prep'].includes(PV.match.state))&&!(RD.match&&['fight','prep'].includes(RD.match.state)));
 function openInv(v){
   if(v&&!invAllowed()){ if(S&&!UI.scr) toast('L’inventaire n’est pas disponible pendant un combat.'); return }
-  UI.invOpen=!!v; if(v) S.bagDot=false; if(!v){ UI.bagSel=null; UI.invSel=null; UI.multi=false; UI.confirm=null }
+  UI.invOpen=!!v; if(v) S.bagDot=false; if(!v){ UI.invHL=null; UI.bagSel=null; UI.invSel=null; UI.multi=false; UI.confirm=null }
   const y=scrollY; render(); scrollTo(0,y);
 }
-function renderInvPop(){
+function renderInvPop(){ const keep=scrollKeep(); renderInvPop1(); if(keep.length) scrollBack(keep) }
+function renderInvPop1(){
   let w=$('#invpop');
   if(!UI.invOpen||!invAllowed()){ if(w) w.remove(); if(UI.invOpen&&S&&S.heroes&&S.heroes.length&&!UI.scr) UI.invOpen=false; renderStashPop(); return }
   const fresh=!w;
   if(!w){ w=document.createElement('div'); w.id='invpop'; w.className='invpop'; w.setAttribute('role','dialog'); w.setAttribute('aria-label','Inventaire'); document.body.append(w) }
   const P=bagParts(),so=UI.bagSort;
   w.innerHTML=`<div class="iphead" data-ipdrag><span class="ipt">${icon('chest')}<b>Inventaire</b></span><small class="num ipcnt">${P.used} / ${BAG}</small><span class="ipg"></span><button class="btn sm ipcb ${UI.cbInv?'on':''}" data-act="cbToggle" aria-pressed="${!!UI.cbInv}" ${ttip('Sac de combat','Choisissez les potions emportées en combat (quantités limitées).')}>${uic('flask')}Combat</button><button class="btn sm ipchest ${UI.stashOpen?'on':''}" data-act="stToggle" aria-pressed="${!!UI.stashOpen}" title="Coffre du compte">${icon('chest')}Coffre</button><button class="ipx" data-act="invClose" aria-label="Fermer l’inventaire" title="Fermer (I)">×</button></div>
-    <div class="iptools"><span class="mute">Trier</span><div class="ipseg"><button class="${so.k==='name'?'on':''}" data-act="bagSort" data-k="name">Nom${P.arrow('name')}</button><button class="${so.k==='qty'?'on':''}" data-act="bagSort" data-k="qty">Quantité${P.arrow('qty')}</button></div><button class="btn sm ${UI.multi?'warn':''}" style="margin-left:auto" data-act="multiToggle">${UI.multi?'Terminer':'Détruire plusieurs'}</button></div>
+    <div class="iptools"><span class="mute">Trier</span><div class="ipseg"><button class="${so.k==='name'?'on':''}" data-act="bagSort" data-k="name">Nom${P.arrow('name')}</button><button class="${so.k==='qty'?'on':''}" data-act="bagSort" data-k="qty">Quantité${P.arrow('qty')}</button></div></div>
     ${UI.multi?multiBar():''}<div class="ipgrid">${gridHTML()}</div>${UI.cbInv?cbPanel():''}<div class="ipres" id="ipres">${goldRow()}</div>
     ${P.detail&&!UI.multi?`<div class="ipdet"><button class="x" data-act="detClose" aria-label="Fermer les détails">×</button>${P.detail}</div>`:''}`;
   if(fresh&&UI.invPos){ w.style.left=UI.invPos.x+'px'; w.style.top=UI.invPos.y+'px'; w.style.right='auto' }
@@ -5140,7 +5324,7 @@ Object.assign(UIC,{
 });
 const WORKSHOPS=[['forge','anvil','Forge','Créer, renforcer et recycler l’équipement.'],['ench','spark','Enchantement'],['alch','flask','Alchimie'],['rune','rune','Runomancie']];
 const SOON='Arrive dans une prochaine mise à jour';
-const FSUB=[['forge','hammer','Créer'],['up','plus','Renforcer'],['salv','recycle','Recycler']];
+const FSUB=[['up','plus','Renforcer'],['salv','recycle','Recycler']];
 function forgeCreate(){
   const h=S.heroes[0],t=TIERS[UI.fTier],pr=prismOn(),odds=pr?PRISM.odds:t.odds,lv=pr?PRISM.lv:t.lv,tot=odds.reduce((a,b)=>a+b,0),tc=forgeCost(),fb=baseFor(UI.fSlot,h.cls),np=matAll('prisme');
   const fit=canFit(...SIZE({slot:UI.fSlot}));
@@ -5177,7 +5361,7 @@ function forgeSalv(){
   const cards=[0,1,2].map(r=>{const L=items.filter(i=>i.rarity<=r),tot={};L.forEach(i=>{for(const [k,x] of Object.entries(salvageValue(i)))tot[k]=(tot[k]||0)+x});const cf=UI.confirm==='salv'+r;
     return `<div class="masalv"><b>Jusqu’à <span style="color:var(--r${r})">${RAR[r].n.toLowerCase()}</span></b><small>${L.length} objet${L.length>1?'s':''} du sac</small><div class="mprew">${L.length?resChips(tot):'<span class="mute">rien à récupérer</span>'}</div><button class="btn sm ${cf?'danger':''}" data-act="salvBelow" data-r="${r}" ${L.length?'':'disabled'}>${cf?`Confirmer (${L.length})`:'Recycler'}</button></div>`}).join('');
   return `<div class="mawork salv"><div class="maanvil masalvs"><div class="matier"><span><b>Recyclage</b><small>Détruisez les objets du sac pour récupérer des ressources</small></span></div><div class="masalvg">${cards}</div></div>
-   <aside class="aminfo maside"><div class="ambody"><h4>Fonctionnement</h4><p class="amnote">Chaque objet recyclé rend 25 % des ressources ayant servi à sa création.</p><p class="amnote">Les objets portés et ceux du coffre ne sont jamais touchés.</p><p class="amnote">Un objet seul peut aussi être détruit depuis ses détails dans le sac.</p><h4>Sac</h4><p class="amnote"><b class="num">${items.length}</b> objet${items.length>1?'s':''} d’équipement.</p><button class="btn" data-act="invOpen">${uic('bag')} Ouvrir le sac <kbd>I</kbd></button></div></aside></div>`;
+   <aside class="aminfo maside"><div class="ambody"><h4>Fonctionnement</h4><p class="amnote">Chaque objet recyclé rend 25 % des ressources ayant servi à sa création.</p><p class="amnote">Les objets portés et ceux du coffre ne sont jamais touchés.</p><h4>Sac</h4><p class="amnote"><b class="num">${items.length}</b> objet${items.length>1?'s':''} d’équipement.</p><button class="btn" data-act="invOpen">${uic('bag')} Ouvrir le sac <kbd>I</kbd></button></div></aside></div>`;
 }
 function viewForge0(){
   if(!FSUB.some(([k])=>k===UI.fMode)) UI.fMode='forge';
@@ -5357,8 +5541,8 @@ function viewHelp(){
 }
 
 /* --- nouveautés --- */
-const VERSION='0.4.4';
-const BUILD='20261019205918';
+const VERSION='0.4.6';
+const BUILD='20261019222413';
 const PATCH=[
  {v:'0.4.0',t:"Trophées, communauté et nouveaux héros",sec:[
   ["Personnages", ["Nouvel écran de sélection : les cinq emplacements en grandes cartes verticales, chaque héros en pied avec sa classe, son niveau et les boutons Jouer et Supprimer ; le personnage actuel est mis en évidence.", "Nouvel écran de création en forme de registre : nom, classe, apparence, statistiques de départ et aperçu des spécialisations de la classe (description, compétences et talent ultime), avec le héros en grand à droite et le bouton « Créer le personnage ».", "Le Sorcier a deux apparences au choix lors de la création. Le Guerrier garde son portrait en attendant ses illustrations."]],
@@ -5482,7 +5666,7 @@ function viewOpts(){
       <textarea id="impTxt" placeholder="Code de sauvegarde"></textarea><div class="row" style="margin-top:8px"><button class="btn" data-act="import">Importer</button></div></section>
     <section class="panel"><h2>Tout effacer</h2><p class="hint" style="margin-bottom:8px">Efface définitivement tous les personnages, leurs objets, leur progression et l’or.</p>
       ${UI.confirm==='reset'?`<div class="row"><button class="btn danger" data-act="reset">Oui, tout effacer</button><button class="btn" data-act="cancelReset">Annuler</button></div>`:`<button class="btn danger" data-act="reset">Recommencer à zéro</button>`}</section></div>
-    ${adminPanel()}${dbgPanel()}`;
+`;
 }
 function adminPanel(){
   if(!FB.user) return '';
@@ -5515,7 +5699,6 @@ function dbgPanel(){
         <div class="row" style="margin-top:8px">${B('unequip','Retirer tout l’équipement')}${B('advAll','Débloquer toute l’Aventure')}${B('advReset','Remettre l’Aventure à zéro')}</div></section>
       <section class="panel"><h2>Inventaire et forge</h2><div class="row">${B('itemRand','Objet divin aléatoire')}${B('itemSet','Équipement légendaire complet')}${B('bagClear','Vider l’inventaire')}</div></section>
       <section class="panel"><h2>Collecte</h2><div class="row">${B('harvest','Récoltes prêtes partout')}${B('zonesOpen','Ouvrir toutes les zones')}${B('treeMax','Arbres au maximum')}${B('treeReset','Arbres à zéro')}</div></section>
-      ${dbgGive(ok)}
       <section class="panel"><h2>Divers</h2><div class="row">${B('news','Revoir le point « Nouveautés »')}</div><div class="row" style="margin-top:10px">${rp}</div>
         ${UI.confirm==='dbgReset'?'<p class="hint" style="color:var(--blood);margin-top:6px">Niveau, compétences, équipement, inventaire, matériaux, collecte et Aventure seront remis à zéro. Le nom, la classe et l’or partagé sont conservés.</p>':''}</section>
     </div>`;
@@ -5529,9 +5712,10 @@ const bestSnap=()=>JSON.parse(JSON.stringify({
   sk:Object.fromEntries(Object.entries(ENSK).map(([id,k])=>[id,{ap:k.ap||0,cd:k.cd,mult:k.mult==null?null:k.mult,fx:(k.fx||[]).map(f=>Object.fromEntries(EFX.filter(x=>f[x]!=null).map(x=>[x,f[x]])))}])),
   enf:{hp:[...ENF.hp],atk:[...ENF.atk],def:[...ENF.def]},
   diff:Object.fromEntries(['hero','myth'].map(d=>[d,{hp:DIFF[d].hp,atk:DIFF[d].atk,bHp:DIFF[d].bHp,bAtk:DIFF[d].bAtk,bDef:DIFF[d].bDef,rage:DIFF[d].rage}]))}));
+ZONES.forEach(z=>{z.boss.hp=Math.round(z.boss.hp*.6*100)/100;z.boss.atk=Math.round(z.boss.atk*.75*100)/100});
 const BEST_DEF=bestSnap();
 function applyBest(cfg){
-  const src=[BEST_DEF,cfg].filter(Boolean);
+  const src=[BEST_DEF,cfg&&cfg.bal>=2?cfg:null].filter(Boolean);
   for(const c of src){
     (c.zones||[]).forEach((z,i)=>{const Z=ZONES[i]; if(!Z||!z) return;
       (z.enemies||[]).forEach((e,j)=>{if(Z.enemies[j]&&e) Object.assign(Z.enemies[j],{hp:+e.hp,atk:+e.atk,def:+e.def,spd:+e.spd||1,sk:(e.sk||[]).filter(x=>ENSK[x])},e.res?{res:Object.fromEntries(Object.entries(e.res).map(([k,v])=>[k,+v]))}:{})});
@@ -5694,7 +5878,7 @@ const A={
     logLine('Vous abandonnez le combat.','cr'); C.phase='result'; save(); render() },
   flee:()=>{C.abort=true;C.id++;if(C.waiting){const w=C.waiting;C.waiting=null;w.res({})}C.phase='idle';C.pending=null;S.farm=false;render()},
   back:()=>{C.phase='idle';render()},
-  again:()=>{C.phase='idle';startBattle()},
+  again:()=>{const r=C.raid;C.phase='idle';startBattle(false,r)},
   next:()=>{C.phase='idle';startBattle()},
   skill:d=>{
     const w=C.waiting; if(!w) return; const sk=SK[d.id]; if((sk.ap||0)>(w.u.ap||0)||(w.u.cds[d.id]||0)||(d.id==='atk'&&w.u.atkUsed)) return;
@@ -5741,6 +5925,7 @@ const A={
   bagCell:d=>{const i=+d.i;UI.confirm=null;
     const E=S.bag[i]; if(!E) return; const o=E.o;
     if(UI.multi){UI.pick.has(o)?UI.pick.delete(o):UI.pick.add(o);render();return}
+    if(UI.tab==='forge'&&UI.invHL&&wantSlot(o)===UI.invHL){ UI.invHL=null; fPlace(o); return }
     UI.bagSel=UI.bagSel===o?null:o;UI.invSel=null;render();detScroll()},
   noConfirm:()=>{UI.confirm=null;render()},
   detClose:()=>{UI.bagSel=null;UI.invSel=null;UI.confirm=null;render()},
@@ -5802,6 +5987,7 @@ const A={
   seasonOk:()=>{const w=$('#season');if(w)w.remove()},
   ws:d=>{UI.ws=d.w;if(d.w==='forge'&&UI.fMode==='forge'&&UI.fItem)UI.fMode='up';render()},
   fHelp:()=>{ACC.fHelp=!fHelpOn();saveAcc();render()},
+  fsPick:d=>{UI.invHL=d.s; if(!UI.invOpen) openInv(true); else render()},
   fsClear:d=>{const m={up:'fUp',bon:'fBon',cat:'eCat',p:'eP',e:'eE',r:'eR'}[d.s];if(m){UI[m]=null;if(d.s==='up')UI.fBon=null}render()},
   fSet:d=>fPlace({mat:d.k}),
   fPick:d=>{UI.fItem=+d.id;render()},
@@ -6014,7 +6200,7 @@ const A={
   bestSk:d=>{const [zi,j]=d.k.split('.'),z=UI.bw.zones[+zi],o=j==='b'?z.boss:z.enemies[+j],i=o.sk.indexOf(d.s); if(i>=0) o.sk.splice(i,1); else o.sk.push(d.s); applyBest(UI.bw); UI.bdirty=true; const y=scrollY; render(); scrollTo(0,y)},
   bestUndo:()=>{let pub=null; try{pub=JSON.parse(lsGet(BEST_KEY)||'null')}catch(e){} applyBest(pub); UI.bw=bestSnap(); UI.bdirty=false; const y=scrollY; render(); scrollTo(0,y); toast('Modifications annulées.')},
   bestDef:()=>{UI.bw=JSON.parse(JSON.stringify(BEST_DEF)); applyBest(UI.bw); UI.bdirty=true; const y=scrollY; render(); scrollTo(0,y); toast('Valeurs d’origine rétablies (pensez à publier).')},
-  bestPub:async()=>{ if(!FB.admin) return; const json=JSON.stringify(UI.bw||bestSnap());
+  bestPub:async()=>{ if(!FB.admin) return; const json=JSON.stringify({...(UI.bw||bestSnap()),bal:2});
     try{ await FB.db.collection(COL('config')).doc('bestiary').set({json,ts:firebase.firestore.FieldValue.serverTimestamp(),by:FB.user.uid}); lsSet(BEST_KEY,json); UI.bdirty=false; const y=scrollY; render(); scrollTo(0,y); toast('Bestiaire publié pour tous les joueurs.') }
     catch(e){ toast('Publication impossible ('+((e&&e.code)||'erreur')+'). Vérifiez les règles Firestore et le document config/admin.') } },
   bestTest:d=>{ if(!S||!S.heroes||!S.heroes.length){toast('Chargez d’abord un personnage (Jouer).');return}
@@ -6061,9 +6247,18 @@ const A={
   scr:d=>{ if(d.s==='news'){ACC.seenVer=VERSION;saveAcc()} if(d.s==='menu'||d.s==='select') UI.fromGame=false; UI.scr=d.s; UI.confirm=null; render(); scrollTo(0,0) },
   toMenu:()=>{ hideTip(); const dd=$('#menudd'); if(dd){closeMenuDD();return}
     const u=unseenVer(),m=document.createElement('div'); m.id='menudd'; m.className='ddmenu'; m.setAttribute('role','menu');
-    m.innerHTML=`<button role="menuitem" data-act="ddOpt">Options</button><button role="menuitem" data-act="ddNews">Nouveautés${u?'<span class="ndot" aria-label="Nouvelle version"></span>':''}</button><button role="menuitem" data-act="ddChar">Changer de personnage</button>`;
+    m.innerHTML=`<button role="menuitem" data-act="ddOpt">Options</button><button role="menuitem" data-act="ddNews">Nouveautés${u?'<span class="ndot" aria-label="Nouvelle version"></span>':''}</button><button role="menuitem" data-act="ddChar">Changer de personnage</button>${FB.admin?'<button role="menuitem" class="ddadm" data-act="ddAdm">Admin</button>':''}`;
     document.body.append(m); $('#menubtn').setAttribute('aria-expanded','true'); m.querySelector('button').focus() },
   ddOpt:()=>{closeMenuDD(); save(); UI.fromGame=true; UI.scr='opts'; UI.confirm=null; render(); scrollTo(0,0)},
+  ddAdm:()=>{closeMenuDD(); save(); UI.fromGame=true; UI.scr='admin'; UI.confirm=null; render(); scrollTo(0,0)},
+  admTab:d=>{UI.admT=d.t; UI.confirm=null; render(); scrollTo(0,0)},
+  admMail:()=>{ A.mlOpen(); A.mlAdm() },
+  admMailTo:d=>{ A.mlOpen(); A.mlAdm(); if(ML.form){ ML.form.to='one'; ML.form.name=d.n; renderMail() } },
+  admPl:()=>{ADM.players=null;ADM.pErr='';admLoadPlayers();render()},
+  admSTitle:()=>admSeasonTitle(),
+  admAdd:()=>{ const v=(($('#admnew')||{}).value||'').trim(); if(!v){toast('Indiquez un UID.');return} const L=(ADM.admins||[]).slice(); if(L.includes(v)){toast('Déjà administrateur.');return} L.push(v); admSetAdmins(L) },
+  admDel:d=>{ if(UI.confirm!=='admdel'+d.u){UI.confirm='admdel'+d.u; toast('Cliquez à nouveau pour retirer cet administrateur.'); return} UI.confirm=null; admSetAdmins((ADM.admins||[]).filter(x=>x!==d.u)) },
+  rdSolo:()=>raidSolo(),
   ddNews:()=>{closeMenuDD(); save(); UI.fromGame=true; ACC.seenVer=VERSION; saveAcc(); UI.scr='news'; render(); scrollTo(0,0)},
   ddChar:()=>{ closeMenuDD(); if($('#mconf')) return;
     const m=document.createElement('div'); m.className='modal'; m.id='mconf'; m.setAttribute('role','dialog'); m.setAttribute('aria-modal','true'); m.setAttribute('aria-labelledby','mconfT');
@@ -6093,6 +6288,7 @@ document.addEventListener('keydown',e=>{ if(e.key==='Enter'&&e.target.id==='frna
 document.addEventListener('mousedown',e=>{ if(FR.open&&!e.target.closest('#friends,#frchat')){FR.open=false;UI.frMenu=null;renderFriends()} else if(UI.frMenu&&!e.target.closest('.frpop,.frname')){UI.frMenu=null;renderFriends()} });
 document.addEventListener('input',e=>{
   if(e.target.id==='cname') UI.cname=e.target.value;
+  if(e.target.id==='admq'){ UI.admQ=e.target.value; const y=e.target.selectionStart; render(); const q=$('#admq'); if(q){q.focus(); try{q.setSelectionRange(y,y)}catch(_){}} }
   if(e.target.dataset&&e.target.dataset.bf){ bestSet(e.target.dataset.bf,e.target.value); bestRefreshStats() }
   if(e.target.id==='bstage'){ UI.bstage=+e.target.value; const b=e.target.nextElementSibling; if(b) b.textContent=UI.bstage; bestRefreshStats() }
 });
