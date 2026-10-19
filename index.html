@@ -148,12 +148,32 @@ kbd{display:inline-block;min-width:1.4em;padding:0 5px;border:1px solid var(--li
 .ipx{width:30px;height:30px;border-radius:50%;border:1px solid #1d1209;background:#2a1c10;color:#f3e4c0;font-size:1.2rem;line-height:1;cursor:pointer}.ipx:hover{background:var(--blood);color:#fff}
 .iptools{display:flex;align-items:center;gap:8px;margin-bottom:10px;flex-wrap:wrap}.iptools .mute{color:#cdb68a}
 .ipseg{display:inline-flex;border:1px solid #1d1209;border-radius:6px;overflow:hidden}
-.ipseg button{background:#2a1c10;color:#e8d6b0;border:0;padding:5px 12px;cursor:pointer;font:inherit;font-size:.86rem}.ipseg button+button{border-left:1px solid #1d1209}.ipseg button.on{background:var(--brass);color:#1d1209;font-weight:700}
+.ipseg button{background:#2a1c10;color:#e8d6b0;border:0;padding:5px 12px;cursor:pointer;font:inherit;font-size:.86rem}.ipseg button+button{border-left:1px solid #1d1209}.ipseg button.on{background:#8a6a44;color:#fff3d6;font-weight:700}
 .invpop .bagwrap{padding:0}
 .invpop .bag{grid-template-columns:repeat(14,44px);min-width:0;margin:0}
 .ipdet{position:relative;margin-top:12px;color:var(--fg)}.ipdet .x{position:absolute;top:6px;right:6px;z-index:2}
 .ipdet .it{max-width:none}
 @media (max-width:700px){.invpop{left:6px!important;right:6px!important;top:auto!important;bottom:6px;width:auto;max-height:78vh}.invpop .bag{grid-template-columns:repeat(14,34px)}.iphead{cursor:default}}
+.stashpop{top:84px;left:auto;right:24px}
+.ipchest{display:inline-flex;align-items:center;gap:5px;background:#2a1c10;color:#f3e4c0;border-color:#1d1209}.ipchest svg{width:16px;height:16px;fill:currentColor}.ipchest.on{background:#8a6a44;color:#fff3d6;border-color:#1d1209}
+.stashpop .iphead .mute{color:#cdb68a;font-size:.75rem;margin-left:auto}
+.stashpop .bag{grid-template-columns:repeat(15,44px)}
+.sttabs{display:flex;gap:4px;flex-wrap:wrap;margin-bottom:8px;align-items:center}
+.sttab{background:#2a1c10;color:#e8d6b0;border:1px solid #1d1209;border-radius:6px 6px 0 0;padding:5px 12px;cursor:pointer;font:inherit;font-size:.85rem}
+.sttab.on{background:#8a6a44;color:#fff3d6;font-weight:700}.sttab.ren{padding:5px 8px}.sttab.buy{margin-left:auto;border-style:dashed;color:var(--gold)}.sttab.buy.conf{background:var(--blood);color:#fff;border-style:solid}.sttab:disabled{opacity:.5;cursor:not-allowed}
+#stren{width:130px;padding:4px 8px;border:1px solid var(--gold);border-radius:6px;background:#1a110a;color:#f3e4c0;font:inherit;font-size:.85rem}
+#sfoot{pointer-events:none;border-radius:3px;z-index:3}#sfoot.ok{background:#4f8a4a66;outline:2px solid #6fc06a}#sfoot.bad{background:#a5351f66;outline:2px solid #e0412a}
+#tip.cmpw{width:min(640px,calc(100vw - 16px))}
+.cmp{display:grid;grid-template-columns:1fr 1fr;gap:8px;align-items:start}
+.cmpc .cmph{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#e8c982;text-shadow:0 1px 2px #000;margin:0 0 3px 4px}
+.cmpd{grid-column:1/-1;background:var(--bg2);border:1px solid var(--line2);border-radius:6px;padding:8px 10px}
+.cmpd h5{margin:0 0 4px;font-size:.78rem;text-transform:uppercase;letter-spacing:.08em;color:var(--brass)}
+.cmpd ul{margin:0;padding:0;list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:2px 12px}.cmpd li.up{color:#2c6a28;font-weight:700}.cmpd li.dn{color:var(--blood);font-weight:700}
+@media (max-width:700px){.stashpop{top:6px!important;bottom:auto!important;max-height:45vh}.stashpop .bag{grid-template-columns:repeat(15,30px)}}
+.ipres{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px;padding:8px;background:#2a1c10;border:1px solid #1d1209;border-radius:8px}
+.rs3{display:inline-flex;align-items:center;gap:5px;padding:3px 9px;border-radius:14px;background:#3a2817;border:1px solid #5c4228;color:#f3e4c0;cursor:default}.rs3 svg{width:18px;height:18px}.rs3:hover,.rs3:focus{border-color:var(--gold);outline:none}
+.rs3.full{border-color:var(--blood)}.rs3.full b{color:#ff8a70}
+#res:empty{display:none}
 .prepbar{display:flex;flex-direction:column;gap:6px;padding:10px;border:1px dashed var(--brass);border-radius:6px;background:#e8c98222}
 .prept{display:flex;align-items:baseline;gap:10px;font-family:var(--display);font-size:1.25rem;color:var(--brass)}.prept .num{font-size:1.5rem;color:var(--blood)}
 .prepbar .hint{margin:0}
@@ -862,6 +882,244 @@ input[type=checkbox]{accent-color:var(--brass)}
 .toast.lvl b{display:block;font-family:var(--display);font-weight:400;font-size:1.35rem;color:var(--gold);letter-spacing:.05em}
 .toast{background:#3d2a1b;color:#f3e4c0;border:1px solid var(--gold);border-radius:3px;padding:8px 14px;box-shadow:0 6px 24px #000a;animation:tin .25s;max-width:560px}
 @keyframes tin{from{transform:translateY(8px);opacity:0}}
+
+/* ===== interface 0.3.2 : bandeau, barre du bas, carte ===== */
+.wrap{max-width:1440px}
+body.hasdock{padding-bottom:calc(118px + env(safe-area-inset-bottom,0px))}
+.top{flex-direction:row;justify-content:center;position:relative;min-height:70px;padding-block:10px 12px}
+.top .brand{font-size:clamp(1.6rem,4vw,2.2rem)}
+.top .brand::before,.top .brand::after{width:clamp(20px,6vw,90px)}
+.top .res{display:none}
+.byline{left:50%;transform:translateX(-50%);top:calc(50px + env(safe-area-inset-top,0px));text-align:center;font-size:.64rem;z-index:2}
+.byline br{display:none}.byline #ver{margin-left:6px}
+body.scr .byline{left:max(10px,env(safe-area-inset-left,0px));transform:none;top:calc(6px + env(safe-area-inset-top,0px));text-align:left}body.scr .byline br{display:inline}
+.menubtn{top:calc(16px + env(safe-area-inset-top,0px))}
+.mehud{position:absolute;left:0;top:8px;display:flex;align-items:center;gap:10px;padding:4px 16px 4px 4px;border-radius:40px;border:1px solid #6a4c2a;background:#2a1b0fcc;color:#f1e2bd;cursor:pointer;text-align:left;font:inherit}
+.mehud:hover,.mehud[aria-current=page]{border-color:var(--gold)}
+.mehud img{width:50px;height:50px;border-radius:50%;border:2px solid #c9a35a;object-fit:cover;background:#000}
+.mehud .tile{width:50px;height:50px;border-radius:50%}
+.hcx{display:flex;flex-direction:column;line-height:1.15}.hcx small{color:#cdb88f;font-size:.8rem}
+.hcxp{display:block;width:120px;height:5px;background:#0007;border-radius:3px;margin-top:4px;overflow:hidden}.hcxp i{display:block;height:100%;background:linear-gradient(90deg,#c9a35a,#f0d48a)}
+.mehud .ndot{top:2px;right:6px}
+.uic{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linejoin:round;stroke-linecap:round;flex:none}
+.tabs.dock{position:fixed;left:0;right:0;bottom:0;z-index:30;height:calc(104px + env(safe-area-inset-bottom,0px));padding-bottom:env(safe-area-inset-bottom,0px);display:flex;justify-content:center;align-items:flex-end;margin:0;border:0;overflow:visible;pointer-events:none;background:linear-gradient(#0000,#140b0599 70%)}
+.tabs.dock>*{pointer-events:auto}
+.tabs.dock:empty{display:none}
+.dkbar{display:flex;align-items:flex-end;gap:6px;padding:0 26px;height:78px;background:linear-gradient(#3b2716,#21150b);border:1px solid #6a4c2a;border-bottom:0;border-radius:22px 22px 0 0;box-shadow:0 -6px 22px #0008,inset 0 1px #ffffff14}
+.tabs .dkb{position:relative;width:108px;height:70px;margin:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;background:none;border:0;border-radius:12px;color:#d9c49b;cursor:pointer;padding:0}
+.tabs .dkb .uic{width:32px;height:32px}.tabs .dkb b{font-size:.86rem;font-weight:600;letter-spacing:.03em}
+.tabs .dkb:hover{background:#ffffff0d;color:#fff}
+.tabs .dkb[aria-selected=true]{color:var(--gold);background:#ffffff12;box-shadow:inset 0 -3px var(--gold)}
+.tabs .dkb .ndot{top:6px;right:26px}
+.tabs .dkmain{position:relative;width:150px;height:78px;margin:0 6px;padding:0 0 9px;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;background:none;border:0;color:var(--gold);cursor:pointer}
+.dkring{position:absolute;top:-56px;left:50%;translate:-50% 0;width:92px;height:92px;border-radius:50%;display:grid;place-items:center;background:radial-gradient(circle at 50% 35%,#a8412a,#5c180c 70%);border:3px solid #d8b066;box-shadow:0 0 0 5px #21150b,0 6px 18px #000a;transition:box-shadow .2s,transform .15s}
+.dkring .uic{width:44px;height:44px;color:#ffe9b8}
+.tabs .dkmain b{font-family:var(--display);font-weight:400;font-size:1.05rem;letter-spacing:.08em}
+.tabs .dkmain:hover .dkring{transform:translateY(-2px)}
+.tabs .dkmain[aria-selected=true] .dkring{box-shadow:0 0 0 5px #21150b,0 6px 18px #000a,0 0 26px #e8902a88}
+.tabs .dkbag{position:absolute;right:max(24px,env(safe-area-inset-right,0px));bottom:calc(16px + env(safe-area-inset-bottom,0px));width:80px;height:80px;margin:0;padding:0;border-radius:50%;display:grid;place-items:center;background:radial-gradient(circle at 50% 35%,#6b4a2a,#2d1d0f);border:3px solid #c9a35a;color:#ffe9b8;box-shadow:0 6px 18px #000a;cursor:pointer}
+.tabs .dkbag .uic{width:38px;height:38px}.tabs .dkbag:hover,.tabs .dkbag.on{border-color:#f0d48a;box-shadow:0 6px 18px #000a,0 0 18px #e8c98266}
+.tabs .dkbag .ndot{top:6px;right:6px}
+.tabs .dkhelp{position:absolute;left:max(24px,env(safe-area-inset-left,0px));bottom:calc(22px + env(safe-area-inset-bottom,0px));width:56px;height:56px;margin:0;padding:0;border-radius:50%;display:grid;place-items:center;background:#2a1b0f;border:2px solid #6a4c2a;color:#d9c49b;cursor:pointer}
+.tabs .dkhelp:hover,.tabs .dkhelp.on{border-color:var(--gold);color:var(--gold)}
+.tabs .dock :focus-visible,.tabs.dock :focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+#toasts{bottom:calc(158px + env(safe-area-inset-bottom,0px))}
+body:not(.hasdock) #toasts{bottom:calc(14px + env(safe-area-inset-bottom,0px))}
+.frw{bottom:calc(112px + env(safe-area-inset-bottom,0px));right:max(118px,env(safe-area-inset-right,0px))}
+.frw .frbtn{display:none}
+@media (max-width:760px){
+ .mehud{padding:3px;border-radius:50%}.mehud .hcx{display:none}.mehud img,.mehud .tile{width:42px;height:42px}
+ .top{padding-top:56px}.byline{top:calc(8px + env(safe-area-inset-top,0px))}
+ .tabs.dock{height:calc(78px + env(safe-area-inset-bottom,0px))}
+ .dkbar{width:100%;padding:0 4px;height:66px;border-radius:16px 16px 0 0;justify-content:space-around;gap:0}
+ .tabs .dkb{width:auto;flex:1;height:62px}.tabs .dkb .uic{width:26px;height:26px}.tabs .dkb b{font-size:.68rem}.tabs .dkb .ndot{right:10px}
+ .tabs .dkmain{width:84px;height:66px;margin:0}.dkring{width:66px;height:66px;top:-34px}.dkring .uic{width:32px;height:32px}.tabs .dkmain b{font-size:.8rem}
+ .tabs .dkbag{width:56px;height:56px;bottom:calc(84px + env(safe-area-inset-bottom,0px));right:12px}.tabs .dkbag .uic{width:28px;height:28px}
+ .tabs .dkhelp{width:44px;height:44px;bottom:calc(90px + env(safe-area-inset-bottom,0px));left:12px}
+ body.hasdock{padding-bottom:calc(150px + env(safe-area-inset-bottom,0px))}
+ .frw{right:12px;bottom:calc(148px + env(safe-area-inset-bottom,0px))}
+ #toasts{bottom:calc(150px + env(safe-area-inset-bottom,0px))}
+}
+/* sélecteur de mode */
+.advmode2{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px}
+.advmode2 button{display:inline-flex;align-items:center;gap:6px;padding:6px 14px;border-radius:20px;background:#0000000f;border:1px solid var(--line2);color:var(--fg);cursor:pointer;font-weight:700}
+.advmode2 button:hover{border-color:var(--brass)}
+.advmode2 button.on{background:linear-gradient(#93331f,#6d2213);border-color:#e8c982;color:#fff}
+.advmode2 .uic{width:18px;height:18px}
+/* carte d'aventure */
+.advwrap{display:flex;flex-direction:column}
+.amap{position:relative;height:clamp(470px,calc(100vh - 300px),820px);border-radius:16px;overflow:hidden;border:2px solid #8a6a44;box-shadow:0 10px 30px #0007}
+.ambg{position:absolute;inset:0;width:100%;height:100%}
+.amfield{position:absolute;left:24px;top:0;bottom:0;right:calc(min(370px,42%) + 60px)}.amlines{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
+.amnode{position:absolute;translate:-50% -50%;display:flex;flex-direction:column;align-items:center;gap:3px;background:none;border:0;padding:0;cursor:pointer;color:var(--fg);width:150px;text-align:center;font:inherit}
+.ampic{position:relative;width:96px;height:96px;border-radius:50%;overflow:hidden;border:4px solid #e2d0a8;box-shadow:0 0 0 2px #6b4a22,0 6px 14px #0007;transition:transform .15s,box-shadow .2s}
+.ampic .zscene{display:block;width:100%;height:100%}
+.amnode:hover:not(:disabled) .ampic{transform:scale(1.06)}
+.amnode b{font-family:var(--display);font-weight:400;font-size:1.05rem;line-height:1.15;background:#e2d0a8e6;padding:2px 10px;border-radius:8px;display:flex;align-items:center;gap:4px}
+.amnode b .uic{width:15px;height:15px}.amnode small{font-size:.78rem;color:#4b3820}
+.amnode.on .ampic{border-color:#f0c66e;box-shadow:0 0 0 3px #7b2a1a,0 0 24px #f0c66e}
+.amnode.on b{background:#7b2a1a;color:#fff}
+.amnode.lock{cursor:not-allowed}.amnode.lock .ampic{filter:grayscale(1) brightness(.6)}.amnode.lock b{opacity:.75}
+.ambadge{position:absolute;left:50%;bottom:4px;translate:-50% 0;background:#7b2a1a;color:#fff;border:1px solid #f0c66e;border-radius:10px;padding:0 7px;font-size:.72rem;font-weight:700;font-variant-numeric:tabular-nums}
+.ambadge.ok{background:#3f5e2c;border-color:#8fbf6a;padding:1px 4px;display:grid}.ambadge .uic{width:13px;height:13px}
+.aminfo{position:absolute;right:16px;top:16px;bottom:16px;width:min(370px,42%);background:#e2d0a8f5;color:var(--fg);border:2px solid #8a6a44;border-radius:14px;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 10px 30px #0008}
+.amhead{position:relative;height:92px;flex:none}.amhead .zscene{display:block;width:100%;height:100%}
+.amhead>span{position:absolute;left:14px;right:14px;bottom:8px;display:flex;flex-direction:column}
+.amhead small{color:#f0d48a;font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;text-shadow:0 1px 3px #000}
+.amhead h2{margin:0;color:#fff;font-size:1.55rem;text-shadow:0 2px 6px #000}
+.ambody{flex:1;min-height:0;overflow:auto;padding:10px 14px 12px;display:flex;flex-direction:column;gap:4px}
+.ambody h4{margin:8px 0 4px;font-family:var(--display);font-weight:400;font-size:1rem;color:var(--brass)}
+.amseg{display:flex;border:1px solid var(--line2);border-radius:10px;overflow:hidden}
+.amseg button{flex:1;display:flex;align-items:center;justify-content:center;gap:4px;padding:6px 6px;background:#0000000d;border:0;cursor:pointer;font-weight:700;font-size:.88rem;color:var(--fg)}
+.amseg button+button{border-left:1px solid var(--line2)}.amseg .uic{width:14px;height:14px}
+.amseg button.on{background:#8a6a44;color:#fff}.amseg button.on.hero{background:var(--blood)}.amseg button.on.myth{background:var(--r3)}
+.amseg button:disabled{color:#8b7a5e;cursor:not-allowed}
+.amnote{margin:4px 0 0;font-size:.82rem;line-height:1.3}.amnote.hero{color:var(--blood)}.amnote.myth{color:var(--r3)}
+.amtrail{display:flex;align-items:center}.amtrail>i{flex:1;height:3px;min-width:3px;background:#a88d5b}
+.amtrail .tn{width:27px;height:27px;flex:none;display:grid;place-items:center;padding:0;border-radius:50%;font:700 .8rem var(--body);font-variant-numeric:tabular-nums;background:#2a1b0f;border:2px solid #6a4c2a;color:#cdb88f;cursor:pointer}
+.amtrail .tn .uic{width:15px;height:15px}
+.amtrail .tn.done{background:#3f5e2c;border-color:#8fbf6a;color:#e6ffd0}
+.amtrail .tn.cur{background:#7b2a1a;border-color:#f0c66e;color:#fff}
+.amtrail .tn.boss{width:33px;height:33px;border-color:#b0301c}
+.amtrail .tn.sel{outline:2px solid var(--brass);outline-offset:2px;box-shadow:0 0 0 4px #f0c66e66}
+.amtrail .tn.lock{opacity:.5;cursor:not-allowed}
+.amfoes{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
+.amfoe{display:flex;flex-direction:column;align-items:center;gap:3px;text-align:center}.amfoe .tile{width:48px;height:48px;border-radius:8px}.amfoe small{font-size:.76rem;line-height:1.1}
+.amboss{display:flex;align-items:center;gap:10px;padding:8px;background:#7b2a1a14;border:1px solid #a5351f55;border-radius:10px}.amboss .tile{width:52px;height:52px;border-radius:8px}
+.amboss span{display:flex;flex-direction:column}.amboss small{color:var(--brass);font-size:.75rem}.amboss.sm{margin-top:6px;padding:5px 8px}.amboss.sm .tile{width:36px;height:36px}
+.amfight{margin-top:auto;padding-top:10px;display:flex;flex-direction:column;gap:6px}
+.amgo{display:flex;align-items:center;justify-content:center;gap:8px;padding:11px 18px;font-family:var(--display);font-size:1.25rem;letter-spacing:.06em;border-radius:10px}
+.amgo .uic{width:20px;height:20px;stroke-width:2}.amgo .uic.pl{fill:currentColor;stroke:none}
+.amopts{display:flex;flex-direction:column;gap:2px}.amopts label{display:flex;gap:6px;align-items:center;font-size:.9rem}
+.amfight>small{font-size:.78rem}
+@media (max-width:900px){
+ .amap{height:auto;min-height:0;display:flex;flex-direction:column;padding:12px;gap:10px}
+ .ambg{position:absolute}
+ .amfield{position:relative;inset:auto;display:flex;flex-direction:column;gap:10px}.amlines{display:none}
+ .amap .amnode{position:relative;left:auto!important;top:auto!important;translate:none;flex-direction:row;width:100%;gap:10px;text-align:left}
+ .amap .ampic{width:58px;height:58px;border-width:3px;flex:none}
+ .amnode small{margin-left:auto}
+ .aminfo{position:relative;inset:auto;width:100%}
+ .ambody{overflow:visible}
+}
+
+/* duel et raid */
+.mpport{border-radius:50%;border:4px solid #e2d0a8;box-shadow:0 0 0 2px #6b4a22,0 8px 20px #000a;object-fit:cover;background:#000}
+.mpunk{display:grid;place-items:center;border-radius:50%;border:4px solid #e2d0a8;box-shadow:0 0 0 2px #6b4a22,0 8px 20px #000a;background:radial-gradient(circle at 50% 35%,#4a3a2a,#120a05);flex:none}.mpunk .q{font-family:var(--display);font-size:4rem;line-height:1;color:#c9a35a}
+.mpfig.srch .mpunk{animation:mppulse 1.6s ease-in-out infinite}@keyframes mppulse{50%{box-shadow:0 0 0 2px #6b4a22,0 0 30px #e8902a}}
+.mpar{background:#1a0f08}.mparbg{position:absolute;inset:0}.mparbg .zscene{width:100%;height:100%;display:block}
+.mpstage{position:absolute;left:0;top:0;bottom:0;right:calc(min(370px,42%) + 32px);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:22px;padding:16px;background:radial-gradient(ellipse at 50% 55%,#0000,#0008)}
+.mpvs{display:flex;align-items:center;gap:30px}.mpfig{display:flex;flex-direction:column;align-items:center;gap:4px;text-align:center;color:#fff;text-shadow:0 2px 6px #000;max-width:240px}.mpfig b{font-family:var(--display);font-weight:400;font-size:1.5rem}.mpfig small{color:#f0d48a}
+.mpvst{font-family:var(--display);font-size:3.6rem;color:var(--gold);text-shadow:0 0 20px #e8902a,0 3px 0 #000}
+.mpgo{padding:14px 34px}.mpnote{color:#f0e0b8;text-shadow:0 1px 3px #000;display:flex;align-items:center;gap:6px;flex-wrap:wrap;justify-content:center}
+.mplog{margin:0;padding:10px 16px;border-radius:10px;background:#000a;border:1px solid #c9a35a77;color:#ffd2b0}.mplog.dark{background:#a5351f18;border-color:#a5351f66;color:var(--blood)}
+.mpsearch{display:flex;align-items:center;gap:12px;padding:10px 16px;border-radius:12px;background:#000a;border:1px solid #c9a35a77;color:#fff}.mpsearch.dark{background:#0000000d;border-color:var(--line);color:var(--fg);flex-wrap:wrap}
+.mpbil{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;text-align:center}.mpbil span{display:flex;flex-direction:column;background:#0000000d;border:1px solid var(--line);border-radius:8px;padding:6px}.mpbil b{font-size:1.4rem;color:var(--brass)}.mpbil small{font-size:.75rem;color:var(--mute)}
+.mpratio{height:6px;border-radius:3px;background:#a5351f55;overflow:hidden;margin-top:6px}.mpratio i{display:block;height:100%;background:#3f5e2c}
+.mpfr{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:5px}.mpfr li{display:flex;align-items:center;gap:8px;padding:5px 8px;border:1px solid var(--line);border-radius:8px;background:#0000000a}.mpfr li>span:nth-child(2){flex:1;min-width:0;display:flex;flex-direction:column;line-height:1.15}.mpfr small{font-size:.75rem;color:var(--mute)}
+.mpfr .st{width:9px;height:9px;border-radius:50%;background:#8b7a5e;flex:none}.mpfr .st.on{background:#3fae3a;box-shadow:0 0 6px #3fae3a}
+.ampic.big{width:120px;height:120px}
+.mpst{display:grid;grid-template-columns:auto 1fr auto 1fr;gap:3px 10px;margin:6px 0 0;font-size:.88rem}.mpst dt{color:var(--mute)}.mpst dd{margin:0;font-weight:700;font-variant-numeric:tabular-nums}
+.mpchips{display:flex;flex-wrap:wrap;gap:4px}.mpchips span{font-size:.75rem;padding:1px 8px;border-radius:10px;background:#3f5e2c22;border:1px solid #3f5e2c66}.mpchips span.neg{background:#a5351f22;border-color:#a5351f66}.mpchips.skl span{background:#7b2a1a18;border-color:#7b2a1a55}
+.mptier{display:flex;flex-wrap:wrap;gap:4px}.mptier button{min-width:42px;padding:4px 8px;border-radius:8px;border:1px solid var(--line2);background:#0000000d;font-weight:700;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:3px;color:var(--fg)}.mptier button.on{background:#7b2a1a;border-color:#e8c982;color:#fff}.mptier button:disabled{opacity:.5;cursor:not-allowed}.mptier .uic{width:13px;height:13px}
+.mprew{display:flex;flex-wrap:wrap;align-items:center;gap:6px}.mprew>b{font-size:.85rem;color:var(--brass);margin-right:2px}
+.aminfo.rd .amfight{position:sticky;bottom:-12px;margin-bottom:-12px;padding:10px 0 12px;background:linear-gradient(#e2d0a800,#e2d0a8 14px)}
+.aminfo.rd .amhead{height:76px}.aminfo.rd h4{margin:6px 0 3px}.aminfo.rd .amnote{margin:0}
+.mpacts{display:flex;gap:6px}.mpacts .amgo{flex:1;font-size:1.1rem;padding:10px 12px}.mpinv{display:flex;flex-direction:column;align-items:center;gap:0;padding:4px 10px;font-size:.75rem}.mpinv .uic{width:20px;height:20px}
+.ambody h4 small{font-family:var(--body);font-size:.72rem;margin-left:4px}
+@media (max-width:900px){
+ .amap.mpar{padding:0}.mpstage{position:relative;inset:auto;padding:24px 12px}.mpvs{gap:12px}.mpvs .mpport,.mpvs .mpunk{width:110px!important;height:110px!important}.mpvst{font-size:2.4rem}.mpfig b{font-size:1.15rem}
+ .mpar .aminfo{margin:0 12px 12px;width:auto}
+ .ampic.big{width:58px;height:58px}
+}
+
+/* menu Amélioration */
+.mawts{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-bottom:12px}
+.mawt{display:flex;align-items:center;gap:12px;padding:10px 14px;border-radius:14px;border:2px solid #8a6a44;background:linear-gradient(#3b2716,#21150b);color:#f1e2bd;text-align:left;position:relative;font:inherit;min-width:0}
+.mawt>span:nth-child(2){display:flex;flex-direction:column;line-height:1.2;min-width:0}.mawt b{font-family:var(--display);font-weight:400;font-size:1.25rem}.mawt small{color:#cdb88f;font-size:.78rem}
+.mawi{width:52px;height:52px;border-radius:50%;display:grid;place-items:center;flex:none;background:radial-gradient(circle at 50% 35%,#a8412a,#5c180c 70%);border:2px solid #d8b066;color:#ffe9b8}.mawi .uic{width:28px;height:28px}
+.mawt.on{border-color:#f0c66e;box-shadow:0 0 0 2px #7b2a1a,0 0 18px #f0c66e55;cursor:default}
+.mawt.lock{filter:grayscale(.85);opacity:.6;cursor:not-allowed}.mawt.lock .mawi{background:#2a1b0f;border-color:#6a4c2a}.malk{position:absolute;top:8px;right:10px;width:16px;height:16px}
+.mabody{display:grid;grid-template-columns:150px minmax(0,1fr);gap:12px}
+.masub{display:flex;flex-direction:column;gap:6px}.masub button{display:flex;align-items:center;gap:8px;padding:10px 12px;border-radius:12px;border:1px solid var(--line2);background:#0000000d;color:var(--fg);font-weight:700;cursor:pointer}
+.masub button:hover{border-color:var(--brass)}.masub button.on{background:linear-gradient(#93331f,#6d2213);border-color:#e8c982;color:#fff}.masub .uic{width:20px;height:20px}
+.mawork{display:grid;grid-template-columns:200px minmax(0,1fr) 330px;gap:12px;height:clamp(460px,calc(100vh - 330px),720px)}
+.mawork.up{grid-template-columns:300px minmax(0,1fr) 360px}.mawork.salv{grid-template-columns:minmax(0,1fr) 330px}
+.maslots{display:grid;grid-template-columns:1fr 1fr;gap:6px;align-content:start}.maslh{grid-column:1/-1;font-size:.78rem;text-align:center}
+.maslot{display:flex;flex-direction:column;align-items:center;gap:3px;padding:8px 4px;border-radius:10px;border:1px solid var(--line2);background:#0000000d;cursor:pointer;color:var(--fg);font:inherit}.maslot svg{width:30px;height:30px}.maslot small{font-size:.75rem}
+.maslot:hover{border-color:var(--brass)}.maslot.on{background:#2c1d10;color:var(--gold);border-color:var(--gold)}.maslot.on small{color:var(--gold)}
+.maanvil{position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;text-align:center;border-radius:16px;border:2px solid #8a6a44;background:radial-gradient(circle at 50% 45%,#7a3a1a,#2c1d10 55%,#140b05);color:#f1e2bd;box-shadow:inset 0 0 50px #000a,0 10px 30px #0007;padding:16px;overflow:auto;min-height:0}
+.maanvil::before{content:'';position:absolute;left:50%;top:50%;width:260px;height:260px;translate:-50% -50%;border-radius:50%;background:radial-gradient(#ff9a3a33,#0000 70%);pointer-events:none}
+.maanvil>*{position:relative}.maanvil>small{color:#d9c49b}
+.matier{display:flex;align-items:center;gap:14px}.matier span{display:flex;flex-direction:column}.matier b{font-family:var(--display);font-weight:400;font-size:1.4rem;color:var(--gold)}.matier small{color:#cdb88f}
+.madots{display:flex;gap:6px}.madots i{width:7px;height:7px;border-radius:50%;background:#6a4c2a}.madots i.on{background:var(--gold)}
+.aring.maring{width:190px;height:190px}.maring>svg{width:84px;height:84px}.manm{font-family:var(--display);font-weight:400;font-size:1.4rem}
+.maanvil .amgo{min-width:260px}
+.aminfo.maside{position:relative;inset:auto;width:auto;min-height:0}.maside .ambody{gap:6px}
+.maodd{display:grid;grid-template-columns:80px 1fr 56px;align-items:center;gap:8px;font-size:.88rem}.maodd i{height:8px;border-radius:4px;background:#0000001a;overflow:hidden}.maodd i b{display:block;height:100%}.maodd em{font-style:normal;text-align:right;font-weight:700}
+.mawheel{display:flex;flex-direction:column;gap:8px;align-items:center;text-align:center;min-width:0}.mawheel .doll{width:100%}
+.maact{display:flex;align-items:flex-start;gap:10px;padding:10px;border:1px solid var(--line);border-radius:12px;background:#0000000a}.maact>div{flex:1;display:flex;flex-direction:column;gap:3px;min-width:0}.maact small{color:var(--mute)}
+.maact.col{flex-direction:column;align-items:stretch}.mah{display:flex;align-items:flex-start;gap:10px}.mah>div{display:flex;flex-direction:column;gap:3px}.maaff{display:flex;flex-wrap:wrap;gap:6px}
+.maai{width:36px;height:36px;border-radius:50%;display:grid;place-items:center;flex:none;background:#2c1d10;color:var(--gold);border:1px solid #8a6a44}.maai .uic{width:20px;height:20px}
+.masalvs{justify-content:flex-start;padding-top:28px}.masalvg{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;width:100%;max-width:820px;margin-top:10px}
+.masalv{display:flex;flex-direction:column;align-items:center;gap:8px;padding:16px 12px;border-radius:14px;background:#e2d0a8;color:var(--fg);border:2px solid #8a6a44;box-shadow:0 6px 18px #0008}
+.maempty>small{position:absolute;left:16px;right:16px;top:calc(50% + 112px)}
+.masalv{justify-content:flex-start}.masalv .mprew{flex:1;align-content:center}.masalv>.btn{margin-top:auto}
+.masalv>b{font-family:var(--display);font-weight:400;font-size:1.2rem}.masalv>small{color:var(--mute)}.masalv .mprew{justify-content:center;min-height:26px}
+.btn kbd{font:inherit;font-size:.75rem;border:1px solid currentColor;border-radius:4px;padding:0 4px;margin-left:4px;opacity:.8}
+@media (max-width:1100px){.mawork,.mawork.up{grid-template-columns:minmax(0,1fr) 320px;height:auto}.maslots,.mawheel{grid-column:1/-1}.maslots{grid-template-columns:repeat(4,1fr)}.mawheel .doll{max-width:360px}}
+@media (max-width:760px){.mawts{grid-template-columns:1fr 1fr}.mawt small{display:none}.mawt b{font-size:.95rem;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.aring.maring{width:140px;height:140px}.maring>svg{width:60px;height:60px}.mawt{padding:8px}.mawi{width:40px;height:40px}.mawt b{font-size:1rem}.mabody{grid-template-columns:1fr}.masub{flex-direction:row}.masub button{flex:1;justify-content:center;padding:8px}
+ .mawork,.mawork.up,.mawork.salv{grid-template-columns:1fr}.maslots{grid-template-columns:repeat(4,1fr)}.masalvg{grid-template-columns:1fr}.maanvil .amgo{min-width:0;width:100%}}
+.maanvil .tier{display:flex;align-items:center;gap:10px;justify-content:center}
+.maanvil .tier b{font-family:var(--display);font-weight:400;font-size:1.4rem;color:var(--gold);min-width:0}
+.maanvil .arw{background:transparent;border-color:#d6aa55;color:#e8c982}
+.maanvil .arw:hover{background:#d6aa5522;border-color:var(--gold)}
+.maanvil .dots i{background:#d6aa5544}.maanvil .dots i.on{background:#e8c982}
+.maanvil .nm{font-size:1.15rem;font-weight:700}
+.maanvil small{color:#c9ae82}
+.maanvil .btn.pri{font-size:1.08rem;padding:11px 22px;width:100%;max-width:290px}
+.maanvil .prism{color:#bfe9ee;border-color:#3fb6c0}.maanvil .prism.on{color:#9ff0f6;background:#0b7c8633}
+.maanvil .it{color:var(--fg);text-align:left;width:100%;max-width:310px}
+.maanvil .it small{color:var(--mute)}
+.maanvil .warnx{color:#ffb39e;font-size:.9rem}
+
+/* collecte */
+.mctop{display:flex;align-items:baseline;gap:14px;margin-bottom:4px;flex-wrap:wrap}.mctop h2{margin:0;font-size:1.7rem}.mctop .mute{font-size:.9rem}
+.mcrates{display:flex;flex-wrap:wrap;gap:6px;align-items:center}.mcr{display:inline-flex;align-items:center;gap:4px;padding:2px 9px;border-radius:12px;background:#0000000d;border:1px solid var(--line)}.mcr .mi{width:18px;height:18px}
+.mcbar{height:9px;background:#0000001a}.mcbar i{background:linear-gradient(90deg,#c9a35a,#f0d48a);transition:width .9s linear}
+.mcstk{display:grid;grid-template-columns:130px 1fr 92px;gap:8px;align-items:center;font-size:.85rem}.mcstk span{display:flex;align-items:center;gap:4px}.mcstk .mi{width:16px;height:16px}.mcstk i{height:7px;border-radius:4px;background:#0000001a;overflow:hidden}.mcstk i b{display:block;height:100%;background:#8a6a44}.mcstk em{font-style:normal;text-align:right;font-weight:700}.mcstk.full i b{background:var(--blood)}.mcstk.full em{color:var(--blood)}
+.mc3{display:grid;grid-template-columns:minmax(0,1fr) 360px;gap:14px;align-items:start}.mc3>section{display:flex;flex-direction:column;gap:10px;min-width:0}
+.mc3 .aminfo.maside{position:sticky;top:12px;inset:auto;width:auto;min-height:clamp(420px,calc(100vh - 300px),700px)}
+.mcrow{display:flex;align-items:center;gap:14px;padding:10px;border-radius:14px;border:2px solid #8a6a44;background:#0000000a}.mcrow.rd{border-color:#3f5e2c;background:#3f5e2c14;box-shadow:0 0 0 1px #8fbf6a55}.mcrow.lock{opacity:.75}
+.mcth{position:relative;width:120px;height:80px;border-radius:10px;overflow:hidden;flex:none}.mcth .zscene{position:absolute;inset:0;width:100%;height:100%}.mcrow.lock .mcth{filter:grayscale(.8)}
+.mcauto{position:absolute;left:6px;bottom:6px;background:#3f5e2c;color:#fff;border:1px solid #8fbf6a;border-radius:8px;padding:0 6px;font-size:.7rem;font-weight:700}
+.mcrn{width:190px;flex:none;display:flex;flex-direction:column}.mcrn b{font-family:var(--display);font-weight:400;font-size:1.25rem}.mcrn small{color:var(--mute);font-size:.8rem}
+.mcrmid{flex:1;min-width:0;display:flex;flex-direction:column;gap:5px}
+.mcracts{position:relative;display:flex;gap:6px;align-items:center}
+.mcib{position:relative;width:38px;height:36px;padding:0;display:grid;place-items:center}.mcib .uic{width:20px;height:20px}.mcib .ndot{top:-3px;right:-3px}
+.mcracts .sgear{position:relative;top:auto;left:auto;border-radius:var(--rad,3px)}.mcracts .sgear.on{color:var(--ok);border-color:var(--ok)}
+.mcracts .sdd{top:44px;right:0;left:auto}
+@media (max-width:1000px){.mc3{grid-template-columns:1fr}.mc3 .aminfo.maside{position:relative;top:auto;min-height:0}}
+@media (max-width:760px){.mcrow{flex-wrap:wrap}.mcth{width:80px;height:56px}.mcrn{width:auto;flex:1}.mcrmid{flex-basis:100%;order:3}.mcracts{order:4;margin-left:auto}}
+/* marchand */
+.mcshop{background:#1a0f08}.mcshop>.zscene{position:absolute;inset:0;width:100%;height:100%;filter:brightness(.7)}
+.mcshelf{position:absolute;left:20px;top:16px;bottom:16px;right:calc(min(370px,42%) + 40px);display:flex;flex-direction:column;gap:12px;overflow:auto}
+.mcmer{display:flex;align-items:center;gap:14px}.mcmerp{width:64px;height:64px;border-radius:50%;display:grid;place-items:center;flex:none;background:radial-gradient(circle at 50% 35%,#a8412a,#5c180c 70%);border:3px solid #d8b066;color:#ffe9b8}.mcmerp .uic{width:32px;height:32px}
+.mcquote{margin:0;padding:10px 16px;border-radius:14px;background:#e2d0a8;color:var(--fg);font-style:italic;position:relative}.mcquote::before{content:'';position:absolute;left:-8px;top:50%;translate:0 -50%;border:8px solid transparent;border-right-color:#e2d0a8;border-left:0}
+.mcgold{margin-left:auto;display:inline-flex;align-items:center;gap:6px;padding:4px 14px;border-radius:16px;border:1px solid #c9a35a77;background:#000a;color:var(--gold);font-weight:700}.mcgold .mi{width:20px;height:20px}
+.mcseg{display:flex;gap:6px;flex-wrap:wrap}.mcseg button{padding:5px 14px;border-radius:16px;border:1px solid #c9a35a77;background:#0008;color:#e8d4a8;font-weight:700;cursor:pointer}.mcseg button:hover{border-color:var(--gold)}.mcseg button.on{background:#7b2a1a;border-color:#e8c982;color:#fff}
+.mcgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px;align-content:start}
+.mcslot{position:relative;display:flex;flex-direction:column;align-items:center;gap:6px;padding:14px 8px 10px;border-radius:14px;border:2px solid #6a4c2a;background:linear-gradient(#3b2716ee,#21150bee);color:#f1e2bd;cursor:pointer;text-align:center;font:inherit}
+.mcslot:hover{border-color:#c9a35a}.mcslot b{font-size:.9rem;line-height:1.15}.mcslot.on{border-color:#f0c66e;box-shadow:0 0 0 2px #7b2a1a,0 0 18px #f0c66e55}.mcslot.lock{opacity:.5}
+.mcslot .mcprice,.mcslot .cost{color:var(--gold)}
+.mcpot{width:60px;height:60px;border-radius:50%;display:grid;place-items:center;flex:none;background:radial-gradient(circle at 50% 40%,color-mix(in srgb,var(--pc) 45%,#000),#0b0603 75%);box-shadow:0 0 18px color-mix(in srgb,var(--pc) 50%,transparent)}.mcpot .mi{width:38px;height:38px}
+.mcph{background:radial-gradient(circle at 80% 50%,color-mix(in srgb,var(--pc) 40%,#2c1d10),#140b05)}.mcph>.mcpot.xl{position:absolute;left:auto;right:16px;top:12px;bottom:auto;width:68px;height:68px}.mcph>span:not(.mcpot){right:96px}
+.mcprice{display:inline-flex;align-items:center;gap:4px;font-weight:700;font-variant-numeric:tabular-nums}.mcprice .mi{width:16px;height:16px}
+.mcown{position:absolute;top:6px;right:6px;min-width:22px;padding:0 6px;border-radius:11px;background:#3f5e2c;border:1px solid #8fbf6a;color:#fff;font-size:.75rem;font-weight:700}
+.mclk{color:var(--blood);font-weight:700;font-size:.8rem}.mcslot .mclk{color:#ff9c80}
+.mcqty{display:flex;align-items:center;gap:8px;flex-wrap:wrap}.mcqty>b{min-width:34px;text-align:center;font-size:1.3rem}.mcqty>.btn{padding:6px 8px;display:grid;place-items:center}.mcqty .uic{width:16px;height:16px}.mcq{display:flex;gap:4px;margin-left:auto;flex-wrap:wrap}.mcq .on{background:#7b2a1a;color:#fff;border-color:#e8c982}
+.mctot{display:flex;justify-content:space-between;align-items:center;font-size:1.05rem}.mctot b{display:inline-flex;align-items:center;gap:4px;font-size:1.3rem}.mctot .mi{width:20px;height:20px}
+@media (max-width:900px){.mcgrid{grid-template-columns:repeat(2,minmax(0,1fr))}.mcshop{padding:0}.mcshelf{position:relative;inset:auto;padding:14px}.mcshop .aminfo{margin:0 12px 12px}.mcmer{flex-wrap:wrap}.mcquote{flex:1}}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 @media (min-width:760px){.arena{grid-template-columns:1fr 1fr}}
 </style>
@@ -873,10 +1131,11 @@ input[type=checkbox]{accent-color:var(--brass)}
 <button id="menubtn" class="menubtn" data-act="toMenu" aria-label="Menu du jeu" title="Menu" hidden><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg><span>Menu</span></button>
 <div class="wrap">
   <header class="top">
+    <button id="mehud" class="mehud" data-act="tab" data-t="heroes" aria-label="Personnage" title="Personnage" hidden></button>
     <div class="brand">Cendrelame</div>
     <div class="res num" id="res"></div>
   </header>
-  <nav class="tabs" id="tabs" role="tablist"></nav>
+  <nav class="tabs dock" id="tabs" role="tablist" aria-label="Menu principal"></nav>
   <main id="view"></main>
 </div>
 <div id="toasts" aria-live="polite"></div>
@@ -1189,21 +1448,21 @@ const C={phase:'idle',units:[],round:0,turn:null,pending:null,waiting:null,logs:
 /* ---- inventaire (48 cases) : null | {mat,n} | objet ---- */
 const bagNew=()=>[];
 /* S.bag = liste d'entrées {x,y,o} ; o = {mat,n} ou objet d'équipement */
-function occGrid(bag,skip){
-  const g=Array.from({length:GH},()=>Array(GW).fill(-1));
+function occGrid(bag,skip,W=GW,H=GH){
+  const g=Array.from({length:H},()=>Array(W).fill(-1));
   bag.forEach((e,i)=>{ if(skip&&skip.includes(e)) return; const [w,h]=SIZE(e.o);
-    for(let y=e.y;y<e.y+h&&y<GH;y++) for(let x=e.x;x<e.x+w&&x<GW;x++) g[y][x]=i });
+    for(let y=e.y;y<e.y+h&&y<H;y++) for(let x=e.x;x<e.x+w&&x<W;x++) g[y][x]=i });
   return g;
 }
-function fitsAt(bag,x,y,w,h,skip){
-  if(x<0||y<0||x+w>GW||y+h>GH) return false;
-  const g=occGrid(bag,skip);
+function fitsAt(bag,x,y,w,h,skip,W=GW,H=GH){
+  if(x<0||y<0||x+w>W||y+h>H) return false;
+  const g=occGrid(bag,skip,W,H);
   for(let yy=y;yy<y+h;yy++) for(let xx=x;xx<x+w;xx++) if(g[yy][xx]>=0) return false;
   return true;
 }
-function findSpot(bag,w,h){
-  const g=occGrid(bag);
-  for(let x=0;x<=GW-w;x++) for(let y=0;y<=GH-h;y++){
+function findSpot(bag,w,h,W=GW,H=GH){
+  const g=occGrid(bag,null,W,H);
+  for(let x=0;x<=W-w;x++) for(let y=0;y<=H-h;y++){
     let ok=true; for(let yy=y;yy<y+h&&ok;yy++) for(let xx=x;xx<x+w;xx++) if(g[yy][xx]>=0){ok=false;break}
     if(ok) return [x,y];
   }
@@ -1432,7 +1691,7 @@ function findItem(id){
 function rarityWeights(p){
   return [Math.max(5,60-45*p),30-5*Math.min(p,1.5),8+25*p,1.8+15*p,.2+5*p].map(x=>Math.max(.1,x));
 }
-let SHIFT=false;
+let SHIFT=false,ALTK=false;
 const NOHOVER=!!(window.matchMedia&&matchMedia('(hover:none)').matches);
 /* plage possible d'un affixe (tirage 70 % à 100 %), amélioration comprise */
 function affRange(it,a,k){
@@ -1444,7 +1703,7 @@ function affRange(it,a,k){
 }
 function itemCard(it,foot='',delta=null){
   const k=upMul(it);
-  const lines=[...Object.entries(it.imp).map(([s,v])=>`<li class="imp">${fmtStat(s,v*k)}</li>`),...it.aff.map(a=>`<li>${fmtStat(a.s,a.v*k)}${SHIFT||NOHOVER?affRange(it,a,k):''}</li>`),...(it.leg?[`<li class="legp"><b>${esc(LEGP[it.leg]||'Pouvoir légendaire')}</b> : ${LEG_D}</li>`]:[])].join('')+(it.aff.length&&!NOHOVER?`<li class="shk">${SHIFT?'Plages possibles des affixes (Maj)':'Maj : voir les plages des affixes'}</li>`:'');
+  const lines=[...Object.entries(it.imp).map(([s,v])=>`<li class="imp">${fmtStat(s,v*k)}</li>`),...it.aff.map(a=>`<li>${fmtStat(a.s,a.v*k)}${ALTK||NOHOVER?affRange(it,a,k):''}</li>`),...(it.leg?[`<li class="legp"><b>${esc(LEGP[it.leg]||'Pouvoir légendaire')}</b> : ${LEG_D}</li>`]:[])].join('')+(it.aff.length&&!NOHOVER?`<li class="shk">${ALTK?'Plages possibles des affixes (Alt)':'Alt : plages des affixes · Maj : comparer'}</li>`:'');
   const dl=delta===null?'':`<span class="dl ${delta>=0?'up':'dn'}">${delta>=0?'▲':'▼'} ${Math.abs(Math.round(delta))}</span>`;
   return `<article class="it" style="--rc:var(--r${it.rarity})"><header><b>${esc(it.name)}${it.up?` <em>+${it.up}</em>`:''}</b> ${dl}<small>${SLOT_N[it.slot]}${it.cls?` · <span style="${canWear(it)?'':'color:var(--blood);font-weight:700'}">${CLASSES[it.cls].n}</span>`:''} · ${RAR[it.rarity].n}</small><small>Niveau d’objet <b class="num">${it.ilvl}</b></small></header><ul>${lines}</ul>${foot?`<div class="foot">${foot}</div>`:''}</article>`;
 }
@@ -2125,17 +2384,20 @@ function tick(){
 }
 
 /* ============ rendu ============ */
-const TABS=[['combat','Aventure'],['heroes','Personnage'],['shop','Marchand'],['forge','Forge'],['sites','Collecte'],['help','Aide']];
+const TABS=[['combat','Aventure'],['heroes','Personnage'],['shop','Marchand'],['forge','Amélioration'],['sites','Collecte'],['help','Aide']];
+function resRow(){ return ['gold',...MATS].map(m=>{const v=m==='gold'?S.gold:matCount(m),full=m!=='gold'&&v>=matCap(m);return `<span class="rs3 ${full?'full':''}" data-tip="res:${m}" tabindex="0" aria-label="${MAT_N[m]} : ${v}">${matIcon(m)}<b class="num">${fmt(v)}</b></span>`}).join('') }
 function renderHeader(){
-  const el=$('#res'); if(!S||!S.heroes.length){el.innerHTML='';return}
+  const el=$('#res'); el.innerHTML=''; const r=$('#ipres'); if(r&&S&&S.heroes&&S.heroes.length) r.innerHTML=resRow(); return;
   el.innerHTML=['gold',...MATS].map(m=>{const v=m==='gold'?S.gold:matCount(m),full=m!=='gold'&&v>=matCap(m);return `<span class="rs ${full?'full':''}" title="${m==='gold'?'Or':MAT_OBJ[m]+' : '+v.toLocaleString('fr-FR')+' / '+matCap(m).toLocaleString('fr-FR')}">${matIcon(m)}<b>${fmt(v)}</b><span class="sr">${MAT_N[m]}</span></span>`}).join('');
 }
 function renderTabs(){
   const el=$('#tabs'),g=$('#gear'),nw=$('#news'),mb=$('#menubtn'); $('#ver').textContent='v'+VERSION; g.hidden=true; nw.hidden=true;
   mb.hidden=!!UI.scr||!S||!S.heroes.length;
   {const d=mb.querySelector('.ndot'),u=unseenVer(); if(u&&!d) mb.insertAdjacentHTML('beforeend','<span class="ndot" aria-label="Nouvelle version"></span>'); else if(!u&&d) d.remove()}
-  if(UI.scr||!S||!S.heroes.length){el.innerHTML='';return}
-  el.innerHTML=TABS.map(([k,n])=>`<button role="tab" aria-selected="${UI.tab===k}" data-act="tab" data-t="${k}">${n}${k==='heroes'&&S.bagDot&&UI.tab!=='heroes'?'<span class="ndot" aria-label="Nouveaux objets"></span>':''}${k==='heroes'&&S.lvlDot&&UI.tab!=='heroes'?'<span class="ndot" aria-label="Niveau gagné"></span>':''}${k==='sites'&&(collectBlocked()||readyAny())&&UI.tab!=='sites'?'<span class="ndot" aria-label="Récolte prête"></span>':''}</button>`).join('');
+  if(UI.scr||!S||!S.heroes.length){el.innerHTML='';$('#mehud').hidden=true;document.body.classList.remove('hasdock');return}
+  document.body.classList.add('hasdock');
+  el.innerHTML=dockHTML();
+  {const m=$('#mehud'); m.hidden=false; m.innerHTML=heroChipHTML(); m.setAttribute('aria-current',UI.tab==='heroes'?'page':'false')}
 }
 function render(){
   hideTip(); document.body.classList.toggle('scr',!!UI.scr); document.body.classList.toggle('scr-menu',UI.scr==='menu'||UI.scr==='login'||UI.scr==='pseudo');
@@ -2996,6 +3258,151 @@ function viewCombat(){
     <div id="actbar" class="cvbar"></div>
     <div class="log" id="log">${C.logs.map(l=>`<p class="${l.cls}">${esc(l.t)}</p>`).join('')}</div></div>`;
 }
+/* ================= interface : barre du bas + carte d’aventure ================= */
+const UIC={
+ bag:'<path d="M5 9h14l1.2 11.5H3.8z"/><path d="M9 9V7a3 3 0 0 1 6 0v2"/><path d="M9 13h6"/>',
+ anvil:'<path d="M2.5 7h13.5c.4 2.6 2.3 3.8 5.5 4v1.5h-6.2l-1.3 2.6h1.8v3.4H8.2v-3.4H10l-1.2-2.8C4.6 11.8 2.6 10 2.5 7z"/>',
+ swords:'<path d="M4 4l9.5 9.5M20 4l-9.5 9.5"/><path d="M13 16.5l4.5-4.5M11 16.5L6.5 12"/><path d="M15 15l4 4M9 15l-4 4"/>',
+ people:'<circle cx="9" cy="8" r="3.2"/><path d="M2.8 20c.3-3.6 3-5.6 6.2-5.6s5.9 2 6.2 5.6"/><circle cx="17" cy="9" r="2.4"/><path d="M15.6 14.6c3 .1 5.3 1.7 5.6 4.6"/>',
+ pick:'<path d="M4 20l9-9"/><path d="M8.5 5.5c4-2.8 9.2-2.4 11.5.8-3-1.4-6.3-.9-9 1.2"/><path d="M18.5 15.5c2.8-4 2.4-9.2-.8-11.5 1.4 3 .9 6.3-1.2 9"/>',
+ coin:'<ellipse cx="12" cy="7" rx="7" ry="3"/><path d="M5 7v5c0 1.7 3.1 3 7 3s7-1.3 7-3V7"/><path d="M5 12v5c0 1.7 3.1 3 7 3s7-1.3 7-3v-5"/>',
+ book:'<path d="M4 4.5A1.5 1.5 0 0 1 5.5 3H19v15H5.5A1.5 1.5 0 0 0 4 19.5z"/><path d="M4 19.5A1.5 1.5 0 0 0 5.5 21H19v-3"/>',
+ skull:'<path d="M12 3a7 7 0 0 0-7 7c0 2.5 1.2 4 2.5 5v3h9v-3c1.3-1 2.5-2.5 2.5-5a7 7 0 0 0-7-7z"/><circle cx="9.3" cy="10.5" r="1.6"/><circle cx="14.7" cy="10.5" r="1.6"/>',
+ lock:'<rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/>',
+ check:'<path d="M5 12.5l4.5 4.5L19 7"/>',
+ play:'<path d="M8 5l11 7-11 7z"/>',
+};
+const uic=(k,c='')=>`<svg class="uic ${c}" viewBox="0 0 24 24" aria-hidden="true">${UIC[k]}</svg>`;
+const DOCK=[['shop','coin','Marchand'],['forge','anvil','Amélioration'],['combat','swords','Aventure'],['sites','pick','Collecte'],['comm','people','Communauté']];
+function commDot(){
+  if(!FB.user||!FB.prof) return false; const me=FB.user.uid;
+  return FR.list.some(f=>(f.status==='pending'&&f.from!==me)||(f.status==='accepted'&&isUnread(f)));
+}
+function dockHTML(){
+  const on=k=>k==='comm'?FR.open:UI.tab===k;
+  const dot=k=>(k==='sites'&&(collectBlocked()||readyAny())&&UI.tab!=='sites')||(k==='comm'&&commDot())?'<span class="ndot" aria-label="Nouveauté"></span>':'';
+  const b=([k,i,n])=>{const act=k==='comm'?'data-act="comm"':`data-act="tab" data-t="${k}"`;
+    return k==='combat'?`<button class="dkmain" role="tab" aria-selected="${on(k)}" ${act}><span class="dkring">${uic(i)}</span><b>${n}</b></button>`
+      :`<button class="dkb" role="tab" aria-selected="${on(k)}" ${act}>${uic(i)}<b>${n}</b>${dot(k)}</button>`};
+  return `<div class="dkbar">${DOCK.map(b).join('')}</div>
+   <button class="dkbag ${UI.invOpen?'on':''}" data-act="invTog" aria-label="Sac (touche I)" title="Sac (I)">${uic('bag')}${S.bagDot?'<span class="ndot" aria-label="Nouveaux objets"></span>':''}</button>
+   <button class="dkhelp ${UI.tab==='help'?'on':''}" data-act="tab" data-t="help" aria-label="Aide" title="Aide">${uic('book')}</button>`;
+}
+function heroChipHTML(){
+  const h=S.heroes[0],need=h.lvl>=MAXL?1:xpNeed(h.lvl),pc=h.lvl>=MAXL?100:h.xp/need*100;
+  return `${PORTRAIT[h.cls]?`<img src="${PORTRAIT[h.cls]}" alt="" width="50" height="50">`:`<span class="tile" style="--h:${h.hue}">${icon(CLASSES[h.cls].ic)}</span>`}
+   <span class="hcx"><b>${esc(h.name)}</b><small>${CLASSES[h.cls].n} · niveau ${h.lvl}</small><i class="hcxp"><i style="width:${pc}%"></i></i></span>${S.lvlDot&&UI.tab!=='heroes'?'<span class="ndot" aria-label="Niveau gagné"></span>':''}`;
+}
+/* décors procéduraux des zones */
+const ZTH=[
+ {sky:['#173226','#5d7d4a','#c9c58a'],l:['#36533a','#22382a','#132219'],fx:'trees',sun:'#f3e6a8'},
+ {sky:['#121218','#33303d','#6b6370'],l:['#3a3540','#26222b','#151318'],fx:'arches',sun:'#c8c2d8'},
+ {sky:['#152016','#3c4c2a','#8c9a55'],l:['#3a4a2a','#26331d','#141c10'],fx:'dead',sun:'#d6e39a'},
+ {sky:['#1d0806','#6e1e10','#e0652c'],l:['#4a1c12','#2d100a','#170806'],fx:'volcano',sun:'#ffb35a'},
+ {sky:['#07040f','#24123f','#5b2b8c'],l:['#2b1846','#1b0f2e','#0d0717'],fx:'void',sun:'#d6b4ff'},
+];
+function zrnd(seed){let s=seed;return()=>((s=(s*9301+49297)%233280)/233280)}
+function zridge(y,amp,seed,col){const r=zrnd(seed);let d=`M0 420 L0 ${y}`;for(let x=0;x<=1000;x+=40)d+=` L${x} ${(y-r()*amp).toFixed(0)}`;return `<path d="${d} L1000 420Z" fill="${col}"/>`}
+const ZSC={};
+function zoneScene(i,id){
+  const key=i+'|'+id; if(ZSC[key]) return ZSC[key];
+  const t=ZTH[i%ZTH.length],r=zrnd(i*77+5);let fx='';
+  if(t.fx==='trees'){for(let k=0;k<26;k++){const x=k*40+r()*20,hh=50+r()*60,y=330+r()*20;fx+=`<path d="M${x.toFixed(0)} ${y.toFixed(0)} l${(hh*.28).toFixed(0)} ${(-hh).toFixed(0)} l${(hh*.28).toFixed(0)} ${hh.toFixed(0)}z" fill="#0f1c13"/>`}}
+  if(t.fx==='arches'){for(let k=0;k<6;k++){const x=40+k*170,y=310;fx+=`<path d="M${x} ${y+80}V${y-40}a55 55 0 0 1 110 0V${y+80}h-22V${y-36}a33 33 0 0 0-66 0V${y+80}z" fill="#0e0d11"/>`}}
+  if(t.fx==='dead'){for(let k=0;k<9;k++){const x=(40+k*115+r()*30).toFixed(0),y=345;fx+=`<path d="M${x} ${y}v-90l-22-28M${x} ${y-60}l20-26M${x} ${y-40}l-16-10" stroke="#0e140b" stroke-width="7" fill="none" stroke-linecap="round"/>`}fx+=`<rect x="0" y="300" width="1000" height="40" fill="#c6d6a0" opacity=".12"/>`}
+  if(t.fx==='volcano'){fx+=`<path d="M330 360L470 130h60l140 230z" fill="#220c08"/><path d="M470 130c10 30 50 30 60 0" fill="#ff7a2a"/><path d="M500 128c-30-60 40-80 10-130" stroke="#5a2a20" stroke-width="26" fill="none" opacity=".55" stroke-linecap="round"/>`;for(let k=0;k<30;k++)fx+=`<circle cx="${(r()*1000).toFixed(0)}" cy="${(r()*300).toFixed(0)}" r="${(1+r()*2).toFixed(1)}" fill="#ffb060" opacity="${(.3+r()*.6).toFixed(2)}"/>`}
+  if(t.fx==='void'){for(let k=0;k<60;k++)fx+=`<circle cx="${(r()*1000).toFixed(0)}" cy="${(r()*260).toFixed(0)}" r="${(r()*1.6+.3).toFixed(1)}" fill="#fff" opacity="${(.3+r()*.7).toFixed(2)}"/>`;for(let k=0;k<4;k++){const x=(120+k*240+r()*40).toFixed(0),y=(120+r()*90).toFixed(0);fx+=`<path d="M${x} ${y}h90l-20 30-25 34-20-30z" fill="#1a0f2c"/>`}}
+  const g=`zg${id}${i}`;
+  return ZSC[key]=`<svg class="zscene" viewBox="0 0 1000 420" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><defs><linearGradient id="${g}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${t.sky[0]}"/><stop offset=".6" stop-color="${t.sky[1]}"/><stop offset="1" stop-color="${t.sky[2]}"/></linearGradient></defs><rect width="1000" height="420" fill="url(#${g})"/><circle cx="760" cy="110" r="28" fill="${t.sun}" opacity=".5"/>${zridge(250,70,i+1,t.l[0])}${t.fx==='volcano'?fx:''}${zridge(310,60,i+9,t.l[1])}${t.fx!=='volcano'?fx:''}${zridge(370,40,i+3,t.l[2])}</svg>`;
+}
+const AMAP_PTS=[[9,70],[22,36],[38,66],[53,32],[66,66]];
+const amapPt=i=>AMAP_PTS[i]||[9+i*12,i%2?34:68];
+let AMAP_BG='';
+function amapBg(){
+  if(AMAP_BG) return AMAP_BG;
+  const tri=Array.from({length:22},(_,k)=>`<path d="M${60+k*41} ${120+(k*53)%90}l14-22 14 22z"/>`).join('');
+  return AMAP_BG=`<defs><radialGradient id="amv" cx=".5" cy=".5" r=".7"><stop offset=".55" stop-color="#2a1a0c" stop-opacity="0"/><stop offset="1" stop-color="#2a1a0c" stop-opacity=".7"/></radialGradient><filter id="amn"><feTurbulence baseFrequency=".9" numOctaves="2"/><feColorMatrix values="0 0 0 0 .3  0 0 0 0 .2  0 0 0 0 .08  0 0 0 .12 0"/></filter></defs>
+   <rect width="1000" height="500" fill="#d9c294"/><rect width="1000" height="500" filter="url(#amn)"/>
+   <path d="M0 420C140 380 220 470 380 430S640 470 760 420 920 440 1000 400V500H0z" fill="#9fb3a8" opacity=".55"/><g fill="#8a7a4e" opacity=".5">${tri}</g>`;
+}
+function viewAdvMap(){
+  const P=prog(),dk=curDiff(),D=DIFF[dk],z=UI.zone,Z=ZONES[z],L=D.L||z*10+UI.stage,h=S.heroes[0];
+  const st=i=>i<P.zone?'clear':i===P.zone?'cur':'lock';
+  const segs=ZONES.slice(1).map((_,k)=>{const a=amapPt(k),b=amapPt(k+1),done=k+1<=P.zone;return `<path d="M${a[0]*10} ${a[1]*5}L${b[0]*10} ${b[1]*5}" stroke="#6b4a22" stroke-width="${done?5:4}" ${done?'':'stroke-dasharray="2 14"'} stroke-linecap="round" fill="none" opacity="${done?.85:.75}"/>`}).join('');
+  const nodes=ZONES.map((zz,i)=>{const s=st(i),p=amapPt(i),lv=D.L?`Niveau ${D.L}`:`Niveau ${i*10+1}-${i*10+10}`;
+    return `<button class="amnode ${s} ${i===z?'on':''}" style="left:${(p[0]/70*100).toFixed(1)}%;top:${p[1]}%" ${s==='lock'?'disabled':''} data-act="zone" data-i="${i}" aria-pressed="${i===z}"><span class="ampic">${zoneScene(i,'n')}${s==='clear'?`<span class="ambadge ok">${uic('check')}</span>`:s==='cur'?`<span class="ambadge">${P.stage}/10</span>`:''}</span><b>${s==='lock'?uic('lock'):''}${zz.n}</b><small>${lv}</small></button>`}).join('');
+  const trail=Array.from({length:10},(_,k)=>{const s=k+1,ok=unlocked(z,s),done=z<P.zone||(z===P.zone&&s<P.stage),cur=z===P.zone&&s===P.stage;
+    return `<button class="tn ${done?'done':''} ${cur?'cur':''} ${ok?'':'lock'} ${s===10?'boss':''} ${UI.stage===s?'sel':''}" ${ok?'':'disabled'} data-act="stage" data-s="${s}" aria-label="${s===10?'Boss':'Étape '+s}" aria-pressed="${UI.stage===s}">${s===10?uic('skull'):done&&UI.stage!==s?uic('check'):s}</button>`}).join('<i></i>');
+  const foe=(e,k)=>`<span class="amfoe"><span class="tile" style="--h:${HUES[k*2%6]}">${icon(e.ic)}</span><small>${esc(e.n)}</small></span>`;
+  const isBoss=UI.stage===10;
+  const diffSeg=`<div class="amseg"><button class="${dk==='normal'?'on':''}" data-act="diff" data-d="normal">Normal</button><button class="${dk==='hero'?'on hero':''}" data-act="diff" data-d="hero" ${heroOpen()?'':`disabled title="Atteignez le niveau ${HERO_L} pour débloquer le mode Héroïque."`}>${heroOpen()?'':uic('lock')}Héroïque</button><button class="${dk==='myth'?'on myth':''}" data-act="diff" data-d="myth" ${mythOpen()?'':'disabled title="Atteignez le dernier boss en mode héroïque pour débloquer le mode Mythique."'}>${mythOpen()?'':uic('lock')}Mythique</button></div>`;
+  const note=dk==='hero'?`<p class="amnote hero">Monstres niveau ${D.L}, bien plus agressifs. Les boss entrent en rage dès le tour ${D.rage+1}.</p>`:dk==='myth'?`<p class="amnote myth">Monstres niveau ${D.L}. Boss avec Frappe dévastatrice, rage dès le tour ${D.rage+1}. Récompenses ×2, Prisme divin à 25 % sur Le Dévoreur.</p>`:'';
+  return `<div class="amap ${dk}">
+   <svg class="ambg" viewBox="0 0 1000 500" preserveAspectRatio="none" aria-hidden="true">${amapBg()}<rect width="1000" height="500" fill="url(#amv)"/></svg>
+   <div class="amfield"><svg class="amlines" viewBox="0 0 700 500" preserveAspectRatio="none" aria-hidden="true">${segs}</svg>${nodes}</div>
+   <aside class="aminfo" aria-label="Zone sélectionnée"><div class="amhead">${zoneScene(z,'h')}<span><small>Zone ${z+1} · ${D.L?'niveau '+D.L:'niveau '+(z*10+1)+'-'+(z*10+10)}</small><h2>${Z.n}</h2></span></div>
+    <div class="ambody">${diffSeg}${note}
+     <h4>Étapes</h4><div class="amtrail">${trail}</div>
+     <h4>${isBoss?'Boss':'Ennemis'} · niveau <span class="num">${L}</span></h4>
+     ${isBoss?`<div class="amboss"><span class="tile" style="--h:8">${icon(Z.boss.ic)}</span><span><small>Boss de la zone</small><b>${esc(Z.boss.n)}</b></span></div>`
+       :`<div class="amfoes">${Z.enemies.map(foe).join('')}</div><div class="amboss sm"><span class="tile" style="--h:8">${icon(Z.boss.ic)}</span><span><small>Boss à l’étape 10</small><b>${esc(Z.boss.n)}</b></span></div>`}
+     <div class="amfight"><button class="btn pri amgo" data-act="fight">${uic('play','pl')} Combattre</button>
+      <div class="amopts"><label><input type="checkbox" id="chkAuto" data-act="auto" ${S.auto?'checked':''}> Combat automatique</label><label><input type="checkbox" id="chkFarm" data-act="farm" ${S.farm?'checked':''} ${S.auto?'':'disabled'}> Enchaîner les combats</label></div>
+      <small class="mute">Puissance de ${esc(h.name)} : <b class="num">${Math.round(heroPower(h))}</b> · PV restaurés après chaque combat.</small></div>
+    </div></aside></div>`;
+}
+
+/* ===== Duel et Raid (style carte / arène) ===== */
+ZTH[5]={sky:['#0b1a2a','#3a6a8c','#cfe6f2'],l:['#6f93ad','#46667f','#1d3346'],fx:'ice',sun:'#ffffff'};
+ZTH[6]={sky:['#120a06','#3a2214','#8a5a30'],l:['#5a3a20','#3a2414','#1c120a'],fx:'arches',sun:'#ffd9a0'};
+const RAID_SC={colosse:3,wyrm:5,avatar:4};
+const raidSc=r=>RAID_SC[r.id]!=null?RAID_SC[r.id]:4;
+const RAID_PTS=[[14,62],[36,34],[58,62]];
+const prBilan=(w,l,lw='victoires',ll='défaites')=>`<div class="mpbil"><span><b class="num">${w}</b><small>${lw}</small></span><span><b class="num">${l}</b><small>${ll}</small></span><span><b class="num">${w+l?Math.round(w/(w+l)*100):0} %</b><small>réussite</small></span></div><div class="mpratio" role="img" aria-label="${w} sur ${w+l}"><i style="width:${w+l?w/(w+l)*100:0}%"></i></div>`;
+function prFriends(act,label){
+  if(!FB.user||!FB.prof) return '<p class="amnote">Connectez-vous à un compte en ligne pour défier vos amis.</p>';
+  const me=FB.user.uid,acc=FR.list.filter(f=>f.status==='accepted');
+  if(!acc.length) return '<p class="amnote">Aucun ami pour l’instant. Ajoutez-en depuis Communauté, dans la barre du bas.</p>';
+  const L=acc.map(f=>{const o=f.users.find(x=>x!==me),p=FR.prof[o],ol=isOnline(p),ch=p&&p.char;return {f,ol,ch}}).sort((a,b)=>b.ol-a.ol);
+  return `<ul class="mpfr">${L.map(({f,ol,ch})=>`<li><span class="st ${ol?'on':''}" aria-label="${ol?'En ligne':'Hors ligne'}"></span><span><b>${esc(otherName(f))}</b><small>${ch?`${(CLASSES[ch.cls]||{n:''}).n} · niveau ${ch.lvl}`:''}${ol?'':(ch?' · ':'')+'hors ligne'}</small></span><button class="btn sm ${ol?'pri':''}" data-act="${act}" data-id="${f.id}" ${ol?'':'disabled'}>${label}</button></li>`).join('')}</ul>`;
+}
+const prPort=(h,s)=>PORTRAIT[h.cls]?`<img class="mpport" src="${PORTRAIT[h.cls]}" width="${s}" height="${s}" alt="">`:`<span class="mpunk" style="width:${s}px;height:${s}px"><span class="tile" style="--h:${h.hue}">${icon(CLASSES[h.cls].ic)}</span></span>`;
+function viewDuel(){
+  const on=!!(FB.user&&FB.prof),H=S.heroes[0],W=S.pvp||{w:0,l:0};
+  const act=!on?`<p class="mplog">Connectez-vous à un compte en ligne (Menu) pour faire des duels.</p>`
+    :PV.searching?`<div class="mpsearch"><span class="spin" aria-hidden="true"></span><b>Recherche d’un adversaire…</b><button class="btn" data-act="pvpCancel">Annuler</button></div>`
+    :`<button class="btn pri amgo mpgo" data-act="pvpFind">${uic('swords')} Rechercher un adversaire</button>`;
+  return `<div class="amap mpar"><div class="mparbg">${zoneScene(6,'ar')}</div>
+   <div class="mpstage"><div class="mpvs"><div class="mpfig">${prPort(H,170)}<b>${esc(H.name)}</b><small>${CLASSES[H.cls].n} · niveau ${H.lvl} · puissance ${Math.round(heroPower(H))}</small></div><span class="mpvst" aria-hidden="true">VS</span><div class="mpfig ${PV.searching?'srch':''}"><span class="mpunk" style="width:170px;height:170px"><span class="q">?</span></span><b>Adversaire</b><small>${PV.searching?'Recherche en cours…':'Un joueur de votre niveau'}</small></div></div>
+    ${act}<small class="mpnote">Victoire : ${matChip('gold',PVP_GOLD)} · combat au tour par tour · ${PVP_TURN} s maximum par tour</small></div>
+   <aside class="aminfo" aria-label="Duel"><div class="amhead">${zoneScene(6,'ah')}<span><small>Joueur contre joueur</small><h2>Duel</h2></span></div>
+    <div class="ambody"><h4>Votre bilan</h4>${prBilan(W.w,W.l)}<h4>Défier un ami</h4>${prFriends('frDuel','Duel')}
+     <p class="amnote mute" style="margin-top:auto">Chaque joueur agit à son tour : compétences, PA et potions. Un joueur inactif pendant ${PVP_TURN} secondes peut être déclaré perdant.</p></div></aside></div>`;
+}
+function viewRaidMap(){
+  const on=!!(FB.user&&FB.prof),H=S.heroes[0],R0=S.raidS||{w:0,l:0};
+  if(UI.raidB==null||!RAIDS[UI.raidB]) UI.raidB=0;
+  const r=RAIDS[UI.raidB],mx=raidMax(r.id),t=rdTier(),b=mkRaidBoss(r,t),rw=rdRw(r,t),lock=H.lvl<r.req,srch=RD.searching;
+  const pt=i=>RAID_PTS[i]||[14+i*22,i%2?34:62];
+  const segs=RAIDS.slice(1).map((_,k)=>{const a=pt(k),c=pt(k+1);return `<path d="M${a[0]*10} ${a[1]*5}L${c[0]*10} ${c[1]*5}" stroke="#6b4a22" stroke-width="4" stroke-dasharray="2 14" stroke-linecap="round" fill="none" opacity=".75"/>`}).join('');
+  const nodes=RAIDS.map((x,k)=>{const lk=H.lvl<x.req,p=pt(k);return `<button class="amnode ${lk?'lock':''} ${k===UI.raidB?'on':''}" style="left:${(p[0]/70*100).toFixed(1)}%;top:${p[1]}%" data-act="rdBoss" data-i="${k}" aria-pressed="${k===UI.raidB}"><span class="ampic big">${zoneScene(raidSc(x),'r')}<span class="ambadge" title="Palier maximum atteint">+${raidMax(x.id)}</span></span><b>${lk?uic('lock'):''}${esc(x.n)}</b><small>Niveau ${x.L} · requis ${x.req}</small></button>`}).join('');
+  const resl=RES_K.filter(k=>b[k]).map(k=>`<span class="${b[k]<0?'neg':''}">${esc(STAT_N[k].replace(/^Résistance (au |à la |aux )?/,''))} ${b[k]>0?'+':''}${b[k]} %</span>`).join('')||'<span>aucune</span>';
+  const tiers=Array.from({length:mx+1},(_,i)=>`<button class="${i===t?'on':''}" data-act="rdTier" data-t="${i}" ${srch?'disabled':''} aria-pressed="${i===t}" title="${i?`+${Math.round((rdMul(i)-1)*100)} % de difficulté`:'Difficulté de base'}">+${i}</button>`).join('')+`<button disabled title="Battez ce boss au palier +${mx} pour débloquer le palier +${mx+1}.">${uic('lock')}+${mx+1}</button>`;
+  const act=!on?`<p class="mplog dark">Connectez-vous à un compte en ligne (Menu) pour jouer les raids.</p>`
+    :lock?`<p class="mplog dark">Niveau ${r.req} requis (vous êtes niveau ${H.lvl}).</p>`
+    :srch?`<div class="mpsearch dark"><span class="spin" aria-hidden="true"></span><b>Recherche d’un partenaire (palier +${srch.t})…</b><button class="btn" data-act="rdCancel">Annuler</button></div>`
+    :`<div class="mpacts"><button class="btn pri amgo" data-act="rdFind">${uic('skull')} Rechercher un partenaire</button><button class="btn mpinv" data-act="rdInv" title="Inviter un ami">${uic('people')}<span>Inviter</span></button></div>`;
+  return `<div class="amap"><svg class="ambg" viewBox="0 0 1000 500" preserveAspectRatio="none" aria-hidden="true">${amapBg()}<rect width="1000" height="500" fill="url(#amv)"/></svg>
+   <div class="amfield"><svg class="amlines" viewBox="0 0 700 500" preserveAspectRatio="none" aria-hidden="true">${segs}</svg>${nodes}</div>
+   <aside class="aminfo rd" aria-label="Boss sélectionné"><div class="amhead">${zoneScene(raidSc(r),'rh')}<span><small>Raid à 2 joueurs · palier max +${mx}</small><h2>${esc(r.n)}</h2></span></div>
+    <div class="ambody"><p class="amnote">${esc(r.d)}</p>
+     <dl class="mpst"><dt>Niveau</dt><dd>${r.L}</dd><dt>PV</dt><dd>${fmt(b.hp)}</dd><dt>${r.role==='mag'?'Intelligence':'Force'}</dt><dd>${fmt(Math.round(b.atk))}</dd><dt>Défense</dt><dd>${fmt(b.def)} / ${fmt(b.res)}</dd></dl>
+     <h4>Résistances</h4><div class="mpchips">${resl}</div>
+     <h4>Compétences</h4><div class="mpchips skl">${r.sk.map(id=>`<span>${esc(SK[id].n)}</span>`).join('')}</div>
+     <h4>Palier <small class="mute">+5 % par palier · rage au tour ${RD_RAGE+1}</small></h4><div class="mptier">${tiers}</div>
+     <div class="amfight"><div class="mprew"><b>Récompenses</b>${matChip('gold',rw.gold)}${Object.entries(rw).filter(([k])=>k!=='gold').map(([k,v])=>matChip(k,v)).join('')}</div>${act}<small class="mute">Bilan : <b>${R0.w}</b> raid${R0.w>1?'s':''} réussi${R0.w>1?'s':''} · <b>${R0.l}</b> échec${R0.l>1?'s':''}</small></div></div></aside></div>`;
+}
+
 function viewCombatIdle(){
   const P=prog(),dk=curDiff(),D=DIFF[dk],hero=dk!=='normal',z=ZONES[UI.zone],L=D.L||UI.zone*10+UI.stage;
   const h=S.heroes[0],c=CLASSES[h.cls],st=heroStats(h),need=h.lvl>=MAXL?1:xpNeed(h.lvl);
@@ -3010,7 +3417,11 @@ function viewCombatIdle(){
     :dk==='myth'?`<p class="hint" style="color:var(--r3)"><b>Mode mythique :</b> monstres niveau ${D.L}. Les boss gagnent la Frappe dévastatrice et entrent en rage dès le tour ${D.rage+1}. Récompenses : or, XP et matériaux ×2, Prisme divin à 25 % sur Le Dévoreur.</p>`:heroOpen()?'':`<p class="hint">🔒 Le mode Héroïque se débloque au niveau ${HERO_L} (vous êtes niveau ${S.heroes[0].lvl}).</p>`;
   const mstat=c.role==='mag'?['Intelligence',st.mag]:['Force',st.atk];
   const mode=UI.advMode||'pve';
-  return `<div class="seg advmode" role="tablist"><button class="${mode==='pve'?'on':''}" data-act="advMode" data-m="pve">Aventure</button><button class="${mode==='pvp'?'on':''}" data-act="advMode" data-m="pvp">⚔ Duel PvP</button><button class="${mode==='raid'?'on':''}" data-act="advMode" data-m="raid">☠ Raid</button></div><div class="adv-layout">
+  const modeSeg=`<div class="advmode2" role="tablist"><button class="${mode==='pve'?'on':''}" data-act="advMode" data-m="pve">${uic('swords')} Aventure</button><button class="${mode==='pvp'?'on':''}" data-act="advMode" data-m="pvp">${uic('people')} Duel</button><button class="${mode==='raid'?'on':''}" data-act="advMode" data-m="raid">${uic('skull')} Raid</button></div>`;
+  if(mode==='pve') return `<div class="advwrap">${modeSeg}${viewAdvMap()}</div>`;
+  if(mode==='pvp') return `<div class="advwrap">${modeSeg}${viewDuel()}</div>`;
+  if(mode==='raid') return `<div class="advwrap">${modeSeg}${viewRaidMap()}</div>`;
+  return `${modeSeg}<div class="adv-layout">
     <section class="panel herocol">
       <h2 style="margin:0 0 10px;font-size:1.6rem">${esc(h.name)}</h2>
       ${PORTRAIT[h.cls]?`<img class="portrait" src="${PORTRAIT[h.cls]}" alt="Portrait : ${c.n}" width="114" height="114">`:`<span class="tile xl" style="--h:${h.hue}">${icon(c.ic)}</span>`}
@@ -3085,18 +3496,6 @@ function usePot(k){
 }
 
 /* --- marchand --- */
-function viewShop(){
-  const h=S.heroes[0];
-  const cards=Object.entries(POTS).map(([k,p])=>{
-    const pr=potPrice(k),own=matCount(k),lock=p.cls&&p.cls!==h.cls;
-    const b=q=>p.fix?(q>1?'':`<button class="btn sm pri" data-act="buyPot" data-k="${k}" data-q="1" ${canPay(p.fix)?'':'disabled'}>Acheter</button>${costHTML(p.fix)}`):`<button class="btn sm ${q===1?'pri':''}" data-act="buyPot" data-k="${k}" data-q="${q}" ${!lock&&hasGold(pr*q)?'':'disabled'}>Acheter ×${q} <span class="num">(${fmt(pr*q)} or)</span></button>`;
-    return `<article class="shopc ${lock?'lock':''}"><div class="row" style="gap:10px;align-items:flex-start"><span class="potico">${matIcon(k)}</span><div style="flex:1;min-width:0"><b>${p.n}</b><p class="hint" style="margin:2px 0 6px">${p.d}</p>${lock?`<small style="color:var(--blood);font-weight:700">Réservée au ${CLASSES[p.cls].n}</small>`:`<small class="mute">Possédées : <b class="num">${own}</b></small>`}</div></div>
-      <div class="row" style="margin-top:10px">${b(1)}${b(5)}</div></article>`}).join('');
-  return `<div class="thead" style="margin-bottom:6px"><span></span><h2 class="stitle">Marchand</h2><span class="rs" style="justify-self:end;color:var(--fg);background:#0001;border-color:var(--line2)">${matIcon('gold')}<b>${fmt(S.gold)}</b></span></div>
-    <p class="hint" style="margin-bottom:14px">« Des potions pour l’aventure, voyageur ? » Les potions vont dans votre inventaire et se boivent en combat, sans utiliser votre tour. Les prix augmentent avec votre niveau.</p>
-    <div class="shopgrid">${cards}</div>`;
-}
-
 /* --- personnage --- */
 function viewHeroes(){
   const h=S.heroes[0],c=CLASSES[h.cls],s=heroStats(h),BP=bagParts();
@@ -3218,7 +3617,7 @@ function dollHTML(h){
   }).join('');
   return `<div class="doll" id="doll" style="--h:${h.hue}">${svg}${slots}</div>`;
 }
-const itemBtns=i=>`<button class="btn sm pri" data-act="equip" data-id="${i.id}">Équiper</button><button class="btn sm" data-act="toForge" data-id="${i.id}">Forge</button>${UI.confirm==='del'+i.id?`<button class="btn sm warn" data-act="salv" data-id="${i.id}">Confirmer</button><button class="btn sm" data-act="noConfirm">Annuler</button></div><p class="hint" style="width:100%;margin-top:4px">Vous récupérerez : ${resTxt(salvageValue(i))}.</p><div class="foot">`:`<button class="btn sm danger" data-act="salv" data-id="${i.id}">Détruire</button>`}`;
+const itemBtns=i=>`<button class="btn sm pri" data-act="equip" data-id="${i.id}">Équiper</button><button class="btn sm" data-act="toForge" data-id="${i.id}">Renforcer</button>${UI.confirm==='del'+i.id?`<button class="btn sm warn" data-act="salv" data-id="${i.id}">Confirmer</button><button class="btn sm" data-act="noConfirm">Annuler</button></div><p class="hint" style="width:100%;margin-top:4px">Vous récupérerez : ${resTxt(salvageValue(i))}.</p><div class="foot">`:`<button class="btn sm danger" data-act="salv" data-id="${i.id}">Détruire</button>`}`;
 
 /* --- inventaire en grille --- */
 const cellName=c=>c.mat?MAT_OBJ[c.mat]:c.name;
@@ -3246,7 +3645,7 @@ function bagParts(){
   let detail='';
   if(c&&c.mat) detail=matCard(c,`<button class="btn sm" data-act="bagSplit" data-i="${si}" ${c.n<2||!freeCells()?'disabled':''}>Diviser la pile</button>`+(UI.confirm==='mat'+si?`<button class="btn sm warn" data-act="matDel" data-i="${si}">Confirmer (${c.n} perdus)</button><button class="btn sm" data-act="noConfirm">Annuler</button>`:`<button class="btn sm danger" data-act="matDel" data-i="${si}">Détruire la pile</button>`));
   else if(c) detail=itemCard(c,itemBtns(c),swapDelta(h,c));
-  else if(k) detail=(eq?itemCard(eq,`<button class="btn sm" data-act="unequip" data-slot="${k}">Retirer</button><button class="btn sm" data-act="toForge" data-id="${eq.id}">Forge</button>`):'<p class="hint">Emplacement vide. Glissez-y un objet de l’inventaire.</p>');
+  else if(k) detail=(eq?itemCard(eq,`<button class="btn sm" data-act="unequip" data-slot="${k}">Retirer</button><button class="btn sm" data-act="toForge" data-id="${eq.id}">Renforcer</button>`):'<p class="hint">Emplacement vide. Glissez-y un objet de l’inventaire.</p>');
   const sep=S.statSplit;
   const gb=(t,b,pct)=>{const f=v=>pct?r1(v)+'%':fmt(Math.round(v)),d=pct?r1(t-b):Math.round(t)-Math.round(b);
     return `<b class="tot">${f(t)}</b>`+(sep?` <span class="spl">(${f(b)} + ${pct?r1(d)+'%':fmt(d)})</span>`:'')};
@@ -3319,7 +3718,7 @@ function moveEntry(i,tx,ty){
 }
 /* glisser-déposer (souris et tactile) entre l'inventaire et le mannequin */
 let DRAG=null,noClick=false;
-const dragItem=d=>d.src==='bag'?(S.bag[d.from]&&S.bag[d.from].o):d.src==='forge'?(findItem(d.from)||{}).it:S.heroes[0].equip[d.from];
+const dragItem=d=>d.src==='stash'?(stashTab().bag[d.from]||{}).o:d.src==='bag'?(S.bag[d.from]&&S.bag[d.from].o):d.src==='forge'?(findItem(d.from)||{}).it:S.heroes[0].equip[d.from];
 function equipFromCell(i,slot){
   const h=S.heroes[0],E=S.bag[i],it=E&&E.o; if(!it||it.mat) return;
   if(slotType(slot)!==it.slot){toast('Cet objet ne va pas dans cet emplacement.');return}
@@ -3360,7 +3759,8 @@ function showFoot(tx,ty,w,h,ok){
 const hideFoot=()=>{const f=$('#foot'); if(f) f.remove()};
 document.addEventListener('pointerdown',e=>{
   if(e.button>0||!e.target.closest) return;
-  const c=e.target.closest('#bag .gi'),s=e.target.closest('#doll .dslot.full'),fs=e.target.closest('#fslot.full');
+  const c=e.target.closest('#bag .gi'),s=e.target.closest('#doll .dslot.full'),fs=e.target.closest('#fslot.full'),sc=e.target.closest('#stash .si');
+  if(sc){ const E=stashTab().bag[+sc.dataset.i]; if(!E) return; const gc=stashCellAt(e.clientX,e.clientY)||[E.x,E.y]; DRAG={src:'stash',from:+sc.dataset.i,el:sc,off:[clamp(gc[0]-E.x,0,SIZE(E.o)[0]-1),clamp(gc[1]-E.y,0,SIZE(E.o)[1]-1)]}; const r=sc.getBoundingClientRect(); Object.assign(DRAG,{x:e.clientX,y:e.clientY,gx:e.clientX-r.left,gy:e.clientY-r.top,on:false,ghost:null,over:null,tgt:null,stgt:null}); return }
   if(fs&&UI.fItem!=null&&findItem(UI.fItem)){ DRAG={src:'forge',from:UI.fItem,el:fs,off:[0,0],big:true}; const r=fs.getBoundingClientRect(); Object.assign(DRAG,{x:e.clientX,y:e.clientY,gx:e.clientX-r.left,gy:e.clientY-r.top,on:false,ghost:null,over:null,tgt:null}); return }
   if(c){ if(UI.multi) return; const E=S.bag[+c.dataset.i]; if(!E) return; const gc=gridCellAt(e.clientX,e.clientY)||[E.x,E.y];
     DRAG={src:'bag',from:+c.dataset.i,el:c,off:[clamp(gc[0]-E.x,0,SIZE(E.o)[0]-1),clamp(gc[1]-E.y,0,SIZE(E.o)[1]-1)]} }
@@ -3387,9 +3787,14 @@ document.addEventListener('pointermove',e=>{
   if(DRAG.over&&DRAG.over!==ok) DRAG.over.classList.remove('over');
   if(ok) ok.classList.add('over');
   DRAG.over=ok; DRAG.tgt=null;
+  const sg=!ok&&(DRAG.src==='bag'||DRAG.src==='stash')&&stashCellAt(e.clientX,e.clientY); DRAG.stgt=null;
+  if(sg){ const it=dragItem(DRAG),[w,h]=SIZE(it),tx=sg[0]-DRAG.off[0],ty=sg[1]-DRAG.off[1],T=stashTab(),self=DRAG.src==='stash'?T.bag[DRAG.from]:null,inb=tx>=0&&ty>=0&&tx+w<=SW&&ty+h<=SH,ov=inb?stashOverlaps(T,tx,ty,w,h,self):[];
+    DRAG.stgt=[tx,ty]; hideFoot(); showSFoot(tx,ty,w,h,inb&&(!ov.length||(ov.length===1&&it.mat&&ov[0].o.mat===it.mat))); return }
+  hideSFoot();
   const gc=!ok&&DRAG.src!=='forge'&&gridCellAt(e.clientX,e.clientY);
   if(gc){ const it=dragItem(DRAG),[w,h]=SIZE(it),tx=gc[0]-DRAG.off[0],ty=gc[1]-DRAG.off[1];
     const self=DRAG.src==='bag'?S.bag[DRAG.from]:null,inb=tx>=0&&ty>=0&&tx+w<=GW&&ty+h<=GH,ov=inb?overlaps(tx,ty,w,h,self):[];
+    if(DRAG.src==='stash'){ DRAG.tgt=[tx,ty]; showFoot(tx,ty,w,h,inb&&(!ov.length||(ov.length===1&&it.mat&&ov[0].o.mat===it.mat))); return }
     DRAG.tgt=[tx,ty]; showFoot(tx,ty,w,h,inb&&ov.length<=1) }
   else hideFoot();
 },{passive:false});
@@ -3397,10 +3802,12 @@ function endDrag(e,drop){
   if(!DRAG) return; const d=DRAG; DRAG=null;
   if(!d.on) return;
   noClick=true; setTimeout(()=>{noClick=false},0);
-  if(d.ghost) d.ghost.remove(); d.el.classList.remove('drag'); if(d.over) d.over.classList.remove('over'); hideFoot();
+  if(d.ghost) d.ghost.remove(); d.el.classList.remove('drag'); if(d.over) d.over.classList.remove('over'); hideFoot(); hideSFoot();
   document.querySelectorAll('#doll .fit').forEach(x=>x.classList.remove('fit'));
   if(!drop) return;
   if(d.src==='forge'){ if(!(d.over&&d.over.id==='fslot')){ UI.fItem=null; render(); toast('Objet retiré de l’enclume.') } return }
+  if(d.stgt){ if(d.src==='bag') toStash(d.from,d.stgt[0],d.stgt[1]); else if(d.src==='stash') moveStash(d.from,d.stgt[0],d.stgt[1]); return }
+  if(d.src==='stash'){ if(d.tgt) fromStash(d.from,d.tgt[0],d.tgt[1]); return }
   if(!d.over&&d.tgt){ if(d.src==='bag') moveEntry(d.from,d.tgt[0],d.tgt[1]); else unequipTo(d.from,d.tgt[0],d.tgt[1]); return }
   if(!d.over) return;
   const o=d.over,toBag=false;
@@ -3414,7 +3821,9 @@ document.addEventListener('pointerup',e=>endDrag(e,true));
 /* clic droit : équiper / retirer */
 document.addEventListener('contextmenu',e=>{
   if(!e.target.closest) return;
-  const c=e.target.closest('#bag .gi'),s=e.target.closest('#doll .dslot');
+  const c=e.target.closest('#bag .gi'),s=e.target.closest('#doll .dslot'),sc=e.target.closest('#stash .si');
+  if(sc){ e.preventDefault(); hideTip(); fromStash(+sc.dataset.i); return }
+  if(c&&UI.stashOpen&&$('#stash')){ e.preventDefault(); hideTip(); toStash(+c.dataset.i); return }
   if(!c&&!s) return; e.preventDefault(); hideTip();
   const it=c&&S.bag[+c.dataset.i]&&S.bag[+c.dataset.i].o;
   if(c&&UI.tab==='forge'){ if(it&&!it.mat){UI.fItem=it.id;UI.fMode='up';render()} return}
@@ -3453,24 +3862,26 @@ function forgeDetail(){
 const invAllowed=()=>!!(S&&S.heroes&&S.heroes.length&&!UI.scr&&!inFight()&&!(PV.match&&['fight','prep'].includes(PV.match.state))&&!(RD.match&&['fight','prep'].includes(RD.match.state)));
 function openInv(v){
   if(v&&!invAllowed()){ if(S&&!UI.scr) toast('L’inventaire n’est pas disponible pendant un combat.'); return }
-  UI.invOpen=!!v; if(!v){ UI.bagSel=null; UI.invSel=null; UI.multi=false; UI.confirm=null }
+  UI.invOpen=!!v; if(v) S.bagDot=false; if(!v){ UI.bagSel=null; UI.invSel=null; UI.multi=false; UI.confirm=null }
   const y=scrollY; render(); scrollTo(0,y);
 }
 function renderInvPop(){
   let w=$('#invpop');
-  if(!UI.invOpen||!invAllowed()){ if(w) w.remove(); if(UI.invOpen&&S&&S.heroes&&S.heroes.length&&!UI.scr) UI.invOpen=false; return }
+  if(!UI.invOpen||!invAllowed()){ if(w) w.remove(); if(UI.invOpen&&S&&S.heroes&&S.heroes.length&&!UI.scr) UI.invOpen=false; renderStashPop(); return }
   const fresh=!w;
   if(!w){ w=document.createElement('div'); w.id='invpop'; w.className='invpop'; w.setAttribute('role','dialog'); w.setAttribute('aria-label','Inventaire'); document.body.append(w) }
   const P=bagParts(),so=UI.bagSort;
-  w.innerHTML=`<div class="iphead" data-ipdrag><span class="ipt">${icon('chest')}<b>Inventaire</b></span><small class="num ipcnt">${P.used} / ${BAG}</small><span class="ipg">${matIcon('gold')}<b class="num">${fmt(S.gold)}</b></span><button class="ipx" data-act="invClose" aria-label="Fermer l’inventaire" title="Fermer (I)">×</button></div>
+  w.innerHTML=`<div class="iphead" data-ipdrag><span class="ipt">${icon('chest')}<b>Inventaire</b></span><small class="num ipcnt">${P.used} / ${BAG}</small><span class="ipg"></span><button class="btn sm ipchest ${UI.stashOpen?'on':''}" data-act="stToggle" aria-pressed="${!!UI.stashOpen}" title="Coffre du compte">${icon('chest')}Coffre</button><button class="ipx" data-act="invClose" aria-label="Fermer l’inventaire" title="Fermer (I)">×</button></div>
     <div class="iptools"><span class="mute">Trier</span><div class="ipseg"><button class="${so.k==='name'?'on':''}" data-act="bagSort" data-k="name">Nom${P.arrow('name')}</button><button class="${so.k==='qty'?'on':''}" data-act="bagSort" data-k="qty">Quantité${P.arrow('qty')}</button></div><button class="btn sm ${UI.multi?'warn':''}" style="margin-left:auto" data-act="multiToggle">${UI.multi?'Terminer':'Détruire plusieurs'}</button></div>
-    ${UI.multi?multiBar():''}<div class="ipgrid">${gridHTML()}</div>
+    ${UI.multi?multiBar():''}<div class="ipgrid">${gridHTML()}</div><div class="ipres" id="ipres">${resRow()}</div>
     ${P.detail&&!UI.multi?`<div class="ipdet"><button class="x" data-act="detClose" aria-label="Fermer les détails">×</button>${P.detail}</div>`:''}`;
   if(fresh&&UI.invPos){ w.style.left=UI.invPos.x+'px'; w.style.top=UI.invPos.y+'px'; w.style.right='auto' }
   if(UI.invPos) ipClamp(w);
+  renderStashPop();
 }
 function ipClamp(w){ if(innerWidth<=700) return; const r=w.getBoundingClientRect(),x=clamp(r.left,4,Math.max(4,innerWidth-r.width-4)),y=clamp(r.top,4,Math.max(4,innerHeight-60)); w.style.left=x+'px'; w.style.top=y+'px'; w.style.right='auto'; UI.invPos={x,y} }
-let IPD=null;
+let IPD=null,ZTOP=61;
+document.addEventListener('pointerdown',e=>{ const w=e.target.closest&&e.target.closest('#invpop,#stashpop'); if(w&&+(w.style.zIndex||0)<ZTOP){ w.style.zIndex=++ZTOP } },true);
 document.addEventListener('pointerdown',e=>{ const hd=e.target.closest&&e.target.closest('[data-ipdrag]'); if(!hd||e.target.closest('button')||innerWidth<=700) return; const w=$('#invpop'),r=w.getBoundingClientRect(); IPD={dx:e.clientX-r.left,dy:e.clientY-r.top}; w.classList.add('mov'); e.preventDefault() });
 document.addEventListener('pointermove',e=>{ if(!IPD) return; const w=$('#invpop'); if(!w){IPD=null;return} w.style.left=(e.clientX-IPD.dx)+'px'; w.style.top=(e.clientY-IPD.dy)+'px'; w.style.right='auto' });
 document.addEventListener('pointerup',()=>{ if(!IPD) return; IPD=null; const w=$('#invpop'); if(w){ w.classList.remove('mov'); ipClamp(w) } });
@@ -3479,87 +3890,212 @@ document.addEventListener('keydown',e=>{
   if((e.key==='i'||e.key==='I')&&!e.ctrlKey&&!e.metaKey&&!e.altKey){ if(!S||!S.heroes||!S.heroes.length||UI.scr) return; e.preventDefault(); openInv(!UI.invOpen) }
   else if(e.key==='Escape'&&UI.invOpen&&!$('.modal')) openInv(false);
 });
+
+/* ============ coffre (lié au compte, partagé entre les personnages) ============ */
+const SW=15,SH=5,STASH_MAX=6,STASH_COST=[0,5000,15000,40000,100000,250000];
+function stashD(){ if(!ACC.stash||!Array.isArray(ACC.stash.tabs)||!ACC.stash.tabs.length) ACC.stash={tabs:[{n:'Coffre 1',bag:[]}],cur:0}; const d=ACC.stash; if(!d.tabs[d.cur]) d.cur=0; return d }
+const stashTab=()=>{const d=stashD(); return d.tabs[d.cur]};
+const stashUsed=T=>T.bag.reduce((a,e)=>{const [w,h]=SIZE(e.o);return a+w*h},0);
+function stashOverlaps(T,x,y,w,h,skip){return T.bag.filter(e=>{ if(e===skip) return false; const [ew,eh]=SIZE(e.o); return x<e.x+ew&&e.x<x+w&&y<e.y+eh&&e.y<y+h })}
+function toStash(i,x,y){
+  const E=S.bag[i]; if(!E) return; const T=stashTab(),[w,h]=SIZE(E.o);
+  if(x!=null){ const ov=stashOverlaps(T,x,y,w,h);
+    if(ov.length===1&&E.o.mat&&ov[0].o.mat===E.o.mat){ const B=ov[0].o,m=Math.min(STACK-B.n,E.o.n); if(m<=0){toast('Cette pile est pleine.');return} B.n+=m; E.o.n-=m; if(!E.o.n) S.bag.splice(i,1); save(); render(); return }
+    if(!fitsAt(T.bag,x,y,w,h,null,SW,SH)){toast('Pas assez de place ici.');return} }
+  const pos=x!=null?[x,y]:findSpot(T.bag,w,h,SW,SH); if(!pos){toast('Cet onglet du coffre est plein.');return}
+  S.bag.splice(i,1); T.bag.push({x:pos[0],y:pos[1],o:E.o}); if(UI.bagSel===E.o) UI.bagSel=null; save(); render();
+}
+function fromStash(j,x,y){
+  const T=stashTab(),E=T.bag[j]; if(!E) return; const [w,h]=SIZE(E.o);
+  if(x!=null){ const ov=overlaps(x,y,w,h,null);
+    if(ov.length===1&&E.o.mat&&ov[0].o.mat===E.o.mat){ const B=ov[0].o,m=Math.min(STACK-B.n,E.o.n); if(m<=0){toast('Cette pile est pleine.');return} B.n+=m; E.o.n-=m; if(!E.o.n) T.bag.splice(j,1); save(); render(); return }
+    if(!fitsAt(S.bag,x,y,w,h)){toast('Pas assez de place ici.');return} }
+  const pos=x!=null?[x,y]:findSpot(S.bag,w,h); if(!pos){toast('Inventaire plein.');return}
+  T.bag.splice(j,1); if(!E.o.mat) E.o.id=++S.uid; S.bag.push({x:pos[0],y:pos[1],o:E.o}); if(UI.stSel===E.o) UI.stSel=null; markNew(); save(); render();
+}
+function moveStash(j,x,y){
+  const T=stashTab(),E=T.bag[j]; if(!E) return; const [w,h]=SIZE(E.o); if(x===E.x&&y===E.y) return;
+  const ov=stashOverlaps(T,x,y,w,h,E);
+  if(ov.length===1&&E.o.mat&&ov[0].o.mat===E.o.mat){ const B=ov[0].o,m=Math.min(STACK-B.n,E.o.n); B.n+=m; E.o.n-=m; if(!E.o.n) T.bag.splice(j,1); saveAcc(); render(); return }
+  if(!fitsAt(T.bag,x,y,w,h,[E],SW,SH)){toast('Pas assez de place ici.');return}
+  E.x=x; E.y=y; saveAcc(); render();
+}
+function stashCellAt(px,py){
+  const b=$('#stash'); if(!b) return null; const r=b.getBoundingClientRect();
+  if(px<r.left||px>r.right||py<r.top||py>r.bottom) return null;
+  const pad=8,gap=3,cw=(r.width-2*pad-(SW-1)*gap)/SW;
+  return [clamp(Math.floor((px-r.left-pad+gap/2)/(cw+gap)),0,SW-1),clamp(Math.floor((py-r.top-pad+gap/2)/(cw+gap)),0,SH-1)];
+}
+function showSFoot(tx,ty,w,h,ok){
+  let f=$('#sfoot'); const b=$('#stash'); if(!b) return;
+  if(!f){f=document.createElement('div');f.id='sfoot';b.append(f)}
+  const cx=clamp(tx,0,SW-1),cy=clamp(ty,0,SH-1),cw=Math.max(1,Math.min(w,SW-cx)),ch=Math.max(1,Math.min(h,SH-cy));
+  f.style.gridColumn=`${cx+1}/span ${cw}`; f.style.gridRow=`${cy+1}/span ${ch}`; f.className=ok?'ok':'bad';
+}
+const hideSFoot=()=>{const f=$('#sfoot'); if(f) f.remove()};
+function stashGridHTML(){
+  const T=stashTab(); let bg=''; for(let y=0;y<SH;y++) for(let x=0;x<SW;x++) bg+=`<div class="cell" style="grid-column:${x+1};grid-row:${y+1}"></div>`;
+  const items=T.bag.map((e,i)=>{ const c=e.o,[w,h]=SIZE(c),pos=`grid-column:${e.x+1}/span ${w};grid-row:${e.y+1}/span ${h}`,sel=UI.stSel===c?' sel':'';
+    if(c.mat) return `<button class="cell full gi si mat${sel}" style="${pos}" data-act="stCell" data-i="${i}" data-tip="st:${i}" aria-label="${MAT_OBJ[c.mat]}, ${c.n}">${matSvg(c.mat)}<span class="q">${c.n}</span></button>`;
+    return `<button class="cell full gi si it${sel}" style="${pos};--rc:var(--r${c.rarity})" data-act="stCell" data-i="${i}" data-tip="st:${i}" aria-label="${esc(c.name)}, ${RAR[c.rarity].n}">${bigIcon(c)}${c.up?`<span class="u">+${c.up}</span>`:''}</button>` }).join('');
+  return `<div class="bagwrap"><div class="bag stashg" id="stash">${bg}${items}</div></div>`;
+}
+function renderStashPop(){
+  let w=$('#stashpop');
+  if(!UI.stashOpen||!UI.invOpen||!invAllowed()){ if(w) w.remove(); if(!UI.invOpen) UI.stashOpen=false; return }
+  const fresh=!w; if(!w){ w=document.createElement('div'); w.id='stashpop'; w.className='invpop stashpop'; w.setAttribute('role','dialog'); w.setAttribute('aria-label','Coffre du compte'); document.body.append(w) }
+  const d=stashD(),T=stashTab(),n=d.tabs.length,cost=STASH_COST[n],sel=UI.stSel&&T.bag.find(e=>e.o===UI.stSel);
+  const tabs=d.tabs.map((t,i)=>i===d.cur&&UI.stRen?`<input id="stren" maxlength="16" value="${esc(t.n)}" aria-label="Nom de l’onglet">`:`<button class="sttab ${i===d.cur?'on':''}" data-act="stTab" data-i="${i}" title="${i===d.cur?'Double-cliquez pour renommer':''}">${esc(t.n)}</button>`).join('');
+  w.innerHTML=`<div class="iphead" data-stdrag><span class="ipt">${icon('chest')}<b>Coffre</b></span><small class="num ipcnt">${stashUsed(T)} / ${SW*SH}</small><small class="mute">Partagé par tous vos personnages</small><button class="ipx" data-act="stClose" aria-label="Fermer le coffre">×</button></div>
+    <div class="sttabs">${tabs}<button class="sttab ren" data-act="stRen" title="Renommer l’onglet" aria-label="Renommer l’onglet">✎</button>${n<STASH_MAX?`<button class="sttab buy ${UI.stBuy?'conf':''}" data-act="stBuy" ${hasGold(cost)?'':'disabled'} title="Acheter un nouvel onglet">${UI.stBuy?`Confirmer : ${fmt(cost)} or`:`+ Onglet (${fmt(cost)} or)`}</button>`:''}</div>
+    <div class="ipgrid">${stashGridHTML()}</div>
+    ${sel?`<div class="ipdet"><button class="x" data-act="stDet" aria-label="Fermer les détails">×</button>${sel.o.mat?matCard(sel.o):itemCard(sel.o)}<div class="row" style="margin-top:6px"><button class="btn sm pri" data-act="stTake" data-i="${T.bag.indexOf(sel)}">Récupérer dans l’inventaire</button></div></div>`:''}`;
+  if(fresh&&UI.stPos){ w.style.left=UI.stPos.x+'px'; w.style.top=UI.stPos.y+'px'; w.style.right='auto' }
+  else if(fresh&&innerWidth>700){ const ip=$('#invpop'); if(ip){ const r=ip.getBoundingClientRect(),wr=w.getBoundingClientRect(); let x=r.left,y=r.bottom+8; if(y+wr.height>innerHeight-4){ x=r.right+8; y=r.top; if(x+wr.width>innerWidth-4){ x=Math.max(4,innerWidth-wr.width-4); y=Math.max(4,innerHeight-wr.height-4) } } w.style.left=x+'px'; w.style.top=y+'px'; w.style.right='auto' } }
+  const ri=$('#stren'); if(ri&&document.activeElement!==ri){ ri.focus(); ri.select() }
+}
+function stRenDone(save2){ const ri=$('#stren'); if(ri&&save2){ const v=ri.value.trim().slice(0,16); if(v) stashTab().n=v; saveAcc() } UI.stRen=false; renderStashPop() }
+let STD=null;
+document.addEventListener('pointerdown',e=>{ const hd=e.target.closest&&e.target.closest('[data-stdrag]'); if(!hd||e.target.closest('button')||innerWidth<=700) return; const w=$('#stashpop'),r=w.getBoundingClientRect(); STD={dx:e.clientX-r.left,dy:e.clientY-r.top}; w.classList.add('mov'); e.preventDefault() });
+document.addEventListener('pointermove',e=>{ if(!STD) return; const w=$('#stashpop'); if(!w){STD=null;return} w.style.left=(e.clientX-STD.dx)+'px'; w.style.top=(e.clientY-STD.dy)+'px'; w.style.right='auto' });
+document.addEventListener('pointerup',()=>{ if(!STD) return; STD=null; const w=$('#stashpop'); if(w){ w.classList.remove('mov'); const r=w.getBoundingClientRect(),x=clamp(r.left,4,Math.max(4,innerWidth-r.width-4)),y=clamp(r.top,4,Math.max(4,innerHeight-60)); w.style.left=x+'px'; w.style.top=y+'px'; UI.stPos={x,y} } });
+document.addEventListener('keydown',e=>{ if(e.target.id==='stren'){ if(e.key==='Enter'){e.preventDefault();stRenDone(true)} else if(e.key==='Escape'){e.preventDefault();stRenDone(false)} } });
+document.addEventListener('focusout',e=>{ if(e.target.id==='stren') setTimeout(()=>{ if(UI.stRen) stRenDone(true) },0) });
+document.addEventListener('dblclick',e=>{ const t=e.target.closest&&e.target.closest('.sttab.on'); if(t){ UI.stRen=true; renderStashPop() } });
+/* comparaison d’équipement (Maj) */
+function cmpHTML(it){
+  const h=S.heroes[0]; if(!h||!it||it.mat) return '';
+  const sl=it.slot==='ring'?(UI.ringCmp||'ring'):it.slot,eq=h.equip[sl]; if(eq===it) return '';
+  const a=itemStats(it),b=eq?itemStats(eq):{},keys=[...new Set([...Object.keys(a),...Object.keys(b)])];
+  const rows=keys.map(k=>{const d=(a[k]||0)-(b[k]||0); if(Math.abs(d)<.05) return ''; const pc=PCT.has(k),v=pc?r1(Math.abs(d))+' %':Math.round(Math.abs(d)); return `<li class="${d>0?'up':'dn'}">${d>0?'▲ +':'▼ −'}${v} ${STAT_N[k]||k}</li>`}).join('')||'<li>Aucune différence.</li>';
+  const pw=swapDelta(h,it);
+  return `<div class="cmp"><div class="cmpc"><div class="cmph">Objet survolé</div>${itemCard(it,'',pw)}</div><div class="cmpc"><div class="cmph">Équipé${it.slot==='ring'?` · ${SLOT_N[sl]} <kbd>Ctrl</kbd>`:''}</div>${eq?itemCard(eq):'<article class="it" style="--rc:var(--line)"><header><b>Emplacement vide</b></header></article>'}</div>
+    <div class="cmpd"><h5>Différence</h5><ul>${rows}</ul>${it.cls&&!canWear(it)?'<p class="lockr">Ne peut pas être porté par votre classe.</p>':''}</div></div>`;
+}
 function bagBlock(){
   if(UI.invOpen) return `<div class="row between" style="margin:18px 0 10px"><h2>Inventaire</h2></div><p class="hint">L’inventaire est ouvert dans sa fenêtre : glissez vos objets depuis celle-ci.</p>${forgeDetail()}`;
   const mats=MATS.map(m=>`<span class="rs2" title="${MAT_OBJ[m]}">${matIcon(m)}<b class="num">${fmt(matCount(m))}</b></span>`).join('');
   return `<div class="row between" style="margin:18px 0 10px"><h2>Inventaire</h2><small class="num">${BAG-freeCells()} / ${BAG} cases · ${freeCells()} libre${freeCells()>1?'s':''}</small></div>
     ${gridHTML()}${forgeDetail()}`;
 }
-function viewForge(){
-  const h=S.heroes[0],fl=forgeLvl();
-  const seg=`<div class="seg" role="tablist"><button class="${UI.fMode==='forge'?'on':''}" data-act="fMode" data-m="forge">Forge</button><button class="${UI.fMode==='up'?'on':''}" data-act="fMode" data-m="up">Amélioration</button></div>`;
-  let body;
-  if(UI.fMode==='forge'){
-    const t=TIERS[UI.fTier],pr=prismOn(),odds=pr?PRISM.odds:t.odds,lv=pr?PRISM.lv:t.lv,tot=odds.reduce((a,b)=>a+b,0),tc=forgeCost(),fb=baseFor(UI.fSlot,h.cls),np=matCount('prisme');
-    const fit=canFit(...SIZE({slot:UI.fSlot})),oddsH=odds.map((o,j)=>o?`<div class="r"><span style="color:var(--r${j})">${RAR[j].n}</span><div class="bar"><i style="width:${o/tot*100}%;background:var(--r${j})"></i></div><b class="num">${r1(o/tot*100)}%</b></div>`:'').join('');
-    body=`<div class="fA">
-      <section class="panel"><div><h3>Objet</h3><div class="ftypes">${ITEM_SLOTS.map(sl=>{const b=baseFor(sl,h.cls);return `<button class="${UI.fSlot===sl?'on':''}" data-act="forgeSlot" data-s="${sl}" aria-pressed="${UI.fSlot===sl}">${icon(itemIcon({slot:sl,base:b.n}))}<span>${b.n}</span></button>`}).join('')}</div></div>
-        <small class="mute">Équipement de ${CLASSES[h.cls].n}</small></section>
-      <section class="anvil">
-        <div class="tier"><button class="arw" data-act="forgeTierStep" data-d="-1" aria-label="Forge précédente">‹</button><b>${t.n}</b><button class="arw" data-act="forgeTierStep" data-d="1" aria-label="Forge suivante">›</button></div>
-        <span class="dots">${TIERS.map((_,i)=>`<i class="${i===UI.fTier?'on':''}"></i>`).join('')}</span>
-        <div class="aring ${pr?'full':''}" ${pr?'style="--rc:var(--r5)"':''}>${icon(itemIcon({slot:UI.fSlot,base:fb.n}))}</div>
-        <div><div class="nm">${fb.n}</div><small>Niveau d’objet ${lv[0]===lv[1]?lv[0]:`${lv[0]} à ${lv[1]}`} · ${fb.imp.length?fb.imp.map(([s])=>STAT_N[s]).join(' + ')+' fixe + affixes aléatoires':'uniquement des affixes aléatoires'}</small></div>
-        ${UI.fTier===3?`<label class="prism ${pr?'on':''}"><input type="checkbox" data-act="fPrism" ${pr?'checked':''} ${np?'':'disabled'}> ${matIcon('prisme')} Ajouter un Prisme divin <small>(${np} en stock)</small></label>`:''}
-        <button class="btn pri" data-act="forgeDo" ${canPay(tc)&&fit?'':'disabled'}>Forger : ${fb.n.toLowerCase()}</button>
-        ${fit?`<small>${pr?'Le Prisme divin fixe le niveau d’objet à 60 et la rareté Divin.':'Niveau tiré au hasard dans la plage, quel que soit le niveau du héros.'}</small>`:`<span class="warnx">Pas assez de place dans l’inventaire (${SIZE({slot:UI.fSlot}).join('×')} cases).</span>`}
-      </section>
-      <section class="panel"><div><h3>Chances de rareté</h3><div class="odds">${oddsH}</div></div>
-        <div><h3>Coût</h3>${costHTML(tc)}</div>
-        <div><h3>Dernière création</h3>${UI.fLast?itemCard(UI.fLast):'<p class="hint">Votre création apparaîtra ici.</p>'}</div></section>
-    </div>`;
-  }else{
-    const found=UI.fItem?findItem(UI.fItem):null,it=found&&found.it;
-  
-    const box=`<div id="fslot" class="aring ${it?'full':'empty'}" ${it?`style="--rc:var(--r${it.rarity})" data-tip="f:${it.id}"`:''}>${it?icon(itemIcon(it))+(it.up?`<em>+${it.up}</em>`:''):'<span>Déposez un objet ici</span>'}</div>`;
-    let work='<p class="hint">Glissez un objet de l’inventaire sur l’enclume, ou faites un clic droit dessus. Pour un objet porté, cliquez sur son emplacement dans la roue d’équipement.</p>';
-    if(it){
-      const uc=upCost(it),rc=rerollCost(it),pc=replCost(it);
-      work=`<div class="up-acts" style="grid-template-columns:minmax(0,1fr)">
-        <div class="sk"><div class="row between"><b>Améliorer</b><button class="btn sm pri" data-act="upItem" ${it.up>=10||!canPay(uc)?'disabled':''}>${it.up>=10?'Niveau max':`+${it.up+1}`}</button></div><p>+5 % à toutes les stats (jusqu’à +10).</p>${it.up<10?costHTML(uc):''}</div>
-        <div class="sk"><div class="row between"><b>Relancer les valeurs</b><button class="btn sm" data-act="rerollVals" ${canPay(rc)?'':'disabled'}>Relancer</button></div><p>Nouvelles valeurs, mêmes types de stats.</p>${costHTML(rc)}</div>
-        <div class="sk"><b>Remplacer une affixe</b><p>Échange l’affixe choisie contre une autre au hasard.</p>${costHTML(pc)}<div class="row">${it.aff.map((a,i)=>`<button class="btn sm" data-act="replAff" data-i="${i}" ${canPay(pc)?'':'disabled'}>${fmtStat(a.s,a.v*upMul(it))}</button>`).join('')}</div></div></div>`;
-    }
-    body=`<div class="fA up">
-      <section class="panel fwheel"><div><h3 style="text-align:center">Équipement porté</h3>${runeDollHTML(h,true)}</div><p class="hint" style="text-align:center;margin:0">Cliquez ou glissez un emplacement vers l’enclume.</p></section>
-      <section class="anvil">
-        <div class="tier"><b>Amélioration</b></div>
-        ${box}
-        ${it?`${itemCard(it)}${found.where==='eq'?'<small>Objet porté</small>':''}<button class="btn sm" data-act="fClear">Retirer de l’enclume</button>`:'<small>Aucun objet sur l’enclume.</small>'}
-      </section>
-      <section class="panel"><div><h3>Actions</h3>${work}</div></section>
-    </div>`;
+Object.assign(UIC,{
+ spark:'<path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z"/><path d="M18.5 15.5l.8 2.2 2.2.8-2.2.8-.8 2.2-.8-2.2-2.2-.8 2.2-.8z"/><path d="M5 16l.6 1.4L7 18l-1.4.6L5 20l-.6-1.4L3 18l1.4-.6z"/>',
+ flask:'<path d="M9 3h6M10 3v6l-5.5 9.5A1.7 1.7 0 0 0 6 21h12a1.7 1.7 0 0 0 1.5-2.5L14 9V3"/><path d="M7.5 15h9"/>',
+ rune:'<path d="M12 2l8 5v10l-8 5-8-5V7z"/><path d="M12 7v10M9 9.5l3 2.5 3-2.5"/>',
+ hammer:'<path d="M14 4l6 6-2.5 2.5-6-6z"/><path d="M12.5 8.5L4 17l3 3 8.5-8.5"/>',
+ recycle:'<path d="M7 7l2.5-4h5L17 7"/><path d="M19.5 12l2 4-2.5 4h-5"/><path d="M9.5 20h-5L2 16l2.5-4"/><path d="M15 4l2 3-3.5.5M21 17l-2.5 3-1.5-3.2M5 19.5 4.5 16l3.4.7"/>',
+ plus:'<path d="M12 5v14M5 12h14"/>',
+});
+const WORKSHOPS=[['forge','anvil','Forge','Créer, renforcer et recycler l’équipement.'],['ench','spark','Enchantement'],['alch','flask','Alchimie'],['rune','rune','Runomancie']];
+const SOON='Arrive dans une prochaine mise à jour';
+const FSUB=[['forge','hammer','Créer'],['up','plus','Renforcer'],['salv','recycle','Recycler']];
+function forgeCreate(){
+  const h=S.heroes[0],t=TIERS[UI.fTier],pr=prismOn(),odds=pr?PRISM.odds:t.odds,lv=pr?PRISM.lv:t.lv,tot=odds.reduce((a,b)=>a+b,0),tc=forgeCost(),fb=baseFor(UI.fSlot,h.cls),np=matCount('prisme');
+  const fit=canFit(...SIZE({slot:UI.fSlot}));
+  const slots=ITEM_SLOTS.map(sl=>{const b=baseFor(sl,h.cls);return `<button class="maslot ${UI.fSlot===sl?'on':''}" data-act="forgeSlot" data-s="${sl}" aria-pressed="${UI.fSlot===sl}">${icon(itemIcon({slot:sl,base:b.n}))}<small>${b.n}</small></button>`}).join('');
+  const oddsH=odds.map((v,j)=>v?`<div class="maodd"><span style="color:var(--r${j})">${RAR[j].n}</span><i><b style="width:${v/tot*100}%;background:var(--r${j})"></b></i><em class="num">${r1(v/tot*100)} %</em></div>`:'').join('');
+  return `<div class="mawork">
+   <div class="maslots" role="group" aria-label="Type d’objet">${slots}<small class="mute maslh">Équipement de ${CLASSES[h.cls].n}</small></div>
+   <div class="maanvil"><div class="matier"><button class="arw" data-act="forgeTierStep" data-d="-1" aria-label="Forge précédente">‹</button><span><b>${t.n}</b><small>Niveau d’objet ${lv[0]===lv[1]?lv[0]:`${lv[0]} à ${lv[1]}`}</small></span><button class="arw" data-act="forgeTierStep" data-d="1" aria-label="Forge suivante">›</button></div>
+    <div class="madots" aria-hidden="true">${TIERS.map((_,i)=>`<i class="${i===UI.fTier?'on':''}"></i>`).join('')}</div>
+    <div class="aring maring ${pr?'full':''}" ${pr?'style="--rc:var(--r5)"':''}>${icon(itemIcon({slot:UI.fSlot,base:fb.n}))}</div>
+    <b class="manm">${fb.n}</b><small>${fb.imp.length?fb.imp.map(([s])=>STAT_N[s]).join(' + ')+' fixe + affixes aléatoires':'Uniquement des affixes aléatoires'}</small>
+    ${UI.fTier===3?`<label class="prism ${pr?'on':''}"><input type="checkbox" data-act="fPrism" ${pr?'checked':''} ${np?'':'disabled'}> ${matIcon('prisme')} Ajouter un Prisme divin <small>(${np} en stock)</small></label>`:''}
+    <button class="btn pri amgo" data-act="forgeDo" ${canPay(tc)&&fit?'':'disabled'}>${uic('hammer')} Forger</button>
+    ${fit?`<small>${pr?'Le Prisme divin fixe le niveau d’objet à 60 et la rareté Divin.':'Niveau tiré au hasard dans la plage, quel que soit le niveau du héros.'}</small>`:`<span class="warnx">Pas assez de place dans l’inventaire (${SIZE({slot:UI.fSlot}).join('×')} cases).</span>`}</div>
+   <aside class="aminfo maside"><div class="ambody"><h4>Chances de rareté</h4>${oddsH}<h4>Coût</h4>${costHTML(tc)}<h4>Dernière création</h4>${UI.fLast?itemCard(UI.fLast):'<p class="amnote mute">Votre création apparaîtra ici.</p>'}</div></aside></div>`;
+}
+function forgeUp(){
+  const h=S.heroes[0],found=UI.fItem?findItem(UI.fItem):null,it=found&&found.it;
+  const box=`<div id="fslot" class="aring maring ${it?'full':'empty'}" ${it?`style="--rc:var(--r${it.rarity})" data-tip="f:${it.id}"`:''}>${it?icon(itemIcon(it))+(it.up?`<em>+${it.up}</em>`:''):'<span>Déposez un objet ici</span>'}</div>`;
+  let acts=`<p class="amnote">Glissez un objet du sac sur l’enclume, faites un clic droit dessus, ou cliquez sur un emplacement de la roue d’équipement.</p><button class="btn" data-act="invOpen">${uic('bag')} Ouvrir le sac <kbd>I</kbd></button>`;
+  if(it){
+    const uc=upCost(it),rc=rerollCost(it),pc=replCost(it),mx=it.up>=10;
+    acts=`<div class="maact"><span class="maai">${uic('plus')}</span><div><b>Améliorer ${mx?'<span class="num">+10 (max)</span>':`<span class="num">+${it.up} → +${it.up+1}</span>`}</b><small>+5 % à toutes les stats, jusqu’à +10.</small>${mx?'':costHTML(uc)}</div><button class="btn pri sm" data-act="upItem" ${mx||!canPay(uc)?'disabled':''}>${mx?'Max':'Améliorer'}</button></div>
+     <div class="maact"><span class="maai">${uic('spark')}</span><div><b>Relancer les valeurs</b><small>Nouvelles valeurs, mêmes types de stats.</small>${costHTML(rc)}</div><button class="btn sm" data-act="rerollVals" ${canPay(rc)?'':'disabled'}>Relancer</button></div>
+     <div class="maact col"><div class="mah"><span class="maai">${uic('recycle')}</span><div><b>Remplacer une affixe</b><small>Échange l’affixe choisie contre une autre au hasard.</small>${costHTML(pc)}</div></div><div class="maaff">${it.aff.map((a,i)=>`<button class="btn sm" data-act="replAff" data-i="${i}" ${canPay(pc)?'':'disabled'}>${fmtStat(a.s,a.v*upMul(it))}</button>`).join('')}</div></div>`;
   }
-  return `<div class="thead" style="margin-bottom:12px"><span></span><h2 class="stitle">Forge</h2><div style="justify-self:end">${seg}</div></div>${body}
-    <div class="row fginv"><span class="hint">Glissez un objet de l’inventaire sur l’enclume (ou bouton « Forge » dans ses détails). Glissez l’objet hors de l’enclume pour l’en retirer.</span><button class="btn sm" data-act="invOpen">Ouvrir l’inventaire <kbd>I</kbd></button></div>
-    <section class="panel" style="margin-top:14px"><h3 style="margin-bottom:6px">Détruire en masse</h3><p class="hint" style="margin-bottom:10px">Les objets détruits de l’inventaire rendent 25 % des ressources ayant servi à leur création. Les objets portés ne sont jamais touchés.</p>
-      <div class="row">${[0,1,2].map(r=>`<button class="btn sm" data-act="salvBelow" data-r="${r}" ${invItems().some(i=>i.rarity<=r)?'':'disabled'}>Tous les objets jusqu’à ${RAR[r].n.toLowerCase()}</button>`).join('')}</div></section>`;
+  return `<div class="mawork up">
+   <div class="mawheel">${runeDollHTML(h,true)}<small class="mute">Cliquez ou glissez un emplacement vers l’enclume.</small></div>
+   <div class="maanvil ${it?'':'maempty'}">${box}${it?`${itemCard(it)}<small>${found.where==='eq'?'Objet porté · ':''}Glissez l’objet hors de l’enclume pour le retirer.</small><button class="btn sm" data-act="fClear">Retirer de l’enclume</button>`:'<small>Aucun objet sur l’enclume.</small>'}</div>
+   <aside class="aminfo maside"><div class="ambody">${acts}</div></aside></div>`;
+}
+function forgeSalv(){
+  const items=invItems();
+  const cards=[0,1,2].map(r=>{const L=items.filter(i=>i.rarity<=r),tot={};L.forEach(i=>{for(const [k,x] of Object.entries(salvageValue(i)))tot[k]=(tot[k]||0)+x});const cf=UI.confirm==='salv'+r;
+    return `<div class="masalv"><b>Jusqu’à <span style="color:var(--r${r})">${RAR[r].n.toLowerCase()}</span></b><small>${L.length} objet${L.length>1?'s':''} du sac</small><div class="mprew">${L.length?resChips(tot):'<span class="mute">rien à récupérer</span>'}</div><button class="btn sm ${cf?'danger':''}" data-act="salvBelow" data-r="${r}" ${L.length?'':'disabled'}>${cf?`Confirmer (${L.length})`:'Recycler'}</button></div>`}).join('');
+  return `<div class="mawork salv"><div class="maanvil masalvs"><div class="matier"><span><b>Recyclage</b><small>Détruisez les objets du sac pour récupérer des ressources</small></span></div><div class="masalvg">${cards}</div></div>
+   <aside class="aminfo maside"><div class="ambody"><h4>Fonctionnement</h4><p class="amnote">Chaque objet recyclé rend 25 % des ressources ayant servi à sa création.</p><p class="amnote">Les objets portés et ceux du coffre ne sont jamais touchés.</p><p class="amnote">Un objet seul peut aussi être détruit depuis ses détails dans le sac.</p><h4>Sac</h4><p class="amnote"><b class="num">${items.length}</b> objet${items.length>1?'s':''} d’équipement.</p><button class="btn" data-act="invOpen">${uic('bag')} Ouvrir le sac <kbd>I</kbd></button></div></aside></div>`;
+}
+function viewForge(){
+  if(!FSUB.some(([k])=>k===UI.fMode)) UI.fMode='forge';
+  const ws=WORKSHOPS.map(([k,i,n,d],j)=>j?`<div class="mawt lock" aria-disabled="true" title="${SOON}"><span class="mawi">${uic(i)}</span><span><b>${n}</b><small>${SOON}</small></span>${uic('lock','malk')}</div>`
+    :`<button class="mawt on" aria-current="true"><span class="mawi">${uic(i)}</span><span><b>${n}</b><small>${d}</small></span></button>`).join('');
+  const sub=`<div class="masub" role="tablist" aria-label="Forge">${FSUB.map(([k,i,n])=>`<button role="tab" aria-selected="${UI.fMode===k}" class="${UI.fMode===k?'on':''}" data-act="fMode" data-m="${k}">${uic(i)}<span>${n}</span></button>`).join('')}</div>`;
+  return `<div class="ma1"><div class="mawts">${ws}</div><div class="mabody">${sub}${UI.fMode==='up'?forgeUp():UI.fMode==='salv'?forgeSalv():forgeCreate()}</div></div>`;
 }
 
 /* --- collecte --- */
 const UPICON='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l8 8h-5v4H9v-4H4zM6 18h12v3H6z"/></svg>';
 const GEARI='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19.14 12.94c.04-.3.06-.61.06-.94s-.02-.64-.07-.94l2.03-1.58a.49.49 0 0 0 .12-.61l-1.92-3.32a.49.49 0 0 0-.59-.22l-2.39.96a7 7 0 0 0-1.62-.94l-.36-2.54a.48.48 0 0 0-.48-.41h-3.84a.48.48 0 0 0-.48.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96a.49.49 0 0 0-.59.22L2.74 8.87a.48.48 0 0 0 .12.61l2.03 1.58c-.05.3-.09.63-.09.94s.02.64.07.94l-2.03 1.58a.49.49 0 0 0-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32a.48.48 0 0 0-.12-.61zM12 15.6A3.6 3.6 0 1 1 12 8.4a3.6 3.6 0 0 1 0 7.2z"/></svg>';
+Object.assign(UIC,{gear:'<circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M4.9 19.1 7 17M17 7l2.1-2.1"/>',up:'<path d="M12 19V6M6 11l6-6 6 6"/>',minus:'<path d="M5 12h14"/>',hand:'<path d="M7 11V5.5a1.5 1.5 0 0 1 3 0V10M10 9V4.5a1.5 1.5 0 0 1 3 0V10M13 9.5V5.5a1.5 1.5 0 0 1 3 0V12M16 10a1.5 1.5 0 0 1 3 0v4a7 7 0 0 1-7 7h-1a6 6 0 0 1-5-3l-2.5-4.5a1.5 1.5 0 0 1 2.5-1.5L7 14"/>'});
+/* ===== Collecte : tableau de production ===== */
+const SITE_SC={mine:1,bois:0,ruines:5,marais:2};
+const siteProg=st=>(st.ready||0)>=siteRes(st)?1:Math.min(1,(st.t||0)/cycleDur(st));
+function siteCanUp(si,st){return branchesFor(si.id).some(b=>{const t=tal(st),r=t[b.k]||0; return r<b.max?S.gold>=talCost(si.id,b.k,r):!t[b.cap.k]&&S.gold>=talCost(si.id,b.cap.k,0)})||(!tal(st).auto&&zoneLvl(st)>=AUTO_L&&S.gold>=autoCost(si.id))}
 function viewSites(){
-  const cards=SITES.map(si=>{
-    const st=S.sites[si.id];
-    if(st.lvl<1) return `<section class="panel site"><h3 class="sname">${si.n}</h3><p class="hint" style="margin:6px 0 12px;text-align:center">${si.desc}</p><div class="row" style="justify-content:center"><button class="btn pri" data-act="siteBuy" data-id="${si.id}" ${hasGold(si.unlock)?'':'disabled'}>Ouvrir la zone</button> ${costHTML({gold:si.unlock})}</div><div class="sicons">${Object.keys(si.out).map(m=>`<span title="${MAT_N[m]}">${matIcon(m)}</span>`).join('')}</div></section>`;
-    const rates=Object.keys(si.out).map(m=>`<span title="${MAT_N[m]}">${matIcon(m)}+${r1(siteBatch(si,st,m))}<span class="sr">${MAT_N[m]}</span></span>`).join('');
-    const canUp=branchesFor(si.id).some(b=>{const t=tal(st),r=t[b.k]||0; return r<b.max?S.gold>=talCost(si.id,b.k,r):!t[b.cap.k]&&S.gold>=talCost(si.id,b.cap.k,0)})||(!tal(st).auto&&zoneLvl(st)>=AUTO_L&&S.gold>=autoCost(si.id));
-    const R=siteRes(st),rd=st.ready||0,full=rd>=R,au=autoOn(st);
-    return `<section class="panel site ${rd&&!au?'ready':''}"><button class="sgear ${au?'on':''}" data-act="siteOpt" data-id="${si.id}" aria-label="Options de ${si.n}" aria-expanded="${UI.siteOpt===si.id}" title="Options">${GEARI}</button>${UI.siteOpt===si.id?optDD(si.id):''}
-      <h3 class="sname">${si.n}</h3><button class="supbtn" data-act="siteTree" data-id="${si.id}" aria-label="Améliorations de ${si.n}" title="Améliorations">${UPICON}${canUp?'<span class="ndot" aria-hidden="true"></span>':''}</button>
-      <p class="hint" style="margin:4px 0 8px;text-align:center">${si.desc}</p>
-      <div class="rates" style="margin-bottom:6px">${rates}<span class="mute">par récolte</span></div>
-      <div class="cyc"><div class="bar"><i data-cyc="${si.id}" style="width:${full?100:Math.min(100,(st.t||0)/cycleDur(st)*100)}%"></i></div><small class="num" data-cyct="${si.id}">${cycTxt(st)}</small></div>
-      <div class="row" style="justify-content:center"><button class="btn pri" data-act="siteCollect" data-id="${si.id}" ${rd?'':'disabled'}>Collecter${rd>1?` (${rd})`:''}</button></div>
-      <div class="sicons">${Object.keys(si.out).map(m=>`<span title="${MAT_N[m]}">${matIcon(m)}</span>`).join('')}</div>
-      ${au?'<small class="sauto">Auto</small>':''}</section>`}).join('');
+  const rows=SITES.map(si=>{
+    const st=S.sites[si.id],lk=st.lvl<1,rd=st.ready||0,au=!lk&&autoOn(st),sc=zoneScene(SITE_SC[si.id]!=null?SITE_SC[si.id]:0,'st');
+    if(lk) return `<article class="mcrow lock"><span class="mcth">${sc}</span><div class="mcrn"><b>${si.n}</b><small>${si.desc}</small></div>
+      <div class="mcrmid"><div class="mcrates">${Object.keys(si.out).map(m=>`<span class="mcr">${matIcon(m)} ${MAT_N[m]}</span>`).join('')}</div></div>
+      <button class="btn pri" data-act="siteBuy" data-id="${si.id}" ${hasGold(si.unlock)?'':'disabled'}>Ouvrir · <span class="num">${fmt(si.unlock)}</span> ${matIcon('gold')}</button></article>`;
+    const rates=Object.keys(si.out).map(m=>`<span class="mcr" title="${MAT_N[m]}">${matIcon(m)}<b class="num">+${r1(siteBatch(si,st,m))}</b></span>`).join('');
+    return `<article class="mcrow ${rd&&!au?'rd':''}"><span class="mcth">${sc}${au?'<span class="mcauto">Auto</span>':''}</span>
+      <div class="mcrn"><b>${si.n}</b><small>Niveau de zone <b class="num">${zoneLvl(st)}</b></small></div>
+      <div class="mcrmid"><div class="mcrates">${rates}<small class="mute">par récolte</small></div><div class="mpratio mcbar"><i data-cyc="${si.id}" style="width:${siteProg(st)*100}%"></i></div><small class="mute num" data-cyct="${si.id}">${cycTxt(st)}</small></div>
+      <div class="mcracts"><button class="btn sm mcib" data-act="siteTree" data-id="${si.id}" title="Améliorations" aria-label="Améliorations de ${si.n}">${uic('up')}${siteCanUp(si,st)?'<span class="ndot" aria-hidden="true"></span>':''}</button>
+       <button class="btn sm mcib sgear ${au?'on':''}" data-act="siteOpt" data-id="${si.id}" title="Récolte automatique" aria-label="Options de ${si.n}" aria-expanded="${UI.siteOpt===si.id}">${uic('gear')}</button>
+       <button class="btn pri" data-act="siteCollect" data-id="${si.id}" ${rd?'':'disabled'}>Collecter${rd>1?` (${rd})`:''}</button>${UI.siteOpt===si.id?optDD(si.id):''}</div></article>`}).join('');
+  const ph={};
+  for(const si of SITES){const st=S.sites[si.id]; if(st.lvl<1) continue; for(const m of Object.keys(si.out)) ph[m]=(ph[m]||0)+siteBatch(si,st,m)*3600/cycleDur(st)}
+  const nReady=SITES.filter(si=>S.sites[si.id].lvl>0&&(S.sites[si.id].ready||0)>0).length;
+  const stocks=['fer','cuir','plante','cristal','essence','rune'].map(m=>{const v=matCount(m),c=matCap(m);return `<div class="mcstk ${v>=c?'full':''}"><span>${matIcon(m)} ${MAT_N[m]}</span><i><b style="width:${Math.min(100,v/c*100)}%"></b></i><em class="num">${fmt(v)} / ${fmt(c)}</em></div>`}).join('');
   setTimeout(liveSites,0);
   lastBlocked=collectBlocked();
-  return `${lastBlocked?'<div class="fullbar" role="alert">Stock de matériaux plein (1 000 maximum) : utilisez-en à la Forge pour continuer la récolte automatique.</div>':''}
-    <h2 class="stitle">Collecte</h2>
-    <p class="hint" style="margin:0 auto 14px;text-align:center;max-width:760px">Chaque zone prépare une récolte toutes les 5 minutes, même hors ligne. Quand la jauge est pleine, appuyez sur « Collecter » pour récupérer les ressources ; la zone attend ensuite que vous collectiez avant de recommencer. L’Entrepôt augmente le stock maximum des ressources de la zone (en haut de la page). La flèche en haut à droite ouvre l’arbre d’améliorations ; l’engrenage en haut à gauche donne accès à la récolte automatique, débloquée au niveau de zone ${AUTO_L}.</p><div class="grid g2">${cards}</div>${UI.siteTree?treeModal(UI.siteTree):''}`;
+  return `${lastBlocked?'<div class="fullbar" role="alert">Stock de matériaux plein : utilisez-en à la Forge pour continuer la récolte automatique.</div>':''}
+   <div class="mc3"><section><div class="mctop"><h2>Collecte</h2><span class="mute">Une récolte toutes les 5 minutes, même hors ligne. La zone attend que vous collectiez avant de recommencer.</span></div>${rows}</section>
+   <aside class="aminfo maside"><div class="ambody"><button class="btn pri amgo" data-act="siteAll" ${nReady?'':'disabled'}>${uic('hand')} Tout collecter${nReady?` (${nReady})`:''}</button>
+    <h4>Production par heure</h4><div class="mcrates">${Object.entries(ph).map(([m,v])=>`<span class="mcr" title="${MAT_N[m]}">${matIcon(m)}<b class="num">+${fmt(Math.round(v))}</b></span>`).join('')||'<span class="mute">Aucune zone ouverte.</span>'}</div>
+    <h4>Stocks</h4>${stocks}
+    <p class="amnote mute" style="margin-top:auto">La flèche ouvre l’arbre d’améliorations de la zone ; l’Entrepôt augmente le stock maximum. L’engrenage donne accès à la récolte automatique, débloquée au niveau de zone ${AUTO_L}.</p></div></aside></div>${UI.siteTree?treeModal(UI.siteTree):''}`;
 }
+/* ===== Marchand : étal ===== */
+const SHOP_CAT=k=>k==='p_oubli'?'spe':['p_xp','p_loot'].includes(k)?'prog':'comb';
+const SHOP_CATS=[['all','Tout'],['comb','Combat'],['prog','Progression'],['spe','Spéciaux']];
+const SHOP_CN={comb:'Potion de combat',prog:'Potion de progression',spe:'Objet spécial'};
+const potLock=k=>POTS[k].cls&&POTS[k].cls!==S.heroes[0].cls;
+const bigPot=(k,c='')=>`<span class="mcpot ${c}" style="--pc:${POTS[k].c}">${matIcon(k)}</span>`;
+const shopMax=k=>POTS[k].fix?1:Math.max(1,Math.min(99,matRoom(k),Math.floor(S.gold/Math.max(1,potPrice(k)))));
+function viewShop(){
+  const ks=Object.keys(POTS);
+  if(!POTS[UI.shopSel]) UI.shopSel=ks[0];
+  const cat=UI.shopCat||'all',sel=UI.shopSel,p=POTS[sel],lk=potLock(sel),q=p.fix?1:Math.max(1,Math.min(UI.shopQ||1,99)),pr=p.fix?0:potPrice(sel),tot=pr*q;
+  const price=k=>POTS[k].fix?`<span class="mcprice">${costHTML(POTS[k].fix)}</span>`:`<span class="mcprice num">${fmt(potPrice(k))} ${matIcon('gold')}</span>`;
+  const slots=ks.filter(k=>cat==='all'||SHOP_CAT(k)===cat).map(k=>`<button class="mcslot ${k===sel?'on':''} ${potLock(k)?'lock':''}" data-act="shopSel" data-k="${k}" aria-pressed="${k===sel}">${bigPot(k)}<b>${POTS[k].n}</b>${price(k)}${matCount(k)?`<span class="mcown" title="Possédées">${matCount(k)}</span>`:''}${potLock(k)?`<small class="mclk">${CLASSES[POTS[k].cls].n}</small>`:''}</button>`).join('');
+  const canBuy=!lk&&(p.fix?canPay(p.fix):hasGold(tot))&&matRoom(sel)>=q;
+  const why=lk?`Réservée au ${CLASSES[p.cls].n}.`:matRoom(sel)<q?'Pas assez de place dans le sac.':!canBuy?'Pas assez de ressources.':'';
+  return `<div class="amap mcshop">${zoneScene(6,'sh')}
+   <div class="mcshelf"><div class="mcmer"><span class="mcmerp">${uic('coin')}</span><p class="mcquote">« Des potions pour l’aventure, voyageur ? »</p><span class="mcgold"><span>${matIcon('gold')}</span><b class="num">${fmt(S.gold)}</b></span></div>
+    <div class="mcseg" role="tablist">${SHOP_CATS.map(([k,n])=>`<button role="tab" aria-selected="${cat===k}" class="${cat===k?'on':''}" data-act="shopCat" data-c="${k}">${n}</button>`).join('')}</div>
+    <div class="mcgrid">${slots}</div></div>
+   <aside class="aminfo" aria-label="${esc(p.n)}"><div class="amhead mcph" style="--pc:${p.c}">${bigPot(sel,'xl')}<span><small>${SHOP_CN[SHOP_CAT(sel)]}</small><h2>${p.n}</h2></span></div><div class="ambody">
+    <p class="amnote">${p.d}</p><dl class="mpst"><dt>Possédées</dt><dd>${matCount(sel)}</dd><dt>Recharge</dt><dd>${p.cd?p.cd+' tours':'—'}</dd><dt>Prix</dt><dd>${p.fix?'voir ci-dessous':fmt(pr)+' or'}</dd><dt>Votre or</dt><dd>${fmt(S.gold)}</dd></dl>
+    ${p.fix?'':`<h4>Quantité</h4><div class="mcqty"><button class="btn" data-act="shopQd" data-d="-1" aria-label="Moins" ${q<=1?'disabled':''}>${uic('minus')}</button><b class="num" aria-live="polite">${q}</b><button class="btn" data-act="shopQd" data-d="1" aria-label="Plus" ${q>=99?'disabled':''}>${uic('plus')}</button><span class="mcq">${[1,5,10,25].map(n=>`<button class="btn sm ${q===n?'on':''}" data-act="shopQ" data-q="${n}">×${n}</button>`).join('')}<button class="btn sm" data-act="shopQ" data-q="max" title="Le maximum possible">Max</button></span></div>`}
+    <div class="amfight"><div class="mctot"><span>Total</span><b class="num">${p.fix?costHTML(p.fix):`${fmt(tot)} ${matIcon('gold')}`}</b></div>
+     <button class="btn pri amgo" data-act="buyPot" data-k="${sel}" data-q="${q}" ${canBuy?'':'disabled'}>${uic('coin')} Acheter${p.fix?'':' ×'+q}</button>${why?`<small class="mclk">${why}</small>`:''}
+     <small class="mute">Les potions vont dans le sac et se boivent en combat sans utiliser votre tour. Les prix augmentent avec votre niveau.</small></div></div></aside></div>`;
+}
+
 const autoCost=id=>Math.round((SITE_M[id]||1)*8000);
 function cycTxt(st){
   const R=siteRes(st),rd=st.ready||0;
@@ -3669,10 +4205,20 @@ function viewHelp(){
 }
 
 /* --- nouveautés --- */
-const VERSION='0.3.1';
+const VERSION='0.3.2';
 const PATCH=[
+ {v:'0.3.2',t:"Coffre du compte et nouvelle interface",sec:[
+  ["Nouvelle interface", ["Le menu principal passe en bas de l’écran, avec des boutons illustrés : Marchand, Amélioration, Aventure (grand médaillon central), Collecte et Communauté.", "Le sac est un bouton rond en bas à droite (même effet que la touche I) ; un point rouge signale les nouveaux objets. L’Aide est un bouton rond en bas à gauche.", "Le Personnage s’ouvre en cliquant sur le portrait en haut à gauche (nom, classe, niveau et barre d’expérience).", "Communauté ouvre la liste d’amis et les messages (compte en ligne requis) ; un point rouge signale les demandes et messages non lus.", "Zone de jeu plus large (jusqu’à 1440 pixels au lieu de 1140) et en-tête plus compact pour limiter le défilement.", "Les composants et l’or restent affichés dans la fenêtre d’inventaire."]],
+  ["Aventure", ["Nouvelle carte du monde : chaque zone est un médaillon illustré sur un parchemin, reliées par un chemin (plein pour les zones terminées, en pointillés pour la suite).", "Badges sur la carte : coche pour une zone terminée, progression (ex. 4/10) pour la zone en cours, cadenas pour les zones verrouillées.", "Fiche de la zone à droite : difficulté (Normal, Héroïque, Mythique), chemin des 10 étapes avec le boss, ennemis et leur niveau, boss de la zone, bouton Combattre, combat automatique et enchaînement.", "Sélecteur Aventure / Duel / Raid en haut de la page."]],
+  ["Duel et raid", ["Nouvelle page Duel : une arène avec votre portrait face à l’adversaire, le bouton « Rechercher un adversaire » au centre et la récompense de victoire (+500 or).", "Fiche Duel à droite : votre bilan (victoires, défaites, pourcentage de réussite avec une barre) et la liste « Défier un ami », avec un bouton Duel pour chaque ami en ligne (amis en ligne en premier).", "Nouvelle page Raid : les trois boss sont des médaillons illustrés sur la carte (lave, glace, néant), avec leur palier maximum et un cadenas si le niveau requis n’est pas atteint.", "Fiche du boss à droite : description, niveau, PV, attaque, défenses, résistances, compétences, choix du palier par boutons (+0, +1…, le palier suivant est affiché verrouillé), récompenses, « Rechercher un partenaire » et « Inviter un ami » (ouvre la liste d’amis)."]],
+  ["Amélioration", ["Le bouton Forge de la barre du bas devient « Amélioration » et ouvre le menu des ateliers.", "Quatre ateliers en haut de la page : Forge, Enchantement, Alchimie et Runomancie. Enchantement, Alchimie et Runomancie sont verrouillés (« Arrive dans une prochaine mise à jour »).", "La Forge a trois onglets : Créer, Renforcer (ancien mode Amélioration) et Recycler.", "Créer : types d’objets en icônes à gauche, enclume au centre (choix de la forge, objet, bouton Forger), chances de rareté, coût et dernière création à droite.", "Renforcer : roue d’équipement à gauche, objet sur l’enclume au centre, et à droite les actions en cartes (Améliorer avec le passage +N → +N+1, Relancer les valeurs, Remplacer une affixe) avec leur coût.", "Recycler : la destruction en masse a sa propre page ; chaque seuil (commun, magique, rare) affiche le nombre d’objets concernés et les ressources récupérées, et demande une confirmation (avant : destruction immédiate).", "Dans les détails d’un objet, le bouton « Forge » devient « Renforcer »."]],
+  ["Marchand et collecte", ["Nouveau Marchand en forme d’étal : le marchand et son or en haut, des filtres (Tout, Combat, Progression, Spéciaux) et les potions en vitrine avec leur prix et le nombre possédé.", "Cliquer sur une potion ouvre sa fiche à droite : effet, nombre possédé, recharge, prix, choix de la quantité (− / +, ×1, ×5, ×10, ×25 ou Max), total et bouton Acheter. La raison d’un achat impossible est indiquée (classe, place dans le sac ou ressources).", "Nouvelle page Collecte en tableau : une ligne par zone avec son illustration, son niveau, la production par récolte, la barre de progression, l’arbre d’améliorations, la récolte automatique et le bouton Collecter.", "Panneau de droite : bouton « Tout collecter » (récupère toutes les zones prêtes d’un coup), production par heure de toutes les zones et stock de chaque matériau par rapport au maximum (en rouge quand il est plein)."]],
+  ["Coffre", ["Nouveau coffre lié au compte : bouton « Coffre » dans la fenêtre d’inventaire. Chaque onglet fait 15 × 5 cases.", "Les objets et les piles déposés dans le coffre sont récupérables par tous les personnages du même compte (sauvegarde locale et en ligne).", "Glissez-déposez entre l’inventaire et le coffre, ou faites un clic droit sur un objet pour l’envoyer de l’un à l’autre. Les piles d’un même matériau fusionnent (500 max).", "Achat d’onglets supplémentaires (6 au maximum) avec l’or partagé : 2e onglet 5 000 or, 3e 15 000, 4e 40 000, 5e 100 000, 6e 250 000 (double clic pour confirmer).", "Renommez un onglet avec le bouton ✎ ou un double clic sur son nom (16 caractères au maximum)."]],
+  ["Équipement", ["La touche Alt gauche affiche les plages possibles des affixes (avant : Maj).", "La touche Maj affiche un comparatif entre l’objet survolé et l’objet équipé au même emplacement : les deux fiches côte à côte et la différence stat par stat (gains en vert, pertes en rouge).", "Pour les anneaux, Ctrl gauche change l’emplacement comparé (Anneau ou Anneau (2))."]],
+  ["Inventaire", ["L’or et les composants sont affichés sous les cases de l’inventaire (et ne sont plus en haut de la page). Une infobulle donne la quantité, le stock maximum et l’utilité de chacun.", "Les objets gardent leur taille dans le coffre (par exemple une arme occupe 5 cases en hauteur).", "Cliquer sur la fenêtre d’inventaire ou du coffre la fait passer au premier plan.", "Boutons d’onglet actif et bouton du coffre dans un brun clair assorti aux fenêtres (au lieu du rouge)."]]
+]},
  {v:'0.3.1',t:"Raids, spécialisations et équilibrage",sec:[
-  ["Compétences et spécialisations",["Nouveau système de compétences pour chaque classe : 3 compétences de base jusqu’au niveau 10, puis une spécialisation à choisir dans la fenêtre Personnage.","Chaque spécialisation a son propre arbre de talents (8 talents, actifs et passifs, reliés par des traits) : un talent se débloque quand le talent auquel il est relié est appris et que le niveau requis est atteint (10, 12, 15, 20, 25 et 30).","Le choix est définitif. La nouvelle Potion d’oubli (Marchand : 5 000 or et 5 Prismes divins) réinitialise toutes les compétences et la spécialisation, avec remboursement des points.","Compétences affichées sous forme d’icônes ; une infobulle détaille l’effet, le rang actuel, le rang suivant et les conditions. Cliquez sur une icône pour l’apprendre ou l’équiper. Les passifs sont ronds, les actives carrées.","Fiches de compétences plus lisibles : coût en PA, recharge, élément et cible en étiquettes, effets en paragraphes séparés et rang suivant à part.","Barre de sorts : jusqu’à 5 compétences actives (avant 3), à placer par glisser-déposer dans la fenêtre Personnage, et affichées en icônes avec le coût en PA et la recharge restante, dans les combats d’aventure, les duels et les raids.","Talents communs (dans chaque arbre, sans lien) : Guerrier — Puissance brute (+2 % Force, 5 rangs), Précision mortelle (+2 % critique, 3 rangs), Robustesse (+2 % PV, 5 rangs), Célérité (+2 % vitesse, 3 rangs), Peau d’acier (+2 % défense physique et magique, 3 rangs). Sorcier — Érudition (+2 % Intelligence, 5 rangs), Précision mortelle, Vitalité (+2 % PV), Célérité, Égide (mêmes valeurs).","Talent ultime dans chaque arbre (niveau 35, 20 points dépensés dans l’arbre requis) : Flamme intérieure (Feu), Cœur de l’orage (Foudre), Frénésie sanglante (Saignement), Rage indomptable (Barbarie).","Les talents qui modifient un effet ou une statistique ne sont plus reliés : Feu persistant, Plaies profondes, Choc nerveux, Vif-argent et Berserker se prennent librement (niveau requis conservé).","Points : un arbre complet demande 57 points (37 de spécialisation, 19 communs, 1 ultime) en plus des 15 points des compétences de base, alors qu’un héros niveau 50 n’en possède que 51 : il faut faire des choix.","Toutes les sauvegardes existantes : les compétences sont réinitialisées et tous les points de compétence sont remboursés."]],
+  ["Compétences et spécialisations",["Nouveau système de compétences pour chaque classe : 3 compétences de base jusqu’au niveau 10, puis une spécialisation à choisir dans la fenêtre Personnage.","Chaque spécialisation a son propre arbre de talents (8 talents de spécialisation, actifs et passifs, reliés par des traits, plus 5 talents communs et 1 talent ultime) : un talent relié se débloque quand le talent précédent est appris et que le niveau requis est atteint (10, 12, 15, 20, 25, 30 et 35 pour l’ultime).","Le choix est définitif. La nouvelle Potion d’oubli (Marchand : 5 000 or et 5 Prismes divins) réinitialise toutes les compétences et la spécialisation, avec remboursement des points.","Compétences affichées sous forme d’icônes ; une infobulle détaille l’effet, le rang actuel, le rang suivant et les conditions. Cliquez sur une icône pour l’apprendre ou l’équiper. Les passifs sont ronds, les actives carrées.","Fiches de compétences plus lisibles : coût en PA, recharge, élément et cible en étiquettes, effets en paragraphes séparés et rang suivant à part.","Barre de sorts : jusqu’à 5 compétences actives (avant 3), à placer par glisser-déposer dans la fenêtre Personnage, et affichées en icônes avec le coût en PA et la recharge restante, dans les combats d’aventure, les duels et les raids.","Talents communs (dans chaque arbre, sans lien) : Guerrier — Puissance brute (+2 % Force, 5 rangs), Précision mortelle (+2 % critique, 3 rangs), Robustesse (+2 % PV, 5 rangs), Célérité (+2 % vitesse, 3 rangs), Peau d’acier (+2 % défense physique et magique, 3 rangs). Sorcier — Érudition (+2 % Intelligence, 5 rangs), Précision mortelle, Vitalité (+2 % PV), Célérité, Égide (mêmes valeurs).","Talent ultime dans chaque arbre (niveau 35, 20 points dépensés dans l’arbre requis) : Flamme intérieure (Feu), Cœur de l’orage (Foudre), Frénésie sanglante (Saignement), Rage indomptable (Barbarie).","Les talents qui modifient un effet ou une statistique ne sont plus reliés : Feu persistant, Plaies profondes, Choc nerveux, Vif-argent et Berserker se prennent librement (niveau requis conservé).","Points : un arbre complet demande 57 points (37 de spécialisation, 19 communs, 1 ultime) en plus des 15 points des compétences de base, alors qu’un héros niveau 50 n’en possède que 51 : il faut faire des choix.","Toutes les sauvegardes existantes : les compétences sont réinitialisées et tous les points de compétence sont remboursés."]],
   ["Personnage",["Nouvelle roue d’équipement : la roue occupe toute la largeur de sa zone, avec en dessous la liste de l’équipement porté (nom, amélioration, niveau d’objet).","Nouvelle disposition : en haut, la présentation du personnage et ses statistiques à gauche, la roue d’équipement à droite, de la même taille ; en dessous, les compétences et talents.","Forge : l’inventaire n’est plus affiché dans l’onglet Forge ; glissez un objet depuis la fenêtre d’inventaire sur l’enclume (bouton « Ouvrir l’inventaire »). Glissez l’objet hors de l’enclume pour l’en retirer.","Inventaire dans une fenêtre que l’on peut déplacer : elle s’ouvre en cliquant sur un emplacement d’équipement ou avec la touche I, depuis n’importe quel onglet (sauf pendant un combat), et se ferme avec la croix, la touche I ou Échap. Boutons de tri et de destruction regroupés en haut, détails de l’objet sélectionné dans la fenêtre.","Nouvelle barre de sorts (5 emplacements) au-dessus des compétences : glissez-déposez une compétence active apprise dans un emplacement, déplacez-la d’un emplacement à l’autre pour changer l’ordre, ou glissez-la hors de la barre pour la retirer. L’ordre de la barre est celui des combats."]],
   ["Guerrier",["Compétences de base : Frappe puissante (niv. 1, 200 % FOR, 2 PA), Mur de boucliers (niv. 3, bouclier de 30 % des PV + provocation), Tourbillon (niv. 6, 130 % FOR sur tous les ennemis).","Spécialisation Saignement : Entaille (150 % FOR, 50 % de chances d’infliger Saignement : 40 % FOR par tour, 3 tours), Lames dentelées (+10 % de chances de Saignement avec Entaille par rang, jusqu’à 100 %), Hémorragie (+10 % de dégâts des Saignements et +1 % de vol de vie par rang), Éventration (160 % FOR, +60 % contre une cible qui saigne), Lacération (100 % FOR sur tous les ennemis, 60 % de chances de Saignement), Odeur du sang (+5 % de dégâts contre les cibles qui saignent et +3 % PV par rang), Plaies profondes (+1 tour de Saignement par rang, 2 rangs), Exsanguination (140 % FOR et détonation : 150 % des dégâts de Saignement restants infligés immédiatement).","Ultimes du Guerrier : Frénésie sanglante — chaque compétence qui touche une cible qui saigne octroie 1 charge de Soif ; à 5 charges, Frénésie : +20 % de dégâts et +6 % de vol de vie pendant 3 tours. Rage indomptable — chaque coup subi octroie 1 point de Rage ; à 5 points, Déchaînement : +20 % de dégâts et −15 % de dégâts subis pendant 3 tours.","Spécialisation Barbarie : Frappe sauvage (160 % FOR, +7 % de dégâts par tranche de 10 % de PV manquants), Fureur (+1,2 % de dégâts par tranche de 10 % de PV manquants par rang), Instinct de survie (−5 % de dégâts subis sous 35 % de PV et +3 % PV par rang), Pacte de sang (sacrifie 10 % des PV max, 210 % FOR, +5 % par tranche de 10 % de PV manquants), Cri de guerre (+25 % de Force pendant 3 tours), Carnage (115 % FOR sur tous les ennemis, +5 % par tranche de 10 % de PV manquants), Berserker (+4 % vitesse, +2 % critique et +1 % vol de vie par rang, 3 rangs), Folie meurtrière (200 % FOR, +8 % par tranche de 10 % de PV manquants, rend 15 % des dégâts en PV)."]],
   ["Sorcier",["Compétences de base : Projectile arcanique (niv. 1, 180 % INT, 2 PA), Barrière arcanique (niv. 3, bouclier de 220 % INT sur les alliés), Nova arcanique (niv. 6, 95 % INT sur tous les ennemis).","Spécialisation Feu : Immolation (150 % INT de feu, 50 % de chances d’infliger Brûlure : 40 % INT par tour, 3 tours), Embrasement (+10 % de chances de Brûlure avec Immolation par rang, jusqu’à 100 %), Chaleur intense (+10 % de dégâts des Brûlures et +3 % INT par rang), Combustion (80 % INT et détonation : 150 % des dégâts de Brûlure restants infligés immédiatement), Vague de flammes (100 % INT sur tous les ennemis, 50 % de chances de Brûlure), Pyromanie (+5 % de dégâts contre les cibles en feu et +1 % critique par rang), Feu persistant (+1 tour de Brûlure par rang, 2 rangs), Météore (220 % INT sur tous les ennemis, 60 % de chances de Brûlure).","Spécialisation Foudre : Arc électrique (180 % INT de foudre, 30 % de chances de paralyser 2 tours), Électricité statique (+7 % de chances de paralyser et +3 % INT par rang), Vif-argent (+4 % vitesse et +2 % critique par rang, 3 rangs), Éclair en chaîne (100 % INT sur tous les ennemis, 15 % de chances de paralyser), Choc nerveux (+10 % de chances qu’une cible paralysée perde son tour par rang, 3 rangs), Surtension (+8 % de dégâts contre les cibles paralysées et +1 % critique par rang), Tempête (140 % INT sur tous les ennemis, 20 % de chances de paralyser), Jugement de foudre (260 % INT, dégâts doublés contre une cible paralysée).","Ultimes du Sorcier : Flamme intérieure — chaque sort de feu lancé octroie 1 degré de Chauffe ; à 5 degrés, Surchauffe : +20 % de dégâts de feu pendant 3 tours. Cœur de l’orage — chaque sort de foudre lancé octroie 1 Charge ; à 5 Charges, Surcharge : +20 % de dégâts de foudre et +15 % de chances de paralyser pendant 3 tours.","Nouvel effet Paralysie (2 tours) : à chaque tour, la cible a 50 % de chances de perdre son tour (jusqu’à 80 % avec Choc nerveux). Les boss n’ont que la moitié des chances d’être paralysés."]],
@@ -3683,8 +4229,8 @@ const PATCH=[
   ["Équilibrage : plafonds",["Chances de coup critique plafonnées à 70 % (base 5 %).","Dégâts critiques plafonnés à 200 % (base 150 %) : un critique inflige au maximum le double des dégâts."]],
   ["Équilibrage : affixes",["Valeurs maximales d’un affixe sur un objet Épique de niveau 50 (avant → après) :","PV : 205 → 168 (−18 %) · Force / Intelligence : 57 → 39 (−32 %) · Défense : 48 → 39 (−19 %) · Vitesse : 8,5 → 7,3 (−14 %).","PV % : 9,8 → 8,5 (−13 %) · Dégâts % : 11 → 7,9 (−28 %) · Critique : 6,7 → 5,5 % (−18 %) · Dégâts critiques : 37,8 → 9,8 % (−74 %, à cause du nouveau plafond).","Esquive : 3,9 → 3,4 % (−14 %) · Vol de vie : 2,5 → 2 % (−22 %). Résistances et Or trouvé : inchangés.","Objets existants : chaque affixe garde sa qualité de tirage (sa position entre le minimum et le maximum) dans la nouvelle plage. Les stats fixes des objets sont recalculées."]],
   ["Équilibrage : objets divins",["Les objets Divins n’ont plus de pouvoir passif et n’ont plus que 3 affixes aléatoires, mais toujours au maximum de leur plage (multiplicateur ×1,5 inchangé).","Les objets Divins existants sont convertis : pouvoir retiré, 3 premiers affixes conservés et portés à leur valeur maximale."]],
-  ["Équilibrage : classes",["Guerrier : PV +13 par niveau (avant 14) ; Force +2,6 par niveau (avant 2,4).","Sorcier : PV de base 100 (avant 90), +13 par niveau (avant 10,5) ; Défense de base 6 (avant 5), +1,5 par niveau (avant 1).","Équipement du Sorcier plus résistant : Défense fixe des capuches, robes, sandales et jambières augmentée d’environ 20 à 25 %.","Simulations (équipement Légendaire +10, boss Mythique, 12 à 20 combats par spécialisation) : Barbarie ≈ 50 % de victoires, Saignement ≈ 25 à 40 %, Feu ≈ 30 %, Foudre ≈ 30 %. Barbarie a été réduite après les premiers essais (Fureur 2 → 1,2 %, Folie meurtrière 240 → 200 %, vol de vie 25 → 15 %, Pacte de sang 240 → 210 % et sacrifice 12 → 10 %) et Foudre renforcée (Arc électrique 160 → 180 %, Jugement de foudre 240 → 260 %, Surtension 6 → 8 %)."]],
-  ["Équilibrage : ennemis",["Attaque des monstres +14 % environ à tous les niveaux (formule 7 + 2,9 × niv + 0,07 × niv²).","Normal : attaque des boss +15 %.","Héroïque : attaque des monstres ×2,6 (avant ×3,2), PV des boss ×1,6 (avant ×2), attaque des boss ×2,9 (avant ×3,8).","Mythique : attaque des monstres ×2,9 (avant ×3,6), PV des boss ×1,7 (avant ×2,4), attaque des boss ×2,2 (avant ×3,2).","Objectif (simulations avec un équipement du niveau du héros) : en Normal, les boss laissent environ 60 à 90 % des PV ; le Mythique demande un équipement Légendaire +10 et le boss Mythique reste réservé aux meilleurs (environ 1 victoire sur 2 en Guerrier, 1 sur 4 en Sorcier)."]],
+  ["Équilibrage : classes",["Guerrier : PV +13 par niveau (avant 14) ; Force +2,6 par niveau (avant 2,4).","Sorcier : PV de base 100 (avant 90), +13 par niveau (avant 10,5) ; Défense de base 6 (avant 5), +1,5 par niveau (avant 1).","Équipement du Sorcier plus résistant : Défense fixe des capuches, robes, sandales et jambières augmentée d’environ 20 à 25 %.","Simulations finales (équipement Légendaire +10, boss Mythique, talents communs et ultimes compris) : Saignement ≈ 80 % de victoires, Foudre ≈ 65 %, Barbarie ≈ 50 %, Feu ≈ 40 %. En cours de développement, Barbarie a été réduite après les premiers essais (Fureur 2 → 1,2 %, Folie meurtrière 240 → 200 %, vol de vie 25 → 15 %, Pacte de sang 240 → 210 % et sacrifice 12 → 10 %) et Foudre renforcée (Arc électrique 160 → 180 %, Jugement de foudre 240 → 260 %, Surtension 6 → 8 %)."]],
+  ["Équilibrage : ennemis",["Attaque des monstres +14 % environ à tous les niveaux (formule 7 + 2,9 × niv + 0,07 × niv²).","Normal : attaque des boss +15 %.","Héroïque : attaque des monstres ×2,6 (avant ×3,2), PV des boss ×1,6 (avant ×2), attaque des boss ×2,9 (avant ×3,8).","Mythique : attaque des monstres ×2,9 (avant ×3,6), PV des boss ×1,7 (avant ×2,4), attaque des boss ×2,2 (avant ×3,2).","Objectif (simulations avec un équipement du niveau du héros) : en Normal, les boss laissent environ 60 à 90 % des PV ; le Mythique demande un équipement Légendaire +10 et le boss Mythique reste le défi le plus difficile (40 à 80 % de victoires selon la spécialisation avec un équipement Légendaire +10)."]],
   ["Aide et notes",["L’Aide indique les nouveaux plafonds, la recharge des PA et des potions.","Nouvelle mise en page des notes de mise à jour : titres centrés, plus grands et en gras.","Aide : nouvel effet Paralysie et tableau de rareté des affixes."]]
  ]},
  {v:'0.3.0',t:"Combat 2.0 - Stat - PVP",sec:[
@@ -3893,9 +4439,13 @@ function tipHTML(k){
     const used=C.bonus&&((q==='p_xp'&&C.bonus.xp)||(q==='p_loot'&&C.bonus.loot));
     const mm=[PV.match,RD.match].find(x=>x&&['fight','prep'].includes(x.state)),mu=mm&&mm.u&&mm.u[pvpMe()],left=mu?Math.min((mu.pcd||{})[q]||0,P.cd||99):inFight()?potShow(q,potLeft(q)):0;
     return `<article class="it skt" style="--rc:${P.c}"><header><b>${P.n}</b><small>Potion · ${matCount(q)} en stock</small></header><div class="skmeta"><span class="skm free">Sans PA</span><span class="skm">${P.cd?`Recharge ${P.cd} tours`:'1 fois par combat'}</span></div><div class="skbody"><p>${P.d}</p>${used?'<p class="lockr">Déjà utilisée pour ce combat.</p>':left?`<p class="lockr">Encore ${left} tour${left>1?'s':''} de recharge.</p>`:'<p class="imp">Se boit sans utiliser votre tour.</p>'}</div></article>`}
+  if(k.startsWith('res:')){ const m=k.slice(4);
+    if(m==='gold') return `<article class="it skt" style="--rc:#d9a62b"><header><b>Or</b><small>Monnaie · partagée par tous vos personnages</small></header><div class="skbody"><p class="num"><b>${fmt(S.gold)}</b> or</p><p>Sert à acheter des potions, des onglets de coffre, à améliorer l’équipement et les zones de collecte. Gagné en combat, en duel et en raid.</p></div></article>`;
+    const v=matCount(m),cap=matCap(m); return `<article class="it skt" style="--rc:var(--line2)"><header><b>${MAT_OBJ[m]}</b><small>Composant${v>=cap?' · stock plein':''}</small></header><div class="skbody"><p class="num"><b>${fmt(v)}</b> / ${fmt(cap)}</p><p>${MAT_D[m]||''}</p></div></article>` }
   if(k.startsWith('sk:')){const q=SK[k.slice(3)]; return q?skCard(q,h):''}
-  if(k.startsWith('f:')){const r=findItem(+k.slice(2)); return r?itemCard(r.it):''}
-  if(k.startsWith('bag:')){const E=S.bag[+k.slice(4)]; if(!E) return ''; const c=E.o; return c.mat?matCard(c):itemCard(c,'',swapDelta(h,c))}
+  if(k.startsWith('f:')){const r=findItem(+k.slice(2)); if(r&&SHIFT&&r.where!=='eq'){const x=cmpHTML(r.it); if(x) return x} return r?itemCard(r.it):''}
+  if(k.startsWith('bag:')){const E=S.bag[+k.slice(4)]; if(!E) return ''; const c=E.o; if(SHIFT&&!c.mat){const x=cmpHTML(c); if(x) return x} return c.mat?matCard(c):itemCard(c,'',swapDelta(h,c))}
+  if(k.startsWith('st:')){const E=stashTab().bag[+k.slice(3)]; if(!E) return ''; const c=E.o; if(SHIFT&&!c.mat){const x=cmpHTML(c); if(x) return x} return c.mat?matCard(c):itemCard(c,c.cls&&!canWear(c)?`<small class="lockr">Réservé au ${CLASSES[c.cls].n}</small>`:'')}
   const it=h&&h.equip[k];
   if(it) return itemCard(it);
   return `<article class="it" style="--rc:var(--line)"><header><b>${SLOT_N[k]}</b><small>Emplacement vide</small></header></article>`;
@@ -3906,7 +4456,7 @@ function detScroll(){ if(window.innerWidth>860) return; requestAnimationFrame(()
 function showTip(el){
   if(DRAG&&DRAG.on) return;
   if(TOUCH){hideTip();return}
-  const t=$('#tip'),html=tipHTML(el.dataset.tip); if(!html){hideTip();return} t.innerHTML=html; t.hidden=false; TIPEL=el; t.classList.toggle('wide',SHIFT);
+  const t=$('#tip'),html=tipHTML(el.dataset.tip); if(!html){hideTip();return} t.innerHTML=html; t.hidden=false; TIPEL=el; t.classList.toggle('wide',ALTK); t.classList.toggle('cmpw',html.includes('class="cmp"'));
   const r=el.getBoundingClientRect(),w=t.offsetWidth,hh=t.offsetHeight,vw=document.documentElement.clientWidth,vh=window.innerHeight;
   let x=r.right+10,y=r.top;
   if(x+w>vw-8) x=r.left-w-10;
@@ -3915,10 +4465,12 @@ function showTip(el){
   t.style.left=x+'px'; t.style.top=y+'px';
 }
 const hideTip=()=>{const t=$('#tip');if(t)t.hidden=true;TIPEL=null};
-function setShift(v){ if(SHIFT===v) return; SHIFT=v; const t=$('#tip'); if(TIPEL&&t&&!t.hidden&&document.contains(TIPEL)) showTip(TIPEL) }
-document.addEventListener('keydown',e=>{if(e.key==='Shift')setShift(true)});
-document.addEventListener('keyup',e=>{if(e.key==='Shift')setShift(false)});
-window.addEventListener('blur',()=>setShift(false));
+function retip(){ const t=$('#tip'); if(TIPEL&&t&&!t.hidden&&document.contains(TIPEL)) showTip(TIPEL) }
+function setShift(v){ if(SHIFT===v) return; SHIFT=v; retip() }
+function setAlt(v){ if(ALTK===v) return; ALTK=v; retip() }
+document.addEventListener('keydown',e=>{ if(e.key==='Shift')setShift(true); if(e.code==='AltLeft'){ e.preventDefault(); setAlt(true) } if(e.code==='ControlLeft'&&!e.repeat){ UI.ringCmp=UI.ringCmp==='ring2'?'ring':'ring2'; if(SHIFT) retip() } });
+document.addEventListener('keyup',e=>{ if(e.key==='Shift')setShift(false); if(e.code==='AltLeft'){ e.preventDefault(); setAlt(false) } });
+window.addEventListener('blur',()=>{setShift(false);setAlt(false)});
 document.addEventListener('mouseover',e=>{const el=e.target.closest&&e.target.closest('[data-tip]');if(el)showTip(el);else hideTip()});
 document.addEventListener('focusin',e=>{const el=e.target.closest&&e.target.closest('[data-tip]');if(el)showTip(el)});
 document.addEventListener('focusout',hideTip);
@@ -4032,6 +4584,16 @@ const A={
   changeItem:d=>{UI.invSel=d.slot;UI.bagSel=null;UI.tab='heroes';render()},
   dollSlot:d=>{UI.invSel=d.slot;UI.bagSel=null;UI.confirm=null; if(!invAllowed()){ const y=scrollY; render(); scrollTo(0,y); return } UI.invOpen=true; const y=scrollY; render(); scrollTo(0,y)},
   invClose:()=>openInv(false),
+  stToggle:()=>{ UI.stashOpen=!UI.stashOpen; UI.stBuy=false; UI.stRen=false; renderInvPop() },
+  stClose:()=>{ UI.stashOpen=false; UI.stSel=null; renderInvPop() },
+  stTab:d=>{ const D=stashD(); D.cur=+d.i; UI.stSel=null; UI.stRen=false; saveAcc(); renderStashPop() },
+  stRen:()=>{ UI.stRen=true; renderStashPop() },
+  stBuy:()=>{ const D=stashD(),n=D.tabs.length,c=STASH_COST[n]; if(n>=STASH_MAX||!hasGold(c)) return;
+    if(!UI.stBuy){ UI.stBuy=true; renderStashPop(); setTimeout(()=>{ if(UI.stBuy){UI.stBuy=false; renderStashPop()} },4000); return }
+    UI.stBuy=false; if(!FREE()) S.gold-=c; D.tabs.push({n:'Coffre '+(n+1),bag:[]}); D.cur=n; save(); renderHeader(); renderInvPop(); toast('Nouvel onglet de coffre acheté.') },
+  stCell:d=>{ if(noClick) return; const T=stashTab(),E=T.bag[+d.i]; if(!E) return; UI.stSel=UI.stSel===E.o?null:E.o; renderStashPop() },
+  stDet:()=>{ UI.stSel=null; renderStashPop() },
+  stTake:d=>fromStash(+d.i),
   invOpen:()=>openInv(true),
   equip:d=>{
     const h=S.heroes[0],i=cellOf(+d.id); if(i<0) return;
@@ -4045,7 +4607,7 @@ const A={
     toast(`${it.name} détruit. Récupéré : ${resTxt(v)}.`);
   },
   toForge:d=>{UI.fItem=+d.id;UI.fMode='up';UI.tab='forge';render()},
-  fMode:d=>{UI.fMode=d.m;render()},
+  fMode:d=>{UI.fMode=d.m;UI.confirm=null;render()},
   fPut:d=>{UI.fItem=+d.id;UI.fMode='up';UI.bagSel=null;render()},
   fPutSlot:d=>{const it=S.heroes[0].equip[d.slot]; if(!it){toast('Emplacement vide.');return} UI.fItem=it.id;UI.fMode='up';render()},
   fClear:()=>{UI.fItem=null;render()},
@@ -4073,7 +4635,8 @@ const A={
     r.it.aff[+d.i]={s:n.s,v:rollAff(n,r.it.ilvl,RAR[r.it.rarity].m)}; save(); render();
   },
   salvBelow:d=>{
-    const rr=+d.r,tot={}; let n=0;
+    if(UI.confirm!=='salv'+d.r){UI.confirm='salv'+d.r;render();return}
+    UI.confirm=null; const rr=+d.r,tot={}; let n=0;
     S.bag=S.bag.filter(e=>{const it=e.o; if(!it.mat&&it.rarity<=rr){const v=salvageValue(it);for(const [k,x] of Object.entries(v))tot[k]=(tot[k]||0)+x;n++;return false} return true });
     gain(tot); if(UI.bagSel&&entryOf(UI.bagSel)<0)UI.bagSel=null; if(UI.fItem&&!findItem(UI.fItem))UI.fItem=null; save(); render();
     toast(n?`${n} objets détruits. Récupéré : ${resTxt(tot)}.`:'Rien à détruire.');
@@ -4087,6 +4650,14 @@ const A={
     if(isX){const b=BR.find(x=>x.cap.k===k); if(!b||t[k]||(t[b.k]||0)<b.max) return}
     else{const b=BR.find(x=>x.k===k); if(!b||(t[k]||0)>=b.max) return}
     const c=talCost(d.id,k,t[k]||0); if(!hasGold(c)) return; if(!FREE()) S.gold-=c; t[k]=isX?1:(t[k]||0)+1; save(); render()},
+  siteAll:()=>{ const tot={}; let ni=0,n=0;
+    for(const si of SITES){const st=S.sites[si.id]; if(st.lvl<1||!(st.ready||0)) continue; const r=collectSite(si.id,true); n++; ni+=r.items.length; for(const [k,v] of Object.entries(r.got)) tot[k]=(tot[k]||0)+v}
+    const t=Object.entries(tot).map(([k,v])=>`${fmt(v)} ${MAT_N[k].toLowerCase()}`); if(ni) t.push(`${ni} objet${ni>1?'s':''}`);
+    save(); render(); toast(n?'Récolté : '+(t.join(', ')||'rien (stock plein)'):'Rien à collecter pour l’instant.') },
+  shopSel:d=>{UI.shopSel=d.k;render()},
+  shopCat:d=>{UI.shopCat=d.c;const ks=Object.keys(POTS).filter(k=>d.c==='all'||SHOP_CAT(k)===d.c);if(ks.length&&!ks.includes(UI.shopSel))UI.shopSel=ks[0];render()},
+  shopQ:d=>{UI.shopQ=d.q==='max'?shopMax(UI.shopSel):+d.q;render()},
+  shopQd:d=>{UI.shopQ=Math.max(1,Math.min(99,(UI.shopQ||1)+(+d.d)));render()},
   siteCollect:d=>{
     const r=collectSite(d.id); const t=Object.entries(r.got).map(([k,v])=>`${v} ${MAT_N[k].toLowerCase()}`);
     if(r.items.length)t.push(`${r.items.length} objet${r.items.length>1?'s':''}`);
@@ -4150,7 +4721,7 @@ const A={
     try{ await claimName(n); UI.lbusy=false; afterProfile(true) }
     catch(e){ UI.lbusy=false; UI.perr=e&&e.code==='name-taken'?'Ce nom de compte est déjà pris.':'Impossible d’enregistrer le nom ('+((e&&e.code)||'erreur')+'). Vérifiez les règles Firestore.'; render() }
   },
-  frToggle:()=>{FR.open=!FR.open; UI.frmsg=''; UI.frerr=false; renderFriends(); if(FR.open){const i=$('#frname'); if(i) i.focus()}},
+  frToggle:()=>{FR.open=!FR.open; UI.frmsg=''; UI.frerr=false; renderFriends(); renderTabs(); if(FR.open){const i=$('#frname'); if(i) i.focus()}},
   frAdd:async()=>{
     const i=$('#frname'),n=(i.value||'').trim(); if(!n) return;
     UI.frmsg='Envoi…'; UI.frerr=false; renderFriends();
@@ -4170,6 +4741,8 @@ const A={
     const o=f.users.find(x=>x!==pvpMe()),p=FR.prof[o];
     try{ await pvpPropose(o,otherName(f),p&&p.char?p.char:null,'friend'); toast('Demande de duel envoyée à '+otherName(f)+'.') }catch(e){ toast('Impossible d’envoyer la demande ('+(e.code||'erreur')+').') } },
   advMode:d=>{UI.advMode=d.m; render()},
+  invTog:()=>openInv(!UI.invOpen),
+  comm:()=>{ if(!FB.user||!FB.prof){toast('Connectez-vous à un compte en ligne pour accéder à la communauté (amis, messages).');return} FR.open=!FR.open; UI.frmsg=''; UI.frerr=false; renderFriends(); renderTabs(); if(FR.open){const i=$('#frname'); if(i) i.focus()} },
   pvpFind:()=>pvpSearch(),
   pvpCancel:()=>pvpStopSearch(),
   pvpAcc:()=>pvpAccept(),
@@ -4184,6 +4757,8 @@ const A={
   fcSend:d=>fcSend(d.k),
   rdBoss:d=>{UI.raidB=+d.i; UI.raidT=raidMax(RAIDS[UI.raidB].id); render()},
   rdFind:()=>rdSearch(),
+  rdTier:d=>{if(RD.searching)return;UI.raidT=+d.t;render()},
+  rdInv:()=>{ if(!FB.user||!FB.prof){toast('Connectez-vous à un compte en ligne pour inviter un ami.');return} FR.open=true; renderFriends(); renderTabs(); toast('Cliquez sur le nom d’un ami en ligne, puis sur « Raid » : le boss et le palier choisis ici seront utilisés.') },
   rdCancel:()=>rdStopSearch(),
   rdAcc:()=>rdAccept(),
   rdRef:()=>rdRefuse(),
