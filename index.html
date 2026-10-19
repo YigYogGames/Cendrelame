@@ -1284,7 +1284,7 @@ body.scr .mlbtn{display:none}
 .dgl{display:inline-flex;align-items:center;gap:4px;font-weight:700}.dgl input{width:64px!important}
 
 /* sprites héros */
-.hart{display:block;width:100%;height:100%;overflow:hidden;background:#0d0704}.hart img{display:block;width:100%;height:100%;object-fit:cover;object-position:50% 6%}
+.hart{display:block;width:100%;height:100%;overflow:hidden;background:radial-gradient(ellipse 60% 45% at 50% 55%,#3a4a72 0,#1a1830 45%,#0d0704 85%)}.hart.port{background:#0d0704}.hart img{display:block;width:100%;height:100%;object-fit:cover;object-position:50% 6%}
 .hart.port img{object-fit:cover;object-position:50% 30%}
 /* sélection */
 .sel5g{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:14px;height:clamp(460px,calc(100vh - 170px),760px)}
@@ -3963,7 +3963,7 @@ function viewCreator(){
      <h3>Statistiques de départ</h3><div class="ccstat">${st}</div>
      <h3>Spécialisations <small class="mute">choix au niveau 10</small></h3><div class="ccsps">${specs}</div>
 </section>
-    <section class="ccr">${heroArt(k,UI.cskin,'big')}<div class="ccrcap"><b>${c.n}</b><span>${esc(c.desc||'')}</span><button class="btn pri ccgo" data-act="createHero">Signer le registre</button></div></section></div>`;
+    <section class="ccr">${heroArt(k,UI.cskin,'big')}<div class="ccrcap"><b>${c.n}</b><button class="btn pri ccgo" data-act="createHero">Créer le personnage</button></div></section></div>`;
 }
 
 /* ===== détection d'une nouvelle version déployée ===== */
@@ -4782,10 +4782,10 @@ function viewHelp(){
 
 /* --- nouveautés --- */
 const VERSION='0.3.3';
-const BUILD='20261019133028';
+const BUILD='20261019134621';
 const PATCH=[
  {v:'0.3.3',t:"Trophées et communauté",sec:[
-  ["Personnages", ["Nouvel écran de sélection : les cinq emplacements en grandes cartes verticales, chaque héros en pied avec sa classe, son niveau et les boutons Jouer et Supprimer ; le personnage actuel est mis en évidence.", "Nouvel écran de création en forme de registre : nom, classe, apparence, statistiques de départ et aperçu des spécialisations de la classe (description, compétences et talent ultime), avec le héros en grand à droite.", "Le Sorcier a deux apparences au choix lors de la création. Le Guerrier garde son portrait en attendant ses illustrations."]],
+  ["Personnages", ["Nouvel écran de sélection : les cinq emplacements en grandes cartes verticales, chaque héros en pied avec sa classe, son niveau et les boutons Jouer et Supprimer ; le personnage actuel est mis en évidence.", "Nouvel écran de création en forme de registre : nom, classe, apparence, statistiques de départ et aperçu des spécialisations de la classe (description, compétences et talent ultime), avec le héros en grand à droite et le bouton « Créer le personnage ».", "Le Sorcier a deux apparences au choix lors de la création. Le Guerrier garde son portrait en attendant ses illustrations."]],
   ["Coffre des Reliques", ["Nouveau butin de raid : le Coffre des Reliques. Chaque raid réussi a une chance d’en donner un : 1 % au palier +0, +0,5 % par palier, jusqu’à 10 % (palier +18 et au-delà). Il arrive dans le sac (ou dans le coffre du compte si le sac est plein).", "Infobulle du coffre : description et chance d’obtention, sans révéler son contenu.", "Clic droit sur le coffre dans le sac : une fenêtre demande confirmation, puis un tirage animé fait défiler les reliques avant de s’arrêter sur la récompense.", "Chances par relique : Or royal 38 % (commun), Saphir 27 % (peu commun), Améthyste 20 % (rare), Braise vivante 11 % (épique), Prisme holographique 4 % (légendaire).", "Relique déjà possédée : convertie en or (2 000, 3 000, 5 000, 8 000 ou 15 000 selon la rareté).", "Les administrateurs peuvent aussi joindre des Coffres des Reliques aux messages système.","Le coffre apparaît dans la liste des récompenses de chaque boss de raid, avec sa chance au palier choisi et une infobulle."]],
   ["Messagerie", ["Nouvelle messagerie du compte : bouton rond avec une enveloppe à droite du portrait (en haut à gauche), avec le nombre de messages non lus.", "Les messages système de l’équipe (informations, alertes de maintenance, cadeaux et compensations) arrivent en direct, avec une notification. Ils peuvent être envoyés à tous les joueurs ou à un seul.", "Fenêtre en deux colonnes : la liste des messages (non lus en gras, icône cadeau s’il reste des pièces jointes) et le message ouvert.", "Pièces jointes : bouton « Récupérer » ou « Tout récupérer ». L’or s’ajoute à votre or ; les matériaux et potions vont dans le coffre du compte (tous onglets). S’il n’y a pas assez de place dans le coffre, un message l’indique et rien n’est récupéré.", "Chaque pièce jointe ne peut être récupérée qu’une fois par compte ; elle peut avoir une date d’expiration. Un message peut être supprimé une fois ses pièces jointes récupérées."]],
   ["Trophées", ["Nouveau bouton « Trophées » dans la barre du bas, avec un point rouge quand un trophée vient d’être obtenu.", "30 trophées répartis en 5 catégories : Aventure, Personnage, Amélioration, Collecte, Duel et raid. Chacun rapporte des points de trophées : 5 à 15 points (bronze), 15 à 49 points (argent), 50 points et plus (or), jusqu’à 100 points pour vaincre Le Dévoreur en difficulté Mythique.", "Page Trophées : à gauche le total de points, la progression et les catégories avec leur compteur ; à droite les 3 derniers trophées obtenus, puis la liste filtrable (Tous, Obtenus, À obtenir) avec la barre d’avancement et la date d’obtention.", "Les trophées sont liés au compte (tous les personnages y contribuent). Ceux déjà mérités avant cette version (niveaux, boss vaincus, zones ouvertes, raids, duels…) sont attribués automatiquement à la connexion.", "Une notification s’affiche à chaque trophée obtenu.", "Certains trophées débloquent un titre à afficher sur votre carte de joueur."]],
