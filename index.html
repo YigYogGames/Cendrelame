@@ -1120,6 +1120,83 @@ body:not(.hasdock) #toasts{bottom:calc(14px + env(safe-area-inset-bottom,0px))}
 .mcqty{display:flex;align-items:center;gap:8px;flex-wrap:wrap}.mcqty>b{min-width:34px;text-align:center;font-size:1.3rem}.mcqty>.btn{padding:6px 8px;display:grid;place-items:center}.mcqty .uic{width:16px;height:16px}.mcq{display:flex;gap:4px;margin-left:auto;flex-wrap:wrap}.mcq .on{background:#7b2a1a;color:#fff;border-color:#e8c982}
 .mctot{display:flex;justify-content:space-between;align-items:center;font-size:1.05rem}.mctot b{display:inline-flex;align-items:center;gap:4px;font-size:1.3rem}.mctot .mi{width:20px;height:20px}
 @media (max-width:900px){.mcgrid{grid-template-columns:repeat(2,minmax(0,1fr))}.mcshop{padding:0}.mcshelf{position:relative;inset:auto;padding:14px}.mcshop .aminfo{margin:0 12px 12px}.mcmer{flex-wrap:wrap}.mcquote{flex:1}}
+
+/* barre du bas : 3 + médaillon + 2, bouton amis */
+.dkbar{display:grid;grid-template-columns:1fr auto 1fr;width:min(900px,calc(100vw - 340px))}
+.dkl,.dkr{display:flex;align-items:flex-end;gap:4px}.dkl{justify-content:flex-end}.dkr{justify-content:flex-start}
+.tabs .dkfr{position:absolute;right:max(120px,env(safe-area-inset-right,0px));bottom:calc(22px + env(safe-area-inset-bottom,0px));width:62px;height:62px;margin:0;padding:0;border-radius:50%;display:grid;place-items:center;background:radial-gradient(circle at 50% 35%,#4a3220,#22160b);border:2px solid #8a6a44;color:#e8d4a8;cursor:pointer;box-shadow:0 6px 18px #000a}
+.tabs .dkfr .uic{width:30px;height:30px}.tabs .dkfr:hover,.tabs .dkfr.on{border-color:var(--gold);color:var(--gold)}.tabs .dkfr .ndot{top:2px;left:2px;right:auto}
+.dkfrn{position:absolute;top:-6px;right:-10px;display:inline-flex;align-items:center;gap:4px;background:#1d3a17;border:1px solid #8fdc6a;color:#e6ffd0;border-radius:12px;padding:0 7px;font-size:.78rem;font-weight:700;font-variant-numeric:tabular-nums}.dkfrn i{width:7px;height:7px;border-radius:50%;background:#5fcf5a;box-shadow:0 0 6px #5fcf5a}
+.frw{bottom:calc(100px + env(safe-area-inset-bottom,0px));right:max(100px,env(safe-area-inset-right,0px))}
+@media (max-width:760px){.dkbar{width:100%}.dkl,.dkr{gap:0;flex:1}.dkl .dkb,.dkr .dkb{flex:1}.tabs .dkb b{font-size:.6rem}.tabs .dkfr{width:52px;height:52px;right:76px;bottom:calc(84px + env(safe-area-inset-bottom,0px))}.tabs .dkfr .uic{width:24px;height:24px}.frw{right:12px;bottom:calc(148px + env(safe-area-inset-bottom,0px))}}
+/* trophées */
+.mt1{display:grid;grid-template-columns:290px minmax(0,1fr);gap:14px;min-height:clamp(460px,calc(100vh - 260px),760px)}
+.aminfo.mtside{position:relative;inset:auto;width:auto}.mtside .masub em{margin-left:auto;font-style:normal;font-size:.8rem;opacity:.85}
+.mtsum{display:flex;flex-direction:column;align-items:center;gap:4px;padding:16px;background:linear-gradient(#3b2716,#21150b);color:#f1e2bd;text-align:center}.mtsum>b{font-size:2.2rem;color:var(--gold);line-height:1}.mtsum small{color:#cdb88f}.mtsum+.masub{padding:12px}
+.mtbig{width:64px;height:64px;border-radius:50%;display:grid;place-items:center;background:radial-gradient(circle at 50% 35%,#c99a3a,#6e4c10 70%);border:3px solid #f0d48a;color:#fff6d8;box-shadow:0 0 20px #f0c66e66}.mtbig .uic{width:34px;height:34px}
+.mtpb{display:block;height:6px;border-radius:3px;background:#0000001f;overflow:hidden;margin-top:4px}.mtpb i{display:block;height:100%;background:linear-gradient(90deg,#c9a35a,#f0d48a)}.mtpb.big{width:100%;height:9px;background:#0006}
+.mtmain{display:flex;flex-direction:column;gap:10px;min-width:0}
+.mtlast{padding:12px 16px;border-radius:16px;border:2px solid #8a6a44;background:radial-gradient(circle at 50% 0,#5a3a20,#140b05 80%);color:#fff}.mtlast h4{margin:0 0 8px;color:var(--gold)}
+.mtlastg{display:flex;justify-content:center;align-items:flex-end;gap:16px}
+.mtped{display:flex;flex-direction:column;align-items:center;gap:4px;padding:12px 12px 10px;width:190px;border-radius:12px 12px 4px 4px;background:linear-gradient(#3b2716ee,#21150bee);border:2px solid #8a6a44;color:#fff;text-align:center}.mtped.first{padding-bottom:22px;border-color:#f0c66e;box-shadow:0 0 22px #f0c66e55}.mtped:nth-child(2){order:-1}.mtped .mtti{width:56px;height:56px}.mtped .mtti .uic{width:30px;height:30px}.mtped small{color:#f0d48a;font-size:.78rem}
+.mtempty{margin:6px 0;color:#e8d4a8;text-align:center}.mtempty.dark{color:var(--mute);grid-column:1/-1}
+.mtgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:10px;align-content:start}
+.mttr{display:flex;align-items:center;gap:12px;padding:12px;border-radius:12px;border:1px solid var(--line);background:#0000000a}.mttr>div{flex:1;display:flex;flex-direction:column;gap:2px;min-width:0}.mttr small{color:var(--mute);font-size:.82rem}
+.mttr:not(.ok) .mtti{filter:grayscale(1);opacity:.55}.mttr.ok{border-color:#8a6a44;background:#f0d48a26}
+.mtti{width:48px;height:48px;border-radius:50%;display:grid;place-items:center;flex:none;color:#fff;border:2px solid #0004}.mtti .uic{width:26px;height:26px}.mtti.sm{width:34px;height:34px}.mtti.sm .uic{width:18px;height:18px}
+.bronze .mtti,.mtti.bronze{background:radial-gradient(circle at 50% 35%,#d39360,#7a4420);border-color:#e8b88a}.argent .mtti,.mtti.argent{background:radial-gradient(circle at 50% 35%,#e3e7ec,#7d8590);border-color:#f4f6f8;color:#2c2015}.or .mtti,.mtti.or{background:radial-gradient(circle at 50% 35%,#f6d36a,#9c6a12);border-color:#ffe9a8}
+.mtpt{display:flex;flex-direction:column;align-items:center;min-width:44px}.mtpt b{font-size:1.25rem;color:var(--brass)}.mtpt small{font-size:.7rem;color:var(--mute)}
+.mtdone{display:inline-flex;align-items:center;gap:4px;color:var(--ok);font-style:normal;font-weight:700;font-size:.8rem}.mtdone .uic{width:14px;height:14px}.mttr .mtcur{font-size:.75rem}.mttr .mttit{color:var(--brass);font-style:italic;font-size:.75rem}
+.toast.trt{display:flex;align-items:center;gap:10px;text-align:left;border-color:#f0c66e}.toast.trt>span:last-child{display:flex;flex-direction:column}.toast.trt small{color:#f0d48a}
+/* communauté et cartes */
+.masub button.lk{opacity:.55;cursor:not-allowed}.masub button.lk .uic:last-child{margin-left:auto;width:16px;height:16px}
+.mt1.comm{height:clamp(500px,calc(100vh - 230px),820px)}.mt1.comm .mtmain{min-height:0}.mt1.comm .mtcm2{min-height:0}.mt1.comm .mtcmc{min-height:0;overflow:auto}.mtcm2 .aminfo.maside .ambody{overflow:auto}
+.mtcm2{display:grid;grid-template-columns:minmax(0,1fr) 380px;gap:14px;flex:1}.mtcm2.view{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+.mtcmc{display:grid;place-items:center;border-radius:16px;border:2px solid #8a6a44;background:radial-gradient(circle at 50% 40%,#5a3a20,#140b05 75%);padding:20px;min-height:540px}
+.mtcm2 .aminfo.maside{position:relative;inset:auto;width:auto}.mtcmr{display:flex;flex-direction:column;gap:10px;justify-content:center}.mtcmr h4{margin:0}.mtcmr .btn{align-self:flex-start}
+.pc1{position:relative;width:300px;border-radius:18px;overflow:hidden;border:3px solid var(--fr);box-shadow:0 0 0 2px #21150b,0 12px 28px #000a,0 0 24px color-mix(in srgb,var(--fr) 40%,transparent);color:#fff;background:#140b05;text-align:left}
+.pc1bg{position:absolute;inset:0 0 auto 0;height:190px}.pc1bg .zscene{width:100%;height:100%;display:block}.pc1bg::after{content:'';position:absolute;inset:0;background:linear-gradient(#0000 30%,#140b05)}
+.pc1top{position:relative;display:flex;flex-direction:column;align-items:center;gap:2px;padding:26px 14px 6px;text-align:center}.pc1top .mpport,.pc1top .mpunk{border-color:var(--fr)}.pc1top>b{font-family:var(--display);font-weight:400;font-size:1.8rem;margin-top:6px}.pc1t{color:#f0d48a;font-style:italic}
+.pc1pts{position:relative;display:flex;align-items:center;justify-content:center;gap:6px;margin:4px 14px;padding:6px;border-radius:10px;background:#ffffff10;border:1px solid #ffffff22}.pc1pts .uic{width:22px;height:22px;color:var(--gold)}.pc1pts b{font-size:1.4rem;color:var(--gold)}.pc1pts small{color:#e8d4a8}
+.pc1show{position:relative;display:flex;justify-content:center;gap:8px;margin:8px 0}
+.pc1ch{position:relative;list-style:none;margin:0;padding:8px 14px 16px;display:flex;flex-direction:column;gap:6px}.pc1ch li{display:flex;align-items:center;gap:10px;padding:5px 8px;border-radius:10px;background:#ffffff0d}.pc1ch .mpport{border-width:2px;box-shadow:none}.pc1ch span{flex:1;display:flex;flex-direction:column;line-height:1.15}.pc1ch small{color:#cdb88f;font-size:.75rem}.pc1ch em{font-style:normal;font-weight:700;color:var(--gold)}
+.pcemb{color:var(--gold)}.pcemb .uic{width:55%;height:55%}
+.pc2{position:relative;display:flex;align-items:center;gap:18px;padding:16px 20px;border-radius:16px;overflow:hidden;border:2px solid var(--fr);color:#fff;min-height:150px;box-shadow:0 10px 26px #0009}.pc2bg{position:absolute;inset:0}.pc2bg .zscene{width:100%;height:100%;display:block}.pc2bg::after{content:'';position:absolute;inset:0;background:linear-gradient(90deg,#000c 30%,#0007)}
+.pc2l,.pc2m,.pc2r,.pc2rk{position:relative}.pc2l .mpport,.pc2l .mpunk{border-color:var(--fr)}.pc2m{flex:1;display:flex;flex-direction:column;gap:2px;min-width:0}.pc2m>small{color:#f0d48a;letter-spacing:.1em;text-transform:uppercase;font-size:.72rem}.pc2m>b{font-family:var(--display);font-weight:400;font-size:1.8rem}
+.pc2pts{display:flex;align-items:center;gap:6px;margin-top:4px;color:#e8d4a8}.pc2pts .uic{width:22px;height:22px;color:var(--gold)}.pc2pts b{color:var(--gold);font-size:1.3rem}
+.pc2r{display:flex;gap:8px}.pc2c{display:flex;flex-direction:column;align-items:center;gap:2px;width:92px;padding:8px 4px;border-radius:12px;background:#0008;border:1px solid #c9a35a77;text-align:center}.pc2c small{color:#cdb88f;font-size:.7rem}
+.pc2rk{font-family:var(--display);font-size:2rem;color:var(--gold);min-width:40px;text-align:center}
+.pcopt{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.pcic{position:relative;width:56px;height:56px;border-radius:50%;padding:0;display:grid;place-items:center;border:2px solid var(--line2);background:#2c1d10;color:var(--gold);cursor:pointer;overflow:hidden}.pcic .mpport,.pcic .mpunk{border:0;box-shadow:none}.pcic.on,.pcfr.on,.pcbg.on,.pcts.on{outline:3px solid var(--brass);outline-offset:2px}
+.pcfr{width:34px;height:34px;border-radius:50%;border:4px solid var(--c,#8a6a44);background:#2c1d10;cursor:pointer;display:grid;place-items:center;padding:0;color:#cdb88f}.pcfr .uic{width:14px;height:14px}
+.pcbg{position:relative;width:64px;height:40px;border-radius:8px;overflow:hidden;border:2px solid var(--line2);padding:0;cursor:pointer}.pcbg .zscene{position:absolute;inset:0;width:100%;height:100%}
+.pclk{position:absolute;inset:0;display:grid;place-items:center;background:#0009;color:#e8d4a8}.pclk .uic{width:16px;height:16px}
+.pcic:disabled,.pcfr:disabled,.pcbg:disabled{cursor:not-allowed;opacity:.75}
+.pcts{padding:2px;border:0;background:none;border-radius:50%;cursor:pointer}
+.pcsel{padding:6px 10px;border-radius:8px;border:1px solid var(--line2);background:#fff6;font:inherit}
+.pcmodal{position:fixed;inset:0;z-index:70;display:grid;place-items:center;background:#000a;padding:16px}.pcmbox{position:relative;padding:16px;border-radius:20px;background:#21150b;border:1px solid #8a6a44;max-height:100%;overflow:auto}.pcx{position:absolute;top:8px;right:10px;z-index:3;color:#fff;background:#000a;border-radius:50%}
+.pcbtns{display:flex;justify-content:center;align-items:center;gap:8px;margin-top:12px;flex-wrap:wrap}.pcbtns small{flex-basis:100%;text-align:center;color:#cdb88f}
+@media (max-width:1000px){.mt1{grid-template-columns:1fr}.mtcm2,.mtcm2.view{grid-template-columns:1fr}.mtcmc{min-height:0}.mtlastg{flex-wrap:wrap}.pc2{flex-wrap:wrap}}
+
+/* messagerie */
+.mlbtn{position:absolute;left:236px;top:14px;width:52px;height:52px;border-radius:50%;display:grid;place-items:center;padding:0;background:radial-gradient(circle at 50% 35%,#4a3220,#22160b);border:2px solid #8a6a44;color:#e8d4a8;cursor:pointer;box-shadow:0 4px 12px #0008}.mlbtn .uic{width:26px;height:26px}.mlbtn:hover{border-color:var(--gold);color:var(--gold)}
+.mlcnt{position:absolute;top:-5px;right:-5px;min-width:22px;height:22px;border-radius:11px;background:#c0392b;border:2px solid #f0d48a;color:#fff;font-size:.75rem;font-weight:700;display:grid;place-items:center;padding:0 5px}.mlcnt[hidden]{display:none}
+body.scr .mlbtn{display:none}
+.mlback{position:fixed;inset:0;z-index:65;background:#0009;display:grid;place-items:center;padding:16px}
+.mlwin{width:min(1000px,100%);height:min(640px,calc(100vh - 32px));display:flex;flex-direction:column;background:var(--paper);color:var(--fg);border:2px solid #8a6a44;border-radius:16px;box-shadow:0 20px 60px #000c;overflow:hidden}
+.mlhead{display:flex;align-items:center;gap:10px;padding:12px 16px;background:linear-gradient(#3b2716,#21150b);color:#f1e2bd;flex-wrap:wrap}.mlhead h2{margin:0;color:var(--gold)}.mlhead .mute{color:#cdb88f}.mlhead .frx{color:#fff}
+.mlic{width:40px;height:40px;border-radius:50%;display:grid;place-items:center;flex:none;background:var(--kc,#7b2a1a);color:#fff;border:2px solid #f0d48a88}.mlic .uic{width:22px;height:22px}.mlic.big{width:56px;height:56px}.mlic.big .uic{width:30px;height:30px}
+.mlbody{flex:1;display:grid;grid-template-columns:360px minmax(0,1fr);min-height:0}.mllist{border-right:1px solid var(--line);overflow:auto;padding:8px;display:flex;flex-direction:column;gap:6px}
+.mlrow{display:flex;align-items:center;gap:10px;padding:8px;border-radius:10px;border:1px solid var(--line);background:#0000000a;text-align:left;cursor:pointer;font:inherit;color:inherit}.mlrow .mlic{width:34px;height:34px}.mlrow .mlic .uic{width:18px;height:18px}
+.mlrt{flex:1;display:flex;flex-direction:column;min-width:0}.mlrt b{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-weight:500}.mlrow.u b{font-weight:800}.mlrow.u{border-left:4px solid var(--kc)}.mlrt small{color:var(--mute);font-size:.75rem}.mlrow.on{background:#7b2a1a1a;border-color:#7b2a1a}
+.mlgift{color:#b0801a}.mlgift .uic{width:20px;height:20px}
+.mlread{padding:18px 22px;overflow:auto;display:flex;flex-direction:column;gap:10px;min-height:0}.mlread header{display:flex;gap:14px;align-items:center}.mlread h2{margin:2px 0}.mlread header small{color:var(--mute)}.mlread p{margin:0;line-height:1.5;overflow-wrap:anywhere}
+.mlrw{padding:12px;border-radius:12px;border:1px dashed #c99a3a;background:#f0d48a22;display:flex;flex-direction:column;gap:8px}.mlrw h4{margin:0}.mlread footer{margin-top:auto;display:flex;justify-content:flex-end;gap:8px}
+.mlempty{padding:24px;text-align:center;color:var(--mute);align-self:center}
+.mlad{background:#7b2a1a;color:#fff;border-radius:10px;padding:1px 8px;font-size:.75rem;font-weight:700}
+.mlbody.adm{grid-template-columns:440px minmax(0,1fr)}.mlprev{display:flex;flex-direction:column;min-height:0;overflow:auto}.mlform{padding:14px;overflow:auto;display:flex;flex-direction:column;gap:10px;border-right:1px solid var(--line)}.mlform label{display:flex;flex-direction:column;gap:4px;font-weight:700;font-size:.85rem}.mlform label small{font-weight:400}.mlform .pcsel{font-weight:400;width:100%}
+.mlatt{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}.mlatt span{display:flex;align-items:center;gap:4px}.mlatt .mi{width:18px;height:18px;flex:none}.mlatt input{width:100%;min-width:0}
+@media (max-width:760px){.mlbtn{left:56px;top:56px;width:42px;height:42px}.mlbody,.mlbody.adm{grid-template-columns:1fr;grid-template-rows:auto 1fr}.mllist{max-height:180px;border-right:0;border-bottom:1px solid var(--line)}}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 @media (min-width:760px){.arena{grid-template-columns:1fr 1fr}}
 </style>
@@ -1132,6 +1209,7 @@ body:not(.hasdock) #toasts{bottom:calc(14px + env(safe-area-inset-bottom,0px))}
 <div class="wrap">
   <header class="top">
     <button id="mehud" class="mehud" data-act="tab" data-t="heroes" aria-label="Personnage" title="Personnage" hidden></button>
+    <button id="mailbtn" class="mlbtn" data-act="mlOpen" aria-label="Messagerie" title="Messagerie" hidden><svg class="uic" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3.5 6.5 12 13l8.5-6.5"/></svg><span class="mlcnt" hidden>0</span></button>
     <div class="brand">Cendrelame</div>
     <div class="res num" id="res"></div>
   </header>
@@ -1612,7 +1690,7 @@ const lsDel=k=>{try{localStorage.removeItem(k)}catch(e){}};
 function saveAcc(){ACC.ts=Date.now(); lsSet(ACC_KEY,JSON.stringify(ACC)); cloudSoon()}
 function save(){
   if(!S||!S.heroes||!S.heroes.length||ACC.cur==null) return;
-  ACC.gold=S.gold; lsSet(CHAR_KEY(ACC.cur),JSON.stringify(S)); saveAcc();
+  ACC.gold=S.gold; lsSet(CHAR_KEY(ACC.cur),JSON.stringify(S)); saveAcc(); trophyCheck();
 }
 function loadAcc(){
   const raw=lsGet(ACC_KEY);
@@ -2285,7 +2363,7 @@ async function finish(r){
     if(lb>1) for(const k of Object.keys(mats)) if(k!=='prisme') mats[k]=Math.round(mats[k]*lb);
     gain(mats);
     const items=[]; /* l’équipement ne s’obtient qu’à la Forge */
-    const P=prog(C.diff||'normal');
+    const P=prog(C.diff||'normal'); if(boss){S.bossK=S.bossK||{}; S.bossK[(C.diff||'normal')+C.zone]=1}
     if(C.diff==='hero'&&boss&&C.zone===ZONES.length-1&&!S.mythOpen){S.mythOpen=true;setTimeout(()=>toast('✦ Mode Mythique débloqué !'),600)}
     if(C.zone===P.zone&&C.stage===P.stage){
       if(C.stage<10) P.stage++; else if(C.zone<ZONES.length-1){P.zone++;P.stage=1}
@@ -2341,7 +2419,7 @@ function produce(dt){
 const readyAny=()=>SITES.some(si=>{const st=S.sites[si.id];return st&&st.lvl>0&&(st.ready||0)>0&&!autoOn(st)});
 function collectSite(id,quiet){
   const si=SITES.find(s=>s.id===id),st=S.sites[id],got={},items=[]; let lost=false;
-  const n=st.ready||0,amt={};
+  const n=st.ready||0,amt={}; ACC.cnt=ACC.cnt||{}; ACC.cnt.col=(ACC.cnt.col||0)+n;
   for(const m of Object.keys(si.out)){ let k=n; if(tal(st)['r_'+m+'X']) for(let i=0;i<n;i++) if(Math.random()<.1) k++; amt[m]=k*siteBatch(si,st,m) }
   for(const [m,v] of Object.entries(st.stock||{})) amt[m]=(amt[m]||0)+v; /* reste des anciennes versions */
   st.stock={};
@@ -2403,11 +2481,11 @@ function render(){
   hideTip(); document.body.classList.toggle('scr',!!UI.scr); document.body.classList.toggle('scr-menu',UI.scr==='menu'||UI.scr==='login'||UI.scr==='pseudo');
   renderTabs(); if(UI.scr) $('#res').innerHTML=''; else renderHeader();
   const v=$('#view');
-  renderFriends();
+  renderFriends(); mlRefresh();
   if(UI.scr){v.innerHTML=({menu:viewMenu,login:viewLogin,pseudo:viewPseudo,best:viewBest,select:viewSelect,create:viewCreator,opts:viewOpts,news:viewNews})[UI.scr](); renderInvPop(); return}
   if(!S||!S.heroes.length){UI.scr='menu';return render()}
   if(UI.tab==='opts'||UI.tab==='news') UI.tab='combat';
-  v.innerHTML=({combat:viewCombat,heroes:viewHeroes,bag:viewBag,shop:viewShop,forge:viewForge,sites:viewSites,help:viewHelp,opts:viewOpts,news:viewNews})[UI.tab]();
+  v.innerHTML=({comm:viewComm,troph:viewTroph,combat:viewCombat,heroes:viewHeroes,bag:viewBag,shop:viewShop,forge:viewForge,sites:viewSites,help:viewHelp,opts:viewOpts,news:viewNews})[UI.tab]();
   if(UI.tab==='combat'&&C.phase!=='idle'){C.units.forEach(refresh);renderActbar();const l=$('#log');if(l){l.scrollTop=l.scrollHeight}}
   renderInvPop();
 }
@@ -2450,7 +2528,7 @@ async function onFbUser(u){
 }
 function afterProfile(fromLogin){
   if(fromLogin||UI.scr==='login'||UI.scr==='pseudo'){UI.scr='menu'; toast('Connecté : '+(FB.prof?FB.prof.name:(FB.user.email||'compte'))+'.')}
-  if(FB.prof){ presence(); startFriends(); startPvp(); startRaid() }
+  if(FB.prof){ presence(); startFriends(); startPvp(); startRaid(); startMail() }
   adminCheck().then(()=>{ if(UI.scr==='opts'||UI.scr==='best') render() });
   render();
 }
@@ -2480,7 +2558,7 @@ const FR={list:[],prof:{},unsub:null,pun:{},open:false,err:''};
 function presence(state){
   if(!FB.user||!FB.prof) return;
   const ch=(!UI.scr&&S&&S.heroes&&S.heroes[0])?{name:S.heroes[0].name,cls:S.heroes[0].cls,lvl:S.heroes[0].lvl}:null;
-  FB.db.collection(COL('profiles')).doc(FB.user.uid).set({name:FB.prof.name,nameLower:FB.prof.nameLower,lastSeen:firebase.firestore.FieldValue.serverTimestamp(),online:state!=='off',char:ch},{merge:true}).catch(()=>{});
+  FB.db.collection(COL('profiles')).doc(FB.user.uid).set({name:FB.prof.name,nameLower:FB.prof.nameLower,lastSeen:firebase.firestore.FieldValue.serverTimestamp(),online:state!=='off',char:ch,...(ch?{card:cardMine()}:{})},{merge:true}).catch(()=>{});
 }
 setInterval(()=>presence(),60000);
 function stopFriends(){ closeChat(); if(FR.unsub){FR.unsub();FR.unsub=null} for(const k in FR.pun){FR.pun[k]();delete FR.pun[k]} FR.list=[]; FR.prof={}; FR.open=false; renderFriends() }
@@ -2503,6 +2581,7 @@ const isOnline=p=>!!p&&p.online!==false&&Date.now()-tsMs(p.lastSeen)<3*60*1000;
 const isUnread=f=>{const me=FB.user&&FB.user.uid,lm=f.lastMsg; if(!me||!lm||lm.from===me||(CH.id===f.id&&$('#frchat'))) return false; const r=(f.lastRead||{})[me]; return r===null?false:tsMs(lm.ts)>tsMs(r)};
 const otherName=f=>{const me=FB.user.uid,o=f.users.find(x=>x!==me);return (f.names&&f.names[o])||'?'};
 function renderFriends(){
+  setTimeout(updFrBtn,0);
   let w=$('#friends');
   if(!FB.user||!FB.prof||UI.scr==='login'||UI.scr==='pseudo'){ if(w) w.remove(); return }
   const me=FB.user.uid,acc=FR.list.filter(f=>f.status==='accepted'),inc=FR.list.filter(f=>f.status==='pending'&&f.from!==me),out=FR.list.filter(f=>f.status==='pending'&&f.from===me);
@@ -2520,7 +2599,7 @@ function renderFriends(){
   const msg=$('#frmsg'); msg.textContent=FR.err||UI.frmsg||''; msg.className='frmsg '+(FR.err||UI.frerr?'bad':'ok');
   const row=(f,body,btns)=>`<li class="frrow">${body}<span class="fracts">${btns}</span></li>`;
   const accL=acc.map(f=>{const o=f.users.find(x=>x!==me),p=FR.prof[o],ol=isOnline(p),ch=p&&p.char,ur=isUnread(f);
-      return {ol,h:row(f,`<span class="st ${ol?'on':''}" aria-label="${ol?'En ligne':'Hors ligne'}"></span><span class="frn"><button class="frname" data-act="frMenu" data-id="${f.id}" aria-expanded="${UI.frMenu===f.id}"><b>${esc(otherName(f))}</b>${ur?'<span class="frud" aria-label="Nouveau message"></span>':''}</button>${UI.frMenu===f.id?`<span class="frpop" role="menu"><button class="btn sm pri chatb" data-act="frChat" data-id="${f.id}"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4h16a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H9l-5 4v-4H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2zm3 5v2h2V9zm4 0v2h2V9zm4 0v2h2V9z"/></svg><span>Chat${ur?' (nouveau)':''}</span></button><button class="btn sm chatb duelb" data-act="frDuel" data-id="${f.id}"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 3l7.5 7.5-1.4 1.4L4 6.8V3zm18 0v3.8l-9.6 9.6 1.4 1.4L21 9.6V3h0zM5.3 14.6l4.1 4.1-1.4 1.4-1.4-1.4L4 21.3 2.7 20l2.6-2.6-1.4-1.4zm13.4 0l1.4 1.4-1.4 1.4L21.3 20 20 21.3l-2.6-2.6-1.4 1.4-1.4-1.4z"/></svg><span>Duel</span></button><button class="btn sm chatb duelb" data-act="frRaid" data-id="${f.id}"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3 6 6 .9-4.5 4.3 1 6.3L12 16.6 6.5 19.5l1-6.3L3 8.9 9 8z"/></svg><span>Raid</span></button></span>`:''}<small>${ol?(ch?`Joue ${esc(ch.name)} · ${(CLASSES[ch.cls]||{n:''}).n} niv. ${ch.lvl}`:'Dans le menu'):'Hors ligne'+(p&&p.char?` · ${esc(p.char.name)} niv. ${p.char.lvl}`:'')}</small></span>`,
+      return {ol,h:row(f,`<span class="st ${ol?'on':''}" aria-label="${ol?'En ligne':'Hors ligne'}"></span><span class="frn"><button class="frname" data-act="frMenu" data-id="${f.id}" aria-expanded="${UI.frMenu===f.id}"><b>${esc(otherName(f))}</b>${ur?'<span class="frud" aria-label="Nouveau message"></span>':''}</button>${UI.frMenu===f.id?`<span class="frpop" role="menu"><button class="btn sm pri chatb" data-act="frChat" data-id="${f.id}"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4h16a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H9l-5 4v-4H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2zm3 5v2h2V9zm4 0v2h2V9zm4 0v2h2V9z"/></svg><span>Chat${ur?' (nouveau)':''}</span></button><button class="btn sm chatb duelb" data-act="frDuel" data-id="${f.id}"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 3l7.5 7.5-1.4 1.4L4 6.8V3zm18 0v3.8l-9.6 9.6 1.4 1.4L21 9.6V3h0zM5.3 14.6l4.1 4.1-1.4 1.4-1.4-1.4L4 21.3 2.7 20l2.6-2.6-1.4-1.4zm13.4 0l1.4 1.4-1.4 1.4L21.3 20 20 21.3l-2.6-2.6-1.4 1.4-1.4-1.4z"/></svg><span>Duel</span></button><button class="btn sm chatb duelb" data-act="frRaid" data-id="${f.id}"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3 6 6 .9-4.5 4.3 1 6.3L12 16.6 6.5 19.5l1-6.3L3 8.9 9 8z"/></svg><span>Raid</span></button><button class="btn sm chatb duelb" data-act="frCard" data-id="${f.id}">${uic('card')}<span>Carte</span></button></span>`:''}<small>${ol?(ch?`Joue ${esc(ch.name)} · ${(CLASSES[ch.cls]||{n:''}).n} niv. ${ch.lvl}`:'Dans le menu'):'Hors ligne'+(p&&p.char?` · ${esc(p.char.name)} niv. ${p.char.lvl}`:'')}</small></span>`,
         UI.frdel===f.id?`<button class="btn sm danger" data-act="frDel" data-id="${f.id}">Retirer</button><button class="btn sm" data-act="frDelNo">Non</button>`:`<button class="frx sm" data-act="frDel" data-id="${f.id}" title="Retirer de mes amis" aria-label="Retirer ${esc(otherName(f))}">×</button>`)}});
   const onL=accL.filter(x=>x.ol),offL=accL.filter(x=>!x.ol);
   $('#frlist').innerHTML=
@@ -2690,7 +2769,7 @@ function pvpEnd(m){
   setTimeout(()=>{
     const w=$('#pvp'); if(w) w.remove(); PV.match=null;
     const done=JSON.parse(lsGet(KP+'pvpdone_'+me)||'[]');
-    if(win&&!done.includes(m.id)&&S&&S.heroes&&S.heroes[0]){ done.push(m.id); lsSet(KP+'pvpdone_'+me,JSON.stringify(done.slice(-50))); S.gold+=PVP_GOLD; S.pvp=S.pvp||{w:0,l:0}; S.pvp.w++; save(); renderHeader(); pvpLoot(m) }
+    if(win&&!done.includes(m.id)&&S&&S.heroes&&S.heroes[0]){ done.push(m.id); lsSet(KP+'pvpdone_'+me,JSON.stringify(done.slice(-50))); S.gold+=PVP_GOLD; S.pvp=S.pvp||{w:0,l:0}; S.pvp.w++; ACC.cnt=ACC.cnt||{}; ACC.cnt.duel=(ACC.cnt.duel||0)+1; save(); renderHeader(); pvpLoot(m) }
     else if(!win&&S&&S.heroes&&S.heroes[0]){ if(!done.includes(m.id)){done.push(m.id); lsSet(KP+'pvpdone_'+me,JSON.stringify(done.slice(-50))); S.pvp=S.pvp||{w:0,l:0}; S.pvp.l++; save()} toast('Défaite contre '+(m.names[pvpOp(m)]||'votre adversaire')+'.') }
     if(m.players[0]===me) setTimeout(()=>pvpCol().doc(m.id).delete().catch(()=>{}),8000);
     if(UI.tab==='combat'&&!UI.scr) render();
@@ -3278,16 +3357,18 @@ function commDot(){
   if(!FB.user||!FB.prof) return false; const me=FB.user.uid;
   return FR.list.some(f=>(f.status==='pending'&&f.from!==me)||(f.status==='accepted'&&isUnread(f)));
 }
+UIC.flag='<path d="M5 21V4"/><path d="M5 4h12l-2.5 4L17 12H5"/>';
+const DOCK_L=[['shop','coin','Marchand'],['forge','anvil','Amélioration'],['sites','pick','Collecte']],DOCK_R=[['comm','flag','Communauté'],['troph','trophy','Trophées']];
 function dockHTML(){
-  const on=k=>k==='comm'?FR.open:UI.tab===k;
-  const dot=k=>(k==='sites'&&(collectBlocked()||readyAny())&&UI.tab!=='sites')||(k==='comm'&&commDot())?'<span class="ndot" aria-label="Nouveauté"></span>':'';
-  const b=([k,i,n])=>{const act=k==='comm'?'data-act="comm"':`data-act="tab" data-t="${k}"`;
-    return k==='combat'?`<button class="dkmain" role="tab" aria-selected="${on(k)}" ${act}><span class="dkring">${uic(i)}</span><b>${n}</b></button>`
-      :`<button class="dkb" role="tab" aria-selected="${on(k)}" ${act}>${uic(i)}<b>${n}</b>${dot(k)}</button>`};
-  return `<div class="dkbar">${DOCK.map(b).join('')}</div>
+  const dot=k=>(k==='sites'&&(collectBlocked()||readyAny())&&UI.tab!=='sites')||(k==='troph'&&ACC.trNew&&UI.tab!=='troph')?'<span class="ndot" aria-label="Nouveauté"></span>':'';
+  const b=([k,i,n])=>`<button class="dkb" role="tab" aria-selected="${UI.tab===k}" data-act="tab" data-t="${k}">${uic(i)}<b>${n}</b>${dot(k)}</button>`;
+  const fo=friendsOnline();
+  return `<div class="dkbar"><div class="dkl">${DOCK_L.map(b).join('')}</div><button class="dkmain" role="tab" aria-selected="${UI.tab==='combat'}" data-act="tab" data-t="combat"><span class="dkring">${uic('swords')}</span><b>Aventure</b></button><div class="dkr">${DOCK_R.map(b).join('')}</div></div>
+   <button class="dkfr ${FR.open?'on':''}" data-act="frBtn" aria-label="Amis${fo?` : ${fo.on} en ligne sur ${fo.n}`:''}" title="Amis">${uic('people')}${fo?`<span class="dkfrn"><i></i>${fo.on}</span>`:''}${commDot()?'<span class="ndot" aria-label="Demandes ou messages"></span>':''}</button>
    <button class="dkbag ${UI.invOpen?'on':''}" data-act="invTog" aria-label="Sac (touche I)" title="Sac (I)">${uic('bag')}${S.bagDot?'<span class="ndot" aria-label="Nouveaux objets"></span>':''}</button>
    <button class="dkhelp ${UI.tab==='help'?'on':''}" data-act="tab" data-t="help" aria-label="Aide" title="Aide">${uic('book')}</button>`;
 }
+function updFrBtn(){const b=$('.dkfr');if(!b)return;const fo=friendsOnline();let n=b.querySelector('.dkfrn');if(fo){if(!n){b.insertAdjacentHTML('beforeend','<span class="dkfrn"></span>');n=b.querySelector('.dkfrn')}n.innerHTML='<i></i>'+fo.on;b.setAttribute('aria-label',`Amis : ${fo.on} en ligne sur ${fo.n}`)}else if(n)n.remove();const d=commDot(),nd=b.querySelector('.ndot');if(d&&!nd)b.insertAdjacentHTML('beforeend','<span class="ndot"></span>');else if(!d&&nd)nd.remove();b.classList.toggle('on',!!FR.open)}
 function heroChipHTML(){
   const h=S.heroes[0],need=h.lvl>=MAXL?1:xpNeed(h.lvl),pc=h.lvl>=MAXL?100:h.xp/need*100;
   return `${PORTRAIT[h.cls]?`<img src="${PORTRAIT[h.cls]}" alt="" width="50" height="50">`:`<span class="tile" style="--h:${h.hue}">${icon(CLASSES[h.cls].ic)}</span>`}
@@ -3401,6 +3482,248 @@ function viewRaidMap(){
      <h4>Compétences</h4><div class="mpchips skl">${r.sk.map(id=>`<span>${esc(SK[id].n)}</span>`).join('')}</div>
      <h4>Palier <small class="mute">+5 % par palier · rage au tour ${RD_RAGE+1}</small></h4><div class="mptier">${tiers}</div>
      <div class="amfight"><div class="mprew"><b>Récompenses</b>${matChip('gold',rw.gold)}${Object.entries(rw).filter(([k])=>k!=='gold').map(([k,v])=>matChip(k,v)).join('')}</div>${act}<small class="mute">Bilan : <b>${R0.w}</b> raid${R0.w>1?'s':''} réussi${R0.w>1?'s':''} · <b>${R0.l}</b> échec${R0.l>1?'s':''}</small></div></div></aside></div>`;
+}
+
+/* ================= Trophées ================= */
+Object.assign(UIC,{
+ trophy:'<path d="M7 4h10v5a5 5 0 0 1-10 0z"/><path d="M7 6H4v1a3 3 0 0 0 3 3M17 6h3v1a3 3 0 0 1-3 3"/><path d="M12 14v3M8 21h8M9 21l1-4h4l1 4"/>',
+ medal:'<circle cx="12" cy="15" r="5"/><path d="M8.5 11 6 3h4l2 5 2-5h4l-2.5 8"/><path d="M12 13l.9 1.8 2 .3-1.4 1.4.3 2-1.8-.9-1.8.9.3-2-1.4-1.4 2-.3z"/>',
+ shield:'<path d="M12 3l8 3v6c0 4.5-3.4 8-8 9-4.6-1-8-4.5-8-9V6z"/><path d="M9 12l2 2 4-4"/>',
+ podium:'<path d="M3 21v-6h6v6M9 21V9h6v12M15 21v-8h6v8"/><path d="M12 3l.9 1.8 2 .3-1.4 1.4.3 2L12 7.6l-1.8.9.3-2-1.4-1.4 2-.3z"/>',
+ card:'<rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="9" cy="11" r="2.4"/><path d="M5.5 16.5c.6-1.8 2-2.6 3.5-2.6s2.9.8 3.5 2.6M14 10h4M14 13h4"/>',
+ brush:'<path d="M14.5 4.5l5 5-8 8-5-5z"/><path d="M6.5 12.5C4 13 3.5 15.5 3 20c4.5-.5 7-1 7.5-3.5"/>',
+ star:'<path d="M12 3l2.6 5.6 6 .7-4.5 4.1 1.2 6L12 16.4 6.7 19.4l1.2-6L3.4 9.3l6-.7z"/>',
+ helm:'<path d="M4.5 14.5a7.5 7.5 0 0 1 15 0V20h-5v-4.5h-5V20h-5z"/><path d="M12 7v8"/>',
+});
+const TR_CATS=[['adv','swords','Aventure','Vaincre les boss et conquérir toutes les difficultés.'],['hero','helm','Personnage','Faire grandir vos héros.'],['forge','anvil','Amélioration','Forger et perfectionner l’équipement.'],['col','pick','Collecte','Développer vos zones de récolte.'],['pvp','people','Duel et raid','Affronter les autres joueurs et les boss de raid.']];
+const trCnt=k=>(ACC.cnt&&ACC.cnt[k])||0;
+const bossK=(d,z)=>{ if(S.bossK&&S.bossK[d+z]) return 1; const k=progKey(d),P=S[k]; if(P&&P.zone>z) return 1; if(d==='hero'&&z===ZONES.length-1&&S.mythOpen) return 1; return 0 };
+const anyItem=f=>[...invItems(),...Object.values(S.heroes[0].equip||{}).filter(Boolean)].some(f);
+const nChars=()=>{let n=0;for(let i=0;i<MAXCH;i++) if(charSum(i)) n++; return n};
+const TROPHIES=[
+ {id:'a_first',c:'adv',n:'Premiers pas',d:'Remporter un premier combat.',p:5,f:()=>[S.kills>0?1:0,1]},
+ ...ZONES.map((z,i)=>({id:'a_b'+i,c:'adv',n:['Roi déchu','Repos éternel','Assécheur de marais','Cendres froides','Pourfendeur du Néant'][i]||('Vainqueur : '+z.boss.n),d:`Vaincre le boss de la zone ${z.n} : ${z.boss.n}.`,p:[5,10,15,20,30][i]||20,t:i===ZONES.length-1,f:()=>[bossK('normal',i),1]})),
+ {id:'a_hero',c:'adv',n:'Héros de légende',d:`Vaincre ${ZONES[ZONES.length-1].boss.n} en difficulté Héroïque.`,p:50,t:1,f:()=>[bossK('hero',ZONES.length-1),1]},
+ {id:'a_myth',c:'adv',n:'Fléau du Néant',d:`Vaincre ${ZONES[ZONES.length-1].boss.n} en difficulté Mythique.`,p:100,t:1,f:()=>[bossK('myth',ZONES.length-1),1]},
+ {id:'h_10',c:'hero',n:'Aguerri',d:'Atteindre le niveau 10.',p:5,f:()=>[Math.min(10,S.heroes[0].lvl),10]},
+ {id:'h_25',c:'hero',n:'Vétéran',d:'Atteindre le niveau 25.',p:10,f:()=>[Math.min(25,S.heroes[0].lvl),25]},
+ {id:'h_max',c:'hero',n:'Champion',d:`Atteindre le niveau maximum (${MAXL}).`,p:25,t:1,f:()=>[S.heroes[0].lvl,MAXL]},
+ {id:'h_spec',c:'hero',n:'Voie tracée',d:'Choisir une spécialisation.',p:5,f:()=>[S.heroes[0].spec?1:0,1]},
+ {id:'h_ult',c:'hero',n:'Pouvoir ultime',d:'Apprendre un talent ultime.',p:15,f:()=>[heroSkills(S.heroes[0]).some(sk=>sk.ult&&S.heroes[0].learned[sk.id]>0)?1:0,1]},
+ {id:'h_2ch',c:'hero',n:'Deux destins',d:'Créer un deuxième personnage.',p:10,f:()=>[Math.min(2,nChars()),2]},
+ {id:'f_10',c:'forge',n:'Apprenti forgeron',d:'Forger 10 objets.',p:5,f:()=>[trCnt('forge'),10]},
+ {id:'f_100',c:'forge',n:'Forgeron confirmé',d:'Forger 100 objets.',p:15,f:()=>[trCnt('forge'),100]},
+ {id:'f_500',c:'forge',n:'Maître forgeron',d:'Forger 500 objets.',p:30,t:1,f:()=>[trCnt('forge'),500]},
+ {id:'f_leg',c:'forge',n:'Œuvre légendaire',d:'Posséder un objet Légendaire.',p:20,f:()=>[anyItem(i=>i.rarity>=4)?1:0,1]},
+ {id:'f_div',c:'forge',n:'Œuvre divine',d:'Posséder un objet Divin.',p:50,t:1,f:()=>[anyItem(i=>i.rarity>=5)?1:0,1]},
+ {id:'f_up',c:'forge',n:'Perfection',d:'Améliorer un objet jusqu’à +10.',p:25,f:()=>[anyItem(i=>i.up>=10)?1:0,1]},
+ {id:'c_50',c:'col',n:'Cueilleur',d:'Collecter 50 récoltes.',p:5,f:()=>[trCnt('col'),50]},
+ {id:'c_500',c:'col',n:'Prospecteur',d:'Collecter 500 récoltes.',p:20,t:1,f:()=>[trCnt('col'),500]},
+ {id:'c_all',c:'col',n:'Propriétaire terrien',d:'Ouvrir toutes les zones de récolte.',p:15,f:()=>[SITES.filter(si=>S.sites[si.id].lvl>0).length,SITES.length]},
+ {id:'c_auto',c:'col',n:'Intendant',d:'Débloquer une récolte automatique.',p:20,f:()=>[SITES.some(si=>tal(S.sites[si.id]).auto)?1:0,1]},
+ {id:'p_d1',c:'pvp',n:'Premier sang',d:'Remporter un duel.',p:10,f:()=>[Math.max(trCnt('duel'),(S.pvp||{}).w||0),1]},
+ {id:'p_d10',c:'pvp',n:'Duelliste',d:'Remporter 10 duels.',p:20,t:1,f:()=>[Math.max(trCnt('duel'),(S.pvp||{}).w||0),10]},
+ {id:'p_d50',c:'pvp',n:'Gladiateur',d:'Remporter 50 duels.',p:40,t:1,f:()=>[Math.max(trCnt('duel'),(S.pvp||{}).w||0),50]},
+ {id:'p_r1',c:'pvp',n:'Frères d’armes',d:'Réussir un raid.',p:15,f:()=>[Object.values(S.raid||{}).some(v=>v>0)?1:0,1]},
+ {id:'p_r5',c:'pvp',n:'Briseur de paliers',d:'Réussir un raid au palier +5.',p:30,f:()=>[Math.min(6,Math.max(0,...Object.values(S.raid||{}))),6]},
+ {id:'p_ava',c:'pvp',n:'Vainqueur de l’Abîme',d:`Vaincre ${RAIDS[RAIDS.length-1].n} en raid.`,p:50,t:1,f:()=>[raidMax(RAIDS[RAIDS.length-1].id)>0?1:0,1]},
+];
+const TRK=Object.fromEntries(TROPHIES.map(t=>[t.id,t]));
+const trTier=t=>t.p>=50?'or':t.p>=15?'argent':'bronze';
+const trIc=t=>t.p>=50?'trophy':t.p>=15?'medal':'star';
+const trGot=id=>!!(ACC.troph&&ACC.troph[id]);
+const trPts=()=>TROPHIES.reduce((a,t)=>a+(trGot(t.id)?t.p:0),0);
+const trProg=t=>{ if(trGot(t.id)) return 1; try{const [a,b]=t.f(); return Math.max(0,Math.min(1,a/b))}catch(e){return 0} };
+let trBusy=false;
+function trophyCheck(quiet){
+  if(trBusy||!S||!S.heroes||!S.heroes.length) return; trBusy=true; if(!ACC.troph) quiet=true;
+  try{ ACC.troph=ACC.troph||{}; const got=[];
+    for(const t of TROPHIES){ if(ACC.troph[t.id]) continue; let ok=false; try{const [a,b]=t.f(); ok=a>=b}catch(e){} if(ok){ ACC.troph[t.id]=Date.now(); got.push(t) } }
+    if(got.length){ ACC.trNew=(ACC.trNew||0)+got.length; saveAcc(); if(!quiet) got.slice(0,3).forEach((t,i)=>setTimeout(()=>trToast(t),400+i*700)); else if(got.length) setTimeout(()=>toast(`${got.length} trophée${got.length>1?'s':''} obtenu${got.length>1?'s':''} : +${got.reduce((a,t)=>a+t.p,0)} points.`),600); if(typeof renderTabs==='function'&&!UI.scr) renderTabs(); presence() }
+  }finally{ trBusy=false }
+}
+function trToast(t){ const e=document.createElement('div'); e.className='toast trt'; e.innerHTML=`<span class="mtti sm ${trTier(t)}">${uic(trIc(t))}</span><span><b>Trophée obtenu : ${esc(t.n)}</b><small>+${t.p} points de trophées</small></span>`; $('#toasts').append(e); setTimeout(()=>e.remove(),5200) }
+const trCard=t=>{const g=trGot(t.id),pr=trProg(t);let cur='';try{const [a,b]=t.f(); if(!g&&b>1) cur=`<small class="num mtcur">${fmt(Math.min(a,b))} / ${fmt(b)}</small>`}catch(e){}
+  return `<article class="mttr ${g?'ok':''} ${trTier(t)}"><span class="mtti">${uic(trIc(t))}</span><div><b>${esc(t.n)}</b><small>${esc(t.d)}</small>${g?`<em class="mtdone">${uic('check')} Obtenu le ${new Date(ACC.troph[t.id]).toLocaleDateString('fr-FR')}</em>`:`<span class="mtpb"><i style="width:${pr*100}%"></i></span>${cur}`}${t.t?`<small class="mttit">Titre : « ${esc(t.n)} »</small>`:''}</div><span class="mtpt"><b class="num">${t.p}</b><small>pts</small></span></article>`};
+function viewTroph(){
+  if(ACC.trNew){ ACC.trNew=0; saveAcc(); setTimeout(renderTabs,0) }
+  const cat=UI.trCat||'all',flt=UI.trF||'all',pts=trPts(),max=TROPHIES.reduce((a,t)=>a+t.p,0),nGot=TROPHIES.filter(t=>trGot(t.id)).length;
+  const cats=[['all','trophy','Tous les trophées','L’ensemble de vos trophées et succès.'],...TR_CATS];
+  const C=cats.find(c=>c[0]===cat)||cats[0];
+  let L=TROPHIES.filter(t=>cat==='all'||t.c===cat); if(flt==='got') L=L.filter(t=>trGot(t.id)); if(flt==='todo') L=L.filter(t=>!trGot(t.id));
+  L.sort((a,b)=>(trGot(b.id)-trGot(a.id))||(trProg(b)-trProg(a))||(a.p-b.p));
+  const last=TROPHIES.filter(t=>trGot(t.id)).sort((a,b)=>ACC.troph[b.id]-ACC.troph[a.id]).slice(0,3);
+  return `<div class="mt1"><aside class="aminfo maside mtside"><div class="mtsum"><span class="mtbig">${uic('trophy')}</span><b class="num">${fmt(pts)}</b><small>points de trophées</small><span class="mtpb big"><i style="width:${pts/max*100}%"></i></span><small class="mute">${nGot} / ${TROPHIES.length} trophées obtenus</small></div>
+   <div class="masub" role="tablist">${cats.map(([k,i,n])=>{const T=k==='all'?TROPHIES:TROPHIES.filter(t=>t.c===k);return `<button role="tab" aria-selected="${k===cat}" class="${k===cat?'on':''}" data-act="trCat" data-c="${k}">${uic(i)}<span>${k==='all'?'Tous':n}</span><em class="num">${T.filter(t=>trGot(t.id)).length}/${T.length}</em></button>`}).join('')}</div></aside>
+   <section class="mtmain"><div class="mtlast"><h4>Derniers trophées obtenus</h4><div class="mtlastg">${last.length?last.map((t,i)=>`<div class="mtped ${trTier(t)} ${i===0?'first':''}"><span class="mtti">${uic(trIc(t))}</span><b>${esc(t.n)}</b><small>${t.p} pts · ${new Date(ACC.troph[t.id]).toLocaleDateString('fr-FR')}</small></div>`).join(''):'<p class="mtempty">Aucun trophée pour l’instant : remportez votre premier combat !</p>'}</div></div>
+    <div class="mctop"><h2>${C[2]}</h2><span class="mute">${C[3]}</span><div class="mcseg light" style="margin-left:auto">${[['all','Tous'],['got','Obtenus'],['todo','À obtenir']].map(([k,n])=>`<button class="${flt===k?'on':''}" data-act="trF" data-f="${k}">${n}</button>`).join('')}</div></div>
+    <div class="mtgrid">${L.map(trCard).join('')||'<p class="mtempty dark">Aucun trophée dans cette liste.</p>'}</div></section></div>`;
+}
+/* ================= Carte de joueur ================= */
+const PC_FR=[['Or','#d8b066',0],['Argent','#c0c6cf',0],['Azur','#7fb4ff',50],['Améthyste','#b07ad8',150],['Émeraude','#8fdc6a',300],['Braise','#ff7a5a',500]];
+const PC_ICONS=[['c:guerrier',0],['c:mage',0],['i:swords',0],['i:shield',0],['i:star',50],['i:trophy',150]];
+const PC_BG=[[0,'Forêt des Murmures',()=>1],[1,'Catacombes oubliées',()=>bossK('normal',0)],[2,'Marais putride',()=>bossK('normal',1)],[3,'Pic de Cendre',()=>bossK('normal',2)],[4,'Abysses du Néant',()=>bossK('normal',3)],[5,'Glaces éternelles',()=>Object.values(S.raid||{}).some(v=>v>0)],[6,'Arène',()=>trGot('p_d1')]];
+const pcDef=()=>Object.assign({icon:'c:'+(S&&S.heroes[0]?S.heroes[0].cls:'guerrier'),fr:0,bg:3,title:null,show:[]},ACC.card||{});
+function cardMine(){
+  const c=pcDef(),chars=[];for(let i=0;i<MAXCH;i++){const s=charSum(i); if(s) chars.push({n:s.name,cls:s.cls,lvl:s.lvl})}
+  return {name:(FB.prof&&FB.prof.name)||(S&&S.heroes[0]&&S.heroes[0].name)||'Joueur',pts:trPts(),icon:c.icon,fr:c.fr,bg:c.bg,title:c.title&&trGot(c.title)&&TRK[c.title]?TRK[c.title].n:null,show:(c.show||[]).filter(id=>trGot(id)&&TRK[id]).slice(0,3),chars};
+}
+const pcIcon=(ic,s)=>{ic=ic||'c:guerrier';return ic.startsWith('c:')&&PORTRAIT[ic.slice(2)]?`<img src="${PORTRAIT[ic.slice(2)]}" width="${s}" height="${s}" alt="" class="mpport">`:`<span class="mpunk pcemb" style="width:${s}px;height:${s}px">${uic(UIC[ic.slice(2)]?ic.slice(2):'star')}</span>`};
+const pcPort=(cls,s)=>PORTRAIT[cls]?`<img src="${PORTRAIT[cls]}" width="${s}" height="${s}" alt="" class="mpport">`:`<span class="mpunk" style="width:${s}px;height:${s}px"></span>`;
+function cardColl(d,id='me'){ /* carte de collection : amis */
+  const fr=(PC_FR[d.fr]||PC_FR[0])[1];
+  return `<article class="pc1" style="--fr:${fr}"><div class="pc1bg">${zoneScene(d.bg??3,'pc'+id)}</div><div class="pc1top">${pcIcon(d.icon,96)}<b>${esc(d.name)}</b>${d.title?`<small class="pc1t">« ${esc(d.title)} »</small>`:''}</div>
+   <div class="pc1pts">${uic('trophy')}<b class="num">${fmt(d.pts||0)}</b><small>points de trophées</small></div>
+   ${(d.show||[]).length?`<div class="pc1show">${d.show.map(i=>TRK[i]?`<span class="mtti sm ${trTier(TRK[i])}" title="${esc(TRK[i].n)}">${uic(trIc(TRK[i]))}</span>`:'').join('')}</div>`:''}
+   <ul class="pc1ch">${(d.chars||[]).map(c=>`<li>${pcPort(c.cls,34)}<span><b>${esc(c.n)}</b><small>${(CLASSES[c.cls]||{n:''}).n}</small></span><em class="num">Niv ${c.lvl}</em></li>`).join('')||'<li class="mute">Aucun personnage.</li>'}</ul></article>`;
+}
+function cardBanner(d,id='meb',rank){ /* bannière : classement */
+  const fr=(PC_FR[d.fr]||PC_FR[0])[1];
+  return `<article class="pc2" style="--fr:${fr}"><div class="pc2bg">${zoneScene(d.bg??3,'pb'+id)}</div>${rank?`<span class="pc2rk num">${rank}</span>`:''}<div class="pc2l">${pcIcon(d.icon,96)}</div><div class="pc2m"><small>Joueur</small><b>${esc(d.name)}</b>${d.title?`<span class="pc1t">« ${esc(d.title)} »</span>`:''}<div class="pc2pts">${uic('trophy')}<b class="num">${fmt(d.pts||0)}</b> points de trophées</div></div>
+   <div class="pc2r">${(d.chars||[]).slice(0,3).map(c=>`<div class="pc2c">${pcPort(c.cls,48)}<b>${esc(c.n)}</b><small>${(CLASSES[c.cls]||{n:''}).n} · niv ${c.lvl}</small></div>`).join('')}</div></article>`;
+}
+function openCard(d,extra=''){
+  closeCard(); const w=document.createElement('div'); w.id='pcard'; w.className='pcmodal'; w.setAttribute('role','dialog'); w.setAttribute('aria-modal','true'); w.setAttribute('aria-label','Carte de joueur : '+d.name);
+  w.innerHTML=`<div class="pcmbox"><button class="frx pcx" data-act="cardClose" aria-label="Fermer">×</button>${cardColl(d,'pop')}${extra}</div>`;
+  w.addEventListener('click',e=>{ if(e.target===w) closeCard() }); w.addEventListener('keydown',e=>{ if(e.key==='Escape') closeCard() }); document.body.append(w); const x=w.querySelector('.pcx'); if(x) x.focus();
+}
+function closeCard(){ const w=$('#pcard'); if(w) w.remove() }
+function friendCard(fid){
+  const f=FR.list.find(x=>x.id===fid); if(!f) return; const o=f.users.find(x=>x!==FB.user.uid),p=FR.prof[o]||{},c=p.card;
+  const d=c?Object.assign({},c,{name:c.name||otherName(f)}):{name:otherName(f),pts:0,icon:'c:'+((p.char&&p.char.cls)||'guerrier'),fr:0,bg:3,chars:p.char?[{n:p.char.name,cls:p.char.cls,lvl:p.char.lvl}]:[]};
+  const ol=isOnline(p);
+  openCard(d,`<div class="pcbtns"><button class="btn sm pri" data-act="frDuel" data-id="${fid}" ${ol?'':'disabled'}>${uic('swords')} Duel</button><button class="btn sm" data-act="frChat" data-id="${fid}">Chat</button>${c?'':'<small class="mute">Ce joueur n’a pas encore mis à jour sa carte.</small>'}</div>`);
+}
+/* ================= Communauté ================= */
+const COMM_T=[['card','card','Carte de joueur'],['custom','brush','Personnalisation'],['rank','podium','Classement',1],['guild','shield','Guilde',1]];
+function viewComm(){
+  const tab=UI.commT||'card',d=cardMine(),pts=trPts();
+  const side=`<aside class="aminfo maside mtside"><div class="ambody"><h4>Communauté</h4><div class="masub" role="tablist">${COMM_T.map(([k,i,n,lk])=>`<button role="tab" aria-selected="${tab===k}" class="${tab===k?'on':''} ${lk?'lk':''}" ${lk?`aria-disabled="true" title="Arrive dans une prochaine mise à jour"`:`data-act="commT" data-t="${k}"`}>${uic(i)}<span>${n}</span>${lk?uic('lock'):''}</button>`).join('')}</div>
+    <p class="amnote mute" style="margin-top:auto">Classement et Guilde : arrive dans une prochaine mise à jour.</p><p class="amnote mute">La liste d’amis s’ouvre avec le bouton rond à côté du sac.</p></div></aside>`;
+  let main;
+  if(tab==='custom'){
+    const c=pcDef(),opt=(t,h)=>`<h4>${t}</h4><div class="pcopt">${h}</div>`;
+    const icons=PC_ICONS.map(([ic,need])=>{const lk=pts<need;return `<button class="pcic ${c.icon===ic?'on':''}" ${lk?`disabled title="${need} points de trophées requis"`:`data-act="pcSet" data-k="icon" data-v="${ic}"`} aria-pressed="${c.icon===ic}">${pcIcon(ic,46)}${lk?`<span class="pclk">${uic('lock')}</span>`:''}</button>`}).join('');
+    const frs=PC_FR.map(([n,col,need],i)=>{const lk=pts<need;return `<button class="pcfr ${c.fr===i?'on':''}" style="--c:${col}" ${lk?`disabled title="${n} : ${need} points de trophées requis"`:`data-act="pcSet" data-k="fr" data-v="${i}" title="${n}"`} aria-label="Cadre ${n}">${lk?uic('lock'):''}</button>`}).join('');
+    const bgs=PC_BG.map(([i,n,ok])=>{const lk=!ok();return `<button class="pcbg ${c.bg===i?'on':''}" ${lk?`disabled title="${n} : à débloquer"`:`data-act="pcSet" data-k="bg" data-v="${i}" title="${n}"`}>${zoneScene(i,'o'+i)}${lk?`<span class="pclk">${uic('lock')}</span>`:''}</button>`}).join('');
+    const titles=TROPHIES.filter(t=>t.t&&trGot(t.id));
+    const got=TROPHIES.filter(t=>trGot(t.id));
+    main=`<div class="mtcm2"><div class="mtcmc">${cardColl(d,'cus')}</div><div class="aminfo maside"><div class="ambody">
+      <h4>Icône</h4><div class="pcopt">${icons}</div>
+      <h4>Cadre</h4><div class="pcopt">${frs}</div>
+      <h4>Fond</h4><div class="pcopt">${bgs}</div>
+      <h4>Titre</h4><select class="pcsel" id="pctitle" aria-label="Titre"><option value="">Aucun titre</option>${titles.map(t=>`<option value="${t.id}" ${c.title===t.id?'selected':''}>${esc(t.n)}</option>`).join('')}</select><small class="mute">${titles.length?'':'Les titres se débloquent avec les trophées marqués « Titre ».'}</small>
+      <h4>Trophées affichés <small class="mute">${(c.show||[]).length} / 3</small></h4><div class="pcopt">${got.length?got.map(t=>`<button class="pcts ${(c.show||[]).includes(t.id)?'on':''}" data-act="pcShow" data-id="${t.id}" title="${esc(t.n)}" aria-pressed="${(c.show||[]).includes(t.id)}"><span class="mtti sm ${trTier(t)}">${uic(trIc(t))}</span></button>`).join(''):'<small class="mute">Obtenez des trophées pour les afficher sur votre carte.</small>'}</div>
+      <p class="amnote mute" style="margin-top:auto">Les modifications sont enregistrées tout de suite et visibles par vos amis.</p></div></div></div>`;
+  } else {
+    main=`<div class="mtcm2 view"><div class="mtcmc">${cardColl(d,'v')}</div><div class="mtcmr"><h4>Aperçu dans le classement</h4>${cardBanner(d)}<p class="amnote">Votre carte s’affiche quand un joueur clique sur votre nom dans sa liste d’amis, puis sur « Carte ». La bannière sera utilisée dans le classement.</p><button class="btn pri" data-act="commT" data-t="custom">${uic('brush')} Personnaliser</button></div></div>`;
+  }
+  return `<div class="mt1 comm">${side}<section class="mtmain"><div class="mctop"><h2>${tab==='custom'?'Personnalisation':'Carte de joueur'}</h2><span class="mute">${tab==='custom'?'Icône, cadre, fond, titre et trophées affichés.':'L’aperçu que les autres joueurs voient de vous.'}</span></div>${main}</section></div>`;
+}
+function pcSave(){ saveAcc(); presence(); render() }
+function friendsOnline(){ if(!FB.user||!FB.prof) return null; const me=FB.user.uid; const acc=FR.list.filter(f=>f.status==='accepted'); return {on:acc.filter(f=>isOnline(FR.prof[f.users.find(x=>x!==me)])).length,n:acc.length} }
+
+/* ================= Messagerie du compte ================= */
+Object.assign(UIC,{mail:'<rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3.5 6.5 12 13l8.5-6.5"/>',gift:'<rect x="3" y="9" width="18" height="12" rx="1"/><path d="M3 13h18M12 9v12"/><path d="M12 9C10 5 6 5 6.5 7.5S12 9 12 9s4.5-1 5.5-1.5S14 5 12 9z"/>',warn:'<path d="M12 3 2 20h20z"/><path d="M12 10v4M12 17v.5"/>',info:'<circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7.5v.5"/>',send:'<path d="M3 11 21 3l-6 18-3-8z"/><path d="m12 13 9-10"/>',trash:'<path d="M4 7h16M9 7V4h6v3M6 7l1 13h10l1-13"/>'});
+const ML_K={info:['#3f7fe0','Information','info'],warn:['#c0432a','Alerte','warn'],gift:['#c99a3a','Cadeau','gift']};
+const ML_ATT=['gold','fer','cuir','plante','cristal','essence','rune','prisme','p_vie','p_res','p_for','p_int','p_pa','p_xp','p_loot'];
+const ML={all:[],me:[],un:[],open:false,sel:null,adm:false,err:''};
+const mlCol=()=>FB.db.collection(COL('mail'));
+const mlSt=()=>{ACC.mail=ACC.mail||{read:{},got:{},del:{}}; for(const k of ['read','got','del']) ACC.mail[k]=ACC.mail[k]||{}; return ACC.mail};
+const mlTs=m=>tsMs(m.ts)||m.tsMs||0;
+const mlList=()=>{const st=mlSt(),now=Date.now(),seen=new Set();return [...ML.all,...ML.me].filter(m=>{if(seen.has(m.id))return false;seen.add(m.id);return !st.del[m.id]&&!(m.exp&&m.exp<now&&!st.got[m.id]&&mlHasAtt(m))}).sort((a,b)=>mlTs(b)-mlTs(a))};
+const mlHasAtt=m=>m.att&&Object.values(m.att).some(v=>v>0);
+const mlUnread=()=>mlList().filter(m=>!mlSt().read[m.id]).length;
+const mlToGet=()=>mlList().filter(m=>mlHasAtt(m)&&!mlSt().got[m.id]&&!(m.exp&&m.exp<Date.now()));
+function startMail(){
+  stopMail(); if(!FB.user) return; const me=FB.user.uid;
+  const map=qs=>qs.docs.map(d=>Object.assign({id:d.id},d.data({serverTimestamps:'estimate'})));
+  const err=e=>{ML.err='Messagerie indisponible ('+((e&&e.code)||'erreur')+'). Vérifiez les règles Firestore.'; mlRefresh()};
+  ML.un.push(mlCol().where('to','==','all').onSnapshot(qs=>{const was=new Set(ML.all.map(m=>m.id));ML.all=map(qs);ML.err='';mlNotify(was,ML.all);mlRefresh()},err));
+  ML.un.push(mlCol().where('to','==',me).onSnapshot(qs=>{const was=new Set(ML.me.map(m=>m.id));ML.me=map(qs);ML.err='';mlNotify(was,ML.me);mlRefresh()},err));
+}
+function stopMail(){ ML.un.forEach(f=>{try{f()}catch(e){}}); ML.un=[]; ML.all=[]; ML.me=[]; mlRefresh() }
+let mlFirst=true;
+function mlNotify(was,L){ if(!was.size&&mlFirst){mlFirst=false;return} const st=mlSt(); const n=L.filter(m=>!was.has(m.id)&&!st.read[m.id]&&!st.del[m.id]); if(n.length) toast(`✉ Nouveau message : ${n[0].title||'Message système'}`) }
+function mlRefresh(){ const b=$('#mailbtn'); if(b){ const n=mlUnread(); b.hidden=!!UI.scr||!S||!S.heroes||!S.heroes.length; b.querySelector('.mlcnt').textContent=n; b.querySelector('.mlcnt').hidden=!n; b.setAttribute('aria-label',`Messagerie${n?` : ${n} non lu${n>1?'s':''}`:''}`) } if(ML.open) renderMail() }
+/* coffre : placement simulé puis réel (tout ou rien) */
+function mlPlace(att){
+  const d=stashD(),tabs=d.tabs.map(T=>({T,bag:T.bag.map(e=>({x:e.x,y:e.y,o:Object.assign({},e.o)}))}));
+  for(const [k,v0] of Object.entries(att)){ if(k==='gold'||!(v0>0)) continue; let n=Math.floor(v0);
+    for(const t of tabs){ for(const e of t.bag){ if(n<=0) break; if(e.o.mat===k&&e.o.n<STACK){const m=Math.min(STACK-e.o.n,n);e.o.n+=m;n-=m} } }
+    for(const t of tabs){ while(n>0){ const sp=findSpot(t.bag,1,1,SW,SH); if(!sp) break; const m=Math.min(STACK,n); t.bag.push({x:sp[0],y:sp[1],o:{mat:k,n:m}}); n-=m } if(n<=0) break }
+    if(n>0) return null }
+  return tabs;
+}
+function mlClaim(ids){
+  const st=mlSt(),L=mlList().filter(m=>ids.includes(m.id)&&mlHasAtt(m)&&!st.got[m.id]); if(!L.length) return;
+  const tot={}; for(const m of L) for(const [k,v] of Object.entries(m.att)) if(v>0) tot[k]=(tot[k]||0)+Math.floor(v);
+  const tabs=mlPlace(tot);
+  if(!tabs){ toast('Pas assez de place dans le coffre du compte : libérez des cases ou achetez un onglet, puis réessayez. Rien n’a été récupéré.'); return }
+  for(const t of tabs) t.T.bag=t.bag;
+  if(tot.gold) S.gold+=tot.gold;
+  for(const m of L){ st.got[m.id]=Date.now(); st.read[m.id]=1 }
+  save(); render();
+  const parts=Object.entries(tot).filter(([k])=>k!=='gold').map(([k,v])=>`${fmt(v)} × ${MAT_OBJ[k]||(POTS[k]&&POTS[k].n)||MAT_N[k]||k}`);
+  toast(`Récupéré${tot.gold?` : ${fmt(tot.gold)} or (ajouté à votre or)`:''}${parts.length?`${tot.gold?' ;':' :'} ${parts.join(', ')} envoyés dans le coffre du compte`:''}.`);
+}
+const mlAttHTML=a=>Object.entries(a||{}).filter(([,v])=>v>0).map(([k,v])=>`<span class="mc" title="${esc(MAT_OBJ[k]||(POTS[k]&&POTS[k].n)||MAT_N[k]||k)}">+${fmt(v)} ${matIcon(k)}</span>`).join('');
+const mlDate=t=>t?new Date(t).toLocaleDateString('fr-FR'):'';
+function mailHTML(){
+  if(ML.adm&&FB.admin) return mailAdmHTML();
+  const L=mlList(),st=mlSt(),n=mlUnread(),tg=mlToGet();
+  if(ML.sel&&!L.find(m=>m.id===ML.sel)) ML.sel=null;
+  if(!ML.sel&&L.length) ML.sel=L[0].id;
+  const m=L.find(x=>x.id===ML.sel);
+  if(m&&!st.read[m.id]){ st.read[m.id]=1; saveAcc(); setTimeout(mlRefresh,0) }
+  const K=k=>ML_K[k]||ML_K.info;
+  const rows=L.map(x=>`<button class="mlrow ${x.id===ML.sel?'on':''} ${st.read[x.id]?'':'u'}" style="--kc:${K(x.kind)[0]}" data-act="mlSel" data-id="${x.id}" aria-pressed="${x.id===ML.sel}"><span class="mlic">${uic(K(x.kind)[2])}</span><span class="mlrt"><b>${esc(x.title||'Message')}</b><small>${esc(x.from||'L’équipe Cendrelame')} · ${mlDate(mlTs(x))}</small></span>${mlHasAtt(x)&&!st.got[x.id]?`<span class="mlgift" title="Pièces jointes à récupérer">${uic('gift')}</span>`:''}</button>`).join('');
+  let read='<div class="mlempty">'+(FB.user?'Aucun message.':'Connectez-vous à un compte en ligne pour recevoir les messages.')+'</div>';
+  if(m){ const got=st.got[m.id],ex=m.exp&&m.exp<Date.now();
+    read=`<article class="mlread" style="--kc:${K(m.kind)[0]}"><header><span class="mlic big">${uic(K(m.kind)[2])}</span><div><small>${K(m.kind)[1]} · ${mlDate(mlTs(m))}${m.to!=='all'?' · message personnel':''}</small><h2>${esc(m.title||'Message')}</h2><small>De : ${esc(m.from||'L’équipe Cendrelame')}</small></div></header><p>${esc(m.body||'').replace(/\n/g,'<br>')}</p>
+     ${mlHasAtt(m)?`<div class="mlrw"><h4>Pièces jointes</h4><div class="mprew">${mlAttHTML(m.att)}</div>${got?`<span class="mtdone">${uic('check')} Récupéré le ${mlDate(got)}</span>`:ex?'<span class="mclk">Pièces jointes expirées.</span>':`<button class="btn pri amgo" data-act="mlGet" data-id="${m.id}">${uic('gift')} Récupérer</button><small class="mute">L’or s’ajoute à votre or ; les objets et matériaux vont dans le coffre du compte.${m.exp?` Expire le ${mlDate(m.exp)}.`:''}</small>`}</div>`:''}
+     <footer>${FB.admin?`<button class="btn sm danger" data-act="mlAdmDel" data-id="${m.id}">${UI.confirm==='mldel'+m.id?'Confirmer : supprimer pour tous':'Supprimer pour tous (admin)'}</button>`:''}<button class="btn sm" data-act="mlDel" data-id="${m.id}" ${mlHasAtt(m)&&!got&&!ex?'disabled title="Récupérez d’abord les pièces jointes."':''}>${uic('trash')} Supprimer</button></footer></article>`; }
+  return `<div class="mlwin" role="dialog" aria-modal="true" aria-label="Messagerie"><div class="mlhead"><span class="mlic">${uic('mail')}</span><h2>Messagerie</h2><span class="mute">${n?`${n} non lu${n>1?'s':''}`:'Tout est lu'}</span>
+    <span style="margin-left:auto"></span>${FB.admin?`<button class="btn sm" data-act="mlAdm">${uic('send')} Envoyer un message</button>`:''}${tg.length?`<button class="btn sm pri" data-act="mlGetAll">Tout récupérer (${tg.length})</button>`:''}<button class="frx" data-act="mlClose" aria-label="Fermer">×</button></div>
+    ${ML.err?`<p class="lerr" style="margin:8px 12px">${esc(ML.err)}</p>`:''}<div class="mlbody"><nav class="mllist">${rows||'<p class="mlempty">Votre boîte est vide.</p>'}</nav>${read}</div></div>`;
+}
+function mailAdmHTML(){
+  const F=ML.form=ML.form||{kind:'info',to:'all',name:'',title:'',body:'',att:{},exp:30};
+  const prev={id:'_',kind:F.kind,title:F.title||'Titre du message',body:F.body||'Texte du message.',att:F.att,to:F.to,tsMs:Date.now(),exp:F.exp?Date.now()+F.exp*864e5:0};
+  const K=ML_K[F.kind];
+  return `<div class="mlwin" role="dialog" aria-modal="true" aria-label="Envoyer un message système"><div class="mlhead"><span class="mlic">${uic('send')}</span><h2>Envoyer un message système</h2><span class="mlad">Administrateur</span><span style="margin-left:auto"></span><button class="btn sm" data-act="mlAdmBack">‹ Retour à la messagerie</button><button class="frx" data-act="mlClose" aria-label="Fermer">×</button></div>
+   <div class="mlbody adm"><form class="mlform" onsubmit="return false">
+    <label>Type<div class="mcseg light">${Object.entries(ML_K).map(([k,v])=>`<button type="button" class="${F.kind===k?'on':''}" data-act="mlF" data-k="kind" data-v="${k}">${v[1]}</button>`).join('')}</div></label>
+    <label>Destinataires<select class="pcsel" data-mlf="to"><option value="all" ${F.to==='all'?'selected':''}>Tous les joueurs</option><option value="one" ${F.to==='one'?'selected':''}>Un joueur (nom de compte)</option></select></label>
+    ${F.to==='one'?`<label>Nom de compte<input class="pcsel" data-mlf="name" value="${esc(F.name)}" maxlength="16"></label>`:''}
+    <label>Titre<input class="pcsel" data-mlf="title" value="${esc(F.title)}" maxlength="80"></label>
+    <label>Message<textarea class="pcsel" rows="5" data-mlf="body" maxlength="2000">${esc(F.body)}</textarea></label>
+    <label>Pièces jointes <small class="mute">(or ajouté directement, le reste va dans le coffre du compte)</small><div class="mlatt">${ML_ATT.map(k=>`<span title="${esc(MAT_OBJ[k]||(POTS[k]&&POTS[k].n)||MAT_N[k]||k)}">${matIcon(k)}<input class="pcsel num" type="number" min="0" step="1" data-mlatt="${k}" value="${F.att[k]||''}" placeholder="0"></span>`).join('')}</div></label>
+    <label>Expiration des pièces jointes<select class="pcsel" data-mlf="exp">${[[7,'7 jours'],[30,'30 jours'],[90,'90 jours'],[0,'Jamais']].map(([v,n])=>`<option value="${v}" ${+F.exp===v?'selected':''}>${n}</option>`).join('')}</select></label>
+    ${ML.admMsg?`<p class="${ML.admErr?'lerr':'hint'}">${esc(ML.admMsg)}</p>`:''}
+    <button type="button" class="btn pri amgo" data-act="mlSend" ${ML.sending?'disabled':''}>${uic('send')} ${F.to==='all'?'Envoyer à tous les joueurs':'Envoyer au joueur'}</button></form>
+    <div class="mlprev"><small class="mute" style="padding:10px 22px 0">Aperçu</small><article class="mlread" style="--kc:${K[0]}"><header><span class="mlic big">${uic(K[2])}</span><div><small>${K[1]} · ${mlDate(Date.now())}</small><h2>${esc(prev.title)}</h2><small>De : L’équipe Cendrelame</small></div></header><p>${esc(prev.body).replace(/\n/g,'<br>')}</p>${mlHasAtt(prev)?`<div class="mlrw"><h4>Pièces jointes</h4><div class="mprew">${mlAttHTML(prev.att)}</div><button class="btn pri amgo" disabled>${uic('gift')} Récupérer</button>${prev.exp?`<small class="mute">Expire le ${mlDate(prev.exp)}.</small>`:''}</div>`:''}</article></div></div></div>`;
+}
+function renderMail(){
+  let w=$('#mailw');
+  if(!ML.open){ if(w) w.remove(); return }
+  if(!w){ w=document.createElement('div'); w.id='mailw'; w.className='mlback'; w.addEventListener('click',e=>{if(e.target===w) A.mlClose()}); document.body.append(w) }
+  const ae=document.activeElement,af=ae&&w.contains(ae)?(ae.dataset.mlf||ae.dataset.mlatt):null;
+  w.innerHTML=mailHTML();
+  if(af){ const el=w.querySelector(`[data-mlf="${af}"],[data-mlatt="${af}"]`); if(el){el.focus(); try{const v=el.value;el.setSelectionRange(v.length,v.length)}catch(e){}} }
+}
+async function mlSend(){
+  const F=ML.form; if(!FB.admin||ML.sending) return;
+  if(!F.title.trim()){ML.admMsg='Indiquez un titre.';ML.admErr=true;renderMail();return}
+  ML.sending=true; ML.admMsg='Envoi…'; ML.admErr=false; renderMail();
+  try{
+    let to='all';
+    if(F.to==='one'){ const low=(F.name||'').trim().toLowerCase(); if(!low) throw {msg:'Indiquez le nom de compte du joueur.'}; const n=await FB.db.collection(COL('names')).doc(low).get(); if(!n.exists) throw {msg:'Aucun joueur ne porte ce nom de compte.'}; to=n.data().uid }
+    const att={}; for(const [k,v] of Object.entries(F.att)) if(+v>0) att[k]=Math.floor(+v);
+    await mlCol().add({to,kind:F.kind,title:F.title.trim(),body:F.body.trim(),att,from:'L’équipe Cendrelame',ts:firebase.firestore.FieldValue.serverTimestamp(),tsMs:Date.now(),exp:F.exp&&Object.keys(att).length?Date.now()+F.exp*864e5:0,by:FB.user.uid});
+    ML.admMsg=to==='all'?'Message envoyé à tous les joueurs.':`Message envoyé à ${F.name.trim()}.`; ML.form=null;
+  }catch(e){ ML.admErr=true; ML.admMsg=e.msg||('Erreur : '+(e.code||'inconnue')+' (vérifiez les règles Firestore de la collection mail).') }
+  ML.sending=false; renderMail();
 }
 
 function viewCombatIdle(){
@@ -3907,6 +4230,7 @@ function toStash(i,x,y){
 }
 function fromStash(j,x,y){
   const T=stashTab(),E=T.bag[j]; if(!E) return; const [w,h]=SIZE(E.o);
+  if(E.o.mat&&isMatK(E.o.mat)){ const left=storeMat(E.o.mat,E.o.n),got=E.o.n-left; if(!got){toast(`Stock de ${MAT_N[E.o.mat].toLowerCase()} plein (${fmt(matCap(E.o.mat))}).`);return} E.o.n=left; if(!left) T.bag.splice(j,1); save(); render(); toast(`${fmt(got)} ${MAT_N[E.o.mat].toLowerCase()} ajouté${got>1?'s':''} à vos matériaux.${left?' Stock plein : le reste reste dans le coffre.':''}`); return }
   if(x!=null){ const ov=overlaps(x,y,w,h,null);
     if(ov.length===1&&E.o.mat&&ov[0].o.mat===E.o.mat){ const B=ov[0].o,m=Math.min(STACK-B.n,E.o.n); if(m<=0){toast('Cette pile est pleine.');return} B.n+=m; E.o.n-=m; if(!E.o.n) T.bag.splice(j,1); save(); render(); return }
     if(!fitsAt(S.bag,x,y,w,h)){toast('Pas assez de place ici.');return} }
@@ -4205,8 +4529,15 @@ function viewHelp(){
 }
 
 /* --- nouveautés --- */
-const VERSION='0.3.2';
+const VERSION='0.3.3';
 const PATCH=[
+ {v:'0.3.3',t:"Trophées et communauté",sec:[
+  ["Messagerie", ["Nouvelle messagerie du compte : bouton rond avec une enveloppe à droite du portrait (en haut à gauche), avec le nombre de messages non lus.", "Les messages système de l’équipe (informations, alertes de maintenance, cadeaux et compensations) arrivent en direct, avec une notification. Ils peuvent être envoyés à tous les joueurs ou à un seul.", "Fenêtre en deux colonnes : la liste des messages (non lus en gras, icône cadeau s’il reste des pièces jointes) et le message ouvert.", "Pièces jointes : bouton « Récupérer » ou « Tout récupérer ». L’or s’ajoute à votre or ; les matériaux et potions vont dans le coffre du compte (tous onglets). S’il n’y a pas assez de place dans le coffre, un message l’indique et rien n’est récupéré.", "Chaque pièce jointe ne peut être récupérée qu’une fois par compte ; elle peut avoir une date d’expiration. Un message peut être supprimé une fois ses pièces jointes récupérées."]],
+  ["Trophées", ["Nouveau bouton « Trophées » dans la barre du bas, avec un point rouge quand un trophée vient d’être obtenu.", "30 trophées répartis en 5 catégories : Aventure, Personnage, Amélioration, Collecte, Duel et raid. Chacun rapporte des points de trophées : 5 à 15 points (bronze), 15 à 49 points (argent), 50 points et plus (or), jusqu’à 100 points pour vaincre Le Dévoreur en difficulté Mythique.", "Page Trophées : à gauche le total de points, la progression et les catégories avec leur compteur ; à droite les 3 derniers trophées obtenus, puis la liste filtrable (Tous, Obtenus, À obtenir) avec la barre d’avancement et la date d’obtention.", "Les trophées sont liés au compte (tous les personnages y contribuent). Ceux déjà mérités avant cette version (niveaux, boss vaincus, zones ouvertes, raids, duels…) sont attribués automatiquement à la connexion.", "Une notification s’affiche à chaque trophée obtenu.", "Certains trophées débloquent un titre à afficher sur votre carte de joueur."]],
+  ["Communauté", ["La page Communauté a quatre onglets : Carte de joueur, Personnalisation, Classement et Guilde (ces deux derniers arrivent dans une prochaine mise à jour).", "Carte de joueur : votre carte (icône, nom, titre, points de trophées, 3 trophées mis en avant, personnages et leur niveau) et l’aperçu de la bannière qui servira au classement.", "Personnalisation : icône (portraits de classe ou emblèmes), cadre (Or et Argent, puis Azur à 50 points, Améthyste à 150, Émeraude à 300, Braise à 500), fond (débloqué en battant le boss de chaque zone, en réussissant un raid ou en gagnant un duel), titre et 3 trophées affichés. Aperçu en direct, enregistrement immédiat."]],
+  ["Amis", ["La liste d’amis n’est plus dans Communauté : un bouton rond à côté du sac l’ouvre, avec le nombre d’amis connectés en vert et un point rouge pour les demandes et messages non lus.", "En cliquant sur le nom d’un ami, le nouveau bouton « Carte » affiche sa carte de joueur, avec des raccourcis Duel et Chat."]],
+  ["Interface", ["Barre du bas : Marchand, Amélioration, Collecte, Aventure (au centre), Communauté et Trophées."]]
+ ]},
  {v:'0.3.2',t:"Coffre du compte et nouvelle interface",sec:[
   ["Nouvelle interface", ["Le menu principal passe en bas de l’écran, avec des boutons illustrés : Marchand, Amélioration, Aventure (grand médaillon central), Collecte et Communauté.", "Le sac est un bouton rond en bas à droite (même effet que la touche I) ; un point rouge signale les nouveaux objets. L’Aide est un bouton rond en bas à gauche.", "Le Personnage s’ouvre en cliquant sur le portrait en haut à gauche (nom, classe, niveau et barre d’expérience).", "Communauté ouvre la liste d’amis et les messages (compte en ligne requis) ; un point rouge signale les demandes et messages non lus.", "Zone de jeu plus large (jusqu’à 1440 pixels au lieu de 1140) et en-tête plus compact pour limiter le défilement.", "Les composants et l’or restent affichés dans la fenêtre d’inventaire."]],
   ["Aventure", ["Nouvelle carte du monde : chaque zone est un médaillon illustré sur un parchemin, reliées par un chemin (plein pour les zones terminées, en pointillés pour la suite).", "Badges sur la carte : coche pour une zone terminée, progression (ex. 4/10) pour la zone en cours, cadenas pour les zones verrouillées.", "Fiche de la zone à droite : difficulté (Normal, Héroïque, Mythique), chemin des 10 étapes avec le boss, ennemis et leur niveau, boss de la zone, bouton Combattre, combat automatique et enchaînement.", "Sélecteur Aventure / Duel / Raid en haut de la page."]],
@@ -4617,7 +4948,7 @@ const A={
   fPrism:()=>{UI.fPrism=!UI.fPrism;render()},
   forgeDo:()=>{
     const t=TIERS[UI.fTier],pr=prismOn(),cost=forgeCost();
-    if(!canPay(cost)) return; pay(cost);
+    if(!canPay(cost)) return; pay(cost); ACC.cnt=ACC.cnt||{}; ACC.cnt.forge=(ACC.cnt.forge||0)+1;
     const it=genItem(UI.fSlot,pr?PRISM.lv[0]:rollForgeLvl(),pr?5:wpick(t.odds)); if(!matCount('prisme')) UI.fPrism=false; it.cost={...cost}; const ok=addInv(it); UI.fLast=it; UI.fLast.where=ok?'inv':'lost';
     save(); render();
     toast(ok?`${it.name} ajouté à l’inventaire.`:'Inventaire plein : objet détruit automatiquement (25 % des ressources rendues).');
@@ -4713,7 +5044,7 @@ const A={
   },
   fbLogout:async()=>{
     try{ await cloudPush(true) }catch(e){ toast('Synchronisation impossible : déconnexion annulée pour ne rien perdre. Réessayez.'); return }
-    presence('off'); stopFriends(); stopPvp(); stopRaid(); FB.prof=null; await FB.auth.signOut(); clearLocalChars(); ACC.offline=false; saveAcc(); UI.scr='login'; UI.lmode='login'; render(); toast('Déconnecté.') },
+    presence('off'); stopFriends(); stopPvp(); stopRaid(); stopMail(); ML.open=false; renderMail(); FB.prof=null; await FB.auth.signOut(); clearLocalChars(); ACC.offline=false; saveAcc(); UI.scr='login'; UI.lmode='login'; render(); toast('Déconnecté.') },
   pseudoOk:async()=>{
     if(UI.lbusy) return; const n=($('#pname').value||'').trim(); UI.pname=n; UI.perr='';
     if(!NAME_RE.test(n)){UI.perr='Le nom doit faire 3 à 16 caractères : lettres, chiffres, - ou _ (sans espace).'; render(); return}
@@ -4742,6 +5073,25 @@ const A={
     try{ await pvpPropose(o,otherName(f),p&&p.char?p.char:null,'friend'); toast('Demande de duel envoyée à '+otherName(f)+'.') }catch(e){ toast('Impossible d’envoyer la demande ('+(e.code||'erreur')+').') } },
   advMode:d=>{UI.advMode=d.m; render()},
   invTog:()=>openInv(!UI.invOpen),
+  mlOpen:()=>{ ML.open=true; ML.adm=false; renderMail(); const x=$('#mailw .frx'); if(x) x.focus() },
+  mlClose:()=>{ ML.open=false; UI.confirm=null; renderMail(); const b=$('#mailbtn'); if(b) b.focus() },
+  mlSel:d=>{ ML.sel=d.id; UI.confirm=null; renderMail() },
+  mlGet:d=>{ mlClaim([d.id]); renderMail() },
+  mlGetAll:()=>{ mlClaim(mlToGet().map(m=>m.id)); renderMail() },
+  mlDel:d=>{ const st=mlSt(); st.del[d.id]=1; st.read[d.id]=1; ML.sel=null; saveAcc(); renderMail(); mlRefresh() },
+  mlAdm:()=>{ ML.adm=true; ML.admMsg=''; renderMail() },
+  mlAdmBack:()=>{ ML.adm=false; renderMail() },
+  mlF:d=>{ ML.form[d.k]=d.v; renderMail() },
+  mlSend:()=>mlSend(),
+  mlAdmDel:async d=>{ if(!FB.admin) return; if(UI.confirm!=='mldel'+d.id){UI.confirm='mldel'+d.id;renderMail();return} UI.confirm=null; try{ await mlCol().doc(d.id).delete(); toast('Message supprimé pour tous les joueurs.') }catch(e){ toast('Erreur : '+(e.code||'inconnue')) } },
+  frBtn:()=>{ if(!FB.user||!FB.prof){toast('Connectez-vous à un compte en ligne pour voir vos amis.');return} FR.open=!FR.open; UI.frmsg=''; UI.frerr=false; renderFriends(); renderTabs(); if(FR.open){const i=$('#frname'); if(i) i.focus()} },
+  frCard:d=>{ UI.frMenu=null; renderFriends(); friendCard(d.id) },
+  cardClose:()=>closeCard(),
+  trCat:d=>{UI.trCat=d.c;render()},
+  trF:d=>{UI.trF=d.f;render()},
+  commT:d=>{UI.commT=d.t;render()},
+  pcSet:d=>{ACC.card=pcDef(); ACC.card[d.k]=d.k==='icon'?d.v:+d.v; pcSave()},
+  pcShow:d=>{ACC.card=pcDef(); const L=ACC.card.show=(ACC.card.show||[]).filter(id=>trGot(id)); const i=L.indexOf(d.id); if(i>=0) L.splice(i,1); else { if(L.length>=3){toast('3 trophées au maximum : retirez-en un d’abord.');return} L.push(d.id) } pcSave()},
   comm:()=>{ if(!FB.user||!FB.prof){toast('Connectez-vous à un compte en ligne pour accéder à la communauté (amis, messages).');return} FR.open=!FR.open; UI.frmsg=''; UI.frerr=false; renderFriends(); renderTabs(); if(FR.open){const i=$('#frname'); if(i) i.focus()} },
   pvpFind:()=>pvpSearch(),
   pvpCancel:()=>pvpStopSearch(),
@@ -4862,10 +5212,14 @@ document.addEventListener('input',e=>{
   if(e.target.dataset&&e.target.dataset.bf){ bestSet(e.target.dataset.bf,e.target.value); bestRefreshStats() }
   if(e.target.id==='bstage'){ UI.bstage=+e.target.value; const b=e.target.nextElementSibling; if(b) b.textContent=UI.bstage; bestRefreshStats() }
 });
+document.addEventListener('input',e=>{ const t=e.target; if(!ML.form) return; if(t.dataset.mlf&&t.tagName!=='SELECT'){ ML.form[t.dataset.mlf]=t.value; if(t.dataset.mlf==='title'||t.dataset.mlf==='body') renderMail() } if(t.dataset.mlatt){ ML.form.att[t.dataset.mlatt]=Math.max(0,Math.floor(+t.value||0)); renderMail() } });
+document.addEventListener('keydown',e=>{ if(e.key==='Escape'&&ML.open&&!$('#pcard')){ e.stopPropagation(); A.mlClose() } },true);
 document.addEventListener('change',e=>{
+  if(e.target.dataset&&e.target.dataset.mlf&&e.target.tagName==='SELECT'&&ML.form){ ML.form[e.target.dataset.mlf]=e.target.dataset.mlf==='exp'?+e.target.value:e.target.value; renderMail() }
   if(e.target.id==='bdiff'){ UI.bdiff=e.target.value; const y=scrollY; render(); scrollTo(0,y) }
   if(e.target.id==='flvl'){UI.fLvl=+e.target.value;render()}
   if(e.target.id==='rdtier'){UI.raidT=+e.target.value;render()}
+  if(e.target.id==='pctitle'){ACC.card=pcDef();ACC.card.title=e.target.value||null;pcSave()}
 });
 
 /* ============ démarrage ============ */
