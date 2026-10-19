@@ -1324,6 +1324,97 @@ body.scr #view:has(.ccbook){background:none;border:0;box-shadow:none;outline:0;p
 .updbar{position:fixed;top:0;left:0;right:0;z-index:95;display:flex;align-items:center;justify-content:center;gap:12px;flex-wrap:wrap;padding:8px 16px;background:linear-gradient(#b8341f,#8a1f10);color:#fff3d6;border-bottom:2px solid #f0c66e;box-shadow:0 4px 16px #000a;text-align:center;font-size:.92rem}
 .updbar[hidden]{display:none}.updbar .btn{background:#fff3d6;color:#7b2a1a;border-color:#f0c66e;font-weight:700}
 body.hasupd{padding-top:44px}body.hasupd .menubtn,body.hasupd .byline{margin-top:44px}
+/* combat : scène avec sprites */
+.ftc{position:relative;display:flex;flex-direction:column;gap:12px;color:#f0dfb8;background:radial-gradient(ellipse at 50% 40%,#3b2a1c,#140d08 75%);border:1px solid #1d1209;border-radius:10px;padding:14px;box-shadow:inset 0 0 60px #000c}
+.ftwrap{position:relative}
+.ftsc{position:relative;height:clamp(300px,48vh,440px);border-radius:14px;overflow:hidden;border:2px solid #6b4a22}
+.ftsc>.zscene{position:absolute;inset:0;width:100%;height:100%}
+.ftsc:after{content:'';position:absolute;inset:0;background:linear-gradient(#0008,#0000 26%,#0000 62%,#000b);pointer-events:none}
+.fttop{position:absolute;z-index:3;left:16px;right:16px;top:12px;display:flex;justify-content:space-between;align-items:center;gap:10px;pointer-events:none}
+.fttop h2{margin:0;font-size:1.25rem;color:#f6e6bd;text-shadow:0 2px 6px #000}.fttop h2 small{font-size:.8rem;color:#cdb68a}.fttop .cvround{text-shadow:0 2px 6px #000}
+.ftinit{position:absolute!important;z-index:4;top:8px;left:50%;translate:-50% 0;margin:0!important;background:#000b!important;max-width:60%;flex-wrap:nowrap!important;overflow:hidden}
+.ftfield{position:absolute;z-index:1;inset:72px 3% 26px;display:flex;justify-content:space-between;align-items:flex-end;gap:12%;--uh:clamp(140px,21vh,200px)}
+.ftside{flex:1;min-width:0;display:flex;align-items:flex-end;gap:6px}.ftside.l{justify-content:flex-start}.ftside.r{justify-content:flex-end}
+.ftside .ftu:nth-child(2):not(:last-child){margin-bottom:26px}
+.ftu{position:relative;flex:0 1 auto;min-width:0;display:flex!important;flex-direction:column!important;align-items:center;gap:6px!important;background:none!important;border:0!important;padding:0!important;box-shadow:none!important}
+.ftpl{width:148px;max-width:100%;padding:5px 7px;border-radius:9px;background:#120b06d9;border:1px solid #d6aa5566;display:flex;flex-direction:column;gap:3px;font-size:.8rem;color:#f3e4c0}
+.ftpl>b{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.ftpl b small{color:#cdb68a;font-weight:400}.ftpl .ftacct{color:#cdb68a;font-size:.7rem;margin-top:-3px}
+.ftu.foe .ftpl{border-color:#c0503a99}.ftu.turn .ftpl{box-shadow:0 0 0 2px var(--gold)}.ftu.me .ftpl{border-color:#e8c982}
+.ftu.selectable{cursor:pointer}.ftu.selectable .ftpl{box-shadow:0 0 0 2px #e0412a,0 0 14px #e0412a88}
+.ftpl .hp{height:11px!important;border-radius:6px!important}.ftpl .hp span{font-size:.66rem;line-height:11px!important}.ftpl .apbar{height:4px!important}.ftpl .stt{font-size:.68rem;display:flex;flex-wrap:wrap;gap:2px}.ftpl .stt:empty{display:none}
+.ftfig{position:relative;display:flex;justify-content:center;align-items:flex-end}
+.fta{display:block;height:calc(var(--uh)*var(--sh,1));width:auto;max-width:none;filter:drop-shadow(0 8px 10px #000a);pointer-events:none;transition:filter .2s}
+.fta.flip,.ftc .flip{transform:scaleX(-1)}
+.ftu.turn .fta{filter:drop-shadow(0 0 10px #f3cf7a) drop-shadow(0 8px 10px #000a)}
+.ftu.selectable .fta{filter:drop-shadow(0 0 8px #ff5a3a) drop-shadow(0 8px 10px #000a)}
+.ftu.dead{opacity:.35;filter:grayscale(1)}
+.ftmed{width:100px;height:100px;margin-bottom:24px;border-radius:50%;display:grid;place-items:center;border:3px solid #c99a3a;background:#2a1a10;overflow:hidden;box-shadow:0 6px 16px #000a}
+.ftmed img{width:100%;height:100%;object-fit:cover}.ftmed .tile{width:100%;height:100%;border-radius:50%;background:radial-gradient(circle at 50% 40%,#5a2a1c,#1c0c06)}.ftmed .tile svg{width:46%;height:46%}
+.ftmed.boss{width:150px;height:150px;border-color:#d0503a}
+.ftgr{position:absolute;bottom:-8px;left:50%;translate:-50% 0;width:130px;height:20px;border-radius:50%;background:radial-gradient(#000a,#0000 70%);z-index:-1}
+.ftu.turn .ftgr{background:radial-gradient(#f3cf7a,#f3cf7a33 50%,#0000 72%)}
+.ftu .fl{position:absolute;inset:0 0 30% 0;pointer-events:none}
+.ftend{position:absolute;z-index:6;left:50%;bottom:-48px;translate:-50% 0;width:96px;height:96px;border-radius:50%;border:3px solid #f0d48a;background:radial-gradient(circle at 50% 35%,#b23a22,#5a1408);color:#fff3d6;font-family:var(--display);font-size:1rem;line-height:1.1;cursor:pointer;box-shadow:0 0 0 5px #140d08,0 8px 22px #000c,0 0 18px #e0412a66;display:grid;place-items:center;padding:0}
+.ftend:hover:not(:disabled){filter:brightness(1.15)}.ftend:disabled{background:radial-gradient(circle at 50% 35%,#5a4a3a,#2a2018);border-color:#8a7a60;color:#cdb68a;cursor:default;box-shadow:0 0 0 5px #140d08,0 8px 22px #000c}
+.ftend[hidden]{display:none}
+.ftc.bagopen .ftend{display:none}
+.ftbot{position:relative;display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:12px;min-height:118px}
+.ftbar{position:relative;display:flex;align-items:center;gap:14px;flex-wrap:wrap;padding:12px 14px;border-radius:12px;background:#1b120a;border:1px solid #6b4a22;min-width:0}
+.ftbar.res{display:block}
+.ftbot>.log{margin:0;max-height:140px;min-height:0}
+.ftbag{position:relative;flex:none;width:64px;height:64px;border-radius:50%;display:grid;place-items:center;background:radial-gradient(circle at 50% 35%,#2f6a3a,#123018);border:2px solid #8fd08a;color:#e8ffe0;cursor:pointer;box-shadow:0 4px 12px #0008}
+.ftbag .uic{width:30px;height:30px}.ftbag.on{box-shadow:0 0 0 3px #8fd08a66,0 4px 12px #0008}
+.ftbag .num{position:absolute;right:-4px;bottom:-4px;min-width:22px;height:22px;border-radius:11px;background:#140d08;border:1px solid #8fd08a;font-size:.72rem;display:grid;place-items:center;padding:0 4px}
+.ftbar .skcbar.wait{opacity:.45;pointer-events:none}
+.ftwait{color:#cdb68a}
+.ftprep{display:flex;flex-direction:column;gap:2px;min-width:0;flex:1 1 220px}.ftprep b{color:var(--gold);font-family:var(--display);font-weight:400;font-size:1.1rem}.ftprep b .num{color:#e0412a}.ftprep small{color:#cdb68a}
+.fttools{margin-left:auto;display:flex;gap:8px;align-items:center}
+.ftsq{width:44px;height:44px;flex:none;border-radius:10px;display:grid;place-items:center;background:#2a1c10;border:1px solid #8a6a44;color:#e8d4a8;cursor:pointer;font-weight:700;padding:0}
+.ftsq .uic{width:22px;height:22px}.ftsq:hover{border-color:#e8c982}
+.ftsq.on{background:#3a5a22;border-color:#a8d070;color:#efffd8;box-shadow:0 0 10px #a8d07066}
+.ftsq.quit{border-color:#a8452f;color:#f0a090}.ftsq.quit.arm{background:#8a2a1a;color:#fff;border-color:#ff8a6a;animation:ftarm 1s infinite}
+@keyframes ftarm{50%{box-shadow:0 0 14px #ff5a3a}}
+.cbpop{position:absolute;left:0;right:0;bottom:0;min-height:100%;z-index:5;border-radius:12px;background:#1b120a;border:2px solid #8fd08a;box-shadow:0 -10px 30px #000a;display:flex;flex-direction:column;padding:10px 12px;gap:8px}
+.cbpop header{display:flex;align-items:center;gap:10px}.cbpop header>.uic{width:22px;height:22px;color:#8fd08a}.cbpop h3{margin:0;color:var(--gold)}.cbpop header small{flex:1}
+.cbx{width:32px;height:32px;border-radius:8px;display:grid;place-items:center;background:#2a1c10;border:1px solid #8a6a44;color:#e8d4a8;cursor:pointer;padding:0}.cbx .uic{width:16px;height:16px}
+.cbgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:8px}
+.cbit{display:flex;align-items:center;gap:10px;padding:6px 10px;border-radius:10px;background:#2a1c10;border:1px solid #6b4a22;color:#f0dfb8;text-align:left;cursor:pointer}.cbit:hover:not(:disabled){border-color:#8fd08a}
+.cbit:disabled{cursor:default}.cbit.empty{opacity:.4}.cbit.cd .cbiti .mi{filter:grayscale(.7)}
+.cbiti{position:relative;width:38px;height:38px;flex:none;display:grid;place-items:center}.cbiti .mi{width:34px;height:34px}.cbiti .cdo{position:absolute;inset:0;display:grid;place-items:center;background:#000a;border-radius:8px;font-weight:700}
+.cbitt{flex:1;min-width:0;display:flex;flex-direction:column}.cbitt b{font-size:.85rem}.cbitt small{color:#cdb68a;font-size:.7rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.cbitq{font-size:.8rem;color:#cdb68a}.cbitq b{font-size:1.05rem;color:#f0dfb8}
+/* duel / raid dans la fenêtre */
+.pvpm .box.ftbox{width:min(1360px,97vw);padding:14px}
+.ftbox .fgrid{grid-template-columns:minmax(0,1fr) 250px}
+.ftbox .ftc{padding:0;background:none;border:0;box-shadow:none}
+.ftbox .ftbot{grid-template-columns:minmax(0,1fr) 260px}
+.ftbox .pvwin{font-size:1.3rem}
+/* sac de combat dans l'inventaire */
+.ipcb{display:inline-flex;align-items:center;gap:5px;background:#1f3a22;color:#e8ffe0;border-color:#1d1209}.ipcb .uic{width:16px;height:16px}.ipcb.on{background:#3a7a42;color:#fff}
+.ipcbp{margin:8px 0;padding:8px 10px;border-radius:10px;border:1px solid #8fd08a88;background:#8fd08a14;display:flex;flex-direction:column;gap:6px}
+.ipcbp header{display:flex;align-items:center;gap:8px;flex-wrap:wrap}.ipcbp header{color:#e8ffe0}.ipcbp header .uic{width:18px;height:18px;color:#8fd08a}.ipcbp header small{color:#b9a27a!important}.ipcbp header small{flex:1 1 100%}
+.cbrow{display:flex;align-items:center;gap:8px}.cbic{width:30px;height:30px;flex:none;display:grid;place-items:center}.cbic .mi{width:28px;height:28px}
+.cbn{flex:1;min-width:0;display:flex;flex-direction:column}.cbn b{font-size:.85rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.cbn b{color:#f3e4c0}.cbn small{font-size:.72rem;color:#b9a27a}
+.cbq{font-size:.8rem;color:#b9a27a;min-width:42px;text-align:right}.cbq b{font-size:1rem;color:#f3e4c0}.cbq.full b{color:#8fd08a}
+.cbbt{display:flex;gap:4px}.cbbt .btn{min-width:30px;padding:2px 8px}
+@media (max-width:860px){
+ .ftbot,.ftbox .ftbot{grid-template-columns:1fr}.ftbot>.log,.ftbox .pvlog{max-height:90px}
+ .ftbox .fgrid{grid-template-columns:1fr}
+}
+@media (max-width:620px){
+ .ftc{padding:8px}.ftsc{height:300px}.fttop h2{font-size:.95rem}.fttop{top:50px}
+ .ftinit{max-width:94%}.ftinit>.mute{display:none}
+ .ftfield{inset:84px 2% 30px;gap:4%;--uh:110px}
+ .ftpl{width:110px;font-size:.7rem;padding:4px 5px}.ftmed{width:64px;height:64px;margin-bottom:12px}.ftmed.boss{width:90px;height:90px}.ftgr{width:80px}
+ .ftside .ftu:nth-child(2):not(:last-child){margin-bottom:14px}
+ .ftend{width:76px;height:76px;bottom:-38px;font-size:.85rem}
+ .ftbar{padding:44px 10px 10px;gap:8px}.ftbag{width:52px;height:52px}
+ .fttools{position:absolute;top:6px;right:8px}.ftsq{width:36px;height:36px}
+ .cbgrid{grid-template-columns:1fr}
+}
+.ftu.ally .hp i{background:var(--verd)}
+.ftu.boss .ftpl{width:200px}
+@media (max-width:620px){.ftu.boss .ftpl{width:130px}}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 @media (min-width:760px){.arena{grid-template-columns:1fr 1fr}}
 </style>
@@ -2756,7 +2847,7 @@ const pvpTS=()=>firebase.firestore.FieldValue.serverTimestamp();
 const pvpReady=()=>!!(FB.user&&FB.prof&&S&&S.heroes&&S.heroes[0]);
 function pvpSnap(){
   const h=S.heroes[0],u=mkHeroUnit(h),keys=['hp','maxHp','atk','mag','def','res','spd','crit','critDmg','dodge','lifesteal','dmgPct','ap','maxAp',...RES_K];
-  const o={acct:FB.prof.name,name:h.name,cls:h.cls,lvl:h.lvl,role:u.role,gx:u.gx,skills:u.skills.slice(),ranks:Object.fromEntries(u.skills.map(id=>[id,h.learned[id]||1])),cds:{},st:[],shield:0,atkUsed:false,stun:false};
+  const o={acct:FB.prof.name,name:h.name,cls:h.cls,skin:h.skin||null,lvl:h.lvl,role:u.role,gx:u.gx,skills:u.skills.slice(),ranks:Object.fromEntries(u.skills.map(id=>[id,h.learned[id]||1])),cds:{},st:[],shield:0,atkUsed:false,stun:false};
   for(const k of keys) o[k]=Math.round((u[k]||0)*10)/10;
   return o;
 }
@@ -2882,9 +2973,9 @@ function potFx(U,k,L,ctx){
 }
 async function pvPot(k){
   if(PV.match&&PV.match.state==='prep') return pvPrepPot(k);
-  if(!pvMyTurn()||PV.busy) return; if(matCount(k)<1) return; const x=pvState(),U=x.U; if((U.pcd||{})[k]>0) return;
+  if(!pvMyTurn()||PV.busy) return; if(cbCount(k)<1) return; const x=pvState(),U=x.U; if((U.pcd||{})[k]>0) return;
   if(!potFx(U,k,x.L,{pvp:true,round:x.m.round||1})) return;
-  PV.busy=true; removeMat(k,1); save(); await pvCommit(x); PV.busy=false;
+  PV.busy=true; cbTake(k); save(); await pvCommit(x); PV.busy=false;
 }
 async function pvEnd(){
   if(!pvMyTurn()||PV.busy) return; const x=pvState(),U=x.U,T=x.T;
@@ -2918,8 +3009,8 @@ function pvpLoot(m){
 }
 /* affichage */
 function fPots(U,p,round,prep){
-  const pots=['p_vie','p_res',CLASSES[U.cls].role==='mag'?'p_int':'p_for','p_pa'].filter(k=>matCount(k)>0),paLock=p==='pvp'&&!prep&&(round||1)>1;
-  return `<div class="potbar">${pots.map(k=>{const cd=Math.min((U.pcd||{})[k]||0,POTS[k].cd||99),lk=k==='p_pa'&&paLock,off=cd||lk;return `<button class="potb ${off?'off':''}" data-act="${p}Pot" data-k="${k}" data-tip="pot:${k}" aria-label="${esc(POTS[k].n)}${cd?', recharge '+cd+' tours':lk?', uniquement au premier tour':''}">${matIcon(k)}<span class="num">${matCount(k)}</span>${cd?`<span class="cdo">${cd}</span>`:lk?'<span class="cdo">✕</span>':''}</button>`}).join('')||'<small class="mute">Aucune potion utilisable.</small>'}</div>`;
+  const pots=['p_vie','p_res',CLASSES[U.cls].role==='mag'?'p_int':'p_for','p_pa'].filter(k=>cbCount(k)>0),paLock=p==='pvp'&&!prep&&(round||1)>1;
+  return `<div class="potbar">${pots.map(k=>{const cd=Math.min((U.pcd||{})[k]||0,POTS[k].cd||99),lk=k==='p_pa'&&paLock,off=cd||lk;return `<button class="potb ${off?'off':''}" data-act="${p}Pot" data-k="${k}" data-tip="pot:${k}" aria-label="${esc(POTS[k].n)}${cd?', recharge '+cd+' tours':lk?', uniquement au premier tour':''}">${matIcon(k)}<span class="num">${cbCount(k)}</span>${cd?`<span class="cdo">${cd}</span>`:lk?'<span class="cdo">✕</span>':''}</button>`}).join('')||'<small class="mute">Aucune potion utilisable.</small>'}</div>`;
 }
 function fActs(U,p,round){
   const ids=['atk',...U.skills];
@@ -2941,13 +3032,13 @@ function spawnFloat(el,txt,cls){
   f.style.left=(r.left+r.width/2+(Math.random()*30-15))+'px'; f.style.top=(r.top+r.height*.32)+'px'; document.body.append(f); setTimeout(()=>f.remove(),2200);
 }
 async function pvPrepPot(k){
-  const m=PV.match; if(!m||m.state!=='prep'||matCount(k)<1) return; const me=pvpMe(),U=JSON.parse(JSON.stringify(m.u[me])),L=[]; if((U.pcd||{})[k]>0) return;
-  if(!potFx(U,k,L,{pvp:true,prep:true,round:1})) return; removeMat(k,1); save();
+  const m=PV.match; if(!m||m.state!=='prep'||cbCount(k)<1) return; const me=pvpMe(),U=JSON.parse(JSON.stringify(m.u[me])),L=[]; if((U.pcd||{})[k]>0) return;
+  if(!potFx(U,k,L,{pvp:true,prep:true,round:1})) return; cbTake(k); save();
   await pvpUpd({['u.'+me]:U,log:firebase.firestore.FieldValue.arrayUnion(...L)});
 }
 async function rdPrepPot(k){
-  const m=RD.match; if(!m||m.state!=='prep'||matCount(k)<1) return; const me=pvpMe(),U=JSON.parse(JSON.stringify(m.u[me])),L=[]; if((U.pcd||{})[k]>0) return;
-  if(!potFx(U,k,L,{raid:true,prep:true})) return; removeMat(k,1); save();
+  const m=RD.match; if(!m||m.state!=='prep'||cbCount(k)<1) return; const me=pvpMe(),U=JSON.parse(JSON.stringify(m.u[me])),L=[]; if((U.pcd||{})[k]>0) return;
+  if(!potFx(U,k,L,{raid:true,prep:true})) return; cbTake(k); save();
   await rdUpd({['u.'+me]:U,log:firebase.firestore.FieldValue.arrayUnion(...L)});
 }
 function pvPrepCheck(){
@@ -3014,11 +3105,7 @@ function renderPvp(){
   else if(m.state==='prep') acts=prepActs(U,'pvp',m);
   else if(my&&U.stun) acts=`<p class="mute">Vous êtes étourdi : vous passez ce tour.</p><div class="row"><button class="btn endturn" data-act="pvpEndT">Fin de tour</button></div>`;
   else if(my) acts=fActs(U,'pvp',m.round); else acts=`<p class="mute">Tour de <b>${esc(nm[o]||'')}</b>… <span class="num" data-pvt>(${tl} s)</span></p>${late?'<div class="row"><button class="btn pri" data-act="pvpClaim">Réclamer la victoire (adversaire inactif)</button></div>':''}`;
-  keepFc(w,()=>{ w.innerHTML=`<div class="box pvbox fbox"><div class="row between" style="margin-bottom:8px"><h2>Duel</h2><small class="num">Tour ${m.round||1}${my?' · <b class="apc">À vous de jouer</b>':''}</small></div>
-    <div class="fgrid"><div class="fmain">${(()=>{const ord=m.state==='fight'||m.state==='done'?[m.turn,m.turn===me?o:me]:[me,o];return `<div class="cvinit"><span class="mute">Ordre du tour</span>${ord.map(id=>{const q=m.u[id];return q?`<span class="cvo ${id===me?'ally':'foe'} ${m.turn===id&&m.state==='fight'?'now':''}" title="${esc(q.acct||q.name)}">${PORTRAIT[q.cls]?`<img class="cvp" src="${PORTRAIT[q.cls]}" alt="" width="34" height="34">`:''}</span>`:''}).join('<i aria-hidden="true">›</i>')}</div>`})()}<div class="pvarena">${pvCard(U,nm[me],true,m.turn===me&&m.state==='fight',me)}<span class="pvvs">VS</span>${pvCard(T,nm[o],false,m.turn===o&&m.state==='fight',o)}</div>
-    <div class="pvacts">${acts}</div>
-    <div class="pvlog log">${(m.log||[]).slice(-12).map(l=>`<p>${esc(l)}</p>`).join('')}</div>
-    ${m.state==='fight'?`<div class="row" style="justify-content:flex-end;margin-top:6px"><button class="btn sm danger" data-act="pvpGiveUp">${UI.confirm==='giveup'?'Confirmer l’abandon':'Abandonner'}</button></div>`:''}</div>${fchatHTML(m,'pvp')}</div></div>` });
+  keepFc(w,()=>{ w.innerHTML=`<div class="box pvbox fbox ftbox"><div class="fgrid"><div class="fmain">${fArena(m,'pvp')}</div>${fchatHTML(m,'pvp')}</div></div>` });
   const lg=w.querySelector('.pvlog'); if(lg) lg.scrollTop=lg.scrollHeight; hpFloats(w,m,PV);
 }
 function viewPvp(){
@@ -3183,9 +3270,9 @@ async function rdAct(id){
 }
 async function rdPot(k){
   if(RD.match&&RD.match.state==='prep') return rdPrepPot(k);
-  if(!rdMyTurn()||RD.busy||matCount(k)<1) return; const x=rdState(),U=x.U; if((U.pcd||{})[k]>0) return;
+  if(!rdMyTurn()||RD.busy||cbCount(k)<1) return; const x=rdState(),U=x.U; if((U.pcd||{})[k]>0) return;
   if(!potFx(U,k,x.L,{raid:true})) return;
-  RD.busy=true; removeMat(k,1); save(); await rdCommit(x); RD.busy=false;
+  RD.busy=true; cbTake(k); save(); await rdCommit(x); RD.busy=false;
 }
 async function rdEnd(){
   if(!rdMyTurn()||RD.busy) return; const x=rdState(); rdEndOf(x.U);
@@ -3258,11 +3345,7 @@ function renderRaid(){
   else if(U&&U.hp<=0) acts=`<p class="mute">Votre héros est tombé. Encouragez votre partenaire !</p>`;
   else if(my) acts=fActs(U,'rd');
   else acts=`<p class="mute">Tour de <b>${esc(tn?(tn.acct||tn.name):'')}</b>… <span class="num" data-rdt>(${tl} s)</span></p>${late?'<div class="row"><button class="btn pri" data-act="rdSkip">Passer son tour (joueur inactif)</button></div>':''}`;
-  keepFc(w,()=>{ w.innerHTML=`<div class="box pvbox fbox"><div class="row between" style="margin-bottom:8px"><h2>Raid · ${esc(r.n)} <small class="mute">palier +${m.tier||0}</small></h2><small class="num">Tour ${m.round||1}${my?' · <b class="apc">À vous de jouer</b>':''}</small></div>
-    <div class="fgrid"><div class="fmain">${m.order?`<div class="cvinit"><span class="mute">Ordre du tour</span>${m.order.map(id=>{const q=m.u[id];if(!q)return '';return `<span class="cvo ${id==='boss'?'foe':'ally'} ${m.turn===id&&m.state==='fight'?'now':''} ${q.hp<=0?'dead':''}" title="${esc(q.acct||q.name)}">${PORTRAIT[q.cls]?`<img class="cvp" src="${PORTRAIT[q.cls]}" alt="" width="34" height="34">`:`<span class="tile cvt" style="--h:40">${icon('boss')}</span>`}</span>`}).join('<i aria-hidden="true">›</i>')}</div>`:''}<div class="rdarena"><div class="rdteam">${m.players.map(p=>pvCard(m.u[p],nm[p],p===me,m.turn===p&&m.state==='fight',p)).join('')}</div><span class="pvvs">VS</span>${pvCard(B,B.name,false,false,'boss')}</div>
-    <div class="pvacts">${acts}</div>
-    <div class="pvlog log">${(m.log||[]).slice(-14).map(l=>`<p>${esc(l)}</p>`).join('')}</div>
-    ${m.state==='fight'&&U&&!U.left?`<div class="row" style="justify-content:flex-end;margin-top:6px"><button class="btn sm danger" data-act="rdGiveUp">${UI.confirm==='rdgiveup'?'Confirmer l’abandon':'Abandonner'}</button></div>`:''}</div>${fchatHTML(m,'raid')}</div></div>` });
+  keepFc(w,()=>{ w.innerHTML=`<div class="box pvbox fbox ftbox"><div class="fgrid"><div class="fmain">${fArena(m,'raid')}</div>${fchatHTML(m,'raid')}</div></div>` });
   const lg=w.querySelector('.pvlog'); if(lg) lg.scrollTop=lg.scrollHeight; hpFloats(w,m,RD);
 }
 function viewRaid(){
@@ -3430,10 +3513,10 @@ const unlocked=(z,s)=>{const P=prog();return z<P.zone||(z===P.zone&&s<=P.stage)}
 const cvPort=(u,sz)=>u.team==='h'&&u.hero&&PORTRAIT[u.hero.cls]?`<img class="cvp" src="${PORTRAIT[u.hero.cls]}" alt="" width="${sz}" height="${sz}">`:`<span class="tile cvt" style="--h:${u.hue}">${icon(u.ic)}</span>`;
 function initBar(){
   const ids=(C.order&&C.order.length?C.order:alive(C.units).sort((a,b)=>effStat(b,'spd')-effStat(a,'spd')).map(u=>u.id)),list=ids.map(id=>C.units.find(u=>u.id===id)).filter(Boolean);
-  return `<span class="mute">Ordre du tour</span>${list.map(u=>`<span class="cvo ${u.team==='h'?'ally':'foe'} ${C.turn===u.id?'now':''} ${u.hp<=0?'dead':''}" title="${esc(u.name)}">${cvPort(u,34)}</span>`).join('<i aria-hidden="true">›</i>')}`;
+  return `<span class="mute">Ordre du tour</span>${list.map(u=>`<span class="cvo ${u.team==='h'?'ally':'foe'} ${C.turn===u.id?'now':''} ${u.hp<=0?'dead':''}" ${ttip(u.name)}>${cvPort(u,34)}</span>`).join('<i aria-hidden="true">›</i>')}`;
 }
 function renderInit(){ const el=$('#cvinit'); if(el) el.innerHTML=initBar() }
-function viewCombat(){
+function viewCombat0(){
   if(C.phase==='idle') return viewCombatIdle();
   const al=C.units.filter(u=>u.team==='h'),en=C.units.filter(u=>u.team==='e');
   const card=u=>`<div class="unit cvu ${u.team==='h'?'ally':'foe'} ${u.boss?'boss':''}" data-u="${u.id}" data-act="pick" style="--h:${u.hue}">${cvPort(u,76)}<div class="cvinfo"><b>${esc(u.name)}</b><small>Niveau ${u.lvl}${u.boss?' · Boss':''}</small><div class="hp"><i></i><b class="shl"></b><span></span></div><div class="apbar" aria-label="Points d’action">${Array.from({length:u.maxAp||0},()=>"<i></i>").join("")}</div><div class="stt"></div></div><div class="fl"></div></div>`;
@@ -3977,6 +4060,128 @@ function updShow(vm){ UPD.found=true; const b=$('#updbar'); if(!b) return; if(vm
 setInterval(updCheck,120000); setTimeout(updCheck,15000);
 document.addEventListener('visibilitychange',()=>{ if(!document.hidden) updCheck() });
 
+/* ================= combat : scène avec sprites (PvE, duel, raid) ================= */
+const ENSP={'Gobelin':{f:'gobelin',h:.74},'Loup affamé':{f:'loup',h:.6,flip:1},'Chaman gobelin':{f:'chaman_gobelin',h:.9}};
+Object.assign(UIC,{flask:'<path d="M9 3h6M10 3v6L5 18a2 2 0 0 0 1.8 3h10.4A2 2 0 0 0 19 18l-5-9V3"/><path d="M7.5 14h9"/>',
+ auto:'<path d="M20 12a8 8 0 0 1-14 5.3M4 12a8 8 0 0 1 14-5.3"/><path d="M18 3v4h-4M6 21v-4h4"/>',
+ xx:'<path d="M6 6l12 12M18 6 6 18"/>'});
+const ttip=(t,d)=>`data-tip="${esc('tx:'+t+(d?'|'+d:''))}" aria-label="${esc(t)}"`;
+/* image d'un combattant : sprite en pied, sinon portrait / icône dans un médaillon */
+function fighterArt(o){
+  if(o.cls){ const s=skinOf(o.cls,o.skin);
+    if(s) return `<img class="fta ${o.foe?'flip':''}" style="--sh:1" src="${s.src}" alt="" onerror="this.outerHTML='<span class=&quot;ftmed&quot;><img src=&quot;${PORTRAIT[o.cls]||''}&quot; alt=&quot;&quot;></span>'">`;
+    return `<span class="ftmed"><img src="${PORTRAIT[o.cls]||''}" alt=""></span>` }
+  const e=!o.boss&&ENSP[o.name];
+  if(e) return `<img class="fta ${e.flip?'flip':''}" style="--sh:${e.h}" src="sprites/${e.f}.webp" alt="" onerror="this.outerHTML='<span class=&quot;ftmed&quot;></span>'">`;
+  return `<span class="ftmed ${o.boss?'boss':''}"><span class="tile" style="--h:${o.hue||40}">${icon(o.ic||'boss')}</span></span>`;
+}
+const ftHp=()=>`<div class="hp"><i></i><b class="shl"></b><span></span></div>`;
+
+/* ---------- sac de combat ---------- */
+const CB_LIM={p_vie:10,p_res:3,p_for:3,p_int:3,p_pa:2,p_xp:1,p_loot:1};
+const cbBag=()=>{ if(!S.cbag||typeof S.cbag!=='object') S.cbag={}; return S.cbag };
+const cbCount=k=>(S&&S.cbag&&S.cbag[k])||0;
+const cbTake=k=>{ const b=cbBag(); b[k]=Math.max(0,(b[k]||0)-1); if(!b[k]) delete b[k] };
+const cbKeys=(cls)=>Object.keys(CB_LIM).filter(k=>POTS[k]&&!POTS[k].nocombat&&(!POTS[k].cls||POTS[k].cls===cls));
+const cbTotal=()=>Object.values(S&&S.cbag||{}).reduce((a,b)=>a+b,0);
+const cbBusy=()=>inFight()||[PV.match,RD.match].some(m=>m&&['prep','fight'].includes(m.state));
+function cbIn(k,n){
+  if(cbBusy()){ toast('Impossible pendant un combat.'); return }
+  const room=CB_LIM[k]-cbCount(k),have=matAll(k),q=Math.min(n,room,have);
+  if(q<=0){ toast(room<=0?'Limite atteinte pour cette potion.':'Vous n’avez plus de cette potion.'); return }
+  removeMat(k,q); cbBag()[k]=cbCount(k)+q; save(); renderInvPop();
+}
+function cbOut(k,n){
+  if(cbBusy()){ toast('Impossible pendant un combat.'); return }
+  const q=Math.min(n,cbCount(k)); if(q<=0) return;
+  if(matRoom(k)<q){ toast('Inventaire plein.'); return }
+  bagAddMat(S.bag,k,q); const b=cbBag(); b[k]-=q; if(b[k]<=0) delete b[k]; save(); renderInvPop();
+}
+function cbPanel(){
+  const lock=cbBusy(),h=S.heroes[0];
+  const rows=cbKeys(h.cls).map(k=>{const P=POTS[k],c=cbCount(k),L=CB_LIM[k],a=matAll(k);
+    return `<div class="cbrow"><span class="cbic" data-tip="pot:${k}">${matIcon(k)}</span><span class="cbn"><b>${esc(P.n)}</b><small>Réserve : <span class="num">${fmt(a)}</span></small></span>
+     <span class="cbq num ${c>=L?'full':''}"><b>${c}</b>/${L}</span>
+     <span class="cbbt"><button class="btn sm" data-act="cbOut" data-k="${k}" ${lock||!c?'disabled':''} ${ttip('Retirer 1','Remet une potion dans l’inventaire.')}>−</button><button class="btn sm" data-act="cbIn" data-k="${k}" data-n="1" ${lock||c>=L||!a?'disabled':''} ${ttip('Ajouter 1','Prend une potion dans l’inventaire ou le coffre.')}>+</button><button class="btn sm pri" data-act="cbIn" data-k="${k}" data-n="99" ${lock||c>=L||!a?'disabled':''} ${ttip('Remplir','Complète jusqu’à la limite.')}>Max</button></span></div>`}).join('');
+  return `<section class="ipcbp"><header>${uic('flask')}<b>Sac de combat</b><small class="mute">${lock?'Verrouillé pendant un combat.':'Seules ces potions peuvent être bues en combat.'}</small></header>${rows}</section>`;
+}
+/* fenêtre des consommables pendant le combat (taille de la zone du bas) */
+function cbPopHTML(ctx){
+  const L=ctx.keys.map(k=>{const P=POTS[k],q=cbCount(k),st=ctx.state(k),off=!q||st.off;
+    return `<button class="cbit ${q?'':'empty'} ${st.off?'cd':''}" data-act="${ctx.act}" data-k="${k}" data-tip="pot:${k}" ${off?'disabled':''}><span class="cbiti">${matIcon(k)}${st.lab?`<span class="cdo">${st.lab}</span>`:''}</span><span class="cbitt"><b>${esc(P.n)}</b><small>${esc(P.d)}</small></span><span class="cbitq num"><b>${q}</b>/${CB_LIM[k]}</span></button>`}).join('');
+  return `<div class="cbpop" role="dialog" aria-label="Sac de combat"><header>${uic('flask')}<h3>Sac de combat</h3><small class="mute">Boire une potion n’utilise pas votre tour · remplissez le sac depuis l’inventaire, hors combat</small><button class="cbx" data-act="cbPop" ${ttip('Fermer')}>${uic('xx')}</button></header><div class="cbgrid">${L}</div></div>`;
+}
+const cbBtn=()=>`<button class="ftbag ${UI.cbOpen?'on':''}" data-act="cbPop" ${ttip('Sac de combat','Ouvre vos consommables. Boire une potion n’utilise pas votre tour.')}>${uic('flask')}<span class="num">${cbTotal()}</span></button>`;
+
+/* ---------- PvE ---------- */
+function viewCombat(){
+  if(C.phase==='idle') return viewCombatIdle();
+  const al=C.units.filter(u=>u.team==='h').slice(0,3),en=C.units.filter(u=>u.team==='e').slice(0,3);
+  const U=u=>`<div class="unit ftu ${u.team==='h'?'ally':'foe'} ${u.boss?'boss':''}" data-u="${u.id}" data-act="pick"><div class="ftpl"><b>${esc(u.name)} <small>niv. ${u.lvl}${u.boss?' · Boss':''}</small></b>${ftHp()}<div class="apbar" ${ttip('Points d’action')}>${Array.from({length:u.maxAp||0},()=>'<i></i>').join('')}</div><div class="stt"></div></div><div class="ftfig">${fighterArt(u.hero?{cls:u.hero.cls,skin:u.hero.skin}:{name:u.name,boss:u.boss,ic:u.ic,hue:u.hue,foe:1})}<i class="ftgr"></i></div><div class="fl"></div></div>`;
+  return `<div class="cv ftc ${UI.cbOpen?'bagopen':''}"><div class="ftwrap"><div class="ftsc">${zoneScene(C.zone,'ft')}
+    <div class="fttop"><h2>${ZONES[C.zone].n} · étape ${C.stage}${C.stage===10?' · Boss':''}${C.hero?` <span class="herotag ${C.diff}">${DIFF[C.diff].n}</span>`:''}</h2><span class="cvround num">Tour <b>${C.round}</b></span></div>
+    <div class="cvinit ftinit" id="cvinit">${initBar()}</div>
+    <div class="ftfield"><div class="ftside l">${al.map(U).join('')}</div><div class="ftside r">${en.map(U).join('')}</div></div></div>
+    <button class="ftend" id="ftend" data-act="endTurn"></button></div>
+   <div class="ftbot"><div id="actbar" class="ftbar"></div><div class="log" id="log">${C.logs.map(l=>`<p class="${l.cls}">${esc(l.t)}</p>`).join('')}</div><div id="cbslot"></div></div></div>`;
+}
+function ftTools(){
+  return `<div class="fttools"><button class="ftsq ${S.auto?'on':''}" data-act="auto" aria-pressed="${!!S.auto}" ${ttip('Combat automatique : '+(S.auto?'activé':'désactivé'),'Votre héros joue seul. Cliquez pour '+(S.auto?'reprendre la main.':'l’activer.'))}>${uic('auto')}</button><button class="ftsq num" data-act="speed" ${ttip('Vitesse ×'+S.speed,'Accélère les animations du combat (×1, ×2, ×4).')}>×${S.speed}</button>${quitBtn('giveUp',UI.confirm==='pveGiveUp')}</div>`;
+}
+const quitBtn=(act,arm)=>`<button class="ftsq quit ${arm?'arm':''}" data-act="${act}" ${ttip(arm?'Confirmer l’abandon':'Abandonner',arm?'Cliquez à nouveau : le combat sera compté comme une défaite.':'Quitter le combat (compté comme une défaite).')}>${uic(arm?'check':'flag')}</button>`;
+function ftEnd(b,{act,label,dis,tip}){ if(!b) return; b.hidden=!act; if(!act) return; b.dataset.act=act; b.disabled=!!dis; b.innerHTML=`<span>${label}</span>`; b.dataset.tip='tx:'+tip; b.setAttribute('aria-label',label.replace(/<br>/g,' ')) }
+function renderActbar(){
+  const el=$('#actbar'); if(!el) return; const end=$('#ftend'),slot=$('#cbslot');
+  el.classList.remove('res');
+  if(C.phase==='result'){ UI.cbOpen=false; if(slot) slot.innerHTML=''; $('.ftc')&&$('.ftc').classList.remove('bagopen'); renderActbar0(); el.classList.add('res'); ftEnd(end,{}); return }
+  const h=C.units.find(x=>x.team==='h'),w=C.waiting,u=w?w.u:h;
+  if(C.phase==='prep'){
+    el.innerHTML=`${cbBtn()}<div class="ftprep"><b>Préparation <span class="num" data-prep>${Math.max(0,Math.ceil((C.prepEnd-Date.now())/1000))} s</span></b><small>Buvez vos potions avant le début du combat : leurs effets et leur recharge commencent maintenant.</small></div>${ftTools()}`;
+    ftEnd(end,{act:'prepGo',label:'Combattre',tip:'Commencer le combat|Lance le combat sans attendre la fin de la préparation.'});
+  }else{
+    const ids=u?['atk',...u.skills]:[];
+    el.innerHTML=`${cbBtn()}<div class="skcbar ${w?'':'wait'}">${u?ids.map(id=>cTile(id,u,'skill',C.pending&&C.pending.id===id)).join(''):''}</div>${C.pending?`<button class="btn sm" data-act="cancelPick" ${ttip('Annuler','Annule la compétence en cours de ciblage.')}>Annuler</button>`:''}${w?'':`<small class="ftwait">${S.auto?'Combat automatique en cours…':'Les ennemis agissent…'}</small>`}${ftTools()}`;
+    ftEnd(end,{act:'endTurn',label:'Fin de<br>tour',dis:!w,tip:'Fin de tour|Termine votre tour. Les PA non utilisés sont perdus.'});
+  }
+  if(slot){ const keys=ownPotKeys(); slot.innerHTML=UI.cbOpen?cbPopHTML({keys,act:'usePot',state:k=>{const used=(k==='p_xp'&&C.bonus.xp)||(k==='p_loot'&&C.bonus.loot),cd=potLeft(k);return {off:!!(used||cd),lab:cd?potShow(k,cd):used?'✓':''}}}):''; $('.ftc')&&$('.ftc').classList.toggle('bagopen',!!UI.cbOpen) }
+}
+const ownPotKeys=()=>cbKeys(S.heroes[0].cls);
+
+/* ---------- duel et raid ---------- */
+function fArena(m,kind){
+  const p=kind==='pvp'?'pvp':'rd',me=pvpMe(),nm=m.names||{},U=m.u[me],r=kind==='raid'?(RAIDS.find(x=>x.id===m.boss)||RAIDS[0]):null;
+  const left=kind==='pvp'?[me]:m.players.slice(0,3),right=kind==='pvp'?[pvpOp(m)]:['boss'];
+  const my=m.state==='fight'&&m.turn===me,tn=m.turn&&m.u[m.turn];
+  const lim=kind==='pvp'?PVP_TURN:RD_TURN,tl=Math.max(0,lim-Math.floor((Date.now()-tsMs(m.turnAt))/1000)),late=m.state==='fight'&&!my&&Date.now()-tsMs(m.turnAt)>lim*1000;
+  const unit=(id,foe)=>{const u=m.u[id]; if(!u) return `<div class="ftu wait"><div class="ftpl"><b>${esc(nm[id]||'?')}</b><small>En attente…</small></div></div>`;
+    const aps=Array.from({length:u.maxAp||0},(_,i)=>`<i class="${i<u.ap?'on':''}"></i>`).join(''),sh=Math.min(Math.max(0,u.shield||0),u.maxHp||1),st=Math.min(Math.max(0,u.hp),(u.maxHp||1)-sh);
+    const sts=(u.st||[]).map(s=>`<em class="b-${s.k}">${esc(s.k==='stk'?s.n+' '+s.v+'/'+(s.max||5):s.k==='ult'||s.k==='dot'?s.n:s.k==='para'?'Paralysie':s.k==='stun'?'Étourdi':s.k==='taunt'?'Provoque':s.k==='apb'?'PA +'+s.v:(s.v>0?'+':'')+Math.round(s.v)+'% '+({atk:'FOR',def:'DEF',res:'RÉS',spd:'VIT',mag:'INT'}[s.stat]||''))} ${s.dur!=null?s.dur:''}</em>`).join('');
+    return `<div class="ftu ${foe?'foe':'ally'} ${id===me?'me':''} ${m.turn===id&&m.state==='fight'?'turn':''} ${u.hp<=0?'dead':''} ${u.boss?'boss':''}" data-pu="${id}"><div class="ftpl"><b>${esc(u.boss?u.name:u.name)} <small>niv. ${u.lvl}</small></b>${u.boss?'':`<small class="ftacct">${esc(u.acct||'')}${u.left?' · parti':''}</small>`}
+      <div class="hp"><i style="width:${Math.max(0,u.hp/u.maxHp*100)}%"></i>${sh>0?`<b class="shl" style="left:${st/u.maxHp*100}%;width:${sh/u.maxHp*100}%"></b>`:''}<span>${Math.ceil(Math.max(0,u.hp))} / ${Math.ceil(u.maxHp)}${u.shield>0?' (+'+Math.ceil(u.shield)+')':''}</span></div><div class="apbar" ${ttip('Points d’action',u.ap+' / '+u.maxAp)}>${aps}</div><div class="stt">${sts}</div></div>
+      <div class="ftfig">${fighterArt(u.boss?{boss:1,ic:'boss',hue:8}:{cls:u.cls,skin:u.skin,foe})}<i class="ftgr"></i></div></div>`};
+  const ord=kind==='pvp'?(m.state==='fight'||m.state==='done'?[m.turn,m.turn===me?pvpOp(m):me]:[me,pvpOp(m)]):(m.order||[]);
+  const init=`<div class="cvinit ftinit"><span class="mute">Ordre du tour</span>${ord.map(id=>{const q=m.u[id];return q?`<span class="cvo ${id==='boss'||(kind==='pvp'&&id!==me)?'foe':'ally'} ${m.turn===id&&m.state==='fight'?'now':''} ${q.hp<=0?'dead':''}" ${ttip(q.boss?q.name:(q.name+' ('+(q.acct||'')+')'))}>${PORTRAIT[q.cls]?`<img class="cvp" src="${PORTRAIT[q.cls]}" alt="" width="34" height="34">`:`<span class="tile cvt" style="--h:40">${icon('boss')}</span>`}</span>`:''}).join('<i aria-hidden="true">›</i>')}</div>`;
+  /* barre du bas */
+  let bar='',end={};
+  const quit=m.state==='fight'&&U&&!U.left?`<div class="fttools">${quitBtn(p+'GiveUp',UI.confirm===(kind==='pvp'?'giveup':'rdgiveup'))}</div>`:'';
+  if(m.state==='done'){ bar=`<div class="pvwin">${kind==='pvp'?`🏆 ${esc(nm[m.winner]||'')} remporte le duel !`:m.win?'🏆 Raid réussi !':'💀 Le raid a échoué.'}</div>`; UI.cbOpen=false }
+  else if(m.state==='prep'){ const left=Math.max(0,Math.ceil((PREP_MS-(Date.now()-tsMs(m.prepAt)))/1000)),rd=m.ready&&m.ready[me],ot=m.players.filter(x=>x!==me).every(x=>m.ready&&m.ready[x]);
+    bar=`${U&&U.hp>0?cbBtn():''}<div class="ftprep"><b>Préparation <span class="num" data-prep>${left} s</span></b><small>${rd?'Prêt — en attente…':'Buvez vos potions avant le début du combat.'}${ot?' Votre '+(kind==='pvp'?'adversaire':'partenaire')+' est prêt.':''}</small></div>`;
+    end={act:p+'Ready',label:rd?'Prêt':'Je suis<br>prêt',dis:rd,tip:'Je suis prêt|Le combat commence quand tous les joueurs sont prêts ou à la fin du compte à rebours.'} }
+  else if(U&&U.hp<=0) bar=`<small class="ftwait">Votre héros est tombé. Encouragez ${kind==='pvp'?'…':'votre partenaire'} !</small>${quit}`;
+  else if(my&&U.stun){ bar=`${cbBtn()}<small class="ftwait">Vous êtes étourdi : vous passez ce tour.</small>${quit}`; end={act:p+'EndT',label:'Fin de<br>tour',tip:'Fin de tour|Termine votre tour.'} }
+  else if(my){ bar=`${cbBtn()}<div class="skcbar">${['atk',...U.skills].map(id=>cTile(id,U,p+'Sk')).join('')}</div>${quit}`; end={act:p+'EndT',label:'Fin de<br>tour',tip:'Fin de tour|Termine votre tour. Les PA non utilisés sont perdus.'} }
+  else { bar=`${cbBtn()}<small class="ftwait">Tour de <b>${esc(tn?(tn.boss?tn.name:(tn.acct||tn.name)):'')}</b>… <span class="num" ${kind==='pvp'?'data-pvt':'data-rdt'}>(${tl} s)</span></small>${late?`<button class="btn sm pri" data-act="${kind==='pvp'?'pvpClaim':'rdSkip'}">${kind==='pvp'?'Réclamer la victoire':'Passer son tour'}</button>`:''}${quit}`; end={act:p+'EndT',label:'Fin de<br>tour',dis:1,tip:'Fin de tour|Ce n’est pas votre tour.'} }
+  const eb=end.act?`<button class="ftend" data-act="${end.act}" ${end.dis?'disabled':''} data-tip="${esc('tx:'+end.tip)}" aria-label="${esc(end.label.replace(/<br>/g,' '))}"><span>${end.label}</span></button>`:'';
+  const pk=U?['p_vie','p_res',CLASSES[U.cls].role==='mag'?'p_int':'p_for','p_pa']:[],paLock=kind==='pvp'&&m.state==='fight'&&(m.round||1)>1;
+  const pop=UI.cbOpen&&U&&m.state!=='done'?cbPopHTML({keys:pk,act:p+'Pot',state:k=>{const cd=Math.min((U.pcd||{})[k]||0,POTS[k].cd||99),lk=k==='p_pa'&&paLock;return {off:!!(cd||lk),lab:cd?cd:lk?'✕':''}}}):'';
+  const title=kind==='pvp'?`Duel · ${esc(nm[pvpOp(m)]||'')}`:`Raid · ${esc(r.n)} <small>palier +${m.tier||0}</small>`;
+  return `<div class="ftc fta2 ${pop?'bagopen':''}"><div class="ftwrap"><div class="ftsc">${kind==='pvp'?zoneScene(6,'pv'):zoneScene(raidSc(r),'rd')}
+     <div class="fttop"><h2>${title}</h2><span class="cvround num">Tour <b>${m.round||1}</b></span></div>${init}
+     <div class="ftfield"><div class="ftside l">${left.map(id=>unit(id,false)).join('')}</div><div class="ftside r">${right.map(id=>unit(id,true)).join('')}</div></div></div>${eb}</div>
+    <div class="ftbot"><div class="ftbar">${bar}</div><div class="pvlog log">${(m.log||[]).slice(-14).map(l=>`<p>${esc(l)}</p>`).join('')}</div>${pop}</div></div>`;
+}
+
 function viewCombatIdle(){
   const P=prog(),dk=curDiff(),D=DIFF[dk],hero=dk!=='normal',z=ZONES[UI.zone],L=D.L||UI.zone*10+UI.stage;
   const h=S.heroes[0],c=CLASSES[h.cls],st=heroStats(h),need=h.lvl>=MAXL?1:xpNeed(h.lvl);
@@ -4017,7 +4222,7 @@ function viewCombatIdle(){
       <p class="hint" style="margin-top:12px">Niveau des ennemis : <b class="num">${L}</b> · ${UI.stage===10?`Boss : ${z.boss.n}`:z.enemies.map(e=>e.n).join(', ')}</p>
     </section>`}</div>`;
 }
-function renderActbar(){
+function renderActbar0(){
   const el=$('#actbar'); if(!el) return;
   if(C.phase==='result'){
     const r=C.result,nextOk=r.win&&(UI.zone!==C.zone||UI.stage!==C.stage);
@@ -4046,17 +4251,17 @@ function renderActbar(){
 }
 
 /* --- potions en combat --- */
-const ownPots=()=>Object.keys(POTS).filter(k=>!POTS[k].nocombat&&matCount(k)>0&&(!POTS[k].cls||POTS[k].cls===S.heroes[0].cls));
+const ownPots=()=>Object.keys(POTS).filter(k=>!POTS[k].nocombat&&cbCount(k)>0&&(!POTS[k].cls||POTS[k].cls===S.heroes[0].cls));
 function potBar(){
   const ks=ownPots(); if(!ks.length) return '<small class="mute" style="align-self:center">Aucune potion : achetez-en chez le Marchand.</small>';
   return `<div class="potbar">${ks.map(k=>{const used=(k==='p_xp'&&C.bonus.xp)||(k==='p_loot'&&C.bonus.loot),cd=potLeft(k),cs=potShow(k,cd);
-    return `<button class="potb ${used||cd?'off':''}" data-act="usePot" data-k="${k}" data-tip="pot:${k}" aria-label="${esc(POTS[k].n)}${cd?', recharge '+cs+' tours':used?', déjà utilisée':''}">${matIcon(k)}<span class="num">${matCount(k)}</span>${cd?`<span class="cdo">${cs}</span>`:used?'<span class="cdo">✓</span>':''}</button>`}).join('')}</div>`;
+    return `<button class="potb ${used||cd?'off':''}" data-act="usePot" data-k="${k}" data-tip="pot:${k}" aria-label="${esc(POTS[k].n)}${cd?', recharge '+cs+' tours':used?', déjà utilisée':''}">${matIcon(k)}<span class="num">${cbCount(k)}</span>${cd?`<span class="cdo">${cs}</span>`:used?'<span class="cdo">✓</span>':''}</button>`}).join('')}</div>`;
 }
 const POT_CD=3;
 const potLeft=k=>{ const P=POTS[k]; if(!P||!C.pcd||C.pcd[k]==null) return 0; return Math.max(0,(P.cd||0)+1-(C.round-C.pcd[k])) };
 const potShow=(k,n)=>Math.min(n,(POTS[k]&&POTS[k].cd)||n);
 function usePot(k){
-  if(!inFight()||!matCount(k)||potLeft(k)) return;
+  if(!inFight()||!cbCount(k)||potLeft(k)) return;
   const u=C.units.find(x=>x.team==='h'&&x.hp>0); if(!u) return;
   const B=(stat,v)=>{u.st=u.st.filter(s=>!(s.k==='buff'&&s.stat===stat&&s.v>0&&s.pot));u.st.push({k:'buff',stat,v,dur:3,pot:1})};
   if(k==='p_vie') heal(u,u.maxHp*.4);
@@ -4066,7 +4271,7 @@ function usePot(k){
   else if(k==='p_pa') addApb(u);
   else if(k==='p_xp'){ if(C.bonus.xp) return; C.bonus.xp=50 }
   else if(k==='p_loot'){ if(C.bonus.loot) return; C.bonus.loot=50 }
-  if(POTS[k].cd) C.pcd[k]=C.round; removeMat(k,1); logLine(`${u.name} boit : ${POTS[k].n}.`,'hl'); floatTxt(u,POTS[k].n,'heal'); refresh(u); save(); renderActbar();
+  if(POTS[k].cd) C.pcd[k]=C.round; cbTake(k); logLine(`${u.name} boit : ${POTS[k].n}.`,'hl'); floatTxt(u,POTS[k].n,'heal'); refresh(u); save(); renderActbar();
 }
 
 /* --- marchand --- */
@@ -4446,9 +4651,9 @@ function renderInvPop(){
   const fresh=!w;
   if(!w){ w=document.createElement('div'); w.id='invpop'; w.className='invpop'; w.setAttribute('role','dialog'); w.setAttribute('aria-label','Inventaire'); document.body.append(w) }
   const P=bagParts(),so=UI.bagSort;
-  w.innerHTML=`<div class="iphead" data-ipdrag><span class="ipt">${icon('chest')}<b>Inventaire</b></span><small class="num ipcnt">${P.used} / ${BAG}</small><span class="ipg"></span><button class="btn sm ipchest ${UI.stashOpen?'on':''}" data-act="stToggle" aria-pressed="${!!UI.stashOpen}" title="Coffre du compte">${icon('chest')}Coffre</button><button class="ipx" data-act="invClose" aria-label="Fermer l’inventaire" title="Fermer (I)">×</button></div>
+  w.innerHTML=`<div class="iphead" data-ipdrag><span class="ipt">${icon('chest')}<b>Inventaire</b></span><small class="num ipcnt">${P.used} / ${BAG}</small><span class="ipg"></span><button class="btn sm ipcb ${UI.cbInv?'on':''}" data-act="cbToggle" aria-pressed="${!!UI.cbInv}" ${ttip('Sac de combat','Choisissez les potions emportées en combat (quantités limitées).')}>${uic('flask')}Combat</button><button class="btn sm ipchest ${UI.stashOpen?'on':''}" data-act="stToggle" aria-pressed="${!!UI.stashOpen}" title="Coffre du compte">${icon('chest')}Coffre</button><button class="ipx" data-act="invClose" aria-label="Fermer l’inventaire" title="Fermer (I)">×</button></div>
     <div class="iptools"><span class="mute">Trier</span><div class="ipseg"><button class="${so.k==='name'?'on':''}" data-act="bagSort" data-k="name">Nom${P.arrow('name')}</button><button class="${so.k==='qty'?'on':''}" data-act="bagSort" data-k="qty">Quantité${P.arrow('qty')}</button></div><button class="btn sm ${UI.multi?'warn':''}" style="margin-left:auto" data-act="multiToggle">${UI.multi?'Terminer':'Détruire plusieurs'}</button></div>
-    ${UI.multi?multiBar():''}<div class="ipgrid">${gridHTML()}</div><div class="ipres" id="ipres">${resRow()}</div>
+    ${UI.multi?multiBar():''}<div class="ipgrid">${gridHTML()}</div>${UI.cbInv?cbPanel():''}<div class="ipres" id="ipres">${resRow()}</div>
     ${P.detail&&!UI.multi?`<div class="ipdet"><button class="x" data-act="detClose" aria-label="Fermer les détails">×</button>${P.detail}</div>`:''}`;
   if(fresh&&UI.invPos){ w.style.left=UI.invPos.x+'px'; w.style.top=UI.invPos.y+'px'; w.style.right='auto' }
   if(UI.invPos) ipClamp(w);
@@ -4770,7 +4975,7 @@ function viewHelp(){
     ['Mythique','60','Débloqué en atteignant le dernier boss héroïque','Or, XP et matériaux ×2 ; Prisme divin à 25 %'],
   ]);
   const pots=T(['Potion','Effet'],Object.values(POTS).map(p=>[p.n,p.d+(p.cls?` <small class="mute">(${CLASSES[p.cls].n})</small>`:'')]))
-    +`<p class="hint">Les potions se boivent en combat (et pendant les 10 secondes de préparation) sans utiliser votre tour. Chaque potion a son propre temps de recharge : vie, résistance, force et intelligence 4 tours, action 6 tours. L’Élixir de savoir et le Philtre de fortune ne s’utilisent qu’une fois par combat.</p>`;
+    +`<p class="hint">Les potions se boivent en combat (et pendant les 10 secondes de préparation) sans utiliser votre tour. Seules les potions placées dans le sac de combat peuvent être bues : remplissez-le depuis l’inventaire (bouton Combat), hors combat. Limites : 10 potions de vie, 3 de résistance, 3 de force ou d’intelligence, 2 d’action, 1 Élixir de savoir et 1 Philtre de fortune. Chaque potion a son propre temps de recharge : vie, résistance, force et intelligence 4 tours, action 6 tours. L’Élixir de savoir et le Philtre de fortune ne s’utilisent qu’une fois par combat.</p>`;
   const rar=T(['Rareté','Affixes','Multiplicateur de stats'],RAR.map((r,i)=>[`<span style="color:var(--r${i});font-weight:700">${r.n}</span>`,r.aff+(r.leg?' + pouvoir légendaire':'')+(r.max?' (au maximum de la plage)':''),'×'+String(r.m).replace('.',',')]))
     +`<p class="hint">Niveau d’objet : il augmente toutes les valeurs de l’objet. Chaque amélioration (+1 à +10) ajoute 5 % à toutes ses stats. Les armes donnent Force ou Intelligence, les armures de la vie, de la défense et de la résistance magique, les bijoux uniquement des affixes aléatoires.</p>`
     +T(['Affixe','Rareté','Chances (1er affixe, Guerrier)'],(()=>{const pool=affPool('guerrier'),tot=pool.reduce((x,a)=>x+a.w,0);return AFX.slice().sort((a,b)=>b.w-a.w).map(a=>[STAT_N[a.s]+(PCT.has(a.s)&&!/^r/.test(a.s)?' %':''),affTier(a.w),pool.includes(a)?r1(a.w/tot*100)+' %':'—'])})());
@@ -4781,8 +4986,8 @@ function viewHelp(){
 }
 
 /* --- nouveautés --- */
-const VERSION='0.4.0';
-const BUILD='20261019140031';
+const VERSION='0.4.1';
+const BUILD='20261019145316';
 const PATCH=[
  {v:'0.4.0',t:"Trophées, communauté et nouveaux héros",sec:[
   ["Personnages", ["Nouvel écran de sélection : les cinq emplacements en grandes cartes verticales, chaque héros en pied avec sa classe, son niveau et les boutons Jouer et Supprimer ; le personnage actuel est mis en évidence.", "Nouvel écran de création en forme de registre : nom, classe, apparence, statistiques de départ et aperçu des spécialisations de la classe (description, compétences et talent ultime), avec le héros en grand à droite et le bouton « Créer le personnage ».", "Le Sorcier a deux apparences au choix lors de la création. Le Guerrier garde son portrait en attendant ses illustrations."]],
@@ -5035,13 +5240,14 @@ function bestRefreshStats(){
 
 /* ============ infobulle ============ */
 function tipHTML(k){
+  if(k.startsWith('tx:')){const [a,b]=k.slice(3).split('|');return `<article class="it skt ttx" style="--rc:var(--line2)"><header><b>${esc(a)}</b></header>${b?`<div class="skbody"><p>${esc(b)}</p></div>`:''}</article>`}
   if(k==='rw:chest'){ const t=rdTier(); return `<article class="it" style="--rc:#c99a3a"><header><b>${CHEST_N}</b><small>Butin rare · ${String(chestRate(t)).replace('.',',')} % à ce palier</small></header><ul><li class="imp">${MAT_D.c_relic}</li></ul></article>` }
   if(k.startsWith('pc:')) return pcTip(k);
   const h=S.heroes[0];
   if(k.startsWith('pot:')){const q=k.slice(4),P=POTS[q]; if(!P) return '';
     const used=C.bonus&&((q==='p_xp'&&C.bonus.xp)||(q==='p_loot'&&C.bonus.loot));
     const mm=[PV.match,RD.match].find(x=>x&&['fight','prep'].includes(x.state)),mu=mm&&mm.u&&mm.u[pvpMe()],left=mu?Math.min((mu.pcd||{})[q]||0,P.cd||99):inFight()?potShow(q,potLeft(q)):0;
-    return `<article class="it skt" style="--rc:${P.c}"><header><b>${P.n}</b><small>Potion · ${matCount(q)} en stock</small></header><div class="skmeta"><span class="skm free">Sans PA</span><span class="skm">${P.cd?`Recharge ${P.cd} tours`:'1 fois par combat'}</span></div><div class="skbody"><p>${P.d}</p>${used?'<p class="lockr">Déjà utilisée pour ce combat.</p>':left?`<p class="lockr">Encore ${left} tour${left>1?'s':''} de recharge.</p>`:'<p class="imp">Se boit sans utiliser votre tour.</p>'}</div></article>`}
+    return `<article class="it skt" style="--rc:${P.c}"><header><b>${P.n}</b><small>Potion · ${cbCount(q)} dans le sac de combat · ${fmt(matAll(q))} en réserve</small></header><div class="skmeta"><span class="skm free">Sans PA</span><span class="skm">${P.cd?`Recharge ${P.cd} tours`:'1 fois par combat'}</span></div><div class="skbody"><p>${P.d}</p>${used?'<p class="lockr">Déjà utilisée pour ce combat.</p>':left?`<p class="lockr">Encore ${left} tour${left>1?'s':''} de recharge.</p>`:'<p class="imp">Se boit sans utiliser votre tour.</p>'}</div></article>`}
   if(k.startsWith('res:')){ const m=k.slice(4);
     if(m==='gold') return `<article class="it skt" style="--rc:#d9a62b"><header><b>Or</b><small>Monnaie · partagée par tous vos personnages</small></header><div class="skbody"><p class="num"><b>${fmt(S.gold)}</b> or</p><p>Sert à acheter des potions, des onglets de coffre, à améliorer l’équipement et les zones de collecte. Gagné en combat, en duel et en raid.</p></div></article>`;
     const v=matCount(m),cap=matCap(m); return `<article class="it skt" style="--rc:var(--line2)"><header><b>${MAT_OBJ[m]}</b><small>Composant${v>=cap?' · stock plein':''}</small></header><div class="skbody"><p class="num"><b>${fmt(v)}</b> / ${fmt(cap)}</p><p>${MAT_D[m]||''}</p></div></article>` }
@@ -5100,6 +5306,10 @@ const A={
   togStats:()=>{S.showStats=S.showStats===false;save();render()},
   statSplit:()=>{S.statSplit=!S.statSplit;save();render()},
   usePot:d=>usePot(d.k),
+  cbPop:()=>{UI.cbOpen=!UI.cbOpen; if(PV.match&&['prep','fight'].includes(PV.match.state)) renderPvp(); else if(RD.match&&['prep','fight'].includes(RD.match.state)) renderRaid(); else renderActbar()},
+  cbIn:d=>cbIn(d.k,+d.n||1),
+  cbOut:d=>cbOut(d.k,1),
+  cbToggle:()=>{UI.cbInv=!UI.cbInv;renderInvPop()},
   buyPot:d=>{const q=+d.q,P=POTS[d.k]; if(P.fix){ if(!canPay(P.fix)) return; if(matRoom(d.k)<1){toast('Inventaire plein.');return} pay(P.fix); bagAddMat(S.bag,d.k,1); markNew(); save(); render(); toast('Achat : '+P.n+'.'); return } const c=potPrice(d.k)*q; if(!hasGold(c)) return; if(POTS[d.k].cls&&POTS[d.k].cls!==S.heroes[0].cls){toast(`Réservée au ${CLASSES[POTS[d.k].cls].n}.`);return} if(matRoom(d.k)<q){toast('Inventaire plein.');return}
     if(!FREE()) S.gold-=c; bagAddMat(S.bag,d.k,q); markNew(); save(); render(); toast(`Achat : ${q} × ${POTS[d.k].n}.`)},
   auto:()=>{S.auto=!S.auto;if(!S.auto)S.farm=false;if(S.auto&&C.waiting){const w=C.waiting;C.waiting=null;C.pending=null;w.res(ai(w.u))}render()},
