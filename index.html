@@ -1215,6 +1215,73 @@ body.scr .mlbtn{display:none}
 .pcic.lkd,.pcfr.lkd,.pcbg.lkd{cursor:not-allowed;opacity:.75}
 .pctip p{margin:6px 0 0;font-size:.88rem;line-height:1.35}
 @media (max-width:760px){.top{padding-top:62px}.tophl{top:8px;translate:none}.tophl .mlbtn{width:42px;height:42px}.dkbar{width:100%}.tabs .dkb{width:auto}.dklock{right:4px}}
+
+/* cadres scintillants */
+@property --pa{syntax:'<angle>';inherits:false;initial-value:0deg}
+@property --pp{syntax:'<percentage>';inherits:false;initial-value:-30%}
+.pc1top .mpport,.pc1top .mpunk,.pc2l .mpport,.pc2l .mpunk{border-width:3px}
+.pcfx{border-color:transparent!important}
+.pcfx .pc1top .mpport,.pcfx .pc1top .mpunk,.pcfx .pc2l .mpport,.pcfx .pc2l .mpunk{border-color:transparent!important}
+/* fond de bordure : le contenu garde son fond, la bordure montre l'effet */
+.pc1.pcfx,.pc2.pcfx{background-origin:border-box;background-clip:padding-box,border-box}
+.pc1.pcfx{background-color:transparent;background-image:linear-gradient(#140b05,#140b05),var(--fxg)}
+.pc2.pcfx{background-image:linear-gradient(#140b05,#140b05),var(--fxg)}
+.pcfx .pc1top .mpport,.pcfx .pc2l .mpport,.pcfx .pc1top .mpunk,.pcfx .pc2l .mpunk{background-origin:border-box;background-clip:padding-box,border-box;background-image:linear-gradient(#000,#000),var(--fxg)}
+.pcfx .pc1top .mpunk,.pcfx .pc2l .mpunk{background-image:radial-gradient(circle at 50% 35%,#4a3a2a,#120a05),var(--fxg)}
+/* 1 reflet balayant */
+[data-fx=sweep]{--fxg:linear-gradient(115deg,var(--fr) 0%,var(--fr) calc(var(--pp) - 14%),var(--fl) var(--pp),var(--fr) calc(var(--pp) + 14%),var(--fr) 100%)}
+.pcfx[data-fx=sweep],.pcfx[data-fx=sweep] .pc1top .mpport,.pcfx[data-fx=sweep] .pc2l .mpport,.pcfx[data-fx=sweep] .mpunk,.pcfr[data-fx=sweep]{animation:pcSweep 3s ease-in-out infinite}
+.pcfx[data-fx=sweep] .mpport,.pcfx[data-fx=sweep] .mpunk{--fxg:linear-gradient(115deg,var(--fr) 0%,var(--fr) calc(var(--pp) - 14%),var(--fl) var(--pp),var(--fr) calc(var(--pp) + 14%),var(--fr) 100%)}
+@keyframes pcSweep{0%{--pp:-30%}55%,100%{--pp:130%}}
+/* 2 halo tournant */
+[data-fx=halo],.pcfx[data-fx=halo] .mpport,.pcfx[data-fx=halo] .mpunk{--fxg:conic-gradient(from var(--pa),var(--fr),var(--fl) 12%,var(--fr) 25%,color-mix(in srgb,var(--fr) 35%,#000) 50%,var(--fr) 75%,var(--fl) 87%,var(--fr))}
+.pcfx[data-fx=halo],.pcfx[data-fx=halo] .mpport,.pcfx[data-fx=halo] .mpunk,.pcfr[data-fx=halo]{animation:pcSpin 4s linear infinite}
+@keyframes pcSpin{to{--pa:360deg}}
+/* 3 étincelles */
+[data-fx=spark],.pcfx[data-fx=spark] .mpport,.pcfx[data-fx=spark] .mpunk{--fxg:linear-gradient(135deg,var(--fr),color-mix(in srgb,var(--fr) 65%,#fff),var(--fr))}
+.pcsp{position:absolute;z-index:4;width:18px;height:18px;background:#fff;clip-path:polygon(50% 0,58% 42%,100% 50%,58% 58%,50% 100%,42% 58%,0 50%,42% 42%);filter:drop-shadow(0 0 4px var(--fr));opacity:0;animation:pcTw 2.4s ease-in-out infinite;pointer-events:none}
+.pc1 .s1{top:18px;left:calc(50% - 66px)}.pc1 .s2{top:12px;left:calc(50% + 46px);animation-delay:.9s}.pc1 .s3{top:96px;left:calc(50% + 52px);animation-delay:1.6s}.pc1 .s4{top:90px;left:calc(50% - 70px);animation-delay:.5s}.pc1 .s5{top:6px;left:calc(50% - 6px);animation-delay:1.3s;width:12px;height:12px}
+.pc2 .s1{top:10px;left:18px}.pc2 .s2{top:14px;left:112px;animation-delay:.9s}.pc2 .s3{bottom:12px;left:110px;animation-delay:1.6s}.pc2 .s4{bottom:16px;left:14px;animation-delay:.5s}.pc2 .s5{top:10px;right:24px;animation-delay:1.3s}
+@keyframes pcTw{0%,100%{opacity:0;transform:scale(.3) rotate(0)}50%{opacity:1;transform:scale(1) rotate(45deg)}}
+/* 4 braise vivante */
+[data-fx=pulse],.pcfx[data-fx=pulse] .mpport,.pcfx[data-fx=pulse] .mpunk{--fxg:linear-gradient(135deg,var(--fr),var(--fl),var(--fr))}
+.pcfx[data-fx=pulse],.pcfr[data-fx=pulse]{animation:pcPulse 2.2s ease-in-out infinite}
+.pcfx[data-fx=pulse] .mpport,.pcfx[data-fx=pulse] .mpunk{animation:pcPulseR 2.2s ease-in-out infinite}
+@keyframes pcPulse{0%,100%{box-shadow:0 12px 28px #000a,0 0 10px color-mix(in srgb,var(--fr) 30%,transparent);filter:brightness(.92)}50%{box-shadow:0 12px 28px #000a,0 0 30px var(--fr),0 0 56px color-mix(in srgb,var(--fr) 40%,transparent);filter:brightness(1.18)}}
+@keyframes pcPulseR{0%,100%{box-shadow:0 0 6px color-mix(in srgb,var(--fr) 40%,transparent)}50%{box-shadow:0 0 24px var(--fr)}}
+/* 5 prisme holographique */
+[data-fx=holo],.pcfx[data-fx=holo] .mpport,.pcfx[data-fx=holo] .mpunk{--fxg:conic-gradient(from var(--pa),#ff6a8a,#ffd36a,#8fff8a,#6ae0ff,#8a7aff,#ff6ad8,#ff6a8a)}
+.pcfx[data-fx=holo],.pcfx[data-fx=holo] .mpport,.pcfx[data-fx=holo] .mpunk,.pcfr[data-fx=holo]{animation:pcSpin 6s linear infinite}
+.pcfx[data-fx=holo]::after{content:'';position:absolute;inset:0;z-index:5;background:linear-gradient(115deg,transparent 30%,#ffffff1f 45%,#9ff3ff24 50%,#ffb0f024 55%,transparent 70%);background-size:250% 100%;animation:pcHol 4s linear infinite;pointer-events:none;border-radius:inherit}
+@keyframes pcHol{from{background-position:120% 0}to{background-position:-120% 0}}
+.pcfx{box-shadow:0 0 0 2px #21150b,0 12px 28px #000a,0 0 24px color-mix(in srgb,var(--fr) 45%,transparent)}
+/* pastilles des cadres animés */
+.pcfr.fxs{border-color:transparent;background-origin:border-box;background-clip:padding-box,border-box;background-image:linear-gradient(#2c1d10,#2c1d10),var(--fxg)}
+/* aperçu */
+.mtcmc.pcprev{display:flex!important;flex-direction:column;align-items:center!important;justify-content:flex-start;gap:8px;place-items:initial}.pcprevl{color:#cdb88f;font-size:.78rem;letter-spacing:.08em;text-transform:uppercase}
+.pcbanw{width:640px;max-width:100%;zoom:.82}
+.pcsave{margin-top:auto;padding-top:10px;display:flex;flex-direction:column;gap:8px;position:sticky;bottom:-12px;background:linear-gradient(#e2d0a800,#e2d0a8 12px);padding-bottom:4px}.pcsave .row{justify-content:flex-end;gap:8px}
+.pcwarn{margin:0;display:flex;gap:6px;align-items:flex-start;color:var(--blood);font-size:.85rem;font-weight:700}.pcwarn .uic{width:16px;height:16px;flex:none;margin-top:2px}
+.pcic.lkd,.pcfr.lkd,.pcbg.lkd{cursor:pointer}
+@media (prefers-reduced-motion:reduce){.pcsp{opacity:.8}}
+
+/* coffre des reliques */
+.chestm{position:fixed;inset:0;box-sizing:border-box;z-index:75;display:grid;place-items:center;background:#000b;padding:16px}.chestm>.box{position:relative;margin:0;max-height:100%;overflow:auto;text-align:center;color:var(--fg);background:var(--paper);border:1px solid #1d1209;border-radius:6px;padding:22px 20px;box-shadow:0 18px 40px #000c,inset 0 0 40px #7a521f55;outline:1px dashed var(--stitch);outline-offset:-7px}.chask{text-align:center;max-width:420px}.chask p{margin:6px 0 14px}.chask .row{justify-content:center;gap:8px}
+.chico{display:inline-grid;place-items:center;width:84px;height:84px;border-radius:50%;background:radial-gradient(circle,#5a3a20,#140b05 75%);box-shadow:0 0 24px #e8c25a66}.chico svg{width:56px;height:56px}.chico.sm{width:40px;height:40px}.chico.sm svg{width:28px;height:28px}
+.chdrop{display:flex;align-items:center;justify-content:center;gap:10px;margin:8px 0;padding:8px;border-radius:12px;border:1px solid #e8c25a;background:#e8c25a22;color:#b0801a}
+.chopen{width:min(860px,94vw);text-align:center}
+.chwin{position:relative;height:150px;margin:14px 0;border-radius:12px;overflow:hidden;background:linear-gradient(90deg,#000 0,#1c1009 15%,#1c1009 85%,#000 100%);border:2px solid #8a6a44}
+.chstrip{display:flex;gap:10px;padding:12px 0 0 0;will-change:transform}
+.chtile{flex:none;width:118px;height:124px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;border-radius:10px;background:linear-gradient(#2c1d10,#170d06);border-bottom:5px solid var(--rc);color:#f1e2bd;text-align:center}
+.chtile b{font-size:.85rem;line-height:1.1}.chtile small{color:var(--rc);font-weight:700;font-size:.72rem;text-transform:uppercase;letter-spacing:.05em}
+.chsw{width:54px!important;height:54px!important;border-width:6px!important;pointer-events:none}
+.chtile.hl{box-shadow:0 0 0 3px var(--rc),0 0 30px var(--rc);transform:scale(1.05);transition:.3s}
+.chmark{position:absolute;left:50%;top:0;bottom:0;width:3px;translate:-50% 0;background:#ffd36a;box-shadow:0 0 12px #ffd36a}.chmark::before,.chmark::after{content:'';position:absolute;left:50%;translate:-50% 0;border:9px solid transparent}.chmark::before{top:0;border-top-color:#ffd36a}.chmark::after{bottom:0;border-bottom-color:#ffd36a}
+.chres{min-height:120px}.chres h3{margin:2px 0 6px;font-size:1.5rem}.chres .row{justify-content:center;gap:8px;margin-top:8px}.chrar{margin:0;font-weight:800;text-transform:uppercase;letter-spacing:.1em}
+
+.aminfo.rd .mprew{gap:2px 6px}.aminfo.rd .mprew .mc{font-size:.85rem}.aminfo.rd .amnote{font-size:.8rem;line-height:1.25}.aminfo.rd .mpchips span{font-size:.7rem}.aminfo.rd .ambody h4{margin:3px 0 2px}.aminfo.rd .mpst{margin-top:2px;font-size:.84rem}.aminfo.rd .amfight{position:static;margin-bottom:0;padding-top:6px;background:none}.chrw{border:1px dashed #c99a3a;border-radius:10px;padding:0 6px;cursor:help}.dbggive{grid-column:1/-1}.dbggive h2{display:flex;align-items:center;gap:8px}
+.dgrow{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-top:8px}.dgrow>b{width:100px}.dgrow select{width:auto;min-width:150px}.dgrow input.num{width:80px}
+.dgl{display:inline-flex;align-items:center;gap:4px;font-weight:700}.dgl input{width:64px!important}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 @media (min-width:760px){.arena{grid-template-columns:1fr 1fr}}
 </style>
@@ -1534,6 +1601,9 @@ const MI={
   rune:'<path d="M7 3h10l3 4-1 12-3 2H8l-3-2-1-12z" fill="#857a6a" stroke="#352e25" stroke-width="1.2" stroke-linejoin="round"/><path d="M12 7v10M9 10l3-3 3 3M9.2 15.2l5.6-3" stroke="#f6c64f" stroke-width="1.7" fill="none" stroke-linecap="round" stroke-linejoin="round"/>',
 };
 for(const [k,p] of Object.entries(POTS)){MAT_OBJ[k]=p.n;MAT_N[k]=p.n;MAT_D[k]=p.d;MI[k]=`<path d="M9.5 2h5v2.4h-5z" fill="#8a5a2b" stroke="#4a2c10" stroke-width=".9"/><path d="M10 4.4h4v3.4c3 1.1 5 3.9 5 7.2a7 7 0 0 1-14 0c0-3.3 2-6.1 5-7.2z" fill="#efe6d6" stroke="#3a2616" stroke-width="1.1" stroke-linejoin="round"/><path d="M6.2 13.5h11.6a5.9 5.9 0 0 1-11.6 0z" fill="${p.c}"/><circle cx="9.5" cy="11.3" r="1" fill="#fff" opacity=".8"/>`}
+MAT_OBJ.c_relic='Coffre des Reliques';MAT_N.c_relic='Coffre des Reliques';
+MAT_D.c_relic='Un coffre scellé arraché aux boss de raid, orné de runes anciennes. Il renferme une relique cosmétique pour votre carte de joueur. Obtenu rarement en réussissant un raid : 1 % au palier +0, puis +0,5 % par palier (10 % maximum). Clic droit pour l’ouvrir.';
+MI.c_relic='<path d="M3 10h18v9a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1z" fill="#6b3a1c" stroke="#2a1408" stroke-width="1.2"/><path d="M3 10c0-4 3.5-6 9-6s9 2 9 6z" fill="#8a4c22" stroke="#2a1408" stroke-width="1.2"/><path d="M3 10h18M7 5.5V20M17 5.5V20" stroke="#e8c25a" stroke-width="1.6"/><rect x="10" y="9" width="4" height="5" rx="1" fill="#e8c25a" stroke="#6e4a0c" stroke-width=".8"/><circle cx="12" cy="11.5" r=".9" fill="#2a1408"/><path d="M5 3l.6 1.4L7 5l-1.4.6L5 7l-.6-1.4L3 5l1.4-.6zM19.5 2l.5 1 1 .5-1 .5-.5 1-.5-1-1-.5 1-.5z" fill="#fff6c8"/>';
 const matIcon=k=>`<svg class="mi" viewBox="0 0 24 24" aria-hidden="true">${MI[k]||''}</svg>`;
 const matChip=(k,v)=>`<span class="mc" title="${MAT_N[k]}">+${fmt(v)} ${matIcon(k)}<span class="sr">${MAT_N[k]}</span></span>`;
 
@@ -1710,7 +1780,7 @@ const lsDel=k=>{try{localStorage.removeItem(k)}catch(e){}};
 function saveAcc(){ACC.ts=Date.now(); lsSet(ACC_KEY,JSON.stringify(ACC)); cloudSoon()}
 function save(){
   if(!S||!S.heroes||!S.heroes.length||ACC.cur==null) return;
-  ACC.gold=S.gold; lsSet(CHAR_KEY(ACC.cur),JSON.stringify(S)); saveAcc(); trophyCheck(); pcUnlockSync();
+  ACC.gold=S.gold; lsSet(CHAR_KEY(ACC.cur),JSON.stringify(S)); saveAcc(); trophyCheck(); pcUnlockSync(); chestFlush();
 }
 function loadAcc(){
   const raw=lsGet(ACC_KEY);
@@ -3101,19 +3171,19 @@ function rdFinish(m){
   setTimeout(()=>{
     const w=$('#raid'); if(w) w.remove(); RD.match=null; RD.gone[m.id]=1;
     if(win&&r&&rdCount(m,true)){
-      const rw=rdRw(r,m.tier||0); gain(rw); S.raid=S.raid||{}; let up=false;
+      const rw=rdRw(r,m.tier||0); gain(rw); S.raid=S.raid||{}; let up=false; const chest=Math.random()*100<chestRate(m.tier||0); if(chest) chestGive(1);
       if((m.tier||0)>=raidMax(r.id)){ S.raid[r.id]=(m.tier||0)+1; up=true; if(UI.raidB!=null&&RAIDS[UI.raidB]&&RAIDS[UI.raidB].id===r.id) UI.raidT=S.raid[r.id] }
-      save(); renderHeader(); rdLoot(m,r,rw,up);
+      save(); renderHeader(); rdLoot(m,r,rw,up,chest);
     } else if(!win){ rdCount(m,false); toast('Le raid a échoué.') }
     setTimeout(()=>rdCol().doc(m.id).delete().catch(()=>{}),8000);
     if(UI.tab==='combat'&&!UI.scr) render();
   },3200);
 }
-function rdLoot(m,r,rw,up){
+function rdLoot(m,r,rw,up,chest){
   const d=document.createElement('div'); d.className='modal'; d.id='rdloot';
   d.innerHTML=`<div class="box loot"><h2>Raid réussi !</h2><p><b>${esc(r.n)}</b> · palier +${m.tier||0}</p><div class="lootg">${matIcon('gold')}<b>+${fmt(rw.gold)}</b> or</div>
     <p class="num">${Object.entries(rw).filter(([k])=>k!=='gold').map(([k,v])=>matChip(k,v)).join(' ')}</p>
-    ${up?`<p class="lvup">✦ Palier +${(m.tier||0)+1} débloqué pour ce boss !</p>`:''}<div class="row"><button class="btn pri" data-act="rdLootOk">Récupérer</button></div></div>`;
+    ${up?`<p class="lvup">✦ Palier +${(m.tier||0)+1} débloqué pour ce boss !</p>`:''}${chest?`<div class="chdrop"><span class="chico sm">${matSvg('c_relic')}</span><b>Butin rare : ${CHEST_N} !</b></div>`:''}<div class="row"><button class="btn pri" data-act="rdLootOk">Récupérer</button></div></div>`;
   document.body.append(d); d.querySelector('button').focus();
 }
 function rdTimer(){
@@ -3505,7 +3575,7 @@ function viewRaidMap(){
      <h4>Résistances</h4><div class="mpchips">${resl}</div>
      <h4>Compétences</h4><div class="mpchips skl">${r.sk.map(id=>`<span>${esc(SK[id].n)}</span>`).join('')}</div>
      <h4>Palier <small class="mute">+5 % par palier · rage au tour ${RD_RAGE+1}</small></h4><div class="mptier">${tiers}</div>
-     <div class="amfight"><div class="mprew"><b>Récompenses</b>${matChip('gold',rw.gold)}${Object.entries(rw).filter(([k])=>k!=='gold').map(([k,v])=>matChip(k,v)).join('')}</div>${act}<small class="mute">Bilan : <b>${R0.w}</b> raid${R0.w>1?'s':''} réussi${R0.w>1?'s':''} · <b>${R0.l}</b> échec${R0.l>1?'s':''}</small></div></div></aside></div>`;
+     <div class="amfight"><div class="mprew"><b>Récompenses</b>${matChip('gold',rw.gold)}${Object.entries(rw).filter(([k])=>k!=='gold').map(([k,v])=>matChip(k,v)).join('')}<span class="mc chrw" data-tip="rw:chest">${matIcon('c_relic')} <span class="num">${String(chestRate(t)).replace('.',',')} %</span></span></div>${act}<small class="mute">Bilan : <b>${R0.w}</b> raid${R0.w>1?'s':''} réussi${R0.w>1?'s':''} · <b>${R0.l}</b> échec${R0.l>1?'s':''}</small></div></div></aside></div>`;
 }
 
 /* ================= Trophées ================= */
@@ -3584,7 +3654,12 @@ function viewTroph(){
     <div class="mtgrid">${L.map(trCard).join('')||'<p class="mtempty dark">Aucun trophée dans cette liste.</p>'}</div></section></div>`;
 }
 /* ================= Carte de joueur ================= */
-const PC_FR=[['Or','#d8b066',0],['Argent','#c0c6cf',0],['Azur','#7fb4ff',50],['Améthyste','#b07ad8',150],['Émeraude','#8fdc6a',300],['Braise','#ff7a5a',500]];
+const PC_FR=[['Or','#d8b066',0],['Argent','#c0c6cf',0],['Azur','#7fb4ff',50],['Améthyste','#b07ad8',150],['Émeraude','#8fdc6a',300],['Braise','#ff7a5a',500],
+ ['Or royal · Reflet balayant','#e8c25a',null,'sweep','#fff6c8'],['Saphir · Halo tournant','#5fb4ff',null,'halo','#e6f6ff'],['Améthyste · Étincelles','#c58bff',null,'spark','#ffffff'],['Braise vivante','#ff6a3a',null,'pulse','#ffd2a0'],['Prisme holographique','#7fe0d0',null,'holo','#ffffff']];
+const pcFrOk=i=>{const F=PC_FR[i]; if(!F) return false; return F[2]==null?!!(ACC.cos&&ACC.cos['fr'+i]):trPts()>=F[2]};
+const pcFr=i=>PC_FR[i]||PC_FR[0];
+const pcFxAttr=d=>{const F=pcFr(d.fr);return `style="--fr:${F[1]};--fl:${F[4]||F[1]}" data-fx="${F[3]||''}"`};
+const PC_SPK='<i class="pcsp s1"></i><i class="pcsp s2"></i><i class="pcsp s3"></i><i class="pcsp s4"></i><i class="pcsp s5"></i>';
 const PC_ICONS=[['c:guerrier',0],['c:mage',0],['i:swords',0],['i:shield',0],['i:star',50],['i:trophy',150]];
 const PC_BG=[[0,'Forêt des Murmures',()=>1],[1,'Catacombes oubliées',()=>bossK('normal',0)],[2,'Marais putride',()=>bossK('normal',1)],[3,'Pic de Cendre',()=>bossK('normal',2)],[4,'Abysses du Néant',()=>bossK('normal',3)],[5,'Glaces éternelles',()=>Object.values(S.raid||{}).some(v=>v>0)],[6,'Arène',()=>trGot('p_d1')]];
 const pcDef=()=>Object.assign({icon:'c:'+(S&&S.heroes[0]?S.heroes[0].cls:'guerrier'),fr:0,bg:3,title:null,show:[]},ACC.card||{});
@@ -3595,15 +3670,13 @@ function cardMine(){
 const pcIcon=(ic,s)=>{ic=ic||'c:guerrier';return ic.startsWith('c:')&&PORTRAIT[ic.slice(2)]?`<img src="${PORTRAIT[ic.slice(2)]}" width="${s}" height="${s}" alt="" class="mpport">`:`<span class="mpunk pcemb" style="width:${s}px;height:${s}px">${uic(UIC[ic.slice(2)]?ic.slice(2):'star')}</span>`};
 const pcPort=(cls,s)=>PORTRAIT[cls]?`<img src="${PORTRAIT[cls]}" width="${s}" height="${s}" alt="" class="mpport">`:`<span class="mpunk" style="width:${s}px;height:${s}px"></span>`;
 function cardColl(d,id='me'){ /* carte de collection : amis */
-  const fr=(PC_FR[d.fr]||PC_FR[0])[1];
-  return `<article class="pc1" style="--fr:${fr}"><div class="pc1bg">${zoneScene(d.bg??3,'pc'+id)}</div><div class="pc1top">${pcIcon(d.icon,96)}<b>${esc(d.name)}</b>${d.title?`<small class="pc1t">« ${esc(d.title)} »</small>`:''}</div>
+  return `<article class="pc1 ${pcFr(d.fr)[3]?'pcfx':''}" ${pcFxAttr(d)}><div class="pc1bg">${zoneScene(d.bg??3,'pc'+id)}</div><div class="pc1top">${pcFr(d.fr)[3]==='spark'?PC_SPK:''}${pcIcon(d.icon,96)}<b>${esc(d.name)}</b>${d.title?`<small class="pc1t">« ${esc(d.title)} »</small>`:''}</div>
    <div class="pc1pts">${uic('trophy')}<b class="num">${fmt(d.pts||0)}</b><small>points de trophées</small></div>
    ${(d.show||[]).length?`<div class="pc1show">${d.show.map(i=>TRK[i]?`<span class="mtti sm ${trTier(TRK[i])}" title="${esc(TRK[i].n)}">${uic(trIc(TRK[i]))}</span>`:'').join('')}</div>`:''}
    <ul class="pc1ch">${(d.chars||[]).map(c=>`<li>${pcPort(c.cls,34)}<span><b>${esc(c.n)}</b><small>${(CLASSES[c.cls]||{n:''}).n}</small></span><em class="num">Niv ${c.lvl}</em></li>`).join('')||'<li class="mute">Aucun personnage.</li>'}</ul></article>`;
 }
 function cardBanner(d,id='meb',rank){ /* bannière : classement */
-  const fr=(PC_FR[d.fr]||PC_FR[0])[1];
-  return `<article class="pc2" style="--fr:${fr}"><div class="pc2bg">${zoneScene(d.bg??3,'pb'+id)}</div>${rank?`<span class="pc2rk num">${rank}</span>`:''}<div class="pc2l">${pcIcon(d.icon,96)}</div><div class="pc2m"><small>Joueur</small><b>${esc(d.name)}</b>${d.title?`<span class="pc1t">« ${esc(d.title)} »</span>`:''}<div class="pc2pts">${uic('trophy')}<b class="num">${fmt(d.pts||0)}</b> points de trophées</div></div>
+  return `<article class="pc2 ${pcFr(d.fr)[3]?'pcfx':''}" ${pcFxAttr(d)}>${pcFr(d.fr)[3]==='spark'?PC_SPK:''}<div class="pc2bg">${zoneScene(d.bg??3,'pb'+id)}</div>${rank?`<span class="pc2rk num">${rank}</span>`:''}<div class="pc2l">${pcIcon(d.icon,96)}</div><div class="pc2m"><small>Joueur</small><b>${esc(d.name)}</b>${d.title?`<span class="pc1t">« ${esc(d.title)} »</span>`:''}<div class="pc2pts">${uic('trophy')}<b class="num">${fmt(d.pts||0)}</b> points de trophées</div></div>
    <div class="pc2r">${(d.chars||[]).slice(0,3).map(c=>`<div class="pc2c">${pcPort(c.cls,48)}<b>${esc(c.n)}</b><small>${(CLASSES[c.cls]||{n:''}).n} · niv ${c.lvl}</small></div>`).join('')}</div></article>`;
 }
 function openCard(d,extra=''){
@@ -3625,19 +3698,22 @@ function viewComm(){
     <p class="amnote mute" style="margin-top:auto">Classement et Guilde : arrive dans une prochaine mise à jour.</p><p class="amnote mute">La liste d’amis s’ouvre avec le bouton rond à côté du sac.</p></div></aside>`;
   let main;
   if(tab==='custom'){
-    const c=pcDef(),opt=(t,h)=>`<h4>${t}</h4><div class="pcopt">${h}</div>`;
-    const icons=PC_ICONS.map(([ic,need],i)=>{const lk=pts<need;return `<button class="pcic ${c.icon===ic?'on':''} ${lk?'lkd':''}" data-tip="pc:icon:${i}" ${lk?`aria-disabled="true" data-act="pcLocked"`:`data-act="pcSet" data-k="icon" data-v="${ic}"`} aria-pressed="${c.icon===ic}">${pcIcon(ic,46)}${lk?`<span class="pclk">${uic('lock')}</span>`:''}</button>`}).join('');
-    const frs=PC_FR.map(([n,col,need],i)=>{const lk=pts<need;return `<button class="pcfr ${c.fr===i?'on':''} ${lk?'lkd':''}" style="--c:${col}" data-tip="pc:fr:${i}" ${lk?`aria-disabled="true" data-act="pcLocked"`:`data-act="pcSet" data-k="fr" data-v="${i}"`} aria-label="Cadre ${n}">${lk?uic('lock'):''}</button>`}).join('');
-    const bgs=PC_BG.map(([i,n,ok])=>{const lk=!ok();return `<button class="pcbg ${c.bg===i?'on':''} ${lk?'lkd':''}" data-tip="pc:bg:${i}" aria-label="Fond ${n}" ${lk?`aria-disabled="true" data-act="pcLocked"`:`data-act="pcSet" data-k="bg" data-v="${i}"`}>${zoneScene(i,'o'+i)}${lk?`<span class="pclk">${uic('lock')}</span>`:''}</button>`}).join('');
-    const titles=TROPHIES.filter(t=>t.t&&trGot(t.id));
+    const c=pcDraft(),lk=pcLockedSel(c),dirty=JSON.stringify(c)!==JSON.stringify(pcClean(pcDef()));
+    const tB=c.title&&TRK[c.title]?TRK[c.title].n:null;
+    const pd=Object.assign({},d,{icon:c.icon,fr:c.fr,bg:c.bg,title:tB,show:(c.show||[]).filter(id=>TRK[id]).slice(0,3)});
+    const icons=PC_ICONS.map(([ic,need],i)=>{const l=pts<need;return `<button class="pcic ${c.icon===ic?'on':''} ${l?'lkd':''}" data-tip="pc:icon:${i}" data-act="pcSet" data-k="icon" data-v="${ic}" aria-pressed="${c.icon===ic}">${pcIcon(ic,46)}${l?`<span class="pclk">${uic('lock')}</span>`:''}</button>`}).join('');
+    const frs=PC_FR.map(([n,col,need,fx,lt],i)=>{const l=!pcFrOk(i);return `<button class="pcfr ${fx?'fxs':''} ${c.fr===i?'on':''} ${l?'lkd':''}" style="--c:${col};--fr:${col};--fl:${lt||col}" data-fx="${fx||''}" data-tip="pc:fr:${i}" data-act="pcSet" data-k="fr" data-v="${i}" aria-label="Cadre ${n}" aria-pressed="${c.fr===i}">${l?uic('lock'):''}</button>`}).join('');
+    const bgs=PC_BG.map(([i,n,ok])=>{const l=!ok();return `<button class="pcbg ${c.bg===i?'on':''} ${l?'lkd':''}" data-tip="pc:bg:${i}" aria-label="Fond ${n}" data-act="pcSet" data-k="bg" data-v="${i}" aria-pressed="${c.bg===i}">${zoneScene(i,'o'+i)}${l?`<span class="pclk">${uic('lock')}</span>`:''}</button>`}).join('');
+    const titles=TROPHIES.filter(t=>t.t);
     const got=TROPHIES.filter(t=>trGot(t.id));
-    main=`<div class="mtcm2"><div class="mtcmc">${cardColl(d,'cus')}</div><div class="aminfo maside"><div class="ambody">
+    main=`<div class="mtcm2"><div class="mtcmc pcprev"><small class="pcprevl">Aperçu${dirty?' · non enregistré':''}</small>${cardColl(pd,'cus')}<small class="pcprevl">Bannière du classement</small><div class="pcbanw">${cardBanner(pd,'cusb')}</div></div><div class="aminfo maside"><div class="ambody">
       <h4>Icône</h4><div class="pcopt">${icons}</div>
       <h4>Cadre</h4><div class="pcopt">${frs}</div>
       <h4>Fond</h4><div class="pcopt">${bgs}</div>
-      <h4>Titre</h4><select class="pcsel" id="pctitle" aria-label="Titre"><option value="">Aucun titre</option>${titles.map(t=>`<option value="${t.id}" ${c.title===t.id?'selected':''}>${esc(t.n)}</option>`).join('')}</select><small class="mute">${titles.length?'':'Les titres se débloquent avec les trophées marqués « Titre ».'}${c.title&&trGot(c.title)?`Titre obtenu avec le trophée « ${esc(TRK[c.title].n)} » le ${new Date(ACC.troph[c.title]).toLocaleDateString('fr-FR')}.`:''}</small>
+      <h4>Titre</h4><select class="pcsel" id="pctitle" aria-label="Titre"><option value="">Aucun titre</option>${titles.map(t=>`<option value="${t.id}" ${c.title===t.id?'selected':''}>${trGot(t.id)?'':'🔒 '}${esc(t.n)}</option>`).join('')}</select><small class="mute">${c.title&&TRK[c.title]?(trGot(c.title)?`Titre obtenu avec le trophée « ${esc(TRK[c.title].n)} » le ${new Date(ACC.troph[c.title]).toLocaleDateString('fr-FR')}.`:`Verrouillé : obtenez le trophée « ${esc(TRK[c.title].n)} » (${esc(TRK[c.title].d)})`):'Les titres se débloquent avec les trophées marqués « Titre ».'}</small>
       <h4>Trophées affichés <small class="mute">${(c.show||[]).length} / 3</small></h4><div class="pcopt">${got.length?got.map(t=>`<button class="pcts ${(c.show||[]).includes(t.id)?'on':''}" data-act="pcShow" data-id="${t.id}" data-tip="pc:tr:${t.id}" aria-pressed="${(c.show||[]).includes(t.id)}"><span class="mtti sm ${trTier(t)}">${uic(trIc(t))}</span></button>`).join(''):'<small class="mute">Obtenez des trophées pour les afficher sur votre carte.</small>'}</div>
-      <p class="amnote mute" style="margin-top:auto">Les modifications sont enregistrées tout de suite et visibles par vos amis.</p></div></div></div>`;
+      <div class="pcsave">${lk.length?`<p class="pcwarn">${uic('lock')} Non débloqué : ${lk.map(esc).join(', ')}. Choisissez un élément débloqué pour enregistrer.</p>`:''}
+       <div class="row"><button class="btn" data-act="pcReset" ${dirty?'':'disabled'}>Annuler</button><button class="btn pri" data-act="pcConfirm" ${dirty&&!lk.length?'':'disabled'}>Confirmer</button></div></div></div></div></div>`;
   } else {
     main=`<div class="pcview">${cardColl(d,'v')}<h4>Aperçu dans le classement</h4>${cardBanner(d)}<p class="amnote mute">Votre carte s’affiche quand un joueur clique sur votre nom dans sa liste d’amis, puis sur « Carte ». La bannière sera utilisée dans le classement.</p></div>`;
   }
@@ -3667,6 +3743,7 @@ function pcTip(k){
   if(kind==='icon'){ const [ic,need]=PC_ICONS[+id],n=ic.startsWith('c:')?`Portrait : ${CLASSES[ic.slice(2)].n}`:`Emblème : ${({swords:'Lames croisées',shield:'Bouclier',star:'Étoile',trophy:'Trophée'})[ic.slice(2)]||ic.slice(2)}`;
     if(!need) return start(n); return pts>=need?ok(n,U['icon'+id],`Obtenu en atteignant ${need} points de trophées.`):no(n,`Atteignez ${need} points de trophées (vous en avez ${pts}).`) }
   if(kind==='fr'){ const [n,,need]=PC_FR[+id];
+    if(need==null){ const ts=ACC.cos&&ACC.cos['fr'+id]; return ts?ok('Cadre '+n,ts,`Trouvé dans un ${CHEST_N}.`):no('Cadre '+n,`Relique rare : se trouve dans les Coffres des Reliques, récompense rare des raids.`) }
     if(!need) return start('Cadre '+n); return pts>=need?ok('Cadre '+n,U['fr'+id],`Obtenu en atteignant ${need} points de trophées.`):no('Cadre '+n,`Atteignez ${need} points de trophées (vous en avez ${pts}).`) }
   if(kind==='bg'){ const B=PC_BG.find(x=>x[0]===+id); if(!B) return ''; const [i,n,cond]=B;
     if(!i) return start('Fond : '+n); return cond()?ok('Fond : '+n,U['bg'+i],'Obtenu : '+PC_BGHOW[i].replace(/^./,c=>c.toLowerCase())):no('Fond : '+n,'Pour le débloquer : '+PC_BGHOW[i].replace(/^./,c=>c.toLowerCase())) }
@@ -3674,10 +3751,58 @@ function pcTip(k){
   return '';
 }
 
+/* brouillon de personnalisation */
+const pcClean=c=>({icon:c.icon,fr:+c.fr||0,bg:+c.bg||0,title:c.title||null,show:[...(c.show||[])]});
+function pcDraft(){ if(!UI.pcDraft) UI.pcDraft=pcClean(pcDef()); return UI.pcDraft }
+function pcLockedSel(c){
+  const pts=trPts(),L=[]; const ic=PC_ICONS.find(x=>x[0]===c.icon); if(ic&&pts<ic[1]) L.push('icône');
+  const F=pcFr(c.fr); if(!pcFrOk(+c.fr||0)) L.push('cadre '+F[0]);
+  const B=PC_BG.find(x=>x[0]===c.bg); if(B&&!B[2]()) L.push('fond '+B[1]);
+  if(c.title&&!trGot(c.title)) L.push('titre « '+(TRK[c.title]?TRK[c.title].n:'')+' »');
+  return L;
+}
+
+/* ================= Coffre des Reliques (raids) ================= */
+const CHEST_K='c_relic',CHEST_N='Coffre des Reliques';
+const chestRate=t=>Math.min(10,1+0.5*(t||0)); /* % par victoire de raid */
+const CHEST_LOOT=[{fr:6,w:38,r:'Commun',c:'#b9b3a6',dup:2000},{fr:7,w:27,r:'Peu commun',c:'#5fb4ff',dup:3000},{fr:8,w:20,r:'Rare',c:'#c58bff',dup:5000},{fr:9,w:11,r:'Épique',c:'#ff6a3a',dup:8000},{fr:10,w:4,r:'Légendaire',c:'#ffd36a',dup:15000}];
+function chestRoll(){ let x=Math.random()*CHEST_LOOT.reduce((a,l)=>a+l.w,0); for(const l of CHEST_LOOT){ if((x-=l.w)<0) return l } return CHEST_LOOT[0] }
+function chestGive(n=1){
+  let left=bagAddMat(S.bag,CHEST_K,n);
+  if(left>0){ const tabs=mlPlace({[CHEST_K]:left}); if(tabs){ for(const t of tabs) t.T.bag=t.bag; left=0; saveAcc(); toast('Sac plein : le '+CHEST_N+' a été placé dans le coffre du compte.') } }
+  if(left>0){ ACC.chestQ=(ACC.chestQ||0)+left; saveAcc(); toast('Sac et coffre du compte pleins : le '+CHEST_N+' vous attend, libérez une case.') }
+  markNew(); save();
+}
+function chestFlush(){ if(!(ACC.chestQ>0)||!S||!S.bag) return; const q=ACC.chestQ; ACC.chestQ=0; const left=bagAddMat(S.bag,CHEST_K,q); ACC.chestQ=left; if(left<q){ markNew(); toast(`${q-left} ${CHEST_N}${q-left>1?'s':''} ajouté${q-left>1?'s':''} au sac.`) } }
+function chestAsk(){
+  closeChest(); const w=document.createElement('div'); w.id='chestw'; w.className='chestm'; w.setAttribute('role','dialog'); w.setAttribute('aria-modal','true');
+  w.innerHTML=`<div class="box chask"><span class="chico">${matSvg(CHEST_K)}</span><h2>Ouvrir le ${CHEST_N} ?</h2><p>Le coffre sera consommé et révélera une relique cosmétique.</p><div class="row"><button class="btn" data-act="chestNo">Annuler</button><button class="btn pri" data-act="chestOpen">Ouvrir</button></div></div>`;
+  document.body.append(w); w.querySelector('[data-act=chestOpen]').focus();
+}
+function closeChest(){ const w=$('#chestw'); if(w) w.remove() }
+function chestTile(l,win){ const F=PC_FR[l.fr]; return `<div class="chtile ${win?'win':''}" style="--rc:${l.c}"><span class="pcfr fxs chsw" style="--c:${F[1]};--fr:${F[1]};--fl:${F[4]}" data-fx="${F[3]}"></span><b>${esc(F[0].split(' · ')[0])}</b><small>${l.r}</small></div>` }
+function chestOpen(){
+  if(matCount(CHEST_K)<1){ closeChest(); return }
+  removeMat(CHEST_K,1);
+  const l=chestRoll(),key='fr'+l.fr; ACC.cos=ACC.cos||{}; const dup=!!ACC.cos[key];
+  if(dup) S.gold+=l.dup; else ACC.cos[key]=Date.now();
+  saveAcc(); save();
+  const N=56,W=50,strip=Array.from({length:N},(_,i)=>i===W?l:chestRoll());
+  const w=$('#chestw'); w.innerHTML=`<div class="box chopen"><h2>${CHEST_N}</h2><div class="chwin"><div class="chstrip">${strip.map((x,i)=>chestTile(x,i===W)).join('')}</div><i class="chmark"></i></div><div class="chres" aria-live="polite"></div></div>`;
+  const st=w.querySelector('.chstrip'),win=w.querySelector('.chwin'),tw=st.children[0].offsetWidth+10;
+  const target=W*tw+tw/2-win.clientWidth/2+(Math.random()-.5)*(tw*.7);
+  const quick=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  requestAnimationFrame(()=>{ st.style.transition=`transform ${quick?0.3:6.2}s cubic-bezier(.08,.75,.18,1)`; st.style.transform=`translateX(${-target}px)` });
+  let fired=false; const done=()=>{ if(fired||!$('#chestw')) return; fired=true; const F=PC_FR[l.fr]; st.children[W].classList.add('hl');
+    w.querySelector('.chres').innerHTML=`<p class="chrar" style="color:${l.c}">${l.r}</p><h3>Cadre ${esc(F[0])}</h3>${dup?`<p>Déjà possédé : converti en <b>${fmt(l.dup)} or</b>.</p>`:'<p>Nouveau cadre débloqué ! Équipez-le dans Communauté → Personnalisation.</p>'}<div class="row">${matCount(CHEST_K)?`<button class="btn" data-act="chestAgain">Ouvrir un autre (${matCount(CHEST_K)})</button>`:''}${dup?'':`<button class="btn" data-act="chestGo">Personnaliser</button>`}<button class="btn pri" data-act="chestNo">Fermer</button></div>`;
+    render(); };
+  st.addEventListener('transitionend',done,{once:true}); setTimeout(done,quick?600:6600);
+}
+
 /* ================= Messagerie du compte ================= */
 Object.assign(UIC,{mail:'<rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3.5 6.5 12 13l8.5-6.5"/>',gift:'<rect x="3" y="9" width="18" height="12" rx="1"/><path d="M3 13h18M12 9v12"/><path d="M12 9C10 5 6 5 6.5 7.5S12 9 12 9s4.5-1 5.5-1.5S14 5 12 9z"/>',warn:'<path d="M12 3 2 20h20z"/><path d="M12 10v4M12 17v.5"/>',info:'<circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7.5v.5"/>',send:'<path d="M3 11 21 3l-6 18-3-8z"/><path d="m12 13 9-10"/>',trash:'<path d="M4 7h16M9 7V4h6v3M6 7l1 13h10l1-13"/>'});
 const ML_K={info:['#3f7fe0','Information','info'],warn:['#c0432a','Alerte','warn'],gift:['#c99a3a','Cadeau','gift']};
-const ML_ATT=['gold','fer','cuir','plante','cristal','essence','rune','prisme','p_vie','p_res','p_for','p_int','p_pa','p_xp','p_loot'];
+const ML_ATT=['gold','c_relic','fer','cuir','plante','cristal','essence','rune','prisme','p_vie','p_res','p_for','p_int','p_pa','p_xp','p_loot'];
 const ML={all:[],me:[],un:[],open:false,sel:null,adm:false,err:''};
 const mlCol=()=>FB.db.collection(COL('mail'));
 const mlSt=()=>{ACC.mail=ACC.mail||{read:{},got:{},del:{}}; for(const k of ['read','got','del']) ACC.mail[k]=ACC.mail[k]||{}; return ACC.mail};
@@ -4010,7 +4135,7 @@ function gridHTML(){
   return `<div class="bagwrap"><div class="bag ${UI.multi?'multi':''}" id="bag">${bg}${items}</div></div>`;
 }
 function matCard(c,foot=''){
-  return `<article class="it" style="--rc:var(--line2)"><header><b>${MAT_OBJ[c.mat]}</b><small>${POTS[c.mat]?'Potion':'Matériau'} · Pile ${c.n} / ${STACK}</small></header><ul><li>Total possédé : <b class="num">${fmt(matCount(c.mat))}</b></li><li class="imp">${MAT_D[c.mat]}</li></ul>${foot?`<div class="foot">${foot}</div>`:''}</article>`;
+  return `<article class="it" style="--rc:var(--line2)"><header><b>${MAT_OBJ[c.mat]}</b><small>${POTS[c.mat]?'Potion':c.mat==='c_relic'?'Coffre':'Matériau'} · Pile ${c.n} / ${STACK}</small></header><ul><li>Total possédé : <b class="num">${fmt(matCount(c.mat))}</b></li><li class="imp">${MAT_D[c.mat]}</li></ul>${foot?`<div class="foot">${foot}</div>`:''}</article>`;
 }
 function bagParts(){
   const h=S.heroes[0],st=heroStats(h),bs=heroStats(Object.assign({},h,{equip:{}})),used=BAG-freeCells(),so=UI.bagSort;
@@ -4200,6 +4325,7 @@ document.addEventListener('contextmenu',e=>{
   if(c&&UI.stashOpen&&$('#stash')){ e.preventDefault(); hideTip(); toStash(+c.dataset.i); return }
   if(!c&&!s) return; e.preventDefault(); hideTip();
   const it=c&&S.bag[+c.dataset.i]&&S.bag[+c.dataset.i].o;
+  if(it&&it.mat==='c_relic'){ chestAsk(); return }
   if(c&&UI.tab==='forge'){ if(it&&!it.mat){UI.fItem=it.id;UI.fMode='up';render()} return}
   if(c){ if(it&&!it.mat) equipFromCell(+c.dataset.i,targetSlot(S.heroes[0],it))}
   else if(UI.tab==='forge'){const it2=S.heroes[0].equip[s.dataset.slot]; if(it2){UI.fItem=it2.id;render()}}
@@ -4583,12 +4709,13 @@ function viewHelp(){
 const VERSION='0.3.3';
 const PATCH=[
  {v:'0.3.3',t:"Trophées et communauté",sec:[
+  ["Coffre des Reliques", ["Nouveau butin de raid : le Coffre des Reliques. Chaque raid réussi a une chance d’en donner un : 1 % au palier +0, +0,5 % par palier, jusqu’à 10 % (palier +18 et au-delà). Il arrive dans le sac (ou dans le coffre du compte si le sac est plein).", "Infobulle du coffre : description et chance d’obtention, sans révéler son contenu.", "Clic droit sur le coffre dans le sac : une fenêtre demande confirmation, puis un tirage animé fait défiler les reliques avant de s’arrêter sur la récompense.", "Chances par relique : Or royal 38 % (commun), Saphir 27 % (peu commun), Améthyste 20 % (rare), Braise vivante 11 % (épique), Prisme holographique 4 % (légendaire).", "Relique déjà possédée : convertie en or (2 000, 3 000, 5 000, 8 000 ou 15 000 selon la rareté).", "Les administrateurs peuvent aussi joindre des Coffres des Reliques aux messages système.","Le coffre apparaît dans la liste des récompenses de chaque boss de raid, avec sa chance au palier choisi et une infobulle."]],
   ["Messagerie", ["Nouvelle messagerie du compte : bouton rond avec une enveloppe à droite du portrait (en haut à gauche), avec le nombre de messages non lus.", "Les messages système de l’équipe (informations, alertes de maintenance, cadeaux et compensations) arrivent en direct, avec une notification. Ils peuvent être envoyés à tous les joueurs ou à un seul.", "Fenêtre en deux colonnes : la liste des messages (non lus en gras, icône cadeau s’il reste des pièces jointes) et le message ouvert.", "Pièces jointes : bouton « Récupérer » ou « Tout récupérer ». L’or s’ajoute à votre or ; les matériaux et potions vont dans le coffre du compte (tous onglets). S’il n’y a pas assez de place dans le coffre, un message l’indique et rien n’est récupéré.", "Chaque pièce jointe ne peut être récupérée qu’une fois par compte ; elle peut avoir une date d’expiration. Un message peut être supprimé une fois ses pièces jointes récupérées."]],
   ["Trophées", ["Nouveau bouton « Trophées » dans la barre du bas, avec un point rouge quand un trophée vient d’être obtenu.", "30 trophées répartis en 5 catégories : Aventure, Personnage, Amélioration, Collecte, Duel et raid. Chacun rapporte des points de trophées : 5 à 15 points (bronze), 15 à 49 points (argent), 50 points et plus (or), jusqu’à 100 points pour vaincre Le Dévoreur en difficulté Mythique.", "Page Trophées : à gauche le total de points, la progression et les catégories avec leur compteur ; à droite les 3 derniers trophées obtenus, puis la liste filtrable (Tous, Obtenus, À obtenir) avec la barre d’avancement et la date d’obtention.", "Les trophées sont liés au compte (tous les personnages y contribuent). Ceux déjà mérités avant cette version (niveaux, boss vaincus, zones ouvertes, raids, duels…) sont attribués automatiquement à la connexion.", "Une notification s’affiche à chaque trophée obtenu.", "Certains trophées débloquent un titre à afficher sur votre carte de joueur."]],
-  ["Communauté", ["La page Communauté a quatre onglets : Carte de joueur, Personnalisation, Classement et Guilde (ces deux derniers arrivent dans une prochaine mise à jour).", "Carte de joueur : votre carte (icône, nom, titre, points de trophées, 3 trophées mis en avant, personnages et leur niveau) et l’aperçu de la bannière qui servira au classement.", "Personnalisation : icône (portraits de classe ou emblèmes), cadre (Or et Argent, puis Azur à 50 points, Améthyste à 150, Émeraude à 300, Braise à 500), fond (débloqué en battant le boss de chaque zone, en réussissant un raid ou en gagnant un duel), titre et 3 trophées affichés. Aperçu en direct, enregistrement immédiat."]],
+  ["Communauté", ["La page Communauté a quatre onglets : Carte de joueur, Personnalisation, Classement et Guilde (ces deux derniers arrivent dans une prochaine mise à jour).", "Carte de joueur : votre carte (icône, nom, titre, points de trophées, 3 trophées mis en avant, personnages et leur niveau) et l’aperçu de la bannière qui servira au classement.", "Personnalisation : icône (portraits de classe ou emblèmes), cadre (Or et Argent, puis Azur à 50 points, Améthyste à 150, Émeraude à 300, Braise à 500), fond (débloqué en battant le boss de chaque zone, en réussissant un raid ou en gagnant un duel), titre et 3 trophées affichés. Aperçu en direct."]],
   ["Amis", ["La liste d’amis n’est plus dans Communauté : un bouton rond à côté du sac l’ouvre, avec le nombre d’amis connectés en vert et un point rouge pour les demandes et messages non lus.", "En cliquant sur le nom d’un ami, le nouveau bouton « Carte » affiche sa carte de joueur."]],
   ["Interface",["Barre du bas : Marchand, Amélioration, Collecte, Aventure (au centre), Communauté, Trophées et Quêtes (verrouillé, arrive dans une prochaine mise à jour). Les deux côtés ont maintenant trois boutons et le médaillon Aventure est centré.","En-tête plus aéré : plus d’espace au-dessus et au-dessous du titre et du portrait.","Le bouton de messagerie est aligné avec le cadre du personnage.","Les objets du coffre du compte sont comptés dans les quantités possédées (Forge, Marchand, coûts) et peuvent être dépensés directement : le sac est utilisé en premier, puis le coffre."]],
-  ["Personnalisation", ["Chaque icône, cadre, fond et trophée affiché a une infobulle : date et raison du déblocage, ou comment le débloquer.","L’onglet Carte de joueur affiche la carte au centre, sans fond, avec la bannière du classement centrée en dessous.","La carte d’un ami s’affiche seule au centre de l’écran ; un clic en dehors la ferme (plus de croix ni de boutons Duel et Chat)."]]
+  ["Personnalisation", ["5 nouveaux cadres animés (reliques), appliqués à la carte de joueur, à la bannière du classement et au contour de l’icône : Or royal (reflet balayant), Saphir (halo tournant), Améthyste (étincelles), Braise vivante (lueur pulsante) et Prisme holographique (arc-en-ciel). Ils s’obtiennent uniquement dans le Coffre des Reliques.","Contour de l’icône de la carte et de la bannière un peu plus fin.","Tous les éléments, même verrouillés, peuvent être sélectionnés pour un aperçu complet de la carte et de la bannière. Les changements ne sont enregistrés qu’avec le nouveau bouton « Confirmer » (« Annuler » revient à la carte actuelle) ; si un élément verrouillé est sélectionné, la confirmation est impossible et l’élément est indiqué.","Chaque icône, cadre, fond et trophée affiché a une infobulle : date et raison du déblocage, ou comment le débloquer.","L’onglet Carte de joueur affiche la carte au centre, sans fond, avec la bannière du classement centrée en dessous.","La carte d’un ami s’affiche seule au centre de l’écran ; un clic en dehors la ferme (plus de croix ni de boutons Duel et Chat)."]]
  ]},
  {v:'0.3.2',t:"Coffre du compte et nouvelle interface",sec:[
   ["Nouvelle interface", ["Le menu principal passe en bas de l’écran, avec des boutons illustrés : Marchand, Amélioration, Aventure (grand médaillon central), Collecte et Communauté.", "Le sac est un bouton rond en bas à droite (même effet que la touche I) ; un point rouge signale les nouveaux objets. L’Aide est un bouton rond en bas à gauche.", "Le Personnage s’ouvre en cliquant sur le portrait en haut à gauche (nom, classe, niveau et barre d’expérience).", "Communauté ouvre la liste d’amis et les messages (compte en ligne requis) ; un point rouge signale les demandes et messages non lus.", "Zone de jeu plus large (jusqu’à 1440 pixels au lieu de 1140) et en-tête plus compact pour limiter le défilement.", "Les composants et l’or restent affichés dans la fenêtre d’inventaire."]],
@@ -4708,6 +4835,19 @@ function adminPanel(){
   if(!FB.user) return '';
   return `<h3 style="margin:22px 0 4px">Administration</h3><section class="panel"><p class="hint" style="margin-bottom:8px">Identifiant de votre compte (UID) : <code class="uid">${esc(FB.user.uid)}</code> <button class="btn sm" data-act="copyUid">Copier</button></p>${FB.admin?'<button class="btn pri" data-act="scr" data-s="best">Ouvrir le Bestiaire</button> <small class="mute">Réglez les statistiques et les compétences des ennemis pour tous les joueurs.</small>':'<p class="hint" style="margin:0">Le Bestiaire est réservé aux administrateurs.</p>'}</section>`;
 }
+function dbgGive(ok){
+  if(!FB.admin) return `<section class="panel dbggive"><h2>Donner un objet</h2><p class="hint">Réservé aux administrateurs : connectez-vous avec un compte administrateur.</p></section>`;
+  const g=UI.dg=UI.dg||{k:'c_relic',n:1,slot:'weapon',rar:3,lvl:50,cls:'',up:0,fr:6};
+  const keys=[...MATS,'c_relic',...Object.keys(POTS)];
+  const opt=(v,t,sel)=>`<option value="${v}" ${String(sel)===String(v)?'selected':''}>${esc(t)}</option>`;
+  const dis=ok?'':'disabled';
+  return `<section class="panel dbggive"><h2>Donner un objet <small class="mlad">Admin</small></h2>
+   <div class="dgrow"><b>Ressource</b><select class="pcsel" data-dg="k">${keys.map(k=>opt(k,MAT_OBJ[k]||MAT_N[k]||k,g.k)).join('')}</select><input class="pcsel num" type="number" min="1" max="100000" data-dg="n" value="${g.n}" aria-label="Quantité"><button class="btn sm pri" data-act="dgMat" ${dis}>Donner</button></div>
+   <div class="dgrow"><b>Équipement</b><select class="pcsel" data-dg="slot">${ITEM_SLOTS.map(sl=>opt(sl,SLOT_N[sl],g.slot)).join('')}</select><select class="pcsel" data-dg="rar">${RAR.map((r,i)=>opt(i,r.n,g.rar)).join('')}</select><label class="dgl">Niv.<input class="pcsel num" type="number" min="1" max="60" data-dg="lvl" value="${g.lvl}"></label><label class="dgl">+<input class="pcsel num" type="number" min="0" max="10" data-dg="up" value="${g.up}"></label><select class="pcsel" data-dg="cls">${opt('','Classe du personnage',g.cls)}${Object.entries(CLASSES).map(([k,c])=>opt(k,c.n,g.cls)).join('')}</select><button class="btn sm pri" data-act="dgItem" ${dis}>Donner</button></div>
+   <div class="dgrow"><b>Relique</b><select class="pcsel" data-dg="fr">${PC_FR.map((F,i)=>F[2]==null?opt(i,'Cadre '+F[0],g.fr):'').join('')}</select><button class="btn sm pri" data-act="dgRelic" ${dis}>Débloquer</button><button class="btn sm" data-act="dgRelicAll" ${dis}>Toutes</button><button class="btn sm danger" data-act="dgRelicNone" ${dis}>Retirer les reliques</button></div>
+   <p class="hint" style="margin:6px 0 0">Les objets vont dans le sac du personnage chargé ; s’il est plein, dans le coffre du compte.</p></section>`;
+}
+function dgPut(att){ const left=bagAddMat(S.bag,Object.keys(att)[0],Object.values(att)[0]); if(left>0){ const t=mlPlace({[Object.keys(att)[0]]:left}); if(!t) return Object.values(att)[0]-left; for(const x of t) x.T.bag=x.bag; saveAcc() } return Object.values(att)[0] }
 function dbgPanel(){
   const ok=S&&S.heroes&&S.heroes.length,d=DBG(),h=ok&&S.heroes[0];
   const B=(k,t,cls='')=>`<button class="btn sm ${cls}" data-act="dbg" data-k="${k}" ${ok?'':'disabled'}>${t}</button>`;
@@ -4722,6 +4862,7 @@ function dbgPanel(){
         <div class="row" style="margin-top:8px">${B('unequip','Retirer tout l’équipement')}${B('advAll','Débloquer toute l’Aventure')}${B('advReset','Remettre l’Aventure à zéro')}</div></section>
       <section class="panel"><h2>Inventaire et forge</h2><div class="row">${B('itemRand','Objet divin aléatoire')}${B('itemSet','Équipement légendaire complet')}${B('bagClear','Vider l’inventaire')}</div></section>
       <section class="panel"><h2>Collecte</h2><div class="row">${B('harvest','Récoltes prêtes partout')}${B('zonesOpen','Ouvrir toutes les zones')}${B('treeMax','Arbres au maximum')}${B('treeReset','Arbres à zéro')}</div></section>
+      ${dbgGive(ok)}
       <section class="panel"><h2>Divers</h2><div class="row">${B('news','Revoir le point « Nouveautés »')}</div><div class="row" style="margin-top:10px">${rp}</div>
         ${UI.confirm==='dbgReset'?'<p class="hint" style="color:var(--blood);margin-top:6px">Niveau, compétences, équipement, inventaire, matériaux, collecte et Aventure seront remis à zéro. Le nom, la classe et l’or partagé sont conservés.</p>':''}</section>
     </div>`;
@@ -4817,6 +4958,7 @@ function bestRefreshStats(){
 
 /* ============ infobulle ============ */
 function tipHTML(k){
+  if(k==='rw:chest'){ const t=rdTier(); return `<article class="it" style="--rc:#c99a3a"><header><b>${CHEST_N}</b><small>Butin rare · ${String(chestRate(t)).replace('.',',')} % à ce palier</small></header><ul><li class="imp">${MAT_D.c_relic}</li></ul></article>` }
   if(k.startsWith('pc:')) return pcTip(k);
   const h=S.heroes[0];
   if(k.startsWith('pot:')){const q=k.slice(4),P=POTS[q]; if(!P) return '';
@@ -5126,6 +5268,20 @@ const A={
     try{ await pvpPropose(o,otherName(f),p&&p.char?p.char:null,'friend'); toast('Demande de duel envoyée à '+otherName(f)+'.') }catch(e){ toast('Impossible d’envoyer la demande ('+(e.code||'erreur')+').') } },
   advMode:d=>{UI.advMode=d.m; render()},
   invTog:()=>openInv(!UI.invOpen),
+  dgMat:()=>{ if(!FB.admin||!S||!S.heroes.length) return; const g=UI.dg,n=Math.max(1,Math.floor(+g.n||1)),k=g.k,nm=MAT_OBJ[k]||MAT_N[k]||k;
+    if(isMatK(k)){ const left=storeMat(k,n); markNew(); save(); toast(`+${fmt(n-left)} ${nm}${left?` (stock plein, ${fmt(left)} perdus)`:''}.`); return }
+    const got=dgPut({[k]:n}); markNew(); save(); toast(got<n?`${fmt(got)} × ${nm} donnés : sac et coffre pleins.`:`${fmt(n)} × ${nm} ajoutés.`) },
+  dgItem:()=>{ if(!FB.admin||!S||!S.heroes.length) return; const g=UI.dg,it=genItem(g.slot,Math.max(1,Math.min(60,+g.lvl||1)),+g.rar,null,g.cls||undefined); it.up=Math.max(0,Math.min(10,+g.up||0));
+    if(bagAddItem(S.bag,it)){ markNew(); save(); toast(`${it.name} (${RAR[it.rarity].n}, niv. ${it.ilvl}${it.up?', +'+it.up:''}) ajouté au sac.`); return }
+    const T=stashD().tabs.find(T=>findSpot(T.bag,...SIZE(it),SW,SH)); if(T){ const sp=findSpot(T.bag,...SIZE(it),SW,SH); T.bag.push({x:sp[0],y:sp[1],o:it}); saveAcc(); toast(`${it.name} placé dans le coffre du compte (sac plein).`); return }
+    toast('Sac et coffre du compte pleins.') },
+  dgRelic:()=>{ if(!FB.admin) return; ACC.cos=ACC.cos||{}; ACC.cos['fr'+UI.dg.fr]=Date.now(); saveAcc(); toast(`Cadre ${pcFr(+UI.dg.fr)[0]} débloqué.`) },
+  dgRelicAll:()=>{ if(!FB.admin) return; ACC.cos=ACC.cos||{}; PC_FR.forEach((F,i)=>{ if(F[2]==null&&!ACC.cos['fr'+i]) ACC.cos['fr'+i]=Date.now() }); saveAcc(); toast('Toutes les reliques débloquées.') },
+  dgRelicNone:()=>{ if(!FB.admin) return; ACC.cos={}; const c=ACC.card; if(c&&pcFr(c.fr)[2]==null) c.fr=0; saveAcc(); toast('Reliques retirées (cadre remis à Or si besoin).') },
+  chestNo:()=>closeChest(),
+  chestOpen:()=>chestOpen(),
+  chestAgain:()=>chestOpen(),
+  chestGo:()=>{ closeChest(); UI.tab='comm'; UI.commT='custom'; UI.pcDraft=null; UI.invOpen=false; render() },
   soon:d=>toast(`${d.n} : arrive dans une prochaine mise à jour.`),
   pcLocked:d=>{ const el=document.activeElement&&document.activeElement.dataset&&document.activeElement.dataset.tip; if(el){ const t=document.createElement('div'); t.innerHTML=pcTip(el); toast(t.textContent.replace(/^(.*?)Verrouillé/,'$1 : ')) } },
   mlOpen:()=>{ ML.open=true; ML.adm=false; renderMail(); const x=$('#mailw .frx'); if(x) x.focus() },
@@ -5144,9 +5300,11 @@ const A={
   cardClose:()=>closeCard(),
   trCat:d=>{UI.trCat=d.c;render()},
   trF:d=>{UI.trF=d.f;render()},
-  commT:d=>{UI.commT=d.t;render()},
-  pcSet:d=>{ACC.card=pcDef(); ACC.card[d.k]=d.k==='icon'?d.v:+d.v; pcSave()},
-  pcShow:d=>{ACC.card=pcDef(); const L=ACC.card.show=(ACC.card.show||[]).filter(id=>trGot(id)); const i=L.indexOf(d.id); if(i>=0) L.splice(i,1); else { if(L.length>=3){toast('3 trophées au maximum : retirez-en un d’abord.');return} L.push(d.id) } pcSave()},
+  commT:d=>{UI.commT=d.t;UI.pcDraft=null;render()},
+  pcSet:d=>{const c=pcDraft(); c[d.k]=d.k==='icon'?d.v:+d.v; render()},
+  pcConfirm:()=>{const c=pcDraft(); if(pcLockedSel(c).length){toast('Un élément sélectionné n’est pas encore débloqué.');return} ACC.card=pcClean(c); UI.pcDraft=null; pcSave(); toast('Carte de joueur enregistrée.')},
+  pcReset:()=>{UI.pcDraft=null; render()},
+  pcShow:d=>{const c=pcDraft(); const L=c.show=(c.show||[]).filter(id=>trGot(id)); const i=L.indexOf(d.id); if(i>=0) L.splice(i,1); else { if(L.length>=3){toast('3 trophées au maximum : retirez-en un d’abord.');return} L.push(d.id) } render()},
   comm:()=>{ if(!FB.user||!FB.prof){toast('Connectez-vous à un compte en ligne pour accéder à la communauté (amis, messages).');return} FR.open=!FR.open; UI.frmsg=''; UI.frerr=false; renderFriends(); renderTabs(); if(FR.open){const i=$('#frname'); if(i) i.focus()} },
   pvpFind:()=>pvpSearch(),
   pvpCancel:()=>pvpStopSearch(),
@@ -5267,14 +5425,15 @@ document.addEventListener('input',e=>{
   if(e.target.dataset&&e.target.dataset.bf){ bestSet(e.target.dataset.bf,e.target.value); bestRefreshStats() }
   if(e.target.id==='bstage'){ UI.bstage=+e.target.value; const b=e.target.nextElementSibling; if(b) b.textContent=UI.bstage; bestRefreshStats() }
 });
-document.addEventListener('input',e=>{ const t=e.target; if(!ML.form) return; if(t.dataset.mlf&&t.tagName!=='SELECT'){ ML.form[t.dataset.mlf]=t.value; if(t.dataset.mlf==='title'||t.dataset.mlf==='body') renderMail() } if(t.dataset.mlatt){ ML.form.att[t.dataset.mlatt]=Math.max(0,Math.floor(+t.value||0)); renderMail() } });
+document.addEventListener('input',e=>{ const t=e.target; if(t.dataset&&t.dataset.dg&&UI.dg) UI.dg[t.dataset.dg]=t.value; if(!ML.form) return; if(t.dataset.mlf&&t.tagName!=='SELECT'){ ML.form[t.dataset.mlf]=t.value; if(t.dataset.mlf==='title'||t.dataset.mlf==='body') renderMail() } if(t.dataset.mlatt){ ML.form.att[t.dataset.mlatt]=Math.max(0,Math.floor(+t.value||0)); renderMail() } });
 document.addEventListener('keydown',e=>{ if(e.key==='Escape'&&ML.open&&!$('#pcard')){ e.stopPropagation(); A.mlClose() } },true);
 document.addEventListener('change',e=>{
+  if(e.target.dataset&&e.target.dataset.dg&&UI.dg){ UI.dg[e.target.dataset.dg]=e.target.value }
   if(e.target.dataset&&e.target.dataset.mlf&&e.target.tagName==='SELECT'&&ML.form){ ML.form[e.target.dataset.mlf]=e.target.dataset.mlf==='exp'?+e.target.value:e.target.value; renderMail() }
   if(e.target.id==='bdiff'){ UI.bdiff=e.target.value; const y=scrollY; render(); scrollTo(0,y) }
   if(e.target.id==='flvl'){UI.fLvl=+e.target.value;render()}
   if(e.target.id==='rdtier'){UI.raidT=+e.target.value;render()}
-  if(e.target.id==='pctitle'){ACC.card=pcDef();ACC.card.title=e.target.value||null;pcSave()}
+  if(e.target.id==='pctitle'){pcDraft().title=e.target.value||null;render()}
 });
 
 /* ============ démarrage ============ */
