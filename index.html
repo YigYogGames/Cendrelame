@@ -1962,6 +1962,9 @@ body.scr .bfbar{display:none}
 .tibmv{width:34px;height:32px;display:grid;place-items:center;padding:0;border-radius:7px;border:1px solid #d6aa5588;background:#2a1c10;color:#f0d48a;cursor:pointer;flex:none}
 .tibmv svg{width:20px;height:20px}.tibmv:hover:not(:disabled){border-color:var(--gold);filter:brightness(1.2)}.tibmv:disabled{opacity:.4;cursor:default}
 .stashpop .iphead .tibmv{width:30px;height:30px;margin-left:6px}
+body.anvil,body.anvil *{cursor:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%2232%22%20height%3D%2232%22%20viewBox%3D%220%200%2024%2024%22%3E%3Cpath%20d%3D%22M2.5%207h13.5c.4%202.6%202.3%203.8%205.5%204v1.5h-6.2l-1.3%202.6h1.8v3.4H8.2v-3.4H10l-1.2-2.8C4.6%2011.8%202.6%2010%202.5%207z%22%20fill%3D%22%23f0d48a%22%20stroke%3D%22%232a1608%22%20stroke-width%3D%221.3%22%20stroke-linejoin%3D%22round%22/%3E%3Cpath%20d%3D%22M4%208.2h11%22%20stroke%3D%22%23fff6d8%22%20stroke-width%3D%22.8%22%20stroke-linecap%3D%22round%22/%3E%3C/svg%3E") 3 9, crosshair!important}
+body.anvil #bag .gi.it:hover{outline:2px solid #e0612a;outline-offset:-2px;filter:brightness(1.15) saturate(1.2)}
+.masalv.man{border-color:#e0612a88}.masalv.man.on{box-shadow:0 0 0 2px #e0612a,0 0 18px #e0612a66}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 @media (min-width:760px){.arena{grid-template-columns:1fr 1fr}}
 </style>
@@ -3297,7 +3300,8 @@ function scrollKeep(){ const out=[]; document.querySelectorAll('body *').forEach
 let SCB=0;
 function scrollBack(L){ SCB=Date.now(); for(const [sel,i,t] of L){ const el=document.querySelectorAll(sel)[i]; if(el) el.scrollTop=t } }
 let RKEY='';
-function render(){ const key=(UI.scr||'')+'|'+UI.tab+'|'+(UI.ws||'')+'|'+(UI.fMode||'')+'|'+(UI.advMode||''),keep=key===RKEY?scrollKeep():[]; RKEY=key; render1(); if(keep.length) scrollBack(keep) }
+function anvSync(){ if(UI.anvil&&!(UI.tab==='forge'&&!UI.scr&&UI.ws==='forge'&&UI.fMode==='salv')) UI.anvil=false; document.body.classList.toggle('anvil',!!UI.anvil) }
+function render(){ const key=(UI.scr||'')+'|'+UI.tab+'|'+(UI.ws||'')+'|'+(UI.fMode||'')+'|'+(UI.advMode||''),keep=key===RKEY?scrollKeep():[]; RKEY=key; render1(); if(keep.length) scrollBack(keep); anvSync() }
 function render1(){
   { const tv=TIPEL&&!$('#tip').hidden; hideTip(); if(tv) setTimeout(reTipAt,0) } document.body.classList.toggle('scr',!!UI.scr); document.body.classList.toggle('scr-menu',UI.scr==='menu'||UI.scr==='login'||UI.scr==='pseudo');
   renderTabs(); if(UI.scr) $('#res').innerHTML=''; else renderHeader();
@@ -5451,6 +5455,20 @@ document.addEventListener('pointermove',e=>{
   c.style.setProperty('--gx',((nx+1)*50).toFixed(1)+'%'); c.style.setProperty('--gy',((ny+1)*50).toFixed(1)+'%');
 },{passive:true});
 document.addEventListener('pointerleave',tiltOff); addEventListener('blur',tiltOff);
+/* recyclage manuel : clic sur un objet du sac = recyclé */
+function anvilHit(i){
+  const E=S.bag[i]; if(!E) return; const it=E.o;
+  if(it.mat){ toast('Seul l’équipement peut être recyclé.'); return }
+  if(UI.fItem===it.id) UI.fItem=null; if(UI.bagSel===it) UI.bagSel=null;
+  S.bag.splice(i,1); const v=salvageValue(it); gain(v); qEv('recycle'); hideTip(); save(); render();
+  toast(`${it.name} recyclé. Récupéré : ${resTxt(v)}.`);
+}
+document.addEventListener('pointerdown',e=>{ if(!UI.anvil||e.button!==0) return; const c=e.target.closest&&e.target.closest('#bag .gi'); if(!c) return; e.preventDefault(); e.stopImmediatePropagation(); if(c.dataset.i!=null&&S.bag[+c.dataset.i]) anvilHit(+c.dataset.i) },true);
+document.addEventListener('click',e=>{ if(UI.anvil&&e.target.closest&&e.target.closest('#bag .gi')){ e.preventDefault(); e.stopImmediatePropagation() } },true);
+document.addEventListener('contextmenu',e=>{ if(UI.anvil){ e.preventDefault(); e.stopImmediatePropagation(); UI.anvil=false; render(); toast('Recyclage manuel arrêté.') } },true);
+document.addEventListener('keydown',e=>{ if(e.key==='Escape'&&UI.anvil){ UI.anvil=false; render() } },true);
+/* pas de menu du navigateur au clic droit (sauf dans les champs de texte) */
+document.addEventListener('contextmenu',e=>{ if(e.target.closest&&e.target.closest('input,textarea,[contenteditable="true"]')) return; e.preventDefault() });
 function viewCombatIdle(){
   const P=prog(),dk=curDiff(),D=DIFF[dk],hero=dk!=='normal',z=ZONES[UI.zone],L=D.L||UI.zone*10+UI.stage;
   const h=S.heroes[0],c=CLASSES[h.cls],st=heroStats(h),need=h.lvl>=MAXL?1:xpNeed(h.lvl);
@@ -6143,7 +6161,7 @@ function forgeUp0(){
 function forgeSalv(){
   const items=invItems();
   const cards=[0,1,2].map(r=>{const L=items.filter(i=>i.rarity<=r),tot={};L.forEach(i=>{for(const [k,x] of Object.entries(salvageValue(i)))tot[k]=(tot[k]||0)+x});const cf=UI.confirm==='salv'+r;
-    return `<div class="masalv"><b>Jusqu’à <span style="color:var(--r${r})">${RAR[r].n.toLowerCase()}</span></b><small>${L.length} objet${L.length>1?'s':''} du sac</small><div class="mprew">${L.length?resChips(tot):'<span class="mute">rien à récupérer</span>'}</div><button class="btn sm ${cf?'danger':''}" data-act="salvBelow" data-r="${r}" ${L.length?'':'disabled'}>${cf?`Confirmer (${L.length})`:'Recycler'}</button></div>`}).join('');
+    return `<div class="masalv"><b>Jusqu’à <span style="color:var(--r${r})">${RAR[r].n.toLowerCase()}</span></b><small>${L.length} objet${L.length>1?'s':''} du sac</small><div class="mprew">${L.length?resChips(tot):'<span class="mute">rien à récupérer</span>'}</div><button class="btn sm ${cf?'danger':''}" data-act="salvBelow" data-r="${r}" ${L.length?'':'disabled'}>${cf?`Confirmer (${L.length})`:'Recycler'}</button></div>`}).join('')+`<div class="masalv man ${UI.anvil?'on':''}"><b>Recyclage manuel</b><small>Un objet à la fois</small><div class="mprew"><span class="mute">${UI.anvil?'Cliquez sur un objet du sac pour le recycler. Clic droit ou Échap pour arrêter.':'La souris devient une enclume : chaque objet du sac cliqué est recyclé.'}</span></div><button class="btn sm ${UI.anvil?'danger':''}" data-act="anvil" aria-pressed="${!!UI.anvil}" ${ttip(UI.anvil?'Arrêter le recyclage manuel':'Recycler manuellement','Chaque objet d’équipement cliqué dans le sac est détruit et rend 25 % de ses ressources.')}>${uic('anvil')} ${UI.anvil?'Arrêter':'Recycler manuellement'}</button></div>`;
   return `<div class="mawork salv"><div class="maanvil masalvs"><div class="matier"><span><b>Recyclage</b><small>Détruisez les objets du sac pour récupérer des ressources</small></span></div><div class="masalvg">${cards}</div></div>
    <aside class="aminfo maside"><div class="ambody"><h4>Fonctionnement</h4><p class="amnote">Chaque objet recyclé rend 25 % des ressources ayant servi à sa création.</p><p class="amnote">Les objets portés et ceux du coffre ne sont jamais touchés.</p><h4>Sac</h4><p class="amnote"><b class="num">${items.length}</b> objet${items.length>1?'s':''} d’équipement.</p><button class="btn" data-act="invOpen">${uic('bag')} Ouvrir le sac <kbd>I</kbd></button></div></aside></div>`;
 }
@@ -6326,9 +6344,10 @@ function viewHelp(){
 }
 
 /* --- nouveautés --- */
-const VERSION='0.5.7';
-const BUILD='20261020233524';
+const VERSION='0.5.8';
+const BUILD='20261020234147';
 const PATCH=[
+ {"v": "0.5.8", "t": "Recyclage manuel", "sec": [["Forge", ["Nouveau « Recyclage manuel » dans l’onglet Recyclage : la souris devient une enclume et chaque objet d’équipement cliqué dans le sac est recyclé (25 % de ses ressources rendues). Recliquez sur le bouton, faites un clic droit ou appuyez sur Échap pour arrêter."]], ["Interface", ["Le menu du navigateur (Inspecter, Code source…) ne s’ouvre plus au clic droit dans le jeu, sauf dans les champs de texte."]]]},
  {"v": "0.5.7", "t": "Équipement mythique portable au niveau 50", "sec": [["Équipement", ["Les objets du mode Mythique (niveau d’objet 60) demandent maintenant le niveau 50 au lieu du niveau 60, qui n’existe pas. Leur niveau d’objet reste 60, avec les mêmes statistiques. Les objets déjà obtenus sont aussi concernés."]]]},
  {"v": "0.5.6", "t": "Grand rééquilibrage des combats", "sec": [["Équilibrage", ["Objectif : des combats plus longs, où les potions et un équipement optimisé font la différence. Au niveau 50, les plus gros coups tournent autour de 4 000 à 6 000 dégâts.", "PV des personnages : environ ×3. Guerrier niveau 50 sans équipement : 757 → 2 211 PV. Sorcier niveau 50 : 737 → 2 161 PV.", "Affixe PV sur l’équipement : environ ×3. Objet niveau 50 : jusqu’à 138 → 414 PV. Les objets que vous possédez déjà sont mis à jour automatiquement.", "Amélioration des objets : +5 % → +3 % par niveau (objet +10 : +50 % → +30 %).", "Monstres : PV ×2, attaque ×1,8. Un monstre niveau 50 : 4 550 → 9 100 PV, attaque 285 → 513. Un combat normal dure maintenant 4 à 6 tours au lieu de 2 à 3.", "Boss normaux : PV ×2, attaque un peu plus faible (−13 %). Un boss dure 10 à 13 tours : une potion de vie peut vous sauver.", "Héroïque : attaque des monstres ×2,6 → ×1,5, PV ×1,6 → ×1,4 ; boss : PV ×1,6 → ×2,8, attaque ×2,9 → ×1,6 ; rage du boss au tour 11 → 16. Les boss héroïques demandent des potions avec un équipement Épique.", "Mythique : attaque des monstres ×2,9 → ×1,8, PV ×2,2 → ×1,8 ; boss : PV ×1,7 → ×3, attaque ×2,2 → ×1,45 ; rage au tour 9 → 13. Il faut un équipement Légendaire ou Divin optimisé et des potions.", "Défis : PV des boss ×6, attaque ×1,4 ; rage au tour 16 → 26. Un défi dure maintenant 15 à 30 tours.", "Duels : chaque joueur commence avec 2,5 × ses PV. Un duel dure maintenant 10 à 20 tours au lieu de 1 à 2."]]]},
  {"v": "0.5.5", "t": "Armures : stats fixes retirées", "sec": [["Équilibrage", ["Casques, armures, jambières et bottes n’ont plus les 3 stats fixes (PV, Défense physique, Résistance magique) en plus de leurs affixes. Exemple : Robe du Titan niveau 13 : +85 PV, +23 Défense physique, +3,8 % Résistance magique → aucune ; il reste ses 2 affixes principales et ses affixes secondaires. Les objets déjà obtenus sont aussi concernés."]]]},
@@ -6923,6 +6942,7 @@ const A={
     const have=new Set(r.it.aff.map(a=>a.s)),pool=affPool(r.it.cls||S.heroes[0].cls).filter(a=>!have.has(a.s)),n=wPick(pool,1)[0]; if(!n) return;
     r.it.aff[+d.i]={s:n.s,v:rollAff(n,r.it.ilvl,RAR[r.it.rarity].m)}; save(); render();
   },
+  anvil:()=>{ UI.anvil=!UI.anvil; UI.confirm=null; if(UI.anvil&&!UI.invOpen) openInv(true); render(); toast(UI.anvil?'Recyclage manuel : cliquez sur les objets du sac à recycler.':'Recyclage manuel arrêté.') },
   salvBelow:d=>{
     if(UI.confirm!=='salv'+d.r){UI.confirm='salv'+d.r;render();return}
     UI.confirm=null; const rr=+d.r,tot={}; let n=0;
