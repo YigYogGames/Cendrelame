@@ -1948,6 +1948,15 @@ body.scr .bfbar{display:none}
 .qrsub{color:#d8c49a;margin:0}.qrecap h3{margin:0 0 4px;display:flex;align-items:center;justify-content:center;gap:10px;color:var(--gold)}.qrecap h3 svg{width:40px;height:40px}
 .qrlist{display:flex;flex-direction:column;gap:6px;margin:10px 0 14px;text-align:left}
 .qrli{display:flex;align-items:center;gap:10px;padding:6px 10px;border-radius:10px;background:#0004;border:1px solid #ffffff1a}.qrli span:nth-child(2){flex:1;display:flex;flex-direction:column}.qrli small{color:#cdb68a}
+.ftsq.pz.on{background:#7b2a1a!important;border-color:#f0d48a!important;color:#fff!important;box-shadow:0 0 10px #f0d48a88}
+.cpzb{position:absolute;left:50%;top:50%;translate:-50% -50%;z-index:5;padding:8px 22px;border-radius:12px;background:#140d08d9;border:1px solid #d6aa55;color:#f0d48a;font-family:var(--display);font-size:1.4rem;letter-spacing:.08em;pointer-events:none}
+.ftc.paused .ftsc{filter:saturate(.6)}
+.pcfl .pcside .add{color:#9be39b}
+.pc1,.pc2{transform-style:preserve-3d;will-change:transform;transition:transform .45s cubic-bezier(.2,.8,.3,1),box-shadow .45s}
+.pc1.tilt,.pc2.tilt{transition:transform .12s ease-out,box-shadow .2s}
+.pc1::after,.pc2::after{content:'';position:absolute;inset:0;border-radius:inherit;pointer-events:none;z-index:6;opacity:0;transition:opacity .35s;background:radial-gradient(circle at var(--gx,50%) var(--gy,50%),#ffffff38,#ffffff10 30%,transparent 60%);mix-blend-mode:screen}
+.pc1.tilt::after,.pc2.tilt::after{opacity:1}
+.pcfl.mov .pc1,.pcfl.mov .pc2{transition:none}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 @media (min-width:760px){.arena{grid-template-columns:1fr 1fr}}
 </style>
@@ -1990,7 +1999,9 @@ const wpick=w=>{let t=w.reduce((a,b)=>a+b,0),r=Math.random()*t;for(let i=0;i<w.l
 const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const fmt=n=>n>=1e6?(n/1e6).toFixed(1)+' M':n>=1e4?(n/1e3).toFixed(1)+' k':Math.floor(n).toLocaleString('fr-FR');
 const r1=v=>Math.round(v*10)/10;
-const sleep=ms=>new Promise(r=>setTimeout(r,ms/(S&&S.speed||1)));
+const WT=(()=>{ try{ const u=URL.createObjectURL(new Blob(["onmessage=e=>{const[i,m]=e.data;setTimeout(()=>postMessage(i),m)}"],{type:'text/javascript'})),w=new Worker(u),cb=new Map(); let n=0; w.onmessage=e=>{ const f=cb.get(e.data); if(f){cb.delete(e.data); f()} }; w.onerror=()=>{ WT.ok=false }; return {ok:true,set(f,ms){ const i=++n; cb.set(i,f); w.postMessage([i,Math.max(0,ms||0)]); return i }} }catch(e){ return {ok:false} } })();
+const wTO=(f,ms)=>WT.ok?WT.set(f,ms):setTimeout(f,ms);
+const sleep=ms=>new Promise(r=>wTO(async()=>{ while(typeof C!=='undefined'&&C.paused&&C.phase!=='result'&&!C.abort) await new Promise(q=>wTO(q,120)); r() },ms/(S&&S.speed||1)));
 
 /* ============ données ============ */
 const TEST=/\/test(\/|$|\/index\.html)/i.test(location.pathname)||/[?&]test=1\b/.test(location.search);
@@ -2071,7 +2082,7 @@ const affPool=c=>AFX.filter(a=>!(c==='guerrier'&&a.s==='mag')&&!(c==='mage'&&a.s
 const EPITHETS=['de Cendre','des Damnés','du Crépuscule','de l’Aube','d’Aldrec','des Abysses','du Gardien','de la Braise','du Dernier Siège'];
 
 /* compétences : 3 compétences de base par classe (niveaux 1 à 10), puis une spécialisation au niveau 10 (arbre de talents) */
-const SPEC_L=10,LOADOUT_MAX=5,FORGET_COST={gold:5000,prisme:5};
+const SP_MAX=35,spCap=l=>Math.min(l||1,SP_MAX),SPEC_L=10,LOADOUT_MAX=5,FORGET_COST={gold:5000,prisme:5};
 const CLASSES={
   guerrier:{n:'Guerrier',ic:'sword',role:'atk',hue:8,desc:'Rempart robuste. Encaisse, provoque et frappe fort au corps à corps. Épées, heaumes, cuirasses et bottes.',
     base:{hp:120,atk:14,mag:0,def:10,res:5,spd:9},grow:{hp:13,atk:2.6,mag:0,def:1.8,res:1,spd:.2},
@@ -2392,7 +2403,7 @@ function v3(d){
   for(const h of d.heroes||[]){
     const nc=h.cls==='voleur'?'guerrier':h.cls==='clerc'?'mage':h.cls;
     if(nc!==h.cls){
-      changed=true; h.cls=nc; h.learned={}; h.loadout=[]; h.sp=h.lvl;
+      changed=true; h.cls=nc; h.learned={}; h.loadout=[]; h.sp=spCap(h.lvl);
       const first=CLASSES[nc].skills.find(x=>x.t==='a'&&x.lvl===1); h.learned[first.id]=1; h.loadout=[first.id];
     }
     for(const sl of Object.keys(h.equip||{})){
@@ -2429,7 +2440,7 @@ function fitBag(d){
   MIG_MSG=(MIG_MSG?MIG_MSG+' ':'')+'Inventaire réduit à 14 × 5 cases : les objets ont été réorganisés.'+(sold?` ${sold} objet${sold>1?'s':''} sans place vendu${sold>1?'s':''} pour ${fmt(gold)} or.`:'');
   return d;
 }
-const loadData=d=>{if(!d.siteV)d.siteV=1; const r=soloize(fitBag(Object.assign(newGame(),{balV:0,skV:0},migrate(d)))); if((r.balV||0)<1){balMig(r); r.balV=1} if((r.balV||0)<2){impMig(r); r.balV=2} if((r.skV||0)<1){ for(const h of r.heroes||[]) resetSkills(h); r.skV=1; if((r.heroes||[]).length) MIG_MSG=(MIG_MSG?MIG_MSG+' ':'')+'Nouveau système de compétences et de spécialisations : vos points de compétence ont été remboursés.' } return r};
+const loadData=d=>{if(!d.siteV)d.siteV=1; const r=soloize(fitBag(Object.assign(newGame(),{balV:0,skV:0},migrate(d)))); if((r.balV||0)<1){balMig(r); r.balV=1} if((r.balV||0)<2){impMig(r); r.balV=2} if((r.skV||0)<1){ for(const h of r.heroes||[]) resetSkills(h); r.skV=1; if((r.heroes||[]).length) MIG_MSG=(MIG_MSG?MIG_MSG+' ':'')+'Nouveau système de compétences et de spécialisations : vos points de compétence ont été remboursés.' } if((r.skV||0)<2){ let ch=false; for(const h of r.heroes||[]){ const sp=Object.values(h.learned||{}).reduce((a,b)=>a+(b||0),0)-1; if(sp+(h.sp||0)>spCap(h.lvl)){ if(sp>spCap(h.lvl)){ resetSkills(h); ch=true } else h.sp=spCap(h.lvl)-sp } } r.skV=2; if(ch) MIG_MSG=(MIG_MSG?MIG_MSG+' ':'')+'Les points de compétence sont maintenant limités à '+SP_MAX+' : vos compétences ont été réinitialisées (points remboursés).' } return r};
 /* rééquilibrage 0.3.0 : les affixes existants gardent leur qualité de tirage dans la nouvelle plage ; objets divins : 3 affixes au maximum, sans pouvoir */
 const AFX_OLD={hp:[8,3.2],atk:[2,.9],mag:[2,.9],def:[2,.75],spd:[1,.12],hpPct:[2,.12],dmgPct:[2,.14],crit:[1.5,.08],critDmg:[6,.5],dodge:[1.2,.04],lifesteal:[.8,.025]};
 function impMig(d){
@@ -2644,7 +2655,7 @@ function heroPower(h){
 }
 function gainXp(h,xp){
   h.xp+=xp; let ups=0;
-  while(h.lvl<MAXL&&h.xp>=xpNeed(h.lvl)){h.xp-=xpNeed(h.lvl);h.lvl++;h.sp++;ups++}
+  while(h.lvl<MAXL&&h.xp>=xpNeed(h.lvl)){h.xp-=xpNeed(h.lvl);h.lvl++;if(h.lvl<=SP_MAX)h.sp++;ups++}
   if(h.lvl>=MAXL)h.xp=0;
   return ups;
 }
@@ -2800,7 +2811,7 @@ function viewSkills(h){
     <div class="row forget"><span class="hint">Potion d’oubli : réinitialise toutes les compétences et la spécialisation (en vente chez le Marchand). Possédées : <b class="num">${fp}</b></span><button class="btn sm ${UI.forgetConf?'danger':''}" data-act="forget" ${fp?'':'disabled'}>${UI.forgetConf?'Confirmer la réinitialisation':'Boire une potion d’oubli'}</button></div></section>`;
 }
 function resetSkills(h){
-  h.learned={}; h.loadout=[]; h.spec=null; h.sp=h.lvl;
+  h.learned={}; h.loadout=[]; h.spec=null; h.sp=spCap(h.lvl);
   const first=CLASSES[h.cls].skills[0]; h.learned[first.id]=1; h.loadout=[first.id];
 }
 /* tuile de combat */
@@ -3122,13 +3133,13 @@ async function startBattle(chain,raid){
   if(inFight()) return;
   const party=partyHeroes(); if(!party.length){toast('Aucun personnage.');return}
   C.abort=false; C.id++; const id=C.id;
-  C.diff=curDiff(); C.hero=C.diff!=='normal'; C.bonus={xp:0,loot:0}; C.pcd={}; C.raid=raid||null; C.units=[...party.map(mkHeroUnit),...(C.raid?[soloBoss(C.raid)]:mkEnemies(UI.zone,UI.stage,party.length,C.diff))];
+  C.paused=false; C.diff=curDiff(); C.hero=C.diff!=='normal'; C.bonus={xp:0,loot:0}; C.pcd={}; C.raid=raid||null; C.units=[...party.map(mkHeroUnit),...(C.raid?[soloBoss(C.raid)]:mkEnemies(UI.zone,UI.stage,party.length,C.diff))];
   C.round=0; C.order=null; C.logs=[]; C.result=null; C.phase='fight'; C.zone=UI.zone; C.stage=UI.stage; C.pending=null; C.waiting=null; C.turn=null;
   render();
   logLine(C.raid?`Raid en solo : ${RAIDS.find(x=>x.id===C.raid.r).n} (palier +${C.raid.t})`:`${ZONES[C.zone].n} — étape ${C.stage}${C.hero?' ('+DIFF[C.diff].n.toLowerCase()+')':''}`,'rd');
   if(!C.test&&!(chain&&S.auto)){
     C.phase='prep'; C.prepEnd=Date.now()+PREP_MS; C.prepGo=false; renderActbar(); logLine('Préparation : 10 secondes pour boire vos potions avant le combat.','rd');
-    while(!C.abort&&C.id===id&&!C.prepGo&&Date.now()<C.prepEnd){ await new Promise(r=>setTimeout(r,200)); const el=document.querySelector('#actbar [data-prep]'); if(el) el.textContent=Math.max(0,Math.ceil((C.prepEnd-Date.now())/1000))+' s' }
+    while(!C.abort&&C.id===id&&!C.prepGo&&Date.now()<C.prepEnd){ await new Promise(r=>wTO(r,200)); const el=document.querySelector('#actbar [data-prep]'); if(el) el.textContent=Math.max(0,Math.ceil((C.prepEnd-Date.now())/1000))+' s' }
     if(C.abort||C.id!==id) return; C.phase='fight'; renderActbar();
   }
   await sleep(500);
@@ -3170,7 +3181,7 @@ async function finish(r){
   }
   C.phase='result'; save(); renderHeader(); renderTabs(); if(UI.tab==='combat') render();
   if(r==='win'&&S.farm&&S.auto){
-    const id=C.id; setTimeout(()=>{ if(C.phase==='result'&&C.id===id&&S.farm) startBattle(true) },1400/(S.speed||1));
+    const id=C.id; const go=()=>{ if(C.phase!=='result'||C.id!==id||!S.farm) return; if(C.paused) return wTO(go,200); startBattle(true) }; wTO(go,1400/(S.speed||1));
   }
 }
 
@@ -3274,11 +3285,12 @@ function renderTabs(){
 }
 const scSel=e=>(e.id?'#'+CSS.escape(e.id):'')+[...e.classList].map(c=>'.'+CSS.escape(c)).join('');
 function scrollKeep(){ const out=[]; document.querySelectorAll('body *').forEach(e=>{ if(e.scrollTop>0&&e.scrollHeight>e.clientHeight){ const sel=scSel(e); if(sel) out.push([sel,[...document.querySelectorAll(sel)].indexOf(e),e.scrollTop]) } }); return out }
-function scrollBack(L){ for(const [sel,i,t] of L){ const el=document.querySelectorAll(sel)[i]; if(el) el.scrollTop=t } }
+let SCB=0;
+function scrollBack(L){ SCB=Date.now(); for(const [sel,i,t] of L){ const el=document.querySelectorAll(sel)[i]; if(el) el.scrollTop=t } }
 let RKEY='';
 function render(){ const key=(UI.scr||'')+'|'+UI.tab+'|'+(UI.ws||'')+'|'+(UI.fMode||'')+'|'+(UI.advMode||''),keep=key===RKEY?scrollKeep():[]; RKEY=key; render1(); if(keep.length) scrollBack(keep) }
 function render1(){
-  hideTip(); document.body.classList.toggle('scr',!!UI.scr); document.body.classList.toggle('scr-menu',UI.scr==='menu'||UI.scr==='login'||UI.scr==='pseudo');
+  { const tv=TIPEL&&!$('#tip').hidden; hideTip(); if(tv) setTimeout(reTipAt,0) } document.body.classList.toggle('scr',!!UI.scr); document.body.classList.toggle('scr-menu',UI.scr==='menu'||UI.scr==='login'||UI.scr==='pseudo');
   renderTabs(); if(UI.scr) $('#res').innerHTML=''; else renderHeader();
   const v=$('#view');
   renderFriends(); mlRefresh(); if(UI.tab==='comm') requestAnimationFrame(pcFit);
@@ -3290,7 +3302,7 @@ function render1(){
   renderInvPop();
 }
 function lvlToast(h,n){
-  const e=document.createElement('div');e.className='toast lvl';e.innerHTML=`<b>★ Niveau ${h.lvl} ★</b>${esc(h.name)} gagne ${n>1?n+' niveaux':'un niveau'} : +${n} point${n>1?'s':''} de compétence.`;
+  const e=document.createElement('div');e.className='toast lvl';const g=Math.max(0,Math.min(h.lvl,SP_MAX)-Math.max(h.lvl-n,0)); e.innerHTML=`<b>★ Niveau ${h.lvl} ★</b>${esc(h.name)} gagne ${n>1?n+' niveaux':'un niveau'}${g?` : +${g} point${g>1?'s':''} de compétence`:''}.`;
   $('#toasts').append(e);setTimeout(()=>e.remove(),5000);
 }
 function toast(m){
@@ -4368,12 +4380,24 @@ function friendCardFl(f){
   const o=f.users.find(x=>x!==FB.user.uid),p=FR.prof[o]||{},c=p.card,ol=isOnline(p),nm=otherName(f);
   const d=c?Object.assign({},c,{name:c.name||nm}):{name:nm,pts:0,icon:'c:'+((p.char&&p.char.cls)||'guerrier'),fr:0,bg:3,chars:p.char?[{n:p.char.name,cls:p.char.cls,lvl:p.char.lvl}]:[]};
   let w=$('#pcfl'); const fresh=!w; if(!w){ w=document.createElement('div'); w.id='pcfl'; w.className='pcfl'; w.setAttribute('role','dialog'); document.body.append(w) }
-  w.dataset.fid=f.id; w.setAttribute('aria-label','Carte de joueur : '+nm);
+  delete w.dataset.rk; w.dataset.fid=f.id; w.setAttribute('aria-label','Carte de joueur : '+nm);
   w.innerHTML=`<div class="pcside"><button class="du" data-act="frDuel" data-id="${f.id}" ${ol?'':'disabled'} ${ttip('Défier '+nm+' en duel',ol?'':'Ce joueur n’est pas en ligne.')}>${PCF_IC.du}</button><button class="ch" data-act="frChat" data-id="${f.id}" ${ttip('Discuter avec '+nm)}>${PCF_IC.ch}</button><button class="rd" data-act="frRaid" data-id="${f.id}" ${ol?'':'disabled'} ${ttip('Inviter '+nm+' en raid',ol?'':'Ce joueur n’est pas en ligne.')}>${uic('skull')}</button><button class="ins" data-act="frInsp" data-id="${f.id}" ${ttip('Inspecter l’équipement de '+nm)}>${uic('helm')}</button></div>
    <div class="pcbox" data-pcdrag><span class="grip"></span>${cardColl(d,'fl')}<button class="pcx2" data-act="pcClose" ${ttip('Fermer la carte')}>×</button>${c?'':'<p class="pcnote">Ce joueur n’a pas encore mis à jour sa carte.</p>'}</div>`;
   if(fresh){ const r=w.getBoundingClientRect(); const P=PCF.pos||{x:Math.round(innerWidth/2-r.width/2),y:Math.max(70,Math.round(innerHeight/2-r.height/2))}; pcfPlace(w,P.x,P.y) }
 }
 function pcfPlace(w,x,y){ const r=w.getBoundingClientRect(); x=clamp(x,4,Math.max(4,innerWidth-r.width-4)); y=clamp(y,4,Math.max(4,innerHeight-60)); w.style.left=(x)/ZM+'px'; w.style.top=(y)/ZM+'px'; PCF.pos={x,y} }
+function rkFrState(uid){ if(!FB.user) return 'off'; if(uid===FB.user.uid) return 'me'; const f=FR.list.find(x=>x.id===[FB.user.uid,uid].sort().join('_')); return f?(f.status==='accepted'?'fr':'pend'):'no' }
+const PCF_ADD='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="4"/><path d="M2 21c0-4 3-6.5 7-6.5s7 2.5 7 6.5M19 8v6M16 11h6"/></svg>';
+function rkCardFl(key){
+  const {p}=rkFind(key); if(!p) return; const c=p.card,nm=p.name||(c&&c.name)||'?',st=rkFrState(p.uid);
+  const d=Object.assign({pts:0,icon:'c:guerrier',fr:0,bg:3,chars:[]},c||{},{name:nm});
+  let w=$('#pcfl'); const fresh=!w; if(!w){ w=document.createElement('div'); w.id='pcfl'; w.className='pcfl'; w.setAttribute('role','dialog'); document.body.append(w) }
+  delete w.dataset.fid; w.dataset.rk=key; w.setAttribute('aria-label','Carte de joueur : '+nm);
+  const addT=st==='me'?['Ajouter en ami','C’est votre propre carte.']:st==='fr'?['Déjà ami',nm+' fait déjà partie de vos amis.']:st==='pend'?['Demande en cours','Une demande d’ami est déjà en attente avec '+nm+'.']:st==='off'?['Ajouter en ami','Connectez-vous pour ajouter des amis.']:['Envoyer une demande d’ami à '+nm,''];
+  w.innerHTML=`<div class="pcside"><button class="ins" data-act="rkInsp" data-k="${esc(key)}" ${ttip('Inspecter l’équipement de '+nm,key.endsWith('|duel')?'Équipement lors de sa dernière victoire en duel.':'Équipement au moment de ce record.')}>${uic('helm')}</button><button class="add" data-act="rkFrAdd" data-k="${esc(key)}" ${st==='no'?'':'disabled'} ${ttip(addT[0],addT[1])}>${PCF_ADD}</button></div>
+   <div class="pcbox" data-pcdrag><span class="grip"></span>${cardColl(d,'fl')}<button class="pcx2" data-act="pcClose" ${ttip('Fermer la carte')}>×</button>${c?'':'<p class="pcnote">Ce joueur n’a pas encore mis à jour sa carte.</p>'}</div>`;
+  if(fresh){ const r=w.getBoundingClientRect(); const P=PCF.pos||{x:Math.round(innerWidth/2-r.width/2),y:Math.max(70,Math.round(innerHeight/2-r.height/2))}; pcfPlace(w,P.x,P.y) }
+}
 const pcfClose=()=>{ const w=$('#pcfl'); if(w) w.remove() };
 document.addEventListener('pointerdown',e=>{ const h=e.target.closest&&e.target.closest('[data-pcdrag]'); if(!h||e.target.closest('button')||e.button>0) return; const w=$('#pcfl'),r=w.getBoundingClientRect(); PCF.drag={dx:e.clientX-r.left,dy:e.clientY-r.top}; w.classList.add('mov'); e.preventDefault() });
 document.addEventListener('pointermove',e=>{ if(!PCF.drag) return; const w=$('#pcfl'); if(!w){PCF.drag=null;return} pcfPlace(w,e.clientX-PCF.drag.dx,e.clientY-PCF.drag.dy) });
@@ -4661,6 +4685,7 @@ document.addEventListener('visibilitychange',()=>{ if(!document.hidden) updCheck
 /* ================= combat : scène avec sprites (PvE, duel, raid) ================= */
 const ENSP={'Gobelin':{f:'gobelin',h:.74},'Loup affamé':{f:'loup',h:.6,flip:1},'Chaman gobelin':{f:'chaman_gobelin',h:.9}};
 UIC.coffre='<path d="M3.5 11V9.5A4.5 4.5 0 0 1 8 5h8a4.5 4.5 0 0 1 4.5 4.5V11"/><rect x="3" y="11" width="18" height="9" rx="1.6"/><path d="M3 14h18"/><rect x="10.3" y="12.2" width="3.4" height="4.6" rx=".9"/><path d="M7 5.6V11M17 5.6V11"/>';
+UIC.pause='<rect x="6.5" y="5" width="3.6" height="14" rx="1"/><rect x="13.9" y="5" width="3.6" height="14" rx="1"/>';
 UIC.chain='<path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1"/><path d="M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1"/>';
 Object.assign(UIC,{flask:'<path d="M9 3h6M10 3v6L5 18a2 2 0 0 0 1.8 3h10.4A2 2 0 0 0 19 18l-5-9V3"/><path d="M7.5 14h9"/>',
  auto:'<path d="M20 12a8 8 0 0 1-14 5.3M4 12a8 8 0 0 1 14-5.3"/><path d="M18 3v4h-4M6 21v-4h4"/>',
@@ -4725,8 +4750,9 @@ function viewCombat(){
     <button class="ftend" id="ftend" data-act="endTurn"></button></div>
    <div class="ftbot"><div id="actbar" class="ftbar"></div><div class="log" id="log">${C.logs.map(l=>`<p class="${l.cls}">${esc(l.t)}</p>`).join('')}</div><div id="cbslot"></div></div></div>`;
 }
-function ftTools(){
-  return `<div class="fttools"><button class="ftsq ${S.auto?'on':''}" data-act="auto" aria-pressed="${!!S.auto}" ${ttip('Combat automatique : '+(S.auto?'activé':'désactivé'),'Votre héros joue seul. Cliquez pour '+(S.auto?'reprendre la main.':'l’activer.'))}>${uic('auto')}</button><button class="ftsq num" data-act="speed" ${ttip('Vitesse ×'+S.speed,'Accélère les animations du combat (×1, ×2, ×3).')}>×${S.speed}</button>${quitBtn('giveUp',UI.confirm==='pveGiveUp')}</div>`;
+function pzMark(){ const f=$('.ftc'); if(!f) return; const on=!!C.paused&&C.phase!=='result'; f.classList.toggle('paused',on); const sc=f.querySelector('.ftsc'); let b=sc&&sc.querySelector('.cpzb'); if(on&&sc&&!b) sc.insertAdjacentHTML('beforeend','<span class="cpzb">En pause</span>'); if(!on&&b) b.remove() }
+function ftTools(){ setTimeout(pzMark,0);
+  return `<div class="fttools"><button class="ftsq ${S.auto?'on':''}" data-act="auto" aria-pressed="${!!S.auto}" ${ttip('Combat automatique : '+(S.auto?'activé':'désactivé'),'Votre héros joue seul. Cliquez pour '+(S.auto?'reprendre la main.':'l’activer.'))}>${uic('auto')}</button>${S.auto||C.paused?`<button class="ftsq pz ${C.paused?'on':''}" data-act="cPause" aria-pressed="${!!C.paused}" ${ttip(C.paused?'Reprendre le combat':'Mettre en pause',C.paused?'Le combat continue là où il s’était arrêté.':'Le combat s’arrête après l’action en cours. Vous pouvez regarder votre inventaire tranquillement.')}>${uic(C.paused?'play':'pause')}</button>`:''}<button class="ftsq num" data-act="speed" ${ttip('Vitesse ×'+S.speed,'Accélère les animations du combat (×1, ×2, ×3).')}>×${S.speed}</button>${quitBtn('giveUp',UI.confirm==='pveGiveUp')}</div>`;
 }
 const quitBtn=(act,arm)=>`<button class="ftsq quit ${arm?'arm':''}" data-act="${act}" ${ttip(arm?'Confirmer l’abandon':'Abandonne le combat',arm?'Cliquez à nouveau : le combat sera compté comme une défaite.':'Compté comme une défaite.')}>${uic(arm?'check':'flag')}</button>`;
 function ftEnd(b,{act,label,dis,tip}){ if(!b) return; b.hidden=!act; if(!act) return; b.dataset.act=act; b.disabled=!!dis; b.innerHTML=`<span>${label}</span>`; b.dataset.tip='tx:'+tip; b.setAttribute('aria-label',label.replace(/<br>/g,' ')) }
@@ -5400,6 +5426,18 @@ function qChestRecap(){ if(!QA||QA.done) return; QA.done=true; QA.t.forEach(clea
   w.innerHTML=`<div class="qrecap" role="dialog" aria-label="Contenu du coffre"><h3>${QCHEST_SVG}Coffre du jour</h3><p class="qrsub">Les objets ont été ajoutés à votre inventaire.</p><div class="qrlist">${QA.items.map(([k,c])=>`<div class="qrli"><span class="qri" style="--rc:var(--r${NEWI[k].r})" data-tip="nw:${k}"><svg class="mfi" viewBox="0 0 24 24">${MI[k]}</svg></span><span><b style="color:${EQ_RC[NEWI[k].r]}">${esc(NEWI[k].n)}</b><small>${RAR[NEWI[k].r].n} · ${esc(NEWI[k].cat)}</small></span><b class="num">×${c}</b></div>`).join('')}</div><button class="btn pri" data-act="qRecapOk">Super !</button></div>` }
 document.addEventListener('keydown',e=>{ if(!QA) return; if(e.code==='Space'||e.key===' '){ e.preventDefault(); if(!QA.done) qChestRecap(); else A.qRecapOk() } else if(e.key==='Escape'&&QA.done) A.qRecapOk() },true);
 
+/* carte de joueur : penche vers la souris comme si elle appuyait dessus */
+let TILT=null;
+function tiltOff(){ if(!TILT) return; TILT.classList.remove('tilt'); TILT.style.transform=''; TILT=null }
+document.addEventListener('pointermove',e=>{
+  if(e.pointerType==='touch'||PCF.drag||matchMedia('(prefers-reduced-motion: reduce)').matches){ tiltOff(); return }
+  const c=e.target.closest&&e.target.closest('.pc1,.pc2'); if(c!==TILT) tiltOff(); if(!c) return;
+  const r=c.getBoundingClientRect(); if(!r.width) return; const nx=clamp((e.clientX-r.left)/r.width*2-1,-1,1),ny=clamp((e.clientY-r.top)/r.height*2-1,-1,1);
+  const k=c.classList.contains('pc2')?6:13; TILT=c; c.classList.add('tilt');
+  c.style.transform=`perspective(${c.classList.contains('pc2')?1400:900}px) rotateY(${(nx*k).toFixed(2)}deg) rotateX(${(-ny*k).toFixed(2)}deg) scale(1.015)`;
+  c.style.setProperty('--gx',((nx+1)*50).toFixed(1)+'%'); c.style.setProperty('--gy',((ny+1)*50).toFixed(1)+'%');
+},{passive:true});
+document.addEventListener('pointerleave',tiltOff); addEventListener('blur',tiltOff);
 function viewCombatIdle(){
   const P=prog(),dk=curDiff(),D=DIFF[dk],hero=dk!=='normal',z=ZONES[UI.zone],L=D.L||UI.zone*10+UI.stage;
   const h=S.heroes[0],c=CLASSES[h.cls],st=heroStats(h),need=h.lvl>=MAXL?1:xpNeed(h.lvl);
@@ -5908,7 +5946,7 @@ function openInv(v){
   UI.invOpen=!!v; if(v) S.bagDot=false; if(!v){ UI.invHL=null; UI.bagSel=null; UI.invSel=null; UI.multi=false; UI.confirm=null }
   const y=scrollY; render(); scrollTo(0,y);
 }
-function renderInvPop(){ const keep=scrollKeep(); renderInvPop1(); if(keep.length) scrollBack(keep) }
+function renderInvPop(){ const keep=scrollKeep(); renderInvPop1(); if(keep.length) scrollBack(keep); reTipInv() }
 function renderInvPop1(){
   let w=$('#invpop');
   if(!UI.invOpen||!invAllowed()){ if(w) w.remove(); if(UI.invOpen&&S&&S.heroes&&S.heroes.length&&!UI.scr) UI.invOpen=false; renderStashPop(); return }
@@ -6251,9 +6289,11 @@ function viewHelp(){
 }
 
 /* --- nouveautés --- */
-const VERSION='0.5.0';
-const BUILD='20261020222343';
+const VERSION='0.5.2';
+const BUILD='20261020230528';
 const PATCH=[
+ {"v": "0.5.2", "t": "Combats en arrière-plan et cartes de joueur", "sec": [["Combat", ["Les combats continuent normalement quand vous changez d’onglet ou de fenêtre : le jeu ne ralentit plus en arrière-plan."]], ["Classement", ["La carte d’un joueur du classement s’ouvre maintenant en fenêtre déplaçable, comme celle des amis, avec deux boutons : Inspecter l’équipement et Envoyer une demande d’ami."]], ["Cartes de joueur", ["Les cartes réagissent à la souris : elles s’inclinent du côté où se trouve le curseur, comme s’il appuyait dessus, et suivent ses mouvements."]], ["Équilibrage", ["Points de compétence : 50 au maximum → 35 au maximum (un point par niveau jusqu’au niveau 35). Les personnages qui avaient dépensé plus de 35 points voient leurs compétences réinitialisées, points remboursés."]]]},
+ {"v": "0.5.1", "t": "Pause en combat automatique", "sec": [["Combat", ["Nouveau bouton Pause à côté des boutons Auto et Vitesse pendant les combats automatiques : le combat s’arrête après l’action en cours (« En pause » s’affiche sur la scène) et reprend d’un clic. L’enchaînement des combats attend aussi la reprise."]], ["Inventaire", ["Correction : pendant les combats automatiques, l’infobulle d’un objet de l’inventaire disparaissait aussitôt ; elle reste maintenant affichée tant que la souris est sur l’objet."]]]},
  {"v": "0.5.0", "t": "Classement de saison et quêtes", "sec": [["Classement de saison", ["Nouvel onglet Classement dans Communauté, avec deux classements de saison : Duels et Défis. Chaque joueur y apparaît avec sa bannière (icône, cadre, fond et titre).", "Duels : position, victoires, défaites et taux de réussite. Classement par nombre de victoires, puis par taux de réussite.", "Défis : un classement par boss (Colosse de Braise, Wyrm des Glaces, Avatar de l’Abîme) avec le meilleur palier atteint et le nombre de tours. Classement par palier, puis par le moins de tours.", "Décorations selon la position : médailles d’or, d’argent et de bronze pour les 3 premiers, reflet doré sur le 1er, rang doré jusqu’au 10e. Votre propre ligne est entourée de vert.", "Nouveau : cliquez sur un joueur pour sélectionner sa bannière (halo doré), puis inspectez son équipement au moment de son résultat ou affichez sa carte.", "Le classement se met à jour à chaque ouverture. Un classement final est arrêté juste avant la fin de saison : c’est lui qui sert aux récompenses de saison."]], ["Quêtes", ["Nouvelles quêtes journalières : 5 par jour, renouvelées chaque jour à 6 h 00. Récompenses : objets d’artisanat communs et magiques.", "Nouvelles quêtes hebdomadaires : 3 par semaine, renouvelées le mercredi à 6 h 00. Récompenses : objets d’artisanat jusqu’à la rareté épique.", "Quêtes variées : vaincre des ennemis ou un boss, combattre ou gagner un défi, terminer des paliers, défier et battre des joueurs, récolter à la Mine, renforcer un objet, créer des parchemins, ajouter des affixes, faire monter la rareté, recycler, boire une potion de bonus… Seules les quêtes que vous pouvez faire sont proposées.", "Nouveau : Coffre du jour. Récupérez les 5 quêtes du jour pour l’ouvrir : 3 objets d’artisanat garantis, 35 % de chances d’un 4e et 12 % d’un 5e (rareté : Commun 70 %, Magique 25 %, Rare 5 %).", "Ouverture animée du coffre, avec un récapitulatif des objets obtenus. L’animation peut être passée avec le bouton en bas à droite ou la barre Espace.", "Une pastille sur le bouton Quêtes signale une récompense à récupérer."]], ["Amis", ["Nouveau bouton Inspecter sur la carte d’un ami : affiche son équipement et ses statistiques actuels."]]]},
  {"v": "0.4.22", "t": "Même interface sur tous les écrans", "sec": [["Interface", ["L’interface s’adapte maintenant à la taille de l’écran : tout est affiché à la même échelle et avec la même disposition sur tous les ordinateurs, quitte à être un peu plus petit sur les petits écrans. L’inventaire tient entièrement sans avoir à faire défiler.", "Fiche de zone : le texte sur la rage et les techniques des boss (modes Héroïque et Mythique) est retiré ; il décalait et coupait le reste de la fiche."]]]},
  {"v": "0.4.21", "t": "Défis et menus", "sec": [["Aventure", ["Les onglets Aventure, Duel et Défis (anciennement Raid) sont regroupés dans une barre plus lisible : boutons de même taille, bien alignés, avec l’onglet actif en rouge.", "Les boutons de difficulté sont déplacés en haut à gauche de la carte du monde."]], ["Inventaire", ["Le coffre ne s’ouvre plus automatiquement avec l’inventaire : utilisez le bouton Coffre à droite de « Trier »."]], ["Interface", ["Le bouton Aide en bas à gauche est retiré : l’Aide se trouve maintenant dans le menu, avec Options et Changer de personnage.", "Sélection de personnage : un double-clic sur un personnage le lance, comme le bouton Jouer."]]]},
@@ -6636,7 +6676,10 @@ function autoTip(t){ const b=t.closest&&t.closest('button,[role=button],.ipx'); 
 document.addEventListener('mouseover',e=>{const el=e.target.closest&&(e.target.closest('[data-tip]')||autoTip(e.target));if(el)showTip(el);else hideTip()});
 document.addEventListener('focusin',e=>{const el=e.target.closest&&(e.target.closest('[data-tip]')||autoTip(e.target));if(el)showTip(el)});
 document.addEventListener('focusout',hideTip);
-document.addEventListener('scroll',hideTip,true);
+let MX=-1,MY=-1; document.addEventListener('mousemove',e=>{MX=e.clientX;MY=e.clientY},{passive:true,capture:true});
+function reTipAt(){ if(MX<0||TOUCH) return; const t=document.elementFromPoint(MX,MY),el=t&&t.closest&&t.closest('[data-tip]'); if(el) showTip(el) }
+function reTipInv(){ const t=$('#tip'); if(!TIPEL||!t||t.hidden||document.contains(TIPEL)) return; reTipAt() }
+document.addEventListener('scroll',e=>{ if(Date.now()-SCB<150) return; const tg=e.target; if(TIPEL&&tg&&tg.nodeType===1&&!tg.contains(TIPEL)) return; hideTip() },true);
 
 /* ============ actions ============ */
 const A={
@@ -6663,7 +6706,8 @@ const A={
   rkTab:d=>{ RK.tab=d.t; RK.sel=null; render() },
   rkSel:d=>{ RK.sel=RK.sel===d.k?null:d.k; const y=scrollY,ls=[...document.querySelectorAll('.rklist,.rkls')].map(e=>e.scrollTop); render(); scrollTo(0,y); document.querySelectorAll('.rklist,.rkls').forEach((e,i)=>e.scrollTop=ls[i]||0) },
   rkInsp:d=>{ const {p,b}=rkFind(d.k); if(!p) return; if(b==='duel') openInsp(p.deq||p.cur,p.deq?`${uic('swords')} Dernière victoire en duel · ${p.duel.w} V / ${p.duel.l} D`:''); else { const R2=RAIDS.find(x=>x.id===b),x=p.raid&&p.raid[b]; openInsp(x&&x.eq,`${uic('skull')} ${esc(R2?R2.n:'')} · palier +${x?x.t:0} · ${x?x.turns:0} tours`) } },
-  rkCard:d=>{ const {p}=rkFind(d.k); if(!p) return; const c=p.card||{}; openCard(Object.assign({pts:0,icon:'c:guerrier',fr:0,bg:3,chars:[]},c,{name:p.name||c.name||'?'})) },
+  rkCard:d=>rkCardFl(d.k),
+  rkFrAdd:async d=>{ const {p}=rkFind(d.k); if(!p||rkFrState(p.uid)!=='no') return; try{ const on=await frSendReq(p.name); toast(`Demande d’ami envoyée à ${on}.`) }catch(e){ toast(e&&e.msg||'Impossible d’envoyer la demande.') } const w=$('#pcfl'); if(w&&w.dataset.rk===d.k) setTimeout(()=>rkCardFl(d.k),400) },
   inspClose:()=>{ const w=$('#inspm'); if(w) w.remove(); RK.insp=null; hideTip() },
   frInsp:d=>friendInsp(d.id),
   qClaim:d=>{ const Q=qState(); if(!Q) return; const q=(+d.w?Q.w.list:Q.d.list)[+d.i]; if(!q||q.got||q.p<q.n) return; qGive(q.rw); q.got=true; save(); render(); toast('Récompense récupérée : '+q.rw.map(([k,n])=>NEWI[k].n+' ×'+n).join(', ')+'.') },
@@ -6672,6 +6716,7 @@ const A={
   qRecapOk:()=>{ const w=$('#qanim'); if(w) w.remove(); QA=null; hideTip(); render() },
   admSEnd:async()=>{ const v=($('#admsend')||{}).value; const ms=v?new Date(v).getTime():0; try{ await FB.db.collection(COL('config')).doc('reset').set({end:ms||null},{merge:true}); FB.season=Object.assign({},FB.season||{n:0},{end:ms||null}); toast(ms?'Fin de saison enregistrée.':'Date de fin retirée.'); render() }catch(e){ toast('Erreur : '+((e&&e.code)||'inconnue')) } },
   admRkFreeze:()=>rkFreeze(),
+  cPause:()=>{ C.paused=!C.paused; const tt=$('#fttools'); if(tt) tt.innerHTML=ftTools(); pzMark() },
   heroTab:d=>{UI.heroTab=d.t;const y=scrollY;render();scrollTo(0,y)},
   invStats:()=>{UI.invStats=!UI.invStats;renderInvPop()},
   usePot:d=>usePot(d.k),
