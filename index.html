@@ -1957,6 +1957,11 @@ body.scr .bfbar{display:none}
 .pc1::after,.pc2::after{content:'';position:absolute;inset:0;border-radius:inherit;pointer-events:none;z-index:6;opacity:0;transition:opacity .35s;background:radial-gradient(circle at var(--gx,50%) var(--gy,50%),#ffffff38,#ffffff10 30%,transparent 60%);mix-blend-mode:screen}
 .pc1.tilt::after,.pc2.tilt::after{opacity:1}
 .pcfl.mov .pc1,.pcfl.mov .pc2{transition:none}
+.pcfl{transform-style:preserve-3d;transition:transform .45s cubic-bezier(.2,.8,.3,1)}.pcfl.tiltw{transition:transform .12s ease-out}.pcfl.mov{transition:none}
+.pcfl .pc1.tilt,.pcfl .pc2.tilt{transform:none}
+.tibmv{width:34px;height:32px;display:grid;place-items:center;padding:0;border-radius:7px;border:1px solid #d6aa5588;background:#2a1c10;color:#f0d48a;cursor:pointer;flex:none}
+.tibmv svg{width:20px;height:20px}.tibmv:hover:not(:disabled){border-color:var(--gold);filter:brightness(1.2)}.tibmv:disabled{opacity:.4;cursor:default}
+.stashpop .iphead .tibmv{width:30px;height:30px;margin-left:6px}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 @media (min-width:760px){.arena{grid-template-columns:1fr 1fr}}
 </style>
@@ -2046,20 +2051,20 @@ const RAR=[
 const BASES=[
   {n:'Épée',slot:'weapon',cls:'guerrier',imp:[['atk',6,1.8]]},
   {n:'Bâton',slot:'weapon',cls:'mage',imp:[['mag',6,1.8]]},
-  {n:'Heaume',slot:'helm',cls:'guerrier',imp:[['hp',12,4],['def',3,.9],['rMag',1,.05]]},
-  {n:'Capuche',slot:'helm',cls:'mage',imp:[['hp',10,3.5],['def',3,.85],['rMag',1.5,.07]]},
-  {n:'Cuirasse',slot:'armor',cls:'guerrier',imp:[['hp',18,5],['def',5,1.3],['rMag',1.5,.08]]},
-  {n:'Robe',slot:'armor',cls:'mage',imp:[['hp',15,4.5],['def',4,1.2],['rMag',2,.1]]},
-  {n:'Bottes',slot:'boots',cls:'guerrier',imp:[['hp',8,2.5],['def',2,.6],['rMag',.8,.04]]},
-  {n:'Sandales',slot:'boots',cls:'mage',imp:[['hp',7,2.2],['def',2,.6],['rMag',1,.05]]},
-  {n:'Jambières',slot:'legs',cls:'guerrier',imp:[['hp',14,4],['def',4,1.1],['rMag',1.2,.06]]},
-  {n:'Jambières',slot:'legs',cls:'mage',imp:[['hp',12,3.6],['def',3,.95],['rMag',1.5,.08]]},
+  {n:'Heaume',slot:'helm',cls:'guerrier',imp:[]},
+  {n:'Capuche',slot:'helm',cls:'mage',imp:[]},
+  {n:'Cuirasse',slot:'armor',cls:'guerrier',imp:[]},
+  {n:'Robe',slot:'armor',cls:'mage',imp:[]},
+  {n:'Bottes',slot:'boots',cls:'guerrier',imp:[]},
+  {n:'Sandales',slot:'boots',cls:'mage',imp:[]},
+  {n:'Jambières',slot:'legs',cls:'guerrier',imp:[]},
+  {n:'Jambières',slot:'legs',cls:'mage',imp:[]},
   {n:'Anneau',slot:'ring',imp:[]},
   {n:'Amulette',slot:'amulet',imp:[]},
 ];
 const baseFor=(slot,cls)=>BASES.find(b=>b.slot===slot&&(!b.cls||b.cls===cls));
 const AFX=[
-  {s:'hp',w:16,b:8,p:2.6},{s:'atk',w:16,b:2,p:.6},{s:'mag',w:16,b:2,p:.6},{s:'def',w:9,b:2,p:.6},
+  {s:'hp',w:16,b:24,p:7.8},{s:'atk',w:16,b:2,p:.6},{s:'mag',w:16,b:2,p:.6},{s:'def',w:9,b:2,p:.6},
   {s:'spd',w:9,b:1,p:.1,ep:'de Célérité'},
   {s:'hpPct',w:5,b:2,p:.1,ep:'du Titan'},{s:'dmgPct',w:4,b:1.5,p:.1,ep:'de Fureur'},{s:'crit',w:3,b:1,p:.07,ep:'du Prédateur'},
   {s:'critDmg',w:3,b:2,p:.12,ep:'de Ruine'},{s:'dodge',w:3,b:1,p:.035,ep:'du Vent'},{s:'lifesteal',w:2,b:.6,p:.02,ep:'du Vampire'},
@@ -2085,7 +2090,7 @@ const EPITHETS=['de Cendre','des Damnés','du Crépuscule','de l’Aube','d’Al
 const SP_MAX=35,spCap=l=>Math.min(l||1,SP_MAX),SPEC_L=10,LOADOUT_MAX=5,FORGET_COST={gold:5000,prisme:5};
 const CLASSES={
   guerrier:{n:'Guerrier',ic:'sword',role:'atk',hue:8,desc:'Rempart robuste. Encaisse, provoque et frappe fort au corps à corps. Épées, heaumes, cuirasses et bottes.',
-    base:{hp:120,atk:14,mag:0,def:10,res:5,spd:9},grow:{hp:13,atk:2.6,mag:0,def:1.8,res:1,spd:.2},
+    base:{hp:300,atk:14,mag:0,def:10,res:5,spd:9},grow:{hp:39,atk:2.6,mag:0,def:1.8,res:1,spd:.2},
     skills:[
       {id:'g_frap',ap:2,n:'Frappe puissante',t:'a',lvl:1,cd:2,mult:2,tg:'one',si:'sword',co:'#7a6448'},
       {id:'g_mur',ap:3,n:'Mur de boucliers',t:'a',lvl:3,cd:5,tg:'self',fx:[{k:'shield',v:.3,of:'hp'},{k:'taunt',dur:2}],si:'shield',co:'#3f5f80'},
@@ -2123,7 +2128,7 @@ const CLASSES={
       ]},
     }},
   mage:{n:'Sorcier',ic:'staff',role:'mag',hue:260,desc:'Canon de verre. Brûle, foudroie et se protège par des barrières arcaniques. Bâtons, capuches, robes et sandales.',
-    base:{hp:100,atk:0,mag:16,def:6,res:10,spd:10},grow:{hp:13,atk:0,mag:2.8,def:1.5,res:1.8,spd:.25},
+    base:{hp:250,atk:0,mag:16,def:6,res:10,spd:10},grow:{hp:39,atk:0,mag:2.8,def:1.5,res:1.8,spd:.25},
     skills:[
       {id:'m_proj',ap:2,n:'Projectile arcanique',t:'a',lvl:1,cd:2,mult:1.8,tg:'one',si:'star',co:'#5d45a8'},
       {id:'m_bar',ap:3,n:'Barrière arcanique',t:'a',lvl:3,cd:5,max:1,tg:'allies',fx:[{k:'shield',v:.3,of:'hp'}],si:'shield',co:'#3d5aa8'},
@@ -2329,7 +2334,7 @@ function bagAddMat(bag,k,n){
   while(n>0){ const sp=findSpot(bag,1,1); if(!sp) break; const m=Math.min(STACK,n); bag.push({x:sp[0],y:sp[1],o:{mat:k,n:m}}); n-=m }
   return n;
 }
-function bagAddItem(bag,it){const sp=findSpot(bag,...SIZE(it)); if(!sp) return false; bag.push({x:sp[0],y:sp[1],o:it}); return true}
+function bagAddItem(bag,it){if(it&&it.slot&&!it.hp3) hp3Walk(it);const sp=findSpot(bag,...SIZE(it)); if(!sp) return false; bag.push({x:sp[0],y:sp[1],o:it}); return true}
 const sellValue=it=>Math.round((5+it.ilvl*2)*(it.rarity+1)*(1+(it.up||0)*.25));
 let MIG_MSG='';
 function migrate(d){
@@ -2440,7 +2445,9 @@ function fitBag(d){
   MIG_MSG=(MIG_MSG?MIG_MSG+' ':'')+'Inventaire réduit à 14 × 5 cases : les objets ont été réorganisés.'+(sold?` ${sold} objet${sold>1?'s':''} sans place vendu${sold>1?'s':''} pour ${fmt(gold)} or.`:'');
   return d;
 }
-const loadData=d=>{if(!d.siteV)d.siteV=1; const r=soloize(fitBag(Object.assign(newGame(),{balV:0,skV:0},migrate(d)))); if((r.balV||0)<1){balMig(r); r.balV=1} if((r.balV||0)<2){impMig(r); r.balV=2} if((r.skV||0)<1){ for(const h of r.heroes||[]) resetSkills(h); r.skV=1; if((r.heroes||[]).length) MIG_MSG=(MIG_MSG?MIG_MSG+' ':'')+'Nouveau système de compétences et de spécialisations : vos points de compétence ont été remboursés.' } if((r.skV||0)<2){ let ch=false; for(const h of r.heroes||[]){ const sp=Object.values(h.learned||{}).reduce((a,b)=>a+(b||0),0)-1; if(sp+(h.sp||0)>spCap(h.lvl)){ if(sp>spCap(h.lvl)){ resetSkills(h); ch=true } else h.sp=spCap(h.lvl)-sp } } r.skV=2; if(ch) MIG_MSG=(MIG_MSG?MIG_MSG+' ':'')+'Les points de compétence sont maintenant limités à '+SP_MAX+' : vos compétences ont été réinitialisées (points remboursés).' } return r};
+function hp3Walk(o,d){ if(!o||typeof o!=='object'||(d|0)>8) return; if(Array.isArray(o)){ for(const x of o) hp3Walk(x,(d|0)+1); return } if(o.slot&&Array.isArray(o.aff)){ if(!o.hp3){ for(const a of o.aff) if(a.s==='hp') a.v=Math.round(a.v*3); o.hp3=1 } return } for(const k in o) if(o[k]&&typeof o[k]==='object') hp3Walk(o[k],(d|0)+1) }
+function accHp3(){ if(!ACC||ACC.hp3) return; hp3Walk(ACC); ACC.hp3=1 }
+const loadData=d=>{if(!d.siteV)d.siteV=1; const r=soloize(fitBag(Object.assign(newGame(),{balV:0,skV:0},migrate(d)))); if((r.balV||0)<1){balMig(r); r.balV=1} if((r.balV||0)<2){impMig(r); r.balV=2} if((r.skV||0)<1){ for(const h of r.heroes||[]) resetSkills(h); r.skV=1; if((r.heroes||[]).length) MIG_MSG=(MIG_MSG?MIG_MSG+' ':'')+'Nouveau système de compétences et de spécialisations : vos points de compétence ont été remboursés.' } if(!r.hp3){ hp3Walk(r); r.hp3=1 } if((r.skV||0)<2){ let ch=false; for(const h of r.heroes||[]){ const sp=Object.values(h.learned||{}).reduce((a,b)=>a+(b||0),0)-1; if(sp+(h.sp||0)>spCap(h.lvl)){ if(sp>spCap(h.lvl)){ resetSkills(h); ch=true } else h.sp=spCap(h.lvl)-sp } } r.skV=2; if(ch) MIG_MSG=(MIG_MSG?MIG_MSG+' ':'')+'Les points de compétence sont maintenant limités à '+SP_MAX+' : vos compétences ont été réinitialisées (points remboursés).' } return r};
 /* rééquilibrage 0.3.0 : les affixes existants gardent leur qualité de tirage dans la nouvelle plage ; objets divins : 3 affixes au maximum, sans pouvoir */
 const AFX_OLD={hp:[8,3.2],atk:[2,.9],mag:[2,.9],def:[2,.75],spd:[1,.12],hpPct:[2,.12],dmgPct:[2,.14],crit:[1.5,.08],critDmg:[6,.5],dodge:[1.2,.04],lifesteal:[.8,.025]};
 function impMig(d){
@@ -2503,17 +2510,19 @@ function genItem(slot,ilvl,rarity,baseName,cls){
   if(rarity>=3) ep=' '+pick(EPITHETS);
   else {const a=aff.find(x=>AFXM[x.s].ep); if(a) ep=' '+AFXM[a.s].ep}
   if((rarity===2||rarity===3)&&Math.random()<.12){ const n=pick(affPool(base.cls||cls).filter(x=>!aff.some(y=>y.s===x.s))); if(n) aff.push({s:n.s,v:rollAff(n,ilvl,m),bonus:1}) }
-  const it={id:++S.uid,slot,base:base.n,cls:base.cls||null,ilvl,rarity,imp,aff,up:0,name:base.n+ep,v2:1,req:ilvl};
+  const it={id:++S.uid,slot,base:base.n,cls:base.cls||null,ilvl,rarity,imp,aff,up:0,name:base.n+ep,v2:1,hp3:1,req:Math.min(ilvl,MAXL)};
   if(RAR[rarity].leg) it.leg=slot;
   return it;
 }
 const clsOk=it=>!it||!it.cls||!S.heroes[0]||it.cls===S.heroes[0].cls;
-const lvlOk=(it,h)=>!it||!(h=h||S.heroes[0])||(it.req||0)<=h.lvl;
+const itReq=it=>Math.min(MAXL,(it&&(it.req||it.ilvl))||0);
+const lvlOk=(it,h)=>!it||!(h=h||S.heroes[0])||itReq(it)<=h.lvl;
 const canWear=it=>clsOk(it)&&lvlOk(it);
-const upMul=it=>1+.05*it.up;
+const upMul=it=>1+.03*it.up;
+const impOf=it=>it&&it.slot==='weapon'&&it.imp||{};
 function itemStats(it){
   const k=upMul(it), r={};
-  for(const [s,v] of Object.entries(it.imp)) r[s]=(r[s]||0)+v*k;
+  for(const [s,v] of Object.entries(impOf(it))) r[s]=(r[s]||0)+v*k;
   for(const a of it.aff) r[a.s]=(r[a.s]||0)+a.v*k;
   if(it.leg) for(const [k,v] of Object.entries(LEG_FX)) r[k]=(r[k]||0)+v;
   return r;
@@ -2567,9 +2576,9 @@ function affRange(it,a,k){
 const affOrd=L=>L.slice().sort((a,b)=>((a.main?(a.s==='hp'||a.s==='hpPct'?0:1):2)-(b.main?(b.s==='hp'||b.s==='hpPct'?0:1):2)));
 function itemCard(it,foot='',delta=null){
   const k=upMul(it);
-  const lines=[...affOrd(it.aff).filter(a=>a.main).map(a=>`<li class="am">${fmtStat(a.s,a.v*k)}${ALTK||NOHOVER?affRange(it,a,k):''}</li>`),...Object.entries(it.imp).map(([s,v])=>`<li class="imp">${fmtStat(s,v*k)}</li>`),...affOrd(it.aff).filter(a=>!a.main).map(a=>`<li class="${a.main?'am':''}">${fmtStat(a.s,a.v*k)}${ALTK||NOHOVER?affRange(it,a,k):''}</li>`),...(it.leg?[`<li class="legp"><b>${esc(LEGP[it.leg]||'Pouvoir légendaire')}</b> : ${LEG_D}</li>`]:[])].join('')+(it.aff.length&&!NOHOVER?`<li class="shk">${ALTK?'Plages possibles des affixes (Alt)':'Alt : plages des affixes · Maj : comparer'}</li>`:'');
+  const lines=[...affOrd(it.aff).filter(a=>a.main).map(a=>`<li class="am">${fmtStat(a.s,a.v*k)}${ALTK||NOHOVER?affRange(it,a,k):''}</li>`),...Object.entries(impOf(it)).map(([s,v])=>`<li class="imp">${fmtStat(s,v*k)}</li>`),...affOrd(it.aff).filter(a=>!a.main).map(a=>`<li class="${a.main?'am':''}">${fmtStat(a.s,a.v*k)}${ALTK||NOHOVER?affRange(it,a,k):''}</li>`),...(it.leg?[`<li class="legp"><b>${esc(LEGP[it.leg]||'Pouvoir légendaire')}</b> : ${LEG_D}</li>`]:[])].join('')+(it.aff.length&&!NOHOVER?`<li class="shk">${ALTK?'Plages possibles des affixes (Alt)':'Alt : plages des affixes · Maj : comparer'}</li>`:'');
   const dl=delta===null?'':`<span class="dl ${delta>=0?'up':'dn'}">${delta>=0?'▲':'▼'} ${Math.abs(Math.round(delta))}</span>`;
-  return `<article class="it" style="--rc:var(--r${it.rarity})"><header><b>${esc(it.name)}${it.up?` <em>+${it.up}</em>`:''}</b> ${dl}<small>${SLOT_N[it.slot]}${it.cls?` · <span style="${clsOk(it)?'':'color:var(--blood);font-weight:700'}">${CLASSES[it.cls].n}</span>`:''} · ${RAR[it.rarity].n}</small><small class="${lvlOk(it)?'':'reqno'}">Niveau requis <b class="num">${it.req||it.ilvl}</b></small><small>Niveau d’objet <b class="num">${it.ilvl}</b> · Affixes secondaires <b class="num">${secN(it)} / 3</b></small></header><ul>${lines}</ul>${foot?`<div class="foot">${foot}</div>`:''}</article>`;
+  return `<article class="it" style="--rc:var(--r${it.rarity})"><header><b>${esc(it.name)}${it.up?` <em>+${it.up}</em>`:''}</b> ${dl}<small>${SLOT_N[it.slot]}${it.cls?` · <span style="${clsOk(it)?'':'color:var(--blood);font-weight:700'}">${CLASSES[it.cls].n}</span>`:''} · ${RAR[it.rarity].n}</small><small class="${lvlOk(it)?'':'reqno'}">Niveau requis <b class="num">${itReq(it)}</b></small><small>Niveau d’objet <b class="num">${it.ilvl}</b> · Affixes secondaires <b class="num">${secN(it)} / 3</b></small></header><ul>${lines}</ul>${foot?`<div class="foot">${foot}</div>`:''}</article>`;
 }
 /* coût de création : réel pour les objets forgés/travaillés, estimé sinon (forge équivalente à la rareté + améliorations) */
 function estCost(it){
@@ -2651,7 +2660,7 @@ function heroStats(h){
 }
 function heroPower(h){
   const s=heroStats(h);
-  return s.hp/8+Math.max(s.atk,s.mag)*2.2+s.def+s.res+s.spd*2+s.crit*1.5+s.critDmg*.2+s.dodge*2+s.lifesteal*3+s.dmgPct*3;
+  return s.hp/24+Math.max(s.atk,s.mag)*2.2+s.def+s.res+s.spd*2+s.crit*1.5+s.critDmg*.2+s.dodge*2+s.lifesteal*3+s.dmgPct*3;
 }
 function gainXp(h,xp){
   h.xp+=xp; let ups=0;
@@ -2865,9 +2874,9 @@ function mkHeroUnit(h){
 }
 /* difficultés : niveau des monstres, multiplicateurs (monstres / boss), début de la rage des boss, récompenses */
 const DIFF={
-  normal:{n:'Normal',L:null,hp:1,atk:1,bHp:1,bAtk:1.15,bDef:1,rage:30,rw:1,prism:.1},
-  hero:{n:'Héroïque',L:50,hp:1.6,atk:2.6,bHp:1.6,bAtk:2.9,bDef:1.3,rage:10,rw:1,prism:.1},
-  myth:{n:'Mythique',L:60,hp:2.2,atk:2.9,bHp:1.7,bAtk:2.2,bDef:1.5,rage:8,rw:2,prism:.25,extra:'e_smash'},
+  normal:{n:'Normal',L:null,hp:1,atk:1,bHp:2,bAtk:1,bDef:1,rage:30,rw:1,prism:.1},
+  hero:{n:'Héroïque',L:50,hp:1.4,atk:1.5,bHp:2.8,bAtk:1.6,bDef:1.3,rage:15,rw:1,prism:.1},
+  myth:{n:'Mythique',L:60,hp:1.8,atk:1.8,bHp:3,bAtk:1.45,bDef:1.5,rage:12,rw:2,prism:.25,extra:'e_smash'},
 };
 const HERO_L=50;
 const heroOpen=()=>!!(S.heroes[0]&&S.heroes[0].lvl>=HERO_L);
@@ -2876,7 +2885,7 @@ const isHero=()=>curDiff()!=='normal';
 const progKey=d=>d==='myth'?'progM':d==='hero'?'progH':'prog';
 const prog=(d=curDiff())=>{const k=progKey(d); if(!S[k]) S[k]={zone:0,stage:1}; return S[k]};
 const mythOpen=()=>heroOpen()&&(S.mythOpen||(S.progH&&S.progH.zone===ZONES.length-1&&S.progH.stage===10));
-const ENF={hp:[50,90,0],atk:[10,5.5,0],def:[4,1.8,0],pair:[.65,.6]};
+const ENF={hp:[100,180,0],atk:[18,9.9,0],def:[4,1.8,0],pair:[.65,.6]};
 const enStat=(k,L)=>ENF[k][0]+ENF[k][1]*L+ENF[k][2]*L*L;
 function mkEnemies(z,st,n,diff){
   const D=DIFF[diff]||DIFF.normal,Z=ZONES[z],L=D.L||z*10+st,boss=st===10,list=[];
@@ -3431,10 +3440,12 @@ const pvpMe=()=>FB.user&&FB.user.uid;
 const pvpOp=m=>m.players.find(x=>x!==pvpMe());
 const pvpTS=()=>firebase.firestore.FieldValue.serverTimestamp();
 const pvpReady=()=>!!(FB.user&&FB.prof&&S&&S.heroes&&S.heroes[0]);
-function pvpSnap(){
+const PVP_HP=2.5;
+function pvpSnap(hm=1){
   const h=S.heroes[0],u=mkHeroUnit(h),keys=['hp','maxHp','atk','mag','def','res','spd','crit','critDmg','dodge','lifesteal','dmgPct','ap','maxAp',...RES_K];
   const o={acct:FB.prof.name,name:h.name,cls:h.cls,skin:h.skin||null,lvl:h.lvl,role:u.role,gx:u.gx,skills:u.skills.slice(),ranks:Object.fromEntries(u.skills.map(id=>[id,h.learned[id]||1])),cds:{},st:[],shield:0,atkUsed:false,stun:false};
   for(const k of keys) o[k]=Math.round((u[k]||0)*10)/10;
+  if(hm!==1){ o.hp=o.maxHp=Math.round(o.maxHp*hm) }
   return o;
 }
 function startPvp(){
@@ -3475,7 +3486,7 @@ async function pvpSearch(){
 function pvpStopSearch(){ clearTimeout(PV.qT); if(PV.searching&&FB.user) pvpQ().doc(pvpMe()).delete().catch(()=>{}); const was=PV.searching; PV.searching=false; if(was&&UI.tab==='combat'&&!UI.scr&&C.phase==='idle') render() }
 async function pvpPropose(o,oname,ochar,kind){
   const me=pvpMe(),h=S.heroes[0],auto=kind==='friend';
-  const doc={players:[me,o].sort(),from:me,kind,state:'confirm',names:{[me]:FB.prof.name,[o]:oname},chars:{[me]:{name:h.name,cls:h.cls,lvl:h.lvl},[o]:ochar||null},acc:auto?{[me]:true}:{},u:auto?{[me]:pvpSnap()}:{},log:[],created:pvpTS(),cms:Date.now()};
+  const doc={players:[me,o].sort(),from:me,kind,state:'confirm',names:{[me]:FB.prof.name,[o]:oname},chars:{[me]:{name:h.name,cls:h.cls,lvl:h.lvl},[o]:ochar||null},acc:auto?{[me]:true}:{},u:auto?{[me]:pvpSnap(PVP_HP)}:{},log:[],created:pvpTS(),cms:Date.now()};
   const ref=await pvpCol().add(doc); return ref;
 }
 async function pvpUpd(data){ if(!PV.match) return; try{ await pvpCol().doc(PV.match.id).update(data) }catch(e){ toast('Duel : erreur ('+(e.code||'réseau')+').') } }
@@ -3484,7 +3495,7 @@ async function pvpAccept(){
   if(!PV.match) return; if(!pvpReady()){toast('Chargez un personnage (Jouer) pour accepter le duel.');return}
   if(inFight()){toast('Terminez d’abord votre combat en cours.');return}
   if(RD.match&&RD.match.state==='fight'){toast('Terminez d’abord votre raid.');return}
-  const me=pvpMe(); await pvpUpd({['acc.'+me]:true,['u.'+me]:pvpSnap()});
+  const me=pvpMe(); await pvpUpd({['acc.'+me]:true,['u.'+me]:pvpSnap(PVP_HP)});
 }
 async function pvpRefuse(){ if(!PV.match) return; await pvpUpd({state:'cancel',by:pvpMe()}); PV.match=null; renderPvp() }
 function pvpTick(){
@@ -3705,11 +3716,11 @@ function viewPvp(){
 
 /* ============ Raids (coop 2 joueurs contre un boss) ============ */
 const RAIDS=[
-  {id:'colosse',n:'Colosse de Braise',L:25,req:20,role:'atk',hp:7,atk:1.6,def:1.5,res:{rPhys:20,rFeu:40,rGlace:-15},sk:['e_heavy','e_aoe','e_cry','e_stun'],d:'Un géant de roche en fusion qui écrase tout sur son passage.'},
-  {id:'wyrm',n:'Wyrm des Glaces',L:40,req:35,role:'mag',hp:7.5,atk:1.7,def:1.5,res:{rGlace:50,rMag:20,rFeu:-15},sk:['e_aoe','e_curse','e_stun','e_smash'],d:'Un dragon ancien dont le souffle gèle le sang.'},
-  {id:'avatar',n:'Avatar de l’Abîme',L:50,req:50,role:'atk',hp:8,atk:1.8,def:1.6,res:{rPhys:25,rMag:25,rFeu:20,rGlace:20,rFoudre:20,rTerre:20},sk:['e_smash','e_aoe','e_curse','e_poison','e_cry'],d:'L’incarnation du néant. Seuls les meilleurs duos en reviennent.'},
+  {id:'colosse',n:'Colosse de Braise',L:25,req:20,role:'atk',hp:42,atk:2.24,def:1.5,res:{rPhys:20,rFeu:40,rGlace:-15},sk:['e_heavy','e_aoe','e_cry','e_stun'],d:'Un géant de roche en fusion qui écrase tout sur son passage.'},
+  {id:'wyrm',n:'Wyrm des Glaces',L:40,req:35,role:'mag',hp:42,atk:2.2,def:1.5,res:{rGlace:50,rMag:20,rFeu:-15},sk:['e_aoe','e_curse','e_stun','e_smash'],d:'Un dragon ancien dont le souffle gèle le sang.'},
+  {id:'avatar',n:'Avatar de l’Abîme',L:50,req:50,role:'atk',hp:48,atk:2.52,def:1.6,res:{rPhys:25,rMag:25,rFeu:20,rGlace:20,rFoudre:20,rTerre:20},sk:['e_smash','e_aoe','e_curse','e_poison','e_cry'],d:'L’incarnation du néant. Seuls les meilleurs duos en reviennent.'},
 ];
-const RD_STEP=1.05,RD_RAGE=15,RD_TURN=90,RD_ACTS=2;
+const RD_STEP=1.05,RD_RAGE=25,RD_TURN=90,RD_ACTS=2;
 const RD={unsub:null,match:null,searching:null,qT:null,tT:null,busy:false,ending:null,gone:{}};
 const rdCol=()=>FB.db.collection(COL('raid'));
 const rdQ=()=>FB.db.collection(COL('raidQueue'));
@@ -4545,7 +4556,7 @@ let mlFirst=true;
 function mlNotify(was,L){ if(!was.size&&mlFirst){mlFirst=false;return} const st=mlSt(); const n=L.filter(m=>!was.has(m.id)&&!st.read[m.id]&&!st.del[m.id]); if(n.length) toast(`✉ Nouveau message : ${n[0].title||'Message système'}`) }
 function mlRefresh(){ const b=$('#mailbtn'); if(b){ const n=mlUnread(); b.hidden=!!UI.scr||!S||!S.heroes||!S.heroes.length; b.querySelector('.mlcnt').textContent=n; b.querySelector('.mlcnt').hidden=!n; b.setAttribute('aria-label',`Messagerie${n?` : ${n} non lu${n>1?'s':''}`:''}`) } if(ML.open) renderMail() }
 /* coffre : placement simulé puis réel (tout ou rien) */
-function mlPlace(att){
+function mlPlace(att){ hp3Walk(att);
   const d=stashD(),tabs=d.tabs.map(T=>({T,bag:T.bag.map(e=>({x:e.x,y:e.y,o:Object.assign({},e.o)}))}));
   for(const [k,v0] of Object.entries(att)){ if(k==='gold'||!(v0>0)) continue; let n=Math.floor(v0);
     for(const t of tabs){ for(const e of t.bag){ if(n<=0) break; if(e.o.mat===k&&e.o.n<STACK){const m=Math.min(STACK-e.o.n,n);e.o.n+=m;n-=m} } }
@@ -4834,7 +4845,7 @@ const NEWI={
  gm_rar:{n:'Saphir d’éclat',r:2,cat:'Pierre de rareté',gem:1,d:'Magique → Rare. Toutes les affixes : +5 % de plus.',svg:NWI.gem('#f0c040','#fff0b0','#6a4a00')},
  gm_epi:{n:'Améthyste ancienne',r:3,cat:'Pierre de rareté',gem:2,d:'Rare → Épique. Toutes les affixes : +5 % de plus.',svg:NWI.gem('#b070f0','#ead0ff','#3a1a6a')},
  gm_leg:{n:'Cœur de braise',r:4,cat:'Pierre de rareté',gem:3,d:'Épique → Légendaire. Toutes les affixes : +5 % de plus et pouvoir légendaire.',svg:NWI.gem('#ff7a2a','#ffd8a0','#6a2400')},
- st_up:{n:'Pierre de renforcement',r:0,cat:'Amélioration',d:'Niveau de l’objet +1 (+5 % à toutes ses stats, jusqu’à +10). Plus le niveau est haut, plus la réussite est difficile ; en cas d’échec, la pierre est perdue mais l’objet reste intact.',svg:'<path d="M4 15l7-10h6l3 4-7 10H7z" fill="#8a8f98" stroke="#2a2e34" stroke-width="1.1" stroke-linejoin="round"/><path d="M11 5h6l3 4h-6z" fill="#c4c9d0"/><path d="M8 14l4-5" stroke="#f0f4f8" stroke-width="1"/>'},
+ st_up:{n:'Pierre de renforcement',r:0,cat:'Amélioration',d:'Niveau de l’objet +1 (+3 % à toutes ses stats, jusqu’à +10). Plus le niveau est haut, plus la réussite est difficile ; en cas d’échec, la pierre est perdue mais l’objet reste intact.',svg:'<path d="M4 15l7-10h6l3 4-7 10H7z" fill="#8a8f98" stroke="#2a2e34" stroke-width="1.1" stroke-linejoin="round"/><path d="M11 5h6l3 4h-6z" fill="#c4c9d0"/><path d="M8 14l4-5" stroke="#f0f4f8" stroke-width="1"/>'},
  ch_pou:{n:'Poudre de chance',r:1,cat:'Bonus de réussite',bon:10,d:'+10 % de chance de réussite pour un renforcement avec une Pierre de renforcement.',svg:NWI.pouch('#3a8a4a','#123a18','<path d="M12 11.5c-1.4-1.6-3 .4-1.4 1.7L12 14.5l1.4-1.3c1.6-1.3 0-3.3-1.4-1.7z" fill="#d0ffb0"/>')},
  ch_tre:{n:'Trèfle de fortune',r:3,cat:'Bonus de réussite',bon:25,d:'+25 % de chance de réussite pour un renforcement avec une Pierre de renforcement.',svg:'<path d="M12 12c-4-6-9-1-4 2-5 3 0 8 4 2 4 6 9 1 4-2 5-3 0-8-4-2z" fill="#4ac060" stroke="#14501e" stroke-width="1.1"/><path d="M12 12l2 9" stroke="#14501e" stroke-width="1.4"/><circle cx="12" cy="12" r="1.3" fill="#e8ffd0"/>'},
 };
@@ -4932,7 +4943,7 @@ function fUpInfo(it,k){
       html:`<p>Rareté <b style="color:var(--r${g})">${RAR[g].n}</b> → <b style="color:var(--r${g+1})">${RAR[g+1].n}</b>. Toutes les affixes de l’objet, actuelles et futures, gagnent <b>+5 %</b>${g+1===4?', et l’objet obtient son pouvoir légendaire':''}.</p>${ok?`<h4>Aperçu</h4><ul class="mfprev">${it.aff.map(a=>`<li>${fmtStat(a.s,a.v*kk)} → <b class="ok">${fmtStat(a.s,affRound(a.s,a.v*f)*kk)}</b></li>`).join('')}</ul>`:''}<h4>Paliers de rareté</h4><table class="mftab">${RAR.map((R,r)=>`<tr class="${r===g+1?'cur':''}"><td style="color:var(--r${r})">${R.n}</td><td>${r?MAT_OBJ[Object.keys(GEMK).find(x=>GEMK[x]===r-1)]:'—'}</td><td class="num">${Math.round(R.m*100)} %</td></tr>`).join('')}</table>`} }
   if(k==='st_up'){ const mx=(it.up||0)>=10,b=UI.fBon&&NEWI[UI.fBon]&&fsHave(UI.fBon)?NEWI[UI.fBon].bon:0,base=mx?0:UP_CH[it.up||0],ch=Math.min(100,base+b);
     return {ok:!mx,why:mx?'Niveau maximum atteint (+10).':'',cost:{gold:upCostG.st(it)},chance:ch,title:'Pierre de renforcement',rar:0,
-      html:`<p>Niveau <b class="num">+${it.up||0} → +${Math.min(10,(it.up||0)+1)}</b> : +5 % à toutes les statistiques. En cas d’échec, la pierre${b?' et le bonus sont perdus':' est perdue'} mais l’objet reste intact.</p><h4>Chance de réussite</h4><div class="mfchance"><div class="mfring" style="--p:${ch}"><b class="num">${ch} %</b></div><ul><li>Base au niveau +${(it.up||0)+1} <b class="num">${base} %</b></li>${b?`<li>${MAT_OBJ[UI.fBon]} <b class="num ok">+${b} %</b></li>`:'<li class="mute">Aucun bonus de réussite</li>'}</ul></div><h4>Réussite selon le niveau</h4><table class="mftab grid"><tr>${UP_CH.map((_,i)=>`<td>+${i+1}</td>`).join('')}</tr><tr>${UP_CH.map((p,i)=>`<td class="num ${i===(it.up||0)?'cur':''}">${p}</td>`).join('')}</tr></table>`} }
+      html:`<p>Niveau <b class="num">+${it.up||0} → +${Math.min(10,(it.up||0)+1)}</b> : +3 % à toutes les statistiques. En cas d’échec, la pierre${b?' et le bonus sont perdus':' est perdue'} mais l’objet reste intact.</p><h4>Chance de réussite</h4><div class="mfchance"><div class="mfring" style="--p:${ch}"><b class="num">${ch} %</b></div><ul><li>Base au niveau +${(it.up||0)+1} <b class="num">${base} %</b></li>${b?`<li>${MAT_OBJ[UI.fBon]} <b class="num ok">+${b} %</b></li>`:'<li class="mute">Aucun bonus de réussite</li>'}</ul></div><h4>Réussite selon le niveau</h4><table class="mftab grid"><tr>${UP_CH.map((_,i)=>`<td>+${i+1}</td>`).join('')}</tr><tr>${UP_CH.map((p,i)=>`<td class="num ${i===(it.up||0)?'cur':''}">${p}</td>`).join('')}</tr></table>`} }
   return null;
 }
 const affRound=(s,v)=>s==='ap'?v:PCT.has(s)?Math.max(.5,r1(v)):Math.max(1,Math.round(v));
@@ -5428,13 +5439,15 @@ document.addEventListener('keydown',e=>{ if(!QA) return; if(e.code==='Space'||e.
 
 /* carte de joueur : penche vers la souris comme si elle appuyait dessus */
 let TILT=null;
-function tiltOff(){ if(!TILT) return; TILT.classList.remove('tilt'); TILT.style.transform=''; TILT=null }
+let TILTW=null;
+function tiltOff(){ if(!TILT) return; TILT.classList.remove('tilt'); TILT.style.transform=''; if(TILTW){ TILTW.classList.remove('tiltw'); TILTW.style.transform=''; TILTW=null } TILT=null }
 document.addEventListener('pointermove',e=>{
   if(e.pointerType==='touch'||PCF.drag||matchMedia('(prefers-reduced-motion: reduce)').matches){ tiltOff(); return }
-  const c=e.target.closest&&e.target.closest('.pc1,.pc2'); if(c!==TILT) tiltOff(); if(!c) return;
-  const r=c.getBoundingClientRect(); if(!r.width) return; const nx=clamp((e.clientX-r.left)/r.width*2-1,-1,1),ny=clamp((e.clientY-r.top)/r.height*2-1,-1,1);
+  const fl=e.target.closest&&e.target.closest('#pcfl'),c=fl?fl.querySelector('.pc1,.pc2'):(e.target.closest&&e.target.closest('.pc1,.pc2')); if(c!==TILT) tiltOff(); if(!c) return;
+  const box=fl?fl.querySelector('.pcbox')||c:c,r=box.getBoundingClientRect(); if(!r.width) return; const nx=clamp((e.clientX-r.left)/r.width*2-1,-1,1),ny=clamp((e.clientY-r.top)/r.height*2-1,-1,1);
   const k=c.classList.contains('pc2')?6:13; TILT=c; c.classList.add('tilt');
-  c.style.transform=`perspective(${c.classList.contains('pc2')?1400:900}px) rotateY(${(nx*k).toFixed(2)}deg) rotateX(${(-ny*k).toFixed(2)}deg) scale(1.015)`;
+  const tf=`perspective(${c.classList.contains('pc2')?1400:900}px) rotateY(${(nx*k).toFixed(2)}deg) rotateX(${(-ny*k).toFixed(2)}deg) scale(1.015)`;
+  if(fl){ TILTW=fl; fl.classList.add('tiltw'); fl.style.transform=tf; c.style.transform='' } else c.style.transform=tf;
   c.style.setProperty('--gx',((nx+1)*50).toFixed(1)+'%'); c.style.setProperty('--gy',((ny+1)*50).toFixed(1)+'%');
 },{passive:true});
 document.addEventListener('pointerleave',tiltOff); addEventListener('blur',tiltOff);
@@ -5797,7 +5810,7 @@ function equipFromCell(i,slot){
   if(eqLock()) return;
   const h=S.heroes[0],E=S.bag[i],it=E&&E.o; if(!it||it.mat) return;
   if(slotType(slot)!==it.slot){toast('Cet objet ne va pas dans cet emplacement.');return}
-  if(!canWear(it)){toast(clsOk(it)?`Niveau ${it.req} requis pour porter cet objet.`:`Réservé au ${CLASSES[it.cls].n}.`);return}
+  if(!canWear(it)){toast(clsOk(it)?`Niveau ${itReq(it)} requis pour porter cet objet.`:`Réservé au ${CLASSES[it.cls].n}.`);return}
   const old=h.equip[slot];
   S.bag.splice(i,1);
   if(old){
@@ -5954,7 +5967,7 @@ function renderInvPop1(){
   if(!w){ w=document.createElement('div'); w.id='invpop'; w.className='invpop'; w.setAttribute('role','dialog'); w.setAttribute('aria-label','Inventaire'); document.body.append(w) }
   const P=bagParts(),so=UI.bagSort;
   w.innerHTML=`<div class="iphead" data-ipdrag><span class="ipt">${icon('chest')}<b>Inventaire</b></span><small class="num ipcnt">${P.used} / ${BAG}</small><span class="ipg"></span><button class="ipx" data-act="invClose" aria-label="Fermer l’inventaire" title="Fermer (I)">×</button></div>
-    ${invTopHTML()}<div class="iptools">${sortBtn('bag')}<span class="mute">Trier${so.k?' : '+({type:'type',name:'nom',qty:'quantité'})[so.k]:''}</span><button class="tib cb first ${UI.cbInv?'on':''}" data-act="cbToggle" aria-pressed="${!!UI.cbInv}" ${ttip('Sac de combat','Choisissez les potions emportées en combat (quantités limitées).')}>${uic('flask')}</button><button class="tib ${UI.stashOpen?'on':''}" data-act="stToggle" aria-pressed="${!!UI.stashOpen}" ${ttip(UI.stashOpen?'Fermer le coffre':'Ouvrir le coffre','Coffre du compte, partagé par tous vos personnages.')}>${uic('coffre')}</button></div>
+    ${invTopHTML()}<div class="iptools">${sortBtn('bag')}<span class="mute">Trier${so.k?' : '+({type:'type',name:'nom',qty:'quantité'})[so.k]:''}</span><button class="tib cb first ${UI.cbInv?'on':''}" data-act="cbToggle" aria-pressed="${!!UI.cbInv}" ${ttip('Sac de combat','Choisissez les potions emportées en combat (quantités limitées).')}>${uic('flask')}</button><button class="tib ${UI.stashOpen?'on':''}" data-act="stToggle" aria-pressed="${!!UI.stashOpen}" ${ttip(UI.stashOpen?'Fermer le coffre':'Ouvrir le coffre','Coffre du compte, partagé par tous vos personnages.')}>${uic('coffre')}</button><button class="tibmv" data-act="craftDep" ${bagCraftN()?'':'disabled'} ${ttip('Tout déposer au coffre','Range tous les objets d’artisanat de l’inventaire dans l’onglet ouvert du coffre.')}>${MV_IC.dep}</button></div>
     ${UI.multi?multiBar():''}<div class="ipgrid">${gridHTML()}</div>${UI.cbInv?cbPanel():''}<div class="ipres" id="ipres">${goldRow()}</div>
     ${P.detail&&!UI.multi?`<div class="ipdet"><button class="x" data-act="detClose" aria-label="Fermer les détails">×</button>${P.detail}</div>`:''}`;
   if(fresh&&UI.invPos){ w.style.left=(UI.invPos.x)/ZM+'px'; w.style.top=(UI.invPos.y)/ZM+'px'; w.style.right='auto'; w.style.bottom='auto' }
@@ -5975,10 +5988,34 @@ document.addEventListener('keydown',e=>{
 
 /* ============ coffre (lié au compte, partagé entre les personnages) ============ */
 const SW=15,SH=5,STASH_MAX=6,STASH_COST=[0,5000,15000,40000,100000,250000];
-function stashD(){ if(!ACC.stash||!Array.isArray(ACC.stash.tabs)||!ACC.stash.tabs.length) ACC.stash={tabs:[{n:'Coffre 1',bag:[]}],cur:0}; const d=ACC.stash; if(!d.tabs[d.cur]) d.cur=0; return d }
+function stashD(){ accHp3(); if(!ACC.stash||!Array.isArray(ACC.stash.tabs)||!ACC.stash.tabs.length) ACC.stash={tabs:[{n:'Coffre 1',bag:[]}],cur:0}; const d=ACC.stash; if(!d.tabs[d.cur]) d.cur=0; return d }
 const stashTab=()=>{const d=stashD(); return d.tabs[d.cur]};
 const stashUsed=T=>T.bag.reduce((a,e)=>{const [w,h]=SIZE(e.o);return a+w*h},0);
 function stashOverlaps(T,x,y,w,h,skip){return T.bag.filter(e=>{ if(e===skip) return false; const [ew,eh]=SIZE(e.o); return x<e.x+ew&&e.x<x+w&&y<e.y+eh&&e.y<y+h })}
+/* déplacer tous les objets d'artisanat entre l'inventaire et le coffre */
+const isCraftK=k=>!!k&&(!!NEWI[k]||MATS.includes(k));
+const MV_IC={dep:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 13h18v7H3zM3 13l2-4h14l2 4M12 2v8M9 7l3 3 3-3"/></svg>',take:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 13h18v7H3zM3 13l2-4h14l2 4M12 11V2M9 5l3-3 3 3"/></svg>'};
+const bagCraftN=()=>S.bag.reduce((a,e)=>a+(e.o.mat&&isCraftK(e.o.mat)?1:0),0);
+const stCraftN=()=>stashTab().bag.reduce((a,e)=>a+(e.o.mat&&isCraftK(e.o.mat)?1:0),0);
+function craftToStash(){
+  const T=stashTab(); let moved=0,left=0;
+  for(const E of S.bag.filter(e=>e.o.mat&&isCraftK(e.o.mat))){
+    let n=E.o.n;
+    for(const B of T.bag){ if(n<=0) break; if(B.o.mat===E.o.mat&&B.o.n<STACK){ const m=Math.min(STACK-B.o.n,n); B.o.n+=m; n-=m } }
+    while(n>0){ const sp=findSpot(T.bag,1,1,SW,SH); if(!sp) break; const m=Math.min(STACK,n); T.bag.push({x:sp[0],y:sp[1],o:{mat:E.o.mat,n:m}}); n-=m }
+    moved+=E.o.n-n; E.o.n=n; if(n>0) left++;
+  }
+  S.bag=S.bag.filter(e=>!(e.o.mat&&isCraftK(e.o.mat)&&e.o.n<=0)); if(UI.bagSel&&!S.bag.some(e=>e.o===UI.bagSel)) UI.bagSel=null;
+  if(!moved){ toast(left?'Cet onglet du coffre est plein.':'Aucun objet d’artisanat dans l’inventaire.'); return }
+  save(); saveAcc(); render(); toast(`${fmt(moved)} objet${moved>1?'s':''} d’artisanat déposé${moved>1?'s':''} dans le coffre.${left?' Coffre plein : le reste est resté dans l’inventaire.':''}`);
+}
+function craftFromStash(){
+  const T=stashTab(); let moved=0,left=0;
+  for(const E of T.bag.filter(e=>e.o.mat&&isCraftK(e.o.mat))){ const r=bagAddMat(S.bag,E.o.mat,E.o.n); moved+=E.o.n-r; E.o.n=r; if(r>0) left++ }
+  T.bag=T.bag.filter(e=>!(e.o.mat&&isCraftK(e.o.mat)&&e.o.n<=0)); if(UI.stSel&&!T.bag.some(e=>e.o===UI.stSel)) UI.stSel=null;
+  if(!moved){ toast(left?'Inventaire plein.':'Aucun objet d’artisanat dans cet onglet du coffre.'); return }
+  markNew(); save(); saveAcc(); render(); toast(`${fmt(moved)} objet${moved>1?'s':''} d’artisanat récupéré${moved>1?'s':''} dans l’inventaire.${left?' Inventaire plein : le reste est resté dans le coffre.':''}`);
+}
 function toStash(i,x,y){
   const E=S.bag[i]; if(!E) return; const T=stashTab(),[w,h]=SIZE(E.o);
   if(x!=null){ const ov=stashOverlaps(T,x,y,w,h);
@@ -6029,7 +6066,7 @@ function renderStashPop(){
   const fresh=!w; if(!w){ w=document.createElement('div'); w.id='stashpop'; w.className='invpop stashpop'; w.setAttribute('role','dialog'); w.setAttribute('aria-label','Coffre du compte'); document.body.append(w) }
   const d=stashD(),T=stashTab(),n=d.tabs.length,cost=STASH_COST[n],sel=UI.stSel&&T.bag.find(e=>e.o===UI.stSel);
   const tabs=d.tabs.map((t,i)=>i===d.cur&&UI.stRen?`<input id="stren" maxlength="16" value="${esc(t.n)}" aria-label="Nom de l’onglet">`:`<button class="sttab ${i===d.cur?'on':''}" data-act="stTab" data-i="${i}" title="${i===d.cur?'Double-cliquez pour renommer':''}">${esc(t.n)}</button>`).join('');
-  w.innerHTML=`<div class="iphead" data-stdrag><span class="ipt">${icon('chest')}<b>Coffre</b></span><small class="num ipcnt">${stashUsed(T)} / ${SW*SH}</small><small class="mute">Partagé par tous vos personnages</small>${sortBtn('st')}<button class="ipx" data-act="stClose" aria-label="Fermer le coffre">×</button></div>
+  w.innerHTML=`<div class="iphead" data-stdrag><span class="ipt">${icon('chest')}<b>Coffre</b></span><small class="num ipcnt">${stashUsed(T)} / ${SW*SH}</small><small class="mute">Partagé par tous vos personnages</small>${sortBtn('st')}<button class="tibmv" data-act="craftTake" ${stCraftN()?'':'disabled'} ${ttip('Tout récupérer dans l’inventaire','Prend tous les objets d’artisanat de cet onglet du coffre.')}>${MV_IC.take}</button><button class="ipx" data-act="stClose" aria-label="Fermer le coffre">×</button></div>
     <div class="sttabs">${tabs}<button class="sttab ren" data-act="stRen" title="Renommer l’onglet" aria-label="Renommer l’onglet">✎</button>${n<STASH_MAX?`<button class="sttab buy ${UI.stBuy?'conf':''}" data-act="stBuy" ${hasGold(cost)?'':'disabled'} title="Acheter un nouvel onglet">${UI.stBuy?`Confirmer : ${fmt(cost)} or`:`+ Onglet (${fmt(cost)} or)`}</button>`:''}</div>
     <div class="ipgrid">${stashGridHTML()}</div>
     ${sel?`<div class="ipdet"><button class="x" data-act="stDet" aria-label="Fermer les détails">×</button>${sel.o.mat?matCard(sel.o):itemCard(sel.o)}<div class="row" style="margin-top:6px"><button class="btn sm pri" data-act="stTake" data-i="${T.bag.indexOf(sel)}">Récupérer dans l’inventaire</button></div></div>`:''}`;
@@ -6094,7 +6131,7 @@ function forgeUp0(){
   let acts=`<p class="amnote">Glissez un objet du sac sur l’enclume, faites un clic droit dessus, ou cliquez sur un emplacement de la roue d’équipement.</p><button class="btn" data-act="invOpen">${uic('bag')} Ouvrir le sac <kbd>I</kbd></button>`;
   if(it){
     const uc=upCost(it),rc=rerollCost(it),pc=replCost(it),mx=it.up>=10;
-    acts=`<div class="maact"><span class="maai">${uic('plus')}</span><div><b>Améliorer ${mx?'<span class="num">+10 (max)</span>':`<span class="num">+${it.up} → +${it.up+1}</span>`}</b><small>+5 % à toutes les stats, jusqu’à +10.</small>${mx?'':costHTML(uc)}</div><button class="btn pri sm" data-act="upItem" ${mx||!canPay(uc)?'disabled':''}>${mx?'Max':'Améliorer'}</button></div>
+    acts=`<div class="maact"><span class="maai">${uic('plus')}</span><div><b>Améliorer ${mx?'<span class="num">+10 (max)</span>':`<span class="num">+${it.up} → +${it.up+1}</span>`}</b><small>+3 % à toutes les stats, jusqu’à +10.</small>${mx?'':costHTML(uc)}</div><button class="btn pri sm" data-act="upItem" ${mx||!canPay(uc)?'disabled':''}>${mx?'Max':'Améliorer'}</button></div>
      <div class="maact"><span class="maai">${uic('spark')}</span><div><b>Relancer les valeurs</b><small>Nouvelles valeurs, mêmes types de stats.</small>${costHTML(rc)}</div><button class="btn sm" data-act="rerollVals" ${canPay(rc)?'':'disabled'}>Relancer</button></div>
      <div class="maact col"><div class="mah"><span class="maai">${uic('recycle')}</span><div><b>Remplacer une affixe</b><small>Échange l’affixe choisie contre une autre au hasard.</small>${costHTML(pc)}</div></div><div class="maaff">${it.aff.map((a,i)=>`<button class="btn sm" data-act="replAff" data-i="${i}" ${canPay(pc)?'':'disabled'}>${fmtStat(a.s,a.v*upMul(it))}</button>`).join('')}</div></div>`;
   }
@@ -6280,7 +6317,7 @@ function viewHelp(){
   const pots=T(['Potion','Effet'],Object.values(POTS).map(p=>[p.n,p.d+(p.cls?` <small class="mute">(${CLASSES[p.cls].n})</small>`:'')]))
     +`<p class="hint">Les potions se boivent en combat (et pendant les 10 secondes de préparation) sans utiliser votre tour. Seules les potions placées dans le sac de combat peuvent être bues : remplissez-le depuis l’inventaire (bouton Combat), hors combat. Limites : 10 potions de vie, 3 de résistance, 3 de force ou d’intelligence, 2 d’action, 1 Élixir de savoir et 1 Philtre de fortune. Chaque potion a son propre temps de recharge : vie, résistance, force et intelligence 4 tours, action 6 tours. L’Élixir de savoir et le Philtre de fortune ne s’utilisent qu’une fois par combat.</p>`;
   const rar=T(['Rareté','Affixes','Multiplicateur de stats'],RAR.map((r,i)=>[`<span style="color:var(--r${i});font-weight:700">${r.n}</span>`,r.aff+(r.leg?' + pouvoir légendaire':'')+(r.max?' (au maximum de la plage)':''),'×'+String(r.m).replace('.',',')]))
-    +`<p class="hint">Niveau d’objet : il augmente toutes les valeurs de l’objet. Chaque amélioration (+1 à +10) ajoute 5 % à toutes ses stats. Les armes donnent Force ou Intelligence, les armures de la vie, de la défense et de la résistance magique, les bijoux uniquement des affixes aléatoires.</p>`
+    +`<p class="hint">Niveau d’objet : il augmente toutes les valeurs de l’objet. Chaque amélioration (+1 à +10) ajoute 3 % à toutes ses stats. Les armes donnent Force ou Intelligence en plus de leurs affixes ; les armures et les bijoux n’ont que des affixes.</p>`
     +T(['Affixe','Rareté','Chances (1er affixe, Guerrier)'],(()=>{const pool=affPool('guerrier'),tot=pool.reduce((x,a)=>x+a.w,0);return AFX.slice().sort((a,b)=>b.w-a.w).map(a=>[STAT_N[a.s]+(PCT.has(a.s)&&!/^r/.test(a.s)?' %':''),affTier(a.w),pool.includes(a)?r1(a.w/tot*100)+' %':'—'])})());
   const asc=`<p>L’ascension demande le niveau maximum (${MAXL}). Chaque étoile ajoute <b>+10 %</b> aux statistiques de base du héros (hors équipement). Palier n : ${fmt(5000)} × n or et 5 × n Prismes divins, jusqu’à 5 étoiles.</p>`;
   return `<h2 style="margin-bottom:4px">Aide</h2><p class="hint" style="margin-bottom:16px">Tout ce qu’il faut savoir sur les statistiques et les effets de combat. Cliquez sur une section pour l’ouvrir ou la fermer.</p>
@@ -6289,9 +6326,14 @@ function viewHelp(){
 }
 
 /* --- nouveautés --- */
-const VERSION='0.5.2';
-const BUILD='20261020230528';
+const VERSION='0.5.7';
+const BUILD='20261020233524';
 const PATCH=[
+ {"v": "0.5.7", "t": "Équipement mythique portable au niveau 50", "sec": [["Équipement", ["Les objets du mode Mythique (niveau d’objet 60) demandent maintenant le niveau 50 au lieu du niveau 60, qui n’existe pas. Leur niveau d’objet reste 60, avec les mêmes statistiques. Les objets déjà obtenus sont aussi concernés."]]]},
+ {"v": "0.5.6", "t": "Grand rééquilibrage des combats", "sec": [["Équilibrage", ["Objectif : des combats plus longs, où les potions et un équipement optimisé font la différence. Au niveau 50, les plus gros coups tournent autour de 4 000 à 6 000 dégâts.", "PV des personnages : environ ×3. Guerrier niveau 50 sans équipement : 757 → 2 211 PV. Sorcier niveau 50 : 737 → 2 161 PV.", "Affixe PV sur l’équipement : environ ×3. Objet niveau 50 : jusqu’à 138 → 414 PV. Les objets que vous possédez déjà sont mis à jour automatiquement.", "Amélioration des objets : +5 % → +3 % par niveau (objet +10 : +50 % → +30 %).", "Monstres : PV ×2, attaque ×1,8. Un monstre niveau 50 : 4 550 → 9 100 PV, attaque 285 → 513. Un combat normal dure maintenant 4 à 6 tours au lieu de 2 à 3.", "Boss normaux : PV ×2, attaque un peu plus faible (−13 %). Un boss dure 10 à 13 tours : une potion de vie peut vous sauver.", "Héroïque : attaque des monstres ×2,6 → ×1,5, PV ×1,6 → ×1,4 ; boss : PV ×1,6 → ×2,8, attaque ×2,9 → ×1,6 ; rage du boss au tour 11 → 16. Les boss héroïques demandent des potions avec un équipement Épique.", "Mythique : attaque des monstres ×2,9 → ×1,8, PV ×2,2 → ×1,8 ; boss : PV ×1,7 → ×3, attaque ×2,2 → ×1,45 ; rage au tour 9 → 13. Il faut un équipement Légendaire ou Divin optimisé et des potions.", "Défis : PV des boss ×6, attaque ×1,4 ; rage au tour 16 → 26. Un défi dure maintenant 15 à 30 tours.", "Duels : chaque joueur commence avec 2,5 × ses PV. Un duel dure maintenant 10 à 20 tours au lieu de 1 à 2."]]]},
+ {"v": "0.5.5", "t": "Armures : stats fixes retirées", "sec": [["Équilibrage", ["Casques, armures, jambières et bottes n’ont plus les 3 stats fixes (PV, Défense physique, Résistance magique) en plus de leurs affixes. Exemple : Robe du Titan niveau 13 : +85 PV, +23 Défense physique, +3,8 % Résistance magique → aucune ; il reste ses 2 affixes principales et ses affixes secondaires. Les objets déjà obtenus sont aussi concernés."]]]},
+ {"v": "0.5.4", "t": "Cartes flottantes : inclinaison complète", "sec": [["Cartes de joueur", ["Dans les fenêtres de carte (amis et classement), les boutons sur le côté et la croix de fermeture s’inclinent maintenant avec la carte au lieu de rester immobiles, et la carte ne se remet plus à plat quand la souris passe sur ces boutons."]]]},
+ {"v": "0.5.3", "t": "Rangement rapide de l’artisanat", "sec": [["Inventaire", ["Nouveau bouton « Tout déposer au coffre » à droite du bouton Coffre : range d’un clic tous les objets d’artisanat de l’inventaire dans l’onglet ouvert du coffre, en complétant les piles existantes."]], ["Coffre", ["Nouveau bouton « Tout récupérer dans l’inventaire » dans l’en-tête du coffre : reprend d’un clic tous les objets d’artisanat de l’onglet ouvert."]]]},
  {"v": "0.5.2", "t": "Combats en arrière-plan et cartes de joueur", "sec": [["Combat", ["Les combats continuent normalement quand vous changez d’onglet ou de fenêtre : le jeu ne ralentit plus en arrière-plan."]], ["Classement", ["La carte d’un joueur du classement s’ouvre maintenant en fenêtre déplaçable, comme celle des amis, avec deux boutons : Inspecter l’équipement et Envoyer une demande d’ami."]], ["Cartes de joueur", ["Les cartes réagissent à la souris : elles s’inclinent du côté où se trouve le curseur, comme s’il appuyait dessus, et suivent ses mouvements."]], ["Équilibrage", ["Points de compétence : 50 au maximum → 35 au maximum (un point par niveau jusqu’au niveau 35). Les personnages qui avaient dépensé plus de 35 points voient leurs compétences réinitialisées, points remboursés."]]]},
  {"v": "0.5.1", "t": "Pause en combat automatique", "sec": [["Combat", ["Nouveau bouton Pause à côté des boutons Auto et Vitesse pendant les combats automatiques : le combat s’arrête après l’action en cours (« En pause » s’affiche sur la scène) et reprend d’un clic. L’enchaînement des combats attend aussi la reprise."]], ["Inventaire", ["Correction : pendant les combats automatiques, l’infobulle d’un objet de l’inventaire disparaissait aussitôt ; elle reste maintenant affichée tant que la souris est sur l’objet."]]]},
  {"v": "0.5.0", "t": "Classement de saison et quêtes", "sec": [["Classement de saison", ["Nouvel onglet Classement dans Communauté, avec deux classements de saison : Duels et Défis. Chaque joueur y apparaît avec sa bannière (icône, cadre, fond et titre).", "Duels : position, victoires, défaites et taux de réussite. Classement par nombre de victoires, puis par taux de réussite.", "Défis : un classement par boss (Colosse de Braise, Wyrm des Glaces, Avatar de l’Abîme) avec le meilleur palier atteint et le nombre de tours. Classement par palier, puis par le moins de tours.", "Décorations selon la position : médailles d’or, d’argent et de bronze pour les 3 premiers, reflet doré sur le 1er, rang doré jusqu’au 10e. Votre propre ligne est entourée de vert.", "Nouveau : cliquez sur un joueur pour sélectionner sa bannière (halo doré), puis inspectez son équipement au moment de son résultat ou affichez sa carte.", "Le classement se met à jour à chaque ouverture. Un classement final est arrêté juste avant la fin de saison : c’est lui qui sert aux récompenses de saison."]], ["Quêtes", ["Nouvelles quêtes journalières : 5 par jour, renouvelées chaque jour à 6 h 00. Récompenses : objets d’artisanat communs et magiques.", "Nouvelles quêtes hebdomadaires : 3 par semaine, renouvelées le mercredi à 6 h 00. Récompenses : objets d’artisanat jusqu’à la rareté épique.", "Quêtes variées : vaincre des ennemis ou un boss, combattre ou gagner un défi, terminer des paliers, défier et battre des joueurs, récolter à la Mine, renforcer un objet, créer des parchemins, ajouter des affixes, faire monter la rareté, recycler, boire une potion de bonus… Seules les quêtes que vous pouvez faire sont proposées.", "Nouveau : Coffre du jour. Récupérez les 5 quêtes du jour pour l’ouvrir : 3 objets d’artisanat garantis, 35 % de chances d’un 4e et 12 % d’un 5e (rareté : Commun 70 %, Magique 25 %, Rare 5 %).", "Ouverture animée du coffre, avec un récapitulatif des objets obtenus. L’animation peut être passée avec le bouton en bas à droite ou la barre Espace.", "Une pastille sur le bouton Quêtes signale une récompense à récupérer."]], ["Amis", ["Nouveau bouton Inspecter sur la carte d’un ami : affiche son équipement et ses statistiques actuels."]]]},
@@ -6514,7 +6556,7 @@ const bestSnap=()=>JSON.parse(JSON.stringify({
 ZONES.forEach(z=>{z.boss.hp=Math.round(z.boss.hp*.6*100)/100;z.boss.atk=Math.round(z.boss.atk*.75*100)/100});
 const BEST_DEF=bestSnap();
 function applyBest(cfg){
-  const src=[BEST_DEF,cfg&&cfg.bal>=2?cfg:null].filter(Boolean);
+  const src=[BEST_DEF,cfg&&cfg.bal>=3?cfg:null].filter(Boolean);
   for(const c of src){
     (c.zones||[]).forEach((z,i)=>{const Z=ZONES[i]; if(!Z||!z) return;
       (z.enemies||[]).forEach((e,j)=>{if(Z.enemies[j]&&e) Object.assign(Z.enemies[j],{hp:+e.hp,atk:+e.atk,def:+e.def,spd:+e.spd||1,sk:(e.sk||[]).filter(x=>ENSK[x])},e.res?{res:Object.fromEntries(Object.entries(e.res).map(([k,v])=>[k,+v]))}:{})});
@@ -6825,6 +6867,8 @@ const A={
   stCell:d=>{ if(noClick) return; const T=stashTab(),E=T.bag[+d.i]; if(!E) return; UI.stSel=UI.stSel===E.o?null:E.o; renderStashPop() },
   stDet:()=>{ UI.stSel=null; renderStashPop() },
   stTake:d=>fromStash(+d.i),
+  craftDep:()=>craftToStash(),
+  craftTake:()=>craftFromStash(),
   invOpen:()=>openInv(true),
   equip:d=>{ if(eqLock()) return;
     const h=S.heroes[0],i=cellOf(+d.id); if(i<0) return;
@@ -7064,7 +7108,7 @@ const A={
   bestSk:d=>{const [zi,j]=d.k.split('.'),z=UI.bw.zones[+zi],o=j==='b'?z.boss:z.enemies[+j],i=o.sk.indexOf(d.s); if(i>=0) o.sk.splice(i,1); else o.sk.push(d.s); applyBest(UI.bw); UI.bdirty=true; const y=scrollY; render(); scrollTo(0,y)},
   bestUndo:()=>{let pub=null; try{pub=JSON.parse(lsGet(BEST_KEY)||'null')}catch(e){} applyBest(pub); UI.bw=bestSnap(); UI.bdirty=false; const y=scrollY; render(); scrollTo(0,y); toast('Modifications annulées.')},
   bestDef:()=>{UI.bw=JSON.parse(JSON.stringify(BEST_DEF)); applyBest(UI.bw); UI.bdirty=true; const y=scrollY; render(); scrollTo(0,y); toast('Valeurs d’origine rétablies (pensez à publier).')},
-  bestPub:async()=>{ if(!FB.admin) return; const json=JSON.stringify({...(UI.bw||bestSnap()),bal:2});
+  bestPub:async()=>{ if(!FB.admin) return; const json=JSON.stringify({...(UI.bw||bestSnap()),bal:3});
     try{ await FB.db.collection(COL('config')).doc('bestiary').set({json,ts:firebase.firestore.FieldValue.serverTimestamp(),by:FB.user.uid}); lsSet(BEST_KEY,json); UI.bdirty=false; const y=scrollY; render(); scrollTo(0,y); toast('Bestiaire publié pour tous les joueurs.') }
     catch(e){ toast('Publication impossible ('+((e&&e.code)||'erreur')+'). Vérifiez les règles Firestore et le document config/admin.') } },
   bestTest:d=>{ if(!S||!S.heroes||!S.heroes.length){toast('Chargez d’abord un personnage (Jouer).');return}
