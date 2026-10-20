@@ -1778,6 +1778,28 @@ body.scr .bfbar{display:none}
 .bf>span{width:44px!important;height:44px!important}
 .bf small{position:absolute;left:50%;bottom:-6px;transform:translateX(-50%);white-space:nowrap}
 @media (max-width:760px){.bfbar,.bf{height:42px}.bf>span{width:36px!important;height:36px!important}}
+/* 0.4.19 annonce de mise à jour (admin) */
+.updgrid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:16px;align-items:start;margin-top:14px}
+.updc .row2{display:flex;align-items:center;gap:12px;padding:8px 0;border-bottom:1px solid #c9ad7a55}.updc .row2 .lab{flex:1}.updc .row2 .lab small{display:block;color:#6a5a3a}
+.updc .sw{width:46px;height:26px;border-radius:13px;background:#7b2a1a;position:relative;flex:none;border:0;padding:0;cursor:pointer}.updc .sw::after{content:'';position:absolute;top:4px;right:4px;width:18px;height:18px;border-radius:50%;background:#fff3d6;transition:.15s}.updc .sw.off{background:#8a7a5a}.updc .sw.off::after{right:24px}
+.updc label{display:block;margin-top:8px}.updc input,.updc textarea{width:100%}
+.updc .vars{display:flex;gap:6px;flex-wrap:wrap;margin:4px 0;align-items:center}.updc .vars code{background:#2a1a1014;border:1px solid #c9ad7a;border-radius:5px;padding:0 6px;font-size:.8rem}
+.updst{display:flex;gap:10px;align-items:center;background:#2e7d4f18;border:1px solid #2e7d4f66;border-radius:8px;padding:8px 10px;margin:8px 0;font-size:.88rem}.updst.wait{background:#c99a3a18;border-color:#c99a3a88}
+.updst .uic{width:18px;height:18px;flex:none}
+.updprev .mlread{border-radius:12px;overflow:hidden}
+@media (max-width:900px){.updgrid{grid-template-columns:1fr}}
+/* carte d'ami flottante */
+.pcfl{position:fixed;z-index:72;display:flex;align-items:flex-start;touch-action:none;filter:drop-shadow(0 14px 26px #000b)}
+.pcfl.mov{cursor:grabbing}.pcfl .pcbox{position:relative;cursor:grab}
+.pcfl .pcside{display:flex;flex-direction:column;gap:8px;margin-top:22px;margin-right:-4px;z-index:2}
+.pcfl .pcside button{width:44px;height:44px;border-radius:12px 0 0 12px;display:grid;place-items:center;padding:0;background:linear-gradient(90deg,#2a1a10,#3a2614);border:2px solid #8a6a44;border-right:0;cursor:pointer;box-shadow:-4px 4px 10px #0008}
+.pcfl .pcside button svg{width:22px;height:22px}.pcfl .pcside button:hover{border-color:var(--gold);filter:brightness(1.2)}.pcfl .pcside button:disabled{opacity:.45;cursor:default}
+.pcfl .pcside .du{color:#ff9a7a}.pcfl .pcside .ch{color:#9ad0ff}.pcfl .pcside .rd{color:#c8a0ff}
+.pcfl .pcx2{position:absolute;top:8px;right:8px;z-index:4;width:28px;height:28px;border-radius:50%;display:grid;place-items:center;padding:0;background:#140d08cc;border:1px solid #d6aa55;color:#f0d48a;font-size:1.1rem;line-height:1;cursor:pointer}
+.pcfl .pcx2:hover{background:#7b2a1a;color:#fff}
+.pcfl .grip{position:absolute;top:6px;left:50%;translate:-50% 0;width:46px;height:5px;border-radius:3px;background:#ffffff55;z-index:4;pointer-events:none}
+.pcfl .pcnote{max-width:300px}
+.pcfl .pcbox .pc1{margin:0}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 @media (min-width:760px){.arena{grid-template-columns:1fr 1fr}}
 </style>
@@ -3152,7 +3174,7 @@ async function onFbUser(u){
 function afterProfile(fromLogin){
   if(fromLogin||UI.scr==='login'||UI.scr==='pseudo'){UI.scr='menu'; toast('Connecté : '+(FB.prof?FB.prof.name:(FB.user.email||'compte'))+'.')}
   if(FB.prof){ presence(); startFriends(); startPvp(); startRaid(); startMail() }
-  adminCheck().then(()=>{ if(['opts','best','menu','admin'].includes(UI.scr)) render() });
+  adminCheck().then(()=>{ if(['opts','best','menu','admin'].includes(UI.scr)) render(); if(FB.admin) setTimeout(updAuto,2500) });
   render();
 }
 /* ============ pseudo (nom de compte) ============ */
@@ -3222,7 +3244,7 @@ function renderFriends(){
   const msg=$('#frmsg'); msg.textContent=FR.err||UI.frmsg||''; msg.className='frmsg '+(FR.err||UI.frerr?'bad':'ok');
   const row=(f,body,btns)=>`<li class="frrow">${body}<span class="fracts">${btns}</span></li>`;
   const accL=acc.map(f=>{const o=f.users.find(x=>x!==me),p=FR.prof[o],ol=isOnline(p),ch=p&&p.char,ur=isUnread(f);
-      return {ol,h:row(f,`<span class="st ${ol?'on':''}" aria-label="${ol?'En ligne':'Hors ligne'}"></span><span class="frn"><button class="frname" data-act="frMenu" data-id="${f.id}" aria-expanded="${UI.frMenu===f.id}"><b>${esc(otherName(f))}</b>${ur?'<span class="frud" aria-label="Nouveau message"></span>':''}</button>${UI.frMenu===f.id?`<span class="frpop" role="menu"><button class="btn sm pri chatb" data-act="frChat" data-id="${f.id}"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4h16a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H9l-5 4v-4H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2zm3 5v2h2V9zm4 0v2h2V9zm4 0v2h2V9z"/></svg><span>Chat${ur?' (nouveau)':''}</span></button><button class="btn sm chatb duelb" data-act="frDuel" data-id="${f.id}"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 3l7.5 7.5-1.4 1.4L4 6.8V3zm18 0v3.8l-9.6 9.6 1.4 1.4L21 9.6V3h0zM5.3 14.6l4.1 4.1-1.4 1.4-1.4-1.4L4 21.3 2.7 20l2.6-2.6-1.4-1.4zm13.4 0l1.4 1.4-1.4 1.4L21.3 20 20 21.3l-2.6-2.6-1.4 1.4-1.4-1.4z"/></svg><span>Duel</span></button><button class="btn sm chatb duelb" data-act="frRaid" data-id="${f.id}"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3 6 6 .9-4.5 4.3 1 6.3L12 16.6 6.5 19.5l1-6.3L3 8.9 9 8z"/></svg><span>Raid</span></button><button class="btn sm chatb duelb" data-act="frCard" data-id="${f.id}">${uic('card')}<span>Carte</span></button></span>`:''}<small>${ol?(ch?`Joue ${esc(ch.name)} · ${(CLASSES[ch.cls]||{n:''}).n} niv. ${ch.lvl}`:'Dans le menu'):'Hors ligne'+(p&&p.char?` · ${esc(p.char.name)} niv. ${p.char.lvl}`:'')}</small></span>`,
+      return {ol,h:row(f,`<span class="st ${ol?'on':''}" aria-label="${ol?'En ligne':'Hors ligne'}"></span><span class="frn"><button class="frname" data-act="frCard" data-id="${f.id}" ${ttip('Voir la carte de '+otherName(f))}><b>${esc(otherName(f))}</b>${ur?'<span class="frud" aria-label="Nouveau message"></span>':''}</button>${UI.frMenu===f.id?`<span class="frpop" role="menu"><button class="btn sm pri chatb" data-act="frChat" data-id="${f.id}"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4h16a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H9l-5 4v-4H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2zm3 5v2h2V9zm4 0v2h2V9zm4 0v2h2V9z"/></svg><span>Chat${ur?' (nouveau)':''}</span></button><button class="btn sm chatb duelb" data-act="frDuel" data-id="${f.id}"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 3l7.5 7.5-1.4 1.4L4 6.8V3zm18 0v3.8l-9.6 9.6 1.4 1.4L21 9.6V3h0zM5.3 14.6l4.1 4.1-1.4 1.4-1.4-1.4L4 21.3 2.7 20l2.6-2.6-1.4-1.4zm13.4 0l1.4 1.4-1.4 1.4L21.3 20 20 21.3l-2.6-2.6-1.4 1.4-1.4-1.4z"/></svg><span>Duel</span></button><button class="btn sm chatb duelb" data-act="frRaid" data-id="${f.id}"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3 6 6 .9-4.5 4.3 1 6.3L12 16.6 6.5 19.5l1-6.3L3 8.9 9 8z"/></svg><span>Raid</span></button><button class="btn sm chatb duelb" data-act="frCard" data-id="${f.id}">${uic('card')}<span>Carte</span></button></span>`:''}<small>${ol?(ch?`Joue ${esc(ch.name)} · ${(CLASSES[ch.cls]||{n:''}).n} niv. ${ch.lvl}`:'Dans le menu'):'Hors ligne'+(p&&p.char?` · ${esc(p.char.name)} niv. ${p.char.lvl}`:'')}</small></span>`,
         UI.frdel===f.id?`<button class="btn sm danger" data-act="frDel" data-id="${f.id}">Retirer</button><button class="btn sm" data-act="frDelNo">Non</button>`:`<button class="frx sm" data-act="frDel" data-id="${f.id}" title="Retirer de mes amis" aria-label="Retirer ${esc(otherName(f))}">×</button>`)}});
   const onL=accL.filter(x=>x.ol),offL=accL.filter(x=>!x.ol);
   $('#frlist').innerHTML=
@@ -4183,8 +4205,25 @@ function openCard(d,extra=''){
   w.addEventListener('click',e=>{ if(!e.target.closest('.pc1')) closeCard() }); w.addEventListener('keydown',e=>{ if(e.key==='Escape') closeCard() }); document.body.append(w); w.focus();
 }
 function closeCard(){ const w=$('#pcard'); if(w) w.remove() }
+const PCF_IC={du:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 4l9 9M20 4l-9 9M6 14l4 4M18 14l-4 4M3 21l3-3M21 21l-3-3"/></svg>',ch:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M4 5h16v10H9l-5 4z"/></svg>'};
+let PCF={pos:null,drag:null};
+function friendCardFl(f){
+  const o=f.users.find(x=>x!==FB.user.uid),p=FR.prof[o]||{},c=p.card,ol=isOnline(p),nm=otherName(f);
+  const d=c?Object.assign({},c,{name:c.name||nm}):{name:nm,pts:0,icon:'c:'+((p.char&&p.char.cls)||'guerrier'),fr:0,bg:3,chars:p.char?[{n:p.char.name,cls:p.char.cls,lvl:p.char.lvl}]:[]};
+  let w=$('#pcfl'); const fresh=!w; if(!w){ w=document.createElement('div'); w.id='pcfl'; w.className='pcfl'; w.setAttribute('role','dialog'); document.body.append(w) }
+  w.dataset.fid=f.id; w.setAttribute('aria-label','Carte de joueur : '+nm);
+  w.innerHTML=`<div class="pcside"><button class="du" data-act="frDuel" data-id="${f.id}" ${ol?'':'disabled'} ${ttip('Défier '+nm+' en duel',ol?'':'Ce joueur n’est pas en ligne.')}>${PCF_IC.du}</button><button class="ch" data-act="frChat" data-id="${f.id}" ${ttip('Discuter avec '+nm)}>${PCF_IC.ch}</button><button class="rd" data-act="frRaid" data-id="${f.id}" ${ol?'':'disabled'} ${ttip('Inviter '+nm+' en raid',ol?'':'Ce joueur n’est pas en ligne.')}>${uic('skull')}</button></div>
+   <div class="pcbox" data-pcdrag><span class="grip"></span>${cardColl(d,'fl')}<button class="pcx2" data-act="pcClose" ${ttip('Fermer la carte')}>×</button>${c?'':'<p class="pcnote">Ce joueur n’a pas encore mis à jour sa carte.</p>'}</div>`;
+  if(fresh){ const r=w.getBoundingClientRect(); const P=PCF.pos||{x:Math.round(innerWidth/2-r.width/2),y:Math.max(70,Math.round(innerHeight/2-r.height/2))}; pcfPlace(w,P.x,P.y) }
+}
+function pcfPlace(w,x,y){ const r=w.getBoundingClientRect(); x=clamp(x,4,Math.max(4,innerWidth-r.width-4)); y=clamp(y,4,Math.max(4,innerHeight-60)); w.style.left=x+'px'; w.style.top=y+'px'; PCF.pos={x,y} }
+const pcfClose=()=>{ const w=$('#pcfl'); if(w) w.remove() };
+document.addEventListener('pointerdown',e=>{ const h=e.target.closest&&e.target.closest('[data-pcdrag]'); if(!h||e.target.closest('button')||e.button>0) return; const w=$('#pcfl'),r=w.getBoundingClientRect(); PCF.drag={dx:e.clientX-r.left,dy:e.clientY-r.top}; w.classList.add('mov'); e.preventDefault() });
+document.addEventListener('pointermove',e=>{ if(!PCF.drag) return; const w=$('#pcfl'); if(!w){PCF.drag=null;return} pcfPlace(w,e.clientX-PCF.drag.dx,e.clientY-PCF.drag.dy) });
+document.addEventListener('pointerup',()=>{ if(!PCF.drag) return; PCF.drag=null; const w=$('#pcfl'); if(w) w.classList.remove('mov') });
+document.addEventListener('keydown',e=>{ if(e.key==='Escape'&&$('#pcfl')&&!$('#pcard')) pcfClose() });
 function friendCard(fid){
-  const f=FR.list.find(x=>x.id===fid); if(!f) return; const o=f.users.find(x=>x!==FB.user.uid),p=FR.prof[o]||{},c=p.card;
+  const f=FR.list.find(x=>x.id===fid); if(!f) return; return friendCardFl(f); const o=f.users.find(x=>x!==FB.user.uid),p=FR.prof[o]||{},c=p.card;
   const d=c?Object.assign({},c,{name:c.name||otherName(f)}):{name:otherName(f),pts:0,icon:'c:'+((p.char&&p.char.cls)||'guerrier'),fr:0,bg:3,chars:p.char?[{n:p.char.name,cls:p.char.cls,lvl:p.char.lvl}]:[]};
   openCard(d,c?'':'<p class="pcnote">Ce joueur n’a pas encore mis à jour sa carte.</p>');
 }
@@ -4355,10 +4394,10 @@ function mailHTML(){
   const m=L.find(x=>x.id===ML.sel);
   if(m&&!st.read[m.id]){ st.read[m.id]=1; saveAcc(); setTimeout(mlRefresh,0) }
   const K=k=>ML_K[k]||ML_K.info;
-  const rows=L.map(x=>`<button class="mlrow ${x.id===ML.sel?'on':''} ${st.read[x.id]?'':'u'}" style="--kc:${K(x.kind)[0]}" data-act="mlSel" data-id="${x.id}" aria-pressed="${x.id===ML.sel}"><span class="mlic">${uic(K(x.kind)[2])}</span><span class="mlrt"><b>${esc(x.title||'Message')}</b><small>${esc(x.from||'L’équipe Cendrelame')} · ${mlDate(mlTs(x))}</small></span>${mlHasAtt(x)&&!st.got[x.id]?`<span class="mlgift" title="Pièces jointes à récupérer">${uic('gift')}</span>`:''}</button>`).join('');
+  const rows=L.map(x=>`<button class="mlrow ${x.id===ML.sel?'on':''} ${st.read[x.id]?'':'u'}" style="--kc:${K(x.kind)[0]}" data-act="mlSel" data-id="${x.id}" aria-pressed="${x.id===ML.sel}"><span class="mlic">${uic(K(x.kind)[2])}</span><span class="mlrt"><b>${esc(mlPers(x.title||'Message'))}</b><small>${esc(x.from||'L’équipe Cendrelame')} · ${mlDate(mlTs(x))}</small></span>${mlHasAtt(x)&&!st.got[x.id]?`<span class="mlgift" title="Pièces jointes à récupérer">${uic('gift')}</span>`:''}</button>`).join('');
   let read='<div class="mlempty">'+(FB.user?'Aucun message.':'Connectez-vous à un compte en ligne pour recevoir les messages.')+'</div>';
   if(m){ const got=st.got[m.id],ex=m.exp&&m.exp<Date.now();
-    read=`<article class="mlread" style="--kc:${K(m.kind)[0]}"><header><span class="mlic big">${uic(K(m.kind)[2])}</span><div><small>${K(m.kind)[1]} · ${mlDate(mlTs(m))}${m.to!=='all'?' · message personnel':''}</small><h2>${esc(m.title||'Message')}</h2><small>De : ${esc(m.from||'L’équipe Cendrelame')}</small></div></header><p>${esc(m.body||'').replace(/\n/g,'<br>')}</p>
+    read=`<article class="mlread" style="--kc:${K(m.kind)[0]}"><header><span class="mlic big">${uic(K(m.kind)[2])}</span><div><small>${K(m.kind)[1]} · ${mlDate(mlTs(m))}${m.to!=='all'?' · message personnel':''}</small><h2>${esc(mlPers(m.title||'Message'))}</h2><small>De : ${esc(m.from||'L’équipe Cendrelame')}</small></div></header><p>${esc(mlPers(m.body||'')).replace(/\n/g,'<br>')}</p>
      ${mlHasAtt(m)?`<div class="mlrw"><h4>Pièces jointes</h4><div class="mprew">${mlAttHTML(m.att)}</div>${got?`<span class="mtdone">${uic('check')} Récupéré le ${mlDate(got)}</span>`:ex?'<span class="mclk">Pièces jointes expirées.</span>':`<button class="btn pri amgo" data-act="mlGet" data-id="${m.id}">${uic('gift')} Récupérer</button><small class="mute">L’or s’ajoute à votre or ; les objets et matériaux vont dans le coffre du compte.${m.exp?` Expire le ${mlDate(m.exp)}.`:''}</small>`}</div>`:''}
      <footer>${FB.admin?`<button class="btn sm danger" data-act="mlAdmDel" data-id="${m.id}">${UI.confirm==='mldel'+m.id?'Confirmer : supprimer pour tous':'Supprimer pour tous (admin)'}</button>`:''}<button class="btn sm" data-act="mlDel" data-id="${m.id}" ${mlHasAtt(m)&&!got&&!ex?'disabled title="Récupérez d’abord les pièces jointes."':''}>${uic('trash')} Supprimer</button></footer></article>`; }
   return `<div class="mlwin" role="dialog" aria-modal="true" aria-label="Messagerie"><div class="mlhead"><span class="mlic">${uic('mail')}</span><h2>Messagerie</h2><span class="mute">${n?`${n} non lu${n>1?'s':''}`:'Tout est lu'}</span>
@@ -4921,7 +4960,7 @@ function viewAdmin(){
   const nav=ADM_TABS.map(([k,i,n])=>`<button class="${t===k?'on':''}" data-act="admTab" data-t="${k}">${uic(i)}<span>${n}</span></button>`).join('');
   const ok=S&&S.heroes&&S.heroes.length;
   const body=t==='home'?admHome():t==='season'?admSeason():t==='players'?admPlayers():t==='admins'?admAdmins()
-   :t==='mail'?admCard('mail','Messages système','Envoyés dans la messagerie de tous les joueurs ou d’un seul',`<p class="hint">Rédigez un message (information, alerte ou cadeau avec pièces jointes) depuis la fenêtre de messagerie.</p><button class="btn pri" data-act="admMail">${uic('send')} Ouvrir l’éditeur de message</button>`)
+   :t==='mail'?admCard('mail','Messages système','Envoyés dans la messagerie de tous les joueurs ou d’un seul',`<p class="hint">Rédigez un message (information, alerte ou cadeau avec pièces jointes) depuis la fenêtre de messagerie.</p><button class="btn pri" data-act="admMail">${uic('send')} Ouvrir l’éditeur de message</button>`)+updCardHTML()
    :t==='best'?admCard('skull','Bestiaire','Réglez les statistiques et les compétences des ennemis pour tous les joueurs',`<button class="btn pri" data-act="scr" data-s="best">Ouvrir le Bestiaire</button>`)
    :t==='give'?`<div class="admwide">${dbgGive(ok)}</div>`:`<div class="admwide">${dbgPanel()}</div>`;
   return `<div class="adm"><header class="admhead"><span class="admlogo">${uic('shieldk')}</span><div><h2>Administration</h2><small>${esc(FB.prof?FB.prof.name:'')} · ${esc(seasonTitle())}</small></div><span style="margin-left:auto"></span>${backBtn()}</header>
@@ -5868,9 +5907,10 @@ function viewHelp(){
 }
 
 /* --- nouveautés --- */
-const VERSION='0.4.18';
-const BUILD='20261020171951';
+const VERSION='0.4.19';
+const BUILD='20261020175152';
 const PATCH=[
+ {"v": "0.4.19", "t": "Carte d’ami déplaçable", "sec": [["Amis", ["Un clic sur le nom d’un ami affiche directement sa carte de joueur (le petit menu est retiré).", "La carte reste par-dessus le jeu sans le bloquer et peut être déplacée en la faisant glisser.", "Nouveaux boutons icônes Duel, Chat et Raid, à la verticale sur le bord gauche de la carte ; ils suivent la carte quand on la déplace. Duel et Raid sont grisés si l’ami n’est pas en ligne.", "Petite croix en haut à droite de la carte pour la fermer (ou touche Échap)."]], ["Messagerie", ["Les messages de l’équipe peuvent maintenant s’adresser à vous par votre nom."]]]},
  {"v": "0.4.18", "t": "Icônes de bonus alignées", "sec": [["Interface", ["Les icônes des potions de bonus sont alignées avec le bouton de la messagerie ; le temps restant est affiché juste sous l’icône."]]]},
  {"v": "0.4.17", "t": "Potions de bonus de 30 minutes", "sec": [["Potions", ["Élixir de savoir et Philtre de fortune : l’effet dure maintenant 30 minutes en temps réel (avant : un seul combat). Le temps s’écoule même hors ligne ; une fois les 30 minutes passées, l’effet disparaît.", "Effets inchangés : +50 % d’expérience (Élixir de savoir), +50 % d’or et de matériaux (Philtre de fortune), sur chaque combat gagné pendant la durée.", "Nouveau : ces potions se boivent aussi hors combat, depuis l’inventaire : bouton « Boire » dans le détail de la potion, ou clic droit quand le coffre est fermé. On ne peut pas en boire une deuxième tant que l’effet est actif."]], ["Interface", ["Nouvelle icône de bonus à droite du bouton de la messagerie, à la couleur de la potion (vert pour le savoir, or pour la fortune), avec le temps restant en dessous et une infobulle."]]]},
  {"v": "0.4.16", "t": "Cadenas sur les objets", "sec": [["Objets", ["Un cadenas s’affiche au milieu de l’icône des objets dont le niveau requis n’est pas atteint ; l’icône est assombrie et le niveau de l’objet reste en rouge.", "La bordure de ces objets garde maintenant la couleur de leur rareté (elle était rouge et pouvait faire croire à une autre rareté)."]]]},
@@ -6102,6 +6142,40 @@ const BEST_KEY=KP+'best';
 async function bestLoad(){
   try{ const d=await FB.db.collection(COL('config')).doc('bestiary').get(); if(d.exists&&d.data().json){ lsSet(BEST_KEY,d.data().json); applyBest(JSON.parse(d.data().json)); FB.bestTs=d.data().ts||null } }catch(e){}
 }
+const UPD_T='Mise à jour {version} : {titre}';
+const UPD_B='Bonjour {joueur} !\n\nLa version {version} de Cendrelame est en ligne : « {titre} ».\n\nAu programme :\n{resume}\n\nRetrouvez le détail dans le menu Nouveautés. Rafraîchissez la page si le jeu vous le propose.\n\nBon jeu !';
+const UPDM={loaded:false,auto:false,last:null,title:UPD_T,body:UPD_B,busy:false,msg:'',err:false};
+const updResume=()=>PATCH[0].sec.flatMap(x=>x[1]).slice(0,3).map(l=>'• '+(l.length>140?l.slice(0,138)+'…':l)).join('\n');
+const updFill=s=>String(s||'').replace(/\{version\}/g,PATCH[0].v).replace(/\{titre\}/g,PATCH[0].t).replace(/\{resume\}/g,updResume());
+const mlName=()=>(FB.prof&&FB.prof.name)||(S&&S.heroes&&S.heroes[0]&&S.heroes[0].name)||'aventurier';
+const mlPers=s=>String(s||'').replace(/\{joueur\}/g,mlName());
+async function updLoad(){ try{ const d=await FB.db.collection(COL('config')).doc('updmsg').get(); const x=d.exists?d.data():{}; Object.assign(UPDM,{loaded:true,auto:!!x.auto,last:x.last||null,title:x.title||UPD_T,body:x.body||UPD_B}) }catch(e){ UPDM.loaded=true; UPDM.err=true; UPDM.msg='Lecture impossible : '+((e&&e.code)||'erreur')+' (règle config).' } }
+async function updSend(manual){
+  if(!FB.admin||UPDM.busy) return false; UPDM.busy=true; UPDM.msg=manual?'Envoi…':''; UPDM.err=false; if(manual) render();
+  const ref=FB.db.collection(COL('config')).doc('updmsg'),v=VERSION;
+  try{
+    const ok=await FB.db.runTransaction(async tx=>{ const d=await tx.get(ref),x=d.exists?d.data():{}; if(!manual&&(!x.auto||x.last===v)) return false; tx.set(ref,{last:v,lastTs:Date.now(),by:FB.user.uid},{merge:true}); return true });
+    if(ok){ await mlCol().add({to:'all',kind:'info',title:updFill(UPDM.title).slice(0,80),body:updFill(UPDM.body).slice(0,2000),att:{},from:'L’équipe Cendrelame',ts:firebase.firestore.FieldValue.serverTimestamp(),tsMs:Date.now(),exp:0,by:FB.user.uid,upd:v}); UPDM.last=v; UPDM.msg='Annonce de la version '+v+' envoyée à tous les joueurs.'; if(!manual) toast('Annonce de la mise à jour '+v+' envoyée à tous les joueurs.') }
+    UPDM.busy=false; if(manual||ok) render(); return ok;
+  }catch(e){ UPDM.busy=false; UPDM.err=true; UPDM.msg='Erreur : '+((e&&e.code)||'inconnue')+' (vérifiez les règles Firestore config et mail).'; render(); return false }
+}
+async function updSave(patch){ Object.assign(UPDM,patch); try{ await FB.db.collection(COL('config')).doc('updmsg').set({auto:UPDM.auto,title:UPDM.title,body:UPDM.body},{merge:true}); UPDM.err=false }catch(e){ UPDM.err=true; UPDM.msg='Enregistrement impossible : '+((e&&e.code)||'erreur')+'.' } }
+async function updAuto(){ if(!FB.admin) return; await updLoad(); if(UPDM.auto&&UPDM.last!==VERSION) await updSend(false) }
+function updCardHTML(){
+  if(!UPDM.loaded){ setTimeout(()=>{ if(!UPDM.loaded) updLoad().then(()=>{ if(UI.scr==='admin') render() }) },0); return admCard('send','Annonce de mise à jour','Chargement…','<p class="hint">Lecture des réglages…</p>') }
+  const v=VERSION,done=UPDM.last===v,K=ML_K.info;
+  const st=`<div class="updst ${done?'':'wait'}">${uic(done?'check':'info')}<span>Dernière annonce : <b>${esc(UPDM.last||'aucune')}</b> · version actuelle : <b>${v}</b>${done?' · déjà annoncée.':UPDM.auto?' → l’annonce partira à la prochaine ouverture du jeu par un administrateur.':' → envoi automatique désactivé.'}</span></div>`;
+  const card=admCard('send','Annonce de mise à jour','Message automatique envoyé à tous les joueurs à chaque nouvelle version',`<div class="updc">
+    <div class="row2"><span class="lab"><b>Envoi automatique</b><small>À la 1re ouverture du jeu par un administrateur après une nouvelle version, le message part tout seul (une seule fois par version).</small></span><button class="sw ${UPDM.auto?'':'off'}" data-act="updAuto" role="switch" aria-checked="${UPDM.auto}" ${ttip(UPDM.auto?'Désactiver l’envoi automatique':'Activer l’envoi automatique')}></button></div>${st}
+    <label><b>Titre</b><input class="pcsel" data-upd="title" maxlength="80" value="${esc(UPDM.title)}"></label>
+    <label><b>Message</b><textarea class="pcsel" rows="9" data-upd="body" maxlength="2000">${esc(UPDM.body)}</textarea></label>
+    <div class="vars"><small class="mute">Variables :</small><code ${ttip('{version}','Numéro de la version actuelle.')}>{version}</code><code ${ttip('{titre}','Titre de la note de mise à jour.')}>{titre}</code><code ${ttip('{resume}','Les 3 premiers changements de la note.')}>{resume}</code><code ${ttip('{joueur}','Nom du joueur qui lit le message.')}>{joueur}</code></div>
+    ${UPDM.msg?`<p class="${UPDM.err?'lerr':'hint'}">${esc(UPDM.msg)}</p>`:''}
+    <div class="row" style="margin-top:8px"><button class="btn pri" data-act="updSendNow" ${UPDM.busy?'disabled':''}>${uic('send')} Envoyer maintenant (${v})</button><button class="btn sm" data-act="updDef">Message par défaut</button></div></div>`);
+  const prev=`<div class="updprev"><small class="mute">Aperçu dans la messagerie des joueurs</small><article class="mlread" style="--kc:${K[0]}"><header><span class="mlic big">${uic(K[2])}</span><div><small>${K[1]} · ${mlDate(Date.now())}</small><h2>${esc(mlPers(updFill(UPDM.title)))}</h2><small>De : L’équipe Cendrelame</small></div></header><p>${esc(mlPers(updFill(UPDM.body))).replace(/\n/g,'<br>')}</p></article></div>`;
+  return `<div class="updgrid">${card}${prev}</div>`;
+}
+document.addEventListener('input',e=>{ const k=e.target.dataset&&e.target.dataset.upd; if(!k) return; UPDM[k]=e.target.value; clearTimeout(UPDM.t); UPDM.t=setTimeout(()=>{ updSave({}); const pv=$('.updprev'); if(pv){ pv.querySelector('h2').textContent=mlPers(updFill(UPDM.title)); pv.querySelector('p').innerHTML=esc(mlPers(updFill(UPDM.body))).replace(/\n/g,'<br>') } },400) });
 async function adminCheck(){
   FB.admin=false; if(!FB.user) return;
   try{ const d=await FB.db.collection(COL('config')).doc('admin').get(); FB.admin=!!(d.exists&&(d.data().uids||[]).includes(FB.user.uid)) }catch(e){}
@@ -6536,6 +6610,7 @@ const A={
   mlAdmDel:async d=>{ if(!FB.admin) return; if(UI.confirm!=='mldel'+d.id){UI.confirm='mldel'+d.id;renderMail();return} UI.confirm=null; try{ await mlCol().doc(d.id).delete(); toast('Message supprimé pour tous les joueurs.') }catch(e){ toast('Erreur : '+(e.code||'inconnue')) } },
   frBtn:()=>{ if(!FB.user||!FB.prof){toast('Connectez-vous à un compte en ligne pour voir vos amis.');return} FR.open=!FR.open; UI.frmsg=''; UI.frerr=false; renderFriends(); renderTabs(); if(FR.open){const i=$('#frname'); if(i) i.focus()} },
   frCard:d=>{ UI.frMenu=null; renderFriends(); friendCard(d.id) },
+  pcClose:()=>pcfClose(),
   cardClose:()=>closeCard(),
   trCat:d=>{UI.trCat=d.c;render()},
   trF:d=>{UI.trF=d.f;render()},
@@ -6635,6 +6710,9 @@ const A={
   ddAdm:()=>{closeMenuDD(); save(); UI.fromGame=true; UI.scr='admin'; UI.confirm=null; render(); scrollTo(0,0)},
   admTab:d=>{UI.admT=d.t; UI.confirm=null; render(); scrollTo(0,0)},
   admMail:()=>{ A.mlOpen(); A.mlAdm() },
+  updAuto:()=>{ updSave({auto:!UPDM.auto}).then(()=>{ render(); if(UPDM.auto&&UPDM.last!==VERSION) toast('Envoi automatique activé : l’annonce partira à la prochaine ouverture du jeu.') }); render() },
+  updSendNow:()=>updSend(true),
+  updDef:()=>{ updSave({title:UPD_T,body:UPD_B}).then(render) },
   admMailTo:d=>{ A.mlOpen(); A.mlAdm(); if(ML.form){ ML.form.to='one'; ML.form.name=d.n; renderMail() } },
   admPl:()=>{ADM.players=null;ADM.pErr='';admLoadPlayers();render()},
   admSTitle:()=>admSeasonTitle(),
@@ -6668,7 +6746,7 @@ document.addEventListener('mousedown',e=>{ if(e.target.id==='mconf') A.menuNo();
 document.addEventListener('submit',e=>e.preventDefault());
 document.addEventListener('keydown',e=>{ if(e.key==='Enter'&&e.target.id==='frname'){e.preventDefault();A.frAdd()} if(e.key==='Enter'&&e.target.id==='chin'){e.preventDefault();sendChat()} if(e.key==='Enter'&&e.target.id==='fcin'){e.preventDefault();fcSend(e.target.dataset.k)} if(e.key==='Escape'&&CH.id&&e.target.id==='chin') closeChat() });
 document.addEventListener('mousedown',e=>{ if(UI.srt&&!e.target.closest('.srtw')){ UI.srt=null; renderInvPop() } },true);
-document.addEventListener('mousedown',e=>{ if(FR.open&&!e.target.closest('#friends,#frchat,.dkfr')){FR.open=false;UI.frMenu=null;renderFriends()} else if(UI.frMenu&&!e.target.closest('.frpop,.frname')){UI.frMenu=null;renderFriends()} });
+document.addEventListener('mousedown',e=>{ if(FR.open&&!e.target.closest('#friends,#frchat,.dkfr,#pcfl')){FR.open=false;UI.frMenu=null;renderFriends()} else if(UI.frMenu&&!e.target.closest('.frpop,.frname')){UI.frMenu=null;renderFriends()} });
 document.addEventListener('input',e=>{
   if(e.target.id==='cname') UI.cname=e.target.value;
   if(e.target.id==='admq'){ UI.admQ=e.target.value; const y=e.target.selectionStart; render(); const q=$('#admq'); if(q){q.focus(); try{q.setSelectionRange(y,y)}catch(_){}} }
