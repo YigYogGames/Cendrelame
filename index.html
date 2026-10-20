@@ -1849,6 +1849,105 @@ body.scr .bfbar{display:none}
 @media (max-width:600px){.advmode2{grid-template-columns:repeat(3,1fr);width:100%}.advmode2 button{padding:0 8px!important;font-size:.85rem}}
 .nst,.ndl{height:296px!important}#invpop .iptop{margin:2px 0 6px!important}#invpop .ipres{margin-top:6px!important;padding:6px 8px!important}.ndl .av .hart{inset:42px 0 12px!important}
 @media (min-width:701px){#invpop .bag{grid-template-columns:repeat(14,40px)!important}#stashpop .bag{grid-template-columns:repeat(15,36px)!important}}
+/* ===== 0.5.0 classement ===== */
+.rkhead{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.rktabs{display:inline-grid;grid-template-columns:repeat(2,150px);padding:4px;border-radius:12px;background:linear-gradient(#3a2814,#20150b);border:1px solid #8a6a44}
+.rktabs button{display:flex;align-items:center;justify-content:center;gap:6px;height:36px;border-radius:9px;border:0;background:none;color:#e8d4a8;font:inherit;font-weight:700;cursor:pointer}.rktabs button.on{background:linear-gradient(#a33c22,#6d2213);color:#fff}.rktabs .uic{width:17px;height:17px}
+.rkupd{margin-left:auto;font-size:.8rem;color:#6a5a3a;display:flex;align-items:center;gap:6px}.rkupd .uic{width:15px;height:15px}
+.rkend{display:flex;align-items:center;gap:10px;padding:8px 12px;border-radius:10px;background:#7b2a1a12;border:1px solid #7b2a1a44;font-size:.84rem}.rkend .uic{width:18px;height:18px;color:#7b2a1a;flex:none}
+.rkempty,.rknone{text-align:center;color:#6a5a3a;padding:20px}.rkempty .uic{width:42px;height:42px;color:#7b2a1a}
+.rkgap{text-align:center;color:#6a5a3a;margin:2px 0 6px;letter-spacing:.3em}
+.rklist,.rkls{overflow:auto;min-height:0}.rklist{padding:4px 6px 4px 2px}
+.rkb{position:relative;display:grid;grid-template-columns:48px 56px minmax(0,1fr) auto auto;align-items:center;gap:12px;height:70px;padding:0 14px 0 10px;border-radius:12px;overflow:hidden;border:2px solid var(--fr,#8a6a44);color:#fff;box-shadow:0 4px 12px #0006;margin-bottom:8px;cursor:pointer;transition:box-shadow .15s,filter .15s}
+.rkb:hover{filter:brightness(1.08)}
+.rkb .rkbg{position:absolute;inset:0;z-index:0}.rkb .rkbg .zscene{position:absolute;inset:0;filter:brightness(.45)}
+.rkb::after{content:'';position:absolute;inset:0;z-index:0;background:linear-gradient(90deg,#000c 0,#0006 45%,#0009 100%);pointer-events:none}
+.rkb>*:not(.rkbg){position:relative;z-index:1}
+.rkpos{display:grid;place-items:center;width:44px;height:44px;justify-self:center;font-family:var(--display);font-size:1.45rem;color:#e8d4a8}
+.rkmedal{position:relative;width:44px;height:44px;display:grid;place-items:center;justify-self:center}.rkmedal svg{position:absolute;inset:0;width:100%;height:100%}.rkmedal b{position:relative;margin-top:10px;font-family:var(--display);font-size:1.1rem;color:#2a1a10}
+.rkav{display:grid;place-items:center}.rkav img,.rkav .pcemb{border-radius:50%;border:2px solid var(--fr,#8a6a44);width:52px!important;height:52px!important;aspect-ratio:1;object-fit:cover;box-sizing:border-box;flex:none}
+.rknm{min-width:0;display:flex;flex-direction:column;justify-content:center;gap:2px}.rknm b{font-size:1.02rem;line-height:1.15;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.rknm small{color:#d6c39a;font-style:italic;font-size:.78rem;line-height:1.15;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.rkst{display:flex;gap:8px;align-items:center}.rkst span{display:flex;flex-direction:column;align-items:center;justify-content:center;width:74px;height:44px;box-sizing:border-box;border-radius:8px;background:#0008;border:1px solid #ffffff22}.rkst small{font-size:.62rem;color:#cdb68a}.rkst b{font-size:1rem}
+.rkst .w b{color:#8fe08a}.rkst .l b{color:#ff8a7a}.rkst .p b{color:#ffd27a}
+.rkacts{display:flex;gap:6px;visibility:hidden}.rkb.sel .rkacts{visibility:visible}
+.rkacts button{width:38px;height:38px;border-radius:10px;display:grid;place-items:center;padding:0;background:#140d08e6;border:1px solid #d6aa55;color:#f0d48a;cursor:pointer}.rkacts button .uic{width:20px;height:20px}.rkacts button:hover{background:#3a2814;color:#fff}
+.rkb.sel{box-shadow:0 0 0 3px #ffe08a,0 0 26px 6px #ffd27acc,0 4px 12px #0006!important}
+.rkb.me{outline:3px solid #7fd07a;outline-offset:2px}
+.rkb.r1{border-color:#f0c040;box-shadow:0 0 18px #f0c04088,0 4px 12px #0006}.rkb.r2{border-color:#d8dde6;box-shadow:0 0 14px #d8dde677}.rkb.r3{border-color:#d08a4a;box-shadow:0 0 14px #d08a4a77}
+.rkb.r1::before{content:'';position:absolute;inset:0;z-index:1;pointer-events:none;background:linear-gradient(105deg,#fff0 30%,#fff3 50%,#fff0 70%);background-size:300% 100%;animation:rkshine 4s linear infinite}
+@keyframes rkshine{0%{background-position:150% 0}100%{background-position:-150% 0}}
+.rkb.top10 .rkpos{color:#f0d48a}
+.rkcols{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;min-height:0;flex:1}
+.rkcol{background:#2a1a10;border:1px solid #8a6a44;border-radius:14px;overflow:hidden;display:flex;flex-direction:column;min-height:0}
+.rkcol header{position:relative;height:72px;flex:none;display:flex;align-items:flex-end;padding:8px 12px;color:#fff}.rkcol header .zscene{position:absolute;inset:0;filter:brightness(.6)}.rkcol header b{position:relative;font-size:1rem;text-shadow:0 1px 3px #000}.rkcol header small{position:relative;margin-left:auto;color:#ffd27a;text-shadow:0 1px 2px #000}
+.rkcol .rkls{padding:8px}
+.rkb.sm{grid-template-columns:38px 42px minmax(0,1fr) auto;height:56px;gap:8px;padding:0 8px}.rkb.sm .rkav img,.rkb.sm .rkav .pcemb{width:40px!important;height:40px!important}.rkb.sm .rkpos{font-size:1.2rem;width:36px}.rkb.sm .rkmedal{width:36px;height:36px}.rkb.sm .rkmedal b{font-size:.95rem;margin-top:8px}
+.rkb.sm .rknm small{font-style:normal;color:#ffd27a;font-weight:700}.rkb.sm .rkacts button{width:30px;height:30px}.rkb.sm .rkacts button .uic{width:16px;height:16px}
+.mt1.comm .mtmain.rkmain{min-height:0;overflow:hidden}
+/* inspection */
+.inspback{position:fixed;inset:0;z-index:78;background:#0008;display:grid;place-items:center;padding:16px}
+.inspw{width:640px;max-width:100%;border-radius:14px;background:linear-gradient(170deg,#4a3420,#2c1e12);border:1px solid #1d1209;box-shadow:0 18px 50px #000c,0 0 0 1px #a88d5b55 inset;padding:0 12px 12px}
+.inspw header{display:flex;align-items:center;gap:10px;padding:10px 4px;border-bottom:1px solid #a88d5b44;margin-bottom:10px;color:#f1e2bd}.inspw header>.uic{width:22px;height:22px;color:var(--gold)}.inspw header b{font-family:var(--display);color:var(--gold);font-size:1.15rem}.inspw header small{color:#cdb68a}
+.inspx{margin-left:auto;width:30px;height:30px;border-radius:50%;display:grid;place-items:center;padding:0;background:#140d08;border:1px solid #d6aa55;color:#f0d48a;font-size:1.1rem;cursor:pointer}
+.inspg{display:grid;grid-template-columns:minmax(0,1fr) 284px;gap:10px}
+.insptag{display:inline-flex;align-items:center;gap:6px;padding:2px 10px;border-radius:20px;background:#7b2a1a;color:#fff;font-size:.78rem;font-weight:700}
+.insph{color:#cdb68a;margin:8px 2px 0;font-size:.8rem}
+.inspw .dslot{cursor:help}
+.pcfl .pcside .ins{color:#ffd27a}
+/* ===== 0.5.0 quêtes ===== */
+.qwrap{max-width:1180px;margin:0 auto}
+.qhd{display:flex;align-items:baseline;gap:12px;margin-bottom:12px}.qhd h2{margin:0}
+.qcols{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:16px;align-items:start}
+.qcol{border-radius:14px;overflow:hidden;border:1px solid #8a6a44;background:#2a1a10;color:#f1e2bd}
+.qcol header{display:flex;align-items:center;gap:10px;padding:12px 14px;background:linear-gradient(120deg,#7b2a1a,#3a1a10)}.qcol.wk header{background:linear-gradient(120deg,#5a2a9a,#2a1450)}
+.qcol header>.uic{width:20px;height:20px}.qcol header h3{margin:0;color:#fff;font-size:1.1rem}
+.qtm{margin-left:auto;display:inline-flex;align-items:center;gap:6px;padding:3px 10px;border-radius:20px;background:#0006;color:#f0d48a;font-size:.78rem;font-weight:700}.qtm .uic{width:14px;height:14px}
+.qdots{display:flex;gap:6px;justify-content:center;padding:8px 0 2px}.qdots i{width:10px;height:10px;border-radius:50%;background:#ffffff22}.qdots i.ok{background:#8fe08a}.qdots i.on{background:#f0d48a}
+.qls{padding:8px 10px 10px;display:flex;flex-direction:column;gap:8px}
+.qc{display:grid;grid-template-columns:30px minmax(0,1fr) auto;align-items:center;gap:6px 10px;padding:10px 12px;border-radius:10px;background:#ffffff0d;border:1px solid #ffffff1a}
+.qci{width:30px;height:30px;border-radius:50%;display:grid;place-items:center;background:#7b2a1a;border:1px solid #d6aa55;color:#fff}.qci .uic{width:16px;height:16px}.qcol.wk .qci{background:#5a2a9a}
+.qc>b{font-size:.92rem;line-height:1.25}
+.qc .qbar{grid-column:1/-1;height:8px;border-radius:5px;background:#0006;overflow:hidden;border:1px solid #ffffff22}.qc .qbar i{display:block;height:100%;background:linear-gradient(90deg,#c99a3a,#f0d48a)}.qc .qbar.ok i{background:linear-gradient(90deg,#3a9a4a,#8fe08a)}
+.qmeta{grid-column:1/-1;display:flex;align-items:center;justify-content:space-between;gap:8px}.qmeta small{color:#cdb68a;font-weight:700}
+.qc.done{border-color:#8fe08a88;background:#3a9a4a1f}.qc.got{opacity:.6}
+.qrw{display:flex;gap:6px;flex-wrap:wrap}
+.qri{position:relative;width:36px;height:36px;border-radius:8px;display:grid;place-items:center;background:radial-gradient(circle at 50% 40%,color-mix(in srgb,var(--rc) 35%,#3a2a1a),#1e140b 75%);border:2px solid var(--rc);box-shadow:0 0 8px color-mix(in srgb,var(--rc) 40%,transparent);cursor:help}
+.qri .mfi{width:22px;height:22px}.qri em{position:absolute;right:-5px;bottom:-6px;font-style:normal;font-size:.62rem;font-weight:800;background:#140d08;color:#fff;border-radius:5px;padding:0 4px;border:1px solid #ffffff33}
+.qbtn{display:inline-flex;align-items:center;gap:4px;padding:6px 14px;border-radius:8px;border:0;font:inherit;font-weight:700;font-size:.85rem;background:linear-gradient(#3a9a4a,#226a30);color:#fff;box-shadow:0 0 12px #7fd07a88;cursor:pointer;white-space:nowrap}
+.qbtn.off{background:#ffffff10;color:#9a8a6a;box-shadow:none;cursor:default}.qbtn.got{background:none;color:#8fe08a;box-shadow:none;cursor:default}.qbtn .uic{width:14px;height:14px}
+.qnote{margin:0;padding:0 14px 12px;font-size:.8rem;color:#cdb68a}
+.qchestrow{display:flex;align-items:center;gap:12px;margin:0 10px 12px;padding:10px 12px;border-radius:12px;background:linear-gradient(90deg,#3a2814,#20150b);border:1px solid #8a6a44}
+.qchestrow span{flex:1;display:flex;flex-direction:column}.qchestrow small{color:#cdb68a}
+.qchest{width:58px;height:58px;padding:4px;border-radius:12px;border:2px solid #8a6a44;background:radial-gradient(#5a3a1a,#1e140b);cursor:help}.qchest svg{width:100%;height:100%}
+.qchestrow.ready{border-color:#f0d48a;box-shadow:0 0 18px #f0c04066}.qchestrow.ready .qchest{border-color:#f0d48a;cursor:pointer;animation:qbob 1.6s ease-in-out infinite}.qchestrow.opened .qchest{filter:grayscale(.7) brightness(.7)}
+@keyframes qbob{50%{transform:translateY(-3px) rotate(-2deg)}}
+@media (max-width:900px){.qcols{grid-template-columns:1fr}.rkcols{grid-template-columns:1fr}}
+/* animation du coffre */
+.qanim{position:fixed;inset:0;z-index:90;background:#000a;animation:qfade .4s ease both;display:grid;place-items:center;overflow:hidden}
+@keyframes qfade{from{background:#0000}}
+.qachest{position:absolute;left:50%;top:38%;width:150px;height:150px;translate:-50% -50%;animation:qdrop 1.2s cubic-bezier(.3,1.4,.5,1) both}
+.qachest svg{width:100%;height:100%;filter:drop-shadow(0 10px 18px #000)}
+@keyframes qdrop{0%{transform:translateY(-120vh) rotate(-8deg)}70%{transform:translateY(0) rotate(3deg)}100%{transform:none}}
+.qaglow{position:absolute;inset:-60px;border-radius:50%;background:radial-gradient(#ffe08a,#ffb04a55 35%,#0000 65%);opacity:0;transition:opacity .4s;pointer-events:none;z-index:-1}
+.qanim.open .qaglow{opacity:1;animation:qpulse 1.4s ease-in-out infinite}
+@keyframes qpulse{50%{transform:scale(1.12)}}
+.qalid{position:absolute;left:8%;right:8%;top:6%;height:36%;border-radius:40% 40% 4px 4px;background:linear-gradient(#a05a24,#6a3a14);border:3px solid #2a1408;box-shadow:inset 0 0 0 4px #d6aa5566;transform-origin:50% 100%;transition:transform .5s cubic-bezier(.3,1.6,.5,1)}
+.qanim.open .qalid{transform:translateY(-24px) rotateX(60deg) rotate(-14deg)}
+.qaitems{position:absolute;left:50%;top:38%}
+.qait{position:absolute;left:0;top:0;translate:-50% -50%;animation:qout .6s cubic-bezier(.2,1.3,.5,1) forwards}
+@keyframes qout{from{transform:translate(0,-10px) scale(.2);opacity:0}to{transform:translate(var(--tx),var(--ty)) scale(1);opacity:1}}
+.qri.big{width:62px;height:62px;border-radius:12px}.qri.big .mfi{width:40px;height:40px}.qri.big em{font-size:.8rem;right:-6px;bottom:-8px}
+.qaburst{position:absolute;left:50%;top:50%;width:120px;height:120px;translate:-50% -50%;border-radius:50%;background:radial-gradient(color-mix(in srgb,var(--rc) 70%,#fff) 0,transparent 65%);animation:qburst .7s ease-out forwards;pointer-events:none}
+@keyframes qburst{from{transform:scale(.2);opacity:1}to{transform:scale(1.6);opacity:0}}
+.qasp{position:absolute;left:50%;top:50%;width:6px;height:6px;border-radius:50%;background:#ffe9a8;box-shadow:0 0 6px #ffd27a;animation:qsp .8s ease-out forwards;pointer-events:none}
+@keyframes qsp{to{transform:translate(var(--dx),var(--dy));opacity:0}}
+.qaskip{position:absolute;right:24px;bottom:24px;padding:8px 16px;border-radius:10px;border:1px solid #d6aa55;background:#140d08e6;color:#f0d48a;font:inherit;font-weight:700;cursor:pointer;display:flex;gap:8px;align-items:center}.qaskip kbd{font-size:.75rem;background:#3a2814;border-radius:4px;padding:0 6px}
+.qanim.recap{animation:none}
+.qrecap{width:420px;max-width:calc(100% - 32px);border-radius:16px;background:linear-gradient(170deg,#4a3420,#2c1e12);border:2px solid #d6aa55;box-shadow:0 18px 50px #000c;color:#f1e2bd;padding:16px 18px;text-align:center;animation:qpop .35s cubic-bezier(.3,1.5,.5,1)}
+@keyframes qpop{from{transform:scale(.7);opacity:0}}
+.qrsub{color:#d8c49a;margin:0}.qrecap h3{margin:0 0 4px;display:flex;align-items:center;justify-content:center;gap:10px;color:var(--gold)}.qrecap h3 svg{width:40px;height:40px}
+.qrlist{display:flex;flex-direction:column;gap:6px;margin:10px 0 14px;text-align:left}
+.qrli{display:flex;align-items:center;gap:10px;padding:6px 10px;border-radius:10px;background:#0004;border:1px solid #ffffff1a}.qrli span:nth-child(2){flex:1;display:flex;flex-direction:column}.qrli small{color:#cdb68a}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 @media (min-width:760px){.arena{grid-template-columns:1fr 1fr}}
 </style>
@@ -3046,7 +3145,7 @@ async function finish(r){
     let xp=0,gold=0; for(const e of enemies){xp+=(10+6*L)*(e.boss?4:1);gold+=(5+2.5*L)*(e.boss?5:1)}
     if(C.hero&&boss){xp*=1.5;gold*=1.5} xp*=D.rw;
     gold=Math.round(gold*(1+goldF/100)*lb*.7); xp=Math.round(xp*(1+(buffOn('p_xp')?50:0)/100));
-    S.gold+=gold; S.kills+=enemies.length;
+    S.gold+=gold; S.kills+=enemies.length; qEv('kill',enemies.length); qEv('advwin'); if(boss) qEv('boss'); if(C.diff&&C.diff!=='normal') qEv('hardwin');
     const ups=[];
     for(const h of S.heroes){const inP=S.party.includes(h.id);const n=gainXp(h,inP?xp:Math.round(xp*.4));if(n){ups.push(`Niveau ${h.lvl} atteint !`);S.lvlDot=true;lvlToast(h,n);if(h.lvl>=HERO_L&&h.lvl-n<HERO_L)setTimeout(()=>toast('✦ Mode Héroïque débloqué !'),900)}}
     const mats={},zm=ZONES[C.zone].mats;
@@ -3114,7 +3213,7 @@ function produce(dt){
 const readyAny=()=>SITES.some(si=>{const st=S.sites[si.id];return st&&st.lvl>0&&(st.ready||0)>0&&!autoOn(st)});
 function collectSite(id,quiet){
   const si=SITES.find(s=>s.id===id),st=S.sites[id],got={},items=[]; let lost=false;
-  const n=st.ready||0,amt={}; ACC.cnt=ACC.cnt||{}; ACC.cnt.col=(ACC.cnt.col||0)+n;
+  const n=st.ready||0,amt={}; if(n>0&&id==='mine') qEv('mine',n); ACC.cnt=ACC.cnt||{}; ACC.cnt.col=(ACC.cnt.col||0)+n;
   for(const m of Object.keys(si.out)){ let k=n; if(tal(st)['r_'+m+'X']) for(let i=0;i<n;i++) if(Math.random()<.1) k++; amt[m]=k*siteBatch(si,st,m) }
   for(const [m,v] of Object.entries(st.stock||{})) amt[m]=(amt[m]||0)+v; /* reste des anciennes versions */
   st.stock={};
@@ -3186,7 +3285,7 @@ function render1(){
   if(UI.scr){v.innerHTML=({admin:viewAdmin,menu:viewMenu,login:viewLogin,pseudo:viewPseudo,best:viewBest,select:viewSelect,create:viewCreator,opts:viewOpts,news:viewNews})[UI.scr](); renderInvPop(); return}
   if(!S||!S.heroes.length){UI.scr='menu';return render()}
   if(UI.tab==='opts'||UI.tab==='news') UI.tab='combat';
-  v.innerHTML=({comm:viewComm,troph:viewTroph,combat:viewCombat,heroes:viewHeroes,bag:viewBag,shop:viewShop,forge:viewForge,sites:viewSites,help:viewHelp,opts:viewOpts,news:viewNews})[UI.tab]();
+  v.innerHTML=({quest:viewQuest,comm:viewComm,troph:viewTroph,combat:viewCombat,heroes:viewHeroes,bag:viewBag,shop:viewShop,forge:viewForge,sites:viewSites,help:viewHelp,opts:viewOpts,news:viewNews})[UI.tab]();
   if(UI.tab==='combat'&&C.phase!=='idle'){C.units.forEach(refresh);renderActbar();const l=$('#log');if(l){l.scrollTop=l.scrollHeight}}
   renderInvPop();
 }
@@ -3230,7 +3329,7 @@ async function onFbUser(u){
 function afterProfile(fromLogin){
   if(fromLogin||UI.scr==='login'||UI.scr==='pseudo'){UI.scr='menu'; toast('Connecté : '+(FB.prof?FB.prof.name:(FB.user.email||'compte'))+'.')}
   if(FB.prof){ presence(); startFriends(); startPvp(); startRaid(); startMail() }
-  adminCheck().then(()=>{ if(['opts','best','menu','admin'].includes(UI.scr)) render(); if(FB.admin) setTimeout(updAuto,2500) });
+  adminCheck().then(()=>{ if(['opts','best','menu','admin'].includes(UI.scr)) render(); if(FB.admin){ setTimeout(updAuto,2500); setTimeout(rkAutoFreeze,4500) } });
   render();
 }
 /* ============ pseudo (nom de compte) ============ */
@@ -3260,6 +3359,7 @@ function presence(state){
   if(!FB.user||!FB.prof) return;
   const ch=(!UI.scr&&S&&S.heroes&&S.heroes[0])?{name:S.heroes[0].name,cls:S.heroes[0].cls,lvl:S.heroes[0].lvl}:null;
   FB.db.collection(COL('profiles')).doc(FB.user.uid).set({name:FB.prof.name,nameLower:FB.prof.nameLower,lastSeen:firebase.firestore.FieldValue.serverTimestamp(),online:state!=='off',char:ch,card:cardMine()},{merge:true}).catch(()=>{});
+  if(state!=='off') rkPush();
 }
 setInterval(()=>presence(),60000);
 function stopFriends(){ closeChat(); if(FR.unsub){FR.unsub();FR.unsub=null} for(const k in FR.pun){FR.pun[k]();delete FR.pun[k]} FR.list=[]; FR.prof={}; FR.open=false; renderFriends() }
@@ -3470,8 +3570,8 @@ function pvpEnd(m){
   setTimeout(()=>{
     const w=$('#pvp'); if(w) w.remove(); PV.match=null;
     const done=JSON.parse(lsGet(KP+'pvpdone_'+me)||'[]');
-    if(win&&!done.includes(m.id)&&S&&S.heroes&&S.heroes[0]){ done.push(m.id); lsSet(KP+'pvpdone_'+me,JSON.stringify(done.slice(-50))); S.gold+=PVP_GOLD; S.pvp=S.pvp||{w:0,l:0}; S.pvp.w++; ACC.cnt=ACC.cnt||{}; ACC.cnt.duel=(ACC.cnt.duel||0)+1; save(); renderHeader(); pvpLoot(m) }
-    else if(!win&&S&&S.heroes&&S.heroes[0]){ if(!done.includes(m.id)){done.push(m.id); lsSet(KP+'pvpdone_'+me,JSON.stringify(done.slice(-50))); S.pvp=S.pvp||{w:0,l:0}; S.pvp.l++; save()} toast('Défaite contre '+(m.names[pvpOp(m)]||'votre adversaire')+'.') }
+    if(win&&!done.includes(m.id)&&S&&S.heroes&&S.heroes[0]){ done.push(m.id); lsSet(KP+'pvpdone_'+me,JSON.stringify(done.slice(-50))); S.gold+=PVP_GOLD; S.pvp=S.pvp||{w:0,l:0}; S.pvp.w++; rkDuel(true); qEv('duel'); qEv('duelwin'); ACC.cnt=ACC.cnt||{}; ACC.cnt.duel=(ACC.cnt.duel||0)+1; save(); renderHeader(); pvpLoot(m) }
+    else if(!win&&S&&S.heroes&&S.heroes[0]){ if(!done.includes(m.id)){done.push(m.id); lsSet(KP+'pvpdone_'+me,JSON.stringify(done.slice(-50))); S.pvp=S.pvp||{w:0,l:0}; S.pvp.l++; rkDuel(false); qEv('duel'); save()} toast('Défaite contre '+(m.names[pvpOp(m)]||'votre adversaire')+'.') }
     if(m.players[0]===me) setTimeout(()=>pvpCol().doc(m.id).delete().catch(()=>{}),8000);
     if(UI.tab==='combat'&&!UI.scr) render();
   },3200);
@@ -3774,7 +3874,8 @@ function rdFinish(m){
   renderRaid();
   setTimeout(()=>{
     const w=$('#raid'); if(w) w.remove(); RD.match=null; RD.gone[m.id]=1;
-    if(win&&r&&rdCount(m,true)){
+    if(r) qEv('raidf:'+r.id);
+    if(win&&r&&rdCount(m,true)){ qEv('raidwin'); rkRaid(r.id,m.tier||0,m.round||1);
       const rw=rdRw(r,m.tier||0); gain(rw); S.raid=S.raid||{}; let up=false; const chest=Math.random()*100<chestRate(m.tier||0); if(chest) chestGive(1);
       if((m.tier||0)>=raidMax(r.id)){ S.raid[r.id]=(m.tier||0)+1; up=true; if(UI.raidB!=null&&RAIDS[UI.raidB]&&RAIDS[UI.raidB].id===r.id) UI.raidT=S.raid[r.id] }
       save(); renderHeader(); rdLoot(m,r,rw,up,chest);
@@ -4028,10 +4129,10 @@ function commDot(){
   return FR.list.some(f=>(f.status==='pending'&&f.from!==me)||(f.status==='accepted'&&isUnread(f)));
 }
 UIC.flag='<path d="M5 21V4"/><path d="M5 4h12l-2.5 4L17 12H5"/>';
-const DOCK_L=[['shop','coin','Marchand'],['forge','anvil','Amélioration'],['sites','pick','Collecte']],DOCK_R=[['comm','flag','Communauté'],['troph','trophy','Trophées'],['quest','scroll','Quêtes',1]];
+const DOCK_L=[['shop','coin','Marchand'],['forge','anvil','Amélioration'],['sites','pick','Collecte']],DOCK_R=[['comm','flag','Communauté'],['troph','trophy','Trophées'],['quest','scroll','Quêtes']];
 UIC.scroll='<path d="M7 4h11a2 2 0 0 1 2 2v1h-4"/><path d="M16 7v11a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-1h10v1a2 2 0 0 0 2 2"/><path d="M7 4a2 2 0 0 0-2 2v11M9 9h4M9 12h4"/>';
 function dockHTML(){
-  const dot=k=>(k==='sites'&&(collectBlocked()||readyAny())&&UI.tab!=='sites')||(k==='troph'&&ACC.trNew&&UI.tab!=='troph')?'<span class="ndot" aria-label="Nouveauté"></span>':'';
+  const dot=k=>(k==='sites'&&(collectBlocked()||readyAny())&&UI.tab!=='sites')||(k==='troph'&&ACC.trNew&&UI.tab!=='troph')||(k==='quest'&&UI.tab!=='quest'&&qClaimable())?'<span class="ndot" aria-label="Nouveauté"></span>':'';
   const b=([k,i,n,lk])=>lk?`<button class="dkb dklk" aria-disabled="true" data-act="soon" data-n="${n}" title="${n} : arrive dans une prochaine mise à jour">${uic(i)}<b>${n}</b><span class="dklock">${uic('lock')}</span></button>`:`<button class="dkb" role="tab" aria-selected="${UI.tab===k}" data-act="tab" data-t="${k}">${uic(i)}<b>${n}</b>${dot(k)}</button>`;
   const fo=friendsOnline();
   return `<div class="dkbar"><div class="dkl">${DOCK_L.map(b).join('')}</div><button class="dkmain" role="tab" aria-selected="${UI.tab==='combat'}" data-act="tab" data-t="combat"><span class="dkring">${uic('swords')}</span><b>Aventure</b></button><div class="dkr">${DOCK_R.map(b).join('')}</div></div>
@@ -4268,7 +4369,7 @@ function friendCardFl(f){
   const d=c?Object.assign({},c,{name:c.name||nm}):{name:nm,pts:0,icon:'c:'+((p.char&&p.char.cls)||'guerrier'),fr:0,bg:3,chars:p.char?[{n:p.char.name,cls:p.char.cls,lvl:p.char.lvl}]:[]};
   let w=$('#pcfl'); const fresh=!w; if(!w){ w=document.createElement('div'); w.id='pcfl'; w.className='pcfl'; w.setAttribute('role','dialog'); document.body.append(w) }
   w.dataset.fid=f.id; w.setAttribute('aria-label','Carte de joueur : '+nm);
-  w.innerHTML=`<div class="pcside"><button class="du" data-act="frDuel" data-id="${f.id}" ${ol?'':'disabled'} ${ttip('Défier '+nm+' en duel',ol?'':'Ce joueur n’est pas en ligne.')}>${PCF_IC.du}</button><button class="ch" data-act="frChat" data-id="${f.id}" ${ttip('Discuter avec '+nm)}>${PCF_IC.ch}</button><button class="rd" data-act="frRaid" data-id="${f.id}" ${ol?'':'disabled'} ${ttip('Inviter '+nm+' en raid',ol?'':'Ce joueur n’est pas en ligne.')}>${uic('skull')}</button></div>
+  w.innerHTML=`<div class="pcside"><button class="du" data-act="frDuel" data-id="${f.id}" ${ol?'':'disabled'} ${ttip('Défier '+nm+' en duel',ol?'':'Ce joueur n’est pas en ligne.')}>${PCF_IC.du}</button><button class="ch" data-act="frChat" data-id="${f.id}" ${ttip('Discuter avec '+nm)}>${PCF_IC.ch}</button><button class="rd" data-act="frRaid" data-id="${f.id}" ${ol?'':'disabled'} ${ttip('Inviter '+nm+' en raid',ol?'':'Ce joueur n’est pas en ligne.')}>${uic('skull')}</button><button class="ins" data-act="frInsp" data-id="${f.id}" ${ttip('Inspecter l’équipement de '+nm)}>${uic('helm')}</button></div>
    <div class="pcbox" data-pcdrag><span class="grip"></span>${cardColl(d,'fl')}<button class="pcx2" data-act="pcClose" ${ttip('Fermer la carte')}>×</button>${c?'':'<p class="pcnote">Ce joueur n’a pas encore mis à jour sa carte.</p>'}</div>`;
   if(fresh){ const r=w.getBoundingClientRect(); const P=PCF.pos||{x:Math.round(innerWidth/2-r.width/2),y:Math.max(70,Math.round(innerHeight/2-r.height/2))}; pcfPlace(w,P.x,P.y) }
 }
@@ -4284,11 +4385,11 @@ function friendCard(fid){
   openCard(d,c?'':'<p class="pcnote">Ce joueur n’a pas encore mis à jour sa carte.</p>');
 }
 /* ================= Communauté ================= */
-const COMM_T=[['card','card','Carte de joueur'],['custom','brush','Personnalisation'],['rank','podium','Classement',1],['guild','shield','Guilde',1]];
+const COMM_T=[['card','card','Carte de joueur'],['custom','brush','Personnalisation'],['rank','podium','Classement'],['guild','shield','Guilde',1]];
 function viewComm(){
   const tab=UI.commT||'card',d=cardMine(),pts=trPts();
   const side=`<aside class="aminfo maside mtside"><div class="ambody"><h4>Communauté</h4><div class="masub" role="tablist">${COMM_T.map(([k,i,n,lk])=>`<button role="tab" aria-selected="${tab===k}" class="${tab===k?'on':''} ${lk?'lk':''}" ${lk?`aria-disabled="true" title="Arrive dans une prochaine mise à jour"`:`data-act="commT" data-t="${k}"`}>${uic(i)}<span>${n}</span>${lk?uic('lock'):''}</button>`).join('')}</div>
-    <p class="amnote mute" style="margin-top:auto">Classement et Guilde : arrive dans une prochaine mise à jour.</p><p class="amnote mute">La liste d’amis s’ouvre avec le bouton rond à côté du sac.</p></div></aside>`;
+    <p class="amnote mute" style="margin-top:auto">Guilde : arrive dans une prochaine mise à jour.</p><p class="amnote mute">La liste d’amis s’ouvre avec le bouton rond à côté du sac.</p></div></aside>`;
   let main;
   if(tab==='custom'){
     const c=pcDraft(),lk=pcLockedSel(c),dirty=JSON.stringify(c)!==JSON.stringify(pcClean(pcDef()));
@@ -4307,10 +4408,10 @@ function viewComm(){
       <h4>Trophées affichés <small class="mute">${(c.show||[]).length} / 3</small></h4><div class="pcopt">${got.length?got.map(t=>`<button class="pcts ${(c.show||[]).includes(t.id)?'on':''}" data-act="pcShow" data-id="${t.id}" data-tip="pc:tr:${t.id}" aria-pressed="${(c.show||[]).includes(t.id)}"><span class="mtti sm ${trTier(t)}">${uic(trIc(t))}</span></button>`).join(''):'<small class="mute">Obtenez des trophées pour les afficher sur votre carte.</small>'}</div>
       <div class="pcsave">${lk.length?`<p class="pcwarn">${uic('lock')} Non débloqué : ${lk.map(esc).join(', ')}. Choisissez un élément débloqué pour enregistrer.</p>`:''}
        <div class="row"><button class="btn" data-act="pcReset" ${dirty?'':'disabled'}>Annuler</button><button class="btn pri" data-act="pcConfirm" ${dirty&&!lk.length?'':'disabled'}>Confirmer</button></div></div></div></div></div>`;
-  } else {
+  } else if(tab==='rank'){ main=viewRank() } else {
     main=`<div class="pcview"><div class="pcfit">${cardColl(d,'v')}<h4>Aperçu dans le classement</h4>${cardBanner(d)}<p class="amnote mute">Votre carte s’affiche quand un joueur clique sur votre nom dans sa liste d’amis, puis sur « Carte ». La bannière sera utilisée dans le classement.</p></div></div>`;
   }
-  return `<div class="mt1 comm">${side}<section class="mtmain"><div class="mctop"><h2>${tab==='custom'?'Personnalisation':'Carte de joueur'}</h2><span class="mute">${tab==='custom'?'Icône, cadre, fond, titre et trophées affichés.':'L’aperçu que les autres joueurs voient de vous.'}</span></div>${main}</section></div>`;
+  return `<div class="mt1 comm">${side}<section class="mtmain ${tab==='rank'?'rkmain':''}"><div class="mctop"><h2>${tab==='custom'?'Personnalisation':tab==='rank'?'Classement de la saison':'Carte de joueur'}</h2><span class="mute">${tab==='custom'?'Icône, cadre, fond, titre et trophées affichés.':tab==='rank'?'Cliquez sur un joueur pour le sélectionner, puis inspectez son équipement.':'L’aperçu que les autres joueurs voient de vous.'}</span></div>${main}</section></div>`;
 }
 function pcSave(){ saveAcc(); presence(); render() }
 function friendsOnline(){ if(!FB.user||!FB.prof) return null; const me=FB.user.uid; const acc=FR.list.filter(f=>f.status==='accepted'); return {on:acc.filter(f=>isOnline(FR.prof[f.users.find(x=>x!==me)])).length,n:acc.length} }
@@ -4882,16 +4983,16 @@ function fDo(){
   const I=fUpInfo(it,k); if(!I||!I.ok||!canPay(I.cost)) return;
   pay(I.cost); let ok=true,msg='';
   const N=NEWI[k];
-  if(N&&N.sc){ const pool=scrollPool(it,N.sc),a=wPick(pool,1)[0],[lo,hi]=SC_R[N.r],v=affVal(a.s,it.ilvl,RAR[it.rarity].m*rand(lo,hi)); it.aff.push({s:a.s,v}); removeMat(k,1); msg=`Nouvelle affixe : ${fmtStat(a.s,v*upMul(it))}.` }
-  else if(GEMK[k]!=null){ const f2=RAR[it.rarity+1].m/RAR[it.rarity].m; for(const s of Object.keys(it.imp)) it.imp[s]=affRound(s,it.imp[s]*f2); it.aff.forEach(a=>a.v=affRound(a.s,a.v*f2)); it.rarity++; if(it.rarity>=4&&!it.leg) it.leg=it.slot; removeMat(k,1); msg=`${esc(it.name)} devient ${RAR[it.rarity].n.toLowerCase()} !` }
-  else if(k==='st_up'){ const ch=I.chance; removeMat('st_up',1); if(UI.fBon&&fsHave(UI.fBon)) removeMat(UI.fBon,1); ok=Math.random()*100<ch; if(ok){it.up=(it.up||0)+1; msg=`Réussite : ${esc(it.name)} passe à +${it.up} !`} else msg=`Échec : l’objet reste à +${it.up||0}.` }
+  if(N&&N.sc){ const pool=scrollPool(it,N.sc),a=wPick(pool,1)[0],[lo,hi]=SC_R[N.r],v=affVal(a.s,it.ilvl,RAR[it.rarity].m*rand(lo,hi)); it.aff.push({s:a.s,v}); qEv('aff'); removeMat(k,1); msg=`Nouvelle affixe : ${fmtStat(a.s,v*upMul(it))}.` }
+  else if(GEMK[k]!=null){ const f2=RAR[it.rarity+1].m/RAR[it.rarity].m; for(const s of Object.keys(it.imp)) it.imp[s]=affRound(s,it.imp[s]*f2); it.aff.forEach(a=>a.v=affRound(a.s,a.v*f2)); it.rarity++; qEv('rar'); if(it.rarity>=4&&!it.leg) it.leg=it.slot; removeMat(k,1); msg=`${esc(it.name)} devient ${RAR[it.rarity].n.toLowerCase()} !` }
+  else if(k==='st_up'){ const ch=I.chance; removeMat('st_up',1); if(UI.fBon&&fsHave(UI.fBon)) removeMat(UI.fBon,1); ok=Math.random()*100<ch; if(ok){it.up=(it.up||0)+1; qEv('up'); msg=`Réussite : ${esc(it.name)} passe à +${it.up} !`} else msg=`Échec : l’objet reste à +${it.up||0}.` }
   if(fsHave(k)<1) UI.fUp=null; if(UI.fBon&&fsHave(UI.fBon)<1) UI.fBon=null;
   save(); renderHeader&&renderHeader(); render(); requestAnimationFrame(()=>fFx('forge',ok)); toast(msg);
 }
 function eDo(){
   const I=enchInfo(); if(!I.ok||!canPay(I.cost)) return;
   if(matRoom(I.out)<1){ toast('Inventaire plein.'); return }
-  pay(I.cost); removeMat(I.c,1); removeMat(I.p,3); removeMat(I.e,1); removeMat(I.r,1); bagAddMat(S.bag,I.out,1); markNew();
+  pay(I.cost); removeMat(I.c,1); removeMat(I.p,3); removeMat(I.e,1); removeMat(I.r,1); bagAddMat(S.bag,I.out,1); markNew(); qEv('ench');
   save(); render(); requestAnimationFrame(()=>fFx('ench',true)); toast(`${NEWI[I.out].n} (${RAR[NEWI[I.out].r].n.toLowerCase()}) créé : il est dans l’inventaire.`);
 }
 
@@ -4948,6 +5049,7 @@ async function seasonGo(){
   if(!FB.admin||UI.wiping) return; UI.wiping=true;
   const W=UI.wipe||{},m=$('#wipemsg'); if(m) W.msg=m.value.trim().slice(0,300);
   const n=(FB.season?(+FB.season.n||0):0)+1,doc={n,troph:!!W.troph,cos:!!W.cos,stash:!!W.stash,msg:W.msg||'',by:FB.user.uid,ts:firebase.firestore.FieldValue.serverTimestamp()};
+  await rkFreeze(FB.season?(+FB.season.n||0):0,true);
   try{ await FB.db.collection(COL('config')).doc('reset').set(doc); FB.season=doc; UI.confirm=null; toast('Saison '+n+' lancée : tous les comptes repartent de zéro.'); seasonCheck() }
   catch(e){ toast('Échec ('+((e&&e.code)||'erreur')+') : vérifiez la règle Firestore de config/reset.') }
   UI.wiping=false; if(UI.scr==='opts') render();
@@ -4995,7 +5097,7 @@ function admHome(){
 }
 function admSeason(){
   return `<div class="admgrid one">${admCard('flag','Titre de la saison','Affiché pour tous les joueurs sous le titre du jeu',`<div class="row" style="gap:8px"><input class="pcsel" id="admstitle" maxlength="60" value="${esc((FB.season&&FB.season.title)||'')}" placeholder="${esc('Saison '+Math.max(1,FB.season?(+FB.season.n||0):1))}" style="flex:1"><button class="btn pri" data-act="admSTitle">Enregistrer</button></div><small class="mute">Laissez vide pour afficher « Saison N ».</small>`)}
-   ${seasonAdminHTML().replace('<section class="panel" style="margin-top:12px"><h2 style="margin-top:0">Remise à zéro de tous les comptes</h2>','<section class="admc danger"><header><span class="admci">'+uic('warn')+'</span><div><h3>Remise à zéro de tous les comptes</h3><small>Nouvelle saison</small></div></header>')}</div>`;
+   ${rankAdminHTML()}${seasonAdminHTML().replace('<section class="panel" style="margin-top:12px"><h2 style="margin-top:0">Remise à zéro de tous les comptes</h2>','<section class="admc danger"><header><span class="admci">'+uic('warn')+'</span><div><h3>Remise à zéro de tous les comptes</h3><small>Nouvelle saison</small></div></header>')}</div>`;
 }
 function admPlayers(){
   if(!ADM.players&&!ADM.pErr){ setTimeout(admLoadPlayers,0); return '<p class="hint">Chargement des joueurs…</p>' }
@@ -5038,8 +5140,8 @@ function raidSolo(){
 }
 function raidSoloFinish(res){
   C.pending=null;C.waiting=null;C.turn=null; const r=RAIDS.find(x=>x.id===C.raid.r),t=C.raid.t;
-  S.raidS=S.raidS||{w:0,l:0};
-  if(res==='win'){
+  S.raidS=S.raidS||{w:0,l:0}; qEv('raidf:'+r.id);
+  if(res==='win'){ qEv('raidwin'); rkRaid(r.id,t,C.round||1);
     const rw=soloRw(r,t); gain(rw); let up=false; S.raid=S.raid||{};
     if(t>=raidMax(r.id)){ S.raid[r.id]=t+1; up=true; UI.raidT=S.raid[r.id] }
     const chest=Math.random()*100<chestRate(t); if(chest) chestGive(1); S.raidS.w++;
@@ -5137,6 +5239,167 @@ function invTopHTML(){
   return `<div class="iptop">${st}<div class="ndl" id="doll"><div class="c">${['helm','armor','legs','boots'].map(sl).join('')}</div><div class="av">${zoneScene(UI.zone||0,'av')}<span class="ring"></span>${heroArt(h.cls,h.skin)}<div class="nm"><b>${esc(h.name)}</b><small>${c.n} · niveau ${h.lvl}</small></div></div><div class="c">${['amulet','ring','ring2','weapon'].map(sl).join('')}</div></div></div>`;
 }
 document.addEventListener('dblclick',e=>{ const a=e.target.closest&&e.target.closest('article.sel5[data-sel]'); if(!a||e.target.closest('button')||UI.scr!=='select') return; e.preventDefault(); A.playChar({i:a.dataset.sel}) });
+/* ===================== 0.5.0 : CLASSEMENT ===================== */
+const RK={tab:'duel',sel:null,list:null,busy:false,err:'',ts:0,boss:null,insp:null,final:null};
+const rkCol=()=>FB.db.collection(COL('ranks'));
+const rkSeason=()=>(FB.season&&+FB.season.n)||ACC.season||0;
+function rkAcc(){ const n=rkSeason(); if(!ACC.rk||ACC.rk.s!==n) ACC.rk={s:n,w:0,l:0,raid:{},deq:null}; return ACC.rk }
+function eqSnap(){ const h=S&&S.heroes&&S.heroes[0]; if(!h) return null; const s=heroStats(h),pick={};
+  for(const k of ['hp','atk','mag','spd','crit','critDmg','dodge','lifesteal','ap','def','res',...RES_K]) pick[k]=Math.round((s[k]||0)*10)/10;
+  return {name:h.name,cls:h.cls,skin:h.skin||null,lvl:h.lvl,eq:JSON.parse(JSON.stringify(h.equip||{})),st:pick,pw:Math.round(heroPower(h)),ts:Date.now()} }
+let RK_LAST='',RK_T=0;
+function rkPush(force){
+  if(!FB.user||!FB.prof||!S||!S.heroes||!S.heroes[0]) return; const R=rkAcc(),cur=eqSnap();
+  const sig=JSON.stringify([R,cur&&cur.eq,cur&&cur.lvl,cardMine()]); if(!force&&sig===RK_LAST&&Date.now()-RK_T<15*60e3) return; RK_LAST=sig; RK_T=Date.now();
+  rkCol().doc(FB.user.uid).set({name:FB.prof.name,card:cardMine(),season:R.s,duel:{w:R.w,l:R.l},deq:R.deq||null,raid:R.raid||{},cur,ts:Date.now()},{merge:true}).catch(()=>{});
+}
+function rkDuel(win){ const R=rkAcc(); if(win){ R.w++; R.deq=eqSnap() } else R.l++; saveAcc(); rkPush(true) }
+function rkRaid(id,tier,turns){ const R=rkAcc(),b=R.raid[id]; if(!b||tier>b.t||(tier===b.t&&turns<b.turns)){ R.raid[id]={t:tier,turns:Math.max(1,turns|0),eq:eqSnap()}; saveAcc(); rkPush(true) } }
+async function rkLoad(){
+  if(!FB.user){ RK.err='off'; RK.list=[]; return } if(RK.busy) return; RK.busy=true; RK.err='';
+  try{ rkPush(true); const qs=await rkCol().where('season','==',rkSeason()).get(); RK.list=qs.docs.map(d=>Object.assign({uid:d.id},d.data())); RK.ts=Date.now();
+    try{ const f=await FB.db.collection(COL('config')).doc('rankfinal_'+rkSeason()).get(); RK.final=f.exists?f.data():null }catch(e){}
+  }catch(e){ RK.err=(e&&e.code)||'erreur'; RK.list=RK.list||[] }
+  RK.busy=false; if(UI.tab==='comm'&&UI.commT==='rank'&&!UI.scr){ const y=scrollY; render(); scrollTo(0,y) }
+}
+const rkDuelL=()=>(RK.list||[]).filter(p=>p.duel&&(p.duel.w+p.duel.l)>0).sort((a,b)=>b.duel.w-a.duel.w||(b.duel.w/(b.duel.w+b.duel.l))-(a.duel.w/(a.duel.w+a.duel.l))||a.duel.l-b.duel.l);
+const rkRaidL=id=>(RK.list||[]).filter(p=>p.raid&&p.raid[id]).sort((a,b)=>b.raid[id].t-a.raid[id].t||a.raid[id].turns-b.raid[id].turns);
+const MEDC={1:['#f0c040','#fff3b0','#a0761a'],2:['#d8dde6','#ffffff','#7a808c'],3:['#d08a4a','#ffd2a0','#7a4a1a']};
+function rkMedal(r){ if(r>3) return `<span class="rkpos">${r}</span>`; const [c,l,d]=MEDC[r]; return `<span class="rkmedal" aria-label="${r}e"><svg viewBox="0 0 44 44" aria-hidden="true"><path d="M12 2h8l4 12-6 2zM32 2h-8l-4 12 6 2z" fill="#7b2a1a"/><circle cx="22" cy="27" r="14" fill="${c}" stroke="${d}" stroke-width="2.5"/><circle cx="22" cy="27" r="10" fill="none" stroke="${l}" stroke-width="1.5" opacity=".8"/></svg><b>${r}</b></span>` }
+function rkBan(p,r,kind,boss){
+  const me=FB.user&&p.uid===FB.user.uid,d=Object.assign({name:p.name,icon:'c:guerrier',fr:0,bg:3},p.card||{},{name:p.name||(p.card&&p.card.name)||'?'}),key=p.uid+'|'+(boss||'duel'),sel=RK.sel===key;
+  const sub=kind==='duel'?(d.title?'« '+esc(d.title)+' »':''):`Palier +${p.raid[boss].t} en ${p.raid[boss].turns} tour${p.raid[boss].turns>1?'s':''}`;
+  const st=kind==='duel'?`<div class="rkst"><span class="w"><small>Victoires</small><b class="num">${p.duel.w}</b></span><span class="l"><small>Défaites</small><b class="num">${p.duel.l}</b></span><span class="p"><small>Réussite</small><b class="num">${Math.round(p.duel.w/(p.duel.w+p.duel.l)*100)} %</b></span></div>`:'';
+  return `<div class="rkb ${r<=3?'r'+r:r<=10?'top10':''} ${me?'me':''} ${sel?'sel':''} ${kind==='raid'?'sm':''}" data-act="rkSel" data-k="${esc(key)}" role="button" tabindex="0" aria-pressed="${sel}" ${pcFxAttr(d)}><div class="rkbg">${zoneScene(d.bg??3,'rk'+(boss||'d')+r)}</div>${rkMedal(r)}<span class="rkav">${pcIcon(d.icon,kind==='raid'?40:52)}</span><div class="rknm"><b>${esc(d.name)}${me?' (vous)':''}</b><small>${sub}</small></div>${st}
+   <div class="rkacts"><button data-act="rkInsp" data-k="${esc(key)}" ${ttip('Inspecter l’équipement',kind==='duel'?'Équipement lors de sa dernière victoire en duel.':'Équipement au moment de ce record.')}>${uic('helm')}</button><button data-act="rkCard" data-k="${esc(key)}" ${ttip('Carte du joueur')}>${uic('card')}</button></div></div>`;
+}
+function rkEndTxt(){ const e=FB.season&&+FB.season.end; if(RK.final) return 'Classement final arrêté : les récompenses de saison sont attribuées selon ces positions.'; if(e&&e>Date.now()){ const j=Math.ceil((e-Date.now())/864e5); return `Fin de saison dans <b>${j} jour${j>1?'s':''}</b>. Le classement final est arrêté juste avant la fin de saison pour attribuer les récompenses.` } return 'Le classement final est arrêté juste avant la fin de saison pour attribuer les récompenses.' }
+function viewRank(){
+  if(!FB.user) return `<div class="rkempty">${uic('podium')}<p>Connectez-vous à un compte en ligne pour voir le classement de la saison.</p><button class="btn pri" data-act="scr" data-s="login">Se connecter</button></div>`;
+  if(RK.list==null||Date.now()-RK.ts>60e3&&!RK.busy&&!RK.auto){ RK.auto=true; setTimeout(()=>{ RK.auto=false; rkLoad() },0) }
+  const t=RK.tab;
+  const head=`<div class="rkhead"><div class="rktabs" role="tablist"><button class="${t==='duel'?'on':''}" data-act="rkTab" data-t="duel" role="tab" aria-selected="${t==='duel'}">${uic('swords')}Duels</button><button class="${t==='raid'?'on':''}" data-act="rkTab" data-t="raid" role="tab" aria-selected="${t==='raid'}">${uic('skull')}Défis</button></div><span class="rkupd">${uic('auto')}${RK.busy?'Mise à jour…':RK.ts?'Mis à jour à '+new Date(RK.ts).toLocaleTimeString('fr-FR',{hour:'2-digit',minute:'2-digit'}):''}</span></div>
+   <div class="rkend">${uic('trophy')}<span>${esc(seasonTitle())} · ${rkEndTxt()}</span></div>${RK.err&&RK.err!=='off'?`<p class="lerr">Classement indisponible (${esc(RK.err)}). Vérifiez la règle Firestore de la collection ranks.</p>`:''}`;
+  const meRow=(L,boss,kind)=>{ const i=L.findIndex(p=>p.uid===FB.user.uid); return i>=10?`<div class="rkgap">· · ·</div>${rkBan(L[i],i+1,kind,boss)}`:'' };
+  if(t==='duel'){ const L=rkDuelL(); return head+`<div class="rklist">${L.slice(0,10).map((p,i)=>rkBan(p,i+1,'duel')).join('')||'<p class="rknone">Aucun duel cette saison pour l’instant.</p>'}${meRow(L,null,'duel')}</div>` }
+  return head+`<div class="rkcols">${RAIDS.map(R=>{const L=rkRaidL(R.id);return `<div class="rkcol"><header>${zoneScene(raidSc(R),'rkc'+R.id)}<b>${esc(R.n)}</b><small>Niv. ${R.L}</small></header><div class="rkls">${L.slice(0,10).map((p,i)=>rkBan(p,i+1,'raid',R.id)).join('')||'<p class="rknone">Aucun palier réussi.</p>'}${meRow(L,R.id,'raid')}</div></div>`}).join('')}</div>`;
+}
+function rkFind(key){ const [uid,b]=String(key).split('|'); return {p:(RK.list||[]).find(x=>x.uid===uid),b} }
+function inspHTML(snap,label){
+  const s=snap.st||{},c=CLASSES[snap.cls]||CLASSES.guerrier,ms=c.role==='mag'?['Intelligence',s.mag]:['Force',s.atk];
+  const g=(t,a)=>`<h4>${t}</h4>`+a.map(([n,x])=>`<div><span>${n}</span><b class="num">${x}</b></div>`).join('');
+  const sl=k=>{const it=snap.eq&&snap.eq[k];return `<span class="dslot ${it?'full':''}" data-tip="ri:${k}" style="${it?`--rc:var(--r${it.rarity})`:''}">${eqIco(it,k)}${it&&it.up?`<em>+${it.up}</em>`:''}${it?`${it.rarity>=2?`<i class="rfx r${it.rarity}"></i>`:''}<em class="il">${it.ilvl}</em>`:''}</span>`};
+  return `<div class="inspw" role="dialog" aria-label="Équipement de ${esc(snap.name)}"><header>${uic('helm')}<span><b>Équipement de ${esc(snap.name)}</b><br><small>${label?`<span class="insptag">${label}</span>`:'Équipement actuel'}</small></span><button class="inspx" data-act="inspClose" ${ttip('Fermer')}>×</button></header>
+   <div class="inspg"><div class="nst">${g('Principale',[['PV',Math.round(s.hp||0)],[ms[0],Math.round(ms[1]||0)]])}${g('Secondaire',[['Vitesse',Math.round(s.spd||0)],['Critique',r1(s.crit||0)+' %'],['Dégâts critiques',Math.round(s.critDmg||0)+' %'],['Esquive',r1(s.dodge||0)+' %'],['Vol de vie',r1(s.lifesteal||0)+' %'],['Points d’action',s.ap||0]])}${g('Défense',[['Défense physique',Math.round(s.def||0)],['Défense magique',Math.round(s.res||0)]])}${g('Résistances',RES_K.map(k=>[STAT_N[k].replace('Résistance ','Rés. '),r1(s[k]||0)+' %']))}<div class="pw"><span>Puissance</span><b class="num">${fmt(snap.pw||0)}</b></div></div>
+   <div class="ndl"><div class="c">${['helm','armor','legs','boots'].map(sl).join('')}</div><div class="av">${zoneScene(3,'insp')}<span class="ring"></span>${heroArt(snap.cls,snap.skin)}<div class="nm"><b>${esc(snap.name)}</b><small>${c.n} · niveau ${snap.lvl}</small></div></div><div class="c">${['amulet','ring','ring2','weapon'].map(sl).join('')}</div></div></div>
+   <p class="insph">Survolez un objet pour voir ses statistiques · lecture seule${snap.ts?' · '+new Date(snap.ts).toLocaleDateString('fr-FR'):''}.</p></div>`;
+}
+function openInsp(snap,label){ if(!snap){ toast('Équipement pas encore disponible pour ce joueur.'); return } RK.insp=snap; let w=$('#inspm'); if(!w){ w=document.createElement('div'); w.id='inspm'; w.className='inspback'; w.addEventListener('click',e=>{ if(e.target===w) A.inspClose() }); document.body.append(w) } w.innerHTML=inspHTML(snap,label) }
+document.addEventListener('keydown',e=>{ if(e.key==='Escape'&&$('#inspm')) A.inspClose() });
+/* équipement d'un ami (carte flottante) */
+async function friendInsp(fid){ const f=FR.list.find(x=>x.id===fid); if(!f) return; const o=f.users.find(x=>x!==FB.user.uid);
+  try{ const d=await rkCol().doc(o).get(); openInsp(d.exists?d.data().cur:null,'') }catch(e){ toast('Équipement indisponible ('+((e&&e.code)||'erreur')+').') } }
+/* classement final de saison */
+async function rkFreeze(n,quiet){
+  if(!FB.admin) return; n=n==null?rkSeason():n;
+  try{ const qs=await rkCol().where('season','==',n).get(),L=qs.docs.map(d=>Object.assign({uid:d.id},d.data())),prev=RK.list; RK.list=L;
+    const out={season:n,ts:Date.now(),duel:rkDuelL().slice(0,100).map((p,i)=>({uid:p.uid,name:p.name,pos:i+1,w:p.duel.w,l:p.duel.l})),raid:{}};
+    for(const R of RAIDS) out.raid[R.id]=rkRaidL(R.id).slice(0,100).map((p,i)=>({uid:p.uid,name:p.name,pos:i+1,t:p.raid[R.id].t,turns:p.raid[R.id].turns}));
+    RK.list=prev; await FB.db.collection(COL('config')).doc('rankfinal_'+n).set(out); if(!quiet) toast('Classement final de la saison '+n+' enregistré.'); return true
+  }catch(e){ if(!quiet) toast('Erreur : '+((e&&e.code)||'inconnue')); return false } }
+async function rkAutoFreeze(){ if(!FB.admin) return; const e=FB.season&&+FB.season.end; if(!e) return; if(Date.now()<e-3600e3) return;
+  try{ const f=await FB.db.collection(COL('config')).doc('rankfinal_'+rkSeason()).get(); if(!f.exists) await rkFreeze(rkSeason(),false) }catch(x){} }
+function rankAdminHTML(){ const e=FB.season&&+FB.season.end,v=e?new Date(e-new Date().getTimezoneOffset()*6e4).toISOString().slice(0,16):'';
+  return admCard('podium','Classement de saison','Fin de saison et classement final pour les récompenses',`<label style="display:flex;flex-direction:column;gap:4px">Fin de saison prévue<input class="pcsel" type="datetime-local" id="admsend" value="${v}"></label><small class="mute">Le classement final est figé automatiquement 1 h avant cette date (à l’ouverture du jeu par un administrateur), et toujours juste avant le lancement d’une nouvelle saison.</small><div class="row" style="gap:8px;margin-top:8px"><button class="btn pri" data-act="admSEnd">Enregistrer la date</button><button class="btn" data-act="admRkFreeze">Figer le classement maintenant</button></div>`) }
+
+/* ===================== 0.5.0 : QUÊTES ===================== */
+const Q_DAY_H=6;
+const qShift=()=>new Date(Date.now()-Q_DAY_H*3600e3);
+const qDay=()=>{const d=qShift();return d.getFullYear()+'-'+(d.getMonth()+1)+'-'+d.getDate()};
+const qWeek=()=>{const d=qShift(),back=(d.getDay()-3+7)%7,w=new Date(d.getFullYear(),d.getMonth(),d.getDate()-back);return w.getFullYear()+'-'+(w.getMonth()+1)+'-'+w.getDate()};
+const qNext=week=>{const n=new Date(),t=new Date(n.getFullYear(),n.getMonth(),n.getDate(),Q_DAY_H,0,0); if(t<=n) t.setDate(t.getDate()+1); if(week) while(t.getDay()!==3) t.setDate(t.getDate()+1); return t.getTime()};
+const qLeft=ms=>{const m=Math.max(0,Math.round(ms/60000)),d=Math.floor(m/1440),h=Math.floor(m%1440/60),mm=m%60;return d?`${d} j ${h} h`:h?`${h} h ${String(mm).padStart(2,'0')}`:`${mm} min`};
+function qRng(seed){ let h=2166136261; for(const ch of String(seed)){ h^=ch.charCodeAt(0); h=Math.imul(h,16777619) } return ()=>{ h+=0x6D2B79F5; let t=h; t=Math.imul(t^t>>>15,t|1); t^=t+Math.imul(t^t>>>7,t|61); return ((t^t>>>14)>>>0)/4294967296 } }
+const qHas=()=>S&&S.heroes&&S.heroes[0];
+const raidOk=R=>qHas()&&S.heroes[0].lvl>=R.req;
+const Q_D=[
+ {k:'adv_kill',ic:'swords',ev:'kill',n:[15,25,40],t:n=>`Vaincre ${n} ennemis en Aventure`},
+ {k:'adv_win',ic:'play',ev:'advwin',n:[5,8,12],t:n=>`Remporter ${n} combats en Aventure`},
+ {k:'adv_boss',ic:'skull',ev:'boss',n:[1],t:()=>'Vaincre un boss de zone',ok:()=>S.prog&&(S.prog.zone>0||S.prog.stage>=10)},
+ {k:'hard',ic:'flag',ev:'hardwin',n:[1,3],t:n=>n>1?`Gagner ${n} combats en Héroïque ou Mythique`:'Gagner un combat en Héroïque ou Mythique',ok:()=>heroOpen()},
+ ...RAIDS.map(R=>({k:'rf_'+R.id,ic:'skull',ev:'raidf:'+R.id,n:[3,5],t:n=>`Combattre ${n} fois ${R.n}`,ok:()=>raidOk(R)})),
+ {k:'raid_win',ic:'trophy',ev:'raidwin',n:[1],t:()=>'Gagner un défi',ok:()=>RAIDS.some(raidOk)},
+ {k:'duel',ic:'people',ev:'duel',n:[1,2],t:n=>n>1?`Défier ${n} joueurs en duel`:'Défier un joueur en duel',ok:()=>!!FB.user},
+ {k:'mine',ic:'pick',ev:'mine',n:[2,3],t:n=>`Récolter ${n} fois à la Mine`},
+ {k:'up',ic:'anvil',ev:'up',n:[1,2,3],t:n=>n>1?`Améliorer un objet ${n} fois (pierre de renforcement)`:'Améliorer un objet une fois (pierre de renforcement)'},
+ {k:'ench',ic:'spark',ev:'ench',n:[1,2],t:n=>n>1?`Créer ${n} parchemins à l’Enchantement`:'Créer un parchemin à l’Enchantement'},
+ {k:'drink',ic:'flask',ev:'drink',n:[1],t:()=>'Boire une potion de bonus (savoir ou fortune)'},
+ {k:'recycle',ic:'recycle',ev:'recycle',n:[3,5],t:n=>`Recycler ${n} objets`}];
+const Q_W=[
+ {k:'w_tier',ic:'skull',ev:'raidwin',n:[3,5],t:n=>`Terminer ${n} paliers de défis`,ok:()=>RAIDS.some(raidOk)},
+ {k:'w_duel',ic:'trophy',ev:'duelwin',n:[3,5,8],t:n=>`Gagner ${n} duels`,ok:()=>!!FB.user},
+ {k:'w_aff',ic:'spark',ev:'aff',n:[3,5],t:n=>`Ajouter ${n} affixes avec des parchemins`},
+ {k:'w_rar',ic:'star',ev:'rar',n:[1,2],t:n=>n>1?`Faire monter ${n} fois la rareté d’un objet`:'Faire monter la rareté d’un objet'},
+ {k:'w_adv',ic:'play',ev:'advwin',n:[40,60],t:n=>`Remporter ${n} combats en Aventure`},
+ {k:'w_kill',ic:'swords',ev:'kill',n:[150,250],t:n=>`Vaincre ${n} ennemis en Aventure`},
+ {k:'w_mine',ic:'pick',ev:'mine',n:[10,15],t:n=>`Récolter ${n} fois à la Mine`},
+ {k:'w_up',ic:'anvil',ev:'up',n:[6,10],t:n=>`Réussir ${n} renforcements`},
+ {k:'w_boss',ic:'skull',ev:'boss',n:[3,5],t:n=>`Vaincre ${n} boss de zone`,ok:()=>S.prog&&(S.prog.zone>0||S.prog.stage>=10)}];
+const QR_D=[['sc_blank',1,3],['pd_rune',2,5],['es_pie',1,3],['es_bra',1,3],['es_ven',1,3],['st_up',1,2],['ru_min',1,1],['gm_mag',1,1],['ch_pou',1,1]];
+const QR_W=[['ru_min',2,3],['gm_mag',1,2],['ch_pou',1,2],['ru_maj',1,2],['gm_rar',1,1],['sc_rob2',1,1],['sc_fur2',1,1],['sc_adr2',1,1],['ru_anc',1,1],['gm_epi',1,1],['ch_tre',1,1],['sc_rob3',1,1],['sc_fur3',1,1],['sc_adr3',1,1]];
+const QCH={base:3,p4:35,p5:12,rar:[[0,70],[1,25],[2,5]],q:{0:[1,3],1:[1,2],2:[1,1]}};
+function qGen(list,pool,cnt,seed,rwPool,rwN){
+  const rnd=qRng(seed),av=list.filter(q=>!q.ok||q.ok()),out=[],used=new Set();
+  while(out.length<cnt&&used.size<av.length){ const q=av[Math.floor(rnd()*av.length)]; if(used.has(q.k)||(q.ev.startsWith('raidf')&&out.some(o=>o.ev.startsWith('raidf')))){ used.add(q.k); continue } used.add(q.k);
+    const n=q.n[Math.floor(rnd()*q.n.length)],rw=[],rp=rwPool.slice();
+    for(let i=0;i<rwN&&rp.length;i++){ const j=Math.floor(rnd()*rp.length),[k,a,b]=rp.splice(j,1)[0]; rw.push([k,a+Math.floor(rnd()*(b-a+1))]) }
+    out.push({k:q.k,ev:q.ev,n,p:0,rw,got:false}) }
+  return out }
+function qState(){
+  if(!qHas()) return null; const h=S.heroes[0],Q=S.quests=S.quests||{},dk=qDay(),wk=qWeek();
+  if(!Q.d||Q.d.key!==dk){ Q.d={key:dk,list:qGen(Q_D,null,5,'d'+dk+h.id,QR_D,2),chest:false}; save() }
+  if(!Q.w||Q.w.key!==wk){ Q.w={key:wk,list:qGen(Q_W,null,3,'w'+wk+h.id,QR_W,2)}; save() }
+  return Q }
+const qDef=k=>Q_D.find(q=>q.k===k)||Q_W.find(q=>q.k===k);
+function qEv(ev,n=1){ const Q=qState(); if(!Q) return; let done=0;
+  for(const q of [...Q.d.list,...Q.w.list]) if(q.ev===ev&&q.p<q.n){ q.p=Math.min(q.n,q.p+n); if(q.p>=q.n){ done++; setTimeout(()=>toast('✦ Quête terminée : '+qDef(q.k).t(q.n)),400) } }
+  if(done){ save(); renderTabs&&renderTabs() } else save() }
+const qClaimable=()=>{ const Q=qHas()&&S.quests; if(!Q||!Q.d||Q.d.key!==qDay()) return false; return [...Q.d.list,...(Q.w&&Q.w.key===qWeek()?Q.w.list:[])].some(q=>q.p>=q.n&&!q.got)||(Q.d.list.every(q=>q.got)&&!Q.d.chest) };
+function qGive(rw){ const rest={}; for(const [k,n] of rw){ const l=bagAddMat(S.bag,k,n); if(l>0) rest[k]=(rest[k]||0)+l } if(Object.keys(rest).length){ const t=mlPlace(rest); if(t){ for(const x of t) x.T.bag=x.bag; saveAcc(); toast('Inventaire plein : le reste est dans le coffre du compte.') } else toast('Inventaire et coffre pleins : une partie des objets est perdue.') } markNew() }
+const qRwHTML=rw=>`<div class="qrw">${rw.map(([k,n])=>`<span class="qri" style="--rc:var(--r${NEWI[k].r})" data-tip="nw:${k}"><svg class="mfi" viewBox="0 0 24 24">${MI[k]}</svg><em>×${n}</em></span>`).join('')}</div>`;
+function qCard(q,wk,i){ const D=qDef(q.k),ok=q.p>=q.n;
+  return `<div class="qc ${ok?'done':''} ${q.got?'got':''}"><span class="qci">${uic(D.ic)}</span><b>${esc(D.t(q.n))}</b>${q.got?`<span class="qbtn got">${uic('check')}Récupéré</span>`:ok?`<button class="qbtn" data-act="qClaim" data-w="${wk?1:0}" data-i="${i}">Récupérer</button>`:`<span class="qbtn off">En cours</span>`}
+   <div class="qbar ${ok?'ok':''}"><i style="width:${Math.min(100,q.p/q.n*100)}%"></i></div><div class="qmeta"><small class="num">${q.p} / ${q.n}</small>${qRwHTML(q.rw)}</div></div>` }
+function chestTip(){ return `<article class="it" style="--rc:#d6aa55"><header><b>Coffre du jour</b><small>Terminez et récupérez les 5 quêtes du jour</small></header><div class="skbody"><p><b>3 objets d’artisanat</b> garantis.</p><p>4ᵉ objet : <b>${QCH.p4} %</b> · 5ᵉ objet : <b>${QCH.p5} %</b></p><p>Rareté de chaque objet : <span style="color:var(--r0)">Commun ${QCH.rar[0][1]} %</span> · <span style="color:var(--r1)">Magique ${QCH.rar[1][1]} %</span> · <span style="color:var(--r2)">Rare ${QCH.rar[2][1]} %</span></p><p>Quantité : 1 à 3 (Commun), 1 à 2 (Magique), 1 (Rare).</p></div></article>` }
+function viewQuest(){
+  const Q=qState(); if(!Q) return '';
+  const dAll=Q.d.list.every(q=>q.got),ch=Q.d.chest,dn=Q.d.list.filter(q=>q.got).length;
+  const chest=`<div class="qchestrow ${dAll&&!ch?'ready':''} ${ch?'opened':''}"><button class="qchest" data-act="qChest" data-tip="qchest" ${dAll&&!ch?'':'aria-disabled="true"'}>${QCHEST_SVG}</button><span><b>Coffre du jour</b><small>${ch?'Déjà ouvert aujourd’hui.':dAll?'Prêt à être ouvert !':`${dn} / 5 quêtes récupérées`}</small></span>${dAll&&!ch?'<button class="qbtn" data-act="qChest">Ouvrir</button>':''}</div>`;
+  const dots=L=>`<div class="qdots">${L.map(q=>`<i class="${q.got?'on':q.p>=q.n?'ok':''}"></i>`).join('')}</div>`;
+  return `<div class="qwrap"><div class="qhd"><h2>Quêtes</h2><span class="mute">Récompenses : objets d’artisanat.</span></div><div class="qcols">
+   <section class="qcol"><header>${uic('scroll')}<h3>Journalières</h3><span class="qtm" ${ttip('Renouvellement','Chaque jour à 6 h 00.')}>${uic('auto')}6 h 00 · dans ${qLeft(qNext(false)-Date.now())}</span></header>${dots(Q.d.list)}<div class="qls">${Q.d.list.map((q,i)=>qCard(q,false,i)).join('')}</div>${chest}</section>
+   <section class="qcol wk"><header>${uic('star')}<h3>Hebdomadaires</h3><span class="qtm" ${ttip('Renouvellement','Chaque mercredi à 6 h 00.')}>${uic('auto')}Mercredi 6 h 00 · dans ${qLeft(qNext(true)-Date.now())}</span></header>${dots(Q.w.list)}<div class="qls">${Q.w.list.map((q,i)=>qCard(q,true,i)).join('')}</div><p class="qnote">Récompenses jusqu’à la rareté Épique.</p></section></div></div>`;
+}
+const QCHEST_SVG='<svg viewBox="0 0 64 64" aria-hidden="true"><path d="M8 28V22a14 14 0 0 1 14-14h20a14 14 0 0 1 14 14v6z" fill="#8a4a1e" stroke="#2a1408" stroke-width="2.5"/><path d="M16 9v19M48 9v19" stroke="#d6aa55" stroke-width="4"/><rect x="6" y="28" width="52" height="28" rx="3" fill="#a05a24" stroke="#2a1408" stroke-width="2.5"/><path d="M6 36h52" stroke="#2a1408" stroke-width="2"/><path d="M16 28v28M48 28v28" stroke="#d6aa55" stroke-width="4"/><rect x="27" y="30" width="10" height="13" rx="2" fill="#f0d48a" stroke="#5a3a10" stroke-width="2"/><circle cx="32" cy="36" r="1.8" fill="#5a3a10"/></svg>';
+function qChestRoll(){ const rnd=Math.random,n=QCH.base+(rnd()*100<QCH.p4?1:0)+(rnd()*100<QCH.p5?1:0),pool={0:['sc_blank','pd_rune','es_pie','es_bra','es_ven','st_up'],1:['ru_min','gm_mag','ch_pou','sc_rob1','sc_fur1','sc_adr1'],2:['ru_maj','gm_rar','sc_rob2','sc_fur2','sc_adr2']},out=[];
+  for(let i=0;i<n;i++){ let x=rnd()*100,r=0; for(const [rr,w] of QCH.rar){ if(x<w){ r=rr; break } x-=w } const P=pool[r],k=P[Math.floor(rnd()*P.length)],[a,b]=QCH.q[r]; const q=a+Math.floor(rnd()*(b-a+1)),ex=out.find(o=>o[0]===k); if(ex) ex[1]+=q; else out.push([k,q]) }
+  return out }
+/* animation d'ouverture */
+let QA=null;
+function qChestAnim(items){
+  const w=document.createElement('div'); w.id='qanim'; w.className='qanim'; w.innerHTML=`<div class="qachest">${QCHEST_SVG}<span class="qalid"></span><span class="qaglow"></span></div><div class="qaitems"></div><button class="qaskip" data-act="qSkip">Passer <kbd>Espace</kbd></button>`; document.body.append(w);
+  QA={w,items,t:[],done:false};
+  const it=w.querySelector('.qaitems'),n=items.length;
+  QA.t.push(setTimeout(()=>w.classList.add('open'),1300));
+  items.forEach(([k,c],i)=>{ QA.t.push(setTimeout(()=>{ const a=(n===1?0:(-55+110*i/(n-1)))*Math.PI/180,R=230; const e=document.createElement('div'); e.className='qait'; e.style.setProperty('--tx',Math.sin(a)*R+'px'); e.style.setProperty('--ty',(Math.cos(a)*R*.55+50)+'px'); e.style.setProperty('--rc',`var(--r${NEWI[k].r})`);
+    e.innerHTML=`<span class="qaburst"></span><span class="qri big" style="--rc:var(--r${NEWI[k].r})"><svg class="mfi" viewBox="0 0 24 24">${MI[k]}</svg><em>×${c}</em></span>`; it.append(e);
+    for(let s=0;s<14;s++){ const p=document.createElement('i'); p.className='qasp'; const g=Math.random()*Math.PI*2,d=30+Math.random()*60; p.style.setProperty('--dx',Math.cos(g)*d+'px'); p.style.setProperty('--dy',Math.sin(g)*d+'px'); e.append(p) } },1900+i*550)) });
+  QA.t.push(setTimeout(qChestRecap,1900+n*550+700));
+}
+function qChestRecap(){ if(!QA||QA.done) return; QA.done=true; QA.t.forEach(clearTimeout); const w=QA.w; w.classList.add('recap');
+  w.innerHTML=`<div class="qrecap" role="dialog" aria-label="Contenu du coffre"><h3>${QCHEST_SVG}Coffre du jour</h3><p class="qrsub">Les objets ont été ajoutés à votre inventaire.</p><div class="qrlist">${QA.items.map(([k,c])=>`<div class="qrli"><span class="qri" style="--rc:var(--r${NEWI[k].r})" data-tip="nw:${k}"><svg class="mfi" viewBox="0 0 24 24">${MI[k]}</svg></span><span><b style="color:${EQ_RC[NEWI[k].r]}">${esc(NEWI[k].n)}</b><small>${RAR[NEWI[k].r].n} · ${esc(NEWI[k].cat)}</small></span><b class="num">×${c}</b></div>`).join('')}</div><button class="btn pri" data-act="qRecapOk">Super !</button></div>` }
+document.addEventListener('keydown',e=>{ if(!QA) return; if(e.code==='Space'||e.key===' '){ e.preventDefault(); if(!QA.done) qChestRecap(); else A.qRecapOk() } else if(e.key==='Escape'&&QA.done) A.qRecapOk() },true);
+
 function viewCombatIdle(){
   const P=prog(),dk=curDiff(),D=DIFF[dk],hero=dk!=='normal',z=ZONES[UI.zone],L=D.L||UI.zone*10+UI.stage;
   const h=S.heroes[0],c=CLASSES[h.cls],st=heroStats(h),need=h.lvl>=MAXL?1:xpNeed(h.lvl);
@@ -5219,7 +5482,7 @@ const BUFF_K=['p_xp','p_loot'],BUFF_MS=30*60*1000;
 const buffLeft=k=>{ const t=S&&S.buffs&&S.buffs[k]; return t?Math.max(0,t-Date.now()):0 };
 const buffOn=k=>buffLeft(k)>0;
 const buffFmt=ms=>{ const m=Math.floor(ms/60000),s2=Math.floor(ms%60000/1000); return m+':'+String(s2).padStart(2,'0') };
-function buffStart(k){ if(buffOn(k)){ toast(POTS[k].n+' est déjà actif ('+buffFmt(buffLeft(k))+' restantes).'); return false } S.buffs=S.buffs||{}; S.buffs[k]=Date.now()+BUFF_MS; renderBuffs(); return true }
+function buffStart(k){ if(buffOn(k)){ toast(POTS[k].n+' est déjà actif ('+buffFmt(buffLeft(k))+' restantes).'); return false } S.buffs=S.buffs||{}; S.buffs[k]=Date.now()+BUFF_MS; renderBuffs(); qEv('drink'); return true }
 function drinkBuff(k){ if(!BUFF_K.includes(k)||matAll(k)<1) return; if(!buffStart(k)) return; removeMat(k,1); save(); toast(POTS[k].n+' : bonus actif pendant 30 minutes.'); render() }
 function renderBuffs(){ const w=$('#buffbar'); if(!w) return; const on=S&&S.heroes&&S.heroes.length&&!UI.scr?BUFF_K.filter(buffOn):[];
   if(S&&S.buffs) for(const k of BUFF_K) if(S.buffs[k]&&!buffOn(k)){ delete S.buffs[k]; save() }
@@ -5988,9 +6251,10 @@ function viewHelp(){
 }
 
 /* --- nouveautés --- */
-const VERSION='0.4.22';
-const BUILD='20261020212837';
+const VERSION='0.5.0';
+const BUILD='20261020222343';
 const PATCH=[
+ {"v": "0.5.0", "t": "Classement de saison et quêtes", "sec": [["Classement de saison", ["Nouvel onglet Classement dans Communauté, avec deux classements de saison : Duels et Défis. Chaque joueur y apparaît avec sa bannière (icône, cadre, fond et titre).", "Duels : position, victoires, défaites et taux de réussite. Classement par nombre de victoires, puis par taux de réussite.", "Défis : un classement par boss (Colosse de Braise, Wyrm des Glaces, Avatar de l’Abîme) avec le meilleur palier atteint et le nombre de tours. Classement par palier, puis par le moins de tours.", "Décorations selon la position : médailles d’or, d’argent et de bronze pour les 3 premiers, reflet doré sur le 1er, rang doré jusqu’au 10e. Votre propre ligne est entourée de vert.", "Nouveau : cliquez sur un joueur pour sélectionner sa bannière (halo doré), puis inspectez son équipement au moment de son résultat ou affichez sa carte.", "Le classement se met à jour à chaque ouverture. Un classement final est arrêté juste avant la fin de saison : c’est lui qui sert aux récompenses de saison."]], ["Quêtes", ["Nouvelles quêtes journalières : 5 par jour, renouvelées chaque jour à 6 h 00. Récompenses : objets d’artisanat communs et magiques.", "Nouvelles quêtes hebdomadaires : 3 par semaine, renouvelées le mercredi à 6 h 00. Récompenses : objets d’artisanat jusqu’à la rareté épique.", "Quêtes variées : vaincre des ennemis ou un boss, combattre ou gagner un défi, terminer des paliers, défier et battre des joueurs, récolter à la Mine, renforcer un objet, créer des parchemins, ajouter des affixes, faire monter la rareté, recycler, boire une potion de bonus… Seules les quêtes que vous pouvez faire sont proposées.", "Nouveau : Coffre du jour. Récupérez les 5 quêtes du jour pour l’ouvrir : 3 objets d’artisanat garantis, 35 % de chances d’un 4e et 12 % d’un 5e (rareté : Commun 70 %, Magique 25 %, Rare 5 %).", "Ouverture animée du coffre, avec un récapitulatif des objets obtenus. L’animation peut être passée avec le bouton en bas à droite ou la barre Espace.", "Une pastille sur le bouton Quêtes signale une récompense à récupérer."]], ["Amis", ["Nouveau bouton Inspecter sur la carte d’un ami : affiche son équipement et ses statistiques actuels."]]]},
  {"v": "0.4.22", "t": "Même interface sur tous les écrans", "sec": [["Interface", ["L’interface s’adapte maintenant à la taille de l’écran : tout est affiché à la même échelle et avec la même disposition sur tous les ordinateurs, quitte à être un peu plus petit sur les petits écrans. L’inventaire tient entièrement sans avoir à faire défiler.", "Fiche de zone : le texte sur la rage et les techniques des boss (modes Héroïque et Mythique) est retiré ; il décalait et coupait le reste de la fiche."]]]},
  {"v": "0.4.21", "t": "Défis et menus", "sec": [["Aventure", ["Les onglets Aventure, Duel et Défis (anciennement Raid) sont regroupés dans une barre plus lisible : boutons de même taille, bien alignés, avec l’onglet actif en rouge.", "Les boutons de difficulté sont déplacés en haut à gauche de la carte du monde."]], ["Inventaire", ["Le coffre ne s’ouvre plus automatiquement avec l’inventaire : utilisez le bouton Coffre à droite de « Trier »."]], ["Interface", ["Le bouton Aide en bas à gauche est retiré : l’Aide se trouve maintenant dans le menu, avec Options et Changer de personnage.", "Sélection de personnage : un double-clic sur un personnage le lance, comme le bouton Jouer."]]]},
  {"v": "0.4.20", "t": "Nouvel équipement et nouvelles icônes", "sec": [["Inventaire", ["Nouvelle disposition de l’équipement : le personnage en pied au centre, avec son nom, sa classe et son niveau, sur le décor de la zone en cours ; à gauche tête, torse, jambes et pieds ; à droite amulette, anneaux et arme.", "Les statistiques sont toujours affichées à gauche de l’équipement (le bouton Stats est retiré).", "Les boutons Sac de combat et Coffre deviennent des boutons icônes, à droite de la ligne « Trier ».", "Les cases d’équipement ont un fond à la couleur de la rareté de l’objet."]], ["Objets", ["Nouvelles icônes d’équipement : silhouette à la couleur de la rareté, avec un reflet (sac, coffre, équipement, butin et ateliers).", "Les objets de récolte sont retirés du jeu : Lingot de fer, Peau tannée, Herbe enchantée, Éclat de cristal et Fiole d’essence. Ceux que vous possédiez disparaissent du sac et du coffre ; ils ne sont plus demandés dans aucun coût. L’or est conservé."]], ["Aventure", ["Les boutons de difficulté (Normal, Héroïque, Mythique) sont placés en haut à droite de la carte du monde."]], ["Interface", ["Nouvelles barres de défilement aux couleurs du jeu (bronze et doré)."]]]},
@@ -6327,6 +6591,8 @@ function tipHTML(k){
   if(k.startsWith('tx:')){const [a,b]=k.slice(3).split('|');return `<article class="it skt ttx" style="--rc:var(--line2)"><header><b>${esc(a)}</b></header>${b?`<div class="skbody"><p>${esc(b)}</p></div>`:''}</article>`}
   if(k==='rw:chest'){ const t=rdTier(); return `<article class="it" style="--rc:#c99a3a"><header><b>${CHEST_N}</b><small>Butin rare · ${String(chestRate(t)).replace('.',',')} % à ce palier</small></header><ul><li class="imp">${MAT_D.c_relic}</li></ul></article>` }
   if(k.startsWith('pc:')) return pcTip(k);
+  if(k==='qchest') return chestTip();
+  if(k.startsWith('ri:')){ const it=RK.insp&&RK.insp.eq&&RK.insp.eq[k.slice(3)]; return it?itemCard(it):`<article class="it" style="--rc:var(--line)"><header><b>${SLOT_N[k.slice(3)]||''}</b><small>Emplacement vide</small></header></article>` }
   if(k.startsWith('nw:')){const q=k.slice(3); if(NEWI[q]) return newiCard({mat:q}); if(q==='prisme') return matCard({mat:q,n:matAll(q)}); return ''}
   const h=S.heroes[0];
   if(k.startsWith('pot:')){const q=k.slice(4),P=POTS[q]; if(!P) return '';
@@ -6394,6 +6660,18 @@ const A={
   statSplit:()=>{S.statSplit=!S.statSplit;save();const y=scrollY;render();scrollTo(0,y)},
   nwTog:d=>{const O=UI.nwO=UI.nwO||{},k=d.k; O[k]=O[k]!=null?!O[k]:!(+d.d||0); const y=scrollY; render(); scrollTo(0,y)},
   drinkBuff:d=>drinkBuff(d.k),
+  rkTab:d=>{ RK.tab=d.t; RK.sel=null; render() },
+  rkSel:d=>{ RK.sel=RK.sel===d.k?null:d.k; const y=scrollY,ls=[...document.querySelectorAll('.rklist,.rkls')].map(e=>e.scrollTop); render(); scrollTo(0,y); document.querySelectorAll('.rklist,.rkls').forEach((e,i)=>e.scrollTop=ls[i]||0) },
+  rkInsp:d=>{ const {p,b}=rkFind(d.k); if(!p) return; if(b==='duel') openInsp(p.deq||p.cur,p.deq?`${uic('swords')} Dernière victoire en duel · ${p.duel.w} V / ${p.duel.l} D`:''); else { const R2=RAIDS.find(x=>x.id===b),x=p.raid&&p.raid[b]; openInsp(x&&x.eq,`${uic('skull')} ${esc(R2?R2.n:'')} · palier +${x?x.t:0} · ${x?x.turns:0} tours`) } },
+  rkCard:d=>{ const {p}=rkFind(d.k); if(!p) return; const c=p.card||{}; openCard(Object.assign({pts:0,icon:'c:guerrier',fr:0,bg:3,chars:[]},c,{name:p.name||c.name||'?'})) },
+  inspClose:()=>{ const w=$('#inspm'); if(w) w.remove(); RK.insp=null; hideTip() },
+  frInsp:d=>friendInsp(d.id),
+  qClaim:d=>{ const Q=qState(); if(!Q) return; const q=(+d.w?Q.w.list:Q.d.list)[+d.i]; if(!q||q.got||q.p<q.n) return; qGive(q.rw); q.got=true; save(); render(); toast('Récompense récupérée : '+q.rw.map(([k,n])=>NEWI[k].n+' ×'+n).join(', ')+'.') },
+  qChest:()=>{ const Q=qState(); if(!Q||Q.d.chest||!Q.d.list.every(q=>q.got)) { if(Q&&!Q.d.chest) toast('Récupérez d’abord les 5 quêtes du jour.'); return } const it=qChestRoll(); qGive(it); Q.d.chest=true; save(); qChestAnim(it) },
+  qSkip:()=>qChestRecap(),
+  qRecapOk:()=>{ const w=$('#qanim'); if(w) w.remove(); QA=null; hideTip(); render() },
+  admSEnd:async()=>{ const v=($('#admsend')||{}).value; const ms=v?new Date(v).getTime():0; try{ await FB.db.collection(COL('config')).doc('reset').set({end:ms||null},{merge:true}); FB.season=Object.assign({},FB.season||{n:0},{end:ms||null}); toast(ms?'Fin de saison enregistrée.':'Date de fin retirée.'); render() }catch(e){ toast('Erreur : '+((e&&e.code)||'inconnue')) } },
+  admRkFreeze:()=>rkFreeze(),
   heroTab:d=>{UI.heroTab=d.t;const y=scrollY;render();scrollTo(0,y)},
   invStats:()=>{UI.invStats=!UI.invStats;renderInvPop()},
   usePot:d=>usePot(d.k),
@@ -6511,7 +6789,7 @@ const A={
     const i=cellOf(+d.id); if(i<0) return; const it=S.bag[i].o;
     if(UI.confirm!=='del'+it.id){UI.confirm='del'+it.id;render();return}
     UI.confirm=null; if(UI.fItem===it.id)UI.fItem=null; if(UI.bagSel===it)UI.bagSel=null;
-    S.bag.splice(i,1); const v=salvageValue(it); gain(v); save(); render();
+    S.bag.splice(i,1); const v=salvageValue(it); gain(v); qEv('recycle'); save(); render();
     toast(`${it.name} détruit. Récupéré : ${resTxt(v)}.`);
   },
   toForge:d=>{UI.fItem=+d.id;UI.fMode='up';UI.tab='forge';render()},
@@ -6560,7 +6838,7 @@ const A={
     if(UI.confirm!=='salv'+d.r){UI.confirm='salv'+d.r;render();return}
     UI.confirm=null; const rr=+d.r,tot={}; let n=0;
     S.bag=S.bag.filter(e=>{const it=e.o; if(!it.mat&&it.rarity<=rr){const v=salvageValue(it);for(const [k,x] of Object.entries(v))tot[k]=(tot[k]||0)+x;n++;return false} return true });
-    gain(tot); if(UI.bagSel&&entryOf(UI.bagSel)<0)UI.bagSel=null; if(UI.fItem&&!findItem(UI.fItem))UI.fItem=null; save(); render();
+    gain(tot); if(n) qEv('recycle',n); if(UI.bagSel&&entryOf(UI.bagSel)<0)UI.bagSel=null; if(UI.fItem&&!findItem(UI.fItem))UI.fItem=null; save(); render();
     toast(n?`${n} objets détruits. Récupéré : ${resTxt(tot)}.`:'Rien à détruire.');
   },
   siteBuy:d=>{const si=SITES.find(s=>s.id===d.id);if(!hasGold(si.unlock))return;if(!FREE())S.gold-=si.unlock;S.sites[d.id].lvl=1;S.sites[d.id].last=Date.now();save();render()},
