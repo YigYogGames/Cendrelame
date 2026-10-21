@@ -2232,6 +2232,7 @@ body.anvil #bag .gi.it:hover{outline:2px solid #e0612a;outline-offset:-2px;filte
 .au8 .ag{position:absolute;left:10%;right:10%;bottom:2%;top:0;border-radius:50% 50% 45% 45%;background:radial-gradient(ellipse at 50% 60%,var(--a1),transparent 68%);animation:s8ap 2.4s ease-in-out infinite}
 .au8 .ar{position:absolute;left:12%;right:12%;bottom:1%;height:13%;border-radius:50%;border:2px solid var(--a2);box-shadow:0 0 18px var(--a2),inset 0 0 14px var(--a2)}
 .au8 .ar2{left:0;right:0;bottom:-3%;height:17%;opacity:.5;border-style:dashed}
+.au8.b .ar{clip-path:inset(-30px -30px 50% -30px)}.au8.f{z-index:2}.au8.f .ar{clip-path:inset(50% -30px -30px -30px)}.au8.f .pt{opacity:.9}
 .au8 .pt{position:absolute;z-index:3;width:var(--z);height:var(--z);border-radius:50%;background:var(--a2);box-shadow:0 0 8px var(--a2);left:var(--x);bottom:var(--y);animation:s8up2 var(--d) linear infinite;animation-delay:var(--dl)}
 .au8.a_frost .pt{border-radius:1px;rotate:45deg}
 .au8.a_shadow .ag{background:radial-gradient(ellipse at 50% 60%,#5a2a9a99,#1a0a2a66 50%,transparent 70%)}
@@ -2277,11 +2278,37 @@ body.anvil #bag .gi.it:hover{outline:2px solid #e0612a;outline-offset:-2px;filte
 .cu8save{position:sticky;bottom:0;z-index:5;margin-top:auto;border-radius:12px;background:#2a1a10;border:1px solid #8a6a44;padding:10px 12px}.cu8save .row{justify-content:flex-end}
 .s8tag{display:inline-flex;align-items:center;padding:1px 6px;border-radius:6px;font-size:.55rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase;background:linear-gradient(90deg,#c0461a,#ff8a3a);color:#fff}
 .s8bgt{width:100%;height:100%;display:block}.s8bgt svg{width:100%;height:100%;display:block}
-.s8aut{position:relative;width:100%;height:100%;display:flex;align-items:flex-end;justify-content:center;background:radial-gradient(ellipse at 50% 100%,#3a2a1a,#140b05 70%)}.s8aut>img{height:100px;margin-bottom:4px}.s8aut .au8{max-width:110px;min-width:0;width:90px}
+.s8aut{position:relative;width:100%;height:100%;display:flex;align-items:flex-end;justify-content:center;background:radial-gradient(ellipse at 50% 100%,#3a2a1a,#140b05 70%)}.s8aut>img{height:100px;margin-bottom:4px}.s8aut .au8{max-width:110px;min-width:0;width:90px}.s8aut>img,.s8aup>img{z-index:1}
 .s8aup{position:relative;width:100%;flex:1;min-height:0;display:flex;align-items:flex-end;justify-content:center}.s8aup>img{height:min(330px,80%);margin-bottom:10px}.s8aup .au8{max-width:none;width:280px}
 .s8trt{position:relative;width:100%;height:100%}.s8trt>i{position:absolute;left:var(--x);top:var(--y);width:var(--z);height:var(--z);border-radius:50%;background:var(--c);box-shadow:0 0 8px var(--c)}.s8trt>i.ash{border-radius:1px;box-shadow:none}.s8trt>i.petal{border-radius:60% 0}.s8trt>i.rib{width:24px;height:10px;border-radius:5px;opacity:.5}
 .s8tc{position:absolute;right:12%;top:50%;transform:translateY(-50%) rotate(8deg);width:46px;height:62px;border-radius:7px;border:2px solid #d8b066;background:linear-gradient(#4a2a1a,#1a0d06);display:grid;place-items:center}
 @media (max-width:1100px){.s8qg,.cu8{grid-template-columns:1fr}.s8sq{grid-template-columns:1fr}.s8qi{grid-template-columns:36px minmax(0,1fr);}.s8qi .s8rw,.s8qi .qbtn{grid-column:2}}
+
+/* ===== 0.7.9 ===== */
+.marec{margin-top:auto;display:flex;align-items:center;gap:8px;padding:10px 12px;border-radius:12px;border:1px solid #b8892e;background:linear-gradient(#f3dfb0,#e2c48a);color:#3a2616;font:inherit;font-weight:700;cursor:pointer}
+.marec:hover{filter:brightness(1.05);border-color:#7b2a1a}.marec .uic{width:18px;height:18px}
+.masub{min-height:100%}
+.fu9alt{position:relative;width:340px;height:340px;margin:10px auto 0;display:grid;place-items:center}
+.fu9alt .mfrc{position:absolute;left:50%;top:50%;width:100%;height:auto;translate:-50% -50%}
+.fu9out{position:relative;z-index:2;width:110px;height:110px;border-radius:50%;display:grid;place-items:center;background:radial-gradient(circle,#3a1a5a,#140a24);border:3px solid var(--rc);box-shadow:0 0 20px #ff9a3a55;filter:grayscale(.6) brightness(.7)}
+.fu9out.ok{filter:none;box-shadow:0 0 30px #ffb04a,0 0 60px #ff7a1a66;animation:qbob 1.8s ease-in-out infinite}.fu9out .mfi{width:64px;height:64px}
+.fu9ring{position:absolute;inset:0;z-index:3}
+.fu9s{position:absolute;width:86px;display:flex;flex-direction:column;align-items:center;gap:2px;padding:6px 4px;border-radius:12px;background:#140a24dd;border:2px dashed #7a50e0;color:#e8dcff;text-align:center}
+.fu9s.ok{border-style:solid;border-color:#8fe08a}.fu9s .mfi{width:32px;height:32px}.fu9s em{font-style:normal;font-size:.72rem;font-weight:800}.fu9s small{font-size:.6rem;line-height:1.1;color:#c8b0ff}
+.fu9s:nth-child(1){left:50%;top:-6px;transform:translateX(-50%)}.fu9s:nth-child(2){left:-14px;bottom:24px}.fu9s:nth-child(3){right:-14px;bottom:24px}
+.rc9{width:min(860px,calc(100vw - 32px));max-height:calc(var(--vh1,1vh)*86);display:flex;flex-direction:column;border-radius:16px;overflow:hidden;background:linear-gradient(#f3e4c0,#e6cf9e);border:2px solid #8a6a44;box-shadow:0 20px 50px #000c;color:#3a2616}
+.rc9>header{display:flex;align-items:center;gap:10px;padding:12px 16px;background:linear-gradient(120deg,#7b2a1a,#3a1a10);color:#fff}.rc9>header h2{margin:0;display:flex;align-items:center;gap:8px;font-size:1.3rem;color:#ffe3a8}.rc9>header h2 .uic{width:22px;height:22px}
+.rc9>header .mfx{margin-left:auto}
+.rc9b{overflow:auto;padding:12px 16px 16px;display:flex;flex-direction:column;gap:14px}
+.rc9b section>h3{display:flex;align-items:center;gap:8px;margin:0 0 6px;color:#7b2a1a;font-size:1.05rem}.rc9b section>h3 .uic{width:18px;height:18px}
+.rc9b p{margin:0 0 6px;font-size:.82rem}
+.rc9r{display:grid;grid-template-columns:minmax(0,1fr) 24px 230px;align-items:center;gap:8px 10px;padding:8px 10px;border-radius:10px;background:#ffffff55;border:1px solid #c9ad7a;margin-bottom:6px}
+.rc9in{display:flex;flex-wrap:wrap;align-items:center;gap:6px}.rc9p{color:#8a6a44}.rc9a{font-size:1.2rem;color:#7b2a1a;text-align:center}
+.rc9c{display:inline-flex;align-items:center;gap:4px;position:relative}.rc9c small{font-size:.72rem;max-width:110px;line-height:1.1}.rc9c em{font-style:normal;font-weight:800;font-size:.75rem}
+.rc9i{display:inline-grid;place-items:center;width:30px;height:30px;border-radius:7px;background:#2a1a10;border:1px solid var(--rc,#8a6a44);border-bottom-width:3px;color:#f0d48a}.rc9i .mfi,.rc9i .mi{width:22px;height:22px}.rc9i .uic{width:16px;height:16px}
+.rc9o{display:flex;flex-direction:column}.rc9o b{font-size:.86rem}.rc9o small{font-size:.7rem;color:#6a4a22}
+.rc9n{grid-column:1/-1;font-size:.72rem;color:#6a4a22}
+@media (max-width:760px){.rc9r{grid-template-columns:1fr}.rc9a{display:none}}
 
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 @media (min-width:760px){.arena{grid-template-columns:1fr 1fr}}
@@ -2344,7 +2371,11 @@ const noHarv=c=>Object.fromEntries(Object.entries(c||{}).filter(([k])=>!HARV.inc
 const MAT_N={fer:'Fer',cuir:'Cuir',plante:'Plante',cristal:'Cristal',essence:'Essence',rune:'Rune',prisme:'Prisme divin',gold:'Or'};
 /* potions : objets 1x1 empilables, achetés chez le Marchand, utilisables en combat */
 const POTS={
+  p_vie1:{n:'Petite potion de vie',c:'#e8706a',p:15,d:'Rend 20 % des PV max.',cd:3},
   p_vie:{n:'Potion de vie',c:'#d8342b',p:30,d:'Rend 40 % des PV max.',cd:4},
+  p_vie3:{n:'Grande potion de vie',c:'#a01818',p:75,d:'Rend 65 % des PV max.',cd:5},
+  p_reg1:{n:'Potion de régénération',c:'#5ac87a',p:40,d:'Soigne 6 % des PV max au début de chacun de vos tours pendant 4 tours (24 % au total).',cd:5},
+  p_reg2:{n:'Élixir de régénération',c:'#2a9a5a',p:100,d:'Soigne 10 % des PV max au début de chacun de vos tours pendant 5 tours (50 % au total).',cd:7},
   p_res:{n:'Potion de résistance',c:'#4a86c8',p:50,d:'+40 % Défense et Résistance pendant 3 tours.',cd:4},
   p_for:{n:'Potion de force',c:'#e07a1f',p:60,d:'+30 % Force pendant 3 tours.',cls:'guerrier',cd:4},
   p_int:{n:'Potion d’intelligence',c:'#8a4fd8',p:60,d:'+30 % Intelligence pendant 3 tours.',cls:'mage',cd:4},
@@ -2352,6 +2383,9 @@ const POTS={
   p_oubli:{n:'Potion d’oubli',c:'#5f7fa8',fix:{gold:15000,prisme:5},nocombat:1,d:'Réinitialise toutes vos compétences et votre spécialisation (points remboursés). Se boit depuis la fenêtre Personnage.'},
   sc_blank:{n:'Parchemin vierge',c:'#c9a86a',p:90,nocombat:1,d:'Support d’enchantement : placez-le en haut de l’autel d’Enchantement, puis combinez 3 Poudres runiques, une Essence magique et une Rune.'},
   p_xp:{n:'Élixir de savoir',c:'#3fae6a',p:80,d:'+50 % d’expérience gagnée en combat pendant 30 minutes (temps réel, même hors ligne).'},
+  c_relic:{n:'Coffre des Reliques',c:'#8a4c22',fix:{gold:60000,ru_pri:1},nocombat:1,d:'Contient une relique cosmétique de cadre de carte (Or royal, Saphir, Améthyste, Braise vivante ou Prisme holographique). S’ouvre depuis l’inventaire.'},
+  s_ch2:{n:'Coffre de saison épique',c:'#a050d8',fix:{gold:40000,ru_anc:1},nocombat:1,d:'Contient 1 cosmétique de la saison : Commun 10 %, Rare 30 %, Épique 55 %, Légendaire 5 %. Un cosmétique pas encore obtenu est prioritaire. S’ouvre dans Quêtes → Saison.'},
+  s_ch3:{n:'Coffre de saison légendaire',c:'#ff7a1a',fix:{gold:60000,ru_pri:1},nocombat:1,d:'Contient 1 cosmétique de la saison : Rare 15 %, Épique 45 %, Légendaire 40 %. Un cosmétique pas encore obtenu est prioritaire. S’ouvre dans Quêtes → Saison.'},
   p_loot:{n:'Philtre de fortune',c:'#d9a62b',p:80,d:'+50 % d’or et de matériaux gagnés en combat pendant 30 minutes (temps réel, même hors ligne).'},
 };
 const potPrice=k=>Math.round(POTS[k].p*3*(1+((S&&S.heroes[0]&&S.heroes[0].lvl)||1)/10));
@@ -2657,6 +2691,8 @@ const MI={
 for(const [k,p] of Object.entries(POTS)){MAT_OBJ[k]=p.n;MAT_N[k]=p.n;MAT_D[k]=p.d;MI[k]=`<path d="M9.5 2h5v2.4h-5z" fill="#8a5a2b" stroke="#4a2c10" stroke-width=".9"/><path d="M10 4.4h4v3.4c3 1.1 5 3.9 5 7.2a7 7 0 0 1-14 0c0-3.3 2-6.1 5-7.2z" fill="#efe6d6" stroke="#3a2616" stroke-width="1.1" stroke-linejoin="round"/><path d="M6.2 13.5h11.6a5.9 5.9 0 0 1-11.6 0z" fill="${p.c}"/><circle cx="9.5" cy="11.3" r="1" fill="#fff" opacity=".8"/>`}
 MAT_OBJ.c_relic='Coffre des Reliques';MAT_N.c_relic='Coffre des Reliques';
 MAT_D.c_relic='Un coffre scellé arraché aux boss de raid, orné de runes anciennes. Il renferme une relique cosmétique pour votre carte de joueur. Obtenu rarement en réussissant un raid : 1 % au palier +0, puis +0,5 % par palier (10 % maximum). Clic droit pour l’ouvrir.';
+MI.s_ch2='<path d="M3 10h18v9a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1z" fill="#7a3aa8" stroke="#24082e" stroke-width="1.2"/><path d="M3 10c0-4 3.5-6 9-6s9 2 9 6z" fill="#a050d8" stroke="#24082e" stroke-width="1.2"/><path d="M7 4.6V20M17 4.6V20" stroke="#ffe3a8" stroke-width="1.6"/><path d="M12 11l2 3-2 3-2-3z" fill="#fff6d0" stroke="#5a3a10" stroke-width=".8"/>';
+MI.s_ch3=MI.s_ch2.replace(/#7a3aa8/g,'#c0461a').replace(/#a050d8/g,'#ff8a3a').replace(/#24082e/g,'#3a1006');
 MI.c_relic='<path d="M3 10h18v9a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1z" fill="#6b3a1c" stroke="#2a1408" stroke-width="1.2"/><path d="M3 10c0-4 3.5-6 9-6s9 2 9 6z" fill="#8a4c22" stroke="#2a1408" stroke-width="1.2"/><path d="M3 10h18M7 5.5V20M17 5.5V20" stroke="#e8c25a" stroke-width="1.6"/><rect x="10" y="9" width="4" height="5" rx="1" fill="#e8c25a" stroke="#6e4a0c" stroke-width=".8"/><circle cx="12" cy="11.5" r=".9" fill="#2a1408"/><path d="M5 3l.6 1.4L7 5l-1.4.6L5 7l-.6-1.4L3 5l1.4-.6zM19.5 2l.5 1 1 .5-1 .5-.5 1-.5-1-1-.5 1-.5z" fill="#fff6c8"/>';
 const matIcon=k=>`<svg class="mi" viewBox="0 0 24 24" aria-hidden="true">${MI[k]||''}</svg>`;
 const matChip=(k,v)=>`<span class="mc" title="${MAT_N[k]}">+${fmt(v)} ${matIcon(k)}<span class="sr">${MAT_N[k]}</span></span>`;
@@ -2886,7 +2922,7 @@ const impOf=it=>it&&it.slot==='weapon'&&it.imp||{};
 function itemStats(it){
   const k=upMul(it), r={};
   for(const [s,v] of Object.entries(impOf(it))) r[s]=(r[s]||0)+v*k;
-  for(const a of it.aff) r[a.s]=(r[a.s]||0)+a.v*k;
+  for(const a of it.aff) r[a.s]=(r[a.s]||0)+(a.s==='ap'?a.v:a.v*k);
   if(it.leg) for(const [k,v] of Object.entries(LEG_FX)) r[k]=(r[k]||0)+v;
   return r;
 }
@@ -3297,6 +3333,7 @@ function stInfo(s){
   if(s.k==='cage') return {ic:'para',c:'#f0e060',t:'Cage d’éclairs',d:`+25 % de dégâts de foudre subis${tours}.`,b:''};
   if(s.k==='mark') return {ic:'stun',c:'#e0614a',t:'Traqué',d:`+${s.v} % de dégâts subis de la part du Berserk${tours}.`,b:''};
   if(s.k==='bomb') return {ic:'burn',c:'#ff6a1a',t:'Bombe vivante',d:'Explose au prochain tour du Sorcier.',b:''};
+  if(s.k==='phot') return {ic:'up',c:'#5ac87a',t:'Régénération',d:`Soigne ${r1(s.v*100)} % des PV max par tour${tours}.`,b:''};
   if(s.k==='hot') return {ic:'up',c:'#7fd07a',t:'Chaleur apaisante',d:`Soigne ${r1(s.v*100)} % des PV max par tour${tours}.`,b:''};
   if(s.k==='chan') return {ic:'ult',c:'#ffd27a',t:'Incantation',d:'Le sort se déclenche au début du prochain tour ; ce tour-là, vous ne jouez pas.',b:''};
   if(s.k==='dly'){ const q=SK[s.sk]; return {ic:'ult',c:'#ffd27a',t:q?q.n:'Sort à retardement',d:`Se déclenche dans ${s.dur} tour${s.dur>1?'s':''}.`,b:''} }
@@ -3864,7 +3901,8 @@ async function pvAct(id){
 }
 function potFx(U,k,L,ctx){
   if(k==='p_pa'){ if(ctx&&ctx.pvp&&!ctx.prep&&ctx.round>1) return false; addApb(U); L.push(`${U.name} boit une Potion d’action (+${PA_POT} PA pendant 3 tours).`); U.pcd=U.pcd||{}; U.pcd[k]=POTS[k].cd+(ctx&&ctx.prep?0:1); return true }
-  if(k==='p_vie'){const a=Math.round(Math.min(U.maxHp-U.hp,U.maxHp*.4)); U.hp+=a; L.push(`${U.name} boit une Potion de vie (+${a} PV).`)}
+  if(POT_HEAL[k]){const a=Math.round(Math.min(U.maxHp-U.hp,U.maxHp*POT_HEAL[k])); U.hp+=a; L.push(`${U.name} boit : ${POTS[k].n} (+${a} PV).`)}
+  else if(POT_REG[k]){U.st=U.st.filter(s=>s.k!=='phot'); U.st.push({k:'phot',v:POT_REG[k][0],dur:POT_REG[k][1]}); L.push(`${U.name} boit : ${POTS[k].n}.`)}
   else if(k==='p_res'){U.st=U.st.filter(s=>!(s.k==='buff'&&(s.stat==='def'||s.stat==='res')&&s.v>0)); U.st.push({k:'buff',stat:'def',v:40,dur:3},{k:'buff',stat:'res',v:40,dur:3}); L.push(`${U.name} boit une Potion de résistance.`)}
   else if(k==='p_for'||k==='p_int'){const stt=k==='p_for'?'atk':'mag'; U.st=U.st.filter(s=>!(s.k==='buff'&&s.stat===stt&&s.v>0)); U.st.push({k:'buff',stat:stt,v:30,dur:3}); L.push(`${U.name} boit une ${POTS[k].n}.`)}
   else return false;
@@ -3906,7 +3944,7 @@ function pvpLoot(m){
 }
 /* affichage */
 function fPots(U,p,round,prep){
-  const pots=['p_vie','p_res',CLASSES[U.cls].role==='mag'?'p_int':'p_for','p_pa'].filter(k=>cbCount(k)>0),paLock=p==='pvp'&&!prep&&(round||1)>1;
+  const pots=POT_CK(U.cls).filter(k=>cbCount(k)>0),paLock=p==='pvp'&&!prep&&(round||1)>1;
   return `<div class="potbar">${pots.map(k=>{const cd=Math.min((U.pcd||{})[k]||0,POTS[k].cd||99),lk=k==='p_pa'&&paLock,off=cd||lk;return `<button class="potb ${off?'off':''}" data-act="${p}Pot" data-k="${k}" data-tip="pot:${k}" aria-label="${esc(POTS[k].n)}${cd?', recharge '+cd+' tours':lk?', uniquement au premier tour':''}">${matIcon(k)}<span class="num">${cbCount(k)}</span>${cd?`<span class="cdo">${cd}</span>`:lk?'<span class="cdo">✕</span>':''}</button>`}).join('')||'<small class="mute">Aucune potion utilisable.</small>'}</div>`;
 }
 function fActs(U,p,round){
@@ -4184,7 +4222,7 @@ function rdFinish(m){
     const w=$('#raid'); if(w) w.remove(); RD.match=null; RD.gone[m.id]=1;
     if(r) qEv('raidf:'+r.id);
     if(win&&r&&rdCount(m,true)){ qEv('raidwin'); sEv('raid:'+r.id); rkRaid(r.id,m.tier||0,m.round||1);
-      const rw=rdRw(r,m.tier||0); gain(rw); S.raid=S.raid||{}; let up=false; const chest=Math.random()*100<chestRate(m.tier||0); if(chest) chestGive(1);
+      const rw=rdRw(r,m.tier||0); gain(rw); ascDrop(m.tier||0); S.raid=S.raid||{}; let up=false; const chest=Math.random()*100<chestRate(m.tier||0); if(chest) chestGive(1);
       if((m.tier||0)>=raidMax(r.id)){ S.raid[r.id]=(m.tier||0)+1; up=true; if(UI.raidB!=null&&RAIDS[UI.raidB]&&RAIDS[UI.raidB].id===r.id) UI.raidT=S.raid[r.id] }
       save(); renderHeader(); rdLoot(m,r,rw,up,chest);
     } else if(!win){ rdCount(m,false); toast('Le raid a échoué.') }
@@ -4821,7 +4859,7 @@ addEventListener('resize',()=>{ if(UI.tab==='comm') pcFit() });
 /* ================= Messagerie du compte ================= */
 Object.assign(UIC,{mail:'<rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3.5 6.5 12 13l8.5-6.5"/>',gift:'<rect x="3" y="9" width="18" height="12" rx="1"/><path d="M3 13h18M12 9v12"/><path d="M12 9C10 5 6 5 6.5 7.5S12 9 12 9s4.5-1 5.5-1.5S14 5 12 9z"/>',warn:'<path d="M12 3 2 20h20z"/><path d="M12 10v4M12 17v.5"/>',info:'<circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7.5v.5"/>',send:'<path d="M3 11 21 3l-6 18-3-8z"/><path d="m12 13 9-10"/>',trash:'<path d="M4 7h16M9 7V4h6v3M6 7l1 13h10l1-13"/>'});
 const ML_K={info:['#3f7fe0','Information','info'],warn:['#c0432a','Alerte','warn'],gift:['#c99a3a','Cadeau','gift']};
-const ML_ATT=['gold','c_relic','rune','prisme','p_vie','p_res','p_for','p_int','p_pa','p_xp','p_loot'];
+const ML_ATT=['gold','c_relic','rune','prisme','p_vie1','p_vie','p_vie3','p_reg1','p_reg2','p_res','p_for','p_int','p_pa','p_xp','p_loot'];
 const ML={all:[],me:[],un:[],open:false,sel:null,adm:false,err:''};
 const mlCol=()=>FB.db.collection(COL('mail'));
 const mlSt=()=>{ACC.mail=ACC.mail||{read:{},got:{},del:{}}; for(const k of ['read','got','del']) ACC.mail[k]=ACC.mail[k]||{}; return ACC.mail};
@@ -5002,7 +5040,7 @@ function fighterArt(o){
 const ftHp=()=>`<div class="hp"><i></i><b class="shl"></b><span></span></div>`;
 
 /* ---------- sac de combat ---------- */
-const CB_LIM={p_vie:10,p_res:3,p_for:3,p_int:3,p_pa:2,p_xp:1,p_loot:1};
+const CB_LIM={p_vie1:10,p_vie:10,p_vie3:5,p_reg1:5,p_reg2:3,p_res:3,p_for:3,p_int:3,p_pa:2,p_xp:1,p_loot:1};
 const cbBag=()=>{ if(!S.cbag||typeof S.cbag!=='object') S.cbag={}; return S.cbag };
 const cbCount=k=>(S&&S.cbag&&S.cbag[k])||0;
 const cbTake=k=>{ const b=cbBag(); b[k]=Math.max(0,(b[k]||0)-1); if(!b[k]) delete b[k] };
@@ -5098,7 +5136,7 @@ function fArena(m,kind){
   else if(my){ bar=`${cbBtn()}<div class="skcbar">${['atk',...U.skills].map(id=>cTile(id,U,p+'Sk')).join('')}</div>`; end={act:p+'EndT',label:'Fin de<br>tour',tip:'Fin de tour|Termine votre tour. Les PA non utilisés sont perdus.'} }
   else { bar=`${cbBtn()}<small class="ftwait">Tour de <b>${esc(tn?(tn.boss?tn.name:(tn.acct||tn.name)):'')}</b>… <span class="num" ${kind==='pvp'?'data-pvt':'data-rdt'}>(${tl} s)</span></small>${late?`<button class="btn sm pri" data-act="${kind==='pvp'?'pvpClaim':'rdSkip'}">${kind==='pvp'?'Réclamer la victoire':'Passer son tour'}</button>`:''}`; end={act:p+'EndT',label:'Fin de<br>tour',dis:1,tip:'Fin de tour|Ce n’est pas votre tour.'} }
   const eb=end.act?`<button class="ftend" data-act="${end.act}" ${end.dis?'disabled':''} data-tip="${esc('tx:'+end.tip)}" aria-label="${esc(end.label.replace(/<br>/g,' '))}"><span>${end.label}</span></button>`:'';
-  const pk=U?['p_vie','p_res',CLASSES[U.cls].role==='mag'?'p_int':'p_for','p_pa']:[],paLock=kind==='pvp'&&m.state==='fight'&&(m.round||1)>1;
+  const pk=U?POT_CK(U.cls):[],paLock=kind==='pvp'&&m.state==='fight'&&(m.round||1)>1;
   const pop=UI.cbOpen&&U&&m.state!=='done'?cbPopHTML({keys:pk,act:p+'Pot',state:k=>{const cd=Math.min((U.pcd||{})[k]||0,POTS[k].cd||99),lk=k==='p_pa'&&paLock;return {off:!!(cd||lk),lab:cd?cd:lk?'✕':''}}}):'';
   const title=kind==='pvp'?`Duel · ${esc(nm[pvpOp(m)]||'')}`:`Raid · ${esc(r.n)} <small>palier +${m.tier||0}</small>`;
   return `<div class="ftc fta2 ${pop?'bagopen':''}"><div class="ftwrap"><div class="ftsc">${kind==='pvp'?zoneScene(6,'pv'):zoneScene(raidSc(r),'rd')}
@@ -5136,13 +5174,15 @@ const NEWI={
  st_up:{n:'Pierre de renforcement',r:0,cat:'Amélioration',d:'Niveau de l’objet +1 (+3 % à toutes ses stats, jusqu’à +10). Plus le niveau est haut, plus la réussite est difficile ; en cas d’échec, la pierre est perdue mais l’objet reste intact.',svg:'<path d="M4 15l7-10h6l3 4-7 10H7z" fill="#8a8f98" stroke="#2a2e34" stroke-width="1.1" stroke-linejoin="round"/><path d="M11 5h6l3 4h-6z" fill="#c4c9d0"/><path d="M8 14l4-5" stroke="#f0f4f8" stroke-width="1"/>'},
  ch_pou:{n:'Poudre de chance',r:1,cat:'Bonus de réussite',bon:10,d:'+10 % de chance de réussite pour un renforcement avec une Pierre de renforcement.',svg:NWI.pouch('#3a8a4a','#123a18','<path d="M12 11.5c-1.4-1.6-3 .4-1.4 1.7L12 14.5l1.4-1.3c1.6-1.3 0-3.3-1.4-1.7z" fill="#d0ffb0"/>')},
  ch_tre:{n:'Trèfle de fortune',r:3,cat:'Bonus de réussite',bon:25,d:'+25 % de chance de réussite pour un renforcement avec une Pierre de renforcement.',svg:'<path d="M12 12c-4-6-9-1-4 2-5 3 0 8 4 2 4 6 9 1 4-2 5-3 0-8-4-2z" fill="#4ac060" stroke="#14501e" stroke-width="1.1"/><path d="M12 12l2 9" stroke="#14501e" stroke-width="1.4"/><circle cx="12" cy="12" r="1.3" fill="#e8ffd0"/>'},
+ cr_asc:{n:'Cristal d’ascension',r:4,cat:'Amélioration légendaire',d:'Augmente de 5 le niveau d’objet d’un équipement et recalcule toutes ses affixes. Une seule fois par objet ; le niveau requis ne change pas. Obtenu uniquement en réussissant des défis de raid.',svg:'<path d="M12 2l5 6-5 14-5-14z" fill="#ffb04a" stroke="#6a2400" stroke-width="1.1" stroke-linejoin="round"/><path d="M12 2l-1.6 6L12 22l1.6-14z" fill="#ffe3a8"/><path d="M7 8h10" stroke="#6a2400" stroke-width=".8"/><path d="M4 6l2 1M20 6l-2 1M4 14l2-1M20 14l-2-1" stroke="#ffd36a" stroke-width="1.4" stroke-linecap="round"/>'},
+ fu_ap:{n:'Parchemin d’action',r:4,cat:'Parchemin de fusion',d:'Ajoute +1 Point d’action à un anneau, sans prendre d’emplacement d’affixe. Une seule fois par anneau. Créé par Fusion légendaire à l’Autel d’enchantement.',svg:'<path d="M5 5h11a3 3 0 0 1 3 3v9a3 3 0 0 1-3 3H8a3 3 0 0 1-3-3z" fill="#ffe3a8" stroke="#8a3a0a" stroke-width="1.1"/><path d="M5 5a2 2 0 0 0-2 2v1h4V7a2 2 0 0 0-2-2z" fill="#ffb04a" stroke="#8a3a0a" stroke-width="1"/><circle cx="12" cy="12.5" r="4.2" fill="#d9b81f" stroke="#6a4a00" stroke-width="1"/><path d="M12 10v5M9.5 12.5h5" stroke="#fff" stroke-width="1.6" stroke-linecap="round"/>'},
 };
 for(const [t,T] of Object.entries(SC_T)) for(let r=1;r<=4;r++) NEWI['sc_'+t+r]={n:'Parchemin de '+T.n,r,cat:'Parchemin',sc:t,d:T.d+` Valeur de l’affixe : ${Math.round(SC_R[r][0]*100)}–${Math.round(SC_R[r][1]*100)} % du maximum au niveau de l’objet.`,svg:NWI.scroll(T.seal)};
 for(const [k,o] of Object.entries(NEWI)){ MI[k]=o.svg; MAT_OBJ[k]=o.n; MAT_N[k]=o.n; MAT_D[k]=o.d }
 const GEMK={gm_mag:0,gm_rar:1,gm_epi:2,gm_leg:3,prisme:4};
 const nwR=k=>k==='prisme'?5:NEWI[k]?NEWI[k].r:0;
 const UP_CH=[100,90,80,70,60,50,40,30,20,10];
-const isUpK=k=>!!(NEWI[k]&&(NEWI[k].sc||NEWI[k].gem!=null||k==='st_up'))||k==='prisme';
+const isUpK=k=>!!(NEWI[k]&&(NEWI[k].sc||NEWI[k].gem!=null||k==='st_up'))||k==='prisme'||k==='cr_asc'||k==='fu_ap';
 AFXM.ap=AFXM.ap||{s:'ap',w:0,b:1,p:0};
 const mainStat=it=>{const c=it.cls||(S.heroes[0]&&S.heroes[0].cls);return CLASSES[c]&&CLASSES[c].role==='mag'?'mag':'atk'};
 function affVal(s,ilvl,mult){ if(s==='ap') return 1; const A=AFXM[s]; const v=(A.b+A.p*ilvl)*mult; return PCT.has(s)?Math.max(.5,r1(v)):Math.max(1,Math.round(v)) }
@@ -5208,11 +5248,11 @@ const ANVIL=`<svg class="mfanvil" viewBox="0 0 200 90" aria-hidden="true"><path 
 const EMBERS=`<div class="mfembers" aria-hidden="true">${Array.from({length:14},(_,i)=>`<i style="--x:${(i*37)%100}%;--d:${3+(i%5)*.7}s;--w:${(i*53)%40-20}px;animation-delay:${(i*.43)%4}s"></i>`).join('')}</div>`;
 const RUNES='ᚠᚢᚦᚨᚱᚲᚷᚹᚺᚾᛁᛃᛇᛈᛉᛊᛏᛒᛖᛗᛚᛜᛞᛟ';
 const RCIRCLE=`<svg class="mfrc" viewBox="0 0 300 300" aria-hidden="true"><g class="mfrc1"><circle cx="150" cy="150" r="138" fill="none" stroke="#9a70ff" stroke-width="2" opacity=".55"/><circle cx="150" cy="150" r="122" fill="none" stroke="#9a70ff" stroke-width="1" stroke-dasharray="3 6" opacity=".6"/>${[...RUNES].map((c,i)=>{const a=i/RUNES.length*Math.PI*2;return `<text x="${(150+Math.cos(a)*130).toFixed(1)}" y="${(150+Math.sin(a)*130+5).toFixed(1)}" text-anchor="middle" font-size="14" fill="#c8b0ff" transform="rotate(${(a*180/Math.PI+90).toFixed(0)} ${(150+Math.cos(a)*130).toFixed(1)} ${(150+Math.sin(a)*130).toFixed(1)})" style="animation-delay:${(i*.37)%3}s">${c}</text>`}).join('')}</g><g class="mfrc2"><path d="M150 40 245 205H55z" fill="none" stroke="#7a50e0" stroke-width="1.5" opacity=".5"/><path d="M150 260 55 95h190z" fill="none" stroke="#7a50e0" stroke-width="1.5" opacity=".5"/><circle cx="150" cy="150" r="70" fill="none" stroke="#b090ff" stroke-width="1" opacity=".5"/></g></svg>`;
-const SECMAX=3,secN=it=>(it.aff||[]).filter(a=>!a.main&&!a.bonus).length;
+const SECMAX=3,secN=it=>(it.aff||[]).filter(a=>!a.main&&!a.bonus&&!a.fuse).length;
 const pips3=n=>`<span class="mfpips" aria-hidden="true">${[0,1,2].map(i=>`<i class="${i<n?'on':''}"></i>`).join('')}</span>`;
 function fAffList(it){
   const k=upMul(it);
-  return `<ul class="mfaff">${affOrd(it.aff).map(a=>`<li class="${a.main?'mn':''}">${fmtStat(a.s,a.v*k)}${a.main?' <em>principale</em>':a.bonus?' <em>bonus</em>':''}</li>`).join('')}${Array.from({length:Math.max(0,SECMAX-secN(it))},()=>'<li class="free">Emplacement libre</li>').join('')}</ul>`}
+  return `<ul class="mfaff">${affOrd(it.aff).map(a=>`<li class="${a.main?'mn':''}">${fmtStat(a.s,a.v*k)}${a.main?' <em>principale</em>':a.bonus?' <em>bonus</em>':a.fuse?' <em>fusion</em>':''}</li>`).join('')}${Array.from({length:Math.max(0,SECMAX-secN(it))},()=>'<li class="free">Emplacement libre</li>').join('')}</ul>`}
 function scrollPool(it,t){
   const T=SC_T[t],have=new Set(it.aff.filter(a=>!a.main).map(a=>a.s));
   let p=T.pool.map(([s,w])=>({s:s==='main'?mainStat(it):s,w})); const p2=p.filter(x=>!have.has(x.s)); return p2.length?p2:p }
@@ -5220,6 +5260,7 @@ const upCostG={sc:it=>Math.round(100+it.ilvl*10),gem:it=>Math.round(250*(it.rari
 function fUpInfo(it,k){
   /* {ok, why, cost, chance, html} */
   if(!k) return null;
+  if(k==='cr_asc'||k==='fu_ap') return fUpInfo9(it,k);
   const N=NEWI[k];
   if(N&&N.sc){ const pool=scrollPool(it,N.sc),tw=pool.reduce((a,b)=>a+b.w,0),[lo,hi]=SC_R[N.r],m=RAR[it.rarity].m*upMul(it),full=secN(it)>=SECMAX;
     const rows=pool.map(x=>{const p=x.w/tw*100,a=affVal(x.s,it.ilvl,RAR[it.rarity].m*lo),b=affVal(x.s,it.ilvl,RAR[it.rarity].m*hi);return `<div><span>${STAT_N[x.s]}</span><i><b style="width:${p}%"></b></i><em class="num">${String(Math.round(p*10)/10).replace('.',',')} %</em><small class="num">${x.s==='ap'?'+1':fmtStat(x.s,a*upMul(it)).replace(' '+STAT_N[x.s],'')+' à '+fmtStat(x.s,b*upMul(it)).replace(' '+STAT_N[x.s],'').replace('+','')}</small></div>`}).join('');
@@ -5285,8 +5326,10 @@ function viewForge(){
   if(!FSUB.some(([k])=>k===UI.fMode)) UI.fMode='up';
   const ws=WORKSHOPS.map(([k,i,n,d],j)=>j>1?`<div class="mawt lock" aria-disabled="true" ${ttip(n,SOON)}><span class="mawi">${uic(i)}</span><span><b>${n}</b><small>${SOON}</small></span>${uic('lock','malk')}</div>`
     :`<button class="mawt ${UI.ws===k?'on':''}" data-act="ws" data-w="${k}" aria-pressed="${UI.ws===k}"><span class="mawi">${uic(i)}</span><span><b>${n}</b><small>${j?'Créer des parchemins d’amélioration.':'Renforcer et recycler l’équipement.'}</small></span></button>`).join('');
-  if(UI.ws==='ench') return `<div class="ma1"><div class="mawts">${ws}</div><div class="mabody noside">${forgeEnch()}</div></div>`;
-  const sub=`<div class="masub" role="tablist" aria-label="Forge">${FSUB.map(([k,i,n])=>`<button role="tab" aria-selected="${UI.fMode===k}" class="${UI.fMode===k?'on':''}" data-act="fMode" data-m="${k}">${uic(i)}<span>${n}</span></button>`).join('')}</div>`;
+  const recB=`<button class="marec" data-act="recOpen" ${ttip('Livre des recettes','Toutes les recettes d’enchantement, de fusion et d’amélioration.')}>${uic('book')}<span>Recettes</span></button>`;
+  if(UI.ws==='ench'){ const em=UI.eMode==='fuse'?'fuse':'ench',es=`<div class="masub" role="tablist" aria-label="Enchantement">${[['ench','spark','Enchanter'],['fuse','star','Fusion']].map(([k,i,n])=>`<button role="tab" aria-selected="${em===k}" class="${em===k?'on':''}" data-act="eMode" data-m="${k}">${uic(i)}<span>${n}</span></button>`).join('')}${recB}</div>`;
+    return `<div class="ma1"><div class="mawts">${ws}</div><div class="mabody">${es}${em==='fuse'?forgeFuse():forgeEnch()}</div></div>` }
+  const sub=`<div class="masub" role="tablist" aria-label="Forge">${FSUB.map(([k,i,n])=>`<button role="tab" aria-selected="${UI.fMode===k}" class="${UI.fMode===k?'on':''}" data-act="fMode" data-m="${k}">${uic(i)}<span>${n}</span></button>`).join('')}${typeof recB!=='undefined'?recB:''}</div>`;
   return `<div class="ma1"><div class="mawts">${ws}</div><div class="mabody">${sub}${UI.fMode==='up'?forgeUp():UI.fMode==='salv'?forgeSalv():forgeCreate()}</div></div>`;
 }
 /* placement des objets dans les cases */
@@ -5316,6 +5359,8 @@ function fDo(){
   const N=NEWI[k];
   if(N&&N.sc){ const pool=scrollPool(it,N.sc),a=wPick(pool,1)[0],[lo,hi]=SC_R[N.r],v=affVal(a.s,it.ilvl,RAR[it.rarity].m*rand(lo,hi)); it.aff.push({s:a.s,v}); qEv('aff'); removeMat(k,1); msg=`Nouvelle affixe : ${fmtStat(a.s,v*upMul(it))}.` }
   else if(GEMK[k]!=null){ const f2=RAR[it.rarity+1].m/RAR[it.rarity].m; for(const s of Object.keys(it.imp)) it.imp[s]=affRound(s,it.imp[s]*f2); it.aff.forEach(a=>a.v=affRound(a.s,a.v*f2)); it.rarity++; qEv('rar'); if(it.rarity>=4&&!it.leg) it.leg=it.slot; removeMat(k,1); msg=`${esc(it.name)} devient ${RAR[it.rarity].n.toLowerCase()} !` }
+  else if(k==='cr_asc'){ ascApply(it); removeMat(k,1); msg=`${esc(it.name)} passe au niveau d’objet ${it.ilvl} !` }
+  else if(k==='fu_ap'){ it.aff.push({s:'ap',v:1,fuse:1}); removeMat(k,1); msg=`${esc(it.name)} gagne +1 Point d’action !` }
   else if(k==='st_up'){ const ch=I.chance; removeMat('st_up',1); if(UI.fBon&&fsHave(UI.fBon)) removeMat(UI.fBon,1); ok=Math.random()*100<ch; if(ok){it.up=(it.up||0)+1; qEv('up'); sEv('upmax',it.up); if(it.up>=10) sEv('up10'); msg=`Réussite : ${esc(it.name)} passe à +${it.up} !`} else msg=`Échec : l’objet reste à +${it.up||0}.` }
   if(fsHave(k)<1) UI.fUp=null; if(UI.fBon&&fsHave(UI.fBon)<1) UI.fBon=null;
   save(); renderHeader&&renderHeader(); render(); requestAnimationFrame(()=>fFx('forge',ok)); toast(msg);
@@ -5473,7 +5518,7 @@ function raidSoloFinish(res){
   C.pending=null;C.waiting=null;C.turn=null; const r=RAIDS.find(x=>x.id===C.raid.r),t=C.raid.t;
   S.raidS=S.raidS||{w:0,l:0}; qEv('raidf:'+r.id);
   if(res==='win'){ qEv('raidwin'); sEv('raid:'+r.id); rkRaid(r.id,t,C.round||1);
-    const rw=soloRw(r,t); gain(rw); let up=false; S.raid=S.raid||{};
+    const rw=soloRw(r,t); gain(rw); ascDrop(t); let up=false; S.raid=S.raid||{};
     if(t>=raidMax(r.id)){ S.raid[r.id]=t+1; up=true; UI.raidT=S.raid[r.id] }
     const chest=Math.random()*100<chestRate(t); if(chest) chestGive(1); S.raidS.w++;
     C.result={win:true,xp:0,gold:rw.gold,mats:Object.fromEntries(Object.entries(rw).filter(([k])=>k!=='gold')),items:[],ups:[]};
@@ -5737,7 +5782,7 @@ let TILT=null;
 let TILTW=null;
 function tiltOff(){ if(!TILT) return; TILT.classList.remove('tilt'); TILT.style.transform=''; if(TILTW){ TILTW.classList.remove('tiltw'); TILTW.style.transform=''; TILTW=null } TILT=null }
 document.addEventListener('pointermove',e=>{
-  if(e.pointerType==='touch'||PCF.drag||matchMedia('(prefers-reduced-motion: reduce)').matches){ tiltOff(); return }
+  if(true){ tiltOff(); return } /* 0.7.8 : effet d'inclinaison au survol supprimé */
   const fl=e.target.closest&&e.target.closest('#pcfl'),c=fl?fl.querySelector('.pc1,.pc2'):(e.target.closest&&e.target.closest('.pc1,.pc2')); if(c!==TILT) tiltOff(); if(!c) return;
   const box=fl?fl.querySelector('.pcbox')||c:c,r=box.getBoundingClientRect(); if(!r.width) return; const nx=clamp((e.clientX-r.left)/r.width*2-1,-1,1),ny=clamp((e.clientY-r.top)/r.height*2-1,-1,1);
   const k=c.classList.contains('pc2')?6:13; TILT=c; c.classList.add('tilt');
@@ -6129,7 +6174,7 @@ CB.start=(u,W)=>{
   u.kap=0;
   if(u.gx&&u.gx.res==='garde'){ if(!u.gHit&&u.garde>0) u.garde--; u.gHit=0 }
   for(const s of (u.st||[]).filter(s=>s.k==='dot')) if(u.hp>0) W.dmg(u,CB.cap(u,Math.max(1,Math.round(s.v))),false,null,s.n);
-  for(const s of (u.st||[]).filter(s=>s.k==='hot')) if(u.hp>0) W.heal(u,u.maxHp*s.v);
+  for(const s of (u.st||[]).filter(s=>s.k==='hot'||s.k==='phot')) if(u.hp>0) W.heal(u,u.maxHp*s.v);
   if(u.regen&&u.hp>0) W.heal(u,u.maxHp*u.regen/100,true);
   if(u.hp<=0) return {skip:true,dead:true};
   let skip=false;
@@ -6377,9 +6422,9 @@ const AURA8={
  a_ember:['--a1:#ff7a1a77;--a2:#ffb04a',16],a_frost:['--a1:#7fd0ff66;--a2:#e8f6ff',14],a_shadow:['--a1:#5a2a9a88;--a2:#b080ff',10],
  a_holy:['--a1:#ffe8a066;--a2:#fff3c0',10],a_storm:['--a1:#9ab0ff55;--a2:#fff3a0',0],a_blood:['--a1:#c0202077;--a2:#ff4a4a',12]};
 function auraHTML(id){ const A=AURA8[id]; if(!A) return '';
-  const pts=Array.from({length:A[1]},(_,i)=>`<i class="pt" style="--x:${30+((i*37)%40)}%;--y:${8+(i*23)%55}%;--d:${(2+(i%4)*.5).toFixed(1)}s;--dl:-${((i*.41)%2.4).toFixed(2)}s;--z:${4+(i%3)*2}px"></i>`).join('');
+  const pt=(i)=>`<i class="pt" style="--x:${30+((i*37)%40)}%;--y:${8+(i*23)%55}%;--d:${(2+(i%4)*.5).toFixed(1)}s;--dl:-${((i*.41)%2.4).toFixed(2)}s;--z:${4+(i%3)*2}px"></i>`,ptB=Array.from({length:A[1]},(_,i)=>i%2?pt(i):'').join(''),ptF=Array.from({length:A[1]},(_,i)=>i%2?'':pt(i)).join('');
   const bolts=id==='a_storm'?[[18,45],[74,25],[78,60],[22,15]].map(([x,y],i)=>`<svg class="bolt" style="--x:${x}%;--y:${y}%;animation-delay:-${i*.4}s" viewBox="0 0 30 70"><path d="M18 0 L6 32 H16 L8 70 L26 26 H16 Z" fill="#fff3a0"/></svg>`).join(''):'';
-  return `<span class="au8 ${id}" style="${A[0]}" aria-hidden="true">${id==='a_holy'?'<i class="ray"></i>':''}<i class="ag"></i><i class="ar"></i><i class="ar ar2"></i>${pts}${bolts}</span>` }
+  return `<span class="au8 b ${id}" style="${A[0]}" aria-hidden="true">${id==='a_holy'?'<i class="ray"></i>':''}<i class="ag"></i><i class="ar"></i><i class="ar ar2"></i>${ptB}</span><span class="au8 f ${id}" style="${A[0]}" aria-hidden="true"><i class="ar"></i><i class="ar ar2"></i>${ptF}${bolts}</span>` }
 /* traînée quand la carte flottante est déplacée */
 const TRAIL8={t_ash:['#8a8a8a','#c0461a','ash'],t_spark:['#ffb04a','#fff3c0','spark'],t_shadow:['#a07aff','#5a2a9a','rib'],t_petal:['#ff5a3a','#ffb04a','petal']};
 let TR8={x:0,y:0,i:0};
@@ -6416,7 +6461,7 @@ const SQ8=()=>{ const Z=ZONES,AV=RAIDS.find(r=>r.id==='avatar')||RAIDS[RAIDS.len
   {id:'c3',ic:'skull',t:'Vaincre un boss en Mythique',s:'N’importe quel boss de campagne',ev:'bossm',n:1,rw:['ch',3]},
   {id:'c4',ic:'swords',t:'Vaincre 500 ennemis',s:'En Aventure, pendant la saison',ev:'kill',n:500,rw:['lot','forge']}]],
  ['Artisanat','anvil',[
-  {id:'a1',ic:'anvil',t:'Créer 10 équipements',s:'À la Forge',ev:'forge',n:10,rw:['lot','ench']},
+  {id:'a1',ic:'recycle',t:'Recycler 50 objets',s:'À la Forge ou avec le tri du butin',ev:'recycle',n:50,rw:['lot','ench']},
   {id:'a2',ic:'anvil',t:'Renforcer un objet jusqu’à +7',s:'Avec des pierres de renforcement',ev:'upmax',n:7,rw:['ch',1]},
   {id:'a3',ic:'spark',t:'Enchanter 15 parchemins',s:'À l’Autel d’enchantement',ev:'ench',n:15,rw:['lot','rune']}]],
  ['Duels et défis','people',[
@@ -6549,6 +6594,71 @@ function pcCustom8(d){
   return `<div class="cu8">${nav}<div class="cu8prev"><small class="s8pl">Aperçu${dirty?' · non enregistré':''}</small>${prev}</div><div class="cu8r">${fil}<div class="cu8grid">${items}</div>${save}</div></div>`;
 }
 const _qEv0=qEv; qEv=function(ev,n=1){ _qEv0(ev,n); try{ sEv(ev,n) }catch(e){} };
+/* ================= 0.7.9 : potions, cristal d'ascension, fusion, recettes ================= */
+const POT_CK=cls=>['p_vie1','p_vie','p_vie3','p_reg1','p_reg2','p_res',CLASSES[cls]&&CLASSES[cls].role==='mag'?'p_int':'p_for','p_pa'];
+const POT_HEAL={p_vie1:.2,p_vie:.4,p_vie3:.65};
+const POT_REG={p_reg1:[.06,4],p_reg2:[.10,5]};
+const SHOP_CH={s_ch2:2,s_ch3:3};
+/* ---------- cristal d'ascension ---------- */
+const ASC_ILV=5;
+const ascR=(b,p,il)=>(b+p*(il+ASC_ILV))/Math.max(.0001,b+p*il);
+function ascApply(it){
+  const il=it.ilvl; if(!it.req) it.req=Math.min(il,MAXL);
+  for(const a of it.aff){ if(a.s==='ap') continue; const A=AFXM[a.s]; if(!A) continue; a.v=affRound(a.s,a.v*ascR(A.b,A.p,il)) }
+  const B=BASES.find(b=>b.n===it.base);
+  if(B&&it.imp) for(const [s,b,p] of B.imp) if(it.imp[s]!=null) it.imp[s]=affRound(s,it.imp[s]*ascR(b,p,il));
+  it.ilvl=il+ASC_ILV; it.asc=1;
+}
+function ascDrop(t){ const ch=Math.min(10,3+(t||0)*.5); if(Math.random()*100<ch){ qGive([['cr_asc',1]]); setTimeout(()=>toast('✦ Butin légendaire : Cristal d’ascension !'),700); return true } return false }
+function fUpInfo9(it,k){
+  if(k==='cr_asc'){ const ok=!it.asc;
+    const prev=affOrd(it.aff).filter(a=>a.s!=='ap'&&AFXM[a.s]).map(a=>`<li>${fmtStat(a.s,a.v*upMul(it))} → <b class="ok">${fmtStat(a.s,affRound(a.s,a.v*ascR(AFXM[a.s].b,AFXM[a.s].p,it.ilvl))*upMul(it))}</b></li>`).join('');
+    return {ok,why:ok?'':'Cet objet a déjà été élevé par un Cristal d’ascension (une seule fois par objet).',cost:{gold:Math.round(2000+it.ilvl*150)},chance:100,title:NEWI.cr_asc.n,rar:4,
+      html:`<p>Niveau d’objet <b class="num">${it.ilvl} → ${it.ilvl+ASC_ILV}</b> : toutes les affixes et la statistique fixe de l’arme sont recalculées pour le nouveau niveau. Le niveau requis pour porter l’objet ne change pas.</p>${ok?`<h4>Aperçu</h4><ul class="mfprev">${prev}</ul>`:''}<p class="mute">Une seule fois par objet. Le Cristal d’ascension s’obtient uniquement en réussissant des défis de raid.</p>`} }
+  if(k==='fu_ap'){ const ring=it.slot==='ring',has=(it.aff||[]).some(a=>a.fuse);
+    return {ok:ring&&!has,why:!ring?'Ce parchemin ne s’utilise que sur un anneau.':has?'Cet anneau possède déjà une affixe de fusion.':'',cost:{gold:5000},chance:100,title:NEWI.fu_ap.n,rar:4,
+      html:`<p>Ajoute l’affixe <b>+1 Point d’action</b> à l’anneau. Cette affixe de fusion ne prend pas d’emplacement d’affixe secondaire (les 3 emplacements restent libres pour les parchemins).</p><p class="mute">Une seule affixe de fusion par anneau. Se crée à l’Autel d’enchantement, onglet Fusion.</p>`} }
+  return null;
+}
+/* ---------- fusion légendaire ---------- */
+const FUSE9=[{out:'fu_ap',n:'Parchemin d’action',cost:{prisme:10,ru_pri:3,sc_blank:1,gold:20000}}];
+function forgeFuse(){
+  const F=FUSE9[0],O=NEWI[F.out],ok=canPay(F.cost),need=Object.entries(F.cost).filter(([k])=>k!=='gold');
+  const slot=(k,n)=>{const h=matAll(k),g=h>=n;return `<div class="fu9s ${g?'ok':''}" style="--rc:var(--r${nwR(k)})" data-tip="nw:${k}"><svg class="mfi" viewBox="0 0 24 24">${MI[k]}</svg><em class="num">${fmt(Math.min(h,n))} / ${n}</em><small>${esc(MAT_OBJ[k]||k)}</small></div>`};
+  const chk=(g,t)=>`<li class="${g?'ok':'no'}">${uic(g?'check':'xx')} ${t}</li>`;
+  return `<div class="mfwork nohelp"><section class="mfc ench fu9" id="mfc"><div class="mfhead">${helpBtn()}<span class="mfht"><b>Fusion légendaire</b><small>Réunir des reliques pour créer un parchemin unique</small></span></div>
+    <div class="fu9alt">${RCIRCLE}<div class="fu9out ${ok?'ok':''}" style="--rc:var(--r4)" data-tip="nw:${F.out}"><svg class="mfi" viewBox="0 0 24 24">${O.svg}</svg></div><div class="fu9ring">${need.map(([k,n])=>slot(k,n)).join('')}</div></div>
+    <small class="mfhint">Les ressources sont prises dans l’inventaire et dans le coffre du compte.</small></section>
+   <aside class="mfr"><h3>${esc(O.n)}</h3><small class="mfrar" style="color:var(--r4)">Légendaire</small><p>${esc(O.d)}</p>
+    <h4>Recette</h4><ul class="mfcomb">${need.map(([k,n])=>chk(matAll(k)>=n,`${esc(MAT_OBJ[k]||k)} ×${n} <small class="num">(${fmt(matAll(k))})</small>`)).join('')}${chk(S.gold>=F.cost.gold,`${fmt(F.cost.gold)} or`)}</ul>
+    <h4>Utilisation</h4><p class="mfsm">À la Forge : posez un anneau, puis le Parchemin d’action dans la case Amélioration. L’anneau gagne +1 Point d’action, sans utiliser d’emplacement d’affixe.</p>
+    <div class="mfgo"><span class="mfok">Réussite <b class="num">100 %</b></span><div class="mfcost">Coût : ${costHTML(F.cost)}</div><button class="btn pri amgo" data-act="fuseDo" ${ok?'':'disabled'}>${uic('spark')} Fusionner</button></div></aside></div>`;
+}
+function fuseDo(){ const F=FUSE9[0]; if(!canPay(F.cost)) return; if(matRoom(F.out)<1){ toast('Inventaire plein.'); return }
+  pay(F.cost); bagAddMat(S.bag,F.out,1); markNew(); save(); render(); requestAnimationFrame(()=>fFx('ench',true)); toast(`${NEWI[F.out].n} créé : il est dans l’inventaire.`) }
+/* ---------- livre des recettes ---------- */
+function recHTML(){
+  const ic=k=>`<span class="rc9i" style="--rc:var(--r${nwR(k)})" data-tip="${k==='prisme'||NEWI[k]?'nw:'+k:'pot:'+k}"><svg class="mfi" viewBox="0 0 24 24">${MI[k]||''}</svg></span>`;
+  const it=(k,n)=>`<span class="rc9c">${ic(k)}${n>1?`<em>×${n}</em>`:''}<small>${esc(MAT_OBJ[k]||k)}</small></span>`;
+  const row=(ins,out,note)=>`<div class="rc9r"><div class="rc9in">${ins.join('<b class="rc9p">+</b>')}</div><b class="rc9a">→</b><div class="rc9out">${out}</div>${note?`<small class="rc9n">${note}</small>`:''}</div>`;
+  const outT=(t,s)=>`<span class="rc9o"><b>${t}</b>${s?`<small>${s}</small>`:''}</span>`;
+  const sc=Object.entries(SC_T).map(([t,T])=>row([it('sc_blank',1),it('pd_rune',3),it(T.es,1),`<span class="rc9c"><span class="rc9i any">${uic('star')}</span><small>Une rune</small></span>`],outT('Parchemin de '+T.n,'Rareté selon la rune : mineure Magique, majeure Rare, ancienne Épique, primordiale Légendaire'),`${T.d} Coût : 40 or + 60 or par rang de rune.`)).join('');
+  const gems=Object.entries(GEMK).map(([k,g])=>row([it(k,1)],outT(`${RAR[g].n} → ${RAR[g+1].n}`,'Toutes les affixes +5 %'),'')).join('');
+  return `<div class="rc9"><header><h2>${uic('book')} Livre des recettes</h2><button class="mfx" data-act="recClose" ${ttip('Fermer')}>${uic('xx')}</button></header><div class="rc9b">
+   <section><h3>${uic('spark')} Enchantement</h3><p class="mute">Un Parchemin vierge en haut de l’autel, puis 3 Poudres runiques, une Essence magique (le type) et une Rune (la rareté).</p>${sc}</section>
+   <section><h3>${uic('star')} Fusion légendaire</h3>${row([it('prisme',10),it('ru_pri',3),it('sc_blank',1),`<span class="rc9c"><span class="rc9i">${matIcon('gold')}</span><em>20 000</em><small>Or</small></span>`],outT('Parchemin d’action','Légendaire'),'Ajoute +1 Point d’action à un anneau, sans prendre d’emplacement d’affixe. Une fois par anneau.')}</section>
+   <section><h3>${uic('anvil')} Forge : renforcer</h3>
+    ${row([it('st_up',1)],outT('Niveau +1','+3 % à toutes les statistiques, jusqu’à +10'),`Réussite : ${UP_CH.map((p,i)=>'+'+(i+1)+' '+p+' %').join(', ')}. En cas d’échec, la pierre est perdue.`)}
+    ${row([it('st_up',1),it('ch_pou',1)],outT('Réussite +10 %',''),'')}${row([it('st_up',1),it('ch_tre',1)],outT('Réussite +25 %',''),'')}
+    ${gems}
+    ${row([it('cr_asc',1)],outT('Niveau d’objet +5','Légendaire · une fois par objet'),'Recalcule toutes les affixes pour le nouveau niveau. Obtenu uniquement en réussissant des défis de raid.')}
+    ${row([it('fu_ap',1)],outT('+1 Point d’action','Anneaux uniquement'),'')}</section>
+   <section><h3>${uic('recycle')} Forge : recycler</h3><p class="mute">Recycler un objet rend des Poudres runiques, davantage pour les objets rares et de haut niveau. Le recyclage manuel transforme le curseur en enclume.</p></section>
+  </div></div>`;
+}
+function recOpen(){ recClose(); const w=document.createElement('div'); w.id='rec9'; w.className='s8m'; w.setAttribute('role','dialog'); w.setAttribute('aria-modal','true'); w.setAttribute('aria-label','Livre des recettes'); w.innerHTML=recHTML(); w.addEventListener('click',e=>{ if(e.target===w) recClose() }); document.body.append(w) }
+function recClose(){ const w=$('#rec9'); if(w) w.remove() }
+document.addEventListener('keydown',e=>{ if(e.key==='Escape'&&$('#rec9')) recClose() });
 
 function viewCombatIdle(){
   const P=prog(),dk=curDiff(),D=DIFF[dk],hero=dk!=='normal',z=ZONES[UI.zone],L=D.L||UI.zone*10+UI.stage;
@@ -6644,7 +6754,8 @@ function usePot(k){
   if(!inFight()||!cbCount(k)||potLeft(k)) return;
   const u=C.units.find(x=>x.team==='h'&&x.hp>0); if(!u) return;
   const B=(stat,v)=>{u.st=u.st.filter(s=>!(s.k==='buff'&&s.stat===stat&&s.v>0&&s.pot));u.st.push({k:'buff',stat,v,dur:3,pot:1})};
-  if(k==='p_vie') heal(u,u.maxHp*.4);
+  if(POT_HEAL[k]) heal(u,u.maxHp*POT_HEAL[k]);
+  else if(POT_REG[k]){ u.st=u.st.filter(s=>s.k!=='phot'); u.st.push({k:'phot',v:POT_REG[k][0],dur:POT_REG[k][1]}) }
   else if(k==='p_res'){B('def',40);B('res',40)}
   else if(k==='p_for') B('atk',30);
   else if(k==='p_int') B('mag',30);
@@ -7250,7 +7361,7 @@ function viewForge0(){
   if(!FSUB.some(([k])=>k===UI.fMode)) UI.fMode='forge';
   const ws=WORKSHOPS.map(([k,i,n,d],j)=>j?`<div class="mawt lock" aria-disabled="true" title="${SOON}"><span class="mawi">${uic(i)}</span><span><b>${n}</b><small>${SOON}</small></span>${uic('lock','malk')}</div>`
     :`<button class="mawt on" aria-current="true"><span class="mawi">${uic(i)}</span><span><b>${n}</b><small>${d}</small></span></button>`).join('');
-  const sub=`<div class="masub" role="tablist" aria-label="Forge">${FSUB.map(([k,i,n])=>`<button role="tab" aria-selected="${UI.fMode===k}" class="${UI.fMode===k?'on':''}" data-act="fMode" data-m="${k}">${uic(i)}<span>${n}</span></button>`).join('')}</div>`;
+  const sub=`<div class="masub" role="tablist" aria-label="Forge">${FSUB.map(([k,i,n])=>`<button role="tab" aria-selected="${UI.fMode===k}" class="${UI.fMode===k?'on':''}" data-act="fMode" data-m="${k}">${uic(i)}<span>${n}</span></button>`).join('')}${typeof recB!=='undefined'?recB:''}</div>`;
   return `<div class="ma1"><div class="mawts">${ws}</div><div class="mabody">${sub}${UI.fMode==='up'?forgeUp():UI.fMode==='salv'?forgeSalv():forgeCreate()}</div></div>`;
 }
 
@@ -7290,9 +7401,9 @@ function viewSites(){
     <p class="amnote mute" style="margin-top:auto">La flèche ouvre l’arbre d’améliorations de la Mine (cadence, filon d’or et entrepôt). L’engrenage donne accès à la récolte automatique, débloquée au niveau de zone ${AUTO_L}.</p></div></aside></div>${UI.siteTree?treeModal(UI.siteTree):''}`;
 }
 /* ===== Marchand : étal ===== */
-const SHOP_CAT=k=>k==='sc_blank'?'ench':k==='p_oubli'?'spe':['p_xp','p_loot'].includes(k)?'prog':'comb';
-const SHOP_CATS=[['all','Tout'],['comb','Combat'],['prog','Progression'],['ench','Enchantement'],['spe','Spéciaux']];
-const SHOP_CN={ench:'Fourniture d’enchantement',comb:'Potion de combat',prog:'Potion de progression',spe:'Objet spécial'};
+const SHOP_CAT=k=>['c_relic','s_ch2','s_ch3'].includes(k)?'cos':k==='sc_blank'?'ench':k==='p_oubli'?'spe':['p_xp','p_loot'].includes(k)?'prog':'comb';
+const SHOP_CATS=[['all','Tout'],['comb','Combat'],['prog','Progression'],['ench','Enchantement'],['cos','Cosmétiques'],['spe','Spéciaux']];
+const SHOP_CN={cos:'Coffre cosmétique',ench:'Fourniture d’enchantement',comb:'Potion de combat',prog:'Potion de progression',spe:'Objet spécial'};
 const potLock=k=>POTS[k].cls&&POTS[k].cls!==S.heroes[0].cls;
 const bigPot=(k,c='')=>`<span class="mcpot ${c}" style="--pc:${POTS[k].c}">${matIcon(k)}</span>`;
 const shopMax=k=>POTS[k].fix?1:Math.max(1,Math.min(99,matRoom(k),Math.floor(S.gold/Math.max(1,potPrice(k)))));
@@ -7425,9 +7536,12 @@ function viewHelp(){
 }
 
 /* --- nouveautés --- */
-const VERSION='0.7.6';
-const BUILD='20261021081132';
+const VERSION='0.7.9';
+const BUILD='20261021083059';
 const PATCH=[
+ {"v": "0.7.9", "t": "Potions de soin, Cristal d’ascension et Fusion", "sec": [["Potions", ["Nouvelles potions de soin chez le Marchand : Petite potion de vie (rend 20 % des PV max, recharge 3 tours), Potion de vie (40 %, inchangée) et Grande potion de vie (65 %, recharge 5 tours).", "Nouvelles potions de soin sur la durée : Potion de régénération (6 % des PV max par tour pendant 4 tours, 24 % au total) et Élixir de régénération (10 % par tour pendant 5 tours, 50 % au total)."]], ["Marchand", ["Nouvelle catégorie Cosmétiques : Coffre des Reliques (60 000 or + 1 Rune primordiale), Coffre de saison épique (40 000 or + 1 Rune ancienne) et Coffre de saison légendaire (60 000 or + 1 Rune primordiale)."]], ["Forge", ["Nouvel objet légendaire, le Cristal d’ascension : il augmente de 5 le niveau d’objet d’un équipement et recalcule toutes ses affixes (une seule fois par objet ; le niveau requis ne change pas). Il s’obtient uniquement en réussissant des défis de raid (3 % au palier +0, puis +0,5 % par palier, jusqu’à 10 %).", "Nouvelle Fusion légendaire à l’Autel d’enchantement : 10 Prismes divins + 3 Runes primordiales + 1 Parchemin vierge + 20 000 or donnent un Parchemin d’action, qui ajoute +1 Point d’action à un anneau sans prendre d’emplacement d’affixe.", "Nouveau bouton « Recettes » dans les ateliers : la liste complète des recettes d’enchantement, de fusion et d’amélioration."]], ["Cosmétiques", ["Les auras de combat passent maintenant à la fois derrière et devant le héros."]], ["Correction", ["Quête de saison « Créer 10 équipements » remplacée par « Recycler 50 objets » : la création d’équipement n’est pas disponible pour l’instant.", "Les Points d’action donnés par une affixe ne sont plus multipliés par le niveau de renforcement de l’objet (ils restent des nombres entiers)."]]]},
+ {"v": "0.7.8", "t": "Cartes de joueur fixes", "sec": [["Interface", ["Les cartes de joueur ne s’inclinent plus et ne brillent plus quand la souris passe dessus (carte, bannière du classement et carte flottante)."]]]},
+ {"v": "0.7.7", "t": "Options : revoir les nouveautés", "sec": [["Interface", ["Nouveau bouton dans Options → Interface : « Revoir les nouveautés » réaffiche le parchemin de la dernière grande mise à jour, même si vous l’aviez masqué."]]]},
  {"v": "0.7.6", "t": "Saison : quêtes, cosmétiques et trophées", "sec": [["Quêtes", ["Nouvelle page des quêtes avec une barre latérale : Quêtes journalières, Quêtes hebdomadaires, puis la saison en cours.", "Nouvelles quêtes de saison : elles restent toute la saison et ne se renouvellent pas (vaincre des boss de campagne en Héroïque et en Mythique, créer des équipements, renforcer un objet jusqu’à +7, enchanter des parchemins, remporter des duels, vaincre l’Avatar de l’Abîme…).", "Récompenses de saison : coffres cosmétiques (Commun, Rare, Épique, Légendaire) et lots d’artisanat. Survolez un coffre ou un lot pour voir son contenu exact et ses chances."]], ["Cosmétiques", ["34 cosmétiques de la Saison 1, gardés à vie, même après la fin de la saison.", "Ornements de carte, séparés du cadre : piques de braise en trois tailles, filigrane royal, couronne d’or, chaînes, cercle runique, givre, ailes de braise.", "Cadres de portrait, séparés du cadre de carte : laurier, runes, flammes, ronces, givre, foudre, ossements, constellation.", "Effets de carte (braises, givre, holographique, fumée), traînées quand on déplace une carte (cendres, étincelles, ruban d’ombre, pétales) et trois nouveaux arrière-plans.", "Auras de combat autour de votre héros en aventure, en duel et en défi : cendre, givre, ombre, lumière sacrée, tempête, soif de sang. Votre adversaire la voit en duel."]], ["Personnalisation", ["Nouvelle page : une catégorie par type à gauche, l’aperçu de la carte au centre, la collection à droite avec les filtres Tous, Obtenus et Verrouillés."]], ["Trophées", ["Nouvelle catégorie Saison : 6 trophées à obtenir pendant la saison. Ils restent dans votre collection ensuite et leurs points comptent dans vos points de trophées."]]]},
  {"v": "0.7.5", "t": "Forge : objets du coffre", "sec": [["Forge", ["Les objets d’amélioration rangés dans le coffre apparaissent maintenant à droite de la Forge et de l’Autel d’enchantement, à côté de ceux de l’inventaire : plus besoin de les déplacer dans l’inventaire avant de les utiliser.", "Une petite icône de coffre indique les objets qui se trouvent dans le coffre ; un clic les place directement dans la bonne case."]]]},
  {"v": "0.7.4", "t": "Parchemin : grandes mises à jour seulement", "sec": [["Interface", ["Le parchemin des nouveautés ne présente que les grandes mises à jour. Si vous le masquez, il ne revient qu’à la prochaine grande mise à jour (les petites mises à jour ne le font plus réapparaître)."]]]},
@@ -7601,7 +7715,8 @@ function viewOpts(){
     body=`<h3>Raccourcis de combat</h3><p class="hint">Cliquez sur une touche puis appuyez sur la nouvelle touche. Échap pour annuler. Si la touche est déjà utilisée, les deux raccourcis sont échangés.</p>${rows}
       <div class="foot"><small class="mute">${UI.keyWait!=null?'En attente d’une touche…':'La touche I reste réservée à l’inventaire.'}</small><button class="btn sm" data-act="keyDef" ${ttip('Touches par défaut','Remet les touches 1 à 6.')}>Touches par défaut (1 à 6)</button></div>`;
   } else if(t==='ui'){
-    body=`<h3>Interface</h3><div class="orow"><span class="lab">Explications des ateliers<small>Affiche l’aide détaillée dans la Forge et l’Enchantement.</small></span><button class="sw ${fHelpOn()?'':'off'}" data-act="fHelp" role="switch" aria-checked="${fHelpOn()}" ${ttip(fHelpOn()?'Masquer les explications':'Afficher les explications')}></button></div>`;
+    body=`<h3>Interface</h3><div class="orow"><span class="lab">Explications des ateliers<small>Affiche l’aide détaillée dans la Forge et l’Enchantement.</small></span><button class="sw ${fHelpOn()?'':'off'}" data-act="fHelp" role="switch" aria-checked="${fHelpOn()}" ${ttip(fHelpOn()?'Masquer les explications':'Afficher les explications')}></button></div>
+      <div class="orow"><span class="lab">Nouveautés de la grande mise à jour<small>Réaffiche le parchemin de la version ${UPOP.v} (« ${esc(UPOP.t)} »)${ACC.upHide===UPOP.v?' ; il est actuellement masqué à l’arrivée en jeu':''}.</small></span><button class="btn sm" data-act="upShow" ${ttip('Revoir les nouveautés','Ouvre le parchemin de la dernière grande mise à jour.')}>${uic('scroll')} Revoir les nouveautés</button></div>`;
   } else if(t==='save'){
     body=`<h3>Sauvegarde</h3><p class="hint">La partie (tous vos personnages et l’or partagé) est enregistrée dans ce navigateur${FB.user?' et en ligne sur votre compte':''}.</p>
       <div class="osec"><b>Exporter</b><p class="hint" style="margin:2px 0 6px">Copiez ce code pour garder la partie ailleurs ou la transférer sur un autre appareil.</p><textarea id="expTxt" readonly>${accExport()}</textarea><div class="row" style="margin-top:8px"><button class="btn" data-act="copyExp">Copier le code</button></div></div>
@@ -7875,7 +7990,7 @@ const A={
   cbIn:d=>cbIn(d.k,+d.n||1),
   cbOut:d=>cbOut(d.k,1),
   cbToggle:()=>{UI.cbInv=!UI.cbInv;renderInvPop()},
-  buyPot:d=>{const q=+d.q,P=POTS[d.k]; if(P.fix){ if(!canPay(P.fix)) return; if(matRoom(d.k)<1){toast('Inventaire plein.');return} pay(P.fix); bagAddMat(S.bag,d.k,1); markNew(); save(); render(); toast('Achat : '+P.n+'.'); return } const c=potPrice(d.k)*q; if(!hasGold(c)) return; if(POTS[d.k].cls&&POTS[d.k].cls!==S.heroes[0].cls){toast(`Réservée au ${CLASSES[POTS[d.k].cls].n}.`);return} if(matRoom(d.k)<q){toast('Inventaire plein.');return}
+  buyPot:d=>{const q=+d.q,P=POTS[d.k]; if(SHOP_CH[d.k]!=null){ if(!canPay(P.fix)) return; pay(P.fix); const c=ACC.schest=ACC.schest||[0,0,0,0]; c[SHOP_CH[d.k]]++; saveAcc(); save(); render(); toast('Achat : '+P.n+'. Ouvrez-le dans Quêtes → Saison.'); return } if(P.fix){ if(!canPay(P.fix)) return; if(matRoom(d.k)<1){toast('Inventaire plein.');return} pay(P.fix); bagAddMat(S.bag,d.k,1); markNew(); save(); render(); toast('Achat : '+P.n+'.'); return } const c=potPrice(d.k)*q; if(!hasGold(c)) return; if(POTS[d.k].cls&&POTS[d.k].cls!==S.heroes[0].cls){toast(`Réservée au ${CLASSES[POTS[d.k].cls].n}.`);return} if(matRoom(d.k)<q){toast('Inventaire plein.');return}
     if(!FREE()) S.gold-=c; bagAddMat(S.bag,d.k,q); markNew(); save(); render(); toast(`Achat : ${q} × ${POTS[d.k].n}.`)},
   auto:()=>{S.auto=!S.auto;if(!S.auto)S.farm=false;if(S.auto&&C.waiting){const w=C.waiting;C.waiting=null;C.pending=null;w.res(ai(w.u))}render()},
   farm:()=>{S.farm=!S.farm;if(S.farm&&!S.auto){S.auto=true;if(C.waiting){const w=C.waiting;C.waiting=null;C.pending=null;w.res(ai(w.u))}}render()},
@@ -7995,6 +8110,10 @@ const A={
   },
   toForge:d=>{UI.fItem=+d.id;UI.fMode='up';UI.tab='forge';render()},
   fMode:d=>{UI.fMode=d.m;UI.confirm=null;render()},
+  eMode:d=>{UI.eMode=d.m;render()},
+  fuseDo:()=>fuseDo(),
+  recOpen:()=>recOpen(),
+  recClose:()=>recClose(),
   fPut:d=>{UI.fItem=+d.id;UI.fMode='up';UI.bagSel=null;render()},
   fPutSlot:d=>{const it=S.heroes[0].equip[d.slot]; if(!it){toast('Emplacement vide.');return} UI.fItem=it.id;UI.fMode='up';render()},
   fClear:()=>{UI.fItem=null;render()},
@@ -8312,6 +8431,7 @@ const A={
   backGame:()=>{UI.fromGame=false; if(!S||!S.heroes||!S.heroes.length){UI.scr='menu';render();return} UI.scr=null; render(); scrollTo(0,0)},
   menuNo:()=>{const m=$('#mconf'); if(m) m.remove(); const b=$('#menubtn'); if(b) b.focus()},
   menuYes:()=>{ const m=$('#mconf'); if(m) m.remove(); if(inFight()){C.abort=true;C.id++} C.phase='idle'; save(); cloudPush(); UI.fromGame=false; UI.scr='select'; UI.confirm=null; render(); scrollTo(0,0) },
+  upShow:()=>upPopShow(true),
   playChar:d=>{ if(startChar(+d.i)){UI.scr=null; render(); scrollTo(0,0); presence(); setTimeout(()=>upPopShow(),350)} },
   upGo:d=>{ UPG=clamp(+d.i,0,UPOP.pages.length-1); upPopRender() },
   upClose:()=>upPopClose(),
