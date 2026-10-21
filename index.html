@@ -2310,6 +2310,12 @@ body.anvil #bag .gi.it:hover{outline:2px solid #e0612a;outline-offset:-2px;filte
 .rc9n{grid-column:1/-1;font-size:.72rem;color:#6a4a22}
 @media (max-width:760px){.rc9r{grid-template-columns:1fr}.rc9a{display:none}}
 
+/* ===== 0.7.10 ===== */
+.chs8{width:54px;height:54px;border-radius:50%;display:grid;place-items:center;background:radial-gradient(circle at 50% 35%,color-mix(in srgb,var(--rc) 55%,#fff),var(--rc) 55%,color-mix(in srgb,var(--rc) 45%,#000));border:3px solid #1d1209;box-shadow:0 0 12px color-mix(in srgb,var(--rc) 60%,transparent);color:#fff}
+.chs8 .uic,.chs8 .mfi{width:28px;height:28px}
+.chres .s8mt{min-height:120px;margin:4px 0}
+.dgrow.dgall{flex-wrap:wrap}
+
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 @media (min-width:760px){.arena{grid-template-columns:1fr 1fr}}
 </style>
@@ -2384,8 +2390,8 @@ const POTS={
   sc_blank:{n:'Parchemin vierge',c:'#c9a86a',p:90,nocombat:1,d:'Support d’enchantement : placez-le en haut de l’autel d’Enchantement, puis combinez 3 Poudres runiques, une Essence magique et une Rune.'},
   p_xp:{n:'Élixir de savoir',c:'#3fae6a',p:80,d:'+50 % d’expérience gagnée en combat pendant 30 minutes (temps réel, même hors ligne).'},
   c_relic:{n:'Coffre des Reliques',c:'#8a4c22',fix:{gold:60000,ru_pri:1},nocombat:1,d:'Contient une relique cosmétique de cadre de carte (Or royal, Saphir, Améthyste, Braise vivante ou Prisme holographique). S’ouvre depuis l’inventaire.'},
-  s_ch2:{n:'Coffre de saison épique',c:'#a050d8',fix:{gold:40000,ru_anc:1},nocombat:1,d:'Contient 1 cosmétique de la saison : Commun 10 %, Rare 30 %, Épique 55 %, Légendaire 5 %. Un cosmétique pas encore obtenu est prioritaire. S’ouvre dans Quêtes → Saison.'},
-  s_ch3:{n:'Coffre de saison légendaire',c:'#ff7a1a',fix:{gold:60000,ru_pri:1},nocombat:1,d:'Contient 1 cosmétique de la saison : Rare 15 %, Épique 45 %, Légendaire 40 %. Un cosmétique pas encore obtenu est prioritaire. S’ouvre dans Quêtes → Saison.'},
+  s_ch2:{n:'Coffre de saison épique',c:'#a050d8',fix:{gold:40000,ru_anc:1},nocombat:1,d:'Contient 1 cosmétique de la saison : Commun 10 %, Rare 30 %, Épique 55 %, Légendaire 5 %. Un cosmétique pas encore obtenu est prioritaire. Clic droit dans l’inventaire pour l’ouvrir.'},
+  s_ch3:{n:'Coffre de saison légendaire',c:'#ff7a1a',fix:{gold:60000,ru_pri:1},nocombat:1,d:'Contient 1 cosmétique de la saison : Rare 15 %, Épique 45 %, Légendaire 40 %. Un cosmétique pas encore obtenu est prioritaire. Clic droit dans l’inventaire pour l’ouvrir.'},
   p_loot:{n:'Philtre de fortune',c:'#d9a62b',p:80,d:'+50 % d’or et de matériaux gagnés en combat pendant 30 minutes (temps réel, même hors ligne).'},
 };
 const potPrice=k=>Math.round(POTS[k].p*3*(1+((S&&S.heroes[0]&&S.heroes[0].lvl)||1)/10));
@@ -4403,7 +4409,7 @@ function startChar(i){
   ACC.cur=i; saveAcc(); MIG_MSG='';
   S=loadSave();
   if(!S){S=newGame(); S.gold=ACC.gold; return false}
-  S.gold=ACC.gold; bootChar(); return true;
+  S.gold=ACC.gold; bootChar(); try{ cbClamp(); sChMig() }catch(e){} return true;
 }
 function bootChar(){
   const away=(Date.now()-S.last)/1000;
@@ -5040,7 +5046,7 @@ function fighterArt(o){
 const ftHp=()=>`<div class="hp"><i></i><b class="shl"></b><span></span></div>`;
 
 /* ---------- sac de combat ---------- */
-const CB_LIM={p_vie1:10,p_vie:10,p_vie3:5,p_reg1:5,p_reg2:3,p_res:3,p_for:3,p_int:3,p_pa:2,p_xp:1,p_loot:1};
+const CB_LIM={p_vie1:3,p_vie:3,p_vie3:3,p_reg1:1,p_reg2:1,p_res:1,p_for:1,p_int:1,p_pa:1,p_xp:1,p_loot:1};
 const cbBag=()=>{ if(!S.cbag||typeof S.cbag!=='object') S.cbag={}; return S.cbag };
 const cbCount=k=>(S&&S.cbag&&S.cbag[k])||0;
 const cbTake=k=>{ const b=cbBag(); b[k]=Math.max(0,(b[k]||0)-1); if(!b[k]) delete b[k] };
@@ -5425,7 +5431,7 @@ async function seasonGo(){
   if(!FB.admin||UI.wiping) return; UI.wiping=true;
   const W=UI.wipe||{},m=$('#wipemsg'); if(m) W.msg=m.value.trim().slice(0,300);
   const n=(FB.season?(+FB.season.n||0):0)+1,doc={n,troph:!!W.troph,cos:!!W.cos,stash:!!W.stash,msg:W.msg||'',by:FB.user.uid,ts:firebase.firestore.FieldValue.serverTimestamp()};
-  await rkFreeze(FB.season?(+FB.season.n||0):0,true);
+  await rkFreeze(rkSeason(),true);
   try{ await FB.db.collection(COL('config')).doc('reset').set(doc); FB.season=doc; UI.confirm=null; toast('Saison '+n+' lancée : tous les comptes repartent de zéro.'); seasonCheck() }
   catch(e){ toast('Échec ('+((e&&e.code)||'erreur')+') : vérifiez la règle Firestore de config/reset.') }
   UI.wiping=false; if(UI.scr==='opts') render();
@@ -5472,7 +5478,7 @@ function admHome(){
     ${admCard('skull','Bestiaire','Statistiques des ennemis',`<button class="btn sm pri" data-act="scr" data-s="best">Ouvrir le Bestiaire</button>`)}</div>`;
 }
 function admSeason(){
-  return `<div class="admgrid one">${admCard('flag','Titre de la saison','Affiché pour tous les joueurs sous le titre du jeu',`<div class="row" style="gap:8px"><input class="pcsel" id="admstitle" maxlength="60" value="${esc((FB.season&&FB.season.title)||'')}" placeholder="${esc('Saison '+Math.max(1,FB.season?(+FB.season.n||0):1))}" style="flex:1"><button class="btn pri" data-act="admSTitle">Enregistrer</button></div><small class="mute">Laissez vide pour afficher « Saison N ».</small>`)}
+  return `<div class="admgrid one">${admRkCard()}${admCard('flag','Titre de la saison','Affiché pour tous les joueurs sous le titre du jeu',`<div class="row" style="gap:8px"><input class="pcsel" id="admstitle" maxlength="60" value="${esc((FB.season&&FB.season.title)||'')}" placeholder="${esc('Saison '+Math.max(1,FB.season?(+FB.season.n||0):1))}" style="flex:1"><button class="btn pri" data-act="admSTitle">Enregistrer</button></div><small class="mute">Laissez vide pour afficher « Saison N ».</small>`)}
    ${rankAdminHTML()}${seasonAdminHTML().replace('<section class="panel" style="margin-top:12px"><h2 style="margin-top:0">Remise à zéro de tous les comptes</h2>','<section class="admc danger"><header><span class="admci">'+uic('warn')+'</span><div><h3>Remise à zéro de tous les comptes</h3><small>Nouvelle saison</small></div></header>')}</div>`;
 }
 function admPlayers(){
@@ -5618,7 +5624,7 @@ document.addEventListener('dblclick',e=>{ const a=e.target.closest&&e.target.clo
 /* ===================== 0.5.0 : CLASSEMENT ===================== */
 const RK={tab:'duel',sel:null,list:null,busy:false,err:'',ts:0,boss:null,insp:null,final:null};
 const rkCol=()=>FB.db.collection(COL('ranks'));
-const rkSeason=()=>(FB.season&&+FB.season.n)||ACC.season||0;
+const rkSeason=()=>{ const n=(FB.season&&+FB.season.n)||ACC.season||0,r=(FB.season&&+FB.season.rkr)||0; return r?Math.round((n+r/1000)*1000)/1000:n };
 function rkAcc(){ const n=rkSeason(); if(!ACC.rk||ACC.rk.s!==n) ACC.rk={s:n,w:0,l:0,raid:{},deq:null}; return ACC.rk }
 function eqSnap(){ const h=S&&S.heroes&&S.heroes[0]; if(!h) return null; const s=heroStats(h),pick={};
   for(const k of ['hp','atk','mag','spd','crit','critDmg','dodge','lifesteal','ap','def','res',...RES_K]) pick[k]=Math.round((s[k]||0)*10)/10;
@@ -6481,22 +6487,39 @@ function sEv(ev,n=1){ if(!qHas()) return; const A=seaA(),Q=sqAll(),before=Object
 function seaLoss(){ const A=seaA(); A.st=0; saveAcc() }
 function sqClaim(id){ const q=sqAll().find(x=>x.id===id),A=seaA(); if(!q||A.q[id]||sqP(q)<q.n) return;
   A.q[id]=Date.now();
-  if(q.rw[0]==='ch'){ const c=ACC.schest=ACC.schest||[0,0,0,0]; c[q.rw[1]]+=(q.rw[2]||1); toast(`${q.rw[2]>1?q.rw[2]+' coffres':'Coffre'} de saison ${SRAR[q.rw[1]][0].toLowerCase()} obtenu${q.rw[2]>1?'s':''} : ouvrez-le dans Quêtes → Saison.`) }
+  if(q.rw[0]==='ch'){ qGive([['s_ch'+q.rw[1],q.rw[2]||1]]); save(); toast(`${q.rw[2]>1?q.rw[2]+' coffres':'Coffre'} de saison ${SRAR[q.rw[1]][0].toLowerCase()} ajouté${q.rw[2]>1?'s':''} à l’inventaire : clic droit pour l’ouvrir.`) }
   else { const rw=lotRoll(q.rw[1]); qGive(rw); save(); toast(`${LOT8[q.rw[1]].n} : ${rw.map(([k,n])=>n+' × '+(MAT_OBJ[k]||k)).join(', ')}.`) }
   seaTrCheck(); saveAcc(); render() }
-function sChOpen(r){ const c=ACC.schest=ACC.schest||[0,0,0,0]; r=+r; if(!(c[r]>0)) return; c[r]--;
-  let x=Math.random()*100,rr=0; for(let i=0;i<4;i++){ if(x<SCH_W[r][i]){rr=i;break} x-=SCH_W[r][i] }
-  const pool=t=>COS8.filter(k=>k.r===t&&k.s===1&&!cosOwn(k.id));
+const schK=r=>'s_ch'+r;
+const schN=r=>matAll(schK(r));
+function sChMig(){ if(!S||!S.bag||!ACC.schest) return; const c=ACC.schest; let ch=false; for(let r=0;r<4;r++) if(c[r]>0){ const left=bagAddMat(S.bag,schK(r),c[r]); if(left<c[r]) ch=true; c[r]=left } if(!c.some(x=>x>0)) delete ACC.schest; if(ch){ markNew(); save(); saveAcc() } }
+function sChRoll(r){ let x=Math.random()*100,rr=0; for(let i=0;i<4;i++){ if(x<SCH_W[r][i]){rr=i;break} x-=SCH_W[r][i] } return rr }
+const COS_IC={orn:'spark',pf:'eye',aura:'flame',trail:'auto',cfx:'star',bg:'book'};
+function sChTile(c,win){ const col=c?SRAR[c.r][1]:'#c9ad7a'; return `<div class="chtile ${win?'win':''}" style="--rc:${col}"><span class="chs8">${c?u8(COS_IC[c.t]):`<svg class="mfi" viewBox="0 0 24 24">${MI.st_up}</svg>`}</span><b>${c?esc(c.n):'Lot du forgeron'}</b><small>${c?SRAR[c.r][0]:'Ressources'}</small></div>` }
+function sChAsk(r){ r=+r; if(schN(r)<1) return; closeChest(); const w=document.createElement('div'); w.id='chestw'; w.className='chestm'; w.setAttribute('role','dialog'); w.setAttribute('aria-modal','true');
+  w.innerHTML=`<div class="box chask"><span class="chico">${matSvg(schK(r))}</span><h2>Ouvrir le Coffre de saison ${SRAR[r][0].toLowerCase()} ?</h2><p>Le coffre sera consommé et révélera 1 cosmétique de la Saison ${seaN()}.</p><div class="row"><button class="btn" data-act="chestNo">Annuler</button><button class="btn pri" data-act="sChOpen" data-r="${r}">Ouvrir</button></div></div>`;
+  document.body.append(w); w.querySelector('[data-act=sChOpen]').focus() }
+function sChOpen(r){ r=+r; if(schN(r)<1){ closeChest(); return } removeMat(schK(r),1);
+  const rr=sChRoll(r),pool=t=>COS8.filter(k=>k.r===t&&k.s===1&&!cosOwn(k.id));
   let P=pool(rr),t=rr; while(!P.length&&t>0){ t--; P=pool(t) }
   let got=null,lot=null;
   if(P.length){ got=P[Math.floor(Math.random()*P.length)]; ACC.scos=ACC.scos||{}; ACC.scos[got.id]=Date.now() }
-  else { lot=lotRoll('forge'); qGive(lot); save() }
-  seaTrCheck(); saveAcc(); render(); chReveal8(r,got,lot) }
-function chReveal8(r,got,lot){ const w=document.createElement('div'); w.className='s8m'; w.id='s8m'; w.setAttribute('role','dialog'); w.setAttribute('aria-modal','true');
-  w.innerHTML=`<div class="s8mb" style="--cc:${SRAR[got?got.r:r][1]}"><span class="s8mr">${CH8SVG(SRAR[r][1])}</span><small>Coffre de saison ${SRAR[r][0].toLowerCase()}</small>${got?`<div class="s8mt">${cosThumb(got)}</div><b>${esc(got.n)}</b><span class="s8mk" style="color:${SRAR[got.r][1]}">${COS_T[got.t]} · ${SRAR[got.r][0]}</span><p>${esc(got.d)}</p><div class="row"><button class="btn" data-act="s8mClose">Fermer</button><button class="btn pri" data-act="s8Equip" data-id="${got.id}">Équiper</button></div>`
-   :`<b>Tous les cosmétiques de cette rareté sont déjà à vous</b><p>Vous recevez un Lot du forgeron : ${lot.map(([k,n])=>n+' × '+esc(MAT_OBJ[k]||k)).join(', ')}.</p><div class="row"><button class="btn pri" data-act="s8mClose">Fermer</button></div>`}</div>`;
-  w.addEventListener('click',e=>{ if(e.target===w) w.remove() }); document.body.append(w) }
-function s8Equip(id){ const c=COS8K[id]; if(!c||!cosOwn(id)) return; ACC.card=Object.assign(pcDef(),ACC.card||{}); if(c.t==='bg') ACC.card.bg=c.bg; else ACC.card[c.t]=id; UI.pcDraft=null; const m=$('#s8m'); if(m) m.remove(); pcSave(); toast(`${c.n} équipé.`) }
+  else { lot=lotRoll('forge'); qGive(lot) }
+  seaTrCheck(); saveAcc(); save();
+  let w=$('#chestw'); if(!w){ w=document.createElement('div'); w.id='chestw'; w.className='chestm'; w.setAttribute('role','dialog'); w.setAttribute('aria-modal','true'); document.body.append(w) }
+  const rnd=()=>{ const t2=sChRoll(r),L=COS8.filter(k=>k.r===t2); return L[Math.floor(Math.random()*L.length)] };
+  const N=56,W=50,strip=Array.from({length:N},(_,i)=>i===W?got:rnd());
+  w.innerHTML=`<div class="box chopen"><h2>Coffre de saison ${SRAR[r][0].toLowerCase()}</h2><div class="chwin"><div class="chstrip">${strip.map((x,i)=>sChTile(x,i===W)).join('')}</div><i class="chmark"></i></div><div class="chres" aria-live="polite"></div></div>`;
+  const st=w.querySelector('.chstrip'),win=w.querySelector('.chwin'),tw=st.children[0].offsetWidth+10;
+  const target=W*tw+tw/2-win.clientWidth/2+(Math.random()-.5)*(tw*.7);
+  const quick=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  requestAnimationFrame(()=>{ st.style.transition=`transform ${quick?0.3:6.2}s cubic-bezier(.08,.75,.18,1)`; st.style.transform=`translateX(${-target}px)` });
+  let fired=false; const done=()=>{ if(fired||!$('#chestw')) return; fired=true; st.children[W].classList.add('hl');
+    w.querySelector('.chres').innerHTML=got?`<p class="chrar" style="color:${SRAR[got.r][1]}">${SRAR[got.r][0]} · ${COS_T[got.t]}</p><div class="s8mt">${cosThumb(got)}</div><h3>${esc(got.n)}</h3><p>${esc(got.d)}</p><div class="row">${schN(r)?`<button class="btn" data-act="sChOpen" data-r="${r}">Ouvrir un autre (${schN(r)})</button>`:''}<button class="btn" data-act="s8Equip" data-id="${got.id}">Équiper</button><button class="btn pri" data-act="chestNo">Fermer</button></div>`
+      :`<p class="chrar">Lot du forgeron</p><h3>Tous les cosmétiques de cette rareté sont déjà à vous</h3><p>Vous recevez : ${lot.map(([k,n])=>n+' × '+esc(MAT_OBJ[k]||k)).join(', ')}.</p><div class="row">${schN(r)?`<button class="btn" data-act="sChOpen" data-r="${r}">Ouvrir un autre (${schN(r)})</button>`:''}<button class="btn pri" data-act="chestNo">Fermer</button></div>`;
+    render(); };
+  st.addEventListener('transitionend',done,{once:true}); setTimeout(done,quick?600:6600) }
+function s8Equip(id){ const c=COS8K[id]; if(!c||!cosOwn(id)) return; ACC.card=Object.assign(pcDef(),ACC.card||{}); if(c.t==='bg') ACC.card.bg=c.bg; else ACC.card[c.t]=id; UI.pcDraft=null; const m=$('#s8m'); if(m) m.remove(); closeChest(); pcSave(); toast(`${c.n} équipé.`) }
 /* ---------- trophées de saison ---------- */
 const SEA_TR=()=>{ const A=seaA(),c=A.c,AV=RAIDS.find(r=>r.id==='avatar')||RAIDS[RAIDS.length-1]; return [
  {id:'boss4',ic:'skull',n:'Fléau des cendres',d:'Vaincre les 4 premiers boss de campagne en Héroïque pendant la saison.',p:30,f:()=>[[0,1,2,3].filter(z=>c['boss:hero:'+z]).length,4]},
@@ -6515,7 +6538,7 @@ function seaTrCheck(){ if(!qHas()) return; ACC.stro=ACC.stro||{}; const got=[];
 const _viewQuest0=viewQuest;
 viewQuest=function(){
   const Q=qState(); if(!Q) return ''; seaTrCheck(); const cat=UI.qCat||'d',A=seaA(),n=seaN();
-  const dl=Q.d.list.filter(q=>q.p>=q.n&&!q.got).length+(Q.d.list.every(q=>q.got)&&!Q.d.chest?1:0),wl=Q.w.list.filter(q=>q.p>=q.n&&!q.got).length,sl=sqClaimN()+(ACC.schest||[]).reduce((a,b)=>a+b,0);
+  const dl=Q.d.list.filter(q=>q.p>=q.n&&!q.got).length+(Q.d.list.every(q=>q.got)&&!Q.d.chest?1:0),wl=Q.w.list.filter(q=>q.p>=q.n&&!q.got).length,sl=sqClaimN();
   const side=`<nav class="s8side" aria-label="Catégories de quêtes"><small>Quêtes</small>
    <button class="s8tab ${cat==='d'?'on':''}" data-act="qCat" data-c="d" aria-pressed="${cat==='d'}">${u8('scroll')}<span><b>Journalières</b><small>Renouvelées à 6 h 00</small></span>${dl?`<em>${dl}</em>`:''}</button>
    <button class="s8tab ${cat==='w'?'on':''}" data-act="qCat" data-c="w" aria-pressed="${cat==='w'}">${u8('star')}<span><b>Hebdomadaires</b><small>Renouvelées le mercredi</small></span>${wl?`<em>${wl}</em>`:''}</button>
@@ -6533,12 +6556,12 @@ viewQuest=function(){
 function seaBan(kick,title,txt,done,tot,lbl){ const l=seaLeft();
   return `<div class="s8ban"><div><span class="s8kick">${kick}</span><h3>${esc(title)}</h3><p>${txt}</p><div class="s8prog"><span>${lbl}</span><i><b style="width:${tot?done/tot*100:0}%"></b></i><b class="num">${done} / ${tot}</b></div></div><div class="s8end"><small>Fin de saison</small><b class="num">${l||'—'}</b>${l?`<small>le ${new Date(seaEnd()).toLocaleDateString('fr-FR',{day:'numeric',month:'long'})}</small>`:'<small>Date annoncée bientôt</small>'}</div></div>` }
 function viewSeaQ(){
-  const A=seaA(),G=SQ8(),all=G.flatMap(g=>g[2]),done=all.filter(q=>A.q[q.id]).length,CH=ACC.schest||[0,0,0,0];
+  sChMig(); const A=seaA(),G=SQ8(),all=G.flatMap(g=>g[2]),done=all.filter(q=>A.q[q.id]).length,CH=[0,1,2,3].map(schN);
   const rw=q=>q.rw[0]==='ch'?chIc8(q.rw[1],q.rw[2]||1):lotIc8(q.rw[1]);
   const row=q=>{const p=sqP(q),ok=p>=q.n,got=!!A.q[q.id];return `<div class="s8qi ${ok?'ok':''} ${got?'got':''}"><span class="qci">${u8(q.ic)}</span><div><b>${esc(q.t)}</b><small>${esc(q.s)}</small><div class="s8bar"><i style="width:${p/q.n*100}%"></i></div></div><div class="s8rw"><small class="num">${q.ev==='upmax'?'+'+p+' / +'+q.n:fmt(p)+' / '+fmt(q.n)}</small>${rw(q)}</div>${got?`<span class="qbtn got">${uic('check')}Récupéré</span>`:ok?`<button class="qbtn" data-act="sqClaim" data-id="${q.id}">Récupérer</button>`:'<span class="qbtn off">En cours</span>'}</div>`};
   return `${seaBan('Saison '+seaN(),seaName(),'Ces quêtes ne se renouvellent pas : elles restent jusqu’à la fin de la saison. Ce qui n’est pas terminé à la fin est perdu.',done,all.length,'Récupérées')}
    <div class="s8sq"><div>${G.map(([n,ic,L])=>`<section class="s8grp"><header>${u8(ic)}<b>${n}</b><small>${L.filter(q=>A.q[q.id]).length} / ${L.length}</small></header>${L.map(row).join('')}</section>`).join('')}</div>
-   <aside class="s8aside"><div class="s8box"><h4>Coffres de saison</h4><p>Chaque coffre donne un cosmétique de la Saison ${seaN()}. Survolez un coffre pour voir les chances.</p><div class="s8chl">${SRAR.map(([n,c],r)=>`<div class="${CH[r]?'':'none'}">${chIc8(r,1)}<span><b style="color:${c}">${n}</b><small>${CH[r]?`${CH[r]} à ouvrir`:'Aucun'}</small></span>${CH[r]?`<button class="qbtn" data-act="sChOpen" data-r="${r}">Ouvrir</button>`:''}</div>`).join('')}</div></div>
+   <aside class="s8aside"><div class="s8box"><h4>Coffres de saison</h4><p>Chaque coffre donne un cosmétique de la Saison ${seaN()}. Ils arrivent dans l’inventaire : clic droit dessus pour l’ouvrir. Survolez un coffre pour voir les chances.</p><div class="s8chl">${SRAR.map(([n,c],r)=>`<div class="${CH[r]?'':'none'}">${chIc8(r,1)}<span><b style="color:${c}">${n}</b><small>${CH[r]?`${CH[r]} à ouvrir`:'Aucun'}</small></span>${CH[r]?`<button class="qbtn" data-act="sChAsk" data-r="${r}">Ouvrir</button>`:''}</div>`).join('')}</div></div>
     <div class="s8box"><h4>Cosmétiques de la saison</h4><p><b class="num">${COS8.filter(k=>cosOwn(k.id)).length} / ${COS8.length}</b> obtenus. Ils restent à vous après la saison.</p><button class="btn" data-act="s8Cust">${u8('brush')} Personnaliser ma carte</button></div>
     <div class="s8box"><h4>Trophées de saison</h4><p><b class="num">${SEA_TR().filter(t=>stroGot(t.id)).length} / ${SEA_TR().length}</b> obtenus. Ils restent dans votre collection après la saison.</p><button class="btn" data-act="s8Troph">${u8('trophy')} Voir les trophées</button></div></aside></div>`;
 }
@@ -6598,7 +6621,7 @@ const _qEv0=qEv; qEv=function(ev,n=1){ _qEv0(ev,n); try{ sEv(ev,n) }catch(e){} }
 const POT_CK=cls=>['p_vie1','p_vie','p_vie3','p_reg1','p_reg2','p_res',CLASSES[cls]&&CLASSES[cls].role==='mag'?'p_int':'p_for','p_pa'];
 const POT_HEAL={p_vie1:.2,p_vie:.4,p_vie3:.65};
 const POT_REG={p_reg1:[.06,4],p_reg2:[.10,5]};
-const SHOP_CH={s_ch2:2,s_ch3:3};
+const SHOP_CH={};
 /* ---------- cristal d'ascension ---------- */
 const ASC_ILV=5;
 const ascR=(b,p,il)=>(b+p*(il+ASC_ILV))/Math.max(.0001,b+p*il);
@@ -6659,6 +6682,27 @@ function recHTML(){
 function recOpen(){ recClose(); const w=document.createElement('div'); w.id='rec9'; w.className='s8m'; w.setAttribute('role','dialog'); w.setAttribute('aria-modal','true'); w.setAttribute('aria-label','Livre des recettes'); w.innerHTML=recHTML(); w.addEventListener('click',e=>{ if(e.target===w) recClose() }); document.body.append(w) }
 function recClose(){ const w=$('#rec9'); if(w) w.remove() }
 document.addEventListener('keydown',e=>{ if(e.key==='Escape'&&$('#rec9')) recClose() });
+/* ================= 0.7.10 : coffres, admin, sac de combat ================= */
+for(const r of [0,1]){ const k='s_ch'+r,n='Coffre de saison '+SRAR[r][0].toLowerCase(); MAT_OBJ[k]=n; MAT_N[k]=n; MAT_D[k]=`Contient 1 cosmétique de la saison (${SCH_W[r].map((w,i)=>w?SRAR[i][0]+' '+w+' %':'').filter(Boolean).join(', ')}). Un cosmétique pas encore obtenu est prioritaire. Clic droit pour l’ouvrir.`;
+  MI[k]=MI.s_ch2.replace(/#7a3aa8/g,r?'#a8861a':'#7a5a3a').replace(/#a050d8/g,r?'#d6b032':'#b0906a').replace(/#24082e/g,'#2a1a08') }
+/* sac de combat : limites */
+function cbClamp(){ if(!S||!S.cbag) return; let ch=false; for(const [k,v] of Object.entries(S.cbag)){ const L=CB_LIM[k]||0; if(v>L){ const ex=v-L; S.cbag[k]=L; if(!L) delete S.cbag[k]; const left=bagAddMat(S.bag,k,ex); if(left>0){ const t=mlPlace({[k]:left}); if(t){ for(const x of t) x.T.bag=x.bag; saveAcc() } } ch=true } } if(ch){ markNew(); save() } }
+/* fonds de zone débloqués par l'admin */
+PC_BG.forEach(B=>{ const f=B[2]; B[2]=()=>!!ACC.admAll||f() });
+/* admin : tout débloquer */
+function admUnlock(what){ if(!FB.admin) return; const now=Date.now();
+  if(what==='cos'||what==='all'){ ACC.scos=ACC.scos||{}; for(const c of COS8) ACC.scos[c.id]=ACC.scos[c.id]||now; ACC.cos=ACC.cos||{}; PC_FR.forEach((F,i)=>{ if(F[2]==null) ACC.cos['fr'+i]=ACC.cos['fr'+i]||now }); ACC.admAll=1 }
+  if(what==='tr'||what==='all'){ ACC.troph=ACC.troph||{}; for(const t of TROPHIES) ACC.troph[t.id]=ACC.troph[t.id]||now; ACC.stro=ACC.stro||{}; for(const t of SEA_TR()) ACC.stro[stroK(t.id)]=ACC.stro[stroK(t.id)]||now }
+  if(what==='none'){ delete ACC.scos; ACC.cos={}; delete ACC.admAll; const c=ACC.card; if(c){ for(const k of ['orn','pf','aura','trail','cfx']) c[k]=null; if(c.bg>=100) c.bg=3; if(pcFr(c.fr)[2]==null) c.fr=0 } UI.pcDraft=null }
+  saveAcc(); presence(); render();
+  toast(what==='none'?'Cosmétiques retirés (reliques, cosmétiques de saison, fonds).':what==='tr'?'Tous les trophées et trophées de saison débloqués.':what==='cos'?'Tous les cosmétiques débloqués (reliques, saison, fonds).':'Tout est débloqué : cosmétiques, trophées et titres.') }
+/* admin : remise à zéro du classement */
+async function admRkReset(){ if(!FB.admin) return; if(UI.confirm!=='rkReset'){ UI.confirm='rkReset'; render(); return }
+  UI.confirm=null; const r=((FB.season&&+FB.season.rkr)||0)+1;
+  try{ await FB.db.collection(COL('config')).doc('reset').set({rkr:r},{merge:true}); FB.season=Object.assign({},FB.season||{n:0},{rkr:r}); RK.list=null; RK.final=null; toast('Classement remis à zéro pour tous les joueurs.') }
+  catch(e){ toast('Échec ('+((e&&e.code)||'erreur')+') : vérifiez la règle Firestore de config/reset.') }
+  render() }
+const admRkCard=()=>admCard('podium','Classement','Duels et défis de la saison en cours',`<p class="hint">Remet le classement à zéro pour tous les joueurs (victoires, défaites et records de défis). Les anciens résultats ne sont plus affichés ; la saison, les personnages et les trophées ne changent pas.${(FB.season&&+FB.season.rkr)?` Remises à zéro cette saison : <b>${+FB.season.rkr}</b>.`:''}</p><div class="row">${UI.confirm==='rkReset'?`<button class="btn sm danger" data-act="admRkReset">Oui, remettre le classement à zéro</button><button class="btn sm" data-act="cancelReset">Annuler</button>`:`<button class="btn sm danger" data-act="admRkReset">${uic('podium')} Réinitialiser le classement</button>`}</div>`);
 
 function viewCombatIdle(){
   const P=prog(),dk=curDiff(),D=DIFF[dk],hero=dk!=='normal',z=ZONES[UI.zone],L=D.L||UI.zone*10+UI.stage;
@@ -7128,6 +7172,7 @@ document.addEventListener('contextmenu',e=>{
   if(!c&&!s) return; e.preventDefault(); hideTip();
   const it=c&&S.bag[+c.dataset.i]&&S.bag[+c.dataset.i].o;
   if(it&&it.mat==='c_relic'){ chestAsk(); return }
+  if(it&&/^s_ch[0-3]$/.test(it.mat)){ sChAsk(+it.mat.slice(4)); return }
   if(it&&BUFF_K.includes(it.mat)&&UI.tab!=='forge'){ drinkBuff(it.mat); return }
   if(c&&UI.tab==='forge'){ if(it) fPlace(it); return}
   if(c){ if(it&&!it.mat) equipFromCell(+c.dataset.i,targetSlot(S.heroes[0],it))}
@@ -7536,9 +7581,10 @@ function viewHelp(){
 }
 
 /* --- nouveautés --- */
-const VERSION='0.7.9';
-const BUILD='20261021083059';
+const VERSION='0.7.10';
+const BUILD='20261021084947';
 const PATCH=[
+ {"v": "0.7.10", "t": "Coffres au clic droit et sac de combat", "sec": [["Coffres", ["Les coffres de saison arrivent maintenant dans l’inventaire (récompenses de quêtes et achats au Marchand) : faites un clic droit dessus pour les ouvrir, comme le Coffre des Reliques.", "Tous les coffres utilisent la même animation de roulette, et chaque coffre donne 1 cosmétique.", "Les coffres de saison que vous aviez déjà sont placés automatiquement dans l’inventaire."]], ["Sac de combat", ["Nouvelles limites : 3 potions de chaque sorte pour les potions de vie (petite, normale et grande), 1 pour toutes les autres (avant : 10 Potions de vie, 3 Potions de résistance, de force ou d’intelligence, 2 Potions d’action). Les potions en trop retournent dans l’inventaire."]]]},
  {"v": "0.7.9", "t": "Potions de soin, Cristal d’ascension et Fusion", "sec": [["Potions", ["Nouvelles potions de soin chez le Marchand : Petite potion de vie (rend 20 % des PV max, recharge 3 tours), Potion de vie (40 %, inchangée) et Grande potion de vie (65 %, recharge 5 tours).", "Nouvelles potions de soin sur la durée : Potion de régénération (6 % des PV max par tour pendant 4 tours, 24 % au total) et Élixir de régénération (10 % par tour pendant 5 tours, 50 % au total)."]], ["Marchand", ["Nouvelle catégorie Cosmétiques : Coffre des Reliques (60 000 or + 1 Rune primordiale), Coffre de saison épique (40 000 or + 1 Rune ancienne) et Coffre de saison légendaire (60 000 or + 1 Rune primordiale)."]], ["Forge", ["Nouvel objet légendaire, le Cristal d’ascension : il augmente de 5 le niveau d’objet d’un équipement et recalcule toutes ses affixes (une seule fois par objet ; le niveau requis ne change pas). Il s’obtient uniquement en réussissant des défis de raid (3 % au palier +0, puis +0,5 % par palier, jusqu’à 10 %).", "Nouvelle Fusion légendaire à l’Autel d’enchantement : 10 Prismes divins + 3 Runes primordiales + 1 Parchemin vierge + 20 000 or donnent un Parchemin d’action, qui ajoute +1 Point d’action à un anneau sans prendre d’emplacement d’affixe.", "Nouveau bouton « Recettes » dans les ateliers : la liste complète des recettes d’enchantement, de fusion et d’amélioration."]], ["Cosmétiques", ["Les auras de combat passent maintenant à la fois derrière et devant le héros."]], ["Correction", ["Quête de saison « Créer 10 équipements » remplacée par « Recycler 50 objets » : la création d’équipement n’est pas disponible pour l’instant.", "Les Points d’action donnés par une affixe ne sont plus multipliés par le niveau de renforcement de l’objet (ils restent des nombres entiers)."]]]},
  {"v": "0.7.8", "t": "Cartes de joueur fixes", "sec": [["Interface", ["Les cartes de joueur ne s’inclinent plus et ne brillent plus quand la souris passe dessus (carte, bannière du classement et carte flottante)."]]]},
  {"v": "0.7.7", "t": "Options : revoir les nouveautés", "sec": [["Interface", ["Nouveau bouton dans Options → Interface : « Revoir les nouveautés » réaffiche le parchemin de la dernière grande mise à jour, même si vous l’aviez masqué."]]]},
@@ -7738,13 +7784,14 @@ function adminPanel(){
 function dbgGive(ok){
   if(!FB.admin) return `<section class="panel dbggive"><h2>Donner un objet</h2><p class="hint">Réservé aux administrateurs : connectez-vous avec un compte administrateur.</p></section>`;
   const g=UI.dg=UI.dg||{k:'c_relic',n:1,slot:'weapon',rar:3,lvl:50,cls:'',up:0,fr:6};
-  const keys=[...MATS,'c_relic',...Object.keys(POTS),...Object.keys(NEWI).filter(k=>!POTS[k])];
+  const keys=[...MATS,'c_relic','s_ch0','s_ch1',...Object.keys(POTS),...Object.keys(NEWI).filter(k=>!POTS[k])];
   const opt=(v,t,sel)=>`<option value="${v}" ${String(sel)===String(v)?'selected':''}>${esc(t)}</option>`;
   const dis=ok?'':'disabled';
   return `<section class="panel dbggive"><h2>Donner un objet <small class="mlad">Admin</small></h2>
    <div class="dgrow"><b>Ressource</b><select class="pcsel" data-dg="k">${keys.map(k=>opt(k,MAT_OBJ[k]||MAT_N[k]||k,g.k)).join('')}</select><input class="pcsel num" type="number" min="1" max="100000" data-dg="n" value="${g.n}" aria-label="Quantité"><button class="btn sm pri" data-act="dgMat" ${dis}>Donner</button></div>
    <div class="dgrow"><b>Équipement</b><select class="pcsel" data-dg="slot">${ITEM_SLOTS.map(sl=>opt(sl,SLOT_N[sl],g.slot)).join('')}</select><select class="pcsel" data-dg="rar">${RAR.map((r,i)=>opt(i,r.n,g.rar)).join('')}</select><label class="dgl">Niv.<input class="pcsel num" type="number" min="1" max="60" data-dg="lvl" value="${g.lvl}"></label><label class="dgl">+<input class="pcsel num" type="number" min="0" max="10" data-dg="up" value="${g.up}"></label><select class="pcsel" data-dg="cls">${opt('','Classe du personnage',g.cls)}${Object.entries(CLASSES).map(([k,c])=>opt(k,c.n,g.cls)).join('')}</select><button class="btn sm pri" data-act="dgItem" ${dis}>Donner</button></div>
    <div class="dgrow"><b>Relique</b><select class="pcsel" data-dg="fr">${PC_FR.map((F,i)=>F[2]==null?opt(i,'Cadre '+F[0],g.fr):'').join('')}</select><button class="btn sm pri" data-act="dgRelic" ${dis}>Débloquer</button><button class="btn sm" data-act="dgRelicAll" ${dis}>Toutes</button><button class="btn sm danger" data-act="dgRelicNone" ${dis}>Retirer les reliques</button></div>
+   <div class="dgrow dgall"><b>Tout débloquer</b><button class="btn sm pri" data-act="admUnlock" data-w="all" ${dis}>Tout</button><button class="btn sm" data-act="admUnlock" data-w="cos" ${dis}>Cosmétiques</button><button class="btn sm" data-act="admUnlock" data-w="tr" ${dis}>Trophées et titres</button><button class="btn sm danger" data-act="admUnlock" data-w="none" ${dis}>Retirer les cosmétiques</button></div>
    <p class="hint" style="margin:6px 0 0">Les objets vont dans le sac du personnage chargé ; s’il est plein, dans le coffre du compte.</p></section>`;
 }
 function dgPut(att){ const left=bagAddMat(S.bag,Object.keys(att)[0],Object.values(att)[0]); if(left>0){ const t=mlPlace({[Object.keys(att)[0]]:left}); if(!t) return Object.values(att)[0]-left; for(const x of t) x.T.bag=x.bag; saveAcc() } return Object.values(att)[0] }
@@ -8412,6 +8459,9 @@ const A={
   ddHelp:()=>{closeMenuDD(); UI.tab='help'; UI.scr=null; render(); scrollTo(0,0)},
   ddOpt:()=>{closeMenuDD(); save(); UI.fromGame=true; UI.scr='opts'; UI.confirm=null; render(); scrollTo(0,0)},
   ddAdm:()=>{closeMenuDD(); save(); UI.fromGame=true; UI.scr='admin'; UI.confirm=null; render(); scrollTo(0,0)},
+  admUnlock:d=>admUnlock(d.w),
+  admRkReset:()=>admRkReset(),
+  sChAsk:d=>sChAsk(d.r),
   admTab:d=>{UI.admT=d.t; UI.confirm=null; render(); scrollTo(0,0)},
   admMail:()=>{ A.mlOpen(); A.mlAdm() },
   updAuto:()=>{ updSave({auto:!UPDM.auto}).then(()=>{ render(); if(UPDM.auto&&UPDM.last!==VERSION) toast('Envoi automatique activé : l’annonce partira à la prochaine ouverture du jeu.') }); render() },
