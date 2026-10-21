@@ -2136,6 +2136,7 @@ body.anvil #bag .gi.it:hover{outline:2px solid #e0612a;outline-offset:-2px;filte
 @media (max-width:1100px){.t7trees{grid-template-columns:1fr}}
 .sti.b-heat{--sc:#ff8a3a}.sti.b-rage{--sc:#e0412a}.sti.b-garde{--sc:#7aa0d0}
 
+.v7uph{display:flex;align-items:center;gap:8px;margin-top:12px;font-size:.82rem;color:#5a3a20;cursor:pointer;width:max-content}.v7uph input{width:16px;height:16px;accent-color:#7b2a1a;margin:0;cursor:pointer}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 @media (min-width:760px){.arena{grid-template-columns:1fr 1fr}}
 </style>
@@ -5808,10 +5809,12 @@ function upPopHTML(){ const P=UPOP.pages[UPG],n=UPOP.pages.length,last=UPG===n-1
   return `<div class="v7upbg" id="uppop"><div class="v7up" role="dialog" aria-modal="true" aria-label="Nouveautés ${UPOP.v}"><div class="scroll"><button class="v7upx" data-act="upClose" ${ttip('Fermer')}>×</button><span class="seal num">${UPOP.v}</span>
    <small class="k">${UPOP.k}</small><h1>${UPOP.t}</h1><div class="img">${zoneScene(P.img,'up'+UPG)}</div>
    <div class="pg"><b>${v7i(P.ic)}<span>${P.t}</span></b><p>${P.d}</p></div>
+   <label class="v7uph"><input type="checkbox" data-act="upHide" ${ACC.upHide===UPOP.v?'checked':''}><span>Ne plus afficher jusqu’à la prochaine grande mise à jour</span></label>
    <div class="nav"><div class="dots">${UPOP.pages.map((_,i)=>`<button class="${i===UPG?'on':''}" data-act="upGo" data-i="${i}" aria-label="Page ${i+1}"></button>`).join('')}</div><span class="num">${UPG+1} / ${n}</span><span class="sp"></span><button class="btn" data-act="upGo" data-i="${UPG-1}" ${UPG?'':'disabled'}>Précédent</button><button class="btn pri" data-act="${last?'upClose':'upGo'}" data-i="${UPG+1}">${last?'Jouer':'Suivant'}</button></div></div></div></div>`}
-function upPopShow(force){ if(!force&&(UPOP.v!==VERSION||ACC.upSeen===VERSION)) return; UPG=0; const o=$('#uppop'); if(o) o.remove(); document.body.insertAdjacentHTML('beforeend',upPopHTML()) }
+function upPopShow(force){ if(!force&&ACC.upHide===UPOP.v) return; UPG=0; const o=$('#uppop'); if(o) o.remove(); document.body.insertAdjacentHTML('beforeend',upPopHTML()) }
 function upPopRender(){ const o=$('#uppop'); if(!o) return; o.outerHTML=upPopHTML().replace('class="v7upbg"','class="v7upbg na"') }
-function upPopClose(){ const o=$('#uppop'); if(o) o.remove(); ACC.upSeen=VERSION; saveAcc() }
+function upPopClose(){ const o=$('#uppop'); if(o) o.remove() }
+function upPopHide(){ ACC.upHide=ACC.upHide===UPOP.v?null:UPOP.v; saveAcc(); upPopRender() }
 document.addEventListener('keydown',e=>{ if(!$('#uppop')) return; if(e.key==='Escape'){ e.preventDefault(); upPopClose() } else if(e.key==='ArrowRight'&&UPG<UPOP.pages.length-1){ UPG++; upPopRender() } else if(e.key==='ArrowLeft'&&UPG>0){ UPG--; upPopRender() } },true);
 
 /* ================= 0.7.0 : moteur de combat commun (aventure, duels, défis) ================= */
@@ -6988,9 +6991,11 @@ function viewHelp(){
 }
 
 /* --- nouveautés --- */
-const VERSION='0.7.2';
-const BUILD='20261021024132';
+const VERSION='0.7.4';
+const BUILD='20261021030220';
 const PATCH=[
+ {"v": "0.7.4", "t": "Parchemin : grandes mises à jour seulement", "sec": [["Interface", ["Le parchemin des nouveautés ne présente que les grandes mises à jour. Si vous le masquez, il ne revient qu’à la prochaine grande mise à jour (les petites mises à jour ne le font plus réapparaître)."]]]},
+ {"v": "0.7.3", "t": "Parchemin des nouveautés", "sec": [["Interface", ["Le parchemin des nouveautés s’affiche maintenant à chaque arrivée en jeu, juste après avoir choisi votre personnage.", "Une case « Ne plus afficher jusqu’à la prochaine mise à jour » permet de le masquer ; il revient automatiquement à la mise à jour suivante."]]]},
  {"v": "0.7.2", "t": "Spécialisation foudre renommée", "sec": [["Classes", ["La spécialisation foudre du Sorcier s’appelle maintenant Évocateur (avant : Fulguromancie). Rien ne change dans ses talents."]]]},
  {"v": "0.7.1", "t": "Guerrier : léger ajustement", "sec": [["Équilibrage", ["Guerrier un peu moins résistant et un peu moins fort. Au niveau 50 sans équipement : PV 2 211 → 2 064, Force 141 → 136, Défense 98 → 88."]]]},
  {"v": "0.7.0", "t": "L’Hôtel des ventes et la refonte des classes", "sec": [["Classes", ["Refonte complète du Sorcier et du Guerrier : nouvelles compétences de base, nouvelles spécialisations et nouveaux arbres de talents. Vos points de compétence et votre spécialisation sont remboursés.", "Sorcier : Pyromancie (Destruction, Incendie, Cataclysme) avec les degrés de chaleur, et Évocateur (Électrocution, Instabilité, Paralysie) avec les Charges statiques.", "Guerrier : Berserk (Barbare, Commandant, Bourreau) avec la Rage, et Défenseur (Brise-défense, Garde, Stratège) avec la Garde.", "Les arbres sont rangés par niveau (10 à 33). Au niveau 30, choisissez 1 ultime parmi 3. Les deux arbres restent visibles une fois la spécialisation choisie, chacun avec son propre fond.", "Des pointillés relient chaque talent au sort qu’il modifie.", "Barre de sorts : 5 → 7 emplacements ; raccourcis 1 à 8 (touche 1 : attaque de base).", "Les anciens talents communs (Érudition, Vitalité…) sont retirés.", "Nouveaux effets de combat : incantation, sorts à retardement, Brûlures cumulables (jusqu’à 5), ralentissement, réduction de Défense, contre-attaque et marque."]], ["Hôtel des ventes", ["Nouvel onglet Hôtel des ventes dans Communauté : vendez et achetez de l’équipement entre joueurs.", "Acheter : filtres par catégorie, rareté, niveau d’objet et classe, recherche par nom d’objet ou de vendeur, tri par prix, fin de la vente, niveau ou rareté. L’objet acheté arrive dans la messagerie avec le récapitulatif de la commande.", "Vendre : choisissez un équipement du sac, votre prix et la durée de la vente (2 h, 12 h, 24 h, 3 jours ou 7 jours). Taxe de 5 % prise à la vente ; frais de dépôt de 1 % (minimum 10 or) rendus si l’objet est vendu. L’or de la vente arrive dans la messagerie avec un récapitulatif.", "Un objet invendu à la fin de la durée vous est renvoyé par la messagerie avec un récapitulatif. Vous pouvez aussi retirer une vente depuis « Mes ventes ». Maximum 10 objets en vente en même temps.", "Potions et gemmes : bientôt disponibles à l’hôtel des ventes."]], ["Combat", ["Le bouton Combattre n’a plus de flèche. Un engrenage à côté regroupe le combat automatique et Rejouer (qui active aussi le combat automatique).", "Nouveau tri du butin dans l’engrenage : choisissez les raretés d’équipement à garder, et si vous ne gardez que l’équipement de votre classe ou les objets meilleurs que le vôtre. Le reste est recyclé automatiquement à la fin du combat (25 % des ressources rendues), et apparaît barré dans le butin."]], ["Forge", ["Correction : le recyclage n’affiche plus de fer ni de cuir (ces matériaux n’existent plus) ; il rend des Poudres runiques."]], ["Messagerie", ["Les messages peuvent maintenant contenir des objets d’équipement : ils vont dans le coffre du compte quand vous les récupérez."]], ["Interface", ["À la première connexion après une grande mise à jour, un parchemin présente les nouveautés juste après avoir choisi votre personnage."]]]},
@@ -7864,6 +7869,7 @@ const A={
   playChar:d=>{ if(startChar(+d.i)){UI.scr=null; render(); scrollTo(0,0); presence(); setTimeout(()=>upPopShow(),350)} },
   upGo:d=>{ UPG=clamp(+d.i,0,UPOP.pages.length-1); upPopRender() },
   upClose:()=>upPopClose(),
+  upHide:()=>upPopHide(),
   newChar:d=>{ const i=+d.i; if(charRaw(i)) return; if(S&&S.heroes&&S.heroes.length&&!UI.scr) save(); C.abort=true;C.id++;C.phase='idle'; ACC.cur=i; S=newGame(); S.gold=ACC.gold; UI.cname=''; UI.scr='create'; render(); scrollTo(0,0) },
   delChar:d=>{ const i=+d.i; if(UI.confirm!=='delc'+i){UI.confirm='delc'+i;render();return}
     lsDel(CHAR_KEY(i)); if(ACC.cur===i){ACC.cur=null; S=null} saveAcc(); UI.confirm=null; render(); toast('Personnage supprimé.') },
