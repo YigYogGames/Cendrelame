@@ -2430,6 +2430,74 @@ body.anvil #bag .gi.it:hover{outline:2px solid #e0612a;outline-offset:-2px;filte
 .uprc{display:flex;flex-direction:column;gap:5px;text-align:left;font-size:.92em;line-height:1.35}.uprc b{color:#7b2a1a;margin-right:4px}.uprm{font-style:italic;opacity:.85;margin-top:4px}
 .chres .cppas li{background:#3a2616;color:#f1e2bd}.chres .cppas li b{color:#ffe3a8}.chres .cppas li.lk{opacity:.6}
 
+/* ===== 0.8.1 : version téléphone ===== */
+.mnav,.msheet,.mshade,.cpclose{display:none}
+/* ===== Version téléphone (≤ 760 px) : n'affecte pas la version PC ===== */
+@media (max-width:760px){
+  body.hasdock{padding-bottom:calc(72px + env(safe-area-inset-bottom,0px))}
+  .wrap{padding:0 8px!important;max-width:none}
+  /* en-tête compact */
+  .top{flex-direction:row!important;justify-content:center;align-items:flex-start;min-height:54px!important;padding:12px 52px 6px 52px!important;gap:6px;position:relative}
+  .top .brand{font-size:1.25rem!important;gap:6px;letter-spacing:.06em}.top .brand:before,.top .brand:after,.top .brand>i{display:none!important}
+  .top .seasont{position:absolute;left:50%;top:32px;transform:translateX(-50%);font-size:.6rem;margin:0;white-space:nowrap}
+  .top .tophl{position:absolute!important;left:4px;top:6px;gap:6px}.top .mehud{width:40px;height:40px}.top .mlbtn{display:none!important}
+  .byline{display:none}
+  .menubtn{top:8px!important;right:8px!important;width:38px;height:38px}
+  main#view{padding:6px 0 0}
+  /* barre du bas */
+  .tabs.dock .dkbar,.tabs.dock .dkfr,.tabs.dock .dkbag{display:none!important}
+  .mnav{display:grid!important;position:fixed;left:0;right:0;bottom:0;z-index:58;display:grid;grid-template-columns:repeat(5,1fr);align-items:end;padding:6px 6px calc(6px + env(safe-area-inset-bottom,0px));background:linear-gradient(#2a1a10f2,#140b05);border-top:2px solid #6a4a22;box-shadow:0 -6px 18px #0009}
+  .mnav button{position:relative;display:flex;flex-direction:column;align-items:center;gap:2px;padding:4px 0;border:0;background:none;color:#cdb68a;font:inherit;font-size:.66rem;font-weight:700}
+  .mnav button .uic{width:24px;height:24px}.mnav button.on{color:#ffe3a8}.mnav button.on:before{content:'';position:absolute;top:-6px;left:22%;right:22%;height:3px;border-radius:2px;background:#e8c982}
+  .mnav .mmain{margin-top:-22px}.mnav .mmain .ring{width:56px;height:56px;border-radius:50%;display:grid;place-items:center;background:radial-gradient(circle at 40% 35%,#c0461a,#7b2a1a 60%,#3a1006);border:3px solid #e8c982;box-shadow:0 4px 12px #000a;color:#fff}.mnav .mmain .ring .uic{width:28px;height:28px}
+  .mnav .ndot{position:absolute;top:2px;right:24%}
+  .mshade{display:block}
+  .msheet{display:block;position:fixed;left:0;right:0;bottom:calc(64px + env(safe-area-inset-bottom,0px));z-index:59;padding:14px 12px 16px;border-radius:18px 18px 0 0;background:linear-gradient(#3a2614,#1d120a);border:2px solid #6a4a22;border-bottom:0;box-shadow:0 -10px 30px #000b;color:#f1e2bd}
+  .msheet h4{margin:0 0 10px;font-family:var(--display);font-weight:400;font-size:1.1rem;color:#ffe3a8;display:flex;align-items:center}.msheet h4 i{margin-left:auto;width:40px;height:5px;border-radius:3px;background:#ffffff33}
+  .msheet .mg{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}.msheet .mg button{display:flex;flex-direction:column;align-items:center;gap:4px;padding:10px 2px;border-radius:12px;background:#0004;border:1px solid #6a4a22;color:#f1e2bd;font:inherit;font-size:.72rem;font-weight:700;position:relative}.msheet .mg .uic{width:26px;height:26px;color:#e8c982}
+  .mshade{position:fixed;inset:0;z-index:57;background:#0007}
+  #tip.msh{position:fixed;z-index:90}
+  /* onglets latéraux → bandeau horizontal */
+  .s8qg,.mt1,.cpa,.cu8,.mtcm2{grid-template-columns:1fr!important;display:grid}
+  .s8side,.cpnav,.mtside .masub,.aminfo.maside.mtside .masub{display:flex!important;flex-direction:row!important;overflow-x:auto;gap:6px;scrollbar-width:none;padding:6px!important}
+  .s8side>small,.cpnav>small,.s8side .s8sep,.cpnav .cptk small{display:none}
+  .s8tab,.cpnav button{flex:0 0 auto;width:auto!important;padding:7px 10px!important}.s8tab small,.cpnav button small{display:none}.s8tab b,.cpnav button b{font-size:.8rem!important;white-space:nowrap}
+  .cpnav .cpcur,.cpnav .cptk{flex:0 0 auto;margin:0!important;padding:4px 8px!important}
+  .mtside .mtsum{display:none}.mtside .ambody>h4,.mtside .amnote{display:none}.mt1 .mtside{padding:0}.mtside .masub button{flex:0 0 auto}
+  /* quêtes */
+  .s8qi{grid-template-columns:32px minmax(0,1fr)!important}.s8qi .s8rw,.s8qi .qbtn{grid-column:2}.s8ban{grid-template-columns:1fr}.s8ban h3{font-size:1.4rem}.s8sq{grid-template-columns:1fr}
+  .qc{grid-template-columns:28px minmax(0,1fr)!important}.qc .qbtn{grid-column:1/-1;justify-self:stretch;justify-content:center}
+  /* compagnon */
+  .cpgrid{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:8px}.cpcard .cpart svg{width:78px;height:78px}.cpcard{padding:8px 6px 6px}
+  .cpa>.cpdet.cpempty{display:none}
+  .cpa>.cpdet:not(.cpempty){position:fixed;left:0;right:0;top:56px;bottom:calc(64px + env(safe-area-inset-bottom,0px));z-index:56;max-height:none;border-radius:18px 18px 0 0;box-shadow:0 -10px 30px #000b}
+  .cpexi{grid-template-columns:40px minmax(0,1fr) auto}.cpexi .cpmi{width:40px;height:40px}.cpsb{grid-template-columns:118px minmax(0,1fr) 46px}
+  .cp10{grid-template-columns:repeat(2,1fr)!important}
+  /* forge */
+  .mawts{grid-template-columns:repeat(4,1fr)!important;gap:6px}.mawt{padding:6px!important;flex-direction:column;text-align:center;gap:4px}.mawt small,.mawt .malk{display:none}.mawt b{font-size:.72rem!important}.mawi{width:34px!important;height:34px!important}
+  .mabody{grid-template-columns:1fr!important}.mabody .masub{flex-direction:row!important;overflow-x:auto;min-height:0}.mabody .masub button,.marec{flex:0 0 auto;margin:0}
+  .mfwork{grid-template-columns:1fr!important}.mfwork .mfl{display:none}.mfc{min-height:360px}
+  /* marchand */
+  .mcshop{grid-template-columns:1fr!important}.mcgrid{grid-template-columns:repeat(3,minmax(0,1fr))!important}.mcslot b{font-size:.7rem}.mcmer .mcquote{display:none}
+  /* inventaire plein écran */
+  #invpop.invpop{left:0!important;right:0!important;top:52px!important;bottom:calc(64px + env(safe-area-inset-bottom,0px))!important;max-height:none!important;height:auto!important;border-radius:16px 16px 0 0;display:flex;flex-direction:column}.invpop .ipgrid{flex:1;overflow:auto}
+  .invpop .iptop{grid-template-columns:1fr!important}.invpop #doll .av{max-height:190px;overflow:hidden}.invpop #doll .av img{max-height:150px}.invpop #doll .c .dslot,.invpop #doll .dslot{width:40px;height:40px}.invpop .nst{display:none}
+  .invpop .bag{grid-template-columns:repeat(14,minmax(0,1fr))!important;width:100%;min-width:0!important;gap:2px;padding:4px}
+  /* infobulle : feuille du bas */
+  #tip.msh{left:8px!important;right:8px!important;top:auto!important;bottom:calc(72px + env(safe-area-inset-bottom,0px))!important;max-width:none!important}
+  .invpop .ipdet{position:fixed;left:8px;right:8px;bottom:calc(72px + env(safe-area-inset-bottom,0px));z-index:70;max-height:calc(var(--vh1,1vh)*62);overflow:auto;border-radius:16px;box-shadow:0 -6px 24px #000a;margin:0}
+  .invpop .ipdet .it{max-width:none;width:auto}
+  .gi,.cell,.dslot,.cpcard,.cpfr,.mcslot,.t7,.skc,.si,.chtile{-webkit-touch-callout:none;-webkit-user-select:none;user-select:none}
+  .cpclose{display:grid!important;position:absolute;right:12px;top:12px;width:38px;height:38px;border-radius:50%;place-items:center;padding:0;background:#140d08dd;border:2px solid #d6aa55;color:#f0d48a;z-index:3}.cpclose .uic{width:18px;height:18px}.cphero .cplv{right:60px!important}
+  .t7base{flex-wrap:wrap}.t7trees{grid-template-columns:1fr!important}.t7top{gap:6px}
+  /* combat */
+  .ftbot{grid-template-columns:1fr!important}.pvlog,.ftbot .log{max-height:84px}
+  .skcbar{flex-wrap:wrap;gap:6px}.ftbar .cbt,.skcbar>*{transform:none}
+  /* fenêtres */
+  .v7up{width:calc(100vw - 16px)!important}.chopen,.box{max-width:calc(100vw - 16px)}
+  .cpx .cph small,.msh small{display:none}
+}
+
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 @media (min-width:760px){.arena{grid-template-columns:1fr 1fr}}
 </style>
@@ -7012,7 +7080,7 @@ function cpDetail(c){ if(!c) return `<div class="cpdet cpempty"><div class="cpbo
   const S=cpSpK(c),C=cpS(),H=CHAB.find(x=>x[0]===C.habSel)||CHAB[0],hu=cpHu(c),need=CP_EVO[c.st],sk='cs_'+S.t,canEvo=c.st<2&&c.lv>=need&&matAll(sk)>0;
   const stats=CSTN.map(([k,n,ic])=>{const v=cpStat(c,k),q=c.shiny?100:Math.round(c.iv[k]*100);return `<div class="cpsb" ${ttip(n+' : '+v+(k==='dod'?' %':''),`Qualité de cette statistique : ${q} %${c.shiny?' (Shiny : maximum + 15 %)':''}.`)}><span>${uic(UIC[ic]?ic:'star')}${n}</span><i><b style="width:${q}%;background:${q>=80?'linear-gradient(90deg,#c0461a,#ffb04a)':q>=55?'linear-gradient(90deg,#3a9a4a,#8fe08a)':'linear-gradient(90deg,#8a7a6a,#c8b8a0)'}"></b></i><em class="num">${v}${k==='dod'?' %':''}</em></div>`}).join('');
   const held=c.item&&CHELD[c.item],own=Object.keys(CHELD).filter(k=>matAll(k)>0);
-  return `<div class="cpdet" style="--ta:${CTY[S.t].a}"><div class="cphero" style="background:${H[3]}">${cpTyB(S.t,1)}<span class="cplv">Niveau ${c.lv}</span>${cpArt(c,190)}<button class="cprel" data-act="cpRelAsk" data-id="${c.id}" ${c.busy?'disabled':''} ${ttip('Relâcher',c.busy?'Impossible pendant une expédition.':`Rend ${cpRelTok(c)} jetons.`)}>${uic('trash')}</button></div><div class="cpbody">
+  return `<div class="cpdet" style="--ta:${CTY[S.t].a}"><div class="cphero" style="background:${H[3]}"><button class="cpclose" data-act="cpSel" data-id="${c.id}" ${ttip('Fermer la fiche')}>${uic('xx')}</button>${cpTyB(S.t,1)}<span class="cplv">Niveau ${c.lv}</span>${cpArt(c,190)}<button class="cprel" data-act="cpRelAsk" data-id="${c.id}" ${c.busy?'disabled':''} ${ttip('Relâcher',c.busy?'Impossible pendant une expédition.':`Rend ${cpRelTok(c)} jetons.`)}>${uic('trash')}</button></div><div class="cpbody">
    <div class="cpnm"><h3>${esc(cpName(c))}</h3>${cpGrB(c)}</div><small style="color:#c8ad80">${CRR[S.r][0]}${c.shiny?' · <b style="color:#ff9af0">Shiny</b>':''} · ${S.n.join(' → ')}</small>
    ${c.lv<CP_MAXL?`<div class="cpxp"><b style="width:${Math.min(100,(c.xp||0)/cpXpN(c.lv)*100)}%"></b></div><small class="num" style="color:#8fe0d0">${fmt(c.xp||0)} / ${fmt(cpXpN(c.lv))} XP</small>`:'<small style="color:#8fe0d0">Niveau maximum</small>'}
    ${c.busy?`<p class="cpwarn" style="color:#8fe0d0">${uic('flag')} En expédition.</p>`:''}
@@ -7103,6 +7171,40 @@ function upRecap(from){ if(!from||vcmp(from,UPOP.v)>=0) return [];
 function upRecapPrep(){ if(UI.upRcDone) return; UI.upRcDone=1;
   const cand=[ACC.lastPlayV,ACC.upHide,ACC.seenVer].filter(v=>v&&/^\d+\.\d+\.\d+$/.test(v)).sort(vcmp),from=ACC.lastPlayV||cand[cand.length-1]||null;
   UI.upRecap=upRecap(from); ACC.lastPlayV=VERSION; saveAcc(); UPOP.pages=[...UI.upRecap,...UPOP.base] }
+/* ================= 0.8.1 : version téléphone ================= */
+UIC.grid=UIC.grid||'<rect x="4" y="4" width="7" height="7" rx="1.5"/><rect x="13" y="4" width="7" height="7" rx="1.5"/><rect x="4" y="13" width="7" height="7" rx="1.5"/><rect x="13" y="13" width="7" height="7" rx="1.5"/>';
+const MOB=()=>matchMedia('(max-width:760px)').matches;
+const MNAV=[['bag','bag','Sac'],['comp','paw','Compagnon'],['combat','swords','Aventure',1],['quest','scroll','Quêtes'],['plus','grid','Plus']];
+const MPLUS=[['shop','coin','Marchand'],['forge','anvil','Amélioration'],['heroes','helm','Personnage'],['comm','flag','Communauté'],['troph','trophy','Trophées'],['fr','people','Amis'],['mail','mail','Messagerie'],['opts','gear','Options']];
+const MPLUS_T=['shop','forge','heroes','comm','troph'];
+function mnavHTML(){ const inv=!!UI.invOpen,plusOn=!!UI.mPlus||(!inv&&MPLUS_T.includes(UI.tab));
+  const dot=k=>{ let d=false; try{ d=k==='bag'?!!S.bagDot:k==='comp'?!!(ACC.comp&&cpDone()>0):k==='quest'?qClaimable():k==='plus'?!!(ACC.trNew||commDot()):false }catch(e){} return d?'<span class="ndot" aria-label="Nouveauté"></span>':'' };
+  const on=k=>k==='bag'?inv:k==='plus'?plusOn:(!inv&&!UI.mPlus&&UI.tab===k);
+  const nav=`<nav class="mnav" aria-label="Navigation">${MNAV.map(([k,i,t,m])=>m?`<button class="mmain ${on(k)?'on':''}" data-act="mNav" data-k="${k}" aria-current="${on(k)?'page':'false'}"><span class="ring">${uic(i)}</span>${t}${dot(k)}</button>`:`<button class="${on(k)?'on':''}" data-act="mNav" data-k="${k}" aria-current="${on(k)?'page':'false'}">${uic(UIC[i]?i:'star')}${t}${dot(k)}</button>`).join('')}</nav>`;
+  if(!UI.mPlus) return nav;
+  const d2=k=>{ let d=false; try{ d=k==='troph'?!!ACC.trNew:k==='fr'?!!commDot():false }catch(e){} return d?'<span class="ndot" style="position:absolute;top:6px;right:14px"></span>':'' };
+  return nav+`<div class="mshade" data-act="mPlusX"></div><div class="msheet" role="dialog" aria-label="Menu"><h4>Menu <i></i></h4><div class="mg">${MPLUS.map(([k,i,t])=>`<button data-act="mGo" data-k="${k}" class="${UI.tab===k&&!inv?'on':''}">${uic(UIC[i]?i:'star')}${t}${d2(k)}</button>`).join('')}</div></div>` }
+const _dockHTML0=dockHTML; dockHTML=function(){ return _dockHTML0()+mnavHTML() };
+function mNav(k){ if(k==='plus'){ UI.mPlus=!UI.mPlus; renderTabs(); return } UI.mPlus=false;
+  if(k==='bag'){ openInv(!UI.invOpen); return }
+  if(UI.invOpen) openInv(false); A.tab({t:k}); scrollTo(0,0) }
+function mGo(k){ UI.mPlus=false; if(k==='fr'){ renderTabs(); A.frBtn(); return } if(k==='mail'){ renderTabs(); A.mlOpen(); return } if(k==='opts'){ if(UI.invOpen) openInv(false); A.scr({s:'opts'}); return } if(UI.invOpen) openInv(false); A.tab({t:k}); scrollTo(0,0) }
+/* appui long = clic droit ; sur un élément sans action, affiche son infobulle */
+let LP=null,LPT=0;
+const LP_CTX='#bag,#doll,#stash,#fslot,.fslot2,.mfs,.dslot,.gi,.si';
+document.addEventListener('pointerdown',e=>{ if(e.pointerType!=='touch'){ return } LPT=Date.now(); if(LP) clearTimeout(LP.tm);
+  const t=e.target; LP={x:e.clientX,y:e.clientY,t,fired:false,tm:setTimeout(()=>{ if(!LP||LP.t!==t) return; LP.fired=true;
+    const ctx=t.closest&&t.closest(LP_CTX),tipEl=t.closest&&t.closest('[data-tip]');
+    if(ctx||!tipEl){ t.dispatchEvent(new MouseEvent('contextmenu',{bubbles:true,cancelable:true,clientX:LP.x,clientY:LP.y})) }
+    else mobTip(tipEl);
+    if(navigator.vibrate) try{ navigator.vibrate(15) }catch(x){} },500)};
+  const tp=$('#tip'); if(tp&&tp.classList.contains('msh')&&!tp.contains(t)){ tp.hidden=true; tp.classList.remove('msh') } },true);
+document.addEventListener('pointermove',e=>{ if(LP&&Math.hypot(e.clientX-LP.x,e.clientY-LP.y)>10){ clearTimeout(LP.tm); LP=null } },true);
+const lpEnd=()=>{ if(!LP) return; clearTimeout(LP.tm); if(LP.fired){ const f=ev=>{ ev.preventDefault(); ev.stopImmediatePropagation(); document.removeEventListener('click',f,true) }; document.addEventListener('click',f,true); setTimeout(()=>document.removeEventListener('click',f,true),400) } LP=null };
+document.addEventListener('pointerup',lpEnd,true); document.addEventListener('pointercancel',()=>{ if(LP){ clearTimeout(LP.tm); LP=null } },true);
+/* le menu natif d'appui long (Android) est remplacé par le nôtre */
+document.addEventListener('contextmenu',e=>{ if(e.isTrusted&&Date.now()-LPT<1500){ e.preventDefault(); e.stopImmediatePropagation() } },true);
+function mobTip(el){ const t=$('#tip'),html=tipHTML(el.dataset.tip); if(!t||!html) return; t.innerHTML=html; t.hidden=false; t.classList.add('msh'); t.style.left=''; t.style.top=''; TIPEL=el }
 
 function viewCombatIdle(){
   const P=prog(),dk=curDiff(),D=DIFF[dk],hero=dk!=='normal',z=ZONES[UI.zone],L=D.L||UI.zone*10+UI.stage;
@@ -7983,9 +8085,10 @@ function viewHelp(){
 }
 
 /* --- nouveautés --- */
-const VERSION='0.8.0';
-const BUILD='20261021133403';
+const VERSION='0.8.1';
+const BUILD='20261021150943';
 const PATCH=[
+ {"v": "0.8.1", "t": "Version téléphone", "sec": [["Téléphone", ["Le jeu s’adapte aux écrans de téléphone (version PC inchangée).", "Nouvelle barre de navigation en bas : Sac, Compagnon, Aventure, Quêtes et Plus. « Plus » ouvre un menu avec le Marchand, l’Amélioration, le Personnage, la Communauté, les Trophées, les Amis, la Messagerie et les Options.", "En-tête compact : portrait à gauche, titre et saison au centre, menu à droite.", "L’inventaire s’ouvre en plein écran, avec une grille ajustée à la largeur. Toucher un objet affiche sa fiche et ses boutons en bas de l’écran.", "Appui long = clic droit (équiper, ouvrir un coffre, utiliser un ticket, placer à la Forge…). Sur un élément sans action, l’appui long affiche son infobulle.", "Les menus latéraux (Quêtes, Communauté, Compagnon, ateliers) deviennent un bandeau horizontal. La Forge masque son aide pour laisser la place à l’enclume.", "Compagnon : créatures sur 2 colonnes, fiche en plein écran avec un bouton pour la fermer. Marchand : 3 objets par ligne."]]]},
  {"v": "0.8.0", "t": "Le mode Compagnon", "sec": [["Compagnon", ["La Collecte disparaît et laisse place au Compagnon : invoquez des créatures, nourrissez-les, faites-les évoluer et envoyez-les en expédition.", "10 espèces de 5 types (Feu, Eau, Terre, Ténèbres, Lumière), chacune avec 3 formes : la 2ᵉ au niveau 20 et la 3ᵉ au niveau 40, avec une Pierre d’évolution de son type.", "Chaque créature a des statistiques (Vie, Attaque, Attaque magique, Défense physique, Défense magique, Esquive) et 3 passifs tirés au hasard. Sa qualité va de D à S : les créatures S sont très rares (environ 1 sur 200).", "Créatures Shiny : 0,5 % de chance. Elles gardent leur type mais ont toutes leurs statistiques au maximum, avec 15 % de plus ; leurs passifs restent aléatoires.", "Tickets de découverte (clic droit dans l’inventaire) : invocation par 1 ou par 10. Ticket normal : Commune 62 %, Rare 28 %, Épique 8,5 %, Légendaire 1,5 %. Ticket supérieur : Rare 60 %, Épique 32 %, Légendaire 8 %.", "Stockage de 30 créatures, agrandissable par 10 jusqu’à 100. Relâchez une créature (bouton sur le côté de sa carte) ou plusieurs à la fois pour gagner des Jetons de ménagerie.", "Cadeau de bienvenue : 3 Tickets de découverte et 5 Croquettes à la première visite."]], ["Expéditions", ["5 expéditions de 1 h à 24 h, renouvelées toutes les 6 heures, avec 1 à 3 places. Une expédition peut partir même avec une seule créature.", "La réussite dépend des statistiques demandées, du type (Eau bat Feu, Feu bat Terre, Terre bat Eau ; Lumière et Ténèbres l’une contre l’autre : ±20 %), du niveau et de la faim.", "Butin : or, ressources d’artisanat, Jetons de ménagerie et, plus rarement, une Pierre d’évolution. En cas d’échec : 25 % du butin et la moitié de l’expérience."]], ["Faim", ["La faim baisse de 1 % par heure, 2 % en expédition. Malus sur les statistiques en expédition : aucun à partir de 75 %, −20 % entre 50 et 74 %, −40 % entre 25 et 49 %, −60 % en dessous."]], ["Boutique du dresseur", ["Nourriture (Croquettes, Ragoût, Festin), Tickets de découverte, Pierres d’évolution, 10 objets portés (1 par créature), places de stockage et 6 habitats (cosmétiques du mode, hors saison).", "Au Marchand : Ticket de découverte (prix selon votre niveau), Ticket supérieur (60 000 or + 1 Rune ancienne), Croquettes et Ragoût."]], ["Quêtes et trophées", ["Les quêtes « Récolter à la Mine » deviennent « Réussir des expéditions de compagnon ».", "La catégorie de trophées Collecte devient Compagnon, avec 4 nouveaux trophées ; ceux que vous aviez déjà obtenus restent acquis."]], ["Interface", ["Le parchemin des nouveautés présente un récapitulatif des grandes mises à jour manquées si vous n’êtes pas venu depuis longtemps."]], ["Bientôt", ["Duels de créatures contre les autres joueurs : visibles mais pas encore disponibles."]]]},
  {"v": "0.7.10", "t": "Coffres au clic droit et sac de combat", "sec": [["Coffres", ["Les coffres de saison arrivent maintenant dans l’inventaire (récompenses de quêtes et achats au Marchand) : faites un clic droit dessus pour les ouvrir, comme le Coffre des Reliques.", "Tous les coffres utilisent la même animation de roulette, et chaque coffre donne 1 cosmétique.", "Les coffres de saison que vous aviez déjà sont placés automatiquement dans l’inventaire."]], ["Sac de combat", ["Nouvelles limites : 3 potions de chaque sorte pour les potions de vie (petite, normale et grande), 1 pour toutes les autres (avant : 10 Potions de vie, 3 Potions de résistance, de force ou d’intelligence, 2 Potions d’action). Les potions en trop retournent dans l’inventaire."]]]},
  {"v": "0.7.9", "t": "Potions de soin, Cristal d’ascension et Fusion", "sec": [["Potions", ["Nouvelles potions de soin chez le Marchand : Petite potion de vie (rend 20 % des PV max, recharge 3 tours), Potion de vie (40 %, inchangée) et Grande potion de vie (65 %, recharge 5 tours).", "Nouvelles potions de soin sur la durée : Potion de régénération (6 % des PV max par tour pendant 4 tours, 24 % au total) et Élixir de régénération (10 % par tour pendant 5 tours, 50 % au total)."]], ["Marchand", ["Nouvelle catégorie Cosmétiques : Coffre des Reliques (60 000 or + 1 Rune primordiale), Coffre de saison épique (40 000 or + 1 Rune ancienne) et Coffre de saison légendaire (60 000 or + 1 Rune primordiale)."]], ["Forge", ["Nouvel objet légendaire, le Cristal d’ascension : il augmente de 5 le niveau d’objet d’un équipement et recalcule toutes ses affixes (une seule fois par objet ; le niveau requis ne change pas). Il s’obtient uniquement en réussissant des défis de raid (3 % au palier +0, puis +0,5 % par palier, jusqu’à 10 %).", "Nouvelle Fusion légendaire à l’Autel d’enchantement : 10 Prismes divins + 3 Runes primordiales + 1 Parchemin vierge + 20 000 or donnent un Parchemin d’action, qui ajoute +1 Point d’action à un anneau sans prendre d’emplacement d’affixe.", "Nouveau bouton « Recettes » dans les ateliers : la liste complète des recettes d’enchantement, de fusion et d’amélioration."]], ["Cosmétiques", ["Les auras de combat passent maintenant à la fois derrière et devant le héros."]], ["Correction", ["Quête de saison « Créer 10 équipements » remplacée par « Recycler 50 objets » : la création d’équipement n’est pas disponible pour l’instant.", "Les Points d’action donnés par une affixe ne sont plus multipliés par le niveau de renforcement de l’objet (ils restent des nombres entiers)."]]]},
@@ -8372,7 +8475,7 @@ document.addEventListener('pointerdown',e=>{TOUCH=e.pointerType==='touch'},true)
 function detScroll(){ if(window.innerWidth>860) return; requestAnimationFrame(()=>{const d=[...document.querySelectorAll('.det')].find(x=>x.offsetParent); if(d){const r=d.getBoundingClientRect(); if(r.bottom>innerHeight||r.top<0) d.scrollIntoView({behavior:'smooth',block:'nearest'})}}) }
 function showTip(el){
   if(DRAG&&DRAG.on) return;
-  if(TOUCH){hideTip();return}
+  if(TOUCH){ const tp=$('#tip'); if(!(tp&&tp.classList.contains('msh'))) hideTip(); return }
   const t=$('#tip'),html=tipHTML(el.dataset.tip); if(!html){hideTip();return} t.innerHTML=html; t.hidden=false; TIPEL=el; t.classList.toggle('wide',ALTK); t.classList.toggle('cmpw',html.includes('class="cmp"'));
   const r=el.getBoundingClientRect(),w=t.offsetWidth,hh=t.offsetHeight,vw=document.documentElement.clientWidth,vh=window.innerHeight;
   let x=r.right+10,y=r.top;
@@ -8880,6 +8983,7 @@ const A={
   cpBuy:d=>cpBuy(d.k), cpTick:d=>cpTickAsk(d.k), cpGoTick:d=>cpGoTick(d.k,+d.n),
   cpSeeNew:()=>{ closeChest(); UI.tab='comp'; UI.cpT='c'; UI.cpSort='new'; UI.invOpen=false; render() },
   cpDbg:d=>cpDbg(d.k),
+  mNav:d=>mNav(d.k), mGo:d=>mGo(d.k), mPlusX:()=>{UI.mPlus=false;renderTabs()},
   admTab:d=>{UI.admT=d.t; UI.confirm=null; render(); scrollTo(0,0)},
   admMail:()=>{ A.mlOpen(); A.mlAdm() },
   updAuto:()=>{ updSave({auto:!UPDM.auto}).then(()=>{ render(); if(UPDM.auto&&UPDM.last!==VERSION) toast('Envoi automatique activé : l’annonce partira à la prochaine ouverture du jeu.') }); render() },
