@@ -1965,6 +1965,177 @@ body.scr .bfbar{display:none}
 body.anvil,body.anvil *{cursor:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%2232%22%20height%3D%2232%22%20viewBox%3D%220%200%2024%2024%22%3E%3Cpath%20d%3D%22M2.5%207h13.5c.4%202.6%202.3%203.8%205.5%204v1.5h-6.2l-1.3%202.6h1.8v3.4H8.2v-3.4H10l-1.2-2.8C4.6%2011.8%202.6%2010%202.5%207z%22%20fill%3D%22%23f0d48a%22%20stroke%3D%22%232a1608%22%20stroke-width%3D%221.3%22%20stroke-linejoin%3D%22round%22/%3E%3Cpath%20d%3D%22M4%208.2h11%22%20stroke%3D%22%23fff6d8%22%20stroke-width%3D%22.8%22%20stroke-linecap%3D%22round%22/%3E%3C/svg%3E") 3 9, crosshair!important}
 body.anvil #bag .gi.it:hover{outline:2px solid #e0612a;outline-offset:-2px;filter:brightness(1.15) saturate(1.2)}
 .masalv.man{border-color:#e0612a88}.masalv.man.on{box-shadow:0 0 0 2px #e0612a,0 0 18px #e0612a66}
+.v7i{width:1em;height:1em;flex:none;display:inline-block;vertical-align:middle}
+/* engrenage */
+.amfight{position:relative}
+.amfrow .amgo .pl{display:none}
+.v7gear{position:relative;width:48px;flex:none;display:grid;place-items:center;padding:0;border-radius:10px;border:2px solid #8a6a44;background:linear-gradient(#3a2614,#24170c);color:#f0d48a;cursor:pointer;transition:border-color .2s,box-shadow .2s}
+.v7gear .v7i{width:24px;height:24px;transition:rotate .4s}.v7gear:hover{border-color:var(--gold)}.v7gear:hover .v7i,.v7gear.on .v7i{rotate:60deg}
+.v7gear.on{border-color:var(--gold);box-shadow:0 0 0 2px #d6aa5555,0 0 14px #d6aa5577}
+.v7gd{position:absolute;top:5px;right:5px;width:8px;height:8px;border-radius:50%;background:#5fd06a;box-shadow:0 0 6px #5fd06a}
+.v7gp{position:fixed;z-index:85;width:340px;padding:14px;border-radius:14px;background:linear-gradient(#2a1c10,#1b120a);border:1px solid #a88d5b;box-shadow:0 18px 40px #000c;color:#f3e4c0;text-align:left}
+.v7gp:after{content:'';position:absolute;right:17px;bottom:-8px;width:14px;height:14px;background:#1b120a;border-right:1px solid #a88d5b;border-bottom:1px solid #a88d5b;rotate:45deg}
+.v7gp h4{margin:0 0 8px;font-family:var(--display);font-size:1.05rem;font-weight:400;color:#f0d48a;display:flex;align-items:center;gap:8px;line-height:1.2}.v7gp h4 .v7i{width:18px;height:18px}.v7gp h4.sm{font-size:.9rem}
+.v7tg{width:100%;display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:10px;background:#ffffff08;border:1px solid #ffffff10;margin:0 0 6px;color:inherit;font:inherit;text-align:left;cursor:pointer}
+.v7tg:hover{background:#ffffff12}.v7tg>.uic{width:20px;height:20px;color:#f0d48a;flex:none}
+.v7tt{flex:1;min-width:0;display:flex;flex-direction:column;gap:1px}.v7tt b{font-size:.92rem;line-height:1.2}.v7tt small{color:#cdb68a;font-size:.74rem;line-height:1.3}
+.v7sw{flex:none;width:40px;height:22px;border-radius:11px;background:#5a4630;position:relative}.v7sw:after{content:'';position:absolute;left:3px;top:3px;width:16px;height:16px;border-radius:50%;background:#cdb68a;transition:left .2s}
+.v7sw.on{background:#3a9a4a}.v7sw.on:after{left:21px;background:#fff}
+.v7sep{height:1px;background:#a88d5b44;margin:10px 0}
+.v7note{font-size:.74rem;color:#cdb68a;margin:0 0 6px;line-height:1.4}
+.v7rar{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin:0 0 8px}
+.v7r{display:flex;align-items:center;gap:6px;padding:6px 8px;border-radius:8px;border:1px solid color-mix(in srgb,var(--rc) 60%,transparent);background:#00000033;font:inherit;font-size:.78rem;font-weight:700;color:color-mix(in srgb,var(--rc) 70%,#fff);cursor:pointer;line-height:1}
+.v7r i,.v7opt i{width:14px;height:14px;border-radius:4px;border:2px solid var(--rc,#d6aa55);display:grid;place-items:center;font-style:normal;font-size:.62rem;color:#140d08;flex:none;box-sizing:border-box}
+.v7r.on{background:color-mix(in srgb,var(--rc) 22%,#140d08)}.v7r.on i,.v7opt.on i{background:var(--rc,#d6aa55)}.v7r.on i:after,.v7opt.on i:after{content:'✓';font-weight:900}
+.v7r:not(.on){opacity:.55}
+.v7opt{width:100%;display:flex;align-items:center;gap:8px;padding:4px 2px;background:none;border:0;color:inherit;font:inherit;font-size:.8rem;text-align:left;cursor:pointer;line-height:1.3}
+.v7lt{display:flex;flex-wrap:wrap;gap:6px}
+.v7li{position:relative;width:38px;height:38px;border-radius:8px;display:grid;place-items:center;background:radial-gradient(circle at 50% 40%,color-mix(in srgb,var(--rc) 35%,#3a2a1a),#1e140b 75%);border:2px solid var(--rc)}
+.v7li svg{width:26px;height:26px}.v7li.rc{opacity:.5;filter:grayscale(.6)}
+.v7li.rc:after{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M5 5l14 14M19 5L5 19' stroke='%23e0612a' stroke-width='2.5' stroke-linecap='round'/%3E%3C/svg%3E") center/60% no-repeat}
+.ltile.rc{opacity:.45;filter:grayscale(.7)}.ltile.rc:after{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M5 5l14 14M19 5L5 19' stroke='%23e0612a' stroke-width='2.5' stroke-linecap='round'/%3E%3C/svg%3E") center/55% no-repeat;pointer-events:none}
+.ltile{position:relative}
+.lrcy{margin:6px 0 0;font-size:.82rem}
+/* hôtel des ventes */
+.mtmain.ahmainw{min-width:0}
+.ahwrap{display:flex;flex-direction:column;gap:12px;min-height:0;color:#3a2616}
+.ahhd{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.ahgold{display:inline-flex;align-items:center;gap:6px;height:34px;padding:0 14px;border-radius:17px;background:#2a1a10;color:#f0d48a;font-weight:800;line-height:1}.ahgold .uic{width:18px;height:18px}
+.ahref{width:34px;height:34px;display:grid;place-items:center;padding:0;border-radius:50%;border:1px solid #a88d5b;background:#f3e4c0;color:#5a3a20;cursor:pointer}.ahref .uic{width:17px;height:17px}.ahref:disabled{opacity:.5}
+.ahtabs{display:flex;gap:4px;margin-left:auto}.ahtabs button{height:36px;padding:0 14px;border-radius:9px;border:1px solid #a88d5b;background:#f3e4c0;font:inherit;font-weight:700;color:#5a3a20;cursor:pointer;line-height:1}
+.ahtabs button.on{background:#7b2a1a;color:#fff;border-color:#7b2a1a}
+.ahA{display:grid;grid-template-columns:200px minmax(0,1fr);gap:12px;min-height:0}
+.ahside{background:#f3e4c0;border:1px solid #c9ad7a;border-radius:12px;padding:10px;align-self:start;display:flex;flex-direction:column;gap:2px}
+.ahside h4{margin:8px 4px 3px;font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;color:#8a6a44}.ahside h4:first-child{margin-top:2px}
+.ahcat{display:flex;align-items:center;gap:8px;height:29px;padding:0 10px;border-radius:8px;font:inherit;font-weight:700;font-size:.86rem;border:0;background:none;color:#3a2616;text-align:left;cursor:pointer;line-height:1}
+.ahcat span{flex:1}.ahcat small{opacity:.75;font-size:.76rem}.ahcat.on small{opacity:.9;color:#f0d48a}.ahcat:hover{background:#00000010}.ahcat.on{background:#7b2a1a;color:#fff}
+.ahcat.lk{color:#a8916a;cursor:default}.ahcat.lk .uic{width:14px;height:14px}.ahcat.lk:hover{background:none}
+.ahchk{display:flex;align-items:center;gap:7px;height:24px;padding:0 10px;border:0;background:none;font:inherit;font-size:.82rem;color:#3a2616;cursor:pointer;text-align:left;line-height:1}
+.ahchk i{width:14px;height:14px;border-radius:4px;border:2px solid var(--rc);background:var(--rc);flex:none;box-sizing:border-box}.ahchk.off i{background:none}.ahchk.off span{opacity:.6}
+.ahlv{display:flex;align-items:center;gap:6px;padding:0 6px}.ahlv input{width:100%;min-width:0;height:30px;border-radius:8px;border:1px solid #c9ad7a;background:#fff8e4;text-align:center;font:inherit;font-weight:700;color:#3a2616}.ahlv span{font-size:.8rem;color:#8a6a44}
+.ahmain{display:flex;flex-direction:column;gap:10px;min-width:0}
+.ahbar{display:flex;align-items:center;gap:10px}
+.ahsrch{display:flex;align-items:center;gap:8px;height:38px;padding:0 12px;border-radius:10px;background:#fff8e4;border:1px solid #c9ad7a;flex:1;max-width:380px;color:#8a6a44}.ahsrch .v7i{width:16px;height:16px}
+.ahsrch input{flex:1;min-width:0;border:0;background:none;font:inherit;color:#3a2616;outline:none;height:100%}
+.ahsort{display:flex;align-items:center;gap:8px;margin-left:auto;font-size:.84rem;color:#8a6a44}.ahsort select{height:38px;border-radius:10px;border:1px solid #c9ad7a;background:#fff8e4;font:inherit;font-weight:700;color:#3a2616;padding:0 10px}
+.ahtab{background:#fff8e4;border:1px solid #c9ad7a;border-radius:12px;overflow:auto;max-height:calc(var(--vh1,1vh)*100 - 330px);min-height:120px}
+.ahtr{display:grid;grid-template-columns:56px minmax(0,1.7fr) 64px minmax(0,1fr) 112px 104px 104px;align-items:center;gap:10px;padding:7px 12px;border-bottom:1px solid #e6d3a8;min-height:60px}
+.ahtr.m{grid-template-columns:56px minmax(0,1.7fr) 150px 130px 104px 104px}
+.ahtr.hd{position:sticky;top:0;z-index:2;min-height:0;background:#2a1a10;color:#f0d48a;font-size:.72rem;text-transform:uppercase;letter-spacing:.06em;font-weight:700;padding:10px 12px}
+.ahtr:nth-child(odd):not(.hd){background:#fbf0d4}.ahtr.sel{background:#fff1c8!important;box-shadow:inset 0 0 0 2px #d6aa55}
+.ahtr .c{text-align:center}
+.ahn{display:flex;flex-direction:column;gap:2px;min-width:0}.ahn b{font-weight:800;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;filter:brightness(.72)}.ahn b em{font-style:normal;color:#c99a3a}.ahn small{font-size:.74rem;color:#8a6a44;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ahs{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ahico{position:relative;width:44px;height:44px;flex:none;border-radius:9px;display:grid;place-items:center;background:radial-gradient(circle at 50% 40%,color-mix(in srgb,var(--rc) 35%,#3a2a1a),#1e140b 75%);border:2px solid var(--rc);box-sizing:border-box}
+.ahico svg{width:32px;height:32px}.ahico em{position:absolute;right:-5px;top:-6px;font-style:normal;font-size:.62rem;font-weight:800;background:#7b2a1a;color:#fff;border-radius:5px;padding:1px 4px}
+.ahtm{display:inline-flex;align-items:center;gap:5px;font-size:.8rem;color:#8a6a44;white-space:nowrap}.ahtm .v7i{width:13px;height:13px}.ahtm.low{color:#c0432a;font-weight:700}
+.v7coin{width:14px;height:14px;border-radius:50%;background:radial-gradient(circle at 35% 35%,#fff0a0,#d6a22a 60%,#8a5a10);display:inline-block;flex:none}
+.ahpr{display:inline-flex;align-items:center;gap:5px;font-weight:800;color:#7b4a10;white-space:nowrap}
+.ahbuy{min-width:86px;height:34px;padding:0 12px;border-radius:8px;border:0;font:inherit;font-weight:800;background:linear-gradient(#3a9a4a,#226a30);color:#fff;cursor:pointer;line-height:1}
+.ahbuy:hover:not(:disabled){filter:brightness(1.12)}.ahbuy:disabled{background:#b9a984;cursor:default}.ahbuy.cf{background:linear-gradient(#d6aa55,#a8782a);color:#2a1608}
+.ahbuy.alt{background:linear-gradient(#8a4a2a,#6a2a14)}
+.ahst{font-size:.8rem;font-weight:700;padding:4px 10px;border-radius:12px;justify-self:start;white-space:nowrap}
+.ahst.open{background:#3a9a4a22;color:#226a30}.ahst.sold{background:#d6aa5533;color:#7b4a10}.ahst.buy{background:#3f7fe022;color:#1f4f9a}.ahst.exp{background:#00000012;color:#8a6a44}
+.ahempty{margin:0;padding:26px;text-align:center;color:#8a6a44}
+.ahsellv{display:flex;flex-direction:column;gap:12px}
+.ahhint{margin:0;color:#5a3a20}
+.ahpick{display:flex;flex-wrap:wrap;gap:8px;padding:12px;background:#fff8e4;border:1px solid #c9ad7a;border-radius:12px}
+.ahpk{position:relative;width:60px;height:60px;border-radius:10px;display:grid;place-items:center;padding:0;background:radial-gradient(circle at 50% 40%,color-mix(in srgb,var(--rc) 35%,#3a2a1a),#1e140b 75%);border:2px solid var(--rc);cursor:pointer;transition:transform .15s}
+.ahpk svg{width:42px;height:42px}.ahpk:hover{transform:translateY(-2px);box-shadow:0 6px 14px #0005}.ahpk em{position:absolute;right:-5px;top:-6px;font-style:normal;font-size:.62rem;font-weight:800;background:#7b2a1a;color:#fff;border-radius:5px;padding:1px 4px}
+.ahrules{display:flex;flex-wrap:wrap;gap:8px}.ahrules span{display:flex;align-items:center;gap:8px;padding:8px 12px;border-radius:10px;background:#f3e4c0;border:1px solid #c9ad7a;font-size:.82rem;color:#5a3a20}
+.ahrules .v7i,.ahrules .uic{width:16px;height:16px;color:#7b2a1a}.ahrules b{margin-right:2px}
+.ahsellbg{position:fixed;inset:0;z-index:90;background:#0009;display:grid;place-items:center}
+.ahsell{width:min(560px,calc(100vw - 32px));border-radius:16px;background:linear-gradient(#f6ead0,#e8d4a8);border:2px solid #a88d5b;box-shadow:0 30px 60px #000c;padding:18px;color:#3a2616}
+.ahsell h3{margin:0 0 12px;font-family:var(--display);font-weight:400;font-size:1.3rem;display:flex;align-items:center;gap:10px;line-height:1}.ahsell h3 .v7i{width:22px;height:22px;color:#7b2a1a}
+.ahsell .row1{display:flex;gap:14px;align-items:center;padding:10px;border-radius:12px;background:#fff8e4;border:1px solid #c9ad7a}
+.ahsell .row1>div{display:flex;flex-direction:column;gap:3px;min-width:0}.ahsell .row1 b{filter:brightness(.72);font-weight:800}.ahsell .row1 small{font-size:.76rem;color:#8a6a44}
+.ahsell .ahico{width:60px;height:60px}.ahsell .ahico svg{width:44px;height:44px}
+.ahsell label{display:block;font-size:.74rem;text-transform:uppercase;letter-spacing:.06em;color:#8a6a44;font-weight:700;margin:14px 0 6px}
+.ahinp{display:flex;align-items:center;gap:10px;height:52px;padding:0 14px;border-radius:10px;background:#fff;border:2px solid #d6aa55}
+.ahinp .v7coin{width:20px;height:20px}.ahinp input{flex:1;min-width:0;border:0;outline:none;background:none;font:inherit;font-size:1.3rem;font-weight:800;color:#3a2616}.ahinp small{color:#8a6a44;font-weight:700}
+.ahdur{display:flex;gap:6px}.ahdur button{flex:1;height:40px;border-radius:10px;border:1px solid #c9ad7a;background:#fff8e4;font:inherit;font-weight:800;color:#3a2616;cursor:pointer;line-height:1}.ahdur button.on{background:#7b2a1a;color:#fff;border-color:#7b2a1a}
+.ahsum{margin-top:14px;padding:10px 12px;border-radius:10px;background:#2a1a1010;font-size:.84rem;display:grid;grid-template-columns:1fr auto;gap:5px 10px;align-items:center}
+.ahsum b{text-align:right}.ahsum b.ok{color:#226a30}
+.ahnote{font-size:.76rem;color:#8a6a44;margin:8px 0 0}
+.ahsell .acts{display:flex;justify-content:flex-end;gap:8px;margin-top:14px}.ahsell .acts .btn{display:inline-flex;align-items:center;gap:8px}.ahsell .acts .v7i{width:16px;height:16px}
+.mlit{display:inline-flex;align-items:center;gap:6px;padding:3px 8px 3px 3px;border-radius:8px;background:#00000010;font-weight:700;font-size:.82rem}
+.mlit .ahico{width:34px;height:34px}.mlit .ahico svg{width:24px;height:24px}
+@media (max-width:1000px){.ahA{grid-template-columns:1fr}.ahtr{grid-template-columns:48px minmax(0,1fr) 90px 96px;}.ahtr>:nth-child(3),.ahtr>:nth-child(4),.ahtr>:nth-child(5){display:none}.ahtr.m{grid-template-columns:48px minmax(0,1fr) 90px 96px}}
+/* popup de mise à jour : parchemin */
+.v7upbg{position:fixed;inset:0;z-index:96;background:radial-gradient(circle at 50% 40%,#0006,#000c);display:grid;place-items:center;animation:v7f .3s ease-out}
+@keyframes v7f{from{opacity:0}}@keyframes v7u{from{opacity:0;transform:translateY(-30px) scaleY(.8)}}
+.v7up{width:min(620px,calc(100vw - 48px));position:relative;color:#3a2616;animation:v7u .45s cubic-bezier(.2,.8,.3,1)}
+.v7up .scroll{position:relative;padding:36px 44px 26px;background:linear-gradient(90deg,#d9c08e,#f3e4c0 8%,#f8ecd2 50%,#f3e4c0 92%,#d9c08e);border-radius:6px;box-shadow:0 40px 80px #000}
+.v7up .scroll:before,.v7up .scroll:after{content:'';position:absolute;left:-14px;right:-14px;height:26px;border-radius:13px;background:linear-gradient(#8a5a2a,#5a3410 50%,#8a5a2a);box-shadow:0 4px 10px #0007}
+.v7up .scroll:before{top:-13px}.v7up .scroll:after{bottom:-13px}
+.v7up .seal{position:absolute;right:28px;top:24px;width:70px;height:70px;border-radius:50%;background:radial-gradient(circle at 40% 35%,#d0442a,#7b1a0a);color:#f0d48a;display:grid;place-items:center;font-family:var(--display);font-weight:800;font-size:1.05rem;box-shadow:0 4px 10px #0006;rotate:-12deg}
+.v7upx{position:absolute;left:12px;top:14px;width:28px;height:28px;border-radius:50%;border:1px solid #a88d5b;background:#f3e4c0;color:#5a3a20;font-size:1.1rem;line-height:1;cursor:pointer;display:grid;place-items:center;padding:0}
+.v7up small.k{display:block;letter-spacing:.25em;text-transform:uppercase;color:#8a6a44;font-size:.72rem}
+.v7up h1{margin:4px 90px 0 0;font-family:var(--display);font-weight:400;font-size:2.3rem;line-height:1.1;color:#5a1a0a}
+.v7up .img{height:160px;border-radius:10px;overflow:hidden;position:relative;margin:16px 0;border:3px solid #8a6a44;box-shadow:inset 0 0 20px #0008}.v7up .img .zsc{position:absolute;inset:0}
+.v7up .pg{min-height:110px}.v7up .pg b{font-size:1.15rem;display:flex;align-items:center;gap:10px;color:#7b2a1a;line-height:1.2}.v7up .pg b .v7i{width:22px;height:22px}.v7up .pg p{margin:8px 0 0;color:#5a3a20;line-height:1.5}
+.v7up .nav{display:flex;align-items:center;gap:10px;margin-top:14px}.v7up .nav .num{font-size:.8rem;color:#8a6a44}.v7up .nav .sp{flex:1}
+.v7up .dots{display:flex;align-items:center;gap:6px}.v7up .dots button{width:9px;height:9px;padding:0;border:0;border-radius:5px;background:#c9ad7a;cursor:pointer;transition:width .25s}.v7up .dots button.on{background:#7b2a1a;width:24px}
+
+.ahrar2{display:grid;grid-template-columns:1fr 1fr;gap:0 2px}.ahrar2 .ahchk{padding:0 6px;font-size:.78rem}
+.ahlv input{height:28px}
+
+.v7upbg.na,.v7upbg.na .v7up{animation:none}
+.v7up .img .zsc{animation:v7f .35s ease-out}
+
+.t7wrap{display:flex;flex-direction:column;gap:10px;color:#f3e4c0}
+.t7top{display:flex;align-items:center;gap:12px;flex-wrap:wrap;color:#3a2616}
+.t7pts{display:inline-flex;align-items:center;height:32px;padding:0 14px;border-radius:16px;background:#5d3fa8;color:#fff;font-weight:800}.t7pts.z{background:#8a7a6a}
+.t7forget{margin-left:auto;display:flex;align-items:center;gap:8px;font-size:.84rem}
+.t7base{display:flex;align-items:center;gap:14px;padding:8px 14px;border-radius:12px;background:#2a1c10;border:1px solid #6a5030}
+.t7base>b{font-family:var(--display);font-weight:400;color:#f0d48a;margin-right:4px}.t7base>small{margin-left:auto;color:#cdb68a}
+.t7trees{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.t7tree{position:relative;border-radius:16px;overflow:hidden;border:2px solid color-mix(in srgb,var(--sc) 60%,#000);box-shadow:0 10px 26px #0008;isolation:isolate}
+.t7tree:before{content:'';position:absolute;inset:0;z-index:-1;pointer-events:none}
+.t7tree.dim{filter:grayscale(.85) brightness(.62)}
+.bg-fire{background:radial-gradient(ellipse at 50% 110%,#ff7a1a55,transparent 60%),radial-gradient(circle at 15% 85%,#ffb04a33,transparent 30%),linear-gradient(#2a0d06,#4a1508 60%,#7a2a0a)}
+.bg-fire:before{background:repeating-radial-gradient(circle at 30% 120%,transparent 0 22px,#ff6a0010 22px 24px)}
+.bg-storm{background:radial-gradient(ellipse at 70% -10%,#c8d0ff33,transparent 55%),linear-gradient(#0c1022,#1a1e3a 55%,#2a2a48)}
+.bg-storm:before{background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cpath d='M150 0l-30 70h26l-40 90 10-60h-24z' fill='%23fff3a0' opacity='.10'/%3E%3C/svg%3E") 0 0/240px}
+.bg-blood{background:radial-gradient(ellipse at 50% 120%,#c0202055,transparent 60%),linear-gradient(#1c0606,#3a0c0c 60%,#5a1210)}
+.bg-blood:before{background:repeating-linear-gradient(115deg,transparent 0 38px,#ff303010 38px 40px)}
+.bg-stone{background:radial-gradient(ellipse at 50% -10%,#9ab0d033,transparent 55%),linear-gradient(#141a22,#232c38 60%,#323c4a)}
+.bg-stone:before{background:linear-gradient(#ffffff08 1px,transparent 1px) 0 0/60px 30px,linear-gradient(90deg,#ffffff06 1px,transparent 1px) 0 0/60px 60px}
+.t7tree>header{display:flex;align-items:center;gap:10px;padding:10px 14px;background:#0006}
+.t7tree>header>svg{width:24px;height:24px;color:#f0d48a;flex:none}
+.t7tree>header small{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0}.t7tree>header b{font-family:var(--display);font-weight:400;font-size:1.3rem;color:#f0d48a;line-height:1}.t7tree>header small{color:#e8d4a8;font-size:.8rem}
+.t7tag{margin-left:auto;padding:4px 10px;border-radius:12px;font-size:.72rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase;background:#5a4a3a;color:#fff}.t7tag.on{background:#3a9a4a}
+.t7tree>header .btn{margin-left:auto}
+.t7res{display:flex;align-items:center;gap:8px;margin:8px 12px 2px;padding:6px 10px;border-radius:10px;background:#0005;font-size:.76rem;line-height:1.3;color:#e8d4a8;cursor:help}
+.t7res b{color:#f0d48a;white-space:nowrap}
+.t7grid{position:relative;z-index:2;display:grid;grid-template-columns:40px repeat(4,minmax(0,1fr));row-gap:4px;padding:6px 10px 12px}
+.t7bh{text-align:center;font-size:.68rem;letter-spacing:.08em;text-transform:uppercase;color:#f0d48a;font-weight:800;padding:2px 0 4px;border-bottom:1px solid #f0d48a33}.t7bh.t7cl{color:#cdb68a;background:none;border:0;border-bottom:1px solid #f0d48a33;border-radius:0}
+.t7lv{display:grid;place-items:center;border-radius:8px;background:#0005;font-size:.7rem;font-weight:800;color:#f0d48a}.t7lv.lk{color:#8a7a5a}
+.t7cell{display:flex;justify-content:center;align-items:center;min-height:80px}.t7cell.t7cl{background:#ffffff06;border:0;border-radius:0}
+.t7c{display:flex;flex-direction:column;align-items:center;gap:3px;width:100%}
+.t7{position:relative;width:46px;height:46px;padding:0;border-radius:10px;display:grid;place-items:center;background:radial-gradient(circle at 35% 30%,color-mix(in srgb,var(--co) 70%,#fff),var(--co) 55%,color-mix(in srgb,var(--co) 50%,#000));border:2px solid #1d1209;box-shadow:0 3px 8px #0007;color:#fff;cursor:pointer;transition:transform .12s,filter .2s}
+.t7 svg{width:24px;height:24px}.t7:hover{transform:translateY(-2px)}
+.t7.p{border-radius:50%}.t7.u{width:54px;height:54px;border-radius:12px;border-color:#f0d48a;box-shadow:0 0 0 2px #b8860b,0 0 14px #f0c04066}
+.t7:not(.got){filter:grayscale(.9) brightness(.6)}.t7.avail{filter:none;box-shadow:0 0 0 2px #8fe08a,0 0 12px #8fe08a77;animation:t7p 1.8s ease-in-out infinite}
+@keyframes t7p{50%{box-shadow:0 0 0 2px #8fe08a,0 0 20px #8fe08aaa}}
+.t7.lock:not(.got){filter:grayscale(1) brightness(.45)}
+.t7.sel{outline:3px solid #f0d48a;outline-offset:2px}
+.t7 em{position:absolute;right:-7px;bottom:-6px;font-style:normal;font-size:.6rem;font-weight:800;padding:1px 5px;border-radius:7px;background:#140d08;color:#f0d48a;border:1px solid #6a5030;line-height:1.2}.t7 em.mx{color:#8fe08a}
+.t7eq{position:absolute;left:-6px;top:-6px;width:16px;height:16px;border-radius:50%;background:#3a9a4a;color:#fff;font-size:.6rem;font-style:normal;display:grid;place-items:center;border:1px solid #140d08}
+.t7n{font-size:.64rem;line-height:1.15;text-align:center;color:#f3e4c0;max-width:92px;text-shadow:0 1px 2px #000}
+.t7base .t7n{max-width:96px}.t7base .t7c{width:auto;min-width:90px}
+.t7links{position:absolute;inset:0;z-index:1;pointer-events:none;width:100%;height:100%}
+.t7links path{fill:none;stroke:#f0d48a;stroke-width:2;stroke-dasharray:5 4;opacity:.35}.t7links path.on{opacity:.85}.t7links path.hd{stroke-dasharray:none}
+.t7bar{display:flex;align-items:center;gap:12px;padding:10px 14px;border-radius:14px;background:#2a1c10;border:1px solid #6a5030;flex-wrap:wrap}
+.t7bar>b{font-family:var(--display);font-weight:400;color:#f0d48a}.t7bar>small{color:#cdb68a}
+.t7sb{display:flex;gap:8px}.t7sb .sbslot{position:relative}
+.t7k{position:absolute;left:-5px;top:-7px;z-index:3;font-size:.6rem;font-weight:800;background:#140d08;color:#f0d48a;border:1px solid #6a5030;border-radius:5px;padding:0 4px;line-height:1.4;font-family:inherit}
+.t7detw{position:fixed;right:18px;bottom:110px;z-index:70;width:340px;max-width:calc(100vw - 36px);filter:drop-shadow(0 16px 30px #000b)}
+.t7det{background:linear-gradient(#2a1c10,#1b120a);border:1px solid #a88d5b;border-radius:14px;padding:10px}.t7det .it{box-shadow:none;width:auto;margin:0 0 8px}
+.sklk{margin:6px 0 0;font-size:.78rem;color:#7b4a10;font-weight:700}
+@media (max-width:1100px){.t7trees{grid-template-columns:1fr}}
+.sti.b-heat{--sc:#ff8a3a}.sti.b-rage{--sc:#e0412a}.sti.b-garde{--sc:#7aa0d0}
+
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 @media (min-width:760px){.arena{grid-template-columns:1fr 1fr}}
 </style>
@@ -1994,7 +2165,7 @@ body.anvil #bag .gi.it:hover{outline:2px solid #e0612a;outline-offset:-2px;filte
 <script>
 var ZM=1;
 function applyZoom(){ const w=innerWidth,h=innerHeight,d=document.documentElement; ZM=w>760?Math.max(.5,Math.min(2,Math.min(w/1440,h/900))):1; d.style.zoom=ZM===1?'':String(ZM); d.style.setProperty('--vh1',(h/ZM/100)+'px'); d.style.setProperty('--vw1',(w/ZM/100)+'px') }
-applyZoom(); addEventListener('resize',()=>{ applyZoom(); for(const id of ['invpop','stashpop','pcfl']){ const e=document.getElementById(id); if(e&&e.style.left){ const r=e.getBoundingClientRect(); if(r.right>innerWidth||r.bottom>innerHeight){ e.style.left=''; e.style.top=''; e.style.right=''; e.style.bottom='' } } } });
+applyZoom(); addEventListener('resize',()=>{ applyZoom(); if(document.querySelector('.t7tree')) requestAnimationFrame(drawSkLinks); for(const id of ['invpop','stashpop','pcfl']){ const e=document.getElementById(id); if(e&&e.style.left){ const r=e.getBoundingClientRect(); if(r.right>innerWidth||r.bottom>innerHeight){ e.style.left=''; e.style.top=''; e.style.right=''; e.style.bottom='' } } } });
 'use strict';
 /* ============ utilitaires ============ */
 const $=(s,r=document)=>r.querySelector(s);
@@ -2090,87 +2261,129 @@ const affPool=c=>AFX.filter(a=>!(c==='guerrier'&&a.s==='mag')&&!(c==='mage'&&a.s
 const EPITHETS=['de Cendre','des Damnés','du Crépuscule','de l’Aube','d’Aldrec','des Abysses','du Gardien','de la Braise','du Dernier Siège'];
 
 /* compétences : 3 compétences de base par classe (niveaux 1 à 10), puis une spécialisation au niveau 10 (arbre de talents) */
-const SP_MAX=35,spCap=l=>Math.min(l||1,SP_MAX),SPEC_L=10,LOADOUT_MAX=5,FORGET_COST={gold:5000,prisme:5};
+const SP_MAX=35,spCap=l=>Math.min(l||1,SP_MAX),SPEC_L=10,LOADOUT_MAX=7,FORGET_COST={gold:5000,prisme:5};
+const PCT_=x=>Math.round(x*100)+' %';
 const CLASSES={
   guerrier:{n:'Guerrier',ic:'sword',role:'atk',hue:8,desc:'Rempart robuste. Encaisse, provoque et frappe fort au corps à corps. Épées, heaumes, cuirasses et bottes.',
-    base:{hp:300,atk:14,mag:0,def:10,res:5,spd:9},grow:{hp:39,atk:2.6,mag:0,def:1.8,res:1,spd:.2},
+    base:{hp:300,atk:14,mag:0,def:10,res:5,spd:9},grow:{hp:36,atk:2.5,mag:0,def:1.6,res:1,spd:.2},
     skills:[
-      {id:'g_frap',ap:2,n:'Frappe puissante',t:'a',lvl:1,cd:2,mult:2,tg:'one',si:'sword',co:'#7a6448'},
-      {id:'g_mur',ap:3,n:'Mur de boucliers',t:'a',lvl:3,cd:5,tg:'self',fx:[{k:'shield',v:.3,of:'hp'},{k:'taunt',dur:2}],si:'shield',co:'#3f5f80'},
-      {id:'g_tour',ap:3,n:'Tourbillon',t:'a',lvl:6,cd:4,mult:1.3,tg:'all',si:'whirl',co:'#6c6a48'},
+      {id:'g_frap',ap:1,n:'Frappe',t:'a',lvl:1,max:3,mult:.85,tg:'one',si:'sword',co:'#7a6448',d:k=>`Inflige ${PCT_(.85*k)} de la Force à une cible.`},
+      {id:'g_mur',ap:2,n:'Mur de boucliers',t:'a',lvl:3,max:3,cd:5,tg:'self',fx:[{k:'shield',v:.2,of:'hp',dur:3},{k:'taunt',dur:3}],si:'shield',co:'#3f5f80',d:k=>`Bouclier de ${PCT_(.2*k)} de vos PV max pendant 2 tours, et provoque les ennemis.`},
+      {id:'g_tour',ap:1,n:'Tourbillon',t:'a',lvl:6,max:3,cd:1,mult:.4,tg:'all',si:'whirl',co:'#6c6a48',d:k=>`Inflige ${PCT_(.4*k)} de la Force à tous les ennemis.`},
+      {id:'g_cri',ap:1,n:'Cri de guerre',t:'a',lvl:8,max:3,cd:20,tg:'self',fx:[{k:'buff',stat:'atk',v:10,dur:16,bid:'g_cri'}],si:'horn',co:'#8a5a2a',d:(k,g)=>`+${Math.round(10*k+((g.buffAdd||{}).g_cri||0))} % de Force pendant 15 tours.`},
     ],
     common:[
-      {id:'gc_main',c:0,n:'Puissance brute',mods:{atkPct:2},max:5,si:'fist'},
-      {id:'gc_crit',c:1,n:'Précision mortelle',mods:{crit:2},max:3,si:'eye'},
-      {id:'gc_hp',c:2,n:'Robustesse',mods:{hpPct:2},max:5,si:'heart'},
-      {id:'gc_spd',c:3,n:'Célérité',mods:{spdPct:2},max:3,si:'wind'},
-      {id:'gc_def',c:4,n:'Peau d’acier',mods:{defPct:2,resPct:2},max:3,si:'shield'},
+      {id:'gx_cri',col:3,lvl:16,t:'p',max:2,n:'Cri de guerre avancé',pv:{buffAdd:{g_cri:5}},links:['g_cri'],si:'horn',pd:r=>`Cri de guerre donne +${5*r} % de Force en plus.`},
+      {id:'gx_end',col:3,lvl:20,t:'p',max:3,n:'Endurance',pv:{cdRed:{g_cri:1}},links:['g_cri'],si:'hour',pd:r=>`Recharge de Cri de guerre −${r} tour${r>1?'s':''}.`},
+      {id:'gx_mur',col:3,lvl:25,t:'p',max:1,n:'Mur rapide',pv:{cdRed:{g_mur:1}},links:['g_mur'],si:'shield',pd:r=>`Recharge de Mur de boucliers −1 tour.`},
+      {id:'gx_mai',col:3,lvl:33,t:'p',max:1,n:'Maîtrise martiale',pv:{apUlt:1},links:['@u'],si:'star',pd:r=>`Vos ultimes coûtent 1 PA de moins.`},
     ],
     specs:{
-      sang:{n:'Saignement',co:'#9b1c1c',si:'drop',d:'Ouvre des plaies qui saignent à chaque tour, puis achève les cibles ensanglantées.',nodes:[
-        {id:'b_ent',r:0,c:1,t:'a',lvl:10,ap:2,cd:2,n:'Entaille',mult:1.5,tg:'one',fx:[{k:'dot',n:'Saignement',v:.4,dur:3,ch:50}],si:'claw'},
-        {id:'b_dent',r:1,c:0,t:'p',lvl:12,req:'b_ent',max:5,n:'Lames dentelées',gx:{sxCh:{b_ent:10}},si:'saw'},
-        {id:'b_hemo',r:1,c:2,t:'p',lvl:12,req:'b_ent',max:5,n:'Hémorragie',gx:{bleedP:10},mods:{lifesteal:1},si:'drop'},
-        {id:'b_evis',r:2,c:1,t:'a',lvl:15,req:'b_ent',ap:3,cd:3,n:'Éventration',mult:1.6,tg:'one',ifSt:{n:'Saignement',v:.6},si:'dagger'},
-        {id:'b_lac',r:3,c:0,t:'a',lvl:20,req:'b_evis',ap:3,cd:4,n:'Lacération',mult:1,tg:'all',fx:[{k:'dot',n:'Saignement',v:.3,dur:3,ch:60}],si:'claw'},
-        {id:'b_odeur',r:3,c:2,t:'p',lvl:20,req:'b_evis',max:5,n:'Odeur du sang',gx:{vsBleed:5},mods:{hpPct:3},si:'eye'},
-        {id:'b_deep',r:4,c:0,t:'p',lvl:25,max:2,n:'Plaies profondes',gx:{bleedDur:1},si:'hour'},
-        {id:'b_ult',r:6,c:1,t:'p',lvl:35,max:1,n:'Frénésie sanglante',ult:{trig:'bleedHit',n:'Soif',max:5,dur:3,buff:{n:'Frénésie',dmg:20,ls:6}},ud:'Chaque compétence qui touche une cible qui saigne octroie 1 charge de Soif. À 5 charges, vous entrez en Frénésie : +20 % de dégâts et +6 % de vol de vie pendant 3 tours.',si:'drop'},
-        {id:'b_exs',r:4,c:2,t:'a',lvl:30,req:'b_odeur',ap:4,cd:5,n:'Exsanguination',mult:1.4,tg:'one',fx:[{k:'det',n:'Saignement',m:1.5}],si:'skull'},
+      bers:{n:'Berserk',co:'#9b1c1c',si:'rage',bg:'blood',res:'rage',br:['Barbare','Commandant','Bourreau','Classe'],
+        d:'Frappe plus fort quand il est blessé, cherche les critiques et achève les cibles affaiblies.',
+        rd:'Rage : +1 par coup donné et par coup reçu (maximum 10). À 10, la Rage retombe à 0 et vous êtes Déchaîné pendant 2 tours : +15 % de dégâts.',
+        nodes:[
+        {id:'k_sauv',col:0,lvl:10,t:'a',ap:1,max:3,n:'Frappe sauvage',mult:.9,lowHp:.4,tg:'one',si:'axe',d:k=>`Inflige ${PCT_(.9*k)} de la Force, jusqu’à +40 % selon vos PV manquants.`},
+        {id:'k_pact',col:0,lvl:12,t:'a',ap:2,cd:3,max:3,n:'Pacte de sang',self:.08,mult:1.5,lowHp:.35,tg:'one',si:'drop',d:k=>`Sacrifie 8 % de vos PV, puis inflige ${PCT_(1.5*k)} de la Force, jusqu’à +35 % selon vos PV manquants.`},
+        {id:'k_cp',col:1,lvl:12,t:'a',ap:2,cd:2,max:3,n:'Coup précis',mult:1.3,critAdd:25,tg:'one',si:'dagger',d:k=>`Inflige ${PCT_(1.3*k)} de la Force avec +25 % de chance de critique.`},
+        {id:'k_exe',col:2,lvl:12,t:'a',ap:2,cd:3,max:3,n:'Exécution',mult:1,exec:{thr:30,bonus:1},tg:'one',si:'skull',d:(k,g)=>`Inflige ${PCT_(1*k)} de la Force, doublés si la cible a moins de ${30+(g.execThr||0)} % de PV.`},
+        {id:'k_fur',col:0,lvl:16,t:'p',max:5,n:'Fureur',pv:{lowHpDmg:.6},links:['k_sauv','k_pact'],si:'rage',pd:r=>`+${r1(.6*r)} % de dégâts par tranche de 10 % de PV manquants.`},
+        {id:'k_mai',col:1,lvl:16,t:'p',max:5,n:'Maître d’armes',mods:{crit:2},si:'eye',pd:r=>`+${2*r} % de chance de critique.`},
+        {id:'k_grace',col:2,lvl:16,t:'p',max:3,n:'Coup de grâce',pv:{execThr:5},links:['k_exe','k_dec'],si:'skull',pd:r=>`Seuil d’Exécution et de Décapitation +${5*r} %.`},
+        {id:'k_inst',col:0,lvl:20,t:'p',max:3,n:'Instinct de survie',pv:{lowHpDef:5},si:'heart',pd:r=>`−${5*r} % de dégâts subis sous 35 % de PV.`},
+        {id:'k_cmd',col:1,lvl:20,t:'a',ap:2,cd:5,max:3,n:'Cri de commandement',tg:'allies',fx:[{k:'buff',stat:'crit',v:15,dur:4,abs:1}],si:'horn',d:k=>`+${Math.round(15*k)} % de chance de critique pour vous et vos alliés pendant 3 tours.`},
+        {id:'k_traq',col:2,lvl:20,t:'a',ap:1,cd:3,max:3,n:'Traque',tg:'one',fx:[{k:'mark',v:15,dur:3}],si:'eye',d:k=>`Marque la cible pendant 3 tours : elle subit +${Math.round(15*k)} % de vos dégâts.`},
+        {id:'k_soif',col:0,lvl:25,t:'p',max:3,n:'Soif de sang',pv:{lsLow:2},si:'drop',pd:r=>`+${2*r} % de vol de vie sous 50 % de PV.`},
+        {id:'k_dev',col:1,lvl:25,t:'p',max:5,n:'Coups dévastateurs',mods:{critDmg:6},links:['k_ch'],si:'burst',pd:r=>`+${6*r} % de dégâts critiques.`},
+        {id:'k_mois',col:2,lvl:25,t:'p',max:2,n:'Moisson',pv:{killAp:1},links:['k_exe','k_dec'],si:'axe',pd:r=>`Tuer une cible rend ${r} PA (une fois par tour).`},
+        {id:'k_ds',col:0,lvl:30,t:'a',u:1,ap:4,cd:8,max:1,n:'Dernier souffle',tg:'self',fx:[{k:'last',dur:3}],si:'heart',d:()=>`Pendant 2 tours, vos PV ne descendent pas sous 1 et vos dégâts augmentent de 25 %.`},
+        {id:'k_ch',col:1,lvl:30,t:'a',u:1,ap:5,cd:5,max:1,n:'Charge héroïque',mult:2,crit100:1,tg:'one',si:'sword',d:()=>`Inflige 200 % de la Force. Coup critique garanti.`},
+        {id:'k_dec',col:2,lvl:30,t:'a',u:1,ap:4,cd:5,max:1,n:'Décapitation',mult:1.5,exec:{thr:25,bthr:15,bonus:1},tg:'one',si:'skull',d:(k,g)=>`Inflige 150 % de la Force, 300 % si la cible a moins de ${25+(g.execThr||0)} % de PV (${15+(g.execThr||0)} % pour un boss).`},
       ]},
-      barb:{n:'Barbarie',co:'#b5541c',si:'axe',d:'Plus vos PV baissent, plus vos coups sont dévastateurs. Sacrifiez votre vie pour frapper encore plus fort.',nodes:[
-        {id:'k_sauv',r:0,c:1,t:'a',lvl:10,ap:2,cd:2,n:'Frappe sauvage',mult:1.6,lowHp:.7,tg:'one',si:'axe'},
-        {id:'k_fur',r:1,c:0,t:'p',lvl:12,req:'k_sauv',max:5,n:'Fureur',gx:{lowHpDmg:1.2},si:'rage'},
-        {id:'k_inst',r:1,c:2,t:'p',lvl:12,req:'k_sauv',max:5,n:'Instinct de survie',gx:{lowHpDef:5},mods:{hpPct:3},si:'heart'},
-        {id:'k_pact',r:2,c:1,t:'a',lvl:15,req:'k_sauv',ap:2,cd:3,n:'Pacte de sang',self:.1,mult:2.1,lowHp:.5,tg:'one',si:'drop'},
-        {id:'k_cri',r:3,c:0,t:'a',lvl:20,req:'k_pact',ap:2,cd:5,n:'Cri de guerre',tg:'allies',fx:[{k:'buff',stat:'atk',v:25,dur:3}],si:'horn'},
-        {id:'k_carn',r:3,c:2,t:'a',lvl:20,req:'k_pact',ap:3,cd:4,n:'Carnage',mult:1.15,lowHp:.5,tg:'all',si:'whirl'},
-        {id:'k_bers',r:4,c:0,t:'p',lvl:25,max:3,n:'Berserker',mods:{spdPct:4,crit:2,lifesteal:1},si:'wind'},
-        {id:'k_ult',r:6,c:1,t:'p',lvl:35,max:1,n:'Rage indomptable',ult:{trig:'hurt',n:'Rage',max:5,dur:3,buff:{n:'Déchaînement',dmg:20,def:15}},ud:'Chaque coup subi octroie 1 point de Rage. À 5 points, vous vous Déchaînez : +20 % de dégâts et −15 % de dégâts subis pendant 3 tours.',si:'rage'},
-        {id:'k_folie',r:4,c:2,t:'a',lvl:30,req:'k_carn',ap:4,cd:5,n:'Folie meurtrière',mult:2,lowHp:.8,ls:15,tg:'one',si:'skull'},
+      def:{n:'Défenseur',co:'#3f5f80',si:'shield',bg:'stone',res:'garde',br:['Brise-défense','Garde','Stratège','Classe'],
+        d:'Affaiblit l’armure ennemie, encaisse les coups et contrôle ses cibles.',
+        rd:'Garde : +1 par coup reçu (maximum 5). Chaque Garde réduit de 2 % les dégâts subis. Vous perdez 1 Garde par tour sans être touché.',
+        nodes:[
+        {id:'d_fra',col:0,lvl:10,t:'a',ap:1,max:3,n:'Fracas',mult:.85,tg:'one',fx:[{k:'debuff',stat:'def',v:5,dur:3,stack:4,tag:'fra'}],si:'hammer',d:k=>`Inflige ${PCT_(.85*k)} de la Force et réduit la Défense de la cible de 5 % pendant 3 tours (cumulable 4 fois).`},
+        {id:'d_bri',col:0,lvl:12,t:'a',ap:2,cd:3,max:3,n:'Brise-armure',mult:1.2,tg:'one',fx:[{k:'debuff',stat:'def',v:20,dur:3}],si:'axe',d:k=>`Inflige ${PCT_(1.2*k)} de la Force et réduit la Défense de 20 % pendant 3 tours.`},
+        {id:'d_pos',col:1,lvl:12,t:'a',ap:1,cd:4,max:3,n:'Posture défensive',tg:'self',fx:[{k:'buff',stat:'def',v:30,dur:4},{k:'buff',stat:'res',v:30,dur:4}],si:'shield',d:k=>`+${Math.round(30*k)} % de Défense et de Résistance pendant 3 tours.`},
+        {id:'d_cb',col:2,lvl:12,t:'a',ap:2,cd:4,max:3,n:'Coup de bouclier',mult:.8,tg:'one',fx:[{k:'stun',dur:1,ch:100}],si:'shield',d:k=>`Inflige ${PCT_(.8*k)} de la Force et étourdit la cible 1 tour.`},
+        {id:'d_pen',col:0,lvl:16,t:'p',max:5,n:'Pénétration',pv:{defPen:4},si:'dagger',pd:r=>`Vos coups ignorent ${4*r} % de la Défense ennemie.`},
+        {id:'d_rip',col:1,lvl:16,t:'p',max:3,n:'Riposte',pv:{counter:8},si:'sword',pd:r=>`${8*r} % de chance de contre-attaquer (60 % de la Force) quand vous êtes touché.`},
+        {id:'d_ent',col:2,lvl:16,t:'a',ap:2,cd:4,max:3,n:'Entrave',mult:.9,tg:'one',fx:[{k:'debuff',stat:'spd',v:30,dur:2}],si:'chain',d:k=>`Inflige ${PCT_(.9*k)} de la Force et ralentit la cible de 30 % pendant 2 tours.`},
+        {id:'d_fis',col:0,lvl:20,t:'a',ap:2,cd:4,max:3,n:'Fissure',mult:.7,tg:'all',fx:[{k:'debuff',stat:'def',v:10,dur:3}],si:'wave',d:k=>`Inflige ${PCT_(.7*k)} de la Force à tous les ennemis et réduit leur Défense de 10 % pendant 3 tours.`},
+        {id:'d_bas',col:1,lvl:20,t:'p',max:5,n:'Bastion',mods:{defPct:3,resPct:3},si:'shield',pd:r=>`+${3*r} % de Défense et de Résistance.`},
+        {id:'d_opp',col:2,lvl:20,t:'p',max:5,n:'Opportuniste',pv:{vsCC:5},si:'eye',pd:r=>`+${5*r} % de dégâts contre les cibles étourdies ou ralenties.`},
+        {id:'d_acier',col:0,lvl:25,t:'p',max:3,n:'Acier qui casse',pv:{vsDefDown:6},links:['d_fra','d_bri','d_fis'],si:'hammer',pd:r=>`+${6*r} % de dégâts contre une cible dont la Défense est réduite.`},
+        {id:'d_fer',col:1,lvl:25,t:'p',max:3,n:'Peau de fer',pv:{shieldPct:10},links:['g_mur'],si:'shield',pd:r=>`Vos boucliers sont ${10*r} % plus solides.`},
+        {id:'d_com',col:2,lvl:25,t:'p',max:3,n:'Commotion',pv:{stunCh:8},links:['d_cb','d_dom'],si:'stun',pd:r=>`+${8*r} % de chance d’étourdir.`},
+        {id:'d_bre',col:0,lvl:30,t:'a',u:1,ap:5,cd:5,max:1,n:'Brèche',mult:2.2,tg:'one',fx:[{k:'debuff',stat:'def',v:50,dur:2}],si:'burst',d:()=>`Inflige 220 % de la Force et réduit la Défense de la cible de 50 % pendant 2 tours.`},
+        {id:'d_for',col:1,lvl:30,t:'a',u:1,ap:4,cd:6,max:1,n:'Forteresse',tg:'self',fx:[{k:'fort',dur:3},{k:'taunt',dur:3}],si:'shield',d:()=>`Pendant 2 tours : −40 % de dégâts subis, provocation, et vous renvoyez 20 % des dégâts reçus.`},
+        {id:'d_dom',col:2,lvl:30,t:'a',u:1,ap:4,cd:5,max:1,n:'Domination',mult:1.2,tg:'all',fx:[{k:'stun',dur:1,ch:100}],si:'stun',d:()=>`Inflige 120 % de la Force à tous les ennemis et les étourdit 1 tour.`},
       ]},
     }},
   mage:{n:'Sorcier',ic:'staff',role:'mag',hue:260,desc:'Canon de verre. Brûle, foudroie et se protège par des barrières arcaniques. Bâtons, capuches, robes et sandales.',
     base:{hp:250,atk:0,mag:16,def:6,res:10,spd:10},grow:{hp:39,atk:0,mag:2.8,def:1.5,res:1.8,spd:.25},
     skills:[
-      {id:'m_proj',ap:2,n:'Projectile arcanique',t:'a',lvl:1,cd:2,mult:1.8,tg:'one',si:'star',co:'#5d45a8'},
-      {id:'m_bar',ap:3,n:'Barrière arcanique',t:'a',lvl:3,cd:5,max:1,tg:'allies',fx:[{k:'shield',v:.3,of:'hp'}],si:'shield',co:'#3d5aa8'},
-      {id:'m_nova',ap:3,n:'Nova arcanique',t:'a',lvl:6,cd:3,mult:.95,tg:'all',si:'nova',co:'#7350b8'},
+      {id:'m_proj',ap:1,n:'Projectile arcanique',t:'a',lvl:1,max:3,mult:.85,tg:'one',si:'star',co:'#5d45a8',d:k=>`Inflige ${PCT_(.85*k)} de l’Intelligence en dégâts magiques à une cible.`},
+      {id:'m_bou',ap:2,n:'Bouclier magique',t:'a',lvl:3,max:3,cd:5,tg:'self',fx:[{k:'shield',v:.2,of:'hp',dur:3}],si:'shield',co:'#3d5aa8',d:k=>`Bouclier de ${PCT_(.2*k)} de vos PV max pendant 2 tours.`},
+      {id:'m_exp',ap:1,n:'Explosion des arcanes',t:'a',lvl:6,max:3,cd:1,mult:.4,tg:'all',si:'nova',co:'#7350b8',d:k=>`Inflige ${PCT_(.4*k)} de l’Intelligence à tous les ennemis.`},
+      {id:'m_int',ap:1,n:'Intelligence des arcanes',t:'a',lvl:8,max:3,cd:20,tg:'self',fx:[{k:'buff',stat:'mag',v:10,dur:16,bid:'m_int'}],si:'sun',co:'#6a4ab0',d:(k,g)=>`+${Math.round(10*k+((g.buffAdd||{}).m_int||0))} % d’Intelligence pendant 15 tours.`},
     ],
     common:[
-      {id:'mc_main',c:0,n:'Érudition',mods:{magPct:2},max:5,si:'star'},
-      {id:'mc_crit',c:1,n:'Précision mortelle',mods:{crit:2},max:3,si:'eye'},
-      {id:'mc_hp',c:2,n:'Vitalité',mods:{hpPct:2},max:5,si:'heart'},
-      {id:'mc_spd',c:3,n:'Célérité',mods:{spdPct:2},max:3,si:'wind'},
-      {id:'mc_def',c:4,n:'Égide',mods:{defPct:2,resPct:2},max:3,si:'shield'},
+      {id:'mx_int',col:3,lvl:16,t:'p',max:2,n:'Intelligence des arcanes avancée',pv:{buffAdd:{m_int:5}},links:['m_int'],si:'sun',pd:r=>`Intelligence des arcanes donne +${5*r} % d’Intelligence en plus.`},
+      {id:'mx_app',col:3,lvl:20,t:'p',max:3,n:'Apprentissage rapide',pv:{cdRed:{m_int:1}},links:['m_int'],si:'hour',pd:r=>`Recharge d’Intelligence des arcanes −${r} tour${r>1?'s':''}.`},
+      {id:'mx_bou',col:3,lvl:25,t:'p',max:1,n:'Bouclier rapide',pv:{cdRed:{m_bou:1}},links:['m_bou'],si:'shield',pd:r=>`Recharge de Bouclier magique −1 tour.`},
+      {id:'mx_sta',col:3,lvl:33,t:'p',max:1,n:'Magie stable',pv:{apUlt:1},links:['@u'],si:'star',pd:r=>`Vos ultimes coûtent 1 PA de moins.`},
     ],
     specs:{
-      feu:{n:'Feu',co:'#c8471a',si:'flame',d:'Enflamme vos ennemis : les Brûlures s’accumulent puis explosent.',nodes:[
-        {id:'f_immo',r:0,c:1,t:'a',lvl:10,ap:2,cd:2,n:'Immolation',el:'feu',mult:1.5,tg:'one',fx:[{k:'dot',n:'Brûlure',v:.4,dur:3,ch:50}],si:'flame'},
-        {id:'f_emb',r:1,c:0,t:'p',lvl:12,req:'f_immo',max:5,n:'Embrasement',gx:{sxCh:{f_immo:10}},si:'flame'},
-        {id:'f_heat',r:1,c:2,t:'p',lvl:12,req:'f_immo',max:5,n:'Chaleur intense',gx:{burnP:10},mods:{magPct:3},si:'sun'},
-        {id:'f_comb',r:2,c:1,t:'a',lvl:15,req:'f_immo',ap:3,cd:4,n:'Combustion',el:'feu',mult:.8,tg:'one',fx:[{k:'det',n:'Brûlure',m:1.5}],si:'burst'},
-        {id:'f_wave',r:3,c:0,t:'a',lvl:20,req:'f_comb',ap:3,cd:4,n:'Vague de flammes',el:'feu',mult:1,tg:'all',fx:[{k:'dot',n:'Brûlure',v:.3,dur:3,ch:50}],si:'wave'},
-        {id:'f_pyro',r:3,c:2,t:'p',lvl:20,req:'f_comb',max:5,n:'Pyromanie',gx:{vsBurn:5},mods:{crit:1},si:'eye'},
-        {id:'f_pers',r:4,c:0,t:'p',lvl:25,max:2,n:'Feu persistant',gx:{burnDur:1},si:'hour'},
-        {id:'f_ult',r:6,c:1,t:'p',lvl:35,max:1,n:'Flamme intérieure',ult:{trig:'cast',el:'feu',n:'Chauffe',max:5,dur:3,buff:{n:'Surchauffe',dmg:20,el:'feu'}},ud:'Chaque sort de feu lancé octroie 1 degré de Chauffe. À 5 degrés, vous obtenez Surchauffe : +20 % de dégâts de feu pendant 3 tours.',si:'sun'},
-        {id:'f_met',r:4,c:2,t:'a',lvl:30,req:'f_pyro',ap:4,cd:6,n:'Météore',el:'feu',mult:2.2,tg:'all',fx:[{k:'dot',n:'Brûlure',v:.35,dur:3,ch:60}],si:'meteor'},
+      feu:{n:'Pyromancie',co:'#c8471a',si:'flame',bg:'fire',res:'heat',br:['Destruction','Incendie','Cataclysme','Classe'],
+        d:'Sorts de feu puissants qui font monter vos degrés de chaleur : gérez-les, puis dépensez-les dans un ultime.',
+        rd:'Degrés de chaleur : certains sorts de feu vous donnent des degrés (maximum 10). Chaque degré donne +2 % de dégâts de feu. À 10, ils retombent à 0 et vous subissez Surchauffe pendant 2 tours : sorts de feu −30 % et aucun degré gagné.',
+        nodes:[
+        {id:'f_bf',col:0,lvl:10,t:'a',ap:1,max:3,n:'Boule de feu',el:'feu',mult:.95,tg:'one',fx:[{k:'dot',n:'Brûlure',v:.25,dur:3,ch:10}],heat:{n:1,ch:50},si:'flame',d:k=>`Inflige ${PCT_(.95*k)} de l’Intelligence en feu. 10 % de chance d’infliger Brûlure. 50 % de chance de gagner 1 degré.`},
+        {id:'f_com',col:1,lvl:12,t:'a',ap:2,cd:4,max:3,n:'Combustion',el:'feu',mult:.5,tg:'one',fx:[{k:'dot',n:'Brûlure',v:.25,dur:3,ch:80}],heat:{n:1,ifBurn:1},si:'burst',d:k=>`Inflige ${PCT_(.5*k)} de l’Intelligence en feu. 80 % de chance d’infliger Brûlure pendant 3 tours ; +1 degré si la Brûlure prend.`},
+        {id:'f_lav',col:2,lvl:12,t:'a',ap:2,cd:2,max:3,n:'Explosion de lave',el:'feu',mult:.6,tg:'all',heat:{n:1},si:'wave',d:k=>`Inflige ${PCT_(.6*k)} de l’Intelligence en feu à tous les ennemis. +1 degré.`},
+        {id:'f_pa',col:0,lvl:12,t:'p',max:5,n:'Pyromancie avancée',pv:{dmgEl:{feu:2}},si:'sun',pd:r=>`+${2*r} % de dégâts de feu.`},
+        {id:'f_bra',col:0,lvl:16,t:'p',max:3,n:'Brasier',pv:{skDmg:{f_bf:8}},links:['f_bf'],si:'flame',pd:r=>`Boule de feu inflige +${8*r} % de dégâts.`},
+        {id:'f_col',col:1,lvl:16,t:'p',max:5,n:'Chaleur collante',pv:{burnExtra:5},links:['f_bf','f_com'],si:'drop',pd:r=>`+${5*r} % de chance d’infliger une Brûlure supplémentaire.`},
+        {id:'f_bou',col:2,lvl:16,t:'a',ap:2,cd:5,max:3,n:'Bouclier de feu',tg:'self',fx:[{k:'buff',stat:'rFeu',v:30,dur:4,abs:1}],si:'shield',d:k=>`+${Math.round(30*k)} % de résistance au feu pendant 3 tours.`},
+        {id:'f_fc',col:0,lvl:20,t:'p',max:3,n:'Flamme critique',pv:{cdmgEl:{feu:10}},si:'eye',pd:r=>`+${10*r} % de dégâts critiques des sorts de feu.`},
+        {id:'f_apa',col:1,lvl:20,t:'a',ap:1,cd:3,max:3,n:'Chaleur apaisante',tg:'self',heat:{n:-2},fx:[{k:'hot',v:.03,dur:4}],si:'heart',d:k=>`Retire 2 degrés de chaleur et soigne ${r1(3*k)} % de vos PV max par tour pendant 3 tours.`},
+        {id:'f_bomb',col:2,lvl:20,t:'a',ap:3,cd:4,max:3,n:'Bombe vivante',el:'feu',tg:'one',delay:1,dmult:2,si:'skull',d:k=>`Pose Bombe vivante sur la cible. Au tour suivant, elle explose : ${PCT_(2*k)} de l’Intelligence en feu à tous les ennemis ; les survivants brûlent. +1 degré par cible touchée, 30 % de chance de +1 degré par cible tuée.`},
+        {id:'f_esp',col:0,lvl:25,t:'p',max:3,n:'Esprit incandescent',pv:{critEl:{feu:3}},si:'eye',pd:r=>`+${3*r} % de chance de critique des sorts de feu.`},
+        {id:'f_per',col:1,lvl:25,t:'p',max:2,n:'Feu persistant',pv:{burnDur:1},links:['f_com'],si:'hour',pd:r=>`Vos Brûlures durent ${r} tour${r>1?'s':''} de plus.`},
+        {id:'f_onde',col:2,lvl:25,t:'p',max:3,n:'Onde de choc',pv:{aoeEl:{feu:6}},links:['f_lav','f_bomb','f_met'],si:'nova',pd:r=>`+${6*r} % de dégâts de zone des sorts de feu.`},
+        {id:'f_pyro',col:0,lvl:30,t:'a',u:1,ap:5,cd:5,max:1,n:'Explosion pyrotechnique',el:'feu',tg:'one',chan:1,dmult:1.6,si:'burst',d:()=>`Incante pendant 1 tour (vous ne jouez pas au tour suivant), puis inflige 160 % de l’Intelligence en feu, +10 % par degré de chaleur. Remet vos degrés à 0.`},
+        {id:'f_ame',col:1,lvl:30,t:'a',u:1,ap:5,cd:4,max:1,n:'Brûlure d’âme',el:'feu',tg:'one',soul:1,si:'flame',d:()=>`Inflige 6 % des PV max de la cible par tour pendant 3 tours (au plus 150 % de l’Intelligence par tour), et 1 Brûlure par degré de chaleur (3 au maximum).`},
+        {id:'f_met',col:2,lvl:30,t:'a',u:1,ap:4,cd:4,max:1,n:'Météore',el:'feu',tg:'all',delay:2,dmult:2.2,si:'meteor',d:()=>`Après 2 tours, inflige 220 % de l’Intelligence en feu à tous les ennemis, +3 % par degré de chaleur.`},
       ]},
-      foudre:{n:'Foudre',co:'#b8960c',si:'bolt',d:'Paralyse vos ennemis, qui risquent de perdre leur tour, puis foudroie les cibles paralysées.',nodes:[
-        {id:'z_arc',r:0,c:1,t:'a',lvl:10,ap:2,cd:2,n:'Arc électrique',el:'foudre',mult:1.8,tg:'one',fx:[{k:'para',ch:30,dur:2}],si:'bolt'},
-        {id:'z_stat',r:1,c:0,t:'p',lvl:12,req:'z_arc',max:5,n:'Électricité statique',gx:{paraCh:7},mods:{magPct:3},si:'spark'},
-        {id:'z_vif',r:1,c:2,t:'p',lvl:12,max:3,n:'Vif-argent',mods:{spdPct:4,crit:2},si:'wind'},
-        {id:'z_chain',r:2,c:1,t:'a',lvl:15,req:'z_arc',ap:3,cd:3,n:'Éclair en chaîne',el:'foudre',mult:1,tg:'all',fx:[{k:'para',ch:15,dur:2}],si:'chain'},
-        {id:'z_choc',r:3,c:0,t:'p',lvl:20,max:3,n:'Choc nerveux',gx:{paraPow:10},si:'spark'},
-        {id:'z_sur',r:3,c:2,t:'p',lvl:20,req:'z_chain',max:5,n:'Surtension',gx:{vsPara:8},mods:{crit:1},si:'bolt'},
-        {id:'z_temp',r:4,c:0,t:'a',lvl:25,req:'z_choc',ap:4,cd:4,n:'Tempête',el:'foudre',mult:1.4,tg:'all',fx:[{k:'para',ch:20,dur:2}],si:'storm'},
-        {id:'z_ult',r:6,c:1,t:'p',lvl:35,max:1,n:'Cœur de l’orage',ult:{trig:'cast',el:'foudre',n:'Charge',max:5,dur:3,buff:{n:'Surcharge',dmg:20,el:'foudre',paraCh:15}},ud:'Chaque sort de foudre lancé octroie 1 Charge. À 5 Charges, vous entrez en Surcharge : +20 % de dégâts de foudre et +15 % de chances de paralyser pendant 3 tours.',si:'storm'},
-        {id:'z_jug',r:4,c:2,t:'a',lvl:30,req:'z_sur',ap:4,cd:5,n:'Jugement de foudre',el:'foudre',mult:2.6,ifSt:{k:'para',v:1},tg:'one',si:'hammer'},
+      foudre:{n:'Évocateur',co:'#b8960c',si:'bolt',bg:'storm',res:'chg',br:['Électrocution','Instabilité','Paralysie','Classe'],
+        d:'La foudre accumule des Charges sur les ennemis, puis les fait exploser ou paralyse les cibles.',
+        rd:'Charges statiques : chaque sort de foudre qui touche pose 1 Charge sur la cible (maximum 5). Les sorts d’Instabilité consomment les Charges.',
+        nodes:[
+        {id:'z_ec',col:0,lvl:10,t:'a',ap:1,max:3,n:'Éclair',el:'foudre',mult:1,tg:'one',si:'bolt',d:k=>`Inflige ${PCT_(1*k)} de l’Intelligence en foudre. +1 Charge.`},
+        {id:'z_arc',col:0,lvl:12,t:'a',ap:2,cd:2,max:3,n:'Arc électrique',el:'foudre',mult:.8,tg:'one',bounce:2,si:'chain',d:(k,g)=>`Inflige ${PCT_(.8*k)} de l’Intelligence à la cible, puis rebondit sur ${2+(g.bounce||0)} autres ennemis (${PCT_(.55*k)}). +1 Charge par cible.`},
+        {id:'z_dec',col:1,lvl:12,t:'a',ap:2,cd:3,max:3,n:'Décharge',el:'foudre',tg:'one',dis:{base:.6,per:.4},si:'burst',d:k=>`Consomme les Charges de la cible : ${PCT_(.6*k)} de l’Intelligence +${PCT_(.4*k)} par Charge.`},
+        {id:'z_cs',col:2,lvl:12,t:'a',ap:2,cd:4,max:3,n:'Champ statique',el:'foudre',tg:'all',fx:[{k:'debuff',stat:'spd',v:20,dur:2},{k:'para',ch:25,dur:2}],si:'spark',d:k=>`Ralentit tous les ennemis de 20 % pendant 2 tours ; 25 % de chance de les paralyser.`},
+        {id:'z_con',col:0,lvl:16,t:'p',max:5,n:'Conductivité',pv:{dmgEl:{foudre:2}},si:'spark',pd:r=>`+${2*r} % de dégâts de foudre.`},
+        {id:'z_bat',col:1,lvl:16,t:'p',max:2,n:'Batterie',pv:{chgMax:1},links:['z_dec'],si:'star',pd:r=>`Charges maximum +${r}.`},
+        {id:'z_ner',col:2,lvl:16,t:'p',max:5,n:'Nerfs à vif',pv:{paraCh:3},links:['z_cs'],si:'eye',pd:r=>`+${3*r} % de chance de paralyser.`},
+        {id:'z_ht',col:0,lvl:20,t:'p',max:3,n:'Haute tension',pv:{skCrit:{z_ec:4}},links:['z_ec'],si:'bolt',pd:r=>`+${4*r} % de chance de critique d’Éclair.`},
+        {id:'z_sur',col:1,lvl:20,t:'a',ap:3,cd:4,max:3,n:'Surcharge',el:'foudre',tg:'all',surg:.45,si:'nova',d:k=>`Les Charges de tous les ennemis explosent : ${PCT_(.45*k)} de l’Intelligence par Charge, à la cible qui les porte.`},
+        {id:'z_cp',col:2,lvl:20,t:'a',ap:2,cd:5,max:3,n:'Choc paralysant',el:'foudre',mult:.6,tg:'one',fx:[{k:'stun',dur:1,ch:100}],si:'hammer',d:k=>`Inflige ${PCT_(.6*k)} de l’Intelligence en foudre et étourdit la cible 1 tour.`},
+        {id:'z_amp',col:0,lvl:25,t:'p',max:2,n:'Arc amplifié',pv:{bounce:1},links:['z_arc'],si:'chain',pd:r=>`Arc électrique rebondit sur ${r} ennemi${r>1?'s':''} de plus.`},
+        {id:'z_res',col:1,lvl:25,t:'p',max:3,n:'Énergie résiduelle',pv:{chgKeep:20},links:['z_dec'],si:'spark',pd:r=>`${20*r} % de chance de garder 1 Charge après une Décharge.`},
+        {id:'z_sta',col:2,lvl:25,t:'p',max:3,n:'Stase',pv:{vsCC:8},si:'hour',pd:r=>`+${8*r} % de dégâts contre les cibles paralysées, ralenties ou étourdies.`},
+        {id:'z_tem',col:0,lvl:30,t:'a',u:1,ap:5,cd:5,max:1,n:'Tempête',el:'foudre',tg:'all',storm:5,dmult:.6,si:'storm',d:()=>`5 éclairs de 60 % de l’Intelligence frappent des ennemis au hasard. +1 Charge chacun.`},
+        {id:'z_imp',col:1,lvl:30,t:'a',u:1,ap:5,cd:5,max:1,n:'Implosion',el:'foudre',tg:'one',imp:{base:1.2,per:.3,oth:.4},si:'burst',d:()=>`Consomme les Charges de la cible : 120 % de l’Intelligence +30 % par Charge. Les Charges des autres ennemis explosent aussi (40 % chacune).`},
+        {id:'z_cag',col:2,lvl:30,t:'a',u:1,ap:4,cd:5,max:1,n:'Cage d’éclairs',el:'foudre',tg:'all',fx:[{k:'stun',dur:1,ch:100},{k:'cage',dur:3}],si:'chain',d:()=>`Paralyse tous les ennemis 1 tour, puis ils subissent +25 % de dégâts de foudre pendant 3 tours.`},
       ]},
     }},
 };
-for(const c of Object.values(CLASSES)){ for(const [sid,sp] of Object.entries(c.specs)) for(const nd of sp.nodes){ nd.spec=sid; nd.co=nd.co||sp.co; if(nd.ult) nd.co='#b8860b' } for(const nd of c.common){ Object.assign(nd,{t:'p',r:5,lvl:SPEC_L,spec:'*',co:'#6f5a3e'}) } }
-const ULT_PTS=20;
+for(const c of Object.values(CLASSES)){ for(const [sid,sp] of Object.entries(c.specs)) for(const nd of sp.nodes){ nd.spec=sid; nd.co=nd.u?'#b8860b':(nd.co||sp.co) } for(const nd of c.common){ Object.assign(nd,{spec:'*',co:'#6f5a3e'}) } for(const s of c.skills) s.base=1 }
+const ULT_PTS=0;
+
 const SK={atk:{id:'atk',n:'Attaque',mult:1,tg:'one',cd:0,ap:0,t:'a',si:'fist',co:'#5a5048'}};
 for(const c of Object.values(CLASSES)){ for(const s of c.skills)SK[s.id]=s; for(const sp of Object.values(c.specs)) for(const s of sp.nodes) SK[s.id]=s; for(const s of c.common) SK[s.id]=s }
 const skMax=sk=>sk.max||5;
@@ -2450,7 +2663,7 @@ function fitBag(d){
 }
 function hp3Walk(o,d){ if(!o||typeof o!=='object'||(d|0)>8) return; if(Array.isArray(o)){ for(const x of o) hp3Walk(x,(d|0)+1); return } if(o.slot&&Array.isArray(o.aff)){ if(!o.hp3){ for(const a of o.aff) if(a.s==='hp') a.v=Math.round(a.v*3); o.hp3=1 } return } for(const k in o) if(o[k]&&typeof o[k]==='object') hp3Walk(o[k],(d|0)+1) }
 function accHp3(){ if(!ACC||ACC.hp3) return; hp3Walk(ACC); ACC.hp3=1 }
-const loadData=d=>{if(!d.siteV)d.siteV=1; const r=soloize(fitBag(Object.assign(newGame(),{balV:0,skV:0},migrate(d)))); if((r.balV||0)<1){balMig(r); r.balV=1} if((r.balV||0)<2){impMig(r); r.balV=2} if((r.skV||0)<1){ for(const h of r.heroes||[]) resetSkills(h); r.skV=1; if((r.heroes||[]).length) MIG_MSG=(MIG_MSG?MIG_MSG+' ':'')+'Nouveau système de compétences et de spécialisations : vos points de compétence ont été remboursés.' } if(!r.hp3){ hp3Walk(r); r.hp3=1 } if((r.skV||0)<2){ let ch=false; for(const h of r.heroes||[]){ const sp=Object.values(h.learned||{}).reduce((a,b)=>a+(b||0),0)-1; if(sp+(h.sp||0)>spCap(h.lvl)){ if(sp>spCap(h.lvl)){ resetSkills(h); ch=true } else h.sp=spCap(h.lvl)-sp } } r.skV=2; if(ch) MIG_MSG=(MIG_MSG?MIG_MSG+' ':'')+'Les points de compétence sont maintenant limités à '+SP_MAX+' : vos compétences ont été réinitialisées (points remboursés).' } return r};
+const loadData=d=>{if(!d.siteV)d.siteV=1; const r=soloize(fitBag(Object.assign(newGame(),{balV:0,skV:0},migrate(d)))); if((r.balV||0)<1){balMig(r); r.balV=1} if((r.balV||0)<2){impMig(r); r.balV=2} if((r.skV||0)<1){ for(const h of r.heroes||[]) resetSkills(h); r.skV=1; if((r.heroes||[]).length) MIG_MSG=(MIG_MSG?MIG_MSG+' ':'')+'Nouveau système de compétences et de spécialisations : vos points de compétence ont été remboursés.' } if(!r.hp3){ hp3Walk(r); r.hp3=1 } if((r.skV||0)<3){ for(const h of r.heroes||[]) resetSkills(h); r.skV=3; if((r.heroes||[]).length) MIG_MSG=(MIG_MSG?MIG_MSG+' ':'')+'Refonte des classes : vos points de compétence et votre spécialisation sont remboursés. Choisissez vos nouveaux talents !' } if(false){ let ch=false; for(const h of r.heroes||[]){ const sp=Object.values(h.learned||{}).reduce((a,b)=>a+(b||0),0)-1; if(sp+(h.sp||0)>spCap(h.lvl)){ if(sp>spCap(h.lvl)){ resetSkills(h); ch=true } else h.sp=spCap(h.lvl)-sp } } r.skV=2; if(ch) MIG_MSG=(MIG_MSG?MIG_MSG+' ':'')+'Les points de compétence sont maintenant limités à '+SP_MAX+' : vos compétences ont été réinitialisées (points remboursés).' } return r};
 /* rééquilibrage 0.3.0 : les affixes existants gardent leur qualité de tirage dans la nouvelle plage ; objets divins : 3 affixes au maximum, sans pouvoir */
 const AFX_OLD={hp:[8,3.2],atk:[2,.9],mag:[2,.9],def:[2,.75],spd:[1,.12],hpPct:[2,.12],dmgPct:[2,.14],crit:[1.5,.08],critDmg:[6,.5],dodge:[1.2,.04],lifesteal:[.8,.025]};
 function impMig(d){
@@ -2593,7 +2806,7 @@ function estCost(it){
 const itemCost=it=>it.cost||estCost(it);
 function addCost(it,c){ if(!it.cost) it.cost=estCost(it); for(const [k,v] of Object.entries(c)) if(v) it.cost[k]=(it.cost[k]||0)+v }
 function salvageValue(it){
-  const v={}; for(const [k,x] of Object.entries(itemCost(it))){const n=Math.floor(x*.25); if(n>0) v[k]=n}
+  const v={}; for(const [k,x] of Object.entries(itemCost(it))){ if(HARV.includes(k)) continue; const n=Math.floor(x*.25); if(n>0) v[k]=n}
   v.pd_rune=(it.rarity||0)+1;
   return v;
 }
@@ -2705,7 +2918,7 @@ const modDesc=(m,r)=>Object.entries(m).map(([k,v])=>`+${v*r}% ${MOD_N[k]}`).join
 const GX_N={bleedP:['+',' % de dégâts des Saignements'],burnP:['+',' % de dégâts des Brûlures'],vsBleed:['+',' % de dégâts contre les cibles qui saignent'],vsBurn:['+',' % de dégâts contre les cibles en feu'],vsPara:['+',' % de dégâts contre les cibles paralysées'],
   lowHpDmg:['+',' % de dégâts par tranche de 10 % de PV manquants'],lowHpDef:['−',' % de dégâts subis sous 35 % de PV'],paraCh:['+',' % de chances de paralyser (toutes vos compétences)'],paraPow:['+',' % de chances qu’une cible paralysée perde son tour'],
   bleedDur:['+',' tour de durée des Saignements'],burnDur:['+',' tour de durée des Brûlures']};
-function heroGx(h){
+function heroGxOld(h){
   const g={sxCh:{}}; if(!h) return g;
   for(const sk of heroSkills(h)){ if(sk.t!=='p'||!(sk.gx||sk.ult)) continue; const r=h.learned[sk.id]||0; if(!r) continue;
     if(sk.ult){ g.ult=sk.ult; continue }
@@ -2729,7 +2942,7 @@ const fxPow=(f,g)=>1+(((g||{})[f.n==='Brûlure'?'burnP':f.n==='Saignement'?'blee
 const fxCh=(f,sk,g)=>f.ch==null?100:Math.min(100,f.ch+(((g||{}).sxCh||{})[sk.id]||0)+(f.k==='para'?((g||{}).paraCh||0):0));
 const paraPow=g=>Math.min(90,50+((g||{}).paraPow||0));
 /* multiplicateur de dégâts lié aux talents et aux effets (PvE, duels, raids) */
-function skMul(u,t,sk){
+function skMulOld(u,t,sk){
   const g=u.gx||{}; let m=1; const miss=Math.max(0,1-Math.max(0,u.hp)/(u.maxHp||1));
   if(g.lowHpDmg) m*=1+g.lowHpDmg/100*miss*10;
   if(sk&&sk.lowHp) m*=1+sk.lowHp*miss;
@@ -2754,6 +2967,7 @@ function skReq(sk,h){
 }
 const TG_N={one:'Un ennemi',all:'Tous les ennemis',self:'Vous-même',allies:'Vos alliés',lowAlly:'L’allié le plus blessé'};
 function skCard(sk,h){
+  if(sk.d||sk.pd) return skCard7(sk,h);
   const chip=(ic,t,c='')=>`<span class="skm ${c}">${ic?`<i>${ic}</i>`:''}${t}</span>`;
   if(sk.id==='atk') return `<article class="it skt" style="--rc:${sk.co}"><header><b>Attaque</b><small>Compétence de base</small></header><div class="skmeta">${chip('','Gratuite','free')}${chip('','1 fois par tour')}${chip('','Un ennemi')}</div><div class="skbody"><p>Inflige 100 % de votre stat principale à la cible.</p></div></article>`;
   const r=h?(h.learned[sk.id]||0):0,mx=skMax(sk),role=h?CLASSES[h.cls].role:'atk',gx=heroGx(h),rk=Math.max(1,r);
@@ -2827,12 +3041,12 @@ function resetSkills(h){
   const first=CLASSES[h.cls].skills[0]; h.learned[first.id]=1; h.loadout=[first.id];
 }
 /* tuile de combat */
-const KEY_DEF=['Digit1','Digit2','Digit3','Digit4','Digit5','Digit6'];
-const KEYS=()=>{const k=ACC.keys; return Array.isArray(k)&&k.length===6?k:KEY_DEF};
+const KEY_DEF=['Digit1','Digit2','Digit3','Digit4','Digit5','Digit6','Digit7','Digit8'];
+const KEYS=()=>{const k=ACC.keys; if(Array.isArray(k)&&k.length===8) return k; if(Array.isArray(k)&&k.length===6){ const z=k.concat(['Digit7','Digit8'].filter(c=>!k.includes(c))); while(z.length<8) z.push(''); return z } return KEY_DEF};
 const keyLab=c=>!c?'—':/^Digit\d$/.test(c)?c.slice(5):/^Numpad\d$/.test(c)?'Pavé '+c.slice(6):/^Key[A-Z]$/.test(c)?c.slice(3):({Space:'Espace',Backquote:'²',Minus:')',Equal:'=',Semicolon:'M',Comma:',',Period:';',Slash:':',BracketLeft:'^',BracketRight:'$',Quote:'ù',Backslash:'*',IntlBackslash:'<'})[c]||c.replace(/^Arrow/,'Flèche ');
 function cTile(id,U,act,sel){
-  const hi=id==='atk'?0:((U.skills||[]).indexOf(id)+1),hk=hi>=0&&hi<6?hi+1:0,hkL=hk?keyLab(KEYS()[hi]):'';
-  const s=SK[id],cd=(U.cds&&U.cds[id])||0,c=s.ap||0,no=c>(U.ap||0),used=id==='atk'&&U.atkUsed,off=cd||no||used;
+  const hi=id==='atk'?0:((U.skills||[]).indexOf(id)+1),hk=hi>=0&&hi<8?hi+1:0,hkL=hk?keyLab(KEYS()[hi]):'';
+  const s=SK[id],cd=(U.cds&&U.cds[id])||0,c=id==='atk'?0:apOf(U,id),no=c>(U.ap||0),used=id==='atk'&&U.atkUsed,off=cd||no||used;
   return `<button class="skc ${off?'off':''} ${sel?'sel':''}" style="--co:${s.co||'#5a5048'}" data-act="${act}" data-id="${id}" ${hk?`data-hk="${hk}" aria-keyshortcuts="${esc(hkL)}"`:''} ${off?'aria-disabled="true"':''} data-tip="sk:${id}" aria-label="${esc(s.n)}${c?', '+c+' PA':''}${cd?', recharge '+cd+' tours':no?', PA insuffisants':used?', déjà utilisée':''}">${spIcon(s)}${c?`<em class="apk">${c}</em>`:''}${cd?`<span class="cdo">${cd}</span>`:used?'<span class="cdo">✓</span>':''}${hk?`<kbd class="skk" aria-hidden="true">${esc(hkL)}</kbd>`:''}</button>`;
 }
 
@@ -2873,7 +3087,7 @@ function mkHeroUnit(h){
   const okS=new Set(heroSkills(h).filter(x=>x.t==='a').map(x=>x.id)),sk=h.loadout.filter(id=>h.learned[id]&&okS.has(id)).slice(0,LOADOUT_MAX);
   const cds={}; for(const id of sk) cds[id]=0;
   return {id:'h'+h.id,team:'h',hero:h,name:h.name,lvl:h.lvl,ic:cl.ic,hue:h.hue,role:cl.role,...s,
-    hp:Math.round(s.hp),maxHp:Math.round(s.hp),skills:sk,ranks:h.learned,cds,st:[],shield:0,ap:s.ap,maxAp:s.ap,gx:heroGx(h)};
+    hp:Math.round(s.hp),maxHp:Math.round(s.hp),skills:sk,ranks:h.learned,cds,st:[],shield:0,ap:s.ap,maxAp:s.ap,gx:hx(h),heat:0,rage:0,garde:0};
 }
 /* difficultés : niveau des monstres, multiplicateurs (monstres / boss), début de la rage des boss, récompenses */
 const DIFF={
@@ -2921,10 +3135,24 @@ function logLine(t,cls=''){
   const el=$('#log'); if(el){const p=document.createElement('p');if(cls)p.className=cls;p.textContent=t;el.append(p);el.scrollTop=el.scrollHeight}
 }
 function unitEl(u){return $(`[data-u="${u.id}"]`)}
-const ST_N={atk:'Force',def:'Défense',res:'Résistance',spd:'Vitesse',mag:'Intelligence'};
+const ST_N={atk:'Force',def:'Défense',res:'Résistance',spd:'Vitesse',mag:'Intelligence',crit:'Critique',critDmg:'Dégâts critiques',rFeu:'Résistance au feu',rGlace:'Résistance à la glace',rFoudre:'Résistance à la foudre',rTerre:'Résistance à la terre',rPhys:'Résistance physique',rMag:'Résistance magique'};
 const ST_IC={up:'<path d="M12 19V5M6 11l6-6 6 6"/>',down:'<path d="M12 5v14M6 13l6 6 6-6"/>',dot:'<path d="M12 3c3 4 6 7 6 11a6 6 0 0 1-12 0c0-4 3-7 6-11z"/>',burn:'<path d="M12 3c1 3 5 5 5 10a5 5 0 0 1-10 0c0-3 2-4 2-6 2 1 2 3 3 4 1-3 0-5 0-8z"/>',stun:'<path d="M12 4l1.8 3.7 4 .6-2.9 2.8.7 4L12 13.2 8.4 15.1l.7-4L6.2 8.3l4-.6z"/><path d="M5 19h14"/>',para:'<path d="M13 3L6 13h5l-1 8 7-10h-5z"/>',taunt:'<path d="M12 3l7 3v5c0 5-3 8-7 10-4-2-7-5-7-10V6z"/>',apb:'<circle cx="12" cy="12" r="8"/><path d="M12 8v8M8 12h8"/>',stk:'<path d="M4 8l8-4 8 4-8 4zM4 12l8 4 8-4M4 16l8 4 8-4"/>',ult:'<path d="M12 2v6M12 16v6M2 12h6M16 12h6M5 5l4 4M15 15l4 4M19 5l-4 4M9 15l-4 4"/>'};
 function stInfo(s){
   const d=s.dur!=null?s.dur:'',tours=d!==''?` pendant ${d} tour${d>1?'s':''}`:'';
+  if(s.k==='heat') return {ic:'burn',c:s.v>=8?'#ff4a1a':'#ff8a3a',t:'Degrés de chaleur',d:`${s.v} / 10 : +${2*s.v} % de dégâts de feu. À 10 : Surchauffe.`,b:String(s.v)};
+  if(s.k==='rage') return {ic:'stk',c:'#e0412a',t:'Rage',d:`${s.v} / 10. À 10 : Déchaîné (+15 % de dégâts pendant 2 tours).`,b:String(s.v)};
+  if(s.k==='garde') return {ic:'taunt',c:'#7aa0d0',t:'Garde',d:`${s.v} / 5 : −${2*s.v} % de dégâts subis.`,b:String(s.v)};
+  if(s.k==='chg') return {ic:'para',c:'#f0e060',t:'Charges statiques',d:`${s.n} / ${s.max||5} Charges : consommées par les sorts d’Instabilité.`,b:String(s.n)};
+  if(s.k==='oh') return {ic:'burn',c:'#c0432a',t:'Surchauffe',d:`Sorts de feu −30 % et aucun degré gagné${tours}.`,b:''};
+  if(s.k==='dech') return {ic:'up',c:'#ff5a3a',t:'Déchaîné',d:`+15 % de dégâts${tours}.`,b:''};
+  if(s.k==='last') return {ic:'up',c:'#ffd27a',t:'Dernier souffle',d:`Vos PV ne descendent pas sous 1, +25 % de dégâts${tours}.`,b:''};
+  if(s.k==='fort') return {ic:'taunt',c:'#9ab0d0',t:'Forteresse',d:`−40 % de dégâts subis, renvoie 20 % des dégâts${tours}.`,b:''};
+  if(s.k==='cage') return {ic:'para',c:'#f0e060',t:'Cage d’éclairs',d:`+25 % de dégâts de foudre subis${tours}.`,b:''};
+  if(s.k==='mark') return {ic:'stun',c:'#e0614a',t:'Traqué',d:`+${s.v} % de dégâts subis de la part du Berserk${tours}.`,b:''};
+  if(s.k==='bomb') return {ic:'burn',c:'#ff6a1a',t:'Bombe vivante',d:'Explose au prochain tour du Sorcier.',b:''};
+  if(s.k==='hot') return {ic:'up',c:'#7fd07a',t:'Chaleur apaisante',d:`Soigne ${r1(s.v*100)} % des PV max par tour${tours}.`,b:''};
+  if(s.k==='chan') return {ic:'ult',c:'#ffd27a',t:'Incantation',d:'Le sort se déclenche au début du prochain tour ; ce tour-là, vous ne jouez pas.',b:''};
+  if(s.k==='dly'){ const q=SK[s.sk]; return {ic:'ult',c:'#ffd27a',t:q?q.n:'Sort à retardement',d:`Se déclenche dans ${s.dur} tour${s.dur>1?'s':''}.`,b:''} }
   if(s.k==='buff'){const up=s.v>=0,n=ST_N[s.stat]||s.stat; return {ic:up?'up':'down',c:up?'#7fd07a':'#e0614a',t:(up?'Bonus : ':'Malus : ')+n,d:`${up?'+':''}${Math.round(s.v)} % de ${n}${tours}.`,b:''}}
   if(s.k==='dot'){const n=s.n||'Dégâts sur la durée',c=/Poison/.test(n)?'#8ad04a':/Saign/.test(n)?'#e0412a':'#ff8a3a'; return {ic:/Brûl/.test(n)?'burn':'dot',c,t:n,d:`${Math.round(s.v||0)} dégâts au début de chaque tour${tours}.`,b:''}}
   if(s.k==='stun') return {ic:'stun',c:'#f0d040',t:'Étourdi',d:`Passe son prochain tour${tours}.`,b:''};
@@ -2945,7 +3173,7 @@ function refresh(u){
   {const sb=$('.hp .shl',el); if(sb){const m=u.maxHp||1,sh=Math.min(Math.max(0,u.shield||0),m),st=Math.min(Math.max(0,u.hp),m-sh); sb.style.left=st/m*100+'%'; sb.style.width=sh/m*100+'%'}}
   {const ab=$('.apbar',el); if(ab){ if(ab.children.length!==(u.maxAp||0)) ab.innerHTML=Array.from({length:u.maxAp||0},()=>'<i></i>').join(''); ab.querySelectorAll('i').forEach((x,i)=>x.classList.toggle('on',i<(u.ap||0))); ab.title=(u.ap||0)+' / '+(u.maxAp||0)+' PA' }}
   $('.hp span',el).textContent=Math.max(0,Math.ceil(u.hp))+' / '+Math.ceil(u.maxHp)+(u.shield>0?' (+'+Math.ceil(u.shield)+')':'');
-  { const t=$('.stt',el); t.classList.add('sti'); t.innerHTML=stHTML(u.st) }
+  { const t=$('.stt',el); t.classList.add('sti'); t.innerHTML=stHTML(unitSts(u)) }
 }
 const refreshAll=()=>{C.units.forEach(refresh); renderInit(); const r=$('.cvround b'); if(r) r.textContent=C.round};
 function floatTxt(u,txt,cls){
@@ -2970,91 +3198,26 @@ function heal(t,a,silent){
   const real=Math.min(a,t.maxHp-t.hp); t.hp+=real;
   floatTxt(t,'+'+real,'heal'); if(!silent||real>0) logLine(`${t.name} récupère ${real} PV.`,'hl'); refresh(t);
 }
-const resMul=(t,st,el)=>(1-Math.min(RES_CAP,t[st==='mag'?'rMag':'rPhys']||0)/100)*(el&&ELEM[el]?1-Math.min(RES_CAP,t[ELEM[el].k]||0)/100:1);
-function hit(u,t,mult,st,sk){
-  if(Math.random()*100<(t.dodge||0)){floatTxt(t,'Esquive','miss');logLine(`${t.name} esquive l’attaque.`);return}
-  const ds=st==='mag'?'res':'def';
-  const K=100+15*(u.lvl||1); /* plus l’attaquant est haut niveau, moins la défense le freine */
-  let d=effStat(u,st)*mult*K/(K+effStat(t,ds));
-  d*=1+(u.dmgPct||0)/100;
-  d*=resMul(t,st,sk&&sk.el);
-  d*=skMul(u,t,sk);
-  const rs=u.boss?DIFF[C.diff||'normal'].rage:30;
-  if(u.team==='e'&&C.round>rs) d*=1+(C.round-rs)*(u.boss&&rs<30?.08:.1);
-  if(sk&&sk.exec&&t.hp/t.maxHp<sk.exec.thr/100) d*=1+sk.exec.bonus;
-  d*=rand(.92,1.08);
-  const crit=Math.random()*100<(u.crit||0); if(crit) d*=(u.critDmg||150)/100;
-  d=Math.max(1,Math.round(d));
-  dmg(t,d,crit,u);
-  if(u.lifesteal&&u.hp>0) heal(u,d*u.lifesteal/100,true);
-  { const ul=(u.st||[]).find(q=>q.k==='ult'&&q.ls); if(ul&&u.hp>0) heal(u,d*ul.ls/100,true) }
-  return d;
-}
-function applyFx(u,t,f,k,sk){
-  if(t.hp<=0) return;
-  const st=sk.st||u.role;
-  if(f.k==='dot'){
-    if(Math.random()*100>=fxCh(f,sk,u.gx)) return;
-    t.st=t.st.filter(s=>!(s.k==='dot'&&s.n===f.n));
-    t.st.push({k:'dot',n:f.n,v:effStat(u,st)*f.v*k*resMul(t,st,sk.el)*fxPow(f,u.gx),dur:fxDur(f,u.gx)});
-    if(f.ch!=null) logLine(`${t.name} subit ${f.n}.`,'ev');
-  }else if(f.k==='para'){
-    if(Math.random()*100<(fxCh(f,sk,u.gx)+ulPara(u))*(t.boss?.5:1)){ t.st=t.st.filter(s=>s.k!=='para'); t.st.push({k:'para',p:paraPow(u.gx),dur:f.dur}); floatTxt(t,'Paralysie','miss'); logLine(`${t.name} est paralysé !`,'ev') }
-  }else if(f.k==='det'){
-    const q=t.st.find(x=>x.k==='dot'&&x.n===f.n); if(q){ t.st=t.st.filter(x=>x!==q); dmg(t,Math.max(1,Math.round(q.v*q.dur*f.m*k)),false,u,f.n+' : détonation') }
-  }else if(f.k==='stun'){
-    const ch=(f.ch||100)*(t.boss?.5:1);
-    if(Math.random()*100<ch&&!t.st.some(s=>s.k==='stun')){t.st.push({k:'stun',dur:f.dur});logLine(`${t.name} est étourdi !`,'ev')}
-  }else if(f.k==='shield'){
-    const a=f.of==='hp'?t.maxHp*f.v*k:effStat(u,'mag')*f.v*k;
-    t.shield=Math.min(t.maxHp,t.shield+a); floatTxt(t,'Bouclier','heal');
-  }else if(f.k==='heal'){
-    heal(t,effStat(u,f.of||'mag')*f.v*k*(1+(u.healPow||0)/100)*rand(.95,1.05));
-  }else if(f.k==='buff'||f.k==='debuff'){
-    const v=f.v*(f.k==='buff'?k:Math.abs(k));
-    t.st=t.st.filter(s=>!(s.k==='buff'&&s.stat===f.stat&&Math.sign(s.v)===Math.sign(v)));
-    t.st.push({k:'buff',stat:f.stat,v:f.k==='debuff'?-Math.abs(v):v,dur:f.dur});
-  }else if(f.k==='taunt'){
-    t.st=t.st.filter(s=>s.k!=='taunt'); t.st.push({k:'taunt',dur:f.dur});
-  }
-  refresh(t);
-}
+const resMul=(t,st,el)=>(1-Math.min(RES_CAP,t[st==='mag'?'rMag':'rPhys']||0)/100)*(el&&ELEM[el]?1-Math.min(RES_CAP,(t[ELEM[el].k]||0)+buffSum(t,ELEM[el].k))/100:1);
+function hit(u,t,mult,st,sk){ return CB.hit(u,t,mult,st,sk,W_PVE) }
+function applyFx(u,t,f,k,sk){ CB.fx(u,t,f,k,sk,W_PVE); refresh(t) }
 async function exec(u,sk,tgt){
-  const rank=sk.id==='atk'?1:(u.ranks[sk.id]||1),k=sc(rank);
-  if(sk.cd) u.cds[sk.id]=sk.cd+1;
-  if(sk.ap) u.ap=Math.max(0,(u.ap||0)-sk.ap);
-  if(sk.self){ const c=Math.min(u.hp-1,Math.round(u.maxHp*sk.self)); if(c>0){ u.hp-=c; floatTxt(u,'-'+c,''); logLine(`${u.name} sacrifie ${c} PV.`,'cr'); refresh(u) } }
-  const foesA=alive(foes(u)),friA=alive(friends(u));
-  if((sk.tg==='one')&&(!tgt||tgt.hp<=0)) tgt=foesA[0];
-  let fT=[],aT=[];
-  if(sk.tg==='one') fT=tgt?[tgt]:[];
-  else if(sk.tg==='all') fT=foesA;
-  else if(sk.tg==='self') aT=[u];
-  else if(sk.tg==='allies') aT=friA;
-  else if(sk.tg==='lowAlly') aT=[friA.slice().sort((a,b)=>a.hp/a.maxHp-b.hp/b.maxHp)[0]];
-  logLine(sk.id==='atk'?`${u.name} attaque${tgt?' '+tgt.name:''}.`:`${u.name} utilise ${sk.n}.`);
   const el=unitEl(u); if(el){el.style.transform='scale(1.03)';setTimeout(()=>{el.style.transform=''},220)}
   await sleep(260);
-  const st=sk.st||u.role;
-  if(sk.mult) for(const t of fT) for(let i=0;i<(sk.hits||1);i++){ if(t.hp<=0)break; const d=hit(u,t,sk.mult*k,st,sk); if(sk.ls&&d&&u.hp>0) heal(u,d*sk.ls/100) }
-  for(const f of sk.fx||[]){
-    const on=f.on||(sk.tg==='one'||sk.tg==='all'?'foe':'friend');
-    const ts=on==='foe'?fT:on==='allies'?alive(friends(u)):aT;
-    for(const t of ts) applyFx(u,t,f,k,sk);
-  }
-  ultAfterCast(u,sk,fT,m=>{logLine(m,'hl');floatTxt(u,m.split(' : ').pop(),'heal')});
+  CB.exec(u,sk,tgt,W_PVE);
   refreshAll();
   await sleep(420);
 }
 const AP_REGEN=1;
 const PA_POT=2,PA_CD=6;
-function stTick(u){ u.st.forEach(s=>s.dur--); for(const s of u.st) if(s.k==='apb'&&s.dur<=0){ u.maxAp=Math.max(0,(u.maxAp||0)-s.v); u.ap=Math.min(u.ap||0,u.maxAp) } u.st=u.st.filter(s=>s.dur>0) }
+function stTick(u){ u.st.forEach(s=>s.dur--); for(const s of u.st) if(s.k==='shd'&&s.dur<=0) u.shield=Math.max(0,(u.shield||0)-s.v); for(const s of u.st) if(s.k==='apb'&&s.dur<=0){ u.maxAp=Math.max(0,(u.maxAp||0)-s.v); u.ap=Math.min(u.ap||0,u.maxAp) } u.st=u.st.filter(s=>s.dur>0) }
 function addApb(u){ u.st=u.st.filter(s=>{ if(s.k==='apb'){u.maxAp-=s.v; return false} return true }); u.st.push({k:'apb',v:PA_POT,dur:3}); u.maxAp=(u.maxAp||0)+PA_POT; u.ap=(u.ap||0)+PA_POT }
-const canAct=u=>u.hp>0&&(!u.atkUsed||u.skills.some(id=>(u.cds[id]||0)===0&&(u.ap||0)>=(SK[id].ap||0)));
+const canAct=u=>u.hp>0&&(!u.atkUsed||u.skills.some(id=>(u.cds[id]||0)===0&&(u.ap||0)>=apOf(u,id)));
 function tauntOf(list){return list.find(x=>x.hp>0&&x.st.some(s=>s.k==='taunt'))}
 function ai(u,noAtk){
+  if(u.team==='h'&&u.gx&&u.gx.v7) return CB.ai(u,noAtk,W_PVE);
   const foesA=alive(foes(u)),friA=alive(friends(u));
-  const usable=u.skills.filter(id=>(u.cds[id]||0)===0&&(u.ap||0)>=(SK[id].ap||0)).map(id=>({sk:SK[id],rank:u.ranks[id]||1}));
+  const usable=u.skills.filter(id=>(u.cds[id]||0)===0&&(u.ap||0)>=apOf(u,id)).map(id=>({sk:SK[id],rank:u.ranks[id]||1}));
   const isHeal=x=>x.sk.tg==='lowAlly'&&x.sk.fx&&x.sk.fx.some(f=>f.k==='heal');
   const low=friA.slice().sort((a,b)=>a.hp/a.maxHp-b.hp/b.maxHp)[0];
   const healer=usable.find(isHeal);
@@ -3090,12 +3253,9 @@ function playerChoice(u){
 }
 async function turn(u){
   C.turn=u.id; if(u.maxAp) u.ap=u.maxAp; refreshAll();
-  for(const s of u.st.filter(s=>s.k==='dot')) if(u.hp>0) dmg(u,Math.max(1,Math.round(s.v)),false,null,s.n);
-  if(u.regen&&u.hp>0) heal(u,u.maxHp*u.regen/100,true);
-  if(u.hp<=0){C.turn=null;refreshAll();return}
-  let skip=false;
-  if(u.st.some(s=>s.k==='stun')){logLine(`${u.name} est étourdi et passe son tour.`,'ev');skip=true;await sleep(500)}
-  else { const pa=u.st.find(s=>s.k==='para'); if(pa&&Math.random()*100<(pa.p||50)){ logLine(`${u.name} est paralysé et perd son tour.`,'ev'); floatTxt(u,'Paralysé','miss'); skip=true; await sleep(500) } }
+  const r0=CB.start(u,W_PVE); refreshAll();
+  if(u.hp<=0){ CB.end(u); C.turn=null;refreshAll();return}
+  let skip=!!r0.skip; if(skip) await sleep(500);
   if(!skip){
     u.atkUsed=false;
     if(u.team==='h'){
@@ -3114,8 +3274,7 @@ async function turn(u){
       const ch=ai(u); await exec(u,ch.skill,ch.target);
     }
   }
-  stTick(u);
-  for(const id of Object.keys(u.cds)) u.cds[id]=Math.max(0,u.cds[id]-1);
+  CB.end(u);
   C.turn=null; refreshAll();
 }
 function checkEnd(){
@@ -3179,14 +3338,14 @@ async function finish(r){
     if(lb>1) for(const k of Object.keys(mats)) if(k!=='prisme') mats[k]=Math.round(mats[k]*lb);
     for(const k of HARV) delete mats[k];
     gain(mats);
-    const items=[]; { const Z=rollZoneLoot(C.zone,boss,L,lb); gain(Z.mats); for(const [k,v] of Object.entries(Z.mats)) mats[k]=(mats[k]||0)+v; for(const it of Z.items){ addInv(it); items.push(it) } }
+    const items=[]; { const Z=rollZoneLoot(C.zone,boss,L,lb); gain(Z.mats); for(const [k,v] of Object.entries(Z.mats)) mats[k]=(mats[k]||0)+v; S.lastLoot=[]; let rcN=0; const rcV={}; for(const it of Z.items){ if(lootKeep(it)){ addInv(it); items.push(it); S.lastLoot.push({s:it.slot,r:it.rarity,n:it.name}) } else { const v=salvageValue(it); gain(v); for(const [k,x] of Object.entries(v)) rcV[k]=(rcV[k]||0)+x; it.rc=1; items.push(it); rcN++; S.lastLoot.push({s:it.slot,r:it.rarity,n:it.name,rc:1}) } } if(rcN){ qEv('recycle',rcN); C._rc={n:rcN,v:rcV} } else C._rc=null }
     const P=prog(C.diff||'normal'); if(boss){S.bossK=S.bossK||{}; S.bossK[(C.diff||'normal')+C.zone]=1}
     if(C.diff==='hero'&&boss&&C.zone===ZONES.length-1&&!S.mythOpen){S.mythOpen=true;setTimeout(()=>toast('✦ Mode Mythique débloqué !'),600)}
     if(C.zone===P.zone&&C.stage===P.stage){
       if(C.stage<10) P.stage++; else if(C.zone<ZONES.length-1){P.zone++;P.stage=1}
       if((C.diff||'normal')===curDiff()){UI.zone=P.zone;UI.stage=P.stage}
     }
-    C.result={win:true,xp,gold,mats,items,ups};
+    C.result={win:true,xp,gold,mats,items,ups,rc:C._rc};
     logLine('Victoire !','hl');
   }else{
     C.result={win:false}; logLine('Vous êtes tombé au combat…','cr'); S.farm=false;
@@ -3301,7 +3460,7 @@ let SCB=0;
 function scrollBack(L){ SCB=Date.now(); for(const [sel,i,t] of L){ const el=document.querySelectorAll(sel)[i]; if(el) el.scrollTop=t } }
 let RKEY='';
 function anvSync(){ if(UI.anvil&&!(UI.tab==='forge'&&!UI.scr&&UI.ws==='forge'&&UI.fMode==='salv')) UI.anvil=false; document.body.classList.toggle('anvil',!!UI.anvil) }
-function render(){ const key=(UI.scr||'')+'|'+UI.tab+'|'+(UI.ws||'')+'|'+(UI.fMode||'')+'|'+(UI.advMode||''),keep=key===RKEY?scrollKeep():[]; RKEY=key; render1(); if(keep.length) scrollBack(keep); anvSync() }
+function render(){ const key=(UI.scr||'')+'|'+UI.tab+'|'+(UI.ws||'')+'|'+(UI.fMode||'')+'|'+(UI.advMode||''),keep=key===RKEY?scrollKeep():[]; RKEY=key; render1(); if(keep.length) scrollBack(keep); anvSync(); gearSync(); if(document.querySelector('.t7tree')) requestAnimationFrame(drawSkLinks) }
 function render1(){
   { const tv=TIPEL&&!$('#tip').hidden; hideTip(); if(tv) setTimeout(reTipAt,0) } document.body.classList.toggle('scr',!!UI.scr); document.body.classList.toggle('scr-menu',UI.scr==='menu'||UI.scr==='login'||UI.scr==='pseudo');
   renderTabs(); if(UI.scr) $('#res').innerHTML=''; else renderHeader();
@@ -3449,6 +3608,7 @@ function pvpSnap(hm=1){
   const h=S.heroes[0],u=mkHeroUnit(h),keys=['hp','maxHp','atk','mag','def','res','spd','crit','critDmg','dodge','lifesteal','dmgPct','ap','maxAp',...RES_K];
   const o={acct:FB.prof.name,name:h.name,cls:h.cls,skin:h.skin||null,lvl:h.lvl,role:u.role,gx:u.gx,skills:u.skills.slice(),ranks:Object.fromEntries(u.skills.map(id=>[id,h.learned[id]||1])),cds:{},st:[],shield:0,atkUsed:false,stun:false};
   for(const k of keys) o[k]=Math.round((u[k]||0)*10)/10;
+  o.heat=0; o.rage=0; o.garde=0;
   if(hm!==1){ o.hp=o.maxHp=Math.round(o.maxHp*hm) }
   return o;
 }
@@ -3528,16 +3688,7 @@ function pvHit(u,t,mult,st,sk,L){
   return d;
 }
 function pvSelf(u,sk,L){ if(!sk.self) return; const c=Math.min(u.hp-1,Math.round(u.maxHp*sk.self)); if(c>0){ u.hp-=c; L.push(`${u.name} sacrifie ${c} PV.`) } }
-function pvExec(u,t,sk,L){
-  const k=sk.id==='atk'?1:sc((u.ranks&&u.ranks[sk.id])||1),st=sk.st||u.role;
-  if(sk.cd) u.cds[sk.id]=sk.cd+1; if(sk.ap) u.ap=Math.max(0,u.ap-sk.ap); if(sk.id==='atk') u.atkUsed=true;
-  L.push(sk.id==='atk'?`${u.name} attaque.`:`${u.name} utilise ${sk.n}.`); pvSelf(u,sk,L);
-  if(sk.mult) for(let i=0;i<(sk.hits||1)&&t.hp>0;i++) pvHit(u,t,sk.mult*k,st,sk,L);
-  for(const f of sk.fx||[]){
-    const on=f.on||(sk.tg==='one'||sk.tg==='all'?'foe':'friend'),tg=on==='foe'?t:u; pvFx(u,tg,f,k,sk,L);
-  }
-  ultAfterCast(u,sk,[t],m=>L.push(m));
-}
+function pvExec(u,t,sk,L){ CB.exec(u,sk,t,W_L(L,x=>x===u?[t]:[u],x=>x===u?[u]:[t])) }
 function pvFx(u,tg,f,k,sk,L){
   const st=sk.st||u.role; if(tg.hp<=0) return;
   {
@@ -3561,7 +3712,7 @@ const pvMyTurn=()=>PV.match&&PV.match.state==='fight'&&PV.match.turn===pvpMe();
 async function pvAct(id){
   if(!pvMyTurn()||PV.busy) return; const x=pvState(),sk=SK[id];
   if(!sk||x.U.stun) return; if(id!=='atk'&&!x.U.skills.includes(id)) return;
-  if((sk.ap||0)>x.U.ap||(x.U.cds[id]||0)||(id==='atk'&&x.U.atkUsed)) return;
+  if((id==='atk'?0:apOf(x.U,id))>x.U.ap||(x.U.cds[id]||0)||(id==='atk'&&x.U.atkUsed)) return;
   PV.busy=true; pvExec(x.U,x.T,sk,x.L); await pvCommit(x); PV.busy=false;
 }
 function potFx(U,k,L,ctx){
@@ -3580,12 +3731,10 @@ async function pvPot(k){
 }
 async function pvEnd(){
   if(!pvMyTurn()||PV.busy) return; const x=pvState(),U=x.U,T=x.T;
-  stTick(U); for(const k in U.cds) U.cds[k]=Math.max(0,U.cds[k]-1); for(const q in (U.pcd||{})) U.pcd[q]=Math.max(0,U.pcd[q]-1); U.stun=false; U.atkUsed=false;
+  CB.end(U); for(const q in (U.pcd||{})) U.pcd[q]=Math.max(0,U.pcd[q]-1); U.stun=false; U.atkUsed=false;
   /* début du tour adverse */
-  T.ap=T.maxAp;
-  for(const s of T.st.filter(s=>s.k==='dot')){ T.hp=Math.max(0,T.hp-Math.max(1,s.v)); x.L.push(`${T.name} subit ${Math.max(1,s.v)} dégâts (${s.n}).`) }
-  T.stun=T.st.some(s=>s.k==='stun'); if(T.stun) x.L.push(`${T.name} est étourdi et ne peut pas agir.`);
-  else { const pa=T.st.find(s=>s.k==='para'); if(pa&&Math.random()*100<(pa.p||50)){ T.stun=true; x.L.push(`${T.name} est paralysé et ne peut pas agir.`) } }
+  T.ap=T.maxAp; T.atkUsed=false;
+  { const r0=CB.start(T,W_L(x.L,v=>v===T?[U]:[T],v=>v===T?[T]:[U])); T.stun=!!r0.skip }
   const round=(x.m.round||1)+(x.o===x.m.first?1:0);
   PV.busy=true; await pvCommit(x,{turn:x.o,round,turnAt:pvpTS()}); PV.busy=false;
 }
@@ -3675,7 +3824,7 @@ async function fcSend(k){
 }
 function pvCard(u,name,me,turn,pid){
   if(!u) return `<div class="pvcard wait"><b>${esc(name||'?')}</b><small>En attente…</small></div>`;
-  const aps=Array.from({length:u.maxAp||0},(_,i)=>`<i class="${i<u.ap?'on':''}"></i>`).join(''),sts=stHTML(u.st);
+  const aps=Array.from({length:u.maxAp||0},(_,i)=>`<i class="${i<u.ap?'on':''}"></i>`).join(''),sts=stHTML(unitSts(u));
   return `<div class="pvcard ${me?'me':''} ${turn?'turn':''} ${u.hp<=0?'dead':''} ${u.boss?'boss':''} ${u.left?'left':''}" ${pid?`data-pu="${pid}"`:''}>${PORTRAIT[u.cls]?`<img src="${PORTRAIT[u.cls]}" alt="" width="84" height="84">`:u.boss?`<span class="tile xl" style="--h:40">${icon('boss')}</span>`:''}<b>${esc(u.acct)}</b><small>${u.boss?`Boss de raid · niv. ${u.lvl}`:`${esc(u.name)} · ${(CLASSES[u.cls]||{n:''}).n} niv. ${u.lvl}`}${u.left?' · a abandonné':''}</small>
     <div class="hp"><i style="width:${Math.max(0,u.hp/u.maxHp*100)}%"></i>${(()=>{const m=u.maxHp||1,sh=Math.min(Math.max(0,u.shield||0),m),st=Math.min(Math.max(0,u.hp),m-sh);return sh>0?`<b class="shl" style="left:${st/m*100}%;width:${sh/m*100}%"></b>`:''})()}<span>${Math.ceil(u.hp)} / ${Math.ceil(u.maxHp)}${u.shield>0?' (+'+Math.ceil(u.shield)+')':''}</span></div><div class="apbar" title="${u.ap} / ${u.maxAp} PA">${aps}</div><div class="stt sti">${sts}</div></div>`;
 }
@@ -3704,7 +3853,7 @@ function renderPvp(){
   let acts='';
   if(m.state==='done') acts=`<div class="pvwin">🏆 ${esc(nm[m.winner]||'')} remporte le duel !</div>`;
   else if(m.state==='prep') acts=prepActs(U,'pvp',m);
-  else if(my&&U.stun) acts=`<p class="mute">Vous êtes étourdi : vous passez ce tour.</p><div class="row"><button class="btn endturn" data-act="pvpEndT">Fin de tour</button></div>`;
+  else if(my&&U.stun) acts=`<p class="mute">Vous ne pouvez pas agir ce tour (étourdi, paralysé ou en incantation).</p><div class="row"><button class="btn endturn" data-act="pvpEndT">Fin de tour</button></div>`;
   else if(my) acts=fActs(U,'pvp',m.round); else acts=`<p class="mute">Tour de <b>${esc(nm[o]||'')}</b>… <span class="num" data-pvt>(${tl} s)</span></p>${late?'<div class="row"><button class="btn pri" data-act="pvpClaim">Réclamer la victoire (adversaire inactif)</button></div>':''}`;
   keepFc(w,()=>{ w.innerHTML=`<div class="box pvbox fbox ftbox"><div class="fgrid"><div class="fmain">${fArena(m,'pvp')}</div>${fchatHTML(m,'pvp')}</div></div>` });
   const lg=w.querySelector('.pvlog'); if(lg) lg.scrollTop=lg.scrollHeight; hpFloats(w,m,PV);
@@ -3797,24 +3946,10 @@ const rdHeroes=x=>x.m.players.map(p=>x.u[p]);
 const rdAliveH=x=>rdHeroes(x).filter(h=>h&&h.hp>0&&!h.left);
 const rdOver=x=>x.u.boss.hp<=0?'win':!rdAliveH(x).length?'lose':null;
 function rdState(){ const m=RD.match,me=pvpMe(),u=JSON.parse(JSON.stringify(m.u)); return {m,me,u,U:u[me],L:[],round:m.round||1} }
-function rdEndOf(V){ stTick(V); for(const k in V.cds) V.cds[k]=Math.max(0,V.cds[k]-1); for(const q in (V.pcd||{})) V.pcd[q]=Math.max(0,V.pcd[q]-1); V.atkUsed=false; V.stun=false }
+function rdEndOf(V){ CB.end(V); for(const q in (V.pcd||{})) V.pcd[q]=Math.max(0,V.pcd[q]-1); V.atkUsed=false; V.stun=false }
 function rdExec(u,sk,tgt,x){
-  const L=x.L,B=x.u.boss,heroes=rdAliveH(x),foesA=u.boss?heroes:(B.hp>0?[B]:[]),friA=u.boss?[B]:heroes;
-  const k=sk.id==='atk'?1:sc((u.ranks&&u.ranks[sk.id])||1),st=sk.st||u.role;
-  if(sk.cd) u.cds[sk.id]=sk.cd+1; if(sk.ap) u.ap=Math.max(0,u.ap-sk.ap); if(sk.id==='atk') u.atkUsed=true;
-  let fT=[],aT=[];
-  if(sk.tg==='one') fT=tgt&&tgt.hp>0?[tgt]:foesA.slice(0,1);
-  else if(sk.tg==='all') fT=foesA;
-  else if(sk.tg==='self') aT=[u];
-  else if(sk.tg==='allies') aT=friA;
-  else if(sk.tg==='lowAlly') aT=[friA.slice().sort((a,b)=>a.hp/a.maxHp-b.hp/b.maxHp)[0]].filter(Boolean);
-  L.push(sk.id==='atk'?`${u.name} attaque${fT[0]?' '+fT[0].name:''}.`:`${u.name} utilise ${sk.n}.`); pvSelf(u,sk,L);
-  if(sk.mult) for(const t of fT) for(let i=0;i<(sk.hits||1)&&t.hp>0;i++){ pvHit(u,t,sk.mult*k,st,sk,L); if(t.hp<=0) L.push(`${t.name} est vaincu.`) }
-  for(const f of sk.fx||[]){
-    const on=f.on||(sk.tg==='one'||sk.tg==='all'?'foe':'friend'),ts=on==='foe'?fT:on==='allies'?friA:aT;
-    for(const tg of ts) pvFx(u,tg,f,k,sk,L);
-  }
-  ultAfterCast(u,sk,fT,m=>L.push(m));
+  const H=()=>rdAliveH(x),B=x.u.boss,allH=()=>Object.entries(x.u).filter(([k,v])=>k!=='boss'&&v&&!v.left).map(([,v])=>v);
+  CB.exec(u,sk,tgt,W_L(x.L,v=>v.boss?allH():[B],v=>v.boss?[B]:allH()));
 }
 function rdBossAct(x){
   const B=x.u.boss; B.dmgPct=x.round>RD_RAGE?(x.round-RD_RAGE)*8:0;
@@ -3836,10 +3971,9 @@ function rdNext(x){
     i=(i+1)%ord.length; if(i===0) x.round++;
     const id=ord[i],V=x.u[id]; if(!V||V.hp<=0||V.left) continue;
     V.ap=V.maxAp;
-    for(const s of V.st.filter(s=>s.k==='dot')){ const d=Math.max(1,s.v); V.hp=Math.max(0,V.hp-d); x.L.push(`${V.name} subit ${d} dégâts (${s.n}).`) }
-    if(V.hp<=0){ x.L.push(`${V.name} est vaincu.`); continue }
-    if(V.st.some(s=>s.k==='stun')){ x.L.push(`${V.name} est étourdi et passe son tour.`); rdEndOf(V); continue }
-    { const pa=V.st.find(s=>s.k==='para'); if(pa&&Math.random()*100<(pa.p||50)){ x.L.push(`${V.name} est paralysé et perd son tour.`); rdEndOf(V); continue } }
+    { const B=x.u.boss,allH=()=>Object.entries(x.u).filter(([k,v])=>k!=='boss'&&v&&!v.left).map(([,v])=>v);
+      const r0=CB.start(V,W_L(x.L,v=>v.boss?allH():[B],v=>v.boss?[B]:allH()));
+      if(V.hp<=0) continue; if(r0.skip){ rdEndOf(V); continue } }
     if(id==='boss'){ rdBossAct(x); rdEndOf(V); continue }
     return {turn:id,idx:i,round:x.round,turnAt:pvpTS()};
   }
@@ -3866,7 +4000,7 @@ function rdTick(){
 async function rdAct(id){
   if(!rdMyTurn()||RD.busy) return; const x=rdState(),sk=SK[id],U=x.U;
   if(!sk||!U||U.hp<=0) return; if(id!=='atk'&&!U.skills.includes(id)) return;
-  if((sk.ap||0)>U.ap||(U.cds[id]||0)||(id==='atk'&&U.atkUsed)) return;
+  if((id==='atk'?0:apOf(U,id))>U.ap||(U.cds[id]||0)||(id==='atk'&&U.atkUsed)) return;
   RD.busy=true; rdExec(U,sk,x.u.boss,x); await rdCommit(x); RD.busy=false;
 }
 async function rdPot(k){
@@ -4226,7 +4360,7 @@ function viewAdvMap(){
      <h4>${isBoss?'Boss':'Ennemis'} · niveau <span class="num">${L}</span> <span class="amcnt">· ${isBoss?(S.party.length>=2?'boss + 1 ennemi':'boss seul'):(n=>n+' ennemi'+(n>1?'s':'')+' par combat')(clamp(1+Math.floor((UI.stage-1)/3),1,S.party.length+1))}</span></h4>
      ${isBoss?`<div class="amboss"><span class="tile" style="--h:8">${icon(Z.boss.ic)}</span><span><small>Boss de la zone</small><b>${esc(Z.boss.n)}</b></span></div>${S.party.length>=2?`<div class="amfoes am4">${foe(Z.enemies[0],0)}</div>`:''}`
        :`<div class="amfoes am4">${Z.enemies.map(foe).join('')}</div>`}
-     ${zoneLootHTML(z,isBoss)}<div class="amfight"><div class="amfrow"><button class="btn pri amgo" data-act="fight">${uic('play','pl')} Combattre</button><button class="amtg ${S.auto?'on':''}" data-act="auto" aria-pressed="${!!S.auto}" ${ttip('Combat automatique : '+(S.auto?'activé':'désactivé'),'Votre héros joue seul.')}>${uic('auto')}</button><button class="amtg ${S.farm?'on':''}" data-act="farm" aria-pressed="${!!S.farm}" ${S.auto?'':'disabled'} ${ttip('Enchaîner les combats : '+(S.farm?'activé':'désactivé'),S.auto?'Relance automatiquement le combat après une victoire.':'Activez d’abord le combat automatique.')}>${uic('chain')}</button></div>
+     ${zoneLootHTML(z,isBoss)}<div class="amfight"><div class="amfrow"><button class="btn pri amgo" data-act="fight">Combattre</button>${gearBtn()}</div>
       <small class="mute">Puissance de ${esc(h.name)} : <b class="num">${Math.round(heroPower(h))}</b> · PV restaurés après chaque combat.</small></div>
     </div></aside></div>`;
 }
@@ -4424,7 +4558,7 @@ function friendCard(fid){
   openCard(d,c?'':'<p class="pcnote">Ce joueur n’a pas encore mis à jour sa carte.</p>');
 }
 /* ================= Communauté ================= */
-const COMM_T=[['card','card','Carte de joueur'],['custom','brush','Personnalisation'],['rank','podium','Classement'],['guild','shield','Guilde',1]];
+const COMM_T=[['card','card','Carte de joueur'],['custom','brush','Personnalisation'],['rank','podium','Classement'],['ah','coin','Hôtel des ventes'],['guild','shield','Guilde',1]];
 function viewComm(){
   const tab=UI.commT||'card',d=cardMine(),pts=trPts();
   const side=`<aside class="aminfo maside mtside"><div class="ambody"><h4>Communauté</h4><div class="masub" role="tablist">${COMM_T.map(([k,i,n,lk])=>`<button role="tab" aria-selected="${tab===k}" class="${tab===k?'on':''} ${lk?'lk':''}" ${lk?`aria-disabled="true" title="Arrive dans une prochaine mise à jour"`:`data-act="commT" data-t="${k}"`}>${uic(i)}<span>${n}</span>${lk?uic('lock'):''}</button>`).join('')}</div>
@@ -4447,10 +4581,10 @@ function viewComm(){
       <h4>Trophées affichés <small class="mute">${(c.show||[]).length} / 3</small></h4><div class="pcopt">${got.length?got.map(t=>`<button class="pcts ${(c.show||[]).includes(t.id)?'on':''}" data-act="pcShow" data-id="${t.id}" data-tip="pc:tr:${t.id}" aria-pressed="${(c.show||[]).includes(t.id)}"><span class="mtti sm ${trTier(t)}">${uic(trIc(t))}</span></button>`).join(''):'<small class="mute">Obtenez des trophées pour les afficher sur votre carte.</small>'}</div>
       <div class="pcsave">${lk.length?`<p class="pcwarn">${uic('lock')} Non débloqué : ${lk.map(esc).join(', ')}. Choisissez un élément débloqué pour enregistrer.</p>`:''}
        <div class="row"><button class="btn" data-act="pcReset" ${dirty?'':'disabled'}>Annuler</button><button class="btn pri" data-act="pcConfirm" ${dirty&&!lk.length?'':'disabled'}>Confirmer</button></div></div></div></div></div>`;
-  } else if(tab==='rank'){ main=viewRank() } else {
+  } else if(tab==='rank'){ main=viewRank() } else if(tab==='ah'){ main=viewAH() } else {
     main=`<div class="pcview"><div class="pcfit">${cardColl(d,'v')}<h4>Aperçu dans le classement</h4>${cardBanner(d)}<p class="amnote mute">Votre carte s’affiche quand un joueur clique sur votre nom dans sa liste d’amis, puis sur « Carte ». La bannière sera utilisée dans le classement.</p></div></div>`;
   }
-  return `<div class="mt1 comm">${side}<section class="mtmain ${tab==='rank'?'rkmain':''}"><div class="mctop"><h2>${tab==='custom'?'Personnalisation':tab==='rank'?'Classement de la saison':'Carte de joueur'}</h2><span class="mute">${tab==='custom'?'Icône, cadre, fond, titre et trophées affichés.':tab==='rank'?'Cliquez sur un joueur pour le sélectionner, puis inspectez son équipement.':'L’aperçu que les autres joueurs voient de vous.'}</span></div>${main}</section></div>`;
+  return `<div class="mt1 comm">${side}<section class="mtmain ${tab==='rank'?'rkmain':''}"><div class="mctop"><h2>${tab==='custom'?'Personnalisation':tab==='rank'?'Classement de la saison':tab==='ah'?'Hôtel des ventes':'Carte de joueur'}</h2><span class="mute">${tab==='ah'?'Achetez et vendez de l’équipement entre joueurs. Les objets achetés arrivent par la messagerie.':tab==='custom'?'Icône, cadre, fond, titre et trophées affichés.':tab==='rank'?'Cliquez sur un joueur pour le sélectionner, puis inspectez son équipement.':'L’aperçu que les autres joueurs voient de vous.'}</span></div>${main}</section></div>`;
 }
 function pcSave(){ saveAcc(); presence(); render() }
 function friendsOnline(){ if(!FB.user||!FB.prof) return null; const me=FB.user.uid; const acc=FR.list.filter(f=>f.status==='accepted'); return {on:acc.filter(f=>isOnline(FR.prof[f.users.find(x=>x!==me)])).length,n:acc.length} }
@@ -4545,7 +4679,7 @@ const mlCol=()=>FB.db.collection(COL('mail'));
 const mlSt=()=>{ACC.mail=ACC.mail||{read:{},got:{},del:{}}; for(const k of ['read','got','del']) ACC.mail[k]=ACC.mail[k]||{}; return ACC.mail};
 const mlTs=m=>tsMs(m.ts)||m.tsMs||0;
 const mlList=()=>{const st=mlSt(),now=Date.now(),seen=new Set();return [...ML.all,...ML.me].filter(m=>{if(seen.has(m.id))return false;seen.add(m.id);return !st.del[m.id]&&!(m.exp&&m.exp<now&&!st.got[m.id]&&mlHasAtt(m))}).sort((a,b)=>mlTs(b)-mlTs(a))};
-const mlHasAtt=m=>m.att&&Object.values(m.att).some(v=>v>0);
+const mlHasAtt=m=>!!m.att&&(Object.values(m.att).some(v=>v>0)||(Array.isArray(m.att.it)&&m.att.it.length>0));
 const mlUnread=()=>mlList().filter(m=>!mlSt().read[m.id]).length;
 const mlToGet=()=>mlList().filter(m=>mlHasAtt(m)&&!mlSt().got[m.id]&&!(m.exp&&m.exp<Date.now()));
 function startMail(){
@@ -4553,6 +4687,7 @@ function startMail(){
   const map=qs=>qs.docs.map(d=>Object.assign({id:d.id},d.data({serverTimestamps:'estimate'})));
   const err=e=>{ML.err='Messagerie indisponible ('+((e&&e.code)||'erreur')+'). Vérifiez les règles Firestore.'; mlRefresh()};
   ML.un.push(mlCol().where('to','==','all').onSnapshot(qs=>{const was=new Set(ML.all.map(m=>m.id));ML.all=map(qs);ML.err='';mlNotify(was,ML.all);mlRefresh()},err));
+  setTimeout(()=>{ if(FB.user) ahLoadMine().catch(()=>{}) },4000);
   ML.un.push(mlCol().where('to','==',me).onSnapshot(qs=>{const was=new Set(ML.me.map(m=>m.id));ML.me=map(qs);ML.err='';mlNotify(was,ML.me);mlRefresh()},err));
 }
 function stopMail(){ ML.un.forEach(f=>{try{f()}catch(e){}}); ML.un=[]; ML.all=[]; ML.me=[]; mlRefresh() }
@@ -4566,21 +4701,22 @@ function mlPlace(att){ hp3Walk(att);
     for(const t of tabs){ for(const e of t.bag){ if(n<=0) break; if(e.o.mat===k&&e.o.n<STACK){const m=Math.min(STACK-e.o.n,n);e.o.n+=m;n-=m} } }
     for(const t of tabs){ while(n>0){ const sp=findSpot(t.bag,1,1,SW,SH); if(!sp) break; const m=Math.min(STACK,n); t.bag.push({x:sp[0],y:sp[1],o:{mat:k,n:m}}); n-=m } if(n<=0) break }
     if(n>0) return null }
+  for(const it0 of (Array.isArray(att.it)?att.it:[])){ const it=Object.assign({},it0),[w,h]=SIZE(it); let ok=false; for(const t of tabs){ const sp=findSpot(t.bag,w,h,SW,SH); if(sp){ t.bag.push({x:sp[0],y:sp[1],o:it}); ok=true; break } } if(!ok) return null }
   return tabs;
 }
 function mlClaim(ids){
   const st=mlSt(),L=mlList().filter(m=>ids.includes(m.id)&&mlHasAtt(m)&&!st.got[m.id]); if(!L.length) return;
-  const tot={}; for(const m of L) for(const [k,v] of Object.entries(m.att)) if(v>0) tot[k]=(tot[k]||0)+Math.floor(v);
+  const tot={}; for(const m of L) for(const [k,v] of Object.entries(m.att)){ if(k==='it'&&Array.isArray(v)) tot.it=(tot.it||[]).concat(v); else if(v>0) tot[k]=(tot[k]||0)+Math.floor(v) }
   const tabs=mlPlace(tot);
   if(!tabs){ toast('Pas assez de place dans le coffre du compte : libérez des cases ou achetez un onglet, puis réessayez. Rien n’a été récupéré.'); return }
   for(const t of tabs) t.T.bag=t.bag;
   if(tot.gold) S.gold+=tot.gold;
   for(const m of L){ st.got[m.id]=Date.now(); st.read[m.id]=1 }
   save(); render();
-  const parts=Object.entries(tot).filter(([k])=>k!=='gold').map(([k,v])=>`${fmt(v)} × ${MAT_OBJ[k]||(POTS[k]&&POTS[k].n)||MAT_N[k]||k}`);
+  const parts=Object.entries(tot).filter(([k])=>k!=='gold'&&k!=='it').map(([k,v])=>`${fmt(v)} × ${MAT_OBJ[k]||(POTS[k]&&POTS[k].n)||MAT_N[k]||k}`); if(tot.it) parts.push(...tot.it.map(x=>x.name));
   toast(`Récupéré${tot.gold?` : ${fmt(tot.gold)} or (ajouté à votre or)`:''}${parts.length?`${tot.gold?' ;':' :'} ${parts.join(', ')} envoyés dans le coffre du compte`:''}.`);
 }
-const mlAttHTML=a=>Object.entries(a||{}).filter(([,v])=>v>0).map(([k,v])=>`<span class="mc" title="${esc(MAT_OBJ[k]||(POTS[k]&&POTS[k].n)||MAT_N[k]||k)}">+${fmt(v)} ${matIcon(k)}</span>`).join('');
+const mlAttHTML=a=>(Array.isArray(a&&a.it)?a.it.map(it=>`<span class="mlit">${ahIco(it,'')}<span style="color:var(--r${it.rarity})">${esc(it.name)}${it.up?' +'+it.up:''}</span></span>`).join(''):'')+Object.entries(a||{}).filter(([k,v])=>k!=='it'&&v>0).map(([k,v])=>`<span class="mc" title="${esc(MAT_OBJ[k]||(POTS[k]&&POTS[k].n)||MAT_N[k]||k)}">+${fmt(v)} ${matIcon(k)}</span>`).join('');
 const mlDate=t=>t?new Date(t).toLocaleDateString('fr-FR'):'';
 function mailHTML(){
   if(ML.adm&&FB.admin) return mailAdmHTML();
@@ -4673,8 +4809,8 @@ function viewCreator(){
   const st=[['PV',c.base.hp,mx.hp],[ms[0],ms[1],mx.a],['Défense',c.base.def,mx.def],['Vitesse',c.base.spd,mx.spd]].map(([n,v,m])=>`<span>${n}</span><i><b style="width:${Math.round(v/m*90)}%"></b></i><em class="num">${v}</em>`).join('');
   const cls=Object.entries(CLASSES).map(([id,x])=>`<button class="clsb ${k===id?'on':''}" data-act="pickClass" data-c="${id}" aria-pressed="${k===id}"><img src="${PORTRAIT[id]||''}" alt=""><span><b>${x.n}</b></span></button>`).join('');
   const skins=sk.length?`<h3>Apparence</h3><div class="ccth">${sk.map(s=>`<button class="ccthb ${UI.cskin===s.id?'on':''}" data-act="pickSkin" data-s="${s.id}" aria-pressed="${UI.cskin===s.id}" title="${s.n}">${heroArt(k,s.id)}</button>`).join('')}</div>`:`<h3>Apparence</h3><p class="mute ccnone">D’autres apparences arriveront pour le ${c.n}.</p>`;
-  const specs=Object.values(c.specs||{}).map(sp=>{const act=sp.nodes.filter(n=>n.t==='a'&&!n.ult).map(n=>n.n),ult=sp.nodes.find(n=>n.ult);
-    return `<article class="ccsp" style="--sc:${sp.co}"><header><span class="ccspi">${spIcon(sp)}</span><b>${esc(sp.n)}</b></header><p>${esc(sp.d||'')}</p><small><b>Compétences :</b> ${act.map(esc).join(', ')||'—'}</small>${ult?`<small><b>Ultime :</b> ${esc(ult.n)}</small>`:''}</article>`}).join('');
+  const specs=Object.values(c.specs||{}).map(sp=>{const act=sp.nodes.filter(n=>n.t==='a'&&!n.u).map(n=>n.n),ult={n:sp.nodes.filter(n=>n.u).map(n=>n.n).join(', ')};
+    return `<article class="ccsp" style="--sc:${sp.co}"><header><span class="ccspi">${spIcon(sp)}</span><b>${esc(sp.n)}</b></header><p>${esc(sp.d||'')}</p><small><b>Compétences :</b> ${act.map(esc).join(', ')||'—'}</small>${ult.n?`<small><b>Ultimes (1 au choix) :</b> ${esc(ult.n)}</small>`:''}</article>`}).join('');
   return `<div class="ccbook"><section class="ccl">
      <div class="row between"><h2>Registre des héros</h2>${backBtn('select')}</div><p class="mute" style="margin:0">Inscrivez votre nom et choisissez votre voie.</p>
      <h3>Nom</h3><input type="text" id="cname" maxlength="18" placeholder="Ex. Aldéric" value="${esc(UI.cname||'')}" aria-label="Nom du héros">
@@ -4796,7 +4932,7 @@ function fArena(m,kind){
   const lim=kind==='pvp'?PVP_TURN:RD_TURN,tl=Math.max(0,lim-Math.floor((Date.now()-tsMs(m.turnAt))/1000)),late=m.state==='fight'&&!my&&Date.now()-tsMs(m.turnAt)>lim*1000;
   const unit=(id,foe)=>{const u=m.u[id]; if(!u) return `<div class="ftu wait"><div class="ftpl"><b>${esc(nm[id]||'?')}</b><small>En attente…</small></div></div>`;
     const aps=Array.from({length:u.maxAp||0},(_,i)=>`<i class="${i<u.ap?'on':''}"></i>`).join(''),sh=Math.min(Math.max(0,u.shield||0),u.maxHp||1),st=Math.min(Math.max(0,u.hp),(u.maxHp||1)-sh);
-    const sts=stHTML(u.st);
+    const sts=stHTML(unitSts(u));
     return `<div class="ftu ${foe?'foe':'ally'} ${id===me?'me':''} ${m.turn===id&&m.state==='fight'?'turn':''} ${u.hp<=0?'dead':''} ${u.boss?'boss':''}" data-pu="${id}"><div class="ftpl"><b>${esc(u.boss?u.name:u.name)} <small>niv. ${u.lvl}</small></b>${u.boss?'':`<small class="ftacct">${esc(u.acct||'')}${u.left?' · parti':''}</small>`}
       <div class="hp"><i style="width:${Math.max(0,u.hp/u.maxHp*100)}%"></i>${sh>0?`<b class="shl" style="left:${st/u.maxHp*100}%;width:${sh/u.maxHp*100}%"></b>`:''}<span>${Math.ceil(Math.max(0,u.hp))} / ${Math.ceil(u.maxHp)}${u.shield>0?' (+'+Math.ceil(u.shield)+')':''}</span></div><div class="apbar" ${ttip('Points d’action',u.ap+' / '+u.maxAp)}>${aps}</div><div class="stt sti">${sts}</div></div>
       <div class="ftfig">${fighterArt(u.boss?{boss:1,ic:'boss',hue:8}:{cls:u.cls,skin:u.skin,foe})}<i class="ftgr"></i></div></div>`};
@@ -4810,7 +4946,7 @@ function fArena(m,kind){
     bar=`${U&&U.hp>0?cbBtn():''}<div class="ftprep"><b>Préparation <span class="num" data-prep>${left} s</span></b><small>${rd?'Prêt — en attente…':'Buvez vos potions avant le début du combat.'}${ot?' Votre '+(kind==='pvp'?'adversaire':'partenaire')+' est prêt.':''}</small></div>`;
     end={act:p+'Ready',label:rd?'Prêt':'Je suis<br>prêt',dis:rd,tip:'Je suis prêt|Le combat commence quand tous les joueurs sont prêts ou à la fin du compte à rebours.'} }
   else if(U&&U.hp<=0) bar=`<small class="ftwait">Votre héros est tombé. Encouragez ${kind==='pvp'?'…':'votre partenaire'} !</small>`;
-  else if(my&&U.stun){ bar=`${cbBtn()}<small class="ftwait">Vous êtes étourdi : vous passez ce tour.</small>`; end={act:p+'EndT',label:'Fin de<br>tour',tip:'Fin de tour|Termine votre tour.'} }
+  else if(my&&U.stun){ bar=`${cbBtn()}<small class="ftwait">Vous ne pouvez pas agir ce tour (étourdi, paralysé ou en incantation).</small>`; end={act:p+'EndT',label:'Fin de<br>tour',tip:'Fin de tour|Termine votre tour.'} }
   else if(my){ bar=`${cbBtn()}<div class="skcbar">${['atk',...U.skills].map(id=>cTile(id,U,p+'Sk')).join('')}</div>`; end={act:p+'EndT',label:'Fin de<br>tour',tip:'Fin de tour|Termine votre tour. Les PA non utilisés sont perdus.'} }
   else { bar=`${cbBtn()}<small class="ftwait">Tour de <b>${esc(tn?(tn.boss?tn.name:(tn.acct||tn.name)):'')}</b>… <span class="num" ${kind==='pvp'?'data-pvt':'data-rdt'}>(${tl} s)</span></small>${late?`<button class="btn sm pri" data-act="${kind==='pvp'?'pvpClaim':'rdSkip'}">${kind==='pvp'?'Réclamer la victoire':'Passer son tour'}</button>`:''}`; end={act:p+'EndT',label:'Fin de<br>tour',dis:1,tip:'Fin de tour|Ce n’est pas votre tour.'} }
   const eb=end.act?`<button class="ftend" data-act="${end.act}" ${end.dis?'disabled':''} data-tip="${esc('tx:'+end.tip)}" aria-label="${esc(end.label.replace(/<br>/g,' '))}"><span>${end.label}</span></button>`:'';
@@ -5201,7 +5337,7 @@ function hSpecHTML(h){
   const sp=c.specs[h.spec];
   return `<div class="specs one"><div class="speccol"><h4 style="--co:${sp.co}">${spIcon(sp)}Spécialisation : ${sp.n}</h4><p class="hint">${sp.d}</p>${specTree(h.cls,h.spec,h,false)}</div></div>`;
 }
-function hSkillsTab(h){
+function hSkillsTabOld(h){
   const c=CLASSES[h.cls],base=c.skills.map(sk=>skTile(sk,h)).join(''),sel=UI.skSel&&SK[UI.skSel];
   let det='';
   if(sel&&sel.id!=='atk'){ const r=h.learned[sel.id]||0,req=skReq(sel,h),eq=h.loadout.includes(sel.id);
@@ -5469,6 +5605,514 @@ document.addEventListener('contextmenu',e=>{ if(UI.anvil){ e.preventDefault(); e
 document.addEventListener('keydown',e=>{ if(e.key==='Escape'&&UI.anvil){ UI.anvil=false; render() } },true);
 /* pas de menu du navigateur au clic droit (sauf dans les champs de texte) */
 document.addEventListener('contextmenu',e=>{ if(e.target.closest&&e.target.closest('input,textarea,[contenteditable="true"]')) return; e.preventDefault() });
+/* ================= 0.7.0 : réglages du combat, tri du butin, hôtel des ventes, popup de mise à jour ================= */
+const V7I={
+ gear:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3.2"/><path d="M12 2.5v2.6M12 18.9v2.6M4.6 4.6l1.9 1.9M17.5 17.5l1.9 1.9M2.5 12h2.6M18.9 12h2.6M4.6 19.4l1.9-1.9M17.5 6.5l1.9-1.9"/><circle cx="12" cy="12" r="6.6"/></svg>',
+ tag:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M3 12V4h8l10 10-8 8z"/><circle cx="7.5" cy="8" r="1.6"/></svg>',
+ clock:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>',
+ search:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5L21 21"/></svg>',
+ hammer:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 4l6 6-3 3-6-6zM11 7L3 15l3 3 8-8"/></svg>',
+ recy:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 19H4l3-5M17 19h3l-3-5M9 5l3-2 3 5M8 14l-2-3M16 14l2-3M12 3l-2 4"/></svg>',
+ star:'<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.5l2.9 6 6.6.9-4.8 4.6 1.2 6.5L12 17.4 6.1 20.5l1.2-6.5L2.5 9.4l6.6-.9z"/></svg>',
+};
+const v7i=(k,c='')=>V7I[k].replace('<svg','<svg class="v7i '+c+'" aria-hidden="true"');
+/* ---------- réglages du combat + tri du butin ---------- */
+const lootF=()=>{ if(!S.lootF||!Array.isArray(S.lootF.keep)) S.lootF={keep:[1,1,1,1,1,1],cls:false,better:false}; while(S.lootF.keep.length<RAR.length) S.lootF.keep.push(1); return S.lootF };
+const lootOn=()=>{ const f=lootF(); return f.keep.some(x=>!x)||f.cls||f.better };
+function lootKeep(it){
+  if(!it||it.mat) return true; const f=lootF(),h=S.heroes[0];
+  if(!f.keep[it.rarity]) return false;
+  if(f.cls&&it.cls&&h&&it.cls!==h.cls) return false;
+  if(f.better&&h){ const d=swapDelta(h,it); if(d!=null&&d<=0) return false }
+  return true;
+}
+function gearPop(){
+  const f=lootF();
+  const sw=(act,on,dis,ic,t,d)=>`<button class="v7tg" data-act="${act}" aria-pressed="${!!on}" ${dis?'disabled':''} ${ttip(t+' : '+(on?'activé':'désactivé'),d)}>${ic}<span class="v7tt"><b>${t}</b><small>${d}</small></span><i class="v7sw ${on?'on':''}"></i></button>`;
+  return `<div class="v7gp" id="gearpop" role="dialog" aria-label="Réglages du combat">
+   <h4>${v7i('gear')}<span>Réglages du combat</span></h4>
+   ${sw('auto',S.auto,false,uic('auto'),'Combat automatique','Votre héros joue seul.')}
+   ${sw('farm',S.farm,false,uic('chain'),'Rejouer','Relance le combat après une victoire (active le combat automatique).')}
+   <div class="v7sep"></div>
+   <h4>${v7i('recy')}<span>Tri du butin</span></h4>
+   <p class="v7note">Raretés d’équipement gardées dans l’inventaire. Les autres sont recyclées automatiquement à la fin du combat (25 % des ressources rendues).</p>
+   <div class="v7rar">${RAR.map((r,i)=>`<button class="v7r ${f.keep[i]?'on':''}" style="--rc:var(--r${i})" data-act="lootR" data-r="${i}" aria-pressed="${!!f.keep[i]}" ${ttip(r.n+(f.keep[i]?' : gardé':' : recyclé'),f.keep[i]?'Cliquez pour recycler automatiquement cette rareté.':'Cliquez pour garder cette rareté.')}><i></i><span>${r.n}</span></button>`).join('')}</div>
+   <button class="v7opt ${f.cls?'on':''}" data-act="lootO" data-k="cls" aria-pressed="${f.cls}" ${ttip('Seulement ma classe','Recycle l’équipement réservé à une autre classe.')}><i></i><span>Garder seulement l’équipement de ma classe</span></button>
+   <button class="v7opt ${f.better?'on':''}" data-act="lootO" data-k="better" aria-pressed="${f.better}" ${ttip('Seulement les améliorations','Recycle les objets qui ne feraient pas monter votre puissance.')}><i></i><span>Garder seulement les objets meilleurs que mon équipement</span></button>
+   ${S.lastLoot&&S.lastLoot.length?`<div class="v7sep"></div><h4 class="sm"><span>Dernier butin</span></h4><div class="v7lt">${S.lastLoot.slice(0,12).map(x=>`<span class="v7li ${x.rc?'rc':''}" style="--rc:var(--r${x.r})" ${ttip(x.n,x.rc?'Recyclé automatiquement.':'Gardé dans l’inventaire.')}>${eqSvg(eqKey(x.s,null,false),EQ_RC[x.r]||EQ_RC[0],false)}</span>`).join('')}</div>`:''}
+  </div>`;
+}
+function gearBtn(){ const on=UI.gearOpen,dot=lootOn()||S.auto;
+  return `<button class="v7gear ${on?'on':''}" data-act="gearT" aria-expanded="${!!on}" ${ttip('Réglages du combat','Combat automatique, Rejouer et tri du butin.')}>${v7i('gear')}${dot?'<span class="v7gd"></span>':''}</button>`}
+function gearSync(){ let p=$('#gearpop'); const b=$('.v7gear'); if(!UI.gearOpen||!b||UI.scr||UI.tab!=='combat'){ if(p) p.remove(); if(!b) UI.gearOpen=false; return }
+  if(!p){ document.body.insertAdjacentHTML('beforeend',gearPop()); p=$('#gearpop') } else p.outerHTML=gearPop(), p=$('#gearpop');
+  const r=b.getBoundingClientRect(),w=p.getBoundingClientRect(); p.style.left=Math.max(6,r.right-w.width)/ZM+'px'; p.style.top=Math.max(6,r.top-w.height-12)/ZM+'px' }
+document.addEventListener('pointerdown',e=>{ if(UI.gearOpen&&!(e.target.closest&&e.target.closest('#gearpop,.v7gear'))){ UI.gearOpen=false; const p=$('#gearpop'); if(p) p.remove(); const b=$('.v7gear'); if(b){b.classList.remove('on');b.setAttribute('aria-expanded','false')} } },true);
+document.addEventListener('keydown',e=>{ if(e.key==='Escape'&&UI.gearOpen){ UI.gearOpen=false; render() } });
+
+/* ---------- hôtel des ventes ---------- */
+const ahNum=n=>Math.floor(+n||0).toLocaleString('fr-FR');
+const AH_TAX=5,AH_DEP=1,AH_MAXL=10,AH_DUR=[2,12,24,72,168];
+const ahCol=()=>FB.db.collection(COL('ah'));
+const AH={tab:'buy',cat:'all',rar:[1,1,1,1,1,1],lv:[1,60],cls:{mage:1,guerrier:1},q:'',sort:'pa',list:null,mine:null,busy:false,err:'',ts:0,conf:null,sell:null,price:'',dur:24};
+const AH_CAT=[['all','Tout'],['weapon','Armes'],['armor','Armures'],['jewel','Bijoux'],['pot','Potions',1],['gem','Gemmes',1]];
+const ahCatOf=s=>s==='weapon'?'weapon':(s==='ring'||s==='amulet')?'jewel':'armor';
+const ahDurN=h=>h<24?h+' h':h===24?'24 h':(h/24)+' jours';
+function ahLeft(ms){ if(ms<=0) return 'terminé'; const m=Math.floor(ms/60000),h=Math.floor(m/60),d=Math.floor(h/24); return d?`${d} j ${h%24} h`:h?`${h} h ${String(m%60).padStart(2,'0')}`:`${Math.max(1,m)} min` }
+const ahCoin='<span class="v7coin" aria-hidden="true"></span>';
+const ahPrice=n=>`<span class="ahpr num">${ahCoin}${ahNum(n)}</span>`;
+const ahTax=p=>Math.floor(p*AH_TAX/100),ahDep=p=>Math.max(10,Math.floor(p*AH_DEP/100));
+const ahMailRef=id=>mlCol().doc(id);
+function ahMail(id,to,title,body,att){ return [ahMailRef(id),{to,kind:'gift',title,body,att,from:'Hôtel des ventes',ts:firebase.firestore.FieldValue.serverTimestamp(),tsMs:Date.now(),exp:0,by:FB.user.uid,ah:1}] }
+const ahItN=it=>`${it.name}${it.up?' +'+it.up:''} (${RAR[it.rarity].n.toLowerCase()}, niveau ${it.ilvl})`;
+const ahDate=t=>{const d=new Date(t);return d.toLocaleDateString('fr-FR',{day:'2-digit',month:'2-digit'})+' à '+String(d.getHours()).padStart(2,'0')+' h '+String(d.getMinutes()).padStart(2,'0')};
+async function ahLoad(force){
+  if(!FB.user){ AH.err='Connectez-vous à un compte en ligne pour utiliser l’hôtel des ventes.'; AH.list=[]; return }
+  if(AH.busy||(!force&&AH.list&&Date.now()-AH.ts<30000)) return;
+  AH.busy=true; AH.err='';
+  try{
+    const qs=await ahCol().where('state','==','open').get();
+    AH.list=qs.docs.map(d=>Object.assign({id:d.id},d.data())); AH.ts=Date.now();
+    await ahSweep(AH.list.filter(x=>x.end<Date.now()));
+    AH.list=AH.list.filter(x=>x.state==='open'&&x.end>=Date.now());
+    await ahLoadMine();
+  }catch(e){ AH.err='Hôtel des ventes indisponible ('+((e&&e.code)||'erreur')+'). Vérifiez les règles Firestore.'; AH.list=AH.list||[] }
+  AH.busy=false; if(UI.tab==='comm'&&UI.commT==='ah') render();
+}
+async function ahLoadMine(){
+  if(!FB.user) return; const me=FB.user.uid;
+  const [a,b]=await Promise.all([ahCol().where('seller','==',me).get(),ahCol().where('buyer','==',me).get()]);
+  AH.mine=[...a.docs,...b.docs].map(d=>Object.assign({id:d.id},d.data()));
+  await ahSweep(AH.mine.filter(x=>x.state==='open'&&x.end<Date.now()));
+}
+/* ventes expirées : l'objet est renvoyé au vendeur (n'importe quel joueur peut déclencher le renvoi) */
+async function ahSweep(L){
+  for(const x of L){
+    try{ await FB.db.runTransaction(async tx=>{ const ref=ahCol().doc(x.id),d=await tx.get(ref); if(!d.exists) return; const v=d.data(); if(v.state!=='open'||v.end>=Date.now()) return;
+      tx.update(ref,{state:'expired',doneAt:Date.now()});
+      const [mr,md]=ahMail('ah_'+x.id+'_x',v.seller,'Vente expirée : '+v.it.name,`Votre objet ${ahItN(v.it)} n’a pas trouvé d’acheteur.\n\nPrix demandé : ${ahNum(v.price)} or\nDurée de la vente : ${ahDurN(v.dur)}\nMis en vente le : ${ahDate(v.tsMs)}\nFrais de dépôt : ${ahNum(v.dep)} or (non rendus)\n\nL’objet vous est renvoyé avec ce message.`,{it:[v.it]});
+      tx.set(mr,md) }); x.state='expired' }catch(e){}
+  }
+}
+async function ahBuy(id){
+  const x=(AH.list||[]).find(y=>y.id===id); if(!x||!FB.user) return;
+  if(x.seller===FB.user.uid){ toast('C’est votre propre vente.'); return }
+  if(!hasGold(x.price)){ toast('Pas assez d’or.'); return }
+  if(AH.conf!=='b'+id){ AH.conf='b'+id; render(); return }
+  AH.conf=null; AH.busy=true; render();
+  try{
+    await FB.db.runTransaction(async tx=>{ const ref=ahCol().doc(id),d=await tx.get(ref); if(!d.exists) throw {msg:'Cette vente n’existe plus.'}; const v=d.data();
+      if(v.state!=='open') throw {msg:'Trop tard : cet objet vient d’être vendu ou retiré.'}; if(v.end<Date.now()) throw {msg:'Cette vente est terminée.'};
+      const now=Date.now(),tax=ahTax(v.price),get=v.price-tax+v.dep;
+      tx.update(ref,{state:'sold',buyer:FB.user.uid,bname:FB.prof&&FB.prof.name||'?',doneAt:now});
+      const [m1,d1]=ahMail('ah_'+id+'_b',FB.user.uid,'Achat confirmé : '+v.it.name,`Récapitulatif de votre commande\n\nObjet : ${ahItN(v.it)}\nVendeur : ${v.sname}\nPrix payé : ${ahNum(v.price)} or\nDate : ${ahDate(now)}\n\nL’objet est joint à ce message.`,{it:[v.it]});
+      const [m2,d2]=ahMail('ah_'+id+'_s',v.seller,'Objet vendu : '+v.it.name,`Votre objet ${ahItN(v.it)} a été acheté par ${FB.prof&&FB.prof.name||'un joueur'}.\n\nPrix de vente : ${ahNum(v.price)} or\nTaxe de l’hôtel (${AH_TAX} %) : −${ahNum(tax)} or\nFrais de dépôt rendus : +${ahNum(v.dep)} or\nTotal reçu : ${ahNum(get)} or\nDate : ${ahDate(now)}\n\nL’or est joint à ce message.`,{gold:get});
+      tx.set(m1,d1); tx.set(m2,d2) });
+    S.gold=Math.max(0,S.gold-x.price); save(); cloudSoon&&cloudSoon(); AH.list=AH.list.filter(y=>y.id!==id);
+    toast(`${x.it.name} acheté pour ${ahNum(x.price)} or : il arrive dans votre messagerie.`);
+    ahLoadMine().then(()=>render()).catch(()=>{});
+  }catch(e){ toast(e&&e.msg||'Achat impossible ('+((e&&e.code)||'erreur')+').'); AH.list=null }
+  AH.busy=false; render(); if(!AH.list) ahLoad(true);
+}
+async function ahSellGo(){
+  const i=cellOf(+AH.sell); if(i<0){ AH.sell=null; render(); return } const it=S.bag[i].o,price=Math.floor(+String(AH.price).replace(/\D/g,''));
+  if(!(price>=1&&price<=99999999)){ toast('Choisissez un prix entre 1 et 99 999 999 or.'); return }
+  const dep=ahDep(price); if(!hasGold(dep)){ toast(`Il faut ${ahNum(dep)} or de frais de dépôt.`); return }
+  const open=(AH.mine||[]).filter(x=>x.seller===FB.user.uid&&x.state==='open').length; if(open>=AH_MAXL){ toast(`Maximum ${AH_MAXL} objets en vente en même temps.`); return }
+  const o=JSON.parse(JSON.stringify(it)),now=Date.now(),doc={seller:FB.user.uid,sname:FB.prof&&FB.prof.name||'?',it:o,name:o.name,slot:o.slot,cat:ahCatOf(o.slot),rarity:o.rarity,ilvl:o.ilvl,cls:o.cls||null,price,dur:AH.dur,dep,end:now+AH.dur*3600e3,state:'open',ts:firebase.firestore.FieldValue.serverTimestamp(),tsMs:now};
+  AH.busy=true; S.bag.splice(i,1); S.gold-=dep; if(UI.bagSel===it) UI.bagSel=null; save(); render();
+  try{ const r=await ahCol().add(doc); (AH.mine=AH.mine||[]).push(Object.assign({id:r.id},doc)); if(AH.list) AH.list.push(Object.assign({id:r.id},doc)); AH.sell=null; AH.price=''; toast(`${o.name} est en vente pour ${ahNum(price)} or (${ahDurN(AH.dur)}).`) }
+  catch(e){ S.bag.push({x:0,y:0,o:it}); const sp=findSpot(S.bag.slice(0,-1),...SIZE(it)); if(sp){S.bag[S.bag.length-1].x=sp[0];S.bag[S.bag.length-1].y=sp[1]} else { S.bag.pop(); addInv(it) } S.gold+=dep; toast('Mise en vente impossible ('+((e&&e.code)||'erreur')+').') }
+  AH.busy=false; save(); render();
+}
+async function ahCancel(id){
+  const x=(AH.mine||[]).find(y=>y.id===id); if(!x) return;
+  if(AH.conf!=='c'+id){ AH.conf='c'+id; render(); return } AH.conf=null;
+  try{ await FB.db.runTransaction(async tx=>{ const ref=ahCol().doc(id),d=await tx.get(ref); const v=d.exists&&d.data(); if(!v||v.state!=='open') throw {msg:'Cette vente est déjà terminée.'};
+      tx.update(ref,{state:'cancel',doneAt:Date.now()});
+      const [mr,md]=ahMail('ah_'+id+'_c',v.seller,'Vente retirée : '+v.it.name,`Vous avez retiré ${ahItN(v.it)} de l’hôtel des ventes.\n\nPrix demandé : ${ahNum(v.price)} or\nFrais de dépôt : ${ahNum(v.dep)} or (non rendus)\n\nL’objet vous est renvoyé avec ce message.`,{it:[v.it]}); tx.set(mr,md) });
+    x.state='cancel'; if(AH.list) AH.list=AH.list.filter(y=>y.id!==id); toast('Vente retirée : l’objet vous est renvoyé par la messagerie.') }
+  catch(e){ toast(e&&e.msg||'Impossible ('+((e&&e.code)||'erreur')+').') }
+  render();
+}
+function ahFiltered(){
+  const q=AH.q.trim().toLowerCase();
+  let L=(AH.list||[]).filter(x=>x.state==='open'&&x.end>Date.now()&&(AH.cat==='all'||x.cat===AH.cat)&&AH.rar[x.rarity]&&x.ilvl>=AH.lv[0]&&x.ilvl<=AH.lv[1]&&(!x.cls||AH.cls[x.cls])&&(!q||String(x.name).toLowerCase().includes(q)||String(x.sname).toLowerCase().includes(q)));
+  const so={pa:(a,b)=>a.price-b.price,pd:(a,b)=>b.price-a.price,t:(a,b)=>a.end-b.end,l:(a,b)=>b.ilvl-a.ilvl||a.price-b.price,r:(a,b)=>b.rarity-a.rarity||a.price-b.price}[AH.sort]||((a,b)=>a.price-b.price);
+  return L.sort(so);
+}
+const ahIco=(it,n)=>`<span class="ahico" style="--rc:var(--r${it.rarity})" data-tip="${n}">${bigIcon(it)}${it.up?`<em>+${it.up}</em>`:''}</span>`;
+function ahHead(){ const n=(AH.mine||[]).filter(x=>FB.user&&x.seller===FB.user.uid&&x.state==='open').length;
+  return `<div class="ahhd"><span class="ahgold num" ${ttip('Votre or')}>${uic('coin')}${ahNum(S.gold)}</span><button class="ahref" data-act="ahRefresh" ${AH.busy?'disabled':''} ${ttip('Actualiser','Recharge les ventes en cours.')}>${uic('auto')}</button><div class="ahtabs" role="tablist">${[['buy','Acheter'],['sell','Vendre'],['mine',`Mes ventes${n?` (${n})`:''}`],['hist','Historique']].map(([k,t])=>`<button role="tab" aria-selected="${AH.tab===k}" class="${AH.tab===k?'on':''}" data-act="ahTab" data-t="${k}">${t}</button>`).join('')}</div></div>`}
+function ahBuyView(){
+  const L=ahFiltered(),all=(AH.list||[]).filter(x=>x.state==='open'&&x.end>Date.now()),cnt=k=>k==='all'?all.length:all.filter(x=>x.cat===k).length,me=FB.user&&FB.user.uid;
+  const side=`<aside class="ahside"><h4>Catégories</h4>${AH_CAT.map(([k,n,lk])=>lk?`<span class="ahcat lk" aria-disabled="true" ${ttip(n,'Bientôt disponible : pour l’instant, seul l’équipement peut être vendu.')}><span>${n}</span>${uic('lock')}</span>`:`<button class="ahcat ${AH.cat===k?'on':''}" data-act="ahCat" data-c="${k}" aria-pressed="${AH.cat===k}"><span>${n}</span><small class="num">${cnt(k)}</small></button>`).join('')}
+   <h4>Rareté</h4><div class="ahrar2">${RAR.map((r,i)=>`<button class="ahchk ${AH.rar[i]?'':'off'}" style="--rc:var(--r${i})" data-act="ahRar" data-r="${i}" aria-pressed="${!!AH.rar[i]}"><i></i><span>${r.n}</span></button>`).join('')}</div>
+   <h4>Niveau d’objet</h4><div class="ahlv"><input type="number" min="1" max="60" value="${AH.lv[0]}" data-ahlv="0" aria-label="Niveau minimum"><span>à</span><input type="number" min="1" max="60" value="${AH.lv[1]}" data-ahlv="1" aria-label="Niveau maximum"></div>
+   <h4>Classe</h4><div class="ahrar2">${[['mage','Sorcier'],['guerrier','Guerrier']].map(([k,n])=>`<button class="ahchk ${AH.cls[k]?'':'off'}" style="--rc:#7b2a1a" data-act="ahCls" data-c="${k}" aria-pressed="${!!AH.cls[k]}"><i></i><span>${n}</span></button>`).join('')}</div></aside>`;
+  const rows=L.map(x=>{ const own=x.seller===me,cf=AH.conf==='b'+x.id,ok=hasGold(x.price),left=x.end-Date.now();
+    return `<div class="ahtr ${cf?'sel':''}">${ahIco(x.it,'ah:'+x.id)}<span class="ahn"><b style="color:var(--r${x.it.rarity})">${esc(x.it.name)}${x.it.up?` <em>+${x.it.up}</em>`:''}</b><small>${SLOT_N[x.it.slot]}${x.it.cls?' · '+CLASSES[x.it.cls].n:''} · ${RAR[x.it.rarity].n}</small></span><span class="num c">${x.it.ilvl}</span><span class="ahs">${esc(x.sname)}</span><span class="ahtm ${left<3600e3?'low':''}">${v7i('clock')}<span>${ahLeft(left)}</span></span>${ahPrice(x.price)}<span class="c"><button class="ahbuy ${cf?'cf':''}" data-act="ahBuy" data-id="${x.id}" ${own||!ok||AH.busy?'disabled':''} ${own?ttip('Votre vente','Retirez-la depuis Mes ventes.'):!ok?ttip('Pas assez d’or'):cf?ttip('Confirmer l’achat',`${ahNum(x.price)} or · l’objet arrive par la messagerie.`):''}>${own?'Vous':cf?'Confirmer':'Acheter'}</button></span></div>` }).join('');
+  return `<div class="ahA">${side}<div class="ahmain"><div class="ahbar"><label class="ahsrch">${v7i('search')}<input id="ahq" type="search" value="${esc(AH.q)}" placeholder="Rechercher un objet ou un vendeur…" aria-label="Rechercher"></label>
+   <label class="ahsort"><span>Trier :</span><select id="ahsort" aria-label="Trier">${[['pa','Prix croissant'],['pd','Prix décroissant'],['t','Fin la plus proche'],['l','Niveau'],['r','Rareté']].map(([k,n])=>`<option value="${k}" ${AH.sort===k?'selected':''}>${n}</option>`).join('')}</select></label></div>
+   <div class="ahtab"><div class="ahtr hd"><span></span><span>Objet</span><span class="c">Niveau</span><span>Vendeur</span><span>Temps restant</span><span>Prix</span><span></span></div>
+   ${AH.list==null||AH.busy&&!AH.list.length?'<p class="ahempty">Chargement des ventes…</p>':AH.err?`<p class="ahempty">${esc(AH.err)}</p>`:rows||'<p class="ahempty">Aucun objet ne correspond à ces filtres.</p>'}</div></div></div>`;
+}
+function ahSellView(){
+  const eq=S.bag.map((e,i)=>({e,i})).filter(x=>!x.e.o.mat);
+  return `<div class="ahsellv"><p class="ahhint">Choisissez un équipement de votre sac à mettre en vente. Les potions et les gemmes arriveront dans une prochaine mise à jour.</p>
+   <div class="ahpick">${eq.length?eq.map(({e,i})=>`<button class="ahpk" style="--rc:var(--r${e.o.rarity})" data-act="ahPick" data-id="${e.o.id}" data-tip="bag:${i}" aria-label="Vendre ${esc(e.o.name)}">${bigIcon(e.o)}${e.o.up?`<em>+${e.o.up}</em>`:''}</button>`).join(''):'<p class="ahempty">Aucun équipement dans votre sac.</p>'}</div>
+   <div class="ahrules"><span>${v7i('tag')}<b>Taxe de ${AH_TAX} %</b> prise sur le prix à la vente.</span><span>${uic('coin')}<b>Frais de dépôt de ${AH_DEP} %</b> (minimum 10 or), rendus si l’objet est vendu.</span><span>${v7i('clock')}<b>Invendu ?</b> L’objet vous est renvoyé par la messagerie.</span></div></div>`;
+}
+function ahSellDlg(){
+  const i=cellOf(+AH.sell); if(i<0) return ''; const it=S.bag[i].o,p=Math.floor(+String(AH.price).replace(/\D/g,''))||0,tax=ahTax(p),dep=ahDep(p);
+  const sim=(AH.list||[]).filter(x=>x.it.slot===it.slot&&x.it.rarity===it.rarity&&Math.abs(x.it.ilvl-it.ilvl)<=5).map(x=>x.price).sort((a,b)=>a-b),med=sim.length?sim[Math.floor(sim.length/2)]:0;
+  return `<div class="ahsellbg"><div class="ahsell" role="dialog" aria-modal="true" aria-label="Mettre en vente"><h3>${v7i('tag')}<span>Mettre en vente</span></h3>
+   <div class="row1">${ahIco(it,'bag:'+i)}<div><b style="color:var(--r${it.rarity})">${esc(it.name)}${it.up?` +${it.up}`:''}</b><small>${SLOT_N[it.slot]}${it.cls?' · '+CLASSES[it.cls].n:''} · niveau ${it.ilvl} · ${RAR[it.rarity].n}</small><small>${med?`Prix habituel d’objets semblables : <b>≈ ${ahNum(med)} or</b>`:'Aucun objet semblable en vente actuellement.'}</small></div></div>
+   <label for="ahprice">Prix de vente</label><div class="ahinp">${ahCoin}<input id="ahprice" inputmode="numeric" maxlength="10" value="${p?ahNum(p):''}" placeholder="0" autocomplete="off"><small>or</small></div>
+   <label>Durée de la vente</label><div class="ahdur">${AH_DUR.map(h=>`<button class="${AH.dur===h?'on':''}" data-act="ahDur" data-h="${h}" aria-pressed="${AH.dur===h}">${ahDurN(h)}</button>`).join('')}</div>
+   <div class="ahsum"><span>Prix de vente</span><b class="num">${ahNum(p)} or</b><span>Taxe de l’hôtel (${AH_TAX} %)</span><b class="num">− ${ahNum(tax)} or</b><span>Vous recevrez si vendu</span><b class="num ok">${ahNum(Math.max(0,p-tax))} or</b><span>Frais de dépôt (rendus si vendu)</span><b class="num">${ahNum(dep)} or</b></div>
+   <p class="ahnote">Si l’objet n’est pas vendu au bout de ${ahDurN(AH.dur)}, il vous est renvoyé par la messagerie avec un récapitulatif.</p>
+   <div class="acts"><button class="btn" data-act="ahSellX">Annuler</button><button class="btn pri" data-act="ahSellGo" ${p>=1&&hasGold(dep)&&!AH.busy?'':'disabled'}>${v7i('tag')}<span>Mettre en vente</span></button></div></div></div>`;
+}
+function ahMineView(hist){
+  const me=FB.user&&FB.user.uid,L=(AH.mine||[]).filter(x=>hist?(x.state!=='open'||x.buyer===me):(x.seller===me&&x.state==='open')).sort((a,b)=>(b.doneAt||b.tsMs)-(a.doneAt||a.tsMs));
+  const st=x=>x.buyer===me?['buy','Acheté à '+esc(x.sname)]:x.state==='sold'?['sold','Vendu à '+esc(x.bname||'?')]:x.state==='expired'?['exp','Expiré · renvoyé']:x.state==='cancel'?['exp','Retiré · renvoyé']:['open','En vente'];
+  const rows=L.map(x=>{ const [k,t]=st(x),left=x.end-Date.now(),cf=AH.conf==='c'+x.id;
+    return `<div class="ahtr m">${ahIco(x.it,'ahm:'+x.id)}<span class="ahn"><b style="color:var(--r${x.it.rarity})">${esc(x.it.name)}${x.it.up?` <em>+${x.it.up}</em>`:''}</b><small>${SLOT_N[x.it.slot]} · niveau ${x.it.ilvl} · ${RAR[x.it.rarity].n}</small></span><span class="ahst ${k}">${t}</span>${hist?`<span class="ahs">${ahDate(x.doneAt||x.tsMs)}</span>`:`<span class="ahtm ${left<3600e3?'low':''}">${v7i('clock')}<span>${ahLeft(left)}</span></span>`}${ahPrice(x.price)}<span class="c">${hist?'':`<button class="ahbuy alt ${cf?'cf':''}" data-act="ahCancel" data-id="${x.id}" ${ttip(cf?'Confirmer le retrait':'Retirer de la vente','L’objet vous est renvoyé par la messagerie. Les frais de dépôt ne sont pas rendus.')}>${cf?'Confirmer':'Retirer'}</button>`}</span></div>` }).join('');
+  return `<div class="ahtab"><div class="ahtr m hd"><span></span><span>Objet</span><span>État</span><span>${hist?'Date':'Temps restant'}</span><span>Prix</span><span></span></div>${AH.mine==null?'<p class="ahempty">Chargement…</p>':rows||`<p class="ahempty">${hist?'Aucune vente ni aucun achat terminé.':'Vous n’avez aucun objet en vente.'}</p>`}</div>`;
+}
+function viewAH(){
+  if(AH.list==null&&!AH.busy) setTimeout(()=>ahLoad(),0);
+  const body=AH.tab==='sell'?ahSellView():AH.tab==='mine'?ahMineView(false):AH.tab==='hist'?ahMineView(true):ahBuyView();
+  return `<div class="ahwrap">${ahHead()}${!FB.user?`<p class="ahempty">Connectez-vous à un compte en ligne pour utiliser l’hôtel des ventes.</p>`:body}</div>${AH.sell!=null?ahSellDlg():''}`;
+}
+function ahFocusKeep(id,fn){ const el=document.getElementById(id),pos=el&&el.selectionStart; fn(); const n=document.getElementById(id); if(n){ n.focus(); try{ n.setSelectionRange(pos,pos) }catch(e){} } }
+document.addEventListener('input',e=>{ const t=e.target; if(!t) return;
+  if(t.id==='ahq'){ AH.q=t.value; clearTimeout(AH.qt); AH.qt=setTimeout(()=>ahFocusKeep('ahq',render),180) }
+  else if(t.dataset&&t.dataset.ahlv!=null){ const v=clamp(+t.value||1,1,60); AH.lv[+t.dataset.ahlv]=v; clearTimeout(AH.qt); AH.qt=setTimeout(()=>{ if(AH.lv[0]>AH.lv[1]) AH.lv.reverse(); render() },500) }
+  else if(t.id==='ahprice'){ AH.price=t.value.replace(/\D/g,'').slice(0,8); render(); const n=$('#ahprice'); if(n){ n.focus(); const L=n.value.length; n.setSelectionRange(L,L) } }
+});
+document.addEventListener('mousedown',e=>{ if(e.target&&e.target.classList&&e.target.classList.contains('ahsellbg')){ AH.sell=null; render() } });
+document.addEventListener('change',e=>{ if(e.target&&e.target.id==='ahsort'){ AH.sort=e.target.value; render() } });
+document.addEventListener('keydown',e=>{ if(AH.sell!=null&&UI.tab==='comm'){ if(e.key==='Escape'){ AH.sell=null; render() } else if(e.key==='Enter'&&e.target.id==='ahprice'){ e.preventDefault(); ahSellGo() } } });
+setInterval(()=>{ if(UI.tab==='comm'&&UI.commT==='ah'&&!UI.scr&&AH.sell==null&&!document.activeElement.matches('input,select')) document.querySelectorAll('.ahtm span').length&&render() },30000);
+
+/* ---------- popup de mise à jour (parchemin, une fois par version) ---------- */
+const UPOP={v:'0.7.0',k:'Chroniques de Cendrelame',t:'Refonte des classes',pages:[
+  {ic:'star',img:2,t:'Nouvelles spécialisations',d:'Le Sorcier devient Pyromancien ou Évocateur, le Guerrier Berserk ou Défenseur. Nouveaux sorts, arbres de talents rangés par niveau, 1 ultime au choix parmi 3 au niveau 30 et une barre de 7 sorts. Vos points de compétence sont remboursés.'},
+  {ic:'hammer',img:3,t:'Hôtel des ventes',d:'Un nouvel onglet dans Communauté pour vendre et acheter de l’équipement entre joueurs. Choisissez votre prix et la durée de la vente ; l’objet acheté arrive par la messagerie avec le récapitulatif de la commande, et un objet invendu vous est renvoyé.'},
+  {ic:'gear',img:1,t:'Réglages du combat',d:'Un engrenage à côté du bouton Combattre regroupe le combat automatique et Rejouer, pour enchaîner les combats sans quitter la carte.'},
+  {ic:'recy',img:4,t:'Tri du butin',d:'Ne gardez que ce qui vous intéresse : par exemple seulement l’équipement Épique et plus. Le reste est recyclé automatiquement à la fin du combat et vous rend ses ressources.'}]};
+let UPG=0;
+function upPopHTML(){ const P=UPOP.pages[UPG],n=UPOP.pages.length,last=UPG===n-1;
+  return `<div class="v7upbg" id="uppop"><div class="v7up" role="dialog" aria-modal="true" aria-label="Nouveautés ${UPOP.v}"><div class="scroll"><button class="v7upx" data-act="upClose" ${ttip('Fermer')}>×</button><span class="seal num">${UPOP.v}</span>
+   <small class="k">${UPOP.k}</small><h1>${UPOP.t}</h1><div class="img">${zoneScene(P.img,'up'+UPG)}</div>
+   <div class="pg"><b>${v7i(P.ic)}<span>${P.t}</span></b><p>${P.d}</p></div>
+   <div class="nav"><div class="dots">${UPOP.pages.map((_,i)=>`<button class="${i===UPG?'on':''}" data-act="upGo" data-i="${i}" aria-label="Page ${i+1}"></button>`).join('')}</div><span class="num">${UPG+1} / ${n}</span><span class="sp"></span><button class="btn" data-act="upGo" data-i="${UPG-1}" ${UPG?'':'disabled'}>Précédent</button><button class="btn pri" data-act="${last?'upClose':'upGo'}" data-i="${UPG+1}">${last?'Jouer':'Suivant'}</button></div></div></div></div>`}
+function upPopShow(force){ if(!force&&(UPOP.v!==VERSION||ACC.upSeen===VERSION)) return; UPG=0; const o=$('#uppop'); if(o) o.remove(); document.body.insertAdjacentHTML('beforeend',upPopHTML()) }
+function upPopRender(){ const o=$('#uppop'); if(!o) return; o.outerHTML=upPopHTML().replace('class="v7upbg"','class="v7upbg na"') }
+function upPopClose(){ const o=$('#uppop'); if(o) o.remove(); ACC.upSeen=VERSION; saveAcc() }
+document.addEventListener('keydown',e=>{ if(!$('#uppop')) return; if(e.key==='Escape'){ e.preventDefault(); upPopClose() } else if(e.key==='ArrowRight'&&UPG<UPOP.pages.length-1){ UPG++; upPopRender() } else if(e.key==='ArrowLeft'&&UPG>0){ UPG--; upPopRender() } },true);
+
+/* ================= 0.7.0 : moteur de combat commun (aventure, duels, défis) ================= */
+const HEAT_MAX=10,RAGE_MAX=10,GARDE_MAX=5,BURN_MAX=5;
+function hx(h){
+  const g={v7:1}; if(!h||!CLASSES[h.cls]) return g;
+  for(const sk of heroSkills(h)){ const r=h.learned[sk.id]||0; if(!r||!sk.pv) continue;
+    for(const [k,v] of Object.entries(sk.pv)){ if(v&&typeof v==='object'){ g[k]=g[k]||{}; for(const [a,b] of Object.entries(v)) g[k][a]=(g[k][a]||0)+b*r } else g[k]=(g[k]||0)+v*r } }
+  const sp=h.spec&&CLASSES[h.cls].specs[h.spec]; if(sp) g.res=sp.res;
+  return g;
+}
+const heroGx=hx;
+const gxv=(u,k,id)=>{ const g=(u&&u.gx)||{}; return id==null?(g[k]||0):((g[k]||{})[id]||0) };
+const apOf=(u,id)=>{ const s=SK[id]; if(!s) return 0; return Math.max(0,(s.ap||0)-(s.u?gxv(u,'apUlt'):0)) };
+const cdOf=(u,id)=>{ const s=SK[id]; if(!s||!s.cd) return 0; return Math.max(0,s.cd-gxv(u,'cdRed',id)) };
+const stOf=(u,k)=>(u.st||[]).find(s=>s.k===k);
+const buffSum=(u,stat)=>(u.st||[]).reduce((a,s)=>a+(s.k==='buff'&&s.stat===stat?s.v:0),0);
+const isCC=t=>(t.st||[]).some(s=>s.k==='stun'||s.k==='para'||(s.k==='buff'&&s.stat==='spd'&&s.v<0));
+const defDown=t=>(t.st||[]).some(s=>s.k==='buff'&&s.stat==='def'&&s.v<0);
+const chgOf=t=>{ const q=stOf(t,'chg'); return q?q.n:0 };
+const uKey=u=>u.id||u.name;
+const CB={};
+CB.crit=(u,sk)=>{ if(sk&&sk.crit100) return 100; const el=sk&&sk.el; return Math.min(CRIT_CAP+30,(u.crit||0)+buffSum(u,'crit')+(el?gxv(u,'critEl',el):0)+(sk?gxv(u,'skCrit',sk.id):0)+((sk&&sk.critAdd)||0)) };
+CB.cdmg=(u,sk)=>(u.critDmg||150)+buffSum(u,'critDmg')+(sk&&sk.el?gxv(u,'cdmgEl',sk.el):0);
+/* multiplicateur de dégâts : talents, ressources et états */
+function skMul(u,t,sk,opt){
+  let m=1; const miss=Math.max(0,1-Math.max(0,u.hp)/(u.maxHp||1)),el=sk&&sk.el;
+  if(gxv(u,'lowHpDmg')) m*=1+gxv(u,'lowHpDmg')/100*miss*10;
+  if(sk&&sk.lowHp) m*=1+sk.lowHp*miss;
+  if(el){ m*=1+gxv(u,'dmgEl',el)/100; if(el==='feu'&&u.gx&&u.gx.res==='heat'){ m*=1+2*(u.heat||0)/100; if(stOf(u,'oh')) m*=.7 } if(sk.tg==='all'||(opt&&opt.aoe)) m*=1+gxv(u,'aoeEl',el)/100 }
+  if(sk) m*=1+gxv(u,'skDmg',sk.id)/100;
+  if(sk&&sk.exec){ const thr=(t.boss&&sk.exec.bthr?sk.exec.bthr:sk.exec.thr)+gxv(u,'execThr'); if(t.hp/t.maxHp<thr/100) m*=1+sk.exec.bonus }
+  if(sk&&sk.ifSt&&(sk.ifSt.k==='para'?hasSt(t,'para'):hasSt(t,'dot',sk.ifSt.n))) m*=1+sk.ifSt.v;
+  if(gxv(u,'vsCC')&&isCC(t)) m*=1+gxv(u,'vsCC')/100;
+  if(gxv(u,'vsDefDown')&&defDown(t)) m*=1+gxv(u,'vsDefDown')/100;
+  for(const q of t.st||[]){ if(q.k==='mark'&&q.by===uKey(u)) m*=1+q.v/100; if(q.k==='cage'&&el==='foudre') m*=1.25; if(q.k==='fort') m*=.6 }
+  for(const q of u.st||[]){ if(q.k==='dech') m*=1.15; if(q.k==='last') m*=1.25 }
+  const tg=t.gx||{}; if(tg.lowHpDef&&t.hp/t.maxHp<.35) m*=Math.max(.3,1-tg.lowHpDef/100);
+  if(t.gx&&t.gx.res==='garde'&&t.garde) m*=1-.02*t.garde;
+  return m;
+}
+CB.calc=(u,t,mult,st,sk,W,opt)=>{
+  const ds=st==='mag'?'res':'def',K=100+15*(u.lvl||1);
+  const def=effStat(t,ds)*(1-Math.min(80,gxv(u,'defPen'))/100);
+  let d=effStat(u,st)*mult*K/(K+def);
+  d*=1+(u.dmgPct||0)/100; d*=resMul(t,st,sk&&sk.el); d*=skMul(u,t,sk,opt);
+  if(W.rage) d*=W.rage(u);
+  d*=rand(.92,1.08);
+  const crit=Math.random()*100<CB.crit(u,sk); if(crit) d*=CB.cdmg(u,sk)/100;
+  return {d:Math.max(1,Math.round(d)),crit};
+};
+CB.cap=(t,d)=>{ if(stOf(t,'last')) return Math.max(0,Math.min(d,(t.hp+(t.shield||0))-1)); return d };
+CB.gain=(u,k,n,W)=>{ /* ressources de spécialisation */
+  if(!u.gx||u.hp<=0) return;
+  if(k==='rage'&&u.gx.res==='rage'){ if(stOf(u,'dech')) return; u.rage=Math.min(RAGE_MAX,(u.rage||0)+n); if(u.rage>=RAGE_MAX){ u.rage=0; u.st.push({k:'dech',dur:3}); W.log(`${u.name} est Déchaîné : +15 % de dégâts pendant 2 tours !`,'hl'); W.ft&&W.ft(u,'Déchaîné','heal') } }
+  if(k==='garde'&&u.gx.res==='garde'){ u.garde=Math.min(GARDE_MAX,(u.garde||0)+n); u.gHit=1 }
+  if(k==='heat'&&u.gx.res==='heat'){ if(n>0&&stOf(u,'oh')) return; u.heat=Math.max(0,(u.heat||0)+n); if(u.heat>=HEAT_MAX){ u.heat=0; u.st.push({k:'oh',dur:3}); W.log(`${u.name} entre en Surchauffe : sorts de feu −30 % pendant 2 tours !`,'cr'); W.ft&&W.ft(u,'Surchauffe','miss') } }
+};
+CB.hit=(u,t,mult,st,sk,W,opt={})=>{
+  if(t.hp<=0) return 0;
+  if(!opt.nododge&&Math.random()*100<(t.dodge||0)){ W.ft&&W.ft(t,'Esquive','miss'); W.log(`${t.name} esquive l’attaque.`); return 0 }
+  let {d,crit}=CB.calc(u,t,mult,st,sk,W,opt); d=CB.cap(t,d);
+  W.dmg(t,d,crit,u,opt.label);
+  /* charges de foudre */
+  if(sk&&sk.el==='foudre'&&u.gx&&u.gx.res==='chg'&&!opt.noChg&&t.hp>0) CB.chg(u,t,1);
+  if(sk&&sk.id!=='dot'){ CB.gain(u,'rage',1,W); CB.gain(t,'rage',1,W); CB.gain(t,'garde',1,W) }
+  const ls=(u.lifesteal||0)+(u.hp/u.maxHp<.5?gxv(u,'lsLow'):0); if(ls&&u.hp>0) W.heal(u,d*ls/100,true);
+  { const ul=(u.st||[]).find(q=>q.k==='ult'&&q.ls); if(ul&&u.hp>0) W.heal(u,d*ul.ls/100,true) }
+  const fo=stOf(t,'fort'); if(fo&&u.hp>0&&!opt.noRef){ const r=Math.max(1,Math.round(d*.2)); W.dmg(u,CB.cap(u,r),false,t,'renvoi') }
+  if(t.hp>0&&gxv(t,'counter')&&!opt.noRef&&u.hp>0&&Math.random()*100<gxv(t,'counter')){ W.log(`${t.name} riposte !`,'ev'); CB.hit(t,u,.6,t.role,SK.atk,W,{noRef:1,label:'riposte'}) }
+  if(t.hp<=0&&gxv(u,'killAp')&&!u.kap){ u.kap=1; u.ap=(u.ap||0)+gxv(u,'killAp'); W.log(`${u.name} récupère ${gxv(u,'killAp')} PA (Moisson).`,'hl') }
+  return d;
+};
+CB.chg=(u,t,n)=>{ let q=stOf(t,'chg'); const mx=5+gxv(u,'chgMax'); if(!q){ q={k:'chg',n:0,dur:99,max:mx}; t.st.push(q) } q.max=Math.max(q.max||5,mx); q.n=Math.min(q.max,q.n+n) };
+CB.takeChg=(t,keep)=>{ const q=stOf(t,'chg'); if(!q) return 0; const n=q.n; if(keep&&n>0){ q.n=1 } else t.st=t.st.filter(s=>s!==q); return n };
+CB.burn=(u,t,f,k,sk,W)=>{ /* Brûlures cumulables */
+  const st=sk.st||u.role,v=effStat(u,st)*f.v*k*resMul(t,st,sk.el)*(1+gxv(u,'dmgEl','feu')/100),dur=f.dur+gxv(u,'burnDur');
+  const add=()=>{ const L=t.st.filter(s=>s.k==='dot'&&s.n==='Brûlure'); if(L.length>=BURN_MAX){ L.sort((a,b)=>a.dur-b.dur)[0].dur=dur } else t.st.push({k:'dot',n:'Brûlure',v,dur}) };
+  add(); if(gxv(u,'burnExtra')&&Math.random()*100<gxv(u,'burnExtra')) add();
+};
+CB.fx=(u,t,f,k,sk,W)=>{
+  if(t.hp<=0) return false; const st=sk.st||u.role,boss=t.boss?.5:1;
+  if(f.k==='dot'){
+    if(Math.random()*100>=fxCh(f,sk,u.gx)) return false;
+    if(f.n==='Brûlure'&&u.gx&&u.gx.v7) CB.burn(u,t,f,k,sk,W);
+    else { t.st=t.st.filter(s=>!(s.k==='dot'&&s.n===f.n)); t.st.push({k:'dot',n:f.n,v:effStat(u,st)*f.v*k*resMul(t,st,sk.el)*fxPow(f,u.gx),dur:fxDur(f,u.gx)}) }
+    W.log(`${t.name} subit ${f.n}.`,'ev'); return true;
+  }
+  if(f.k==='para'){ if(Math.random()*100<(fxCh(f,sk,u.gx)+ulPara(u))*boss){ t.st=t.st.filter(s=>s.k!=='para'); t.st.push({k:'para',p:paraPow(u.gx),dur:f.dur}); W.ft&&W.ft(t,'Paralysie','miss'); W.log(`${t.name} est paralysé !`,'ev'); return true } return false }
+  if(f.k==='det'){ const q=t.st.find(x=>x.k==='dot'&&x.n===f.n); if(q){ t.st=t.st.filter(x=>x!==q); W.dmg(t,CB.cap(t,Math.max(1,Math.round(q.v*q.dur*f.m*k))),false,u,f.n+' : détonation') } return !!q }
+  if(f.k==='stun'){ const ch=Math.min(100,(f.ch||100)+gxv(u,'stunCh'))*boss; if(Math.random()*100<ch&&!t.st.some(s=>s.k==='stun')){ t.st.push({k:'stun',dur:f.dur}); W.log(`${t.name} est étourdi !`,'ev'); W.ft&&W.ft(t,'Étourdi','miss'); return true } return false }
+  if(f.k==='shield'){ const a=(f.of==='hp'?t.maxHp*f.v*k:effStat(u,'mag')*f.v*k)*(1+gxv(u,'shieldPct')/100); t.shield=Math.round(Math.min(t.maxHp,(t.shield||0)+a)); if(f.dur){ t.st=t.st.filter(s=>s.k!=='shd'); t.st.push({k:'shd',v:Math.round(a),dur:f.dur}) } W.ft&&W.ft(t,'Bouclier','heal'); W.log(`${t.name} gagne un bouclier de ${Math.round(a)} PV.`); return true }
+  if(f.k==='heal'){ W.heal(t,effStat(u,f.of||'mag')*f.v*k*(1+(u.healPow||0)/100)*rand(.95,1.05)); return true }
+  if(f.k==='hot'){ t.st=t.st.filter(s=>s.k!=='hot'); t.st.push({k:'hot',v:f.v*k,dur:f.dur}); return true }
+  if(f.k==='buff'||f.k==='debuff'){
+    let v=f.k==='buff'?(f.abs?f.v*k:f.v*k):-Math.abs(f.v); if(f.bid) v+=gxv(u,'buffAdd',f.bid); v=Math.round(v*10)/10;
+    if(f.stack){ const L=t.st.filter(s=>s.k==='buff'&&s.tag===f.tag); if(L.length>=f.stack) L.sort((a,b)=>a.dur-b.dur)[0].dur=f.dur; else t.st.push({k:'buff',stat:f.stat,v,dur:f.dur,tag:f.tag}) }
+    else { t.st=t.st.filter(s=>!(s.k==='buff'&&s.stat===f.stat&&!s.tag&&Math.sign(s.v)===Math.sign(v))); t.st.push({k:'buff',stat:f.stat,v,dur:f.dur}) }
+    return true }
+  if(f.k==='taunt'){ t.st=t.st.filter(s=>s.k!=='taunt'); t.st.push({k:'taunt',dur:f.dur}); return true }
+  if(f.k==='mark'){ t.st=t.st.filter(s=>!(s.k==='mark'&&s.by===uKey(u))); t.st.push({k:'mark',by:uKey(u),v:Math.round(f.v*k),dur:f.dur}); W.log(`${t.name} est traqué.`,'ev'); return true }
+  if(['last','fort','cage'].includes(f.k)){ t.st=t.st.filter(s=>s.k!==f.k); t.st.push({k:f.k,dur:f.dur}); return true }
+  return false;
+};
+/* dégâts « spéciaux » (consommation de Charges, bombes, météores…) */
+CB.special=(u,sk,tgt,fT,k,W)=>{
+  const st=sk.st||u.role,F=W.foes(u);
+  if(sk.dis){ const n=CB.takeChg(tgt,Math.random()*100<gxv(u,'chgKeep')); CB.hit(u,tgt,(sk.dis.base+sk.dis.per*n)*k,st,sk,W,{noChg:1}); if(n) W.log(`${n} Charge${n>1?'s':''} consommée${n>1?'s':''}.`,'ev'); return true }
+  if(sk.surg){ let any=0; for(const t of F){ const n=CB.takeChg(t); if(n){ any=1; CB.hit(u,t,sk.surg*n*k,st,sk,W,{noChg:1,aoe:1,label:n+' Charges'}) } } if(!any) W.log('Aucune Charge à faire exploser.'); return true }
+  if(sk.imp){ const n=CB.takeChg(tgt); CB.hit(u,tgt,(sk.imp.base+sk.imp.per*n)*k,st,sk,W,{noChg:1}); for(const t of F) if(t!==tgt){ const m=CB.takeChg(t); if(m) CB.hit(u,t,sk.imp.oth*m*k,st,sk,W,{noChg:1,aoe:1,label:m+' Charges'}) } return true }
+  if(sk.storm){ for(let i=0;i<sk.storm;i++){ const A=W.foes(u); if(!A.length) break; CB.hit(u,pick(A),sk.dmult*k,st,sk,W,{aoe:1}) } return true }
+  if(sk.bounce){ CB.hit(u,tgt,sk.mult*k,st,sk,W); const others=W.foes(u).filter(t=>t!==tgt).sort(()=>Math.random()-.5).slice(0,sk.bounce+gxv(u,'bounce')); for(const t of others) CB.hit(u,t,.55*k,st,sk,W,{aoe:1,label:'rebond'}); return true }
+  if(sk.soul){ const n=Math.min(3,u.heat||0),v=Math.min(tgt.maxHp*.06,effStat(u,st)*1.5)*resMul(tgt,st,'feu')*(1+gxv(u,'dmgEl','feu')/100); tgt.st=tgt.st.filter(s=>!(s.k==='dot'&&s.n==='Brûlure d’âme')); tgt.st.push({k:'dot',n:'Brûlure d’âme',v,dur:3}); W.log(`${tgt.name} subit Brûlure d’âme.`,'ev'); for(let i=0;i<n;i++) CB.burn(u,tgt,{v:.25,dur:3},1,sk,W); if(n) W.log(`${n} Brûlure${n>1?'s':''} supplémentaire${n>1?'s':''}.`,'ev'); return true }
+  if(sk.chan){ u.st.push({k:'chan',sk:sk.id,tg:tgt&&uKey(tgt),dur:99}); W.log(`${u.name} incante ${sk.n}…`,'hl'); return true }
+  if(sk.delay){ u.st.push({k:'dly',sk:sk.id,tg:tgt&&uKey(tgt),n:sk.delay,dur:99}); if(sk.id==='f_bomb'&&tgt){ tgt.st.push({k:'bomb',dur:2}); W.log(`Bombe vivante est posée sur ${tgt.name}.`,'ev') } else W.log(`${sk.n} arrive dans ${sk.delay} tours.`,'hl'); return true }
+  return false;
+};
+/* sorts à retardement ou incantés qui se déclenchent */
+CB.resolve=(u,q,W)=>{
+  const sk=SK[q.sk]; if(!sk) return; const k=sc((u.ranks&&u.ranks[sk.id])||1),st=sk.st||u.role,F=W.foes(u);
+  const tg=F.find(t=>uKey(t)===q.tg)||F[0];
+  if(sk.id==='f_pyro'){ if(!tg) return; const h=u.heat||0; W.log(`${u.name} libère ${sk.n} (${h} degré${h>1?'s':''}) !`,'hl'); CB.hit(u,tg,sk.dmult*(1+.1*h)*k,st,sk,W); u.heat=0; return }
+  if(sk.id==='f_met'){ const h=u.heat||0; W.log(`Le Météore s’écrase !`,'hl'); for(const t of F) CB.hit(u,t,sk.dmult*(1+.03*h)*k,st,sk,W,{aoe:1}); return }
+  if(sk.id==='f_bomb'){ for(const t of W.foesAll(u)) t.st=t.st.filter(s=>s.k!=='bomb'); W.log('Bombe vivante explose !','hl'); let hit=0,kill=0;
+    for(const t of F){ const d=CB.hit(u,t,sk.dmult*k,st,sk,W,{aoe:1}); if(d){ hit++; if(t.hp<=0) kill++; else CB.burn(u,t,{v:.25,dur:3},k,sk,W) } }
+    let g=hit; for(let i=0;i<kill;i++) if(Math.random()<.3) g++; CB.gain(u,'heat',g,W); return }
+};
+/* lancer d'une compétence (commun à tous les modes) */
+CB.exec=(u,sk,tgt,W)=>{
+  const k=sk.id==='atk'?1:sc((u.ranks&&u.ranks[sk.id])||1),st=sk.st||u.role;
+  const cd=sk.id==='atk'?0:cdOf(u,sk.id); if(cd) u.cds[sk.id]=cd+1;
+  const ap=sk.id==='atk'?0:apOf(u,sk.id); if(ap) u.ap=Math.max(0,(u.ap||0)-ap);
+  if(sk.id==='atk') u.atkUsed=true;
+  const foesA=W.foes(u),friA=W.friends(u);
+  if((sk.tg==='one')&&(!tgt||tgt.hp<=0||!foesA.includes(tgt))) tgt=foesA[0];
+  let fT=[],aT=[];
+  if(sk.tg==='one') fT=tgt?[tgt]:[];
+  else if(sk.tg==='all') fT=foesA;
+  else if(sk.tg==='self') aT=[u];
+  else if(sk.tg==='allies') aT=friA;
+  else if(sk.tg==='lowAlly') aT=[friA.slice().sort((a,b)=>a.hp/a.maxHp-b.hp/b.maxHp)[0]].filter(Boolean);
+  W.log(sk.id==='atk'?`${u.name} attaque${tgt?' '+tgt.name:''}.`:`${u.name} utilise ${sk.n}.`);
+  if(sk.self){ const c=Math.min(u.hp-1,Math.round(u.maxHp*sk.self)); if(c>0){ u.hp-=c; W.ft&&W.ft(u,'-'+c,''); W.log(`${u.name} sacrifie ${c} PV.`,'cr'); W.refresh&&W.refresh(u) } }
+  let burned=false;
+  if(!CB.special(u,sk,tgt,fT,k,W)){
+    if(sk.mult) for(const t of fT) for(let i=0;i<(sk.hits||1);i++){ if(t.hp<=0)break; const d=CB.hit(u,t,sk.mult*k,st,sk,W); if(sk.ls&&d&&u.hp>0) W.heal(u,d*sk.ls/100) }
+    for(const f of sk.fx||[]){
+      const on=f.on||(sk.tg==='one'||sk.tg==='all'?'foe':'friend');
+      const ts=on==='foe'?fT:on==='allies'?W.friends(u):aT;
+      for(const t of ts) if(CB.fx(u,t,f,k,sk,W)&&f.n==='Brûlure') burned=true;
+    }
+  }
+  if(sk.heat){ const h=sk.heat; if(h.n<0) CB.gain(u,'heat',h.n,W); else if(h.ifBurn){ if(burned) CB.gain(u,'heat',h.n,W) } else if(h.ch==null||Math.random()*100<h.ch) CB.gain(u,'heat',h.n,W) }
+  ultAfterCast(u,sk,fT,m=>W.log(m,'hl'));
+};
+/* début de tour : dégâts sur la durée, soins, effets à retardement, contrôle */
+CB.start=(u,W)=>{
+  u.kap=0;
+  if(u.gx&&u.gx.res==='garde'){ if(!u.gHit&&u.garde>0) u.garde--; u.gHit=0 }
+  for(const s of (u.st||[]).filter(s=>s.k==='dot')) if(u.hp>0) W.dmg(u,CB.cap(u,Math.max(1,Math.round(s.v))),false,null,s.n);
+  for(const s of (u.st||[]).filter(s=>s.k==='hot')) if(u.hp>0) W.heal(u,u.maxHp*s.v);
+  if(u.regen&&u.hp>0) W.heal(u,u.maxHp*u.regen/100,true);
+  if(u.hp<=0) return {skip:true,dead:true};
+  let skip=false;
+  for(const q of (u.st||[]).filter(s=>s.k==='dly')){ q.n--; if(q.n<=0){ u.st=u.st.filter(s=>s!==q); CB.resolve(u,q,W) } }
+  const ch=stOf(u,'chan'); if(ch){ u.st=u.st.filter(s=>s!==ch); CB.resolve(u,ch,W); W.log(`${u.name} récupère de son incantation et passe son tour.`,'ev'); skip=true }
+  if(!skip&&u.st.some(s=>s.k==='stun')){ W.log(`${u.name} est étourdi et passe son tour.`,'ev'); skip=true }
+  if(!skip){ const pa=u.st.find(s=>s.k==='para'); if(pa&&Math.random()*100<(pa.p||50)){ W.log(`${u.name} est paralysé et perd son tour.`,'ev'); W.ft&&W.ft(u,'Paralysé','miss'); skip=true } }
+  return {skip};
+};
+CB.end=u=>{ stTick(u); for(const id of Object.keys(u.cds||{})) u.cds[id]=Math.max(0,u.cds[id]-1) };
+/* adaptateurs : aventure, duels, défis */
+const W_PVE={pve:1,foes:u=>alive(foes(u)),foesAll:u=>foes(u),friends:u=>alive(friends(u)),log:(m,c)=>logLine(m,c),dmg:(t,d,crit,src,label)=>dmg(t,d,crit,src,label),heal:(t,a,s)=>heal(t,a,s),ft:(t,x,c)=>floatTxt(t,x,c),refresh:t=>refresh(t),
+  rage:u=>{ if(u.team!=='e') return 1; const rs=u.boss?DIFF[C.diff||'normal'].rage:30; return C.round>rs?1+(C.round-rs)*(u.boss&&rs<30?.08:.1):1 }};
+function W_L(L,foesF,friF,allF){ return {foes:u=>foesF(u).filter(x=>x.hp>0),foesAll:u=>(allF||foesF)(u),friends:u=>friF(u).filter(x=>x.hp>0),log:m=>L.push(m),
+  dmg:(t,d,crit,src,label)=>{ let a=d; if(t.shield>0){const z=Math.min(t.shield,a); t.shield-=z; a-=z} t.hp=Math.max(0,t.hp-a); L.push(`${t.name} subit ${d} dégâts${label?' ('+label+')':''}${crit?' (critique !)':''}.`); if(t.hp<=0) L.push(`${t.name} est vaincu.`) },
+  heal:(t,a,s)=>{ const h=Math.round(Math.min(t.maxHp-t.hp,a)); if(h>0){ t.hp+=h; if(!s) L.push(`${t.name} récupère ${h} PV.`) } }} }
+/* IA des héros (combat automatique) */
+CB.ai=(u,noAtk,W)=>{
+  W=W||W_PVE; const F=W.foes(u),A=W.friends(u),hp=u.hp/u.maxHp,heat=u.heat||0;
+  const ok=id=>(u.cds[id]||0)===0&&(u.ap||0)>=apOf(u,id);
+  const has=(t,k)=>(t.st||[]).some(s=>s.k===k);
+  let best=null,bs=.5;
+  const tgtFor=sk=>{ if(sk.dis||sk.imp) return F.slice().sort((a,b)=>chgOf(b)-chgOf(a))[0]; if(sk.exec) return F.slice().sort((a,b)=>a.hp/a.maxHp-b.hp/b.maxHp)[0]; if((sk.fx||[]).some(f=>f.k==='stun')) return F.find(t=>!has(t,'stun'))||F[0]; const tt=F.find(t=>t.st.some(s=>s.k==='taunt')); return tt||F.slice().sort((a,b)=>a.hp-b.hp)[0] };
+  for(const id of u.skills){ if(!ok(id)) continue; const sk=SK[id]; if(!sk) continue; const k=sc((u.ranks&&u.ranks[id])||1),t=tgtFor(sk); if(!t&&sk.tg!=='self'&&sk.tg!=='allies') continue;
+    let s=0; const n=F.length;
+    if(sk.chan) s=heat>=5?2.6+heat*.25:0;
+    else if(sk.soul) s=t&&t.maxHp>effStat(u,'mag')*12?3:1.4;
+    else if(sk.delay) s=(sk.dmult||1)*k*(sk.tg==='all'||sk.id==='f_bomb'?n*.8:1)*(stOf(u,'dly')?0:1);
+    else if(sk.dis) s=(sk.dis.base+sk.dis.per*chgOf(t))*k*(chgOf(t)>=3?1.2:.5);
+    else if(sk.surg){ s=F.reduce((a,x)=>a+chgOf(x),0)*sk.surg*k; if(s<1.2) s*=.4 }
+    else if(sk.imp) s=(sk.imp.base+sk.imp.per*chgOf(t))*k+F.reduce((a,x)=>a+(x!==t?chgOf(x)*sk.imp.oth:0),0);
+    else if(sk.storm) s=sk.storm*sk.dmult*k;
+    else if(sk.bounce) s=(sk.mult+.5*Math.min(n-1,sk.bounce+gxv(u,'bounce')))*k;
+    else if(sk.mult) s=sk.mult*k*(sk.tg==='all'?n*.8:1);
+    if(sk.heat&&sk.heat.n<0) s=heat>=8?3.2:heat>=6?1:0;
+    if(sk.heat&&sk.heat.n>0&&heat>=9&&!stOf(u,'oh')) s*=.35;
+    if(sk.exec&&t&&t.hp/t.maxHp<((t.boss&&sk.exec.bthr?sk.exec.bthr:sk.exec.thr)+gxv(u,'execThr'))/100) s*=2;
+    if(sk.lowHp) s*=1+sk.lowHp*(1-hp);
+    if(sk.self&&hp<.4) s=0;
+    for(const f of sk.fx||[]){
+      if(f.k==='shield') s=Math.max(s,(u.shield||0)<u.maxHp*.08&&hp<.8?2.2:0);
+      if(f.k==='buff'&&(sk.tg==='self'||sk.tg==='allies')) s=Math.max(s,u.st.some(q=>q.k==='buff'&&q.stat===f.stat&&q.v>0)?0:(f.stat==='mag'||f.stat==='atk'?2.4:1.6));
+      if(f.k==='mark') s=Math.max(s,t&&!t.st.some(q=>q.k==='mark')?1.3:0);
+      if(f.k==='last') s=hp<.35?4:0;
+      if(f.k==='fort') s=hp<.5?3:0;
+      if(f.k==='stun') s=Math.max(s,(sk.mult||0)*k+((sk.tg==='all'?n:1)*(t&&has(t,'stun')?0:.9)));
+      if(f.k==='debuff'&&f.stat==='def') s+=t&&defDown(t)?0:.3;
+      if(f.k==='debuff'&&f.stat==='spd'&&!sk.mult) s=Math.max(s,n*.5);
+      if(f.k==='cage') s=Math.max(s,n*1.1);
+    }
+    if(sk.crit100) s*=1.6;
+    s*=rand(.92,1.08);
+    if(s>bs){ bs=s; best={skill:sk,target:sk.tg==='one'?t:null} }
+  }
+  if(!best){ if(noAtk) return null; return {skill:SK.atk,target:tgtFor(SK.atk)} }
+  return best;
+};
+
+/* ================= 0.7.0 : page Compétences (style A « Grimoire double ») ================= */
+const TREE_LV=[10,12,16,20,25,30,33];
+const RES_N={heat:'Degrés de chaleur',chg:'Charges statiques',rage:'Rage',garde:'Garde'};
+function skReq7(sk,h){
+  if(!h) return '';
+  if(h.lvl<(sk.lvl||1)) return `Niveau ${sk.lvl} requis.`;
+  if(sk.spec==='*'){ if(!h.spec) return 'Choisissez d’abord une spécialisation.' }
+  else if(sk.spec&&h.spec!==sk.spec) return `Spécialisation ${CLASSES[h.cls].specs[sk.spec].n} requise.`;
+  if(sk.u){ const o=heroSkills(h).find(x=>x.u&&x.id!==sk.id&&(h.learned[x.id]||0)>0); if(o) return `Un seul ultime : vous avez déjà ${o.n}.` }
+  return '';
+}
+function skLinksTo(sk,h){ /* passifs qui modifient ce sort */
+  const all=[...CLASSES[h.cls].common,...Object.values(CLASSES[h.cls].specs).flatMap(s=>s.nodes)];
+  return all.filter(p=>(p.links||[]).some(l=>l===sk.id||(l==='@u'&&sk.u))&&(!p.spec||p.spec==='*'||p.spec===sk.spec||!sk.spec));
+}
+function skCard7(sk,h){
+  const chip=(t,c='')=>`<span class="skm ${c}">${t}</span>`;
+  const r=h?(h.learned[sk.id]||0):0,mx=skMax(sk),rk=Math.max(1,r),g=h?hx(h):{},req=skReq7(sk,h),U={gx:g};
+  const kind=sk.u?'Ultime':sk.t==='p'?'Passif':'Sort actif';
+  const sp=sk.spec&&sk.spec!=='*'&&CLASSES[h.cls].specs[sk.spec],br=sp&&sp.br[sk.col];
+  const where=sk.base?'Compétence de base':sk.spec==='*'?'Talent de classe':`${sp.n} · ${br}`;
+  const txt=x=>sk.t==='p'?sk.pd(x):sk.d(sc(x),g);
+  const ap=sk.t!=='p'?apOf(U,sk.id):0,cd=sk.t!=='p'?cdOf(U,sk.id):0;
+  const meta=sk.t==='p'?chip('Effet permanent'):chip(ap?`${ap} PA`:'Gratuit',ap?'ap':'free')+chip(cd?`Recharge ${cd} tour${cd>1?'s':''}`:'Sans recharge')+(sk.el&&ELEM[sk.el]?`<span class="skm el" style="--ec:${ELEM[sk.el].c}">${ELEM[sk.el].n}</span>`:'')+chip(TG_N[sk.tg]||'');
+  const lk=h?skLinksTo(sk,h):[],tg=(sk.links||[]).map(l=>l==='@u'?'vos ultimes':(SK[l]||{}).n).filter(Boolean);
+  return `<article class="it skt" style="--rc:${sk.co}"><header><b>${esc(sk.n)}</b><small>${kind} · ${where} · niveau ${sk.lvl||1}</small><small class="skrk">Rang <b>${r}</b> / ${mx}${h&&h.loadout.includes(sk.id)?' · Dans la barre de sorts':''}</small></header>
+   <div class="skmeta">${meta}</div><div class="skbody">${r?'':'<h5>Au rang 1</h5>'}<p>${txt(rk)}</p></div>
+   ${r>0&&r<mx?`<div class="sknext"><h5>Rang ${r+1}</h5><p>${txt(r+1)}</p></div>`:''}
+   ${tg.length?`<p class="sklk">⟶ Modifie : ${esc(tg.join(', '))}</p>`:''}${lk.length?`<p class="sklk">⟵ Modifié par : ${lk.map(p=>esc(p.n)+(h.learned[p.id]?` (${h.learned[p.id]}/${skMax(p)})`:'')).join(', ')}</p>`:''}
+   ${req?`<p class="lockr">🔒 ${req}</p>`:''}</article>`;
+}
+function skTile7(sk,h,dim){
+  const r=h.learned[sk.id]||0,mx=skMax(sk),req=skReq7(sk,h),can=!dim&&!req&&h.sp>0&&r<mx,eq=h.loadout.includes(sk.id);
+  const drag=!dim&&sk.t!=='p'&&r>0;
+  return `<div class="t7c" data-sk="${sk.id}"><button class="t7 ${sk.u?"u":sk.t} ${r?'got':''} ${req||dim?'lock':''} ${can?'avail':''} ${UI.skSel===sk.id?'sel':''}" style="--co:${sk.co}" data-act="skSel" data-id="${sk.id}" ${drag?`data-skdrag="${sk.id}"`:''} data-tip="sk:${sk.id}" aria-label="${esc(sk.n)}, rang ${r} sur ${mx}${req?', verrouillé':''}">${spIcon(sk)}${sk.t!=='u'||mx>1?`<em class="${r>=mx?'mx':''}">${r}/${mx}</em>`:''}${eq?'<i class="t7eq" aria-hidden="true">✓</i>':''}</button><span class="t7n">${esc(sk.n)}</span></div>`;
+}
+function treeHTML(h,sid){
+  const c=CLASSES[h.cls],sp=c.specs[sid],chosen=h.spec===sid,other=h.spec&&!chosen,nodes=[...sp.nodes,...c.common];
+  const hh=chosen?h:Object.assign({},h,{spec:sid,learned:other?Object.fromEntries(c.common.map(n=>[n.id,h.learned[n.id]||0])):h.learned,sp:0});
+  const rows=TREE_LV.map(lv=>`<div class="t7lv ${h.lvl<lv?'lk':''}">${lv===30?'30 ★':lv}</div>`+[0,1,2,3].map(col=>{const n=nodes.find(x=>x.lvl===lv&&x.col===col);return `<div class="t7cell ${col===3?'t7cl':''}">${n?skTile7(n,hh,!chosen):''}</div>`}).join('')).join('');
+  const resV=chosen&&sp.res==='heat'?'':'';
+  return `<section class="t7tree bg-${sp.bg} ${chosen?'on':''} ${other?'dim':''}" style="--sc:${sp.co}" data-tree="${sid}">
+   <header>${spIcon(sp)}<b>${sp.n}</b><small>${sp.br.slice(0,3).join(' · ')}</small>${chosen?'<span class="t7tag on">Votre spécialisation</span>':other?'<span class="t7tag">Non choisie</span>':`<button class="btn sm ${UI.specConf===sid?'danger':'pri'}" data-act="chooseSpec" data-s="${sid}" ${h.lvl<SPEC_L?'disabled':''}>${h.lvl<SPEC_L?`Niveau ${SPEC_L} requis`:UI.specConf===sid?'Confirmer : choix définitif':'Choisir'}</button>`}</header>
+   <p class="t7res" data-tip="${esc('tx:'+RES_N[sp.res]+'|'+sp.rd)}"><b>${RES_N[sp.res]}</b><span>${esc(sp.rd.split(':').slice(1).join(':').trim().split('. ')[0])}.</span></p>
+   <div class="t7grid"><div></div>${sp.br.map((b,i)=>`<div class="t7bh ${i===3?'t7cl':''}">${b}</div>`).join('')}${rows}</div><svg class="t7links" aria-hidden="true"></svg></section>`;
+}
+function hSkillsTab(h){
+  const c=CLASSES[h.cls],sel=UI.skSel&&SK[UI.skSel];
+  const base=c.skills.map(sk=>skTile7(sk,h,false)).join('');
+  let det='';
+  if(sel&&sel.id!=='atk'&&heroSkillsAll(h).includes(sel)){ const r=h.learned[sel.id]||0,req=skReq7(sel,h),eq=h.loadout.includes(sel.id),mine=!sel.spec||sel.spec==='*'||sel.spec===h.spec;
+    det=`<div class="t7det">${skCard7(sel,h)}<div class="row" style="justify-content:center">${mine?`<button class="btn pri" data-act="learn" data-id="${sel.id}" ${req||h.sp<1||r>=skMax(sel)?'disabled':''}>${r>=skMax(sel)?'Rang maximum':r?'Améliorer (1 point)':'Apprendre (1 point)'}</button>`:''}${sel.t!=='p'&&r?`<button class="btn" data-act="equipSk" data-id="${sel.id}">${eq?'Retirer de la barre':'Équiper'}</button>`:''}<button class="btn" data-act="skSel" data-id="${sel.id}">Fermer</button></div></div>` }
+  const fp=matAll('p_oubli');
+  const bar=Array.from({length:LOADOUT_MAX},(_,i)=>{const id=h.loadout[i],q=id&&SK[id];
+    return `<div class="sbslot ${q?'full':''}" data-sbi="${i}"><kbd class="t7k">${keyLab(KEYS()[i+1])}</kbd>${q?`<button class="skc" style="--co:${q.co}" data-act="skSel" data-id="${id}" data-skdrag="${id}" data-from="${i}" data-tip="sk:${id}" aria-label="Emplacement ${i+1} : ${esc(q.n)}">${spIcon(q)}${apOf({gx:hx(h)},id)?`<em class="apk">${apOf({gx:hx(h)},id)}</em>`:''}</button>`:''}</div>`}).join('');
+  return `<div class="t7wrap">
+   <div class="t7top"><span class="t7pts ${h.sp?'':'z'}" ${ttip('Points de compétence','1 point par niveau jusqu’au niveau '+SP_MAX+'.')}>${h.sp} point${h.sp>1?'s':''} à dépenser</span><span class="mute">Niveau ${h.lvl} · ${h.spec?'Les deux arbres restent visibles.':h.lvl<SPEC_L?`Spécialisation au niveau ${SPEC_L} : découvrez déjà les deux arbres.`:'Choisissez votre spécialisation (définitif, sauf Potion d’oubli).'}</span>
+    <span class="t7forget">Potion d’oubli : <b class="num">${fp}</b> <button class="btn sm ${UI.forgetConf?'danger':''}" data-act="forget" ${fp?'':'disabled'} ${ttip('Réinitialiser','Rembourse tous les points et la spécialisation.')}>${UI.forgetConf?'Confirmer':'Réinitialiser'}</button></span></div>
+   <div class="t7base"><b>Compétences de base</b>${base}<small class="mute">Niveaux 1 à 8</small></div>
+   <div class="t7trees">${Object.keys(c.specs).map(sid=>treeHTML(h,sid)).join('')}</div>
+   <div class="t7bar"><b>Barre de sorts</b><div class="spbar t7sb" id="spbar">${bar}</div><small class="mute">${h.loadout.length} / ${LOADOUT_MAX} · glissez un sort appris pour l’ajouter, hors de la barre pour le retirer</small></div>
+   ${det?`<div class="t7detw">${det}</div>`:''}</div>`;
+}
+const heroSkillsAll=h=>[...CLASSES[h.cls].skills,...CLASSES[h.cls].common,...Object.values(CLASSES[h.cls].specs).flatMap(s=>s.nodes)];
+function drawSkLinks(){
+  document.querySelectorAll('.t7tree').forEach(tr=>{ const svg=tr.querySelector('.t7links'); if(!svg) return; const R=tr.getBoundingClientRect(); if(!R.width) return; const h=S.heroes[0]; let d='';
+    tr.querySelectorAll('.t7c[data-sk]').forEach(el=>{ const sk=SK[el.dataset.sk]; if(!sk||!sk.links) return; const a=el.querySelector('.t7');
+      for(const l of sk.links){ const ids=l==='@u'?[...tr.querySelectorAll('.t7.u')].map(x=>x.dataset.id):[l];
+        for(const id of ids){ const bEl=tr.querySelector(`.t7c[data-sk="${id}"] .t7`); const on=h&&(h.learned[sk.id]||0)>0;
+          if(!bEl){ /* sort de base : flèche vers le haut de l'arbre */ const A=a.getBoundingClientRect(),x=(A.left+A.width/2-R.left)/ZM,y=(A.top-R.top)/ZM; d+=`<path class="${on?'on':''}" d="M${x} ${y} L${x} ${y-14}"/><path class="${on?'on':''} hd" d="M${x-4} ${y-9} L${x} ${y-15} L${x+4} ${y-9}"/>`; continue }
+          const A=a.getBoundingClientRect(),B=bEl.getBoundingClientRect(); const x1=(A.left+A.width/2-R.left)/ZM,y1=(A.top+A.height/2-R.top)/ZM,x2=(B.left+B.width/2-R.left)/ZM,y2=(B.top+B.height/2-R.top)/ZM;
+          const dx=x2-x1,dy=y2-y1,L=Math.hypot(dx,dy)||1,o=Math.min(50,L*.2),cx=(x1+x2)/2-dy/L*o,cy=(y1+y2)/2+dx/L*o; d+=`<path class="${on?'on':''}" d="M${x1} ${y1} Q${cx} ${cy} ${x2} ${y2}"/>` } } });
+    svg.setAttribute('viewBox',`0 0 ${R.width/ZM} ${R.height/ZM}`); svg.innerHTML=d });
+}
+/* états et ressources affichés sur les unités */
+function unitSts(u){
+  const L=[]; const g=u.gx||{};
+  if(g.res==='heat') L.push({k:'heat',v:u.heat||0}); if(g.res==='rage') L.push({k:'rage',v:u.rage||0}); if(g.res==='garde'&&u.garde) L.push({k:'garde',v:u.garde});
+  for(const s of u.st||[]){ if(s.k==='shd') continue; if(s.k==='dly'){ L.push({k:'dly',sk:s.sk,dur:s.n}); continue } L.push(s) }
+  return L;
+}
+
 function viewCombatIdle(){
   const P=prog(),dk=curDiff(),D=DIFF[dk],hero=dk!=='normal',z=ZONES[UI.zone],L=D.L||UI.zone*10+UI.stage;
   const h=S.heroes[0],c=CLASSES[h.cls],st=heroStats(h),need=h.lvl>=MAXL?1:xpNeed(h.lvl);
@@ -5519,8 +6163,8 @@ function renderActbar0(){
       el.innerHTML=`<div class="result"><h2 style="margin-bottom:6px">Victoire</h2>
         <p style="margin:0 0 8px" class="num">+${fmt(r.xp)} XP${matChip('gold',r.gold)}${m}</p>
         ${r.ups.map(u=>`<p class="lvup" style="margin:0">${esc(u)}</p>`).join('')}
-        ${r.items.length?`<div class="ltiles">${r.items.map((i,n)=>`<span class="ltile${itFx(i)}" style="--rc:var(--r${i.rarity})" data-tip="li:${n}" tabindex="0" aria-label="${esc(i.name)}, ${RAR[i.rarity].n}, niveau ${i.ilvl}">${eqIco(i)}${i.up?`<span class="u">+${i.up}</span>`:''}${ilTag(i)}</span>`).join('')}</div>`:''}
-        <div class="row" style="margin-top:10px">${nextOk?`<button class="btn pri" data-act="next">Étape suivante</button>`:''}<button class="btn ${nextOk?'':'pri'}" data-act="again">Rejouer</button><button class="btn" data-act="back">Retour</button></div></div>`;
+        ${r.items.length?`<div class="ltiles">${r.items.map((i,n)=>`<span class="ltile${itFx(i)}${i.rc?' rc':''}" style="--rc:var(--r${i.rarity})" data-tip="li:${n}" tabindex="0" aria-label="${esc(i.name)}, ${RAR[i.rarity].n}, niveau ${i.ilvl}">${eqIco(i)}${i.up?`<span class="u">+${i.up}</span>`:''}${ilTag(i)}</span>`).join('')}</div>`:''}
+        ${r.rc?`<p class="lrcy mute">${r.rc.n} objet${r.rc.n>1?'s':''} recyclé${r.rc.n>1?'s':''} automatiquement (tri du butin) : ${resTxt(r.rc.v)}.</p>`:''}<div class="row" style="margin-top:10px">${nextOk?`<button class="btn pri" data-act="next">Étape suivante</button>`:''}<button class="btn ${nextOk?'':'pri'}" data-act="again">Rejouer</button><button class="btn" data-act="back">Retour</button></div></div>`;
     }else{
       el.innerHTML=`<div class="result lose"><h2 class="lose" style="margin-bottom:6px">Défaite</h2><p style="margin:0 0 10px">${r.ab?'Vous avez abandonné le combat. ':''}Améliorez votre équipement ou vos compétences, ou gagnez quelques niveaux en rejouant une étape plus facile, puis retentez votre chance.</p>
         <div class="row"><button class="btn pri" data-act="again">Réessayer</button><button class="btn" data-act="back">Retour</button></div></div>`;
@@ -6344,9 +6988,12 @@ function viewHelp(){
 }
 
 /* --- nouveautés --- */
-const VERSION='0.5.8';
-const BUILD='20261020234147';
+const VERSION='0.7.2';
+const BUILD='20261021024132';
 const PATCH=[
+ {"v": "0.7.2", "t": "Spécialisation foudre renommée", "sec": [["Classes", ["La spécialisation foudre du Sorcier s’appelle maintenant Évocateur (avant : Fulguromancie). Rien ne change dans ses talents."]]]},
+ {"v": "0.7.1", "t": "Guerrier : léger ajustement", "sec": [["Équilibrage", ["Guerrier un peu moins résistant et un peu moins fort. Au niveau 50 sans équipement : PV 2 211 → 2 064, Force 141 → 136, Défense 98 → 88."]]]},
+ {"v": "0.7.0", "t": "L’Hôtel des ventes et la refonte des classes", "sec": [["Classes", ["Refonte complète du Sorcier et du Guerrier : nouvelles compétences de base, nouvelles spécialisations et nouveaux arbres de talents. Vos points de compétence et votre spécialisation sont remboursés.", "Sorcier : Pyromancie (Destruction, Incendie, Cataclysme) avec les degrés de chaleur, et Évocateur (Électrocution, Instabilité, Paralysie) avec les Charges statiques.", "Guerrier : Berserk (Barbare, Commandant, Bourreau) avec la Rage, et Défenseur (Brise-défense, Garde, Stratège) avec la Garde.", "Les arbres sont rangés par niveau (10 à 33). Au niveau 30, choisissez 1 ultime parmi 3. Les deux arbres restent visibles une fois la spécialisation choisie, chacun avec son propre fond.", "Des pointillés relient chaque talent au sort qu’il modifie.", "Barre de sorts : 5 → 7 emplacements ; raccourcis 1 à 8 (touche 1 : attaque de base).", "Les anciens talents communs (Érudition, Vitalité…) sont retirés.", "Nouveaux effets de combat : incantation, sorts à retardement, Brûlures cumulables (jusqu’à 5), ralentissement, réduction de Défense, contre-attaque et marque."]], ["Hôtel des ventes", ["Nouvel onglet Hôtel des ventes dans Communauté : vendez et achetez de l’équipement entre joueurs.", "Acheter : filtres par catégorie, rareté, niveau d’objet et classe, recherche par nom d’objet ou de vendeur, tri par prix, fin de la vente, niveau ou rareté. L’objet acheté arrive dans la messagerie avec le récapitulatif de la commande.", "Vendre : choisissez un équipement du sac, votre prix et la durée de la vente (2 h, 12 h, 24 h, 3 jours ou 7 jours). Taxe de 5 % prise à la vente ; frais de dépôt de 1 % (minimum 10 or) rendus si l’objet est vendu. L’or de la vente arrive dans la messagerie avec un récapitulatif.", "Un objet invendu à la fin de la durée vous est renvoyé par la messagerie avec un récapitulatif. Vous pouvez aussi retirer une vente depuis « Mes ventes ». Maximum 10 objets en vente en même temps.", "Potions et gemmes : bientôt disponibles à l’hôtel des ventes."]], ["Combat", ["Le bouton Combattre n’a plus de flèche. Un engrenage à côté regroupe le combat automatique et Rejouer (qui active aussi le combat automatique).", "Nouveau tri du butin dans l’engrenage : choisissez les raretés d’équipement à garder, et si vous ne gardez que l’équipement de votre classe ou les objets meilleurs que le vôtre. Le reste est recyclé automatiquement à la fin du combat (25 % des ressources rendues), et apparaît barré dans le butin."]], ["Forge", ["Correction : le recyclage n’affiche plus de fer ni de cuir (ces matériaux n’existent plus) ; il rend des Poudres runiques."]], ["Messagerie", ["Les messages peuvent maintenant contenir des objets d’équipement : ils vont dans le coffre du compte quand vous les récupérez."]], ["Interface", ["À la première connexion après une grande mise à jour, un parchemin présente les nouveautés juste après avoir choisi votre personnage."]]]},
  {"v": "0.5.8", "t": "Recyclage manuel", "sec": [["Forge", ["Nouveau « Recyclage manuel » dans l’onglet Recyclage : la souris devient une enclume et chaque objet d’équipement cliqué dans le sac est recyclé (25 % de ses ressources rendues). Recliquez sur le bouton, faites un clic droit ou appuyez sur Échap pour arrêter."]], ["Interface", ["Le menu du navigateur (Inspecter, Code source…) ne s’ouvre plus au clic droit dans le jeu, sauf dans les champs de texte."]]]},
  {"v": "0.5.7", "t": "Équipement mythique portable au niveau 50", "sec": [["Équipement", ["Les objets du mode Mythique (niveau d’objet 60) demandent maintenant le niveau 50 au lieu du niveau 60, qui n’existe pas. Leur niveau d’objet reste 60, avec les mêmes statistiques. Les objets déjà obtenus sont aussi concernés."]]]},
  {"v": "0.5.6", "t": "Grand rééquilibrage des combats", "sec": [["Équilibrage", ["Objectif : des combats plus longs, où les potions et un équipement optimisé font la différence. Au niveau 50, les plus gros coups tournent autour de 4 000 à 6 000 dégâts.", "PV des personnages : environ ×3. Guerrier niveau 50 sans équipement : 757 → 2 211 PV. Sorcier niveau 50 : 737 → 2 161 PV.", "Affixe PV sur l’équipement : environ ×3. Objet niveau 50 : jusqu’à 138 → 414 PV. Les objets que vous possédez déjà sont mis à jour automatiquement.", "Amélioration des objets : +5 % → +3 % par niveau (objet +10 : +50 % → +30 %).", "Monstres : PV ×2, attaque ×1,8. Un monstre niveau 50 : 4 550 → 9 100 PV, attaque 285 → 513. Un combat normal dure maintenant 4 à 6 tours au lieu de 2 à 3.", "Boss normaux : PV ×2, attaque un peu plus faible (−13 %). Un boss dure 10 à 13 tours : une potion de vie peut vous sauver.", "Héroïque : attaque des monstres ×2,6 → ×1,5, PV ×1,6 → ×1,4 ; boss : PV ×1,6 → ×2,8, attaque ×2,9 → ×1,6 ; rage du boss au tour 11 → 16. Les boss héroïques demandent des potions avec un équipement Épique.", "Mythique : attaque des monstres ×2,9 → ×1,8, PV ×2,2 → ×1,8 ; boss : PV ×1,7 → ×3, attaque ×2,2 → ×1,45 ; rage au tour 9 → 13. Il faut un équipement Légendaire ou Divin optimisé et des potions.", "Défis : PV des boss ×6, attaque ×1,4 ; rage au tour 16 → 26. Un défi dure maintenant 15 à 30 tours.", "Duels : chaque joueur commence avec 2,5 × ses PV. Un duel dure maintenant 10 à 20 tours au lieu de 1 à 2."]]]},
@@ -6508,7 +7155,7 @@ function viewOpts(){
   const tab=(k,ic,n)=>`<button class="${t===k?'on':''}" data-act="optTab" data-t="${k}" aria-pressed="${t===k}">${ic}${n}</button>`;
   let body='';
   if(t==='keys'){
-    const sl=[{n:'Attaque de base',id:'atk'},...Array.from({length:5},(_,i)=>({n:'Sort '+(i+1),id:H?H.loadout[i]:null}))];
+    const sl=[{n:'Attaque de base',id:'atk'},...Array.from({length:7},(_,i)=>({n:'Sort '+(i+1),id:H?H.loadout[i]:null}))];
     const rows=sl.map((x,i)=>{const q=x.id&&SK[x.id],w=UI.keyWait===i;return `<div class="kr">${q?`<span class="skc ski" style="--co:${q.co||'#5a5048'}">${spIcon(q)}</span>`:'<span class="ski emp"></span>'}<span><b>${x.n}</b><small>${q?esc(q.n):H?'Emplacement vide':'Selon la barre de sorts du personnage'}</small></span><button class="kc ${w?'wait':''}" data-act="keySet" data-i="${i}" ${ttip(w?'Appuyez sur une touche':'Changer la touche','Échap pour annuler.')}>${w?'…':esc(keyLab(KEYS()[i]))}</button></div>`}).join('');
     body=`<h3>Raccourcis de combat</h3><p class="hint">Cliquez sur une touche puis appuyez sur la nouvelle touche. Échap pour annuler. Si la touche est déjà utilisée, les deux raccourcis sont échangés.</p>${rows}
       <div class="foot"><small class="mute">${UI.keyWait!=null?'En attente d’une touche…':'La touche I reste réservée à l’inventaire.'}</small><button class="btn sm" data-act="keyDef" ${ttip('Touches par défaut','Remet les touches 1 à 6.')}>Touches par défaut (1 à 6)</button></div>`;
@@ -6704,7 +7351,8 @@ function tipHTML(k){
     if(m==='gold') return `<article class="it skt" style="--rc:#d9a62b"><header><b>Or</b><small>Monnaie · partagée par tous vos personnages</small></header><div class="skbody"><p class="num"><b>${fmt(S.gold)}</b> or</p><p>Sert à acheter des potions, des onglets de coffre, à améliorer l’équipement et les zones de collecte. Gagné en combat, en duel et en raid.</p></div></article>`;
     const v=matCount(m),cap=matCap(m); return `<article class="it skt" style="--rc:var(--line2)"><header><b>${MAT_OBJ[m]}</b><small>Composant${v>=cap?' · stock plein':''}</small></header><div class="skbody"><p class="num"><b>${fmt(v)}</b> / ${fmt(cap)}</p><p>${MAT_D[m]||''}</p></div></article>` }
   if(k.startsWith('sk:')){const q=SK[k.slice(3)]; return q?skCard(q,h):''}
-  if(k.startsWith('li:')){const it=C.result&&C.result.items&&C.result.items[+k.slice(3)]; if(!it) return ''; if(SHIFT){const x=cmpHTML(it); if(x) return x} return itemCard(it,'',swapDelta(h,it))}
+  if(k.startsWith('li:')){const it=C.result&&C.result.items&&C.result.items[+k.slice(3)]; if(!it) return ''; if(SHIFT){const x=cmpHTML(it); if(x) return x} return itemCard(it,it.rc?'Recyclé automatiquement par le tri du butin.':'',swapDelta(h,it))}
+  if(k.startsWith('ah:')||k.startsWith('ahm:')){const id=k.slice(k.indexOf(':')+1),x=[...(AH.list||[]),...(AH.mine||[])].find(y=>y.id===id); if(!x) return ''; const H=S.heroes[0]; return itemCard(x.it,`Vendeur : ${esc(x.sname)} · ${fmt(x.price)} or`,H&&canWear(x.it)?swapDelta(H,x.it):null)}
   if(k.startsWith('f:')){const r=findItem(+k.slice(2)); if(r&&SHIFT&&r.where!=='eq'){const x=cmpHTML(r.it); if(x) return x} return r?itemCard(r.it):''}
   if(k.startsWith('bag:')){const E=S.bag[+k.slice(4)]; if(!E) return ''; const c=E.o; if(SHIFT&&!c.mat){const x=cmpHTML(c); if(x) return x} return c.mat?matCard(c):itemCard(c,'',swapDelta(h,c))}
   if(k.startsWith('st:')){const E=stashTab().bag[+k.slice(3)]; if(!E) return ''; const c=E.o; if(SHIFT&&!c.mat){const x=cmpHTML(c); if(x) return x} return c.mat?matCard(c):itemCard(c,c.cls&&!canWear(c)?`<small class="lockr">Réservé au ${CLASSES[c.cls].n}</small>`:'')}
@@ -6788,7 +7436,10 @@ const A={
   buyPot:d=>{const q=+d.q,P=POTS[d.k]; if(P.fix){ if(!canPay(P.fix)) return; if(matRoom(d.k)<1){toast('Inventaire plein.');return} pay(P.fix); bagAddMat(S.bag,d.k,1); markNew(); save(); render(); toast('Achat : '+P.n+'.'); return } const c=potPrice(d.k)*q; if(!hasGold(c)) return; if(POTS[d.k].cls&&POTS[d.k].cls!==S.heroes[0].cls){toast(`Réservée au ${CLASSES[POTS[d.k].cls].n}.`);return} if(matRoom(d.k)<q){toast('Inventaire plein.');return}
     if(!FREE()) S.gold-=c; bagAddMat(S.bag,d.k,q); markNew(); save(); render(); toast(`Achat : ${q} × ${POTS[d.k].n}.`)},
   auto:()=>{S.auto=!S.auto;if(!S.auto)S.farm=false;if(S.auto&&C.waiting){const w=C.waiting;C.waiting=null;C.pending=null;w.res(ai(w.u))}render()},
-  farm:()=>{S.farm=!S.farm;render()},
+  farm:()=>{S.farm=!S.farm;if(S.farm&&!S.auto){S.auto=true;if(C.waiting){const w=C.waiting;C.waiting=null;C.pending=null;w.res(ai(w.u))}}render()},
+  gearT:()=>{UI.gearOpen=!UI.gearOpen;render()},
+  lootR:d=>{const f=lootF();f.keep[+d.r]=f.keep[+d.r]?0:1;save();render()},
+  lootO:d=>{const f=lootF();f[d.k]=!f[d.k];save();render()},
   speed:()=>{S.speed=S.speed===1?2:S.speed===2?3:1;renderActbar()},
   giveUp:()=>{ if(!inFight()) return;
     if(UI.confirm!=='pveGiveUp'){UI.confirm='pveGiveUp'; renderActbar(); toast('Cliquez à nouveau pour abandonner : le combat sera compté comme une défaite.'); setTimeout(()=>{if(UI.confirm==='pveGiveUp'){UI.confirm=null; renderActbar()}},4000); return}
@@ -6800,7 +7451,7 @@ const A={
   again:()=>{const r=C.raid;C.phase='idle';startBattle(false,r)},
   next:()=>{C.phase='idle';startBattle()},
   skill:d=>{
-    const w=C.waiting; if(!w) return; const sk=SK[d.id]; if((sk.ap||0)>(w.u.ap||0)||(w.u.cds[d.id]||0)||(d.id==='atk'&&w.u.atkUsed)) return;
+    const w=C.waiting; if(!w) return; const sk=SK[d.id]; if((d.id==='atk'?0:apOf(w.u,d.id))>(w.u.ap||0)||(w.u.cds[d.id]||0)||(d.id==='atk'&&w.u.atkUsed)) return;
     if(sk.tg==='one'){
       const en=alive(C.units.filter(u=>u.team==='e'));
       if(en.length>1){C.pending=sk;renderActbar();refreshAll();return}
@@ -6815,7 +7466,7 @@ const A={
   cancelPick:()=>{C.pending=null;renderActbar();refreshAll()},
   endTurn:()=>{const w=C.waiting; if(!w) return; C.waiting=null; C.pending=null; w.res({end:true})},
   learn:d=>{
-    const h=S.heroes[0],sk=SK[d.id]; if(!sk||!heroSkills(h).includes(sk)||h.sp<1||(h.learned[d.id]||0)>=skMax(sk)||skReq(sk,h)) return;
+    const h=S.heroes[0],sk=SK[d.id]; if(!sk||!heroSkills(h).includes(sk)||h.sp<1||(h.learned[d.id]||0)>=skMax(sk)||skReq7(sk,h)) return;
     h.sp--; h.learned[d.id]=(h.learned[d.id]||0)+1;
     if(sk.t==='a'&&!h.loadout.includes(d.id)){ if(h.loadout.length<LOADOUT_MAX) h.loadout.push(d.id); else toast(`Barre de sorts pleine (${LOADOUT_MAX}) : retirez une compétence pour équiper ${sk.n}.`) }
     const y=scrollY; save();render();scrollTo(0,y);
@@ -6829,7 +7480,7 @@ const A={
   skSel:d=>{ UI.skSel=UI.skSel===d.id?null:d.id; const y=scrollY; render(); scrollTo(0,y) },
   chooseSpec:d=>{ const h=S.heroes[0],sp=CLASSES[h.cls].specs[d.s]; if(!sp||h.spec||h.lvl<SPEC_L) return;
     if(UI.specConf!==d.s){ UI.specConf=d.s; const y=scrollY; render(); scrollTo(0,y); setTimeout(()=>{ if(UI.specConf===d.s){UI.specConf=null; if(UI.tab==='heroes'&&!UI.scr){const y2=scrollY;render();scrollTo(0,y2)}} },5000); return }
-    UI.specConf=null; h.spec=d.s; UI.skSel=sp.nodes[0].id; save(); const y=scrollY; render(); scrollTo(0,y); toast('✦ Spécialisation choisie : '+sp.n+' !') },
+    UI.specConf=null; h.spec=d.s; UI.skSel=sp.nodes[0].id; if(!h.learned[sp.nodes[0].id]&&h.sp>0){ h.sp--; h.learned[sp.nodes[0].id]=1; if(h.loadout.length<LOADOUT_MAX) h.loadout.push(sp.nodes[0].id) } save(); const y=scrollY; render(); scrollTo(0,y); toast('✦ Spécialisation choisie : '+sp.n+' !') },
   forget:()=>{ const h=S.heroes[0]; if(matAll('p_oubli')<1) return;
     if(!UI.forgetConf){ UI.forgetConf=true; const y=scrollY; render(); scrollTo(0,y); setTimeout(()=>{ if(UI.forgetConf){UI.forgetConf=false; if(UI.tab==='heroes'&&!UI.scr){const y2=scrollY;render();scrollTo(0,y2)}} },5000); return }
     UI.forgetConf=false; removeMat('p_oubli',1); resetSkills(h); UI.skSel=null; save(); const y=scrollY; render(); scrollTo(0,y); toast('Compétences et spécialisation réinitialisées : '+h.sp+' points à redistribuer.') },
@@ -6912,7 +7563,7 @@ const A={
   fHelp:()=>{ACC.fHelp=!fHelpOn();saveAcc();render()},
   optTab:d=>{UI.optTab=d.t;UI.keyWait=null;UI.confirm=null;render()},
   keySet:d=>{UI.keyWait=UI.keyWait===+d.i?null:+d.i;render()},
-  keyDef:()=>{ACC.keys=KEY_DEF.slice();UI.keyWait=null;saveAcc();render();toast('Touches par défaut rétablies (1 à 6).')},
+  keyDef:()=>{ACC.keys=KEY_DEF.slice();UI.keyWait=null;saveAcc();render();toast('Touches par défaut rétablies (1 à 8).')},
   fsPick:d=>{UI.invHL=d.s; if(!UI.invOpen) openInv(true); else render()},
   fsClear:d=>{const m={up:'fUp',bon:'fBon',cat:'eCat',p:'eP',e:'eE',r:'eR'}[d.s];if(m){UI[m]=null;if(d.s==='up')UI.fBon=null}render()},
   fSet:d=>fPlace({mat:d.k}),
@@ -7086,6 +7737,17 @@ const A={
   trCat:d=>{UI.trCat=d.c;render()},
   trF:d=>{UI.trF=d.f;render()},
   commT:d=>{UI.commT=d.t;UI.pcDraft=null;render()},
+  ahTab:d=>{AH.tab=d.t;AH.conf=null;if(d.t!=='buy'&&FB.user) ahLoadMine().then(render).catch(()=>{}); render()},
+  ahCat:d=>{AH.cat=d.c;render()},
+  ahRar:d=>{AH.rar[+d.r]=AH.rar[+d.r]?0:1;render()},
+  ahCls:d=>{AH.cls[d.c]=AH.cls[d.c]?0:1;render()},
+  ahRefresh:()=>ahLoad(true),
+  ahBuy:d=>ahBuy(d.id),
+  ahPick:d=>{AH.sell=+d.id;AH.price='';hideTip();render();setTimeout(()=>{const n=$('#ahprice');if(n)n.focus()},30)},
+  ahDur:d=>{AH.dur=+d.h;render()},
+  ahSellX:()=>{AH.sell=null;render()},
+  ahSellGo:()=>ahSellGo(),
+  ahCancel:d=>ahCancel(d.id),
   pcSet:d=>{const c=pcDraft(); c[d.k]=d.k==='icon'?d.v:+d.v; render()},
   pcConfirm:()=>{const c=pcDraft(); if(pcLockedSel(c).length){toast('Un élément sélectionné n’est pas encore débloqué.');return} ACC.card=pcClean(c); UI.pcDraft=null; pcSave(); toast('Carte de joueur enregistrée.')},
   pcReset:()=>{UI.pcDraft=null; render()},
@@ -7199,7 +7861,9 @@ const A={
   backGame:()=>{UI.fromGame=false; if(!S||!S.heroes||!S.heroes.length){UI.scr='menu';render();return} UI.scr=null; render(); scrollTo(0,0)},
   menuNo:()=>{const m=$('#mconf'); if(m) m.remove(); const b=$('#menubtn'); if(b) b.focus()},
   menuYes:()=>{ const m=$('#mconf'); if(m) m.remove(); if(inFight()){C.abort=true;C.id++} C.phase='idle'; save(); cloudPush(); UI.fromGame=false; UI.scr='select'; UI.confirm=null; render(); scrollTo(0,0) },
-  playChar:d=>{ if(startChar(+d.i)){UI.scr=null; render(); scrollTo(0,0); presence()} },
+  playChar:d=>{ if(startChar(+d.i)){UI.scr=null; render(); scrollTo(0,0); presence(); setTimeout(()=>upPopShow(),350)} },
+  upGo:d=>{ UPG=clamp(+d.i,0,UPOP.pages.length-1); upPopRender() },
+  upClose:()=>upPopClose(),
   newChar:d=>{ const i=+d.i; if(charRaw(i)) return; if(S&&S.heroes&&S.heroes.length&&!UI.scr) save(); C.abort=true;C.id++;C.phase='idle'; ACC.cur=i; S=newGame(); S.gold=ACC.gold; UI.cname=''; UI.scr='create'; render(); scrollTo(0,0) },
   delChar:d=>{ const i=+d.i; if(UI.confirm!=='delc'+i){UI.confirm='delc'+i;render();return}
     lsDel(CHAR_KEY(i)); if(ACC.cur===i){ACC.cur=null; S=null} saveAcc(); UI.confirm=null; render(); toast('Personnage supprimé.') },
