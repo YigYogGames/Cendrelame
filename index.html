@@ -2702,7 +2702,7 @@ function wPick(pool,n){ const a=pool.slice(),out=[]; while(out.length<n&&a.lengt
 const affTier=w=>w>=14?'Très courant':w>=7?'Courant':w>=5?'Peu courant':w>=3?'Rare':'Très rare';
 /* éléments et résistances */
 const ELEM={feu:{n:'Feu',k:'rFeu',c:'#e0612a'},glace:{n:'Glace',k:'rGlace',c:'#4fa8d8'},foudre:{n:'Foudre',k:'rFoudre',c:'#c9a814'},terre:{n:'Terre',k:'rTerre',c:'#8a6a3a'}};
-const RES_K=['rPhys','rMag','rFeu','rGlace','rFoudre','rTerre'],RES_CAP=75;
+const RES_K=['rPhys','rMag','rFeu','rGlace','rFoudre','rTerre'],RES_CAP=50;
 const RES_S={rPhys:'Physique',rMag:'Magique',rFeu:'Feu',rGlace:'Glace',rFoudre:'Foudre',rTerre:'Terre'};
 /* pouvoir légendaire (même effet pour l’instant, un nom par type d’équipement) */
 const LEGP={weapon:'Fil du destin',helm:'Regard du prédateur',armor:'Cœur de braise',legs:'Foulée du chasseur',boots:'Course fatale',ring:'Sceau du bourreau',amulet:'Œil de l’oracle'};
@@ -4337,7 +4337,7 @@ const rdQ=()=>FB.db.collection(COL('raidQueue'));
 const raidMax=id=>(S&&S.raid&&S.raid[id])||0;
 const rdTier=()=>{const r=RAIDS[UI.raidB||0],mx=raidMax(r.id); return Math.min(mx,UI.raidT==null?mx:UI.raidT)};
 const rdMul=t=>Math.pow(RD_STEP,t);
-const rdRw=(r,t)=>({gold:Math.round((400+30*r.L)*rdMul(t)),rune:2+Math.floor(t/3),essence:6+t,cristal:6+t});
+const rdRw=(r,t)=>({gold:Math.round((400+30*r.L)*rdMul(t)),rune:Math.round((2+Math.floor(t/3))*(1+.05*t)),essence:Math.round((6+t)*(1+.05*t)),cristal:Math.round((6+t)*(1+.05*t))});
 function mkRaidBoss(r,t){
   const L=r.L,m=rdMul(t),a=Math.round(enStat('atk',L)*r.atk*m*.8*10)/10;
   const o={acct:r.n,name:r.n,boss:true,rid:r.id,lvl:L,role:r.role,hp:Math.round(enStat('hp',L)*r.hp*m*.5),atk:a,mag:a,
@@ -5087,7 +5087,7 @@ function pcLockedSel(c){
 
 /* ================= Coffre des Reliques (raids) ================= */
 const CHEST_K='c_relic',CHEST_N='Coffre des Reliques';
-const chestRate=t=>Math.min(10,1+0.5*(t||0)); /* % par victoire de raid */
+const chestRate=t=>Math.min(15,1+0.6*(t||0)); /* % par victoire de raid */
 const CHEST_LOOT=[{fr:6,w:38,r:'Commun',c:'#b9b3a6',dup:2000},{fr:7,w:27,r:'Peu commun',c:'#5fb4ff',dup:3000},{fr:8,w:20,r:'Rare',c:'#c58bff',dup:5000},{fr:9,w:11,r:'Épique',c:'#ff6a3a',dup:8000},{fr:10,w:4,r:'Légendaire',c:'#ffd36a',dup:15000}];
 function chestRoll(){ let x=Math.random()*CHEST_LOOT.reduce((a,l)=>a+l.w,0); for(const l of CHEST_LOOT){ if((x-=l.w)<0) return l } return CHEST_LOOT[0] }
 function chestGive(n=1){
@@ -5487,10 +5487,10 @@ const ZLOOT=[
  {eq:26,rw:[45,30,17,6.5,1.5],it:[['pd_rune',38],['es_pie',13],['es_bra',13],['es_ven',13],['ru_maj',6],['ru_anc',3.5],['ru_pri',.8],['st_up',9],['sc_blank',4],['ch_pou',3.5],['ch_tre',1.5],['gm_epi',1.2],['gm_leg',.4]]}];
 const zLoot=z=>ZLOOT[Math.min(z,ZLOOT.length-1)];
 function rollZoneLoot(z,boss,L,lb){
-  const Z=zLoot(z),mul=(boss?3:1)*Math.max(1,lb||1),mats={},items=[];
+  const Z=zLoot(z),dk=dKey(),mul=(boss?3:1)*Math.max(1,lb||1)*dropM(dk),mats={},items=[];
   for(const [k,p] of Z.it) if(Math.random()*100<Math.min(95,p*mul)) mats[k]=(mats[k]||0)+(k==='pd_rune'?ri(1,2):1);
   if(Math.random()*100<Math.min(95,Z.eq*mul)){
-    const tot=Z.rw.reduce((a,b)=>a+b,0); let t=Math.random()*tot,r=0; for(;r<Z.rw.length-1;r++){ t-=Z.rw[r]; if(t<=0) break }
+    const RW=rwD(Z.rw,dk),tot=RW.reduce((a,b)=>a+b,0); let t=Math.random()*tot,r=0; for(;r<RW.length-1;r++){ t-=RW[r]; if(t<=0) break }
     const h=S.heroes[0],sl=slotType(pick(SLOTS)); items.push(genItem(sl,Math.max(1,L),r,null,h.cls));
   }
   return {mats,items};
@@ -5792,10 +5792,10 @@ function raidSoloFinish(res){
   C.pending=null;C.waiting=null;C.turn=null; const r=RAIDS.find(x=>x.id===C.raid.r),t=C.raid.t;
   S.raidS=S.raidS||{w:0,l:0}; qEv('raidf:'+r.id);
   if(res==='win'){ qEv('raidwin'); sEv('raid:'+r.id); rkRaid(r.id,t,C.round||1);
-    const rw=soloRw(r,t); gain(rw); ascDrop(t); rmDrop(t); const rIt=rdGear(t); let up=false; S.raid=S.raid||{};
+    const rw=soloRw(r,t); gain(rw); ascDrop(t); rmDrop(t); const rIt=rdGear(t),rIt2=rdGear2(t); let up=false; S.raid=S.raid||{};
     if(t>=raidMax(r.id)){ S.raid[r.id]=t+1; up=true; UI.raidT=S.raid[r.id] }
     const chest=Math.random()*100<chestRate(t); if(chest) chestGive(1); S.raidS.w++;
-    C.result={win:true,xp:0,gold:rw.gold,mats:Object.fromEntries(Object.entries(rw).filter(([k])=>k!=='gold')),items:rIt?[rIt]:[],ups:[]};
+    C.result={win:true,xp:0,gold:rw.gold,mats:Object.fromEntries(Object.entries(rw).filter(([k])=>k!=='gold')),items:[rIt,rIt2].filter(Boolean),ups:[]};
     logLine('Raid réussi !','hl'); if(S.farm&&S.auto){ const L=RD.lastIt; RD.lastIt=null; setTimeout(()=>toast(`Défi réussi : +${fmt(rw.gold)} or${L?` · ${esc(L.it.name)} (${RAR[L.it.rarity].n.toLowerCase()}, niveau ${L.it.ilvl})${L.ok?'':' recyclé, inventaire plein'}`:''}${chest?' · '+CHEST_N:''}${up?` · palier +${t+1} débloqué`:''}.`),300); const id=C.id,go=()=>{ if(C.phase!=='result'||C.id!==id||!S.farm||!S.auto) return; if(C.paused) return wTO(go,200); if(inFight()) return; UI.tab='combat'; startBattle(false,{r:r.id,t}) }; wTO(go,1400/(S.speed||1)) } else setTimeout(()=>rdLoot({tier:t},r,rw,up,chest),500);
   }else{ S.raidS.l++; C.result={win:false}; logLine('Le raid a échoué.','cr'); S.farm=false }
   C.phase='result'; save(); renderHeader(); if(UI.tab==='combat') render();
@@ -6902,7 +6902,7 @@ function ascApply(it){
   if(B&&it.imp) for(const [s,b,p] of B.imp) if(it.imp[s]!=null) it.imp[s]=affRound(s,it.imp[s]*ascR(b,p,il));
   it.ilvl=il+ASC_ILV; it.asc=1;
 }
-function ascDrop(t){ const ch=Math.min(10,3+(t||0)*.5); if(Math.random()*100<ch){ qGive([['cr_asc',1]]); setTimeout(()=>toast('✦ Butin légendaire : Cristal d’ascension !'),700); return true } return false }
+function ascDrop(t){ const ch=ascCh(t); if(Math.random()*100<ch){ qGive([['cr_asc',1]]); setTimeout(()=>toast('✦ Butin légendaire : Cristal d’ascension !'),700); return true } return false }
 function fUpInfo9(it,k){
   if(k==='cr_asc'){ const ok=!it.asc;
     const prev=affOrd(it.aff).filter(a=>a.s!=='ap'&&AFXM[a.s]).map(a=>`<li>${fmtStat(a.s,a.v*upMul(it))} → <b class="ok">${fmtStat(a.s,affRound(a.s,a.v*ascR(AFXM[a.s].b,AFXM[a.s].p,it.ilvl))*upMul(it))}</b></li>`).join('');
@@ -7325,18 +7325,18 @@ function lootFams(list){ const o={},ord=[]; for(const [k,p] of list){ const f=fa
   return ord.map(f=>({f,ks:o[f],any:100*(1-o[f].reduce((a,[,p])=>a*(1-Math.min(95,p)/100),1)),r:Math.max(...o[f].map(([k])=>nwR(k)))})) }
 const zIl82=z=>{ const D=DIFF[curDiff()]; return D.iL||D.L||z*10+(UI.stage||1) };
 function zoneLootHTML(z,boss){
-  const Z=zLoot(z),m=boss?3:1,eqP=Math.min(95,Z.eq*m),top=Z.rw.reduce((a,w,i)=>w?i:a,0);
+  const Z=zLoot(z),dk=curDiff(),m=(boss?3:1)*dropM(dk)*(DIFF[dk].rw||1),eqP=Math.min(95,Z.eq*m),top=Z.rw.reduce((a,w,i)=>w?i:a,0);
   const eq=`<span class="zlt zlg" style="--rc:var(--r${top})" data-tip="zl:eq:${z}:${boss?1:0}">${eqSvg('armor',EQ_RC[top])}<em>${pc82(eqP)}</em><i class="zln">${Z.rw.filter(Boolean).length}</i></span>`;
   const fams=lootFams(Z.it.map(([k,p])=>[k,Math.min(95,p*m)])).map(F=>`<span class="zlt zlg" style="--rc:var(--r${F.r})" data-tip="zl:f:${z}:${boss?1:0}:${F.f}"><svg class="mfi" viewBox="0 0 24 24">${MI[F.ks[F.ks.length-1][0]]}</svg><em>${pc82(F.any)}</em>${F.ks.length>1?`<i class="zln">${F.ks.length}</i>`:''}</span>`).join('');
   return `<h4>Butin ${boss?'du boss':'de la zone'} <small class="mute">· survolez une icône pour le détail</small></h4><div class="zloot">${eq}${fams}</div>`;
 }
 const tipBox82=(rc,t,s,body,foot)=>`<article class="it s8tip" style="--rc:${rc}"><header><b>${t}</b><small>${s}</small></header><div class="skbody">${body}${foot?`<p class="mute">${foot}</p>`:''}</div></article>`;
 const tIc82=k=>`<span class="s8ti" style="--rc:var(--r${nwR(k)})"><svg class="mfi" viewBox="0 0 24 24">${MI[k]||''}</svg></span>`;
-function zlTip(k){ const p=k.split(':'),z=+p[2],boss=p[3]==='1',Z=zLoot(z),m=boss?3:1;
+function zlTip(k){ const p=k.split(':'),z=+p[2],boss=p[3]==='1',Z0=zLoot(z),dk=curDiff(),Z={...Z0,rw:rwD(Z0.rw,dk)},m=(boss?3:1)*dropM(dk)*(DIFF[dk].rw||1);
   if(p[1]==='eq'){ const tot=Z.rw.reduce((a,b)=>a+b,0),eqP=Math.min(95,Z.eq*m);
     return tipBox82('var(--line2)','Équipement',`${pc82(eqP)} par combat${boss?' (boss ×3)':''} · niveau d’objet ${zIl82(z)}`,
       `<table class="s8tt"><tr><th>Rareté</th><th>Chance par combat</th><th>Part</th></tr>${Z.rw.map((w,r)=>w?`<tr><td style="color:var(--r${r});font-weight:700">${RAR[r].n}</td><td class="num">${pc82(eqP*w/tot)}</td><td class="num">${pc82(w/tot*100)}</td></tr>`:'').join('')}</table>`,
-      `Un seul objet au maximum par combat, pour un emplacement au hasard, adapté à votre classe. Rares et Épiques : 12 % de chance d’une affixe bonus.${curDiff()!=='normal'?' En Héroïque et en Mythique, le butin est de niveau 60.':''}`) }
+      `Un seul objet au maximum par combat, pour un emplacement au hasard, adapté à votre classe. Rares et Épiques : 12 % de chance d’une affixe bonus.${curDiff()!=='normal'?` En ${DIFF[curDiff()].n} : butin de niveau 60, chances ×${String(dropM(curDiff())*(DIFF[curDiff()].rw||1)).replace('.',',')} et raretés plus hautes.`:''}`) }
   const F=lootFams(Z.it.map(([q,x])=>[q,Math.min(95,x*m)])).find(x=>x.f===p[4]); if(!F) return '';
   return tipBox82(`var(--r${F.r})`,FAM82[F.f]||MAT_OBJ[F.ks[0][0]],`${pc82(F.any)} d’en obtenir au moins un par combat${boss?' (boss ×3)':''}`,
     `<table class="s8tt"><tr><th>Objet</th><th>Rareté</th><th>Chance</th></tr>${F.ks.map(([q,x])=>`<tr><td>${tIc82(q)}${esc(MAT_OBJ[q]||q)}</td><td style="color:var(--r${nwR(q)})">${RAR[nwR(q)].n}</td><td class="num">${pc82(x)}</td></tr>`).join('')}</table>`,
@@ -7345,8 +7345,8 @@ function rlTip(k){ const p=k.split(':'),t=rdTier(),r=RAIDS[UI.raidB||0];
   if(p[1]==='eq'){ const W=RD_EQW(t),tot=W.reduce((a,b)=>a+b,0);
     return tipBox82('var(--r4)','Équipement de défi',`1 objet garanti par victoire · niveau d’objet ${RD_IL(t)}`,
       `<table class="s8tt"><tr><th>Rareté</th><th>Chance</th></tr>${W.map((w,i)=>w?`<tr><td style="color:var(--r${i});font-weight:700">${RAR[i].n}</td><td class="num">${pc82(w/tot*100)}</td></tr>`:'').join('')}</table><table class="s8tt"><tr><th>Palier</th><th>Niveau d’objet</th></tr><tr><td>+0 à +9</td><td class="num">65</td></tr><tr><td>+10 et plus</td><td class="num">70 (maximum du butin)</td></tr></table>`,
-      'Chaque palier augmente un peu les chances d’Épique et de Légendaire (jusqu’au palier +15). Le niveau requis reste 50. Un Cristal d’ascension peut encore ajouter +5 niveaux d’objet, une fois par objet.') }
-  if(p[1]==='asc'){ const ch=Math.min(10,3+t*.5); return tipBox82('var(--r4)',NEWI.cr_asc.n,`${pc82(ch)} par victoire à ce palier`,`<p>${esc(NEWI.cr_asc.d)}</p>`,'3 % au palier +0, puis +0,5 % par palier (10 % au maximum).') }
+      `Chaque palier augmente un peu les chances d’Épique et de Légendaire (jusqu’au palier +15). Équipement bonus : ${pc82(rdG2(t))} à ce palier (+2 % par palier, 30 % au maximum). Le niveau requis reste 50. Un Cristal d’ascension peut encore ajouter +5 niveaux d’objet, une fois par objet.`) }
+  if(p[1]==='asc'){ const ch=ascCh(t); return tipBox82('var(--r4)',NEWI.cr_asc.n,`${pc82(ch)} par victoire à ce palier`,`<p>${esc(NEWI.cr_asc.d)}</p>`,'3 % au palier +0, puis +0,6 % par palier (15 % au maximum).') }
   if(p[1]==='m'){ const q=p[2],rw=soloRw(r,t); return tipBox82('var(--line2)',MAT_N[q]||q,`${fmt(rw[q]||0)} par victoire à ce palier`,`<p>${esc(MAT_D[q]||'')}</p>`,'Les récompenses augmentent avec le palier.') }
   return '' }
 const _tipHTML82=tipHTML; tipHTML=function(k){ if(k.startsWith('zl:')) return zlTip(k); if(k.startsWith('rl:')) return rlTip(k); return _tipHTML82(k) };
@@ -7380,7 +7380,7 @@ function viewRaidMap82(){
   const loot=zl('','#c99a3a',matIcon('gold'),fmt(rw.gold),'tx:Or|'+fmt(rw.gold)+' or par victoire à ce palier.')
    +zl('','var(--r'+RD_EQW(t).reduce((a,w,i)=>w?i:a,0)+')',eqSvg('armor',EQ_RC[4]),'100 %','rl:eq')
    +Object.entries(rw).filter(([k])=>k!=='gold').map(([k,v])=>zl('','var(--line2)',matIcon(k),'×'+fmt(v),'rl:m:'+k)).join('')
-   +zl('','var(--r4)',`<svg class="mfi" viewBox="0 0 24 24">${MI.cr_asc}</svg>`,pc82(Math.min(10,3+t*.5)),'rl:asc')
+   +zl('','var(--r4)',`<svg class="mfi" viewBox="0 0 24 24">${MI.cr_asc}</svg>`,pc82(ascCh(t)),'rl:asc')
    +zl('','var(--r3)',`<svg class="mfi" viewBox="0 0 24 24">${MI.rm_aff}</svg>`,pc82(rmCh(t)),'nw:rm_aff')
    +zl('','#c99a3a',matIcon('c_relic'),pc82(chestRate(t)),'rw:chest');
   const mag=r.role==='mag';
@@ -7464,8 +7464,8 @@ function help82(){
   out.push(['rage','Rage des ennemis',T(['Mode','Monstres','Boss'],Object.entries(DIFF).map(([k,D])=>[D.n,'Rage dès le tour 31 : +10 % de dégâts par tour',`Rage dès le tour ${D.rage+1} : +8 % de dégâts par tour${D.extra?' et Frappe dévastatrice (230 % de dégâts)':''}`]).concat([['Défis','—',`Rage dès le tour ${RD_RAGE+1}`]]))]);
   out.push(['diff','Difficultés',T(['Mode','Niveau des monstres','Niveau d’objet du butin','Déblocage','Récompenses'],[
     ['Normal','Zone × 10 + étape (1 à 50)','Égal au niveau des monstres','—','Normales'],
-    ['Héroïque',DIFF.hero.L,DIFF.hero.iL,`Niveau ${HERO_L} du héros`,'Boss : +50 % d’XP et d’or'],
-    ['Mythique',DIFF.myth.L,DIFF.myth.iL,'Dernier boss héroïque vaincu',`Or, XP et matériaux ×${DIFF.myth.rw} ; Prisme divin à ${DIFF.myth.prism*100} % sur Le Dévoreur`],
+    ['Héroïque',DIFF.hero.L,DIFF.hero.iL,`Niveau ${HERO_L} du héros`,'Boss : +50 % d’XP et d’or ; chances de butin ×1,5 et raretés plus hautes'],
+    ['Mythique',DIFF.myth.L,DIFF.myth.iL,'Dernier boss héroïque vaincu',`Or, XP et matériaux ×${DIFF.myth.rw} ; chances de butin ×3 et raretés encore plus hautes ; Prisme divin à ${DIFF.myth.prism*100} % sur Le Dévoreur`],
     ['Défis','25 à 50 selon le boss','65 (paliers +0 à +9), 70 (palier +10 et plus)','Niveau requis du boss','Équipement garanti, Cristal d’ascension, coffre']])
     +P(`Le niveau d’objet du butin ne dépasse jamais 70. Le niveau requis pour porter un objet reste plafonné à ${MAXL}. Un Cristal d’ascension peut ensuite ajouter +5 niveaux d’objet, une seule fois par objet.`)]);
   out.push(['loot','Butin de l’aventure',ZONES.map((Zn,z)=>{const Z=zLoot(z),tot=Z.rw.reduce((a,b)=>a+b,0);
@@ -7499,8 +7499,8 @@ function help82(){
   out.push(['tal','Compétences et talents',T(['Règle','Détail'],[['Points de compétence',`1 par niveau, ${SP_MAX} au maximum`],['Spécialisation',`Au niveau ${SPEC_L}, choix définitif entre deux arbres`],['Barre de sorts',`${LOADOUT_MAX} emplacements`],['Réinitialisation gratuite','1 par personnage : rembourse tous les points et la spécialisation'],['Potion d’oubli',`Réinitialisations suivantes : ${fmt(POTS.p_oubli.fix.gold)} or chez le Marchand`]])]);
   out.push(['raid','Défis',T(['Boss','Niveau','Requis','PV (palier +0)','Attaque (palier +0)','Compétences'],RAIDS.map(r=>{const b=soloBoss({r:r.id,t:0});return [esc(r.n),r.L,r.req,fmt(b.hp),fmt(Math.round(b.atk)),r.sk.map(id=>esc(SK[id].n)).join(', ')]}))
     +P(`Chaque victoire débloque le palier suivant : +5 % de PV, d’attaque et de défense par palier (cumulatif). Rage au tour ${RD_RAGE+1}. Cliquez sur l’icône Infos d’un boss pour voir ses statistiques au palier choisi.`)
-    +T(['Palier','Équipement (garanti)','Rare','Épique','Légendaire','Cristal d’ascension','Coffre des Reliques'],[0,5,10,15].map(t=>{const W=RD_EQW(t),s=W.reduce((a,b)=>a+b,0);return ['+'+t,'niveau '+RD_IL(t),pc82(W[2]/s*100),pc82(W[3]/s*100),pc82(W[4]/s*100),pc82(Math.min(10,3+t*.5)),pc82(chestRate(t))]}))
-    +P('Récompenses en or, runes, essences et cristaux à chaque victoire, plus élevées à chaque palier. Pierre de remodelage : 5 % au palier +0, puis +0,5 % par palier (15 % au maximum).')]);
+    +T(['Palier','Équipement (garanti)','Rare','Épique','Légendaire','2ᵉ équipement','Cristal d’ascension','Remodelage','Coffre des Reliques'],[0,5,10,15,20].map(t=>{const W=RD_EQW(t),s=W.reduce((a,b)=>a+b,0);return ['+'+t,'niveau '+RD_IL(t),pc82(W[2]/s*100),pc82(W[3]/s*100),pc82(W[4]/s*100),pc82(rdG2(t)),pc82(ascCh(t)),pc82(rmCh(t)),pc82(chestRate(t))]}))
+    +P('Équipement bonus : +2 % par palier (30 % au maximum). Runes, essences et cristaux : +5 % par palier. Récompenses en or, runes, essences et cristaux à chaque victoire, plus élevées à chaque palier. Pierre de remodelage : 5 % au palier +0, puis +0,75 % par palier (25 % au maximum).')]);
   out.push(['duel','Duels',T(['Règle','Détail'],[['Victoire',fmt(PVP_GOLD)+' or'],['PV en duel',`${num(PVP_HP)} × vos PV`],['Dégâts en duel',`−${Math.round((1-PVP_DMG)*100)} % sur tous les dégâts entre joueurs`],['Temps par tour',PVP_TURN+' secondes (un joueur inactif peut être déclaré perdant)']])
     +`<h4>Cosmétiques de duel</h4>`+T(['Cosmétique','Type','Rareté','Victoires'],DCOS.map(c=>[esc(c.n),COS_T[c.t],`<span style="color:${SRAR[c.r][1]}">${SRAR[c.r][0]}</span>`,c.w]))+P('Les cosmétiques de duel sont permanents : ils ne sont pas liés à la saison. Les victoires comptent sur tout votre compte.')]);
   out.push(['comp','Compagnon',T(['Ticket','Commune','Rare','Épique','Légendaire'],Object.entries(CP_DRAW).map(([k,W])=>[esc(MAT_OBJ[k]),...W.map(w=>w?num(w)+' %':'—')]))
@@ -7712,7 +7712,7 @@ function rmPool(it,a){ const ms=mainStat(it),S2=s=>s==='MAIN'?ms:s;
   let C=RM_CAT.find(([,L])=>L.some(([s])=>S2(s)===a.s)); let pool;
   if(C) pool=C[1].map(([s,w])=>({s:S2(s),w}));
   else { const used=new Set(RM_CAT.flatMap(([,L])=>L.map(([s])=>S2(s)))); C=['Autres']; pool=affPool(it.cls||(S.heroes[0]&&S.heroes[0].cls)).filter(x=>!used.has(x.s)&&x.s!=='ap').map(x=>({s:x.s,w:x.w})) }
-  const have=new Set(it.aff.filter(x=>x!==a).map(x=>x.s)); pool=pool.filter(x=>!have.has(x.s)&&AFXM[x.s]); if(!pool.length) pool=[{s:a.s,w:1}];
+  const have=new Set(it.aff.filter(x=>x!==a&&!(x.main&&!a.main&&(x.s==='atk'||x.s==='mag'))).map(x=>x.s)); if(!(a.main&&(a.s==='atk'||a.s==='mag'))) have.add(a.s); pool=pool.filter(x=>!have.has(x.s)&&AFXM[x.s]); if(!pool.length) pool=[{s:a.s,w:1}];
   return {n:C[0],pool} }
 const rmCost=it=>({gold:Math.round(1500+it.ilvl*30)});
 function rmInfo(it){ const L=it.aff.map((a,i)=>({a,i})).filter(({a})=>a.s!=='ap'&&!a.fuse&&AFXM[a.s]);
@@ -7721,7 +7721,7 @@ function rmInfo(it){ const L=it.aff.map((a,i)=>({a,i})).filter(({a})=>a.s!=='ap'
   const rows=P?P.pool.map(x=>{const A=AFXM[x.s],sf=typeof slotF==='function'?slotF(it,x.s):1,lo=(A.b+A.p*it.ilvl)*m*sf*(it.rarity>=5?1:.7),hi=(A.b+A.p*it.ilvl)*m*sf;return `<div><span>${STAT_N[x.s]}</span><i><b style="width:${x.w/tw*100}%"></b></i><em class="num">${pc82(x.w/tw*100)}</em><small class="num">${fmtStat(x.s,affRound(x.s,lo)*kk).replace(' '+STAT_N[x.s],'')} à ${fmtStat(x.s,affRound(x.s,hi)*kk).replace(' '+STAT_N[x.s],'').replace('+','')}</small></div>`}).join(''):'';
   return {ok:!!a,why:a?'':'Aucune affixe modifiable sur cet objet.',cost:rmCost(it),chance:100,title:NEWI.rm_aff.n,rar:3,
    html:`<p>Choisissez l’affixe à remodeler. Elle sera remplacée par une affixe de la même catégorie, avec une nouvelle valeur.</p><h4>Affixe à remodeler</h4><div class="rmsel87">${L.map(({a:x,i})=>`<button class="${i===UI.fAff?'on':''}" data-act="fAffSel" data-i="${i}">${fmtStat(x.s,x.s==='ap'?x.v:x.v*kk)}${x.main?' <em>principale</em>':x.bonus?' <em>bonus</em>':''}</button>`).join('')}</div>
-    ${P?`<h4>Résultat possible · ${esc(P.n)}</h4><div class="mfprob">${rows}</div><small class="mute">Une affixe déjà présente sur l’objet ne peut pas être tirée. Valeur : 70 à 100 % du maximum au niveau de l’objet${it.rarity>=5?' (Divin : toujours au maximum)':''}.</small>`:''}`} }
+    ${P?`<h4>Résultat possible · ${esc(P.n)}</h4><div class="mfprob">${rows}</div><small class="mute">L’affixe change toujours de type dans son groupe (la statistique principale garde son type) ; une affixe déjà présente ne peut pas sortir. Valeur : 70 à 100 % du maximum au niveau de l’objet${it.rarity>=5?' (Divin : toujours au maximum)':''}.</small>`:''}`} }
 function rmDo(it){ const a=it.aff[UI.fAff]; if(!a) return 'Aucune affixe choisie.'; const P=rmPool(it,a),n=wPick(P.pool,1)[0],old=fmtStat(a.s,a.v*upMul(it));
   a.s=n.s; a.v=rollAff(AFXM[n.s],it.ilvl,RAR[it.rarity].m); if(typeof slotF==='function') a.v=affRound(a.s,a.v*slotF(it,a.s)); removeMat('rm_aff',1); qEv('aff');
   return `Remodelage : ${old} → ${fmtStat(a.s,a.v*upMul(it))}.` }
@@ -7738,8 +7738,17 @@ function accSf88(){ if(!ACC||ACC.sf88) return; sfWalk(ACC.stash); ACC.sf88=1; tr
 const _genItem88=genItem; genItem=function(...a){ const it=_genItem88(...a); sfItem(it); return it };
 /* ---------- Pierre de remodelage : boss et défis ---------- */
 [.2,.3,.4,.6,.8].forEach((p,z)=>{ const L=ZLOOT[z].it,e=L.find(x=>x[0]==='rm_aff'); if(e) e[1]=p; else L.push(['rm_aff',p]) });
-const rmCh=t=>Math.min(15,5+(t||0)*.5);
+const rmCh=t=>Math.min(25,5+(t||0)*.75);
 function rmDrop(t){ if(Math.random()*100<rmCh(t)){ qGive([['rm_aff',1]]); setTimeout(()=>toast('✦ Butin : Pierre de remodelage !'),1000); return true } return false }
+/* ================= 0.8.10 : butin selon la difficulté et le palier ================= */
+DIFF.normal.drop=1; DIFF.hero.drop=1.5; DIFF.myth.drop=1.5;
+const RW_D={normal:[1,1,1,1,1,1],hero:[.5,1,1.3,1.6,2,1],myth:[.2,.7,1.5,2.2,3,1]};
+const dKey=()=>C&&C.diff&&C.phase!=='idle'?C.diff:curDiff();
+const dropM=dk=>(DIFF[dk]||DIFF.normal).drop||1;
+const rwD=(rw,dk)=>rw.map((w,i)=>w*(RW_D[dk]||RW_D.normal)[i]);
+const ascCh=t=>Math.min(15,3+(t||0)*.6);
+const rdG2=t=>Math.min(30,2*(t||0));
+function rdGear2(t){ if(Math.random()*100>=rdG2(t)) return null; const h=S.heroes[0],r=wpick(RD_EQW(t)),it=genItem(slotType(pick(SLOTS)),RD_IL(t),r,null,h.cls); const ok=addInv(it); setTimeout(()=>toast(`✦ Équipement bonus : ${it.name} (${RAR[it.rarity].n.toLowerCase()})${ok?'':' — inventaire plein, recyclé'}.`),1300); return it }
 
 function viewCombatIdle(){
   const P=prog(),dk=curDiff(),D=DIFF[dk],hero=dk!=='normal',z=ZONES[UI.zone],L=D.L||UI.zone*10+UI.stage;
@@ -8567,9 +8576,9 @@ function viewHelp(){
     ['Défense','Réduit les dégâts physiques reçus.','Dégâts reçus × K / (K + Défense), avec K = 100 + 15 × niveau de l’attaquant. La Défense protège donc moins contre les ennemis de haut niveau.'],
     ['Défense magique','Réduit les dégâts magiques reçus.','Même formule que la Défense, contre les ennemis qui utilisent la magie (chamans, nécromanciens, sorcières, mages de braise, oracles, Seigneur de Cendre).'],
     ['Points d’action (PA)','Énergie pour lancer les compétences.','5 PA de base pour chaque classe. Chaque compétence coûte des PA (l’attaque de base est gratuite, une fois par tour) et tous vos PA sont rechargés au début de chacun de vos tours. Vous pouvez enchaîner plusieurs actions dans le même tour tant qu’il vous reste des PA, puis appuyer sur « Fin de tour ». Barre jaune segmentée sous la barre de vie.'],
-    ['Résistance physique','Réduit les dégâts physiques reçus en %.','S’applique après la Défense. Plafonnée à 75 %.'],
-    ['Résistance magique','Réduit les dégâts magiques reçus en %.','S’applique après la Défense magique. Plafonnée à 75 %.'],
-    ['Résistances élémentaires','Feu, Glace, Foudre, Terre.','Réduisent en % les dégâts des compétences de cet élément (brûlures comprises). Plafonnées à 75 %. Une résistance négative est une faiblesse : les dégâts sont augmentés.'],
+    ['Résistance physique','Réduit les dégâts physiques reçus en %.','S’applique après la Défense. Plafonnée à 50 %.'],
+    ['Résistance magique','Réduit les dégâts magiques reçus en %.','S’applique après la Défense magique. Plafonnée à 50 %.'],
+    ['Résistances élémentaires','Feu, Glace, Foudre, Terre.','Réduisent en % les dégâts des compétences de cet élément (brûlures comprises). Plafonnées à 50 %. Une résistance négative est une faiblesse : les dégâts sont augmentés.'],
     ['Vitesse','Ordre d’action.','À chaque tour, les unités agissent de la plus rapide à la plus lente.'],
     ['Critique','Chance de coup critique.','5 % de base, plafonnée à 70 %. Un coup critique multiplie les dégâts par les Dégâts critiques.'],
     ['Dégâts critiques','Puissance des critiques.','150 % de base, plafonnés à 300 % : un critique inflige de 1,5 à 3 fois les dégâts.'],
@@ -8620,9 +8629,10 @@ function viewHelp(){
 }
 
 /* --- nouveautés --- */
-const VERSION='0.8.9';
-const BUILD='20261022081646';
+const VERSION='0.8.10';
+const BUILD='20261022161216';
 const PATCH=[
+ {"v": "0.8.10", "t": "Butin selon la difficulté et le palier", "sec": [["Pierre de remodelage", ["L’affixe change maintenant toujours de type à l’intérieur de son groupe, avec une nouvelle valeur. Exemple : Chance de critique → Dégâts critiques ou Intelligence (groupe Fureur) ; Résistance au feu → une autre résistance ; PV → PV %.", "La statistique principale (Force ou Intelligence principale) garde son type et change seulement de valeur."]], ["Équilibrage", ["Résistances (physique, magique et élémentaires) : plafond 75 % → 50 %, pour les joueurs comme pour les ennemis."]], ["Butin", ["Héroïque : chances de butin ×1,5 et raretés plus hautes. Exemple, Abysses du Néant : équipement 26 % → 39 % par combat, part de Légendaire 1,5 % → environ 3 %.", "Mythique : chances de butin ×3 (avant ×2) et raretés encore plus hautes (part de Légendaire environ 6 %, presque plus d’objets communs).", "Défis, à chaque palier : runes, essences et cristaux +5 % par palier ; nouvel équipement bonus avec 2 % de chance par palier (30 % au maximum) en plus de l’équipement garanti.", "Défis : Cristal d’ascension 3 % + 0,5 → 0,6 % par palier (max 10 → 15 %) ; Coffre des Reliques 1 % + 0,5 → 0,6 % par palier (max 10 → 15 %) ; Pierre de remodelage 5 % + 0,5 → 0,75 % par palier (max 15 → 25 %). Exemple au palier +10 : Cristal 8 → 9 %, Remodelage 10 → 12,5 %, équipement bonus 20 %."]]]},
  {"v": "0.8.9", "t": "Duels : dégâts réduits", "sec": [["Équilibrage", ["Duels : tous les dégâts infligés entre joueurs sont réduits de 65 % (coups, critiques, contre-attaques, brûlures, saignements et poisons). Exemple : un coup à 6 000 contre un boss fait environ 2 100 à un joueur.", "Le vol de vie suit les dégâts réduits. Les PV de duel ne changent pas (2,5 × vos PV).", "Simulation au niveau 50 en équipement légendaire +6 : un duel durait 4 à 5 tours, il dure maintenant 12 à 18 tours.", "Aventure, défis et boss ne changent pas."]]]},
  {"v": "0.8.8", "t": "Affixes selon l’emplacement", "sec": [["Équilibrage", ["Les affixes dépendent maintenant de l’emplacement de l’objet, un peu comme dans Diablo 4.", "Bijoux (anneaux et amulette) : affixes d’attaque (Force, Intelligence, Chance et Dégâts critiques, Dégâts bonus) ×1,5 ; PV, PV % et Défense ×0,75 ; résistances ×0,75. Exemple, anneau épique niveau 50 : Intelligence jusqu’à 46 → 70, PV jusqu’à 600 → 450.", "Armures (casque, torse, jambes, bottes) : PV, PV % et Défense ×1,15 ; résistances ×1,25 ; affixes d’attaque ×0,7. Exemple, casque épique niveau 50 : résistance au feu jusqu’à 13 % → 16 %, Intelligence jusqu’à 46 → 33.", "Arme : inchangée. Vitesse, Esquive, Vol de vie et Or trouvé : inchangés partout.", "Au total, un équipement complet garde à peu près la même puissance (environ +2 % d’attaque, −2 % de PV) : l’attaque se concentre sur les bijoux, la défense sur les armures. Vos objets actuels sont mis à jour automatiquement, et les parchemins suivent la même règle."]], ["Équipement", ["Pouvoirs des objets divins : l’infobulle affiche directement la valeur divine (par exemple Vitalité : +10 % de PV max sur un objet légendaire, +15 % sur un objet divin). L’Aide montre les deux valeurs côte à côte."]], ["Pierre de remodelage", ["Ajoutée au Livre des recettes.", "Nouveau butin des défis : 5 % par victoire au palier +0, puis +0,5 % par palier (15 % au maximum).", "Aventure : elle peut tomber dans toutes les zones (0,2 % à 0,8 % par combat), et 3 fois plus souvent sur les boss (0,6 % à 2,4 %)."]], ["Correction", ["Livre des recettes : la Pierre de rareté indique +15 % (au lieu de +5 %), le Prisme divin 1 à 10 prismes à 10 % chacun, et la Pierre de renforcement 2 pierres à partir de +6."]]]},
  {"v": "0.8.7", "t": "Pouvoirs légendaires et Pierre de remodelage", "sec": [["Équipement", ["Nouveaux pouvoirs légendaires : Garde des éléments (+5 % à toutes les résistances élémentaires) et Vitalité (+10 % de PV max).", "Œil du prédateur : +6 % → +3 % de chances de critique, +10 % → +7 % de dégâts critiques.", "Objets divins : ils ont maintenant eux aussi un pouvoir, 50 % plus fort. Exemples : Vitalité +10 % → +15 % de PV max, Brise-armure 6 % → 9 %. Moisson ne change pas.", "Tous vos objets légendaires et divins déjà obtenus (portés, dans le sac ou dans le coffre) reçoivent un pouvoir tiré au hasard parmi les 12. Ceux qui en avaient déjà un depuis la 0.8.6 le gardent."]], ["Forge", ["Nouvel objet : Pierre de remodelage (Épique). Choisissez une affixe de l’objet : elle est remplacée par une affixe tirée au hasard dans la même catégorie (Robustesse, Fureur, Adresse, Vie ou Autres), avec une nouvelle valeur. Réussite 100 %. Coût : 1 500 or + 30 or par niveau d’objet.", "Une affixe déjà présente sur l’objet ne peut pas sortir. Les affixes de fusion (+1 PA) ne se remodèlent pas ; la statistique principale garde son type mais change de valeur.", "Où la trouver : chez le Marchand (catégorie Enchantement, 15 000 or + 1 Rune majeure) ou en aventure dans les zones 3 à 5 (0,2 à 0,6 % par combat, ×3 sur les boss)."]], ["Équilibrage", ["Parchemin d’Adresse : il ne peut plus donner de Points d’action. Chances : Vitesse 35 → 37 %, Esquive 35 → 37 %, Vol de vie 25 → 26 %. Les affixes PA déjà obtenues sont conservées."]]]},
