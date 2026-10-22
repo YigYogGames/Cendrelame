@@ -2579,6 +2579,7 @@ body.anvil #bag .gi.it:hover{outline:2px solid #e0612a;outline-offset:-2px;filte
 .invpop .pch85{width:0;min-width:calc(100% - 20px);box-sizing:border-box}
 @media (min-width:761px){#invpop .ipgrid.rx{max-height:229px;overflow-y:auto;overflow-x:hidden;scrollbar-width:thin;padding-right:8px;margin-right:-8px}}
 
+.rmsel87{display:flex;flex-direction:column;gap:4px}.rmsel87 button{text-align:left;padding:6px 10px;border-radius:8px;border:1px solid #c9ad7a;background:#fff6;font:inherit;font-size:.85rem;cursor:pointer;color:#2a1a0c}.rmsel87 button em{font-size:.7rem;color:#8a6a44;font-style:normal}.rmsel87 button.on{background:#7b2a1a;color:#fff;border-color:#7b2a1a}.rmsel87 button.on em{color:#ffe3a8}.lpdiv{font-style:normal;font-weight:700;color:var(--r5)}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 @media (min-width:760px){.arena{grid-template-columns:1fr 1fr}}
 </style>
@@ -2667,7 +2668,7 @@ const STAT_N={hp:'PV',atk:'Force',mag:'Intelligence',def:'Défense physique',res
 const PCT=new Set(['rPhys','rMag','rFeu','rGlace','rFoudre','rTerre','crit','critDmg','dodge','lifesteal','hpPct','dmgPct','goldFind','dropRate']);
 const fmtStat=(s,v)=>PCT.has(s)?`+${r1(v)}% ${STAT_N[s]}`:`+${Math.round(v)} ${STAT_N[s]}`;
 const MAXL=50;
-const CRIT_CAP=70,CDMG_CAP=200; /* plafonds : 70 % de chances de critique, 200 % de dégâts critiques */
+const CRIT_CAP=70,CDMG_CAP=300; /* plafonds : 70 % de chances de critique, 300 % de dégâts critiques */
 
 const RAR=[
   {n:'Commun',aff:0,m:1},{n:'Magique',aff:1,m:1.05},{n:'Rare',aff:2,m:1.10},{n:'Épique',aff:3,m:1.15},{n:'Légendaire',aff:3,m:1.20,leg:1},{n:'Divin',aff:3,m:1.25,max:1}
@@ -3002,7 +3003,7 @@ function bagAddMat(bag,k,n){
   while(n>0){ const sp=findSpot(bag,1,1); if(!sp) break; const m=Math.min(STACK,n); bag.push({x:sp[0],y:sp[1],o:{mat:k,n:m}}); n-=m }
   return n;
 }
-function bagAddItem(bag,it){if(it&&it.slot&&!it.hp3) hp3Walk(it); if(it&&it.slot&&!it.r82) r82Item(it);const sp=findSpot(bag,...SIZE(it)); if(!sp) return false; bag.push({x:sp[0],y:sp[1],o:it}); return true}
+function bagAddItem(bag,it){if(it&&it.slot&&!it.hp3) hp3Walk(it); if(it&&it.slot&&!it.r82) r82Item(it); if(it&&it.slot&&typeof lpFix==='function') lpFix(it);const sp=findSpot(bag,...SIZE(it)); if(!sp) return false; bag.push({x:sp[0],y:sp[1],o:it}); return true}
 const sellValue=it=>Math.round((5+it.ilvl*2)*(it.rarity+1)*(1+(it.up||0)*.25));
 let MIG_MSG='';
 function migrate(d){
@@ -3115,7 +3116,7 @@ function fitBag(d){ try{ stgSync() }catch(e){}
 }
 function hp3Walk(o,d){ if(!o||typeof o!=='object'||(d|0)>8) return; if(Array.isArray(o)){ for(const x of o) hp3Walk(x,(d|0)+1); return } if(o.slot&&Array.isArray(o.aff)){ if(!o.hp3){ for(const a of o.aff) if(a.s==='hp') a.v=Math.round(a.v*3); o.hp3=1 } return } for(const k in o) if(o[k]&&typeof o[k]==='object') hp3Walk(o[k],(d|0)+1) }
 function accHp3(){ if(!ACC||ACC.hp3) return; hp3Walk(ACC); ACC.hp3=1 }
-const loadData=d=>{if(!d.siteV)d.siteV=1; const r=soloize(fitBag(Object.assign(newGame(),{balV:0,skV:0},migrate(d)))); if((r.balV||0)<1){balMig(r); r.balV=1} if((r.balV||0)<2){impMig(r); r.balV=2} if((r.skV||0)<1){ for(const h of r.heroes||[]) resetSkills(h); r.skV=1; if((r.heroes||[]).length) MIG_MSG=(MIG_MSG?MIG_MSG+' ':'')+'Nouveau système de compétences et de spécialisations : vos points de compétence ont été remboursés.' } if(!r.hp3){ hp3Walk(r); r.hp3=1 } if(!r.r82){ r82Walk(r); r.r82=1 } if((r.skV||0)<3){ for(const h of r.heroes||[]) resetSkills(h); r.skV=3; if((r.heroes||[]).length) MIG_MSG=(MIG_MSG?MIG_MSG+' ':'')+'Refonte des classes : vos points de compétence et votre spécialisation sont remboursés. Choisissez vos nouveaux talents !' } if(false){ let ch=false; for(const h of r.heroes||[]){ const sp=Object.values(h.learned||{}).reduce((a,b)=>a+(b||0),0)-1; if(sp+(h.sp||0)>spCap(h.lvl)){ if(sp>spCap(h.lvl)){ resetSkills(h); ch=true } else h.sp=spCap(h.lvl)-sp } } r.skV=2; if(ch) MIG_MSG=(MIG_MSG?MIG_MSG+' ':'')+'Les points de compétence sont maintenant limités à '+SP_MAX+' : vos compétences ont été réinitialisées (points remboursés).' } return r};
+const loadData=d=>{if(!d.siteV)d.siteV=1; const r=soloize(fitBag(Object.assign(newGame(),{balV:0,skV:0},migrate(d)))); if((r.balV||0)<1){balMig(r); r.balV=1} if((r.balV||0)<2){impMig(r); r.balV=2} if((r.skV||0)<1){ for(const h of r.heroes||[]) resetSkills(h); r.skV=1; if((r.heroes||[]).length) MIG_MSG=(MIG_MSG?MIG_MSG+' ':'')+'Nouveau système de compétences et de spécialisations : vos points de compétence ont été remboursés.' } if(!r.hp3){ hp3Walk(r); r.hp3=1 } if(!r.r82){ r82Walk(r); r.r82=1 } if(!r.lp87){ lpWalk(r); r.lp87=1 } if((r.skV||0)<3){ for(const h of r.heroes||[]) resetSkills(h); r.skV=3; if((r.heroes||[]).length) MIG_MSG=(MIG_MSG?MIG_MSG+' ':'')+'Refonte des classes : vos points de compétence et votre spécialisation sont remboursés. Choisissez vos nouveaux talents !' } if(false){ let ch=false; for(const h of r.heroes||[]){ const sp=Object.values(h.learned||{}).reduce((a,b)=>a+(b||0),0)-1; if(sp+(h.sp||0)>spCap(h.lvl)){ if(sp>spCap(h.lvl)){ resetSkills(h); ch=true } else h.sp=spCap(h.lvl)-sp } } r.skV=2; if(ch) MIG_MSG=(MIG_MSG?MIG_MSG+' ':'')+'Les points de compétence sont maintenant limités à '+SP_MAX+' : vos compétences ont été réinitialisées (points remboursés).' } return r};
 /* rééquilibrage 0.3.0 : les affixes existants gardent leur qualité de tirage dans la nouvelle plage ; objets divins : 3 affixes au maximum, sans pouvoir */
 const AFX_OLD={hp:[8,3.2],atk:[2,.9],mag:[2,.9],def:[2,.75],spd:[1,.12],hpPct:[2,.12],dmgPct:[2,.14],crit:[1.5,.08],critDmg:[6,.5],dodge:[1.2,.04],lifesteal:[.8,.025]};
 function impMig(d){
@@ -3192,7 +3193,7 @@ function itemStats(it){
   const k=upMul(it), r={};
   for(const [s,v] of Object.entries(impOf(it))) r[s]=(r[s]||0)+v*k;
   for(const a of it.aff) r[a.s]=(r[a.s]||0)+(a.s==='ap'?a.v:a.v*k);
-  if(it.leg) for(const [k,v] of Object.entries(LEG_FX)) r[k]=(r[k]||0)+v;
+  if(it.leg) for(const [k,v] of Object.entries(legStat82(it))) r[k]=(r[k]||0)+v;
   return r;
 }
 const invItems=()=>S.bag.filter(e=>!e.o.mat).map(e=>e.o);
@@ -3245,7 +3246,7 @@ function affRange(it,a,k){
 const affOrd=L=>L.slice().sort((a,b)=>((a.main?(a.s==='hp'||a.s==='hpPct'?0:1):2)-(b.main?(b.s==='hp'||b.s==='hpPct'?0:1):2)));
 function itemCard(it,foot='',delta=null){
   const k=upMul(it);
-  const lines=[...affOrd(it.aff).filter(a=>a.main).map(a=>`<li class="am">${fmtStat(a.s,a.v*k)}${ALTK||NOHOVER?affRange(it,a,k):''}</li>`),...Object.entries(impOf(it)).map(([s,v])=>`<li class="imp">${fmtStat(s,v*k)}</li>`),...affOrd(it.aff).filter(a=>!a.main).map(a=>`<li class="${a.main?'am':''}">${fmtStat(a.s,a.v*k)}${ALTK||NOHOVER?affRange(it,a,k):''}</li>`),...(it.leg?[`<li class="legp"><b>${esc(LEGP[it.leg]||'Pouvoir légendaire')}</b> : ${LEG_D}</li>`]:[])].join('')+(it.aff.length&&!NOHOVER?`<li class="shk">${ALTK?'Plages possibles des affixes (Alt)':'Alt : plages des affixes · Maj : comparer'}</li>`:'');
+  const lines=[...affOrd(it.aff).filter(a=>a.main).map(a=>`<li class="am">${fmtStat(a.s,a.v*k)}${ALTK||NOHOVER?affRange(it,a,k):''}</li>`),...Object.entries(impOf(it)).map(([s,v])=>`<li class="imp">${fmtStat(s,v*k)}</li>`),...affOrd(it.aff).filter(a=>!a.main).map(a=>`<li class="${a.main?'am':''}">${fmtStat(a.s,a.v*k)}${ALTK||NOHOVER?affRange(it,a,k):''}</li>`),...(it.leg?[`<li class="legp"><b>${esc(legN82(it))}</b> : ${legD82(it)}</li>`]:[])].join('')+(it.aff.length&&!NOHOVER?`<li class="shk">${ALTK?'Plages possibles des affixes (Alt)':'Alt : plages des affixes · Maj : comparer'}</li>`:'');
   const dl=delta===null?'':`<span class="dl ${delta>=0?'up':'dn'}">${delta>=0?'▲':'▼'} ${Math.abs(Math.round(delta))}</span>`;
   return `<article class="it" style="--rc:var(--r${it.rarity})"><header><b>${esc(it.name)}${it.up?` <em>+${it.up}</em>`:''}</b> ${dl}<small>${SLOT_N[it.slot]}${it.cls?` · <span style="${clsOk(it)?'':'color:var(--blood);font-weight:700'}">${CLASSES[it.cls].n}</span>`:''} · ${RAR[it.rarity].n}</small><small class="${lvlOk(it)?'':'reqno'}">Niveau requis <b class="num">${itReq(it)}</b></small><small>Niveau d’objet <b class="num">${it.ilvl}</b> · Affixes secondaires <b class="num">${secN(it)} / 3</b></small></header><ul>${lines}</ul>${foot?`<div class="foot">${foot}</div>`:''}</article>`;
 }
@@ -3322,7 +3323,7 @@ function heroStats(h){
     dodge:Math.min(30,(g.dodge||0)+(p.dodge||0)),
     lifesteal:Math.min(20,(g.lifesteal||0)+(p.lifesteal||0)),
     dmgPct:g.dmgPct||0,goldFind:g.goldFind||0,dropRate:g.dropRate||0,
-    regen:p.regen||0,healPow:p.healPow||0,
+    regen:(p.regen||0)+Math.min(3,g.regen||0),healPow:p.healPow||0,
     ap:5+(g.ap||0)+(p.ap||0),
     ...Object.fromEntries(RES_K.map(k=>[k,Math.min(RES_CAP,(g[k]||0)+(p[k]||0))])),
   };
@@ -5450,7 +5451,7 @@ for(const [k,o] of Object.entries(NEWI)){ MI[k]=o.svg; MAT_OBJ[k]=o.n; MAT_N[k]=
 const GEMK={gm_mag:0,gm_rar:1,gm_epi:2,gm_leg:3,prisme:4};
 const nwR=k=>k==='prisme'?5:NEWI[k]?NEWI[k].r:0;
 const UP_CH=[100,90,80,70,60,50,40,30,20,10];
-const isUpK=k=>!!(NEWI[k]&&(NEWI[k].sc||NEWI[k].gem!=null||k==='st_up'))||k==='prisme'||k==='cr_asc'||k==='fu_ap';
+const isUpK=k=>!!(NEWI[k]&&(NEWI[k].sc||NEWI[k].gem!=null||k==='st_up'))||k==='prisme'||k==='cr_asc'||k==='fu_ap'||k==='rm_aff';
 AFXM.ap=AFXM.ap||{s:'ap',w:0,b:1,p:0};
 const mainStat=it=>{const c=it.cls||(S.heroes[0]&&S.heroes[0].cls);return CLASSES[c]&&CLASSES[c].role==='mag'?'mag':'atk'};
 function affVal(s,ilvl,mult){ if(s==='ap') return 1; const A=AFXM[s]; const v=(A.b+A.p*ilvl)*mult; return PCT.has(s)?Math.max(.5,r1(v)):Math.max(1,Math.round(v)) }
@@ -5509,7 +5510,7 @@ function fsSlot(name,k,label,size='sm',need=1){
 }
 const pips=(n,max=5)=>`<span class="mfpips" aria-hidden="true">${Array.from({length:max},(_,i)=>`<i class="${i<n?'on':''} ${i<2?'main':''}"></i>`).join('')}</span>`;
 const EXPL={
- up:`<h3>Renforcer un objet</h3><ol class="mfsteps"><li><b>Posez l’objet</b> dans le grand cercle (glisser-déposer ou clic droit depuis l’inventaire). Sa rareté et ses affixes sont détectées automatiquement.</li><li><b>Choisissez l’amélioration</b> dans la case du dessous :<ul><li><b>Parchemin</b> : ajoute une affixe. Un objet a 2 affixes principales et peut en recevoir 3 de plus.</li><li><b>Pierre de rareté</b> : fait monter la rareté d’un cran, +15 % des valeurs de base.</li><li><b>Prisme divin</b> : Légendaire → Divin, 10 % de réussite par prisme placé (jusqu’à 10).</li><li><b>Pierre de renforcement</b> : +1 niveau (+3 % à toutes les stats) ; 1 pierre jusqu’à +5, puis 2.</li></ul></li><li>Avec une pierre de renforcement, ajoutez si besoin un <b>bonus de réussite</b> dans la petite case.</li><li>Vérifiez les chances à droite, puis cliquez sur <b>Renforcer</b>.</li></ol><p class="mftip">Les parchemins se créent dans l’atelier <b>Enchantement</b>. Cliquez sur une case pour ouvrir l’inventaire : les objets compatibles s’illuminent. La croix vide la case.</p>`,
+ up:`<h3>Renforcer un objet</h3><ol class="mfsteps"><li><b>Posez l’objet</b> dans le grand cercle (glisser-déposer ou clic droit depuis l’inventaire). Sa rareté et ses affixes sont détectées automatiquement.</li><li><b>Choisissez l’amélioration</b> dans la case du dessous :<ul><li><b>Parchemin</b> : ajoute une affixe. Un objet a 2 affixes principales et peut en recevoir 3 de plus.</li><li><b>Pierre de rareté</b> : fait monter la rareté d’un cran, +15 % des valeurs de base.</li><li><b>Prisme divin</b> : Légendaire → Divin, 10 % de réussite par prisme placé (jusqu’à 10).</li><li><b>Pierre de remodelage</b> : remplace une affixe choisie par une autre de la même catégorie.</li><li><b>Pierre de renforcement</b> : +1 niveau (+3 % à toutes les stats) ; 1 pierre jusqu’à +5, puis 2.</li></ul></li><li>Avec une pierre de renforcement, ajoutez si besoin un <b>bonus de réussite</b> dans la petite case.</li><li>Vérifiez les chances à droite, puis cliquez sur <b>Renforcer</b>.</li></ol><p class="mftip">Les parchemins se créent dans l’atelier <b>Enchantement</b>. Cliquez sur une case pour ouvrir l’inventaire : les objets compatibles s’illuminent. La croix vide la case.</p>`,
  ench:`<h3>Enchanter un parchemin</h3><ol class="mfsteps"><li>Placez un <b>Parchemin vierge</b> (vendu par le Marchand) en haut : c’est le catalyseur.</li><li>Remplissez les trois cases du bas :<ul><li><b>Poudre runique</b> à gauche (3 nécessaires) ;</li><li><b>Essence magique</b> au centre : elle choisit le type de parchemin (pierre → Robustesse, braise → Fureur, vent → Adresse) ;</li><li><b>Rune</b> à droite : elle choisit la rareté (mineure → Magique, majeure → Rare, ancienne → Épique, primordiale → Légendaire).</li></ul></li><li>Cliquez sur <b>Enchanter</b> : le parchemin rejoint l’inventaire.</li></ol><p class="mftip">Plus la rareté du parchemin est haute, plus l’affixe ajoutée est forte.</p>`};
 const helpBtn=()=>`<button class="mfhelp ${fHelpOn()?'on':''}" data-act="fHelp" aria-pressed="${fHelpOn()}" ${ttip(fHelpOn()?'Masquer les explications':'Afficher les explications','Affiche ou masque le guide à gauche.')}>?</button>`;
 const ANVIL=`<svg class="mfanvil" viewBox="0 0 200 90" aria-hidden="true"><path d="M20 20h120c6 18 22 26 50 28v10h-48l-10 14h12v14H56V72h12l-8-16C34 54 22 42 20 20z"/><path d="M24 22h114" stroke="#e8a13a" stroke-width="2" opacity=".7"/></svg>`;
@@ -5529,6 +5530,7 @@ function fUpInfo(it,k){
   /* {ok, why, cost, chance, html} */
   if(!k) return null;
   if(k==='cr_asc'||k==='fu_ap') return fUpInfo9(it,k);
+  if(k==='rm_aff') return rmInfo(it);
   const N=NEWI[k];
   if(N&&N.sc){ const pool=scrollPool(it,N.sc),tw=pool.reduce((a,b)=>a+b.w,0),[lo,hi]=SC_R[N.r],m=RAR[it.rarity].m*upMul(it),full=secN(it)>=SECMAX;
     const rows=pool.map(x=>{const p=x.w/tw*100,a=affVal(x.s,it.ilvl,RAR[it.rarity].m*lo),b=affVal(x.s,it.ilvl,RAR[it.rarity].m*hi);return `<div><span>${STAT_N[x.s]}</span><i><b style="width:${p}%"></b></i><em class="num">${String(Math.round(p*10)/10).replace('.',',')} %</em><small class="num">${x.s==='ap'?'+1':fmtStat(x.s,a*upMul(it)).replace(' '+STAT_N[x.s],'')+' à '+fmtStat(x.s,b*upMul(it)).replace(' '+STAT_N[x.s],'').replace('+','')}</small></div>`}).join('');
@@ -5628,7 +5630,8 @@ function fDo(){
   const N=NEWI[k];
   if(N&&N.sc){ const pool=scrollPool(it,N.sc),a=wPick(pool,1)[0],[lo,hi]=SC_R[N.r],v=affVal(a.s,it.ilvl,RAR[it.rarity].m*rand(lo,hi)); it.aff.push({s:a.s,v}); qEv('aff'); removeMat(k,1); msg=`Nouvelle affixe : ${fmtStat(a.s,v*upMul(it))}.` }
   else if(k==='prisme'){ const o=prismDo(it,I); ok=o.ok; msg=o.msg }
-  else if(GEMK[k]!=null){ const f2=RAR[it.rarity+1].m/RAR[it.rarity].m; for(const s of Object.keys(it.imp)) it.imp[s]=affRound(s,it.imp[s]*f2); it.aff.forEach(a=>a.v=affRound(a.s,a.v*f2)); it.rarity++; qEv('rar'); if(it.rarity>=4&&!it.leg) it.leg=it.slot; removeMat(k,1); msg=`${esc(it.name)} devient ${RAR[it.rarity].n.toLowerCase()} !` }
+  else if(k==='rm_aff'){ msg=rmDo(it) }
+  else if(GEMK[k]!=null){ const f2=RAR[it.rarity+1].m/RAR[it.rarity].m; for(const s of Object.keys(it.imp)) it.imp[s]=affRound(s,it.imp[s]*f2); it.aff.forEach(a=>a.v=affRound(a.s,a.v*f2)); it.rarity++; qEv('rar'); if(it.rarity>=4&&!it.leg){ it.leg=it.slot; if(!it.lp) it.lp=rollLp82() } removeMat(k,1); msg=`${esc(it.name)} devient ${RAR[it.rarity].n.toLowerCase()} !` }
   else if(k==='cr_asc'){ ascApply(it); removeMat(k,1); msg=`${esc(it.name)} passe au niveau d’objet ${it.ilvl} !` }
   else if(k==='fu_ap'){ it.aff.push({s:'ap',v:1,fuse:1}); removeMat(k,1); msg=`${esc(it.name)} gagne +1 Point d’action !` }
   else if(k==='st_up'){ const ch=I.chance; removeMat('st_up',I.need||1); if(UI.fBon&&fsHave(UI.fBon)) removeMat(UI.fBon,1); ok=Math.random()*100<ch; if(ok){it.up=(it.up||0)+1; qEv('up'); sEv('upmax',it.up); if(it.up>=10) sEv('up10'); msg=`Réussite : ${esc(it.name)} passe à +${it.up} !`} else msg=`Échec : l’objet reste à +${it.up||0}.` }
@@ -7408,7 +7411,7 @@ function prismInfo(it){ const ok0=it.rarity===4,n=prN(),have=matAll('prisme'),ch
      ${ok0?`<h4>Aperçu si réussite</h4><ul class="mfprev">${it.aff.map(a=>`<li>${fmtStat(a.s,a.s==='ap'?a.v:a.v*kk)} → <b class="ok">${fmtStat(a.s,a.s==='ap'?a.v:affRound(a.s,a.v*f)*kk)}</b></li>`).join('')}</ul>`:''}`} }
 function prismDo(it,I){ const n=I.need||1; removeMat('prisme',n); const ok=Math.random()*100<I.chance;
   if(!ok) return {ok,msg:`Échec : les ${n} prisme${n>1?'s':''} se brisent, ${esc(it.name)} reste légendaire.`};
-  const f2=RAR[5].m/RAR[4].m; for(const s of Object.keys(it.imp||{})) it.imp[s]=affRound(s,it.imp[s]*f2); it.aff.forEach(a=>{ if(a.s!=='ap') a.v=affRound(a.s,a.v*f2) }); it.rarity=5; qEv('rar'); if(!it.leg) it.leg=it.slot;
+  const f2=RAR[5].m/RAR[4].m; for(const s of Object.keys(it.imp||{})) it.imp[s]=affRound(s,it.imp[s]*f2); it.aff.forEach(a=>{ if(a.s!=='ap') a.v=affRound(a.s,a.v*f2) }); it.rarity=5; qEv('rar'); if(!it.leg){ it.leg=it.slot; if(!it.lp) it.lp=rollLp82() }
   return {ok,msg:`Réussite : ${esc(it.name)} devient divin !`} }
 function fBagList(){ const L=invItems().slice().sort((a,b)=>b.rarity-a.rarity||b.ilvl-a.ilvl||(b.up||0)-(a.up||0));
   return `<h4>Équipement du sac <small class="mute num">${L.length}</small></h4>${L.length?`<div class="mfbag82">${L.map(x=>`<button class="mfbi82" style="--rc:var(--r${x.rarity})" data-act="fPick" data-id="${x.id}" data-tip="f:${x.id}"><span class="mfbic">${bigIcon(x)}${x.up?`<em>+${x.up}</em>`:''}</span><span class="mfbt"><b style="color:var(--r${x.rarity})">${esc(x.name)}</b><small>${RAR[x.rarity].n} · niv. ${x.ilvl}${x.asc?' ✦':''}${clsOk(x)?'':' · autre classe'}</small></span></button>`).join('')}</div>`:'<small class="mute">Aucun équipement dans le sac.</small>'}` }
@@ -7467,12 +7470,13 @@ function help82(){
      +T(['Objet','Rareté','Chance par combat','Boss (×3)'],Z.it.map(([k,p])=>[`${tIc82(k)}${esc(MAT_OBJ[k])}`,rn(nwR(k)),pc82(p),pc82(Math.min(95,p*3))]))}).join('')
     +P('Chaque objet est tiré séparément (plusieurs objets possibles dans le même combat). Le Philtre de fortune ajoute +50 % à toutes les chances, et le mode Mythique les double. Les chances sont plafonnées à 95 %.')]);
   const pool=affPool('guerrier'),ptot=pool.reduce((x,a)=>x+a.w,0);
-  out.push(['rar','Rareté et affixes',T(['Rareté','Puissance','Obtention','Affixe bonus','Particularité'],RAR.map((R,i)=>[rn(i),mul(R.m),i===5?'Prisme divin sur un objet légendaire':i===4?'Aventure (zones 2 à 5), défis, Pierre de rareté':i===0?'Aventure':'Aventure, défis, Pierre de rareté',i===2||i===3?'12 % de chance':'—',i===4?esc(LEG_D):i===5?'Affixes toujours au maximum de leur plage':'—']))
+  out.push(['rar','Rareté et affixes',T(['Rareté','Puissance','Obtention','Affixe bonus','Particularité'],RAR.map((R,i)=>[rn(i),mul(R.m),i===5?'Prisme divin sur un objet légendaire':i===4?'Aventure (zones 2 à 5), défis, Pierre de rareté':i===0?'Aventure':'Aventure, défis, Pierre de rareté',i===2||i===3?'12 % de chance':'—',i===4?'1 pouvoir légendaire tiré au hasard (voir Pouvoirs légendaires)':i===5?'Affixes toujours au maximum de leur plage':'—']))
     +P('La puissance multiplie toutes les valeurs de l’objet (affixes et statistique fixe de l’arme). Chaque rareté ajoute 15 % des valeurs de base ; Divin ajoute 50 %.')
     +`<h4>Affixes</h4>`+P('Tout objet a 2 affixes principales : PV ou PV % et la statistique principale de votre classe (Force ou Intelligence). Les Rares et Épiques ont 12 % de chance d’avoir 1 affixe bonus en plus. Les parchemins ajoutent jusqu’à 3 affixes secondaires ; les anneaux peuvent recevoir en plus +1 Point d’action par Fusion.')
     +T(['Affixe','Rareté','Chance (affixe bonus, Guerrier)'],AFX.slice().sort((a,b)=>b.w-a.w).map(a=>[STAT_N[a.s]+(PCT.has(a.s)&&!/^r/.test(a.s)?' %':''),affTier(a.w),pool.includes(a)?pc82(a.w/ptot*100):'—']))
     +P('Valeur d’une affixe à l’obtention : entre 70 % et 100 % de son maximum au niveau de l’objet, multipliée par la puissance de la rareté.')]);
   const it50={ilvl:50,rarity:2,up:0},rows=UP_CH.map((p,i)=>[`+${i} → +${i+1}`,p+' %',stNeed({up:i}),fmt(upCostG.st({ilvl:50,up:i}))+' or']);
+  out.push(['legp','Pouvoirs légendaires',T(['Pouvoir','Effet par objet'],Object.values(LPW).map(p=>[esc(p.n),esc(p.d)+(p.fix?'':` <small class="mute">(Divin : ${esc(p.D(1.5))})</small>`)]))+P('Chaque objet légendaire reçoit un pouvoir au hasard. Le même pouvoir se cumule sur 3 objets au maximum (Moisson : 1). Les objets divins ont un pouvoir 50 % plus fort (sauf Moisson).')]);
   out.push(['forge','Forge : renforcer un objet',`<h4>Pierre de renforcement</h4>`+T(['Niveau','Réussite','Pierres','Or (objet niv. 50)'],rows)
     +P('Chaque niveau ajoute +3 % à toutes les statistiques de l’objet (+30 % à +10). En cas d’échec, les pierres et le bonus sont perdus mais l’objet reste intact.')
     +T(['Bonus de réussite','Effet'],[[esc(NEWI.ch_pou.n),'+'+NEWI.ch_pou.bon+' %'],[esc(NEWI.ch_tre.n),'+'+NEWI.ch_tre.bon+' %']])
@@ -7636,6 +7640,87 @@ viewShop=function(){ const s=UI.shopSub||'hub';
   if(s==='h') return `<div class="shop85">${shBar('Hôtel des ventes','Achetez et vendez de l’équipement entre joueurs. Les objets achetés arrivent par la messagerie.')}<div class="shah">${viewAH()}</div></div>`;
   if(s==='s') return shopStorage();
   return shopHub() };
+/* ================= 0.8.6 : pouvoirs légendaires variés ================= */
+const LPW={
+ prec:{n:'Œil du prédateur',st:{crit:6,critDmg:10},d:'+6 % de chances de coup critique et +10 % de dégâts critiques.'},
+ pen:{n:'Brise-armure',gx:{defPen:6},d:'Vos coups ignorent 6 % de la Défense ennemie.'},
+ rip:{n:'Représailles',gx:{counter:8},d:'8 % de chance de contre-attaquer (60 % de votre attaque) quand vous êtes touché.'},
+ opp:{n:'Opportuniste',gx:{vsCC:8},d:'+8 % de dégâts contre les cibles étourdies, paralysées ou ralenties.'},
+ soif:{n:'Soif de survie',gx:{lsLow:4},d:'+4 % de vol de vie quand vos PV sont sous 50 %.'},
+ rem:{n:'Dernier rempart',gx:{lowHpDef:8},d:'−8 % de dégâts subis quand vos PV sont sous 35 %.'},
+ fur:{n:'Fureur du désespoir',gx:{lowHpDmg:1},d:'+1 % de dégâts par tranche de 10 % de PV manquants (jusqu’à +9 %).'},
+ egi:{n:'Égide',gx:{shieldPct:15},d:'Vos boucliers et barrières sont 15 % plus solides.'},
+ seve:{n:'Sève ancienne',st:{regen:1},d:'Rend 1 % de vos PV max au début de chacun de vos tours.'},
+ mois:{n:'Moisson',gx:{killAp:1},max:1,d:'Vaincre un ennemi rend 1 PA (une fois par tour). Ne se cumule pas.'}};
+const LP_MAXN=3;
+const lpOf=it=>it&&it.leg?(LPW[it.lp]?it.lp:'prec'):null;
+const rollLp82=()=>pick(Object.keys(LPW));
+let legN82=it=>LPW[lpOf(it)].n, legD82=it=>LPW[lpOf(it)].d;
+let legStat82=it=>LPW[lpOf(it)].st||{};
+const _genItem86=genItem; genItem=function(...a){ const it=_genItem86(...a); if(it&&it.leg&&!it.lp) it.lp=rollLp82(); return it };
+const _hx86=hx; hx=function(h){ const g=_hx86(h); if(!h||!h.equip) return g; const cnt={};
+  for(const it of Object.values(h.equip)){ const k=lpOf(it); if(k&&LPW[k].gx) cnt[k]=(cnt[k]||0)+1 }
+  for(const [k,n] of Object.entries(cnt)){ const P=LPW[k],m=Math.min(n,P.max||LP_MAXN); for(const [s,v] of Object.entries(P.gx)) g[s]=(g[s]||0)+v*m }
+  return g };
+/* ================= 0.8.7 : pouvoirs légendaires (suite), Pierre de remodelage ================= */
+const ELR=['rFeu','rGlace','rFoudre','rTerre'];
+const fv=v=>String(r1(v)).replace('.',',');
+const LPV={
+ prec:{st:{crit:3,critDmg:7},D:m=>`+${fv(3*m)} % de chances de coup critique et +${fv(7*m)} % de dégâts critiques.`},
+ pen:{gx:{defPen:6},D:m=>`Vos coups ignorent ${fv(6*m)} % de la Défense ennemie.`},
+ rip:{gx:{counter:8},D:m=>`${fv(8*m)} % de chance de contre-attaquer (60 % de votre attaque) quand vous êtes touché.`},
+ opp:{gx:{vsCC:8},D:m=>`+${fv(8*m)} % de dégâts contre les cibles étourdies, paralysées ou ralenties.`},
+ soif:{gx:{lsLow:4},D:m=>`+${fv(4*m)} % de vol de vie quand vos PV sont sous 50 %.`},
+ rem:{gx:{lowHpDef:8},D:m=>`−${fv(8*m)} % de dégâts subis quand vos PV sont sous 35 %.`},
+ fur:{gx:{lowHpDmg:1},D:m=>`+${fv(m)} % de dégâts par tranche de 10 % de PV manquants (jusqu’à +${fv(9*m)} %).`},
+ egi:{gx:{shieldPct:15},D:m=>`Vos boucliers et barrières sont ${fv(15*m)} % plus solides.`},
+ seve:{st:{regen:1},D:m=>`Rend ${fv(m)} % de vos PV max au début de chacun de vos tours.`},
+ mois:{gx:{killAp:1},max:1,fix:1,D:()=>'Vaincre un ennemi rend 1 PA (une fois par tour). Ne se cumule pas.'},
+ elem:{n:'Garde des éléments',st:{rFeu:5,rGlace:5,rFoudre:5,rTerre:5},D:m=>`+${fv(5*m)} % à toutes les résistances élémentaires (Feu, Glace, Foudre, Terre).`},
+ vita:{n:'Vitalité',st:{hpPct:10},D:m=>`+${fv(10*m)} % de PV max.`}};
+for(const [k,v] of Object.entries(LPV)){ LPW[k]=Object.assign(LPW[k]||{},v); LPW[k].d=v.D(1); delete LPW[k].gx; delete LPW[k].st; if(v.gx) LPW[k].gx=v.gx; if(v.st) LPW[k].st=v.st }
+const lpM=it=>it&&it.rarity>=5?1.5:1;
+let LP_ALLOW=null;
+legD82=it=>{ const P=LPW[lpOf(it)]; if(!P) return ""; return P.D(P.fix?1:lpM(it))+(it.rarity>=5&&!P.fix?' <em class="lpdiv">Divin : +50 %</em>':'') };
+legStat82=it=>{ const k=lpOf(it),P=LPW[k]; if(!P||!P.st) return {}; if(LP_ALLOW&&!LP_ALLOW.has(it)) return {}; const m=P.fix?1:lpM(it); return Object.fromEntries(Object.entries(P.st).map(([s,v])=>[s,v*m])) };
+function lpAllow(h){ const by={}; for(const it of Object.values(h.equip||{})){ const k=lpOf(it); if(k) (by[k]=by[k]||[]).push(it) }
+  const A=new Set(); for(const [k,L] of Object.entries(by)){ L.sort((a,b)=>b.rarity-a.rarity); L.slice(0,LPW[k].max||LP_MAXN).forEach(x=>A.add(x)) } return A }
+const _gearStats87=gearStats; gearStats=function(h){ const prev=LP_ALLOW; LP_ALLOW=lpAllow(h); try{ return _gearStats87(h) } finally{ LP_ALLOW=prev } };
+hx=function(h){ const g=_hx86(h); if(!h||!h.equip) return g; const A=lpAllow(h);
+  for(const it of A){ const P=LPW[lpOf(it)]; if(!P.gx) continue; const m=P.fix?1:lpM(it); for(const [s,v] of Object.entries(P.gx)) g[s]=(g[s]||0)+v*m }
+  if(g.killAp) g.killAp=Math.min(1,g.killAp); return g };
+const lpFix=o=>{ if(o&&o.slot&&Array.isArray(o.aff)&&o.rarity>=4&&!o.lp){ o.leg=o.leg||o.slot; o.lp=rollLp82() } };
+function lpWalk(o,d){ if(!o||typeof o!=='object'||(d|0)>9) return; if(Array.isArray(o)){ for(const x of o) lpWalk(x,(d|0)+1); return } if(o.slot&&Array.isArray(o.aff)){ lpFix(o); return } for(const k in o) if(o[k]&&typeof o[k]==='object') lpWalk(o[k],(d|0)+1) }
+function accLp87(){ if(!ACC||ACC.lp87) return; lpWalk(ACC.stash); ACC.lp87=1; try{ saveAcc() }catch(e){} }
+/* ---------- Parchemin d'Adresse : plus de Points d'action ---------- */
+SC_T.adr.pool=SC_T.adr.pool.filter(([s])=>s!=='ap'); SC_T.adr.d='Ajoute une affixe : Vitesse (37 %), Esquive (37 %) ou Vol de vie (26 %).';
+for(let r=1;r<=4;r++){ const N=NEWI['sc_adr'+r]; if(N){ N.d=SC_T.adr.d+` Valeur de l’affixe : ${Math.round(SC_R[r][0]*100)}–${Math.round(SC_R[r][1]*100)} % du maximum au niveau de l’objet.`; MAT_D['sc_adr'+r]=N.d } }
+/* ---------- Pierre de remodelage ---------- */
+NEWI.rm_aff={n:'Pierre de remodelage',r:3,cat:'Amélioration',d:'Remplace une affixe choisie par une nouvelle affixe tirée au hasard dans la même catégorie (résistances, critiques, adresse, vie…), avec une nouvelle valeur. Réussite 100 %.',
+ svg:'<path d="M12 2.5l7.5 4.5v9.5L12 21.5 4.5 16.5V7z" fill="#a070f0" stroke="#2a1050" stroke-width="1.2" stroke-linejoin="round"/><path d="M12 2.5v19M4.5 7L19.5 16.5M19.5 7L4.5 16.5" stroke="#e0d0ff" stroke-width=".8" opacity=".7"/><path d="M8.5 11.5a3.5 3.5 0 0 1 6.2-1.6M15.5 12.5a3.5 3.5 0 0 1-6.2 1.6" stroke="#fff" stroke-width="1.4" fill="none" stroke-linecap="round"/><path d="M14.9 8.6l.1 1.6-1.6.1M9.1 15.4l-.1-1.6 1.6-.1" stroke="#fff" stroke-width="1.3" fill="none" stroke-linecap="round"/>'};
+MI.rm_aff=NEWI.rm_aff.svg; MAT_OBJ.rm_aff=MAT_N.rm_aff=NEWI.rm_aff.n; MAT_D.rm_aff=NEWI.rm_aff.d;
+POTS.rm_aff={n:'Pierre de remodelage',c:'#a070f0',fix:{gold:15000,ru_maj:1},nocombat:1,d:NEWI.rm_aff.d+' S’utilise à la Forge.'};
+ZLOOT[2].it.push(['rm_aff',.2]); ZLOOT[3].it.push(['rm_aff',.4]); ZLOOT[4].it.push(['rm_aff',.6]);
+const RM_CAT=[['Robustesse',[['rPhys',1],['rMag',1],['rFeu',1],['rGlace',1],['rFoudre',1],['rTerre',1]]],['Fureur',[['critDmg',45],['MAIN',40],['crit',15]]],['Adresse',[['spd',35],['dodge',35],['lifesteal',25]]],['Vie',[['hp',60],['hpPct',40]]]];
+function rmPool(it,a){ const ms=mainStat(it),S2=s=>s==='MAIN'?ms:s;
+  if(a.main&&(a.s==='atk'||a.s==='mag')) return {n:'Statistique principale',pool:[{s:a.s,w:1}]};
+  let C=RM_CAT.find(([,L])=>L.some(([s])=>S2(s)===a.s)); let pool;
+  if(C) pool=C[1].map(([s,w])=>({s:S2(s),w}));
+  else { const used=new Set(RM_CAT.flatMap(([,L])=>L.map(([s])=>S2(s)))); C=['Autres']; pool=affPool(it.cls||(S.heroes[0]&&S.heroes[0].cls)).filter(x=>!used.has(x.s)&&x.s!=='ap').map(x=>({s:x.s,w:x.w})) }
+  const have=new Set(it.aff.filter(x=>x!==a).map(x=>x.s)); pool=pool.filter(x=>!have.has(x.s)&&AFXM[x.s]); if(!pool.length) pool=[{s:a.s,w:1}];
+  return {n:C[0],pool} }
+const rmCost=it=>({gold:Math.round(1500+it.ilvl*30)});
+function rmInfo(it){ const L=it.aff.map((a,i)=>({a,i})).filter(({a})=>a.s!=='ap'&&!a.fuse&&AFXM[a.s]);
+  if(UI.fAff==null||!L.some(x=>x.i===UI.fAff)) UI.fAff=L.length?L[0].i:null; const a=it.aff[UI.fAff],kk=upMul(it);
+  const P=a?rmPool(it,a):null,tw=P?P.pool.reduce((x,y)=>x+y.w,0):1,m=RAR[it.rarity].m;
+  const rows=P?P.pool.map(x=>{const A=AFXM[x.s],lo=(A.b+A.p*it.ilvl)*m*(it.rarity>=5?1:.7),hi=(A.b+A.p*it.ilvl)*m;return `<div><span>${STAT_N[x.s]}</span><i><b style="width:${x.w/tw*100}%"></b></i><em class="num">${pc82(x.w/tw*100)}</em><small class="num">${fmtStat(x.s,affRound(x.s,lo)*kk).replace(' '+STAT_N[x.s],'')} à ${fmtStat(x.s,affRound(x.s,hi)*kk).replace(' '+STAT_N[x.s],'').replace('+','')}</small></div>`}).join(''):'';
+  return {ok:!!a,why:a?'':'Aucune affixe modifiable sur cet objet.',cost:rmCost(it),chance:100,title:NEWI.rm_aff.n,rar:3,
+   html:`<p>Choisissez l’affixe à remodeler. Elle sera remplacée par une affixe de la même catégorie, avec une nouvelle valeur.</p><h4>Affixe à remodeler</h4><div class="rmsel87">${L.map(({a:x,i})=>`<button class="${i===UI.fAff?'on':''}" data-act="fAffSel" data-i="${i}">${fmtStat(x.s,x.s==='ap'?x.v:x.v*kk)}${x.main?' <em>principale</em>':x.bonus?' <em>bonus</em>':''}</button>`).join('')}</div>
+    ${P?`<h4>Résultat possible · ${esc(P.n)}</h4><div class="mfprob">${rows}</div><small class="mute">Une affixe déjà présente sur l’objet ne peut pas être tirée. Valeur : 70 à 100 % du maximum au niveau de l’objet${it.rarity>=5?' (Divin : toujours au maximum)':''}.</small>`:''}`} }
+function rmDo(it){ const a=it.aff[UI.fAff]; if(!a) return 'Aucune affixe choisie.'; const P=rmPool(it,a),n=wPick(P.pool,1)[0],old=fmtStat(a.s,a.v*upMul(it));
+  a.s=n.s; a.v=rollAff(AFXM[n.s],it.ilvl,RAR[it.rarity].m); removeMat('rm_aff',1); qEv('aff');
+  return `Remodelage : ${old} → ${fmtStat(a.s,a.v*upMul(it))}.` }
+const _genItem87=genItem; genItem=function(...a){ const it=_genItem87(...a); lpFix(it); return it };
 
 function viewCombatIdle(){
   const P=prog(),dk=curDiff(),D=DIFF[dk],hero=dk!=='normal',z=ZONES[UI.zone],L=D.L||UI.zone*10+UI.stage;
@@ -8178,7 +8263,7 @@ document.addEventListener('keydown',e=>{
 
 /* ============ coffre (lié au compte, partagé entre les personnages) ============ */
 const SW=15,SH=5,STASH_MAX=6,STASH_COST=[0,5000,15000,40000,100000,250000];
-function stashD(){ accHp3(); accR82(); if(!ACC.stash||!Array.isArray(ACC.stash.tabs)||!ACC.stash.tabs.length) ACC.stash={tabs:[{n:'Coffre 1',bag:[]}],cur:0}; const d=ACC.stash; if(!d.tabs[d.cur]) d.cur=0; return d }
+function stashD(){ accHp3(); accR82(); accLp87(); if(!ACC.stash||!Array.isArray(ACC.stash.tabs)||!ACC.stash.tabs.length) ACC.stash={tabs:[{n:'Coffre 1',bag:[]}],cur:0}; const d=ACC.stash; if(!d.tabs[d.cur]) d.cur=0; return d }
 const stashTab=()=>{const d=stashD(); return d.tabs[d.cur]};
 const stashUsed=T=>T.bag.reduce((a,e)=>{const [w,h]=SIZE(e.o);return a+w*h},0);
 function stashOverlaps(T,x,y,w,h,skip){return T.bag.filter(e=>{ if(e===skip) return false; const [ew,eh]=SIZE(e.o); return x<e.x+ew&&e.x<x+w&&y<e.y+eh&&e.y<y+h })}
@@ -8381,7 +8466,7 @@ function viewSites(){
     <p class="amnote mute" style="margin-top:auto">La flèche ouvre l’arbre d’améliorations de la Mine (cadence, filon d’or et entrepôt). L’engrenage donne accès à la récolte automatique, débloquée au niveau de zone ${AUTO_L}.</p></div></aside></div>${UI.siteTree?treeModal(UI.siteTree):''}`;
 }
 /* ===== Marchand : étal ===== */
-const SHOP_CAT=k=>/^c[tf]_/.test(k)?'comp':['c_relic','s_ch2','s_ch3'].includes(k)?'cos':k==='sc_blank'?'ench':k==='p_oubli'?'spe':['p_xp','p_loot'].includes(k)?'prog':'comb';
+const SHOP_CAT=k=>/^c[tf]_/.test(k)?'comp':['c_relic','s_ch2','s_ch3'].includes(k)?'cos':k==='sc_blank'||k==='rm_aff'?'ench':k==='p_oubli'?'spe':['p_xp','p_loot'].includes(k)?'prog':'comb';
 const SHOP_CATS=[['all','Tout'],['comb','Combat'],['prog','Progression'],['ench','Enchantement'],['cos','Cosmétiques'],['comp','Compagnon'],['spe','Spéciaux']];
 const SHOP_CN={comp:'Objet de compagnon',cos:'Coffre cosmétique',ench:'Fourniture d’enchantement',comb:'Potion de combat',prog:'Potion de progression',spe:'Objet spécial'};
 const potLock=k=>POTS[k].cls&&POTS[k].cls!==S.heroes[0].cls;
@@ -8468,7 +8553,7 @@ function viewHelp(){
     ['Résistances élémentaires','Feu, Glace, Foudre, Terre.','Réduisent en % les dégâts des compétences de cet élément (brûlures comprises). Plafonnées à 75 %. Une résistance négative est une faiblesse : les dégâts sont augmentés.'],
     ['Vitesse','Ordre d’action.','À chaque tour, les unités agissent de la plus rapide à la plus lente.'],
     ['Critique','Chance de coup critique.','5 % de base, plafonnée à 70 %. Un coup critique multiplie les dégâts par les Dégâts critiques.'],
-    ['Dégâts critiques','Puissance des critiques.','150 % de base, plafonnés à 200 % : un critique inflige de 1,5 à 2 fois les dégâts.'],
+    ['Dégâts critiques','Puissance des critiques.','150 % de base, plafonnés à 300 % : un critique inflige de 1,5 à 3 fois les dégâts.'],
     ['Esquive','Chance d’éviter une attaque.','L’attaque est annulée entièrement. Plafonnée à 30 %.'],
     ['Vol de vie','Soin sur les dégâts infligés.','Rend ce pourcentage des dégâts infligés en PV. Plafonné à 20 %.'],
     ['Dégâts bonus','Augmente tous vos dégâts.','+X % appliqué après la réduction par la Défense ou la Résistance.'],
@@ -8516,9 +8601,11 @@ function viewHelp(){
 }
 
 /* --- nouveautés --- */
-const VERSION='0.8.5';
-const BUILD='20261021201857';
+const VERSION='0.8.7';
+const BUILD='20261022073011';
 const PATCH=[
+ {"v": "0.8.7", "t": "Pouvoirs légendaires et Pierre de remodelage", "sec": [["Équipement", ["Nouveaux pouvoirs légendaires : Garde des éléments (+5 % à toutes les résistances élémentaires) et Vitalité (+10 % de PV max).", "Œil du prédateur : +6 % → +3 % de chances de critique, +10 % → +7 % de dégâts critiques.", "Objets divins : ils ont maintenant eux aussi un pouvoir, 50 % plus fort. Exemples : Vitalité +10 % → +15 % de PV max, Brise-armure 6 % → 9 %. Moisson ne change pas.", "Tous vos objets légendaires et divins déjà obtenus (portés, dans le sac ou dans le coffre) reçoivent un pouvoir tiré au hasard parmi les 12. Ceux qui en avaient déjà un depuis la 0.8.6 le gardent."]], ["Forge", ["Nouvel objet : Pierre de remodelage (Épique). Choisissez une affixe de l’objet : elle est remplacée par une affixe tirée au hasard dans la même catégorie (Robustesse, Fureur, Adresse, Vie ou Autres), avec une nouvelle valeur. Réussite 100 %. Coût : 1 500 or + 30 or par niveau d’objet.", "Une affixe déjà présente sur l’objet ne peut pas sortir. Les affixes de fusion (+1 PA) ne se remodèlent pas ; la statistique principale garde son type mais change de valeur.", "Où la trouver : chez le Marchand (catégorie Enchantement, 15 000 or + 1 Rune majeure) ou en aventure dans les zones 3 à 5 (0,2 à 0,6 % par combat, ×3 sur les boss)."]], ["Équilibrage", ["Parchemin d’Adresse : il ne peut plus donner de Points d’action. Chances : Vitesse 35 → 37 %, Esquive 35 → 37 %, Vol de vie 25 → 26 %. Les affixes PA déjà obtenues sont conservées."]]]},
+ {"v": "0.8.6", "t": "Pouvoirs légendaires", "sec": [["Équilibrage", ["Dégâts critiques : plafond 200 % → 300 %. Un coup critique peut maintenant infliger jusqu’à 3 fois les dégâts (avant : 2 fois)."]], ["Équipement", ["Nouveau : 10 pouvoirs légendaires. Chaque nouvel objet légendaire en reçoit un au hasard (avant : toujours +6 % de critique et +10 % de dégâts critiques).", "Œil du prédateur : +6 % de chances de critique et +10 % de dégâts critiques. Brise-armure : ignore 6 % de la Défense ennemie. Représailles : 8 % de chance de contre-attaquer quand vous êtes touché. Opportuniste : +8 % de dégâts contre les cibles étourdies, paralysées ou ralenties.", "Soif de survie : +4 % de vol de vie sous 50 % de PV. Dernier rempart : −8 % de dégâts subis sous 35 % de PV. Fureur du désespoir : +1 % de dégâts par tranche de 10 % de PV manquants. Égide : boucliers et barrières +15 %. Sève ancienne : rend 1 % des PV max à chaque tour. Moisson : vaincre un ennemi rend 1 PA.", "Un même pouvoir se cumule sur 3 objets au maximum (Moisson : un seul). Vos objets légendaires actuels gardent leur pouvoir (Œil du prédateur). Le pouvoir s’affiche dans l’infobulle de l’objet et dans l’Aide."]]]},
  {"v": "0.8.5", "t": "Place du marché et Maroquinier", "sec": [["Marchand", ["Le Marchand devient la Place du marché : un accueil avec trois échoppes, puis un bouton pour revenir à la place.", "Nouveaux décors propres au commerce : le marché et ses étals, la salle des enchères, l’atelier du maroquinier (avant : décor de l’arène de duel)."]], ["Hôtel des ventes", ["L’Hôtel des ventes déménage de Communauté vers la Place du marché. Il fonctionne comme avant (Acheter, Vendre, Mes ventes, Historique)."]], ["Maroquinier", ["Nouvelle échoppe pour agrandir son stockage. Les améliorations valent pour tout le compte.", "Sac agrandi : +1 rangée de 14 cases par niveau. Sac : 70 → 84 → 98 → 112 cases. Prix : 25 000 or ; 80 000 or + 1 Rune ancienne ; 200 000 or + 1 Rune primordiale.", "Sacoche d’artisanat : 8, 16 puis 24 piles de 500 pour la poudre, les essences, les runes, les pierres, les parchemins, les bonus de réussite et les prismes. Prix : 15 000 or ; 50 000 or + 1 Rune majeure ; 120 000 or + 1 Rune ancienne.", "Ceinture de potions : 6 puis 12 piles pour toutes les potions. Prix : 20 000 or ; 60 000 or + 1 Rune majeure.", "Besace du dresseur : 8 puis 16 piles pour les objets de Compagnon. Prix : 15 000 or ; 45 000 or + 1 Rune majeure.", "Les objets compatibles vont automatiquement dans leur sacoche, sans prendre de place dans le sac, et restent utilisables partout (Forge, combat, Compagnon, quêtes).", "Nouveau bouton Sacoches dans l’inventaire, à côté du coffre : voir leur contenu, remettre une pile dans le sac d’un clic, ou tout ranger avec « Ranger le sac »."]]]},
  {"v": "0.8.4", "t": "Forge : équipement porté", "sec": [["Forge", ["Quand l’enclume est vide, le panneau de droite affiche maintenant votre équipement porté comme dans l’inventaire : le personnage au centre et ses 8 emplacements autour. Un clic sur un objet le pose sur l’enclume.", "La liste de l’équipement du sac reste juste en dessous."]]]},
  {"v": "0.8.3", "t": "Hôtel des ventes et défis en boucle", "sec": [["Hôtel des ventes", ["Filtre « Niveau d’objet » : maximum 60 → 75, pour trouver les objets des défis (niveau 65 et 70) et ceux élevés par un Cristal d’ascension."]], ["Défis", ["Avec « Rejouer » activé (engrenage à côté de Combattre), le butin d’un défi gagné est récupéré automatiquement : plus de fenêtre à fermer. Un message résume l’or et l’équipement obtenus.", "Le même défi, au même palier, est ensuite relancé tout seul. Une défaite arrête la boucle, comme en aventure."]]]},
@@ -9425,6 +9512,7 @@ const A={
   shopSub:d=>{ UI.shopSub=d.s; if(d.s==='h'&&FB.user&&!AH.busy) setTimeout(()=>ahLoad(),0); render(); scrollTo(0,0) },
   stgBuy:d=>stgBuy(d.k), shPch:d=>{UI.shPch=d.c;render()},
   pchToggle:()=>{UI.pchInv=!UI.pchInv;renderInvPop()}, pchTab:d=>{UI.pchT=d.c;renderInvPop()}, pchOut:d=>pouchOut(d.c,d.k), pchSweep:()=>{ pouchSweep(); save(); renderInvPop() },
+  fAffSel:d=>{UI.fAff=+d.i;render()},
   admTab:d=>{UI.admT=d.t; UI.confirm=null; render(); scrollTo(0,0)},
   admMail:()=>{ A.mlOpen(); A.mlAdm() },
   updAuto:()=>{ updSave({auto:!UPDM.auto}).then(()=>{ render(); if(UPDM.auto&&UPDM.last!==VERSION) toast('Envoi automatique activé : l’annonce partira à la prochaine ouverture du jeu.') }); render() },
