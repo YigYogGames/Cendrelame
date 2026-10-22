@@ -3003,7 +3003,7 @@ function bagAddMat(bag,k,n){
   while(n>0){ const sp=findSpot(bag,1,1); if(!sp) break; const m=Math.min(STACK,n); bag.push({x:sp[0],y:sp[1],o:{mat:k,n:m}}); n-=m }
   return n;
 }
-function bagAddItem(bag,it){if(it&&it.slot&&!it.hp3) hp3Walk(it); if(it&&it.slot&&!it.r82) r82Item(it); if(it&&it.slot&&typeof lpFix==='function') lpFix(it);const sp=findSpot(bag,...SIZE(it)); if(!sp) return false; bag.push({x:sp[0],y:sp[1],o:it}); return true}
+function bagAddItem(bag,it){if(it&&it.slot&&!it.hp3) hp3Walk(it); if(it&&it.slot&&!it.r82) r82Item(it); if(it&&it.slot&&typeof lpFix==='function') lpFix(it); if(it&&it.slot&&typeof sfItem==='function') sfItem(it);const sp=findSpot(bag,...SIZE(it)); if(!sp) return false; bag.push({x:sp[0],y:sp[1],o:it}); return true}
 const sellValue=it=>Math.round((5+it.ilvl*2)*(it.rarity+1)*(1+(it.up||0)*.25));
 let MIG_MSG='';
 function migrate(d){
@@ -3116,7 +3116,7 @@ function fitBag(d){ try{ stgSync() }catch(e){}
 }
 function hp3Walk(o,d){ if(!o||typeof o!=='object'||(d|0)>8) return; if(Array.isArray(o)){ for(const x of o) hp3Walk(x,(d|0)+1); return } if(o.slot&&Array.isArray(o.aff)){ if(!o.hp3){ for(const a of o.aff) if(a.s==='hp') a.v=Math.round(a.v*3); o.hp3=1 } return } for(const k in o) if(o[k]&&typeof o[k]==='object') hp3Walk(o[k],(d|0)+1) }
 function accHp3(){ if(!ACC||ACC.hp3) return; hp3Walk(ACC); ACC.hp3=1 }
-const loadData=d=>{if(!d.siteV)d.siteV=1; const r=soloize(fitBag(Object.assign(newGame(),{balV:0,skV:0},migrate(d)))); if((r.balV||0)<1){balMig(r); r.balV=1} if((r.balV||0)<2){impMig(r); r.balV=2} if((r.skV||0)<1){ for(const h of r.heroes||[]) resetSkills(h); r.skV=1; if((r.heroes||[]).length) MIG_MSG=(MIG_MSG?MIG_MSG+' ':'')+'Nouveau système de compétences et de spécialisations : vos points de compétence ont été remboursés.' } if(!r.hp3){ hp3Walk(r); r.hp3=1 } if(!r.r82){ r82Walk(r); r.r82=1 } if(!r.lp87){ lpWalk(r); r.lp87=1 } if((r.skV||0)<3){ for(const h of r.heroes||[]) resetSkills(h); r.skV=3; if((r.heroes||[]).length) MIG_MSG=(MIG_MSG?MIG_MSG+' ':'')+'Refonte des classes : vos points de compétence et votre spécialisation sont remboursés. Choisissez vos nouveaux talents !' } if(false){ let ch=false; for(const h of r.heroes||[]){ const sp=Object.values(h.learned||{}).reduce((a,b)=>a+(b||0),0)-1; if(sp+(h.sp||0)>spCap(h.lvl)){ if(sp>spCap(h.lvl)){ resetSkills(h); ch=true } else h.sp=spCap(h.lvl)-sp } } r.skV=2; if(ch) MIG_MSG=(MIG_MSG?MIG_MSG+' ':'')+'Les points de compétence sont maintenant limités à '+SP_MAX+' : vos compétences ont été réinitialisées (points remboursés).' } return r};
+const loadData=d=>{if(!d.siteV)d.siteV=1; const r=soloize(fitBag(Object.assign(newGame(),{balV:0,skV:0},migrate(d)))); if((r.balV||0)<1){balMig(r); r.balV=1} if((r.balV||0)<2){impMig(r); r.balV=2} if((r.skV||0)<1){ for(const h of r.heroes||[]) resetSkills(h); r.skV=1; if((r.heroes||[]).length) MIG_MSG=(MIG_MSG?MIG_MSG+' ':'')+'Nouveau système de compétences et de spécialisations : vos points de compétence ont été remboursés.' } if(!r.hp3){ hp3Walk(r); r.hp3=1 } if(!r.r82){ r82Walk(r); r.r82=1 } if(!r.lp87){ lpWalk(r); r.lp87=1 } if(!r.sf88){ sfWalk(r); r.sf88=1 } if((r.skV||0)<3){ for(const h of r.heroes||[]) resetSkills(h); r.skV=3; if((r.heroes||[]).length) MIG_MSG=(MIG_MSG?MIG_MSG+' ':'')+'Refonte des classes : vos points de compétence et votre spécialisation sont remboursés. Choisissez vos nouveaux talents !' } if(false){ let ch=false; for(const h of r.heroes||[]){ const sp=Object.values(h.learned||{}).reduce((a,b)=>a+(b||0),0)-1; if(sp+(h.sp||0)>spCap(h.lvl)){ if(sp>spCap(h.lvl)){ resetSkills(h); ch=true } else h.sp=spCap(h.lvl)-sp } } r.skV=2; if(ch) MIG_MSG=(MIG_MSG?MIG_MSG+' ':'')+'Les points de compétence sont maintenant limités à '+SP_MAX+' : vos compétences ont été réinitialisées (points remboursés).' } return r};
 /* rééquilibrage 0.3.0 : les affixes existants gardent leur qualité de tirage dans la nouvelle plage ; objets divins : 3 affixes au maximum, sans pouvoir */
 const AFX_OLD={hp:[8,3.2],atk:[2,.9],mag:[2,.9],def:[2,.75],spd:[1,.12],hpPct:[2,.12],dmgPct:[2,.14],crit:[1.5,.08],critDmg:[6,.5],dodge:[1.2,.04],lifesteal:[.8,.025]};
 function impMig(d){
@@ -3238,7 +3238,7 @@ const NOHOVER=!!(window.matchMedia&&matchMedia('(hover:none)').matches);
 /* plage possible d'un affixe (tirage 70 % à 100 %), amélioration comprise */
 function affRange(it,a,k){
   const A=AFXM[a.s]; if(!A) return '';
-  const base=(A.b+A.p*it.ilvl)*RAR[it.rarity].m,pc=PCT.has(a.s);
+  const base=(A.b+A.p*it.ilvl)*RAR[it.rarity].m*slotF(it,a.s),pc=PCT.has(a.s);
   const lo=pc?Math.max(.5,r1(base*.7)):Math.max(1,Math.round(base*.7)),hi=pc?Math.max(.5,r1(base)):Math.max(1,Math.round(base));
   const f=v=>pc?r1(v*k)+'%':Math.round(v*k);
   return `<span class="rng">(${f(lo)} – ${f(hi)})</span>`;
@@ -5533,7 +5533,7 @@ function fUpInfo(it,k){
   if(k==='rm_aff') return rmInfo(it);
   const N=NEWI[k];
   if(N&&N.sc){ const pool=scrollPool(it,N.sc),tw=pool.reduce((a,b)=>a+b.w,0),[lo,hi]=SC_R[N.r],m=RAR[it.rarity].m*upMul(it),full=secN(it)>=SECMAX;
-    const rows=pool.map(x=>{const p=x.w/tw*100,a=affVal(x.s,it.ilvl,RAR[it.rarity].m*lo),b=affVal(x.s,it.ilvl,RAR[it.rarity].m*hi);return `<div><span>${STAT_N[x.s]}</span><i><b style="width:${p}%"></b></i><em class="num">${String(Math.round(p*10)/10).replace('.',',')} %</em><small class="num">${x.s==='ap'?'+1':fmtStat(x.s,a*upMul(it)).replace(' '+STAT_N[x.s],'')+' à '+fmtStat(x.s,b*upMul(it)).replace(' '+STAT_N[x.s],'').replace('+','')}</small></div>`}).join('');
+    const rows=pool.map(x=>{const p=x.w/tw*100,a=affVal(x.s,it.ilvl,RAR[it.rarity].m*slotF(it,x.s)*lo),b=affVal(x.s,it.ilvl,RAR[it.rarity].m*slotF(it,x.s)*hi);return `<div><span>${STAT_N[x.s]}</span><i><b style="width:${p}%"></b></i><em class="num">${String(Math.round(p*10)/10).replace('.',',')} %</em><small class="num">${x.s==='ap'?'+1':fmtStat(x.s,a*upMul(it)).replace(' '+STAT_N[x.s],'')+' à '+fmtStat(x.s,b*upMul(it)).replace(' '+STAT_N[x.s],'').replace('+','')}</small></div>`}).join('');
     return {ok:!full,why:full?'Plus d’emplacement libre (3 / 3).':'',cost:{gold:upCostG.sc(it)},chance:100,title:N.n,rar:N.r,
       html:`<p>${esc(SC_T[N.sc].d)}</p><p>Affixes secondaires : <b class="num">${secN(it)} → ${Math.min(SECMAX,secN(it)+1)}</b> / 3.</p><h4>Affixe obtenue</h4><div class="mfprob">${rows}</div><h4>Valeur selon la rareté du parchemin</h4><table class="mftab">${[1,2,3,4].map(r=>`<tr class="${r===N.r?'cur':''}"><td style="color:var(--r${r})">${RAR[r].n}</td><td class="num">${Math.round(SC_R[r][0]*100)}–${Math.round(SC_R[r][1]*100)} %</td></tr>`).join('')}</table><small class="mute">Pourcentage de la valeur maximale au niveau de l’objet (${it.ilvl}), multiplié par la rareté et le niveau de l’objet.</small>`} }
   const g=GEMK[k];
@@ -5628,7 +5628,7 @@ function fDo(){
   const I=fUpInfo(it,k); if(!I||!I.ok||!canPay(I.cost)) return;
   pay(I.cost); let ok=true,msg='';
   const N=NEWI[k];
-  if(N&&N.sc){ const pool=scrollPool(it,N.sc),a=wPick(pool,1)[0],[lo,hi]=SC_R[N.r],v=affVal(a.s,it.ilvl,RAR[it.rarity].m*rand(lo,hi)); it.aff.push({s:a.s,v}); qEv('aff'); removeMat(k,1); msg=`Nouvelle affixe : ${fmtStat(a.s,v*upMul(it))}.` }
+  if(N&&N.sc){ const pool=scrollPool(it,N.sc),a=wPick(pool,1)[0],[lo,hi]=SC_R[N.r],v=affVal(a.s,it.ilvl,RAR[it.rarity].m*rand(lo,hi)); const v2=affRound(a.s,v*slotF(it,a.s)); it.aff.push({s:a.s,v:v2}); qEv('aff'); removeMat(k,1); msg=`Nouvelle affixe : ${fmtStat(a.s,v2*upMul(it))}.` }
   else if(k==='prisme'){ const o=prismDo(it,I); ok=o.ok; msg=o.msg }
   else if(k==='rm_aff'){ msg=rmDo(it) }
   else if(GEMK[k]!=null){ const f2=RAR[it.rarity+1].m/RAR[it.rarity].m; for(const s of Object.keys(it.imp)) it.imp[s]=affRound(s,it.imp[s]*f2); it.aff.forEach(a=>a.v=affRound(a.s,a.v*f2)); it.rarity++; qEv('rar'); if(it.rarity>=4&&!it.leg){ it.leg=it.slot; if(!it.lp) it.lp=rollLp82() } removeMat(k,1); msg=`${esc(it.name)} devient ${RAR[it.rarity].n.toLowerCase()} !` }
@@ -5791,7 +5791,7 @@ function raidSoloFinish(res){
   C.pending=null;C.waiting=null;C.turn=null; const r=RAIDS.find(x=>x.id===C.raid.r),t=C.raid.t;
   S.raidS=S.raidS||{w:0,l:0}; qEv('raidf:'+r.id);
   if(res==='win'){ qEv('raidwin'); sEv('raid:'+r.id); rkRaid(r.id,t,C.round||1);
-    const rw=soloRw(r,t); gain(rw); ascDrop(t); const rIt=rdGear(t); let up=false; S.raid=S.raid||{};
+    const rw=soloRw(r,t); gain(rw); ascDrop(t); rmDrop(t); const rIt=rdGear(t); let up=false; S.raid=S.raid||{};
     if(t>=raidMax(r.id)){ S.raid[r.id]=t+1; up=true; UI.raidT=S.raid[r.id] }
     const chest=Math.random()*100<chestRate(t); if(chest) chestGive(1); S.raidS.w++;
     C.result={win:true,xp:0,gold:rw.gold,mats:Object.fromEntries(Object.entries(rw).filter(([k])=>k!=='gold')),items:rIt?[rIt]:[],ups:[]};
@@ -6934,14 +6934,15 @@ function recHTML(){
   const row=(ins,out,note)=>`<div class="rc9r"><div class="rc9in">${ins.join('<b class="rc9p">+</b>')}</div><b class="rc9a">→</b><div class="rc9out">${out}</div>${note?`<small class="rc9n">${note}</small>`:''}</div>`;
   const outT=(t,s)=>`<span class="rc9o"><b>${t}</b>${s?`<small>${s}</small>`:''}</span>`;
   const sc=Object.entries(SC_T).map(([t,T])=>row([it('sc_blank',1),it('pd_rune',3),it(T.es,1),`<span class="rc9c"><span class="rc9i any">${uic('star')}</span><small>Une rune</small></span>`],outT('Parchemin de '+T.n,'Rareté selon la rune : mineure Magique, majeure Rare, ancienne Épique, primordiale Légendaire'),`${T.d} Coût : 40 or + 60 or par rang de rune.`)).join('');
-  const gems=Object.entries(GEMK).map(([k,g])=>row([it(k,1)],outT(`${RAR[g].n} → ${RAR[g+1].n}`,'Toutes les affixes +5 %'),'')).join('');
+  const gems=Object.entries(GEMK).map(([k,g])=>k==='prisme'?row([it(k,10)],outT('Légendaire → Divin','1 à 10 prismes : 10 % de réussite par prisme'),'Tous les prismes placés sont consommés ; en cas d’échec, l’objet reste intact.'):row([it(k,1)],outT(`${RAR[g].n} → ${RAR[g+1].n}`,'+15 % des valeurs de base'),'')).join('');
   return `<div class="rc9"><header><h2>${uic('book')} Livre des recettes</h2><button class="mfx" data-act="recClose" ${ttip('Fermer')}>${uic('xx')}</button></header><div class="rc9b">
    <section><h3>${uic('spark')} Enchantement</h3><p class="mute">Un Parchemin vierge en haut de l’autel, puis 3 Poudres runiques, une Essence magique (le type) et une Rune (la rareté).</p>${sc}</section>
    <section><h3>${uic('star')} Fusion légendaire</h3>${row([it('prisme',10),it('ru_pri',3),it('sc_blank',1),`<span class="rc9c"><span class="rc9i">${matIcon('gold')}</span><em>20 000</em><small>Or</small></span>`],outT('Parchemin d’action','Légendaire'),'Ajoute +1 Point d’action à un anneau, sans prendre d’emplacement d’affixe. Une fois par anneau.')}</section>
    <section><h3>${uic('anvil')} Forge : renforcer</h3>
-    ${row([it('st_up',1)],outT('Niveau +1','+3 % à toutes les statistiques, jusqu’à +10'),`Réussite : ${UP_CH.map((p,i)=>'+'+(i+1)+' '+p+' %').join(', ')}. En cas d’échec, la pierre est perdue.`)}
+    ${row([it('st_up',1)],outT('Niveau +1','+3 % à toutes les statistiques, jusqu’à +10'),`Réussite : ${UP_CH.map((p,i)=>'+'+(i+1)+' '+p+' %').join(', ')}. 1 pierre jusqu’à +5, puis 2. En cas d’échec, les pierres sont perdues.`)}
     ${row([it('st_up',1),it('ch_pou',1)],outT('Réussite +10 %',''),'')}${row([it('st_up',1),it('ch_tre',1)],outT('Réussite +25 %',''),'')}
     ${gems}
+    ${row([it('rm_aff',1)],outT('Affixe remodelée','Épique · réussite 100 %'),'Remplace une affixe choisie par une affixe de la même catégorie (Robustesse, Fureur, Adresse, Vie, Autres) avec une nouvelle valeur. Coût : 1 500 or + 30 or par niveau d’objet. Marchand, boss et défis.')}
     ${row([it('cr_asc',1)],outT('Niveau d’objet +5','Légendaire · une fois par objet'),'Recalcule toutes les affixes pour le nouveau niveau. Obtenu uniquement en réussissant des défis de raid.')}
     ${row([it('fu_ap',1)],outT('+1 Point d’action','Anneaux uniquement'),'')}</section>
    <section><h3>${uic('recycle')} Forge : recycler</h3><p class="mute">Recycler un objet rend des Poudres runiques, davantage pour les objets rares et de haut niveau. Le recyclage manuel transforme le curseur en enclume.</p></section>
@@ -7378,6 +7379,7 @@ function viewRaidMap82(){
    +zl('','var(--r'+RD_EQW(t).reduce((a,w,i)=>w?i:a,0)+')',eqSvg('armor',EQ_RC[4]),'100 %','rl:eq')
    +Object.entries(rw).filter(([k])=>k!=='gold').map(([k,v])=>zl('','var(--line2)',matIcon(k),'×'+fmt(v),'rl:m:'+k)).join('')
    +zl('','var(--r4)',`<svg class="mfi" viewBox="0 0 24 24">${MI.cr_asc}</svg>`,pc82(Math.min(10,3+t*.5)),'rl:asc')
+   +zl('','var(--r3)',`<svg class="mfi" viewBox="0 0 24 24">${MI.rm_aff}</svg>`,pc82(rmCh(t)),'nw:rm_aff')
    +zl('','#c99a3a',matIcon('c_relic'),pc82(chestRate(t)),'rw:chest');
   const mag=r.role==='mag';
   return `<div class="amap rd82">
@@ -7476,7 +7478,8 @@ function help82(){
     +T(['Affixe','Rareté','Chance (affixe bonus, Guerrier)'],AFX.slice().sort((a,b)=>b.w-a.w).map(a=>[STAT_N[a.s]+(PCT.has(a.s)&&!/^r/.test(a.s)?' %':''),affTier(a.w),pool.includes(a)?pc82(a.w/ptot*100):'—']))
     +P('Valeur d’une affixe à l’obtention : entre 70 % et 100 % de son maximum au niveau de l’objet, multipliée par la puissance de la rareté.')]);
   const it50={ilvl:50,rarity:2,up:0},rows=UP_CH.map((p,i)=>[`+${i} → +${i+1}`,p+' %',stNeed({up:i}),fmt(upCostG.st({ilvl:50,up:i}))+' or']);
-  out.push(['legp','Pouvoirs légendaires',T(['Pouvoir','Effet par objet'],Object.values(LPW).map(p=>[esc(p.n),esc(p.d)+(p.fix?'':` <small class="mute">(Divin : ${esc(p.D(1.5))})</small>`)]))+P('Chaque objet légendaire reçoit un pouvoir au hasard. Le même pouvoir se cumule sur 3 objets au maximum (Moisson : 1). Les objets divins ont un pouvoir 50 % plus fort (sauf Moisson).')]);
+  out.push(['legp','Pouvoirs légendaires',T(['Pouvoir','Objet légendaire','Objet divin'],Object.values(LPW).map(p=>[esc(p.n),esc(p.D(1)),esc(p.D(p.fix?1:1.5))]))+P('Chaque objet légendaire reçoit un pouvoir au hasard. Le même pouvoir se cumule sur 3 objets au maximum (Moisson : 1). Les objets divins ont la version renforcée du pouvoir.')]);
+  out.push(['slotf','Affixes selon l’emplacement',T(['Emplacement','Attaque (Force, Intelligence, critique, dégâts)','Vie et défense (PV, PV %, Défense)','Résistances'],[['Bijoux (anneaux, amulette)','×1,5','×0,75','×0,75'],['Armures (casque, torse, jambes, bottes)','×0,7','×1,15','×1,25'],['Arme','×1','×1','×1']])+P('Ce multiplicateur s’applique à la valeur des affixes, y compris celles ajoutées par parchemin ou par remodelage. Vitesse, esquive, vol de vie et or trouvé ne changent pas.')]);
   out.push(['forge','Forge : renforcer un objet',`<h4>Pierre de renforcement</h4>`+T(['Niveau','Réussite','Pierres','Or (objet niv. 50)'],rows)
     +P('Chaque niveau ajoute +3 % à toutes les statistiques de l’objet (+30 % à +10). En cas d’échec, les pierres et le bonus sont perdus mais l’objet reste intact.')
     +T(['Bonus de réussite','Effet'],[[esc(NEWI.ch_pou.n),'+'+NEWI.ch_pou.bon+' %'],[esc(NEWI.ch_tre.n),'+'+NEWI.ch_tre.bon+' %']])
@@ -7495,7 +7498,7 @@ function help82(){
   out.push(['raid','Défis',T(['Boss','Niveau','Requis','PV (palier +0)','Attaque (palier +0)','Compétences'],RAIDS.map(r=>{const b=soloBoss({r:r.id,t:0});return [esc(r.n),r.L,r.req,fmt(b.hp),fmt(Math.round(b.atk)),r.sk.map(id=>esc(SK[id].n)).join(', ')]}))
     +P(`Chaque victoire débloque le palier suivant : +5 % de PV, d’attaque et de défense par palier (cumulatif). Rage au tour ${RD_RAGE+1}. Cliquez sur l’icône Infos d’un boss pour voir ses statistiques au palier choisi.`)
     +T(['Palier','Équipement (garanti)','Rare','Épique','Légendaire','Cristal d’ascension','Coffre des Reliques'],[0,5,10,15].map(t=>{const W=RD_EQW(t),s=W.reduce((a,b)=>a+b,0);return ['+'+t,'niveau '+RD_IL(t),pc82(W[2]/s*100),pc82(W[3]/s*100),pc82(W[4]/s*100),pc82(Math.min(10,3+t*.5)),pc82(chestRate(t))]}))
-    +P('Récompenses en or, runes, essences et cristaux à chaque victoire, plus élevées à chaque palier.')]);
+    +P('Récompenses en or, runes, essences et cristaux à chaque victoire, plus élevées à chaque palier. Pierre de remodelage : 5 % au palier +0, puis +0,5 % par palier (15 % au maximum).')]);
   out.push(['duel','Duels',T(['Règle','Détail'],[['Victoire',fmt(PVP_GOLD)+' or'],['PV en duel',`${num(PVP_HP)} × vos PV`],['Temps par tour',PVP_TURN+' secondes (un joueur inactif peut être déclaré perdant)']])
     +`<h4>Cosmétiques de duel</h4>`+T(['Cosmétique','Type','Rareté','Victoires'],DCOS.map(c=>[esc(c.n),COS_T[c.t],`<span style="color:${SRAR[c.r][1]}">${SRAR[c.r][0]}</span>`,c.w]))+P('Les cosmétiques de duel sont permanents : ils ne sont pas liés à la saison. Les victoires comptent sur tout votre compte.')]);
   out.push(['comp','Compagnon',T(['Ticket','Commune','Rare','Épique','Légendaire'],Object.entries(CP_DRAW).map(([k,W])=>[esc(MAT_OBJ[k]),...W.map(w=>w?num(w)+' %':'—')]))
@@ -7681,7 +7684,7 @@ const LPV={
 for(const [k,v] of Object.entries(LPV)){ LPW[k]=Object.assign(LPW[k]||{},v); LPW[k].d=v.D(1); delete LPW[k].gx; delete LPW[k].st; if(v.gx) LPW[k].gx=v.gx; if(v.st) LPW[k].st=v.st }
 const lpM=it=>it&&it.rarity>=5?1.5:1;
 let LP_ALLOW=null;
-legD82=it=>{ const P=LPW[lpOf(it)]; if(!P) return ""; return P.D(P.fix?1:lpM(it))+(it.rarity>=5&&!P.fix?' <em class="lpdiv">Divin : +50 %</em>':'') };
+legD82=it=>{ const P=LPW[lpOf(it)]; if(!P) return ""; return P.D(P.fix?1:lpM(it)) };
 legStat82=it=>{ const k=lpOf(it),P=LPW[k]; if(!P||!P.st) return {}; if(LP_ALLOW&&!LP_ALLOW.has(it)) return {}; const m=P.fix?1:lpM(it); return Object.fromEntries(Object.entries(P.st).map(([s,v])=>[s,v*m])) };
 function lpAllow(h){ const by={}; for(const it of Object.values(h.equip||{})){ const k=lpOf(it); if(k) (by[k]=by[k]||[]).push(it) }
   const A=new Set(); for(const [k,L] of Object.entries(by)){ L.sort((a,b)=>b.rarity-a.rarity); L.slice(0,LPW[k].max||LP_MAXN).forEach(x=>A.add(x)) } return A }
@@ -7713,14 +7716,28 @@ const rmCost=it=>({gold:Math.round(1500+it.ilvl*30)});
 function rmInfo(it){ const L=it.aff.map((a,i)=>({a,i})).filter(({a})=>a.s!=='ap'&&!a.fuse&&AFXM[a.s]);
   if(UI.fAff==null||!L.some(x=>x.i===UI.fAff)) UI.fAff=L.length?L[0].i:null; const a=it.aff[UI.fAff],kk=upMul(it);
   const P=a?rmPool(it,a):null,tw=P?P.pool.reduce((x,y)=>x+y.w,0):1,m=RAR[it.rarity].m;
-  const rows=P?P.pool.map(x=>{const A=AFXM[x.s],lo=(A.b+A.p*it.ilvl)*m*(it.rarity>=5?1:.7),hi=(A.b+A.p*it.ilvl)*m;return `<div><span>${STAT_N[x.s]}</span><i><b style="width:${x.w/tw*100}%"></b></i><em class="num">${pc82(x.w/tw*100)}</em><small class="num">${fmtStat(x.s,affRound(x.s,lo)*kk).replace(' '+STAT_N[x.s],'')} à ${fmtStat(x.s,affRound(x.s,hi)*kk).replace(' '+STAT_N[x.s],'').replace('+','')}</small></div>`}).join(''):'';
+  const rows=P?P.pool.map(x=>{const A=AFXM[x.s],sf=typeof slotF==='function'?slotF(it,x.s):1,lo=(A.b+A.p*it.ilvl)*m*sf*(it.rarity>=5?1:.7),hi=(A.b+A.p*it.ilvl)*m*sf;return `<div><span>${STAT_N[x.s]}</span><i><b style="width:${x.w/tw*100}%"></b></i><em class="num">${pc82(x.w/tw*100)}</em><small class="num">${fmtStat(x.s,affRound(x.s,lo)*kk).replace(' '+STAT_N[x.s],'')} à ${fmtStat(x.s,affRound(x.s,hi)*kk).replace(' '+STAT_N[x.s],'').replace('+','')}</small></div>`}).join(''):'';
   return {ok:!!a,why:a?'':'Aucune affixe modifiable sur cet objet.',cost:rmCost(it),chance:100,title:NEWI.rm_aff.n,rar:3,
    html:`<p>Choisissez l’affixe à remodeler. Elle sera remplacée par une affixe de la même catégorie, avec une nouvelle valeur.</p><h4>Affixe à remodeler</h4><div class="rmsel87">${L.map(({a:x,i})=>`<button class="${i===UI.fAff?'on':''}" data-act="fAffSel" data-i="${i}">${fmtStat(x.s,x.s==='ap'?x.v:x.v*kk)}${x.main?' <em>principale</em>':x.bonus?' <em>bonus</em>':''}</button>`).join('')}</div>
     ${P?`<h4>Résultat possible · ${esc(P.n)}</h4><div class="mfprob">${rows}</div><small class="mute">Une affixe déjà présente sur l’objet ne peut pas être tirée. Valeur : 70 à 100 % du maximum au niveau de l’objet${it.rarity>=5?' (Divin : toujours au maximum)':''}.</small>`:''}`} }
 function rmDo(it){ const a=it.aff[UI.fAff]; if(!a) return 'Aucune affixe choisie.'; const P=rmPool(it,a),n=wPick(P.pool,1)[0],old=fmtStat(a.s,a.v*upMul(it));
-  a.s=n.s; a.v=rollAff(AFXM[n.s],it.ilvl,RAR[it.rarity].m); removeMat('rm_aff',1); qEv('aff');
+  a.s=n.s; a.v=rollAff(AFXM[n.s],it.ilvl,RAR[it.rarity].m); if(typeof slotF==='function') a.v=affRound(a.s,a.v*slotF(it,a.s)); removeMat('rm_aff',1); qEv('aff');
   return `Remodelage : ${old} → ${fmtStat(a.s,a.v*upMul(it))}.` }
 const _genItem87=genItem; genItem=function(...a){ const it=_genItem87(...a); lpFix(it); return it };
+/* ================= 0.8.8 : affixes selon l'emplacement, remodelage en butin ================= */
+const SF_OFF=new Set(['atk','mag','crit','critDmg','dmgPct']),SF_DEF=new Set(['hp','hpPct','def']),SF_RES=new Set(['rPhys','rMag','rFeu','rGlace','rFoudre','rTerre']);
+const SLOTF={jew:{off:1.5,def:.75,res:.75},arm:{off:.7,def:1.15,res:1.25},wpn:{off:1,def:1,res:1}};
+const slotGrp=it=>{ const s=it&&it.slot; return s==='ring'||s==='ring2'||s==='amulet'?'jew':s==='weapon'?'wpn':'arm' };
+const sfKind=s=>SF_OFF.has(s)?'off':SF_DEF.has(s)?'def':SF_RES.has(s)?'res':null;
+function slotF(it,s){ const k=sfKind(s); return k?SLOTF[slotGrp(it)][k]:1 }
+function sfItem(o){ if(!o||o.sf88||!o.slot||!Array.isArray(o.aff)) return; for(const a of o.aff){ if(a.s==='ap') continue; const f=slotF(o,a.s); if(f!==1) a.v=affRound(a.s,a.v*f) } o.sf88=1 }
+function sfWalk(o,d){ if(!o||typeof o!=='object'||(d|0)>9) return; if(Array.isArray(o)){ for(const x of o) sfWalk(x,(d|0)+1); return } if(o.slot&&Array.isArray(o.aff)){ sfItem(o); return } for(const k in o) if(o[k]&&typeof o[k]==='object') sfWalk(o[k],(d|0)+1) }
+function accSf88(){ if(!ACC||ACC.sf88) return; sfWalk(ACC.stash); ACC.sf88=1; try{ saveAcc() }catch(e){} }
+const _genItem88=genItem; genItem=function(...a){ const it=_genItem88(...a); sfItem(it); return it };
+/* ---------- Pierre de remodelage : boss et défis ---------- */
+[.2,.3,.4,.6,.8].forEach((p,z)=>{ const L=ZLOOT[z].it,e=L.find(x=>x[0]==='rm_aff'); if(e) e[1]=p; else L.push(['rm_aff',p]) });
+const rmCh=t=>Math.min(15,5+(t||0)*.5);
+function rmDrop(t){ if(Math.random()*100<rmCh(t)){ qGive([['rm_aff',1]]); setTimeout(()=>toast('✦ Butin : Pierre de remodelage !'),1000); return true } return false }
 
 function viewCombatIdle(){
   const P=prog(),dk=curDiff(),D=DIFF[dk],hero=dk!=='normal',z=ZONES[UI.zone],L=D.L||UI.zone*10+UI.stage;
@@ -8263,7 +8280,7 @@ document.addEventListener('keydown',e=>{
 
 /* ============ coffre (lié au compte, partagé entre les personnages) ============ */
 const SW=15,SH=5,STASH_MAX=6,STASH_COST=[0,5000,15000,40000,100000,250000];
-function stashD(){ accHp3(); accR82(); accLp87(); if(!ACC.stash||!Array.isArray(ACC.stash.tabs)||!ACC.stash.tabs.length) ACC.stash={tabs:[{n:'Coffre 1',bag:[]}],cur:0}; const d=ACC.stash; if(!d.tabs[d.cur]) d.cur=0; return d }
+function stashD(){ accHp3(); accR82(); accLp87(); accSf88(); if(!ACC.stash||!Array.isArray(ACC.stash.tabs)||!ACC.stash.tabs.length) ACC.stash={tabs:[{n:'Coffre 1',bag:[]}],cur:0}; const d=ACC.stash; if(!d.tabs[d.cur]) d.cur=0; return d }
 const stashTab=()=>{const d=stashD(); return d.tabs[d.cur]};
 const stashUsed=T=>T.bag.reduce((a,e)=>{const [w,h]=SIZE(e.o);return a+w*h},0);
 function stashOverlaps(T,x,y,w,h,skip){return T.bag.filter(e=>{ if(e===skip) return false; const [ew,eh]=SIZE(e.o); return x<e.x+ew&&e.x<x+w&&y<e.y+eh&&e.y<y+h })}
@@ -8601,9 +8618,10 @@ function viewHelp(){
 }
 
 /* --- nouveautés --- */
-const VERSION='0.8.7';
-const BUILD='20261022073011';
+const VERSION='0.8.8';
+const BUILD='20261022074345';
 const PATCH=[
+ {"v": "0.8.8", "t": "Affixes selon l’emplacement", "sec": [["Équilibrage", ["Les affixes dépendent maintenant de l’emplacement de l’objet, un peu comme dans Diablo 4.", "Bijoux (anneaux et amulette) : affixes d’attaque (Force, Intelligence, Chance et Dégâts critiques, Dégâts bonus) ×1,5 ; PV, PV % et Défense ×0,75 ; résistances ×0,75. Exemple, anneau épique niveau 50 : Intelligence jusqu’à 46 → 70, PV jusqu’à 600 → 450.", "Armures (casque, torse, jambes, bottes) : PV, PV % et Défense ×1,15 ; résistances ×1,25 ; affixes d’attaque ×0,7. Exemple, casque épique niveau 50 : résistance au feu jusqu’à 13 % → 16 %, Intelligence jusqu’à 46 → 33.", "Arme : inchangée. Vitesse, Esquive, Vol de vie et Or trouvé : inchangés partout.", "Au total, un équipement complet garde à peu près la même puissance (environ +2 % d’attaque, −2 % de PV) : l’attaque se concentre sur les bijoux, la défense sur les armures. Vos objets actuels sont mis à jour automatiquement, et les parchemins suivent la même règle."]], ["Équipement", ["Pouvoirs des objets divins : l’infobulle affiche directement la valeur divine (par exemple Vitalité : +10 % de PV max sur un objet légendaire, +15 % sur un objet divin). L’Aide montre les deux valeurs côte à côte."]], ["Pierre de remodelage", ["Ajoutée au Livre des recettes.", "Nouveau butin des défis : 5 % par victoire au palier +0, puis +0,5 % par palier (15 % au maximum).", "Aventure : elle peut tomber dans toutes les zones (0,2 % à 0,8 % par combat), et 3 fois plus souvent sur les boss (0,6 % à 2,4 %)."]], ["Correction", ["Livre des recettes : la Pierre de rareté indique +15 % (au lieu de +5 %), le Prisme divin 1 à 10 prismes à 10 % chacun, et la Pierre de renforcement 2 pierres à partir de +6."]]]},
  {"v": "0.8.7", "t": "Pouvoirs légendaires et Pierre de remodelage", "sec": [["Équipement", ["Nouveaux pouvoirs légendaires : Garde des éléments (+5 % à toutes les résistances élémentaires) et Vitalité (+10 % de PV max).", "Œil du prédateur : +6 % → +3 % de chances de critique, +10 % → +7 % de dégâts critiques.", "Objets divins : ils ont maintenant eux aussi un pouvoir, 50 % plus fort. Exemples : Vitalité +10 % → +15 % de PV max, Brise-armure 6 % → 9 %. Moisson ne change pas.", "Tous vos objets légendaires et divins déjà obtenus (portés, dans le sac ou dans le coffre) reçoivent un pouvoir tiré au hasard parmi les 12. Ceux qui en avaient déjà un depuis la 0.8.6 le gardent."]], ["Forge", ["Nouvel objet : Pierre de remodelage (Épique). Choisissez une affixe de l’objet : elle est remplacée par une affixe tirée au hasard dans la même catégorie (Robustesse, Fureur, Adresse, Vie ou Autres), avec une nouvelle valeur. Réussite 100 %. Coût : 1 500 or + 30 or par niveau d’objet.", "Une affixe déjà présente sur l’objet ne peut pas sortir. Les affixes de fusion (+1 PA) ne se remodèlent pas ; la statistique principale garde son type mais change de valeur.", "Où la trouver : chez le Marchand (catégorie Enchantement, 15 000 or + 1 Rune majeure) ou en aventure dans les zones 3 à 5 (0,2 à 0,6 % par combat, ×3 sur les boss)."]], ["Équilibrage", ["Parchemin d’Adresse : il ne peut plus donner de Points d’action. Chances : Vitesse 35 → 37 %, Esquive 35 → 37 %, Vol de vie 25 → 26 %. Les affixes PA déjà obtenues sont conservées."]]]},
  {"v": "0.8.6", "t": "Pouvoirs légendaires", "sec": [["Équilibrage", ["Dégâts critiques : plafond 200 % → 300 %. Un coup critique peut maintenant infliger jusqu’à 3 fois les dégâts (avant : 2 fois)."]], ["Équipement", ["Nouveau : 10 pouvoirs légendaires. Chaque nouvel objet légendaire en reçoit un au hasard (avant : toujours +6 % de critique et +10 % de dégâts critiques).", "Œil du prédateur : +6 % de chances de critique et +10 % de dégâts critiques. Brise-armure : ignore 6 % de la Défense ennemie. Représailles : 8 % de chance de contre-attaquer quand vous êtes touché. Opportuniste : +8 % de dégâts contre les cibles étourdies, paralysées ou ralenties.", "Soif de survie : +4 % de vol de vie sous 50 % de PV. Dernier rempart : −8 % de dégâts subis sous 35 % de PV. Fureur du désespoir : +1 % de dégâts par tranche de 10 % de PV manquants. Égide : boucliers et barrières +15 %. Sève ancienne : rend 1 % des PV max à chaque tour. Moisson : vaincre un ennemi rend 1 PA.", "Un même pouvoir se cumule sur 3 objets au maximum (Moisson : un seul). Vos objets légendaires actuels gardent leur pouvoir (Œil du prédateur). Le pouvoir s’affiche dans l’infobulle de l’objet et dans l’Aide."]]]},
  {"v": "0.8.5", "t": "Place du marché et Maroquinier", "sec": [["Marchand", ["Le Marchand devient la Place du marché : un accueil avec trois échoppes, puis un bouton pour revenir à la place.", "Nouveaux décors propres au commerce : le marché et ses étals, la salle des enchères, l’atelier du maroquinier (avant : décor de l’arène de duel)."]], ["Hôtel des ventes", ["L’Hôtel des ventes déménage de Communauté vers la Place du marché. Il fonctionne comme avant (Acheter, Vendre, Mes ventes, Historique)."]], ["Maroquinier", ["Nouvelle échoppe pour agrandir son stockage. Les améliorations valent pour tout le compte.", "Sac agrandi : +1 rangée de 14 cases par niveau. Sac : 70 → 84 → 98 → 112 cases. Prix : 25 000 or ; 80 000 or + 1 Rune ancienne ; 200 000 or + 1 Rune primordiale.", "Sacoche d’artisanat : 8, 16 puis 24 piles de 500 pour la poudre, les essences, les runes, les pierres, les parchemins, les bonus de réussite et les prismes. Prix : 15 000 or ; 50 000 or + 1 Rune majeure ; 120 000 or + 1 Rune ancienne.", "Ceinture de potions : 6 puis 12 piles pour toutes les potions. Prix : 20 000 or ; 60 000 or + 1 Rune majeure.", "Besace du dresseur : 8 puis 16 piles pour les objets de Compagnon. Prix : 15 000 or ; 45 000 or + 1 Rune majeure.", "Les objets compatibles vont automatiquement dans leur sacoche, sans prendre de place dans le sac, et restent utilisables partout (Forge, combat, Compagnon, quêtes).", "Nouveau bouton Sacoches dans l’inventaire, à côté du coffre : voir leur contenu, remettre une pile dans le sac d’un clic, ou tout ranger avec « Ranger le sac »."]]]},
