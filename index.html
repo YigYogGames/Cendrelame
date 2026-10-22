@@ -4058,7 +4058,8 @@ const pvpMe=()=>FB.user&&FB.user.uid;
 const pvpOp=m=>m.players.find(x=>x!==pvpMe());
 const pvpTS=()=>firebase.firestore.FieldValue.serverTimestamp();
 const pvpReady=()=>!!(FB.user&&FB.prof&&S&&S.heroes&&S.heroes[0]);
-const PVP_HP=2.5;
+const PVP_HP=2.5,PVP_DMG=.35;
+const W_P=(L,f,g)=>{ const W=W_L(L,f,g),d0=W.dmg; W.pvp=1; W.dmg=(t,d,c,src,l)=>d0(t,src?d:Math.max(1,Math.round(d*PVP_DMG)),c,src,l); return W };
 function pvpSnap(hm=1){
   const h=S.heroes[0],u=mkHeroUnit(h),keys=['hp','maxHp','atk','mag','def','res','spd','crit','critDmg','dodge','lifesteal','dmgPct','ap','maxAp',...RES_K];
   const o={acct:FB.prof.name,name:h.name,cls:h.cls,skin:h.skin||null,aura:myAura(),lvl:h.lvl,role:u.role,gx:u.gx,skills:u.skills.slice(),ranks:Object.fromEntries(u.skills.map(id=>[id,h.learned[id]||1])),cds:{},st:[],shield:0,atkUsed:false,stun:false};
@@ -4143,7 +4144,7 @@ function pvHit(u,t,mult,st,sk,L){
   return d;
 }
 function pvSelf(u,sk,L){ if(!sk.self) return; const c=Math.min(u.hp-1,Math.round(u.maxHp*sk.self)); if(c>0){ u.hp-=c; L.push(`${u.name} sacrifie ${c} PV.`) } }
-function pvExec(u,t,sk,L){ CB.exec(u,sk,t,W_L(L,x=>x===u?[t]:[u],x=>x===u?[u]:[t])) }
+function pvExec(u,t,sk,L){ CB.exec(u,sk,t,W_P(L,x=>x===u?[t]:[u],x=>x===u?[u]:[t])) }
 function pvFx(u,tg,f,k,sk,L){
   const st=sk.st||u.role; if(tg.hp<=0) return;
   {
@@ -4190,7 +4191,7 @@ async function pvEnd(){
   CB.end(U); for(const q in (U.pcd||{})) U.pcd[q]=Math.max(0,U.pcd[q]-1); U.stun=false; U.atkUsed=false;
   /* début du tour adverse */
   T.ap=T.maxAp; T.atkUsed=false;
-  { const r0=CB.start(T,W_L(x.L,v=>v===T?[U]:[T],v=>v===T?[T]:[U])); T.stun=!!r0.skip }
+  { const r0=CB.start(T,W_P(x.L,v=>v===T?[U]:[T],v=>v===T?[T]:[U])); T.stun=!!r0.skip }
   const round=(x.m.round||1)+(x.o===x.m.first?1:0);
   PV.busy=true; await pvCommit(x,{turn:x.o,round,turnAt:pvpTS()}); PV.busy=false;
 }
@@ -6335,6 +6336,7 @@ CB.calc=(u,t,mult,st,sk,W,opt)=>{
   let d=effStat(u,st)*mult*K/(K+def);
   d*=1+(u.dmgPct||0)/100; d*=resMul(t,st,sk&&sk.el); d*=skMul(u,t,sk,opt);
   if(W.rage) d*=W.rage(u);
+  if(W.pvp) d*=PVP_DMG;
   d*=rand(.92,1.08);
   const crit=Math.random()*100<CB.crit(u,sk); if(crit) d*=CB.cdmg(u,sk)/100;
   return {d:Math.max(1,Math.round(d)),crit};
@@ -7499,7 +7501,7 @@ function help82(){
     +P(`Chaque victoire débloque le palier suivant : +5 % de PV, d’attaque et de défense par palier (cumulatif). Rage au tour ${RD_RAGE+1}. Cliquez sur l’icône Infos d’un boss pour voir ses statistiques au palier choisi.`)
     +T(['Palier','Équipement (garanti)','Rare','Épique','Légendaire','Cristal d’ascension','Coffre des Reliques'],[0,5,10,15].map(t=>{const W=RD_EQW(t),s=W.reduce((a,b)=>a+b,0);return ['+'+t,'niveau '+RD_IL(t),pc82(W[2]/s*100),pc82(W[3]/s*100),pc82(W[4]/s*100),pc82(Math.min(10,3+t*.5)),pc82(chestRate(t))]}))
     +P('Récompenses en or, runes, essences et cristaux à chaque victoire, plus élevées à chaque palier. Pierre de remodelage : 5 % au palier +0, puis +0,5 % par palier (15 % au maximum).')]);
-  out.push(['duel','Duels',T(['Règle','Détail'],[['Victoire',fmt(PVP_GOLD)+' or'],['PV en duel',`${num(PVP_HP)} × vos PV`],['Temps par tour',PVP_TURN+' secondes (un joueur inactif peut être déclaré perdant)']])
+  out.push(['duel','Duels',T(['Règle','Détail'],[['Victoire',fmt(PVP_GOLD)+' or'],['PV en duel',`${num(PVP_HP)} × vos PV`],['Dégâts en duel',`−${Math.round((1-PVP_DMG)*100)} % sur tous les dégâts entre joueurs`],['Temps par tour',PVP_TURN+' secondes (un joueur inactif peut être déclaré perdant)']])
     +`<h4>Cosmétiques de duel</h4>`+T(['Cosmétique','Type','Rareté','Victoires'],DCOS.map(c=>[esc(c.n),COS_T[c.t],`<span style="color:${SRAR[c.r][1]}">${SRAR[c.r][0]}</span>`,c.w]))+P('Les cosmétiques de duel sont permanents : ils ne sont pas liés à la saison. Les victoires comptent sur tout votre compte.')]);
   out.push(['comp','Compagnon',T(['Ticket','Commune','Rare','Épique','Légendaire'],Object.entries(CP_DRAW).map(([k,W])=>[esc(MAT_OBJ[k]),...W.map(w=>w?num(w)+' %':'—')]))
     +T(['Qualité','Part des créatures'],[['S','≈ 0,5 %'],['A','≈ 6 %'],['B','≈ 23 %'],['C et D','le reste']])
@@ -8618,9 +8620,10 @@ function viewHelp(){
 }
 
 /* --- nouveautés --- */
-const VERSION='0.8.8';
-const BUILD='20261022074345';
+const VERSION='0.8.9';
+const BUILD='20261022081646';
 const PATCH=[
+ {"v": "0.8.9", "t": "Duels : dégâts réduits", "sec": [["Équilibrage", ["Duels : tous les dégâts infligés entre joueurs sont réduits de 65 % (coups, critiques, contre-attaques, brûlures, saignements et poisons). Exemple : un coup à 6 000 contre un boss fait environ 2 100 à un joueur.", "Le vol de vie suit les dégâts réduits. Les PV de duel ne changent pas (2,5 × vos PV).", "Simulation au niveau 50 en équipement légendaire +6 : un duel durait 4 à 5 tours, il dure maintenant 12 à 18 tours.", "Aventure, défis et boss ne changent pas."]]]},
  {"v": "0.8.8", "t": "Affixes selon l’emplacement", "sec": [["Équilibrage", ["Les affixes dépendent maintenant de l’emplacement de l’objet, un peu comme dans Diablo 4.", "Bijoux (anneaux et amulette) : affixes d’attaque (Force, Intelligence, Chance et Dégâts critiques, Dégâts bonus) ×1,5 ; PV, PV % et Défense ×0,75 ; résistances ×0,75. Exemple, anneau épique niveau 50 : Intelligence jusqu’à 46 → 70, PV jusqu’à 600 → 450.", "Armures (casque, torse, jambes, bottes) : PV, PV % et Défense ×1,15 ; résistances ×1,25 ; affixes d’attaque ×0,7. Exemple, casque épique niveau 50 : résistance au feu jusqu’à 13 % → 16 %, Intelligence jusqu’à 46 → 33.", "Arme : inchangée. Vitesse, Esquive, Vol de vie et Or trouvé : inchangés partout.", "Au total, un équipement complet garde à peu près la même puissance (environ +2 % d’attaque, −2 % de PV) : l’attaque se concentre sur les bijoux, la défense sur les armures. Vos objets actuels sont mis à jour automatiquement, et les parchemins suivent la même règle."]], ["Équipement", ["Pouvoirs des objets divins : l’infobulle affiche directement la valeur divine (par exemple Vitalité : +10 % de PV max sur un objet légendaire, +15 % sur un objet divin). L’Aide montre les deux valeurs côte à côte."]], ["Pierre de remodelage", ["Ajoutée au Livre des recettes.", "Nouveau butin des défis : 5 % par victoire au palier +0, puis +0,5 % par palier (15 % au maximum).", "Aventure : elle peut tomber dans toutes les zones (0,2 % à 0,8 % par combat), et 3 fois plus souvent sur les boss (0,6 % à 2,4 %)."]], ["Correction", ["Livre des recettes : la Pierre de rareté indique +15 % (au lieu de +5 %), le Prisme divin 1 à 10 prismes à 10 % chacun, et la Pierre de renforcement 2 pierres à partir de +6."]]]},
  {"v": "0.8.7", "t": "Pouvoirs légendaires et Pierre de remodelage", "sec": [["Équipement", ["Nouveaux pouvoirs légendaires : Garde des éléments (+5 % à toutes les résistances élémentaires) et Vitalité (+10 % de PV max).", "Œil du prédateur : +6 % → +3 % de chances de critique, +10 % → +7 % de dégâts critiques.", "Objets divins : ils ont maintenant eux aussi un pouvoir, 50 % plus fort. Exemples : Vitalité +10 % → +15 % de PV max, Brise-armure 6 % → 9 %. Moisson ne change pas.", "Tous vos objets légendaires et divins déjà obtenus (portés, dans le sac ou dans le coffre) reçoivent un pouvoir tiré au hasard parmi les 12. Ceux qui en avaient déjà un depuis la 0.8.6 le gardent."]], ["Forge", ["Nouvel objet : Pierre de remodelage (Épique). Choisissez une affixe de l’objet : elle est remplacée par une affixe tirée au hasard dans la même catégorie (Robustesse, Fureur, Adresse, Vie ou Autres), avec une nouvelle valeur. Réussite 100 %. Coût : 1 500 or + 30 or par niveau d’objet.", "Une affixe déjà présente sur l’objet ne peut pas sortir. Les affixes de fusion (+1 PA) ne se remodèlent pas ; la statistique principale garde son type mais change de valeur.", "Où la trouver : chez le Marchand (catégorie Enchantement, 15 000 or + 1 Rune majeure) ou en aventure dans les zones 3 à 5 (0,2 à 0,6 % par combat, ×3 sur les boss)."]], ["Équilibrage", ["Parchemin d’Adresse : il ne peut plus donner de Points d’action. Chances : Vitesse 35 → 37 %, Esquive 35 → 37 %, Vol de vie 25 → 26 %. Les affixes PA déjà obtenues sont conservées."]]]},
  {"v": "0.8.6", "t": "Pouvoirs légendaires", "sec": [["Équilibrage", ["Dégâts critiques : plafond 200 % → 300 %. Un coup critique peut maintenant infliger jusqu’à 3 fois les dégâts (avant : 2 fois)."]], ["Équipement", ["Nouveau : 10 pouvoirs légendaires. Chaque nouvel objet légendaire en reçoit un au hasard (avant : toujours +6 % de critique et +10 % de dégâts critiques).", "Œil du prédateur : +6 % de chances de critique et +10 % de dégâts critiques. Brise-armure : ignore 6 % de la Défense ennemie. Représailles : 8 % de chance de contre-attaquer quand vous êtes touché. Opportuniste : +8 % de dégâts contre les cibles étourdies, paralysées ou ralenties.", "Soif de survie : +4 % de vol de vie sous 50 % de PV. Dernier rempart : −8 % de dégâts subis sous 35 % de PV. Fureur du désespoir : +1 % de dégâts par tranche de 10 % de PV manquants. Égide : boucliers et barrières +15 %. Sève ancienne : rend 1 % des PV max à chaque tour. Moisson : vaincre un ennemi rend 1 PA.", "Un même pouvoir se cumule sur 3 objets au maximum (Moisson : un seul). Vos objets légendaires actuels gardent leur pouvoir (Œil du prédateur). Le pouvoir s’affiche dans l’infobulle de l’objet et dans l’Aide."]]]},
