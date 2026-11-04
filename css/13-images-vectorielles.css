@@ -1,0 +1,10 @@
+/* Cendrelame · images en style vectoriel flat (0.8.12) */
+/* icônes d'objets : un peu plus grandes que les anciens dessins au trait */
+.cell svg:has(>image){width:84%;height:84%}
+/* vignettes d'ennemis : buste cadré sur la tête */
+.imbust{width:100%!important;height:100%!important;border-radius:inherit}
+.cvo .cvfoe{object-fit:cover;object-position:50% 4%;background:#3a2817}
+/* sélection des héros : personnage entier, posé au-dessus du nom */
+.sel5>.hart img{object-fit:contain;object-position:50% 100%;padding:18px 12px 170px;box-sizing:border-box}
+/* création : personnage entier au-dessus du bouton */
+.ccr>.hart.big img{object-fit:contain;object-position:50% 100%;padding:30px 30px 130px;box-sizing:border-box}
