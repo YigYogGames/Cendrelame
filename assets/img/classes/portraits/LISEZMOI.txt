@@ -1,0 +1,10 @@
+﻿Cendrelame · Portraits des classes
+==================================
+Format : PNG carré 512 × 512, fond transparent ou uni, visage et buste.
+Nom de fichier : exactement celui de la liste (minuscules, sans accents). Format PNG.
+Après avoir ajouté des images : lancez outils\mettre-a-jour-images.bat, puis rechargez le jeu.
+Une image absente n’est pas un problème : le jeu garde son dessin actuel.
+
+Images attendues dans ce dossier (2) :
+  guerrier.png                       Portrait : Guerrier
+  mage.png                           Portrait : Sorcier

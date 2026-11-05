@@ -1,0 +1,14 @@
+﻿Cendrelame · Fonds de zones
+===========================
+Format : image large 1920 × 640.
+Le jeu utilise des fichiers JPG (zone_0.jpg…), bien plus légers : un fond PNG pèse environ 2 Mo, le JPG environ 300 Ko.
+Déposez votre PNG ici et demandez à Claude de le convertir : il crée le JPG à la bonne taille.
+
+Images attendues dans ce dossier (7) :
+  zone_0.jpg                         Fond de zone Forêt des Murmures
+  zone_1.jpg                         Fond de zone Catacombes oubliées
+  zone_2.jpg                         Fond de zone Marais putride
+  zone_3.jpg                         Fond de zone Pic de Cendre
+  zone_4.jpg                         Fond de zone Abysses du Néant
+  zone_5.jpg                         Fond de zone glace (Wyrm)
+  zone_6.jpg                         Fond de zone arène / défis

@@ -1,0 +1,38 @@
+﻿Cendrelame · Créatures du Compagnon (3 formes par espèce)
+=========================================================
+Format : PNG carré 512 × 512, fond transparent, créature entière.
+Nom de fichier : exactement celui de la liste (minuscules, sans accents). Format PNG.
+Après avoir ajouté des images : lancez outils\mettre-a-jour-images.bat, puis rechargez le jeu.
+Une image absente n’est pas un problème : le jeu garde son dessin actuel.
+
+Images attendues dans ce dossier (30) :
+  brais_1.png                        Braisillon · forme 1
+  brais_2.png                        Flammèche · forme 2
+  brais_3.png                        Pyrodrake · forme 3
+  cendr_1.png                        Cendrinet · forme 1
+  cendr_2.png                        Goupyre · forme 2
+  cendr_3.png                        Infernard · forme 3
+  coque_1.png                        Coquelune · forme 1
+  coque_2.png                        Nacrabe · forme 2
+  coque_3.png                        Abyssolon · forme 3
+  faon_1.png                         Faonelle · forme 1
+  faon_2.png                         Cerflumen · forme 2
+  faon_3.png                         Sanctorne · forme 3
+  goutt_1.png                        Gouttelin · forme 1
+  goutt_2.png                        Ondin · forme 2
+  goutt_3.png                        Léviathan · forme 3
+  lueur_1.png                        Lueurin · forme 1
+  lueur_2.png                        Aurélion · forme 2
+  lueur_3.png                        Solarion · forme 3
+  motte_1.png                        Mottelin · forme 1
+  motte_2.png                        Rocaillon · forme 2
+  motte_3.png                        Titanroc · forme 3
+  ombre_1.png                        Ombrelin · forme 1
+  ombre_2.png                        Nocturne · forme 2
+  ombre_3.png                        Néantaile · forme 3
+  pouss_1.png                        Pousselin · forme 1
+  pouss_2.png                        Ronceau · forme 2
+  pouss_3.png                        Sylvestre · forme 3
+  spect_1.png                        Spectrin · forme 1
+  spect_2.png                        Hantise · forme 2
+  spect_3.png                        Faucheuse · forme 3

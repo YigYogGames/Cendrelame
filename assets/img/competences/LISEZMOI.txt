@@ -1,0 +1,89 @@
+﻿Cendrelame · Compétences et talents
+===================================
+Format : PNG carré 256 × 256, symbole lisible en petit (affiché à 40 px).
+Nom de fichier : exactement celui de la liste (minuscules, sans accents). Format PNG.
+Après avoir ajouté des images : lancez outils\mettre-a-jour-images.bat, puis rechargez le jeu.
+Une image absente n’est pas un problème : le jeu garde son dessin actuel.
+
+Images attendues dans ce dossier (81) :
+  atk.png                            Attaque
+  d_acier.png                        Acier qui casse (talent passif)
+  d_bas.png                          Bastion (talent passif)
+  d_bre.png                          Brèche
+  d_bri.png                          Brise-armure
+  d_cb.png                           Coup de bouclier
+  d_com.png                          Commotion (talent passif)
+  d_dom.png                          Domination
+  d_ent.png                          Entrave
+  d_fer.png                          Peau de fer (talent passif)
+  d_fis.png                          Fissure
+  d_for.png                          Forteresse
+  d_fra.png                          Fracas
+  d_opp.png                          Opportuniste (talent passif)
+  d_pen.png                          Pénétration (talent passif)
+  d_pos.png                          Posture défensive
+  d_rip.png                          Riposte (talent passif)
+  f_ame.png                          Brûlure d’âme
+  f_apa.png                          Chaleur apaisante
+  f_bf.png                           Boule de feu
+  f_bomb.png                         Bombe vivante
+  f_bou.png                          Bouclier de feu
+  f_bra.png                          Brasier (talent passif)
+  f_col.png                          Chaleur collante (talent passif)
+  f_com.png                          Combustion
+  f_esp.png                          Esprit incandescent (talent passif)
+  f_fc.png                           Flamme critique (talent passif)
+  f_lav.png                          Explosion de lave
+  f_met.png                          Météore
+  f_onde.png                         Onde de choc (talent passif)
+  f_pa.png                           Pyromancie avancée (talent passif)
+  f_per.png                          Feu persistant (talent passif)
+  f_pyro.png                         Explosion pyrotechnique
+  g_cri.png                          Cri de guerre
+  g_frap.png                         Frappe
+  g_mur.png                          Mur de boucliers
+  g_tour.png                         Tourbillon
+  gx_cri.png                         Cri de guerre avancé (talent passif)
+  gx_end.png                         Endurance (talent passif)
+  gx_mai.png                         Maîtrise martiale (talent passif)
+  gx_mur.png                         Mur rapide (talent passif)
+  k_ch.png                           Charge héroïque
+  k_cmd.png                          Cri de commandement
+  k_cp.png                           Coup précis
+  k_dec.png                          Décapitation
+  k_dev.png                          Coups dévastateurs (talent passif)
+  k_ds.png                           Dernier souffle
+  k_exe.png                          Exécution
+  k_fur.png                          Fureur (talent passif)
+  k_grace.png                        Coup de grâce (talent passif)
+  k_inst.png                         Instinct de survie (talent passif)
+  k_mai.png                          Maître d’armes (talent passif)
+  k_mois.png                         Moisson (talent passif)
+  k_pact.png                         Pacte de sang
+  k_sauv.png                         Frappe sauvage
+  k_soif.png                         Soif de sang (talent passif)
+  k_traq.png                         Traque
+  m_bou.png                          Bouclier magique
+  m_exp.png                          Explosion des arcanes
+  m_int.png                          Intelligence des arcanes
+  m_proj.png                         Projectile arcanique
+  mx_app.png                         Apprentissage rapide (talent passif)
+  mx_bou.png                         Bouclier rapide (talent passif)
+  mx_int.png                         Intelligence des arcanes avancée (talent passif)
+  mx_sta.png                         Magie stable (talent passif)
+  z_amp.png                          Arc amplifié (talent passif)
+  z_arc.png                          Arc électrique
+  z_bat.png                          Batterie (talent passif)
+  z_cag.png                          Cage d’éclairs
+  z_con.png                          Conductivité (talent passif)
+  z_cp.png                           Choc paralysant
+  z_cs.png                           Champ statique
+  z_dec.png                          Décharge
+  z_ec.png                           Éclair
+  z_ht.png                           Haute tension (talent passif)
+  z_imp.png                          Implosion
+  z_ner.png                          Nerfs à vif (talent passif)
+  z_res.png                          Énergie résiduelle (talent passif)
+  z_sta.png                          Stase (talent passif)
+  z_sur.png                          Surcharge
+  z_tem.png                          Tempête

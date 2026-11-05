@@ -1,0 +1,13 @@
+﻿Cendrelame · Boss des zones
+===========================
+Format : PNG environ 640 × 768, fond transparent, en pied, tourné vers la gauche.
+Nom de fichier : exactement celui de la liste (minuscules, sans accents). Format PNG.
+Après avoir ajouté des images : lancez outils\mettre-a-jour-images.bat, puis rechargez le jeu.
+Une image absente n’est pas un problème : le jeu garde son dessin actuel.
+
+Images attendues dans ce dossier (5) :
+  hydre_des_marais.png               Hydre des marais (boss, Marais putride)
+  le_devoreur.png                    Le Dévoreur (boss, Abysses du Néant)
+  le_roi_sans_nom.png                Le Roi sans nom (boss, Catacombes oubliées)
+  roi_gobelin.png                    Roi Gobelin (boss, Forêt des Murmures)
+  seigneur_de_cendre.png             Seigneur de Cendre (boss, Pic de Cendre)

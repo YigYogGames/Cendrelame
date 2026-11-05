@@ -1,0 +1,28 @@
+﻿Cendrelame · Objets du Compagnon (tickets, nourriture, pierres, objets portés)
+==============================================================================
+Format : PNG carré 256 × 256, fond transparent.
+Nom de fichier : exactement celui de la liste (minuscules, sans accents). Format PNG.
+Après avoir ajouté des images : lancez outils\mettre-a-jour-images.bat, puis rechargez le jeu.
+Une image absente n’est pas un problème : le jeu garde son dessin actuel.
+
+Images attendues dans ce dossier (20) :
+  cf_1.png                           Croquettes de créature
+  cf_2.png                           Ragoût du dresseur
+  cf_3.png                           Festin élémentaire
+  cs_eau.png                         Pierre d’évolution d’eau
+  cs_feu.png                         Pierre d’évolution de feu
+  cs_lum.png                         Pierre d’évolution de lumière
+  cs_ten.png                         Pierre d’évolution des ténèbres
+  cs_terre.png                       Pierre d’évolution de terre
+  ct_1.png                           Ticket de découverte
+  ct_2.png                           Ticket de découverte supérieur
+  cw_atk.png                         Griffe affûtée
+  cw_dm.png                          Voile d’argent
+  cw_dod.png                         Plume de vent
+  cw_dp.png                          Carapace polie
+  cw_hp.png                          Collier de vigueur
+  cw_hung.png                        Gourde sans fond
+  cw_loot.png                        Sac du pilleur
+  cw_mag.png                         Amulette arcanique
+  cw_succ.png                        Boussole d’explorateur
+  cw_time.png                        Sablier de poche

@@ -1,0 +1,23 @@
+﻿Cendrelame · Ennemis des zones
+==============================
+Format : PNG environ 512 × 768 (ou 768 × 512 pour une bête), fond transparent, en pied, tourné vers la gauche.
+Nom de fichier : exactement celui de la liste (minuscules, sans accents). Format PNG.
+Après avoir ajouté des images : lancez outils\mettre-a-jour-images.bat, puis rechargez le jeu.
+Une image absente n’est pas un problème : le jeu garde son dessin actuel.
+
+Images attendues dans ce dossier (15) :
+  abomination.png                    Abomination (Abysses du Néant)
+  chaman_gobelin.png                 Chaman gobelin (Forêt des Murmures)
+  crapaud_geant.png                  Crapaud géant (Marais putride)
+  gobelin.png                        Gobelin (Forêt des Murmures)
+  golem_de_lave.png                  Golem de lave (Pic de Cendre)
+  goule.png                          Goule (Marais putride)
+  loup_affame.png                    Loup affamé (Forêt des Murmures)
+  mage_de_braise.png                 Mage de braise (Pic de Cendre)
+  necromancien.png                   Nécromancien (Catacombes oubliées)
+  oracle_dechu.png                   Oracle déchu (Abysses du Néant)
+  revenant.png                       Revenant (Catacombes oubliées)
+  rodeur_du_vide.png                 Rôdeur du vide (Abysses du Néant)
+  salamandre.png                     Salamandre (Pic de Cendre)
+  sorciere_des_tourbieres.png        Sorcière des tourbières (Marais putride)
+  squelette.png                      Squelette (Catacombes oubliées)

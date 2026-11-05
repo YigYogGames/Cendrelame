@@ -1,0 +1,10 @@
+﻿Cendrelame · Apparences en pied des personnages
+===============================================
+Format : PNG 512 × 768 (portrait), fond transparent, personnage entier tourné vers la droite.
+Nom de fichier : exactement celui de la liste (minuscules, sans accents). Format PNG.
+Après avoir ajouté des images : lancez outils\mettre-a-jour-images.bat, puis rechargez le jeu.
+Une image absente n’est pas un problème : le jeu garde son dessin actuel.
+
+Images attendues dans ce dossier (2) :
+  mage_f.png                         Apparence en pied : Sorcier (Apparence 1)
+  mage_m.png                         Apparence en pied : Sorcier (Apparence 2)
