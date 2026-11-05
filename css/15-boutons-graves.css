@@ -1,0 +1,33 @@
+/* Cendrelame · boutons « Gravé doré » (0.8.14) : coins coupés, liseré doré, double filet sur les boutons principaux */
+:root{--cc:7px;--gold-rim:linear-gradient(180deg,#f3d991,#9a7432 60%,#7a5a22)}
+.btn{--c:var(--cc);position:relative;isolation:isolate;border:0!important;border-radius:0!important;background:var(--gold-rim)!important;color:var(--fg);box-shadow:none!important;
+  clip-path:polygon(var(--c) 0,calc(100% - var(--c)) 0,100% var(--c),100% calc(100% - var(--c)),calc(100% - var(--c)) 100%,var(--c) 100%,0 calc(100% - var(--c)),0 var(--c));
+  filter:drop-shadow(0 2px 0 #0000)}
+.btn:before{content:"";position:absolute;inset:1.5px;z-index:-1;clip-path:inherit;background:linear-gradient(180deg,#ecdcb4,#cbb07a);transition:filter .15s}
+.btn:hover:not(:disabled):before{filter:brightness(1.07)}
+.btn:active:not(:disabled){transform:translateY(1px)}
+.btn.sm{--c:5px}
+/* principal : rouge brique, double filet doré */
+.btn.pri,.btn.big{--c:10px;color:#ffeec6;text-shadow:0 1px 0 #3a0d06}
+.btn.pri:before,.btn.big:before{inset:2px;background:linear-gradient(180deg,#a83a22,#6e2010)}
+.btn.pri:after,.btn.big:after{content:"";position:absolute;inset:4.5px;z-index:-1;pointer-events:none;clip-path:inherit;background:linear-gradient(180deg,#e8c982cc,#b8904acc);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;padding:1px}
+.btn.pri.sm:after{display:none}
+/* actif / sélectionné */
+.btn.on{color:#ffeec6}.btn.on:before{background:linear-gradient(180deg,#a83a22,#6e2010)}
+/* danger, alerte */
+.btn.danger,.btn.warn{color:#ffe3d6}.btn.danger:before,.btn.warn:before{background:linear-gradient(180deg,#7a1c12,#4a0f08)}
+/* désactivé */
+.btn:disabled,.btn[aria-disabled=true]{filter:grayscale(.85) brightness(.85);cursor:not-allowed}
+/* onglets Aventure / Duel / Défis : barre gravée, onglet actif rouge à liseré doré */
+.advmode2{--c:10px;position:relative;isolation:isolate;border:0!important;border-radius:0!important;background:var(--gold-rim)!important;padding:5px!important;gap:4px!important;
+  clip-path:polygon(var(--c) 0,calc(100% - var(--c)) 0,100% var(--c),100% calc(100% - var(--c)),calc(100% - var(--c)) 100%,var(--c) 100%,0 calc(100% - var(--c)),0 var(--c))}
+.advmode2:before{content:"";position:absolute;inset:2px;z-index:-1;clip-path:inherit;background:linear-gradient(180deg,#3b2716,#21150b)}
+.advmode2 button{--c:8px;position:relative;isolation:isolate;border-radius:0!important;
+  clip-path:polygon(var(--c) 0,calc(100% - var(--c)) 0,100% var(--c),100% calc(100% - var(--c)),calc(100% - var(--c)) 100%,var(--c) 100%,0 calc(100% - var(--c)),0 var(--c))}
+.advmode2 button.on{background:var(--gold-rim)!important;box-shadow:none!important}
+.advmode2 button.on:before{content:"";position:absolute;inset:1.5px;z-index:-1;clip-path:inherit;background:linear-gradient(180deg,#a83a22,#6e2010)}
+/* boutons du menu principal (écran titre) */
+.mbtn{--c:10px;border:0!important;border-radius:0!important;background:var(--gold-rim)!important;isolation:isolate;
+  clip-path:polygon(var(--c) 0,calc(100% - var(--c)) 0,100% var(--c),100% calc(100% - var(--c)),calc(100% - var(--c)) 100%,var(--c) 100%,0 calc(100% - var(--c)),0 var(--c))}
+.mbtn:before{content:"";position:absolute;inset:2px;z-index:-1;clip-path:inherit;background:linear-gradient(#4a3220,#2c1d10)}
+.mbtn:hover:before{background:linear-gradient(#5c3f28,#382515)}

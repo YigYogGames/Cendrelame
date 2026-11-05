@@ -1,0 +1,83 @@
+/* Cendrelame · interface plein écran « A » (0.8.14) — PC uniquement (> 760 px) ; le téléphone garde sa mise en page */
+#scene{display:none}
+.hexm{display:contents}
+@media (min-width:761px){
+  :root{--hex:polygon(50% 0,100% 25%,100% 75%,50% 100%,0 75%,0 25%);--railw:104px;--toph:86px;--gap:18px}
+  body.hasdock:not(.scr) .menubtn{position:fixed;z-index:35;top:26px;right:26px}
+  /* décor de la zone sur toute la fenêtre, dans un cadre en bois */
+  body.hasdock:not(.scr) #scene{display:block;position:fixed;inset:0;z-index:0;background-size:cover;background-position:center;pointer-events:none}
+  body.hasdock:not(.scr) #scene:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,#140b05cc 0,#140b0500 18%,#140b0500 72%,#140b05aa 100%)}
+  body.hasdock:not(.scr):not([data-tab=combat]) #scene:after{background:#140b05b8}
+  body.hasdock:not(.scr):after{content:"";position:fixed;inset:0;z-index:40;pointer-events:none;box-shadow:inset 0 0 0 8px #21150b,inset 0 0 0 9px #8a6a3c,inset 0 0 120px #000a}
+  body.hasdock:not(.scr){padding:0;overflow:hidden}
+  body.hasdock:not(.scr) .wrap{max-width:none;margin:0}
+
+  /* en-tête en surimpression */
+  body.hasdock:not(.scr) header.top{position:fixed;left:0;right:0;top:0;height:var(--toph);min-height:0;z-index:30;padding:0 26px;background:linear-gradient(180deg,#21150bf2,#21150b99 70%,#21150b00)}
+  body.hasdock:not(.scr) .tophl{left:24px}
+  body.hasdock:not(.scr) .byline{z-index:31}
+
+  /* menu : médaillons à gauche */
+  body.hasdock:not(.scr) .tabs.dock{position:fixed;left:16px;right:auto;top:calc(var(--toph) + 4px);bottom:16px;width:var(--railw);height:auto;padding:0;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;pointer-events:none;background:none;z-index:30}
+  body.hasdock:not(.scr) .dkbar{display:flex;flex-direction:column;align-items:center;gap:9px;height:auto;padding:0;background:none;border:0;box-shadow:none;border-radius:0}
+  body.hasdock:not(.scr) .dkl,body.hasdock:not(.scr) .dkr{display:flex;flex-direction:column;align-items:center;gap:9px}
+  body.hasdock:not(.scr) .dkmain{order:-1}
+  body.hasdock:not(.scr) .tabs .dkb,body.hasdock:not(.scr) .tabs .dkmain{width:var(--railw);height:auto;margin:0;padding:0;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;gap:3px;background:none;border:0;color:#e9d6ae;text-shadow:0 1px 3px #000}
+  body.hasdock:not(.scr) .tabs .dkb b,body.hasdock:not(.scr) .tabs .dkmain b{font-family:var(--body);font-size:.8rem;font-weight:600;letter-spacing:.02em}
+  body.hasdock:not(.scr) .hexm,body.hasdock:not(.scr) .tabs .dkring{position:relative;inset:auto;translate:none;width:52px;height:58px;display:grid;place-items:center;border:0;border-radius:0;box-shadow:none;background:linear-gradient(180deg,#f3d991,#8a6a2c);clip-path:var(--hex);isolation:isolate;color:var(--gold);transition:transform .15s}
+  body.hasdock:not(.scr) .hexm:before,body.hasdock:not(.scr) .tabs .dkring:before{content:"";position:absolute;inset:3px;clip-path:var(--hex);background:linear-gradient(180deg,#4f3421,#21150b);z-index:-1}
+  body.hasdock:not(.scr) .hexm .uic,body.hasdock:not(.scr) .tabs .dkring .uic{width:26px;height:26px;color:inherit}
+  body.hasdock:not(.scr) .tabs [aria-selected=true] .hexm,body.hasdock:not(.scr) .tabs .dkmain[aria-selected=true] .dkring{color:#fff;box-shadow:none}
+  body.hasdock:not(.scr) .tabs [aria-selected=true] .hexm:before,body.hasdock:not(.scr) .tabs .dkmain[aria-selected=true] .dkring:before{background:linear-gradient(180deg,#b33a22,#6a1e12)}
+  body.hasdock:not(.scr) .tabs .dkb:hover .hexm,body.hasdock:not(.scr) .tabs .dkmain:hover .dkring{transform:translateY(-2px)}
+  body.hasdock:not(.scr) .tabs [aria-selected=true] b{color:var(--gold)}
+  body.hasdock:not(.scr) .tabs .dkb[aria-selected=true]{background:none;box-shadow:none}
+  body.hasdock:not(.scr) .tabs .dkb .ndot,body.hasdock:not(.scr) .tabs .dkmain .ndot{top:2px;right:24px}
+  body.hasdock:not(.scr) .tabs .dkfr,body.hasdock:not(.scr) .tabs .dkbag{position:absolute;left:50%;right:auto;translate:-50% 0;margin:0}
+  body.hasdock:not(.scr) .tabs .dkbag{bottom:6px;width:70px;height:70px}
+  body.hasdock:not(.scr) .tabs .dkfr{position:fixed;left:302px;top:17px;bottom:auto;translate:none;width:52px;height:52px;z-index:31}
+
+  /* zone de jeu : toute la place restante */
+  body.hasdock:not(.scr) main#view{position:fixed;left:calc(16px + var(--railw) + 10px);right:var(--gap);top:calc(var(--toph) + 4px);bottom:var(--gap);z-index:10;min-height:0;overflow:auto;overscroll-behavior:contain}
+  /* aventure : pas de parchemin, le décor reste visible */
+  body.hasdock:not(.scr)[data-tab=combat] main#view{background:none;border:0;box-shadow:none;outline:0;padding:0}
+  body.hasdock:not(.scr)[data-tab=combat] .advwrap{height:100%}
+  body.hasdock:not(.scr)[data-tab=combat] .amap{flex:1;height:auto;min-height:0;border:0;border-radius:0;box-shadow:none;overflow:visible;background:none}
+  body.hasdock:not(.scr)[data-adv=pve] .ambg,body.hasdock:not(.scr)[data-adv=raid] .ambg{display:none}
+  body.hasdock:not(.scr)[data-tab=combat] .aminfo{top:0;bottom:0;right:0;width:390px}
+  body.hasdock:not(.scr)[data-tab=combat] .amfield{left:0;right:410px}
+  body.hasdock:not(.scr)[data-tab=combat] .amnode small{color:#f3e6c8;text-shadow:0 1px 2px #000,0 0 6px #000}
+  body.hasdock:not(.scr)[data-tab=combat] .amnode b{box-shadow:0 2px 6px #0008}
+  body.hasdock:not(.scr)[data-tab=combat] .amlines{filter:drop-shadow(0 1px 2px #000)}
+  body.hasdock:not(.scr)[data-tab=combat] .amlines path{stroke:#f3e6c8}
+
+  /* étiquette sous le médaillon Aventure */
+  body.hasdock:not(.scr) .tabs .dkmain b{position:static;margin:0;font-size:.8rem;letter-spacing:.02em}
+  body.hasdock:not(.scr) .tabs.dock{overflow:visible}
+
+  /* hauteurs des écrans : ils remplissent la place gagnée (ancienne barre du bas retirée) */
+  body.hasdock:not(.scr) .amap{height:calc(calc(var(--vh1,1vh)*100) - 222px)}
+  body.hasdock:not(.scr) .shop85 .mcshop{min-height:0}
+  body.hasdock:not(.scr) .mawork{height:calc(calc(var(--vh1,1vh)*100) - 250px)}
+  body.hasdock:not(.scr) .mfwork{height:calc(calc(var(--vh1,1vh)*100) - 222px)}
+  body.hasdock:not(.scr) .mc3 .aminfo.maside{min-height:calc(calc(var(--vh1,1vh)*100) - 230px)}
+  body.hasdock:not(.scr) .mt1{min-height:calc(calc(var(--vh1,1vh)*100) - 200px)}
+  body.hasdock:not(.scr) .mt1.comm{height:calc(calc(var(--vh1,1vh)*100) - 200px)}
+  /* sac et coffre : plus de barre du bas à éviter */
+  body.hasdock:not(.scr) #invpop.invpop{bottom:auto;top:calc(var(--toph) + 4px);right:22px;max-height:calc(calc(var(--vh1,1vh)*100) - 112px);z-index:60}
+  body.hasdock:not(.scr) #stashpop.stashpop{bottom:auto;top:calc(var(--toph) + 4px);left:calc(16px + var(--railw) + 10px);max-height:calc(calc(var(--vh1,1vh)*100) - 112px)}
+
+  /* fond sombre derrière le menu de gauche, pour lire les noms sur tous les décors */
+  body.hasdock:not(.scr):before{content:"";position:fixed;left:0;top:0;bottom:0;width:170px;z-index:5;pointer-events:none;background:linear-gradient(90deg,#140b05e6 0,#140b05b3 60%,#140b0500)}
+  /* combat : la scène prend toute la hauteur disponible */
+  body.hasdock:not(.scr) .cv.ftc{height:100%;min-height:0}
+  body.hasdock:not(.scr) .ftwrap{flex:1;min-height:0;display:flex;flex-direction:column}
+  body.hasdock:not(.scr) .ftsc{flex:1;height:auto;min-height:300px}
+  body.hasdock:not(.scr) .ftfield{--uh:clamp(170px,calc(var(--vh1,1vh)*30),280px)}
+
+  /* espacement régulier entre les médaillons */
+  body.hasdock:not(.scr) .dkbar{gap:0!important}
+  body.hasdock:not(.scr) .dkl,body.hasdock:not(.scr) .dkr{gap:6px!important;margin:6px 0 0!important;padding:0!important}
+
+  body.hasdock:not(.scr) .tabs .dkb,body.hasdock:not(.scr) .tabs .dkmain{height:82px!important;min-height:0!important;flex:none!important}
+}
