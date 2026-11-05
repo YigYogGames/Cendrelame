@@ -1,0 +1,9 @@
+﻿Cendrelame · Apparences supplémentaires du héros
+=================================================
+Déposez ici les images d’apparence (classe Sorcier).
+Format : PNG 512 × 768 (personnage entier, tourné vers la droite, pieds en bas), fond transparent
+— ou fond blanc uni : demandez à Claude de les détourer.
+Nom du fichier = nom de l’apparence affiché dans le jeu. Exemple : pyromancien_de_braise.png → « Pyromancien de braise ».
+Minuscules, sans accents, des _ à la place des espaces.
+Après avoir ajouté des images : lancez outils\mettre-a-jour-images.bat, puis rechargez le jeu.
+Elles apparaissent dans Communauté → Personnalisation → Apparence du héros (débloquées pour l’instant).

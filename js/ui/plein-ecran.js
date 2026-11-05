@@ -3,7 +3,8 @@
    Ce fichier pose le décor (#scene) et indique l’onglet courant au CSS (body[data-tab]). */
 function sceneZone(){
   if(UI.tab==='combat'){
-    if(UI.advMode==='raid'||UI.advMode==='pvp') return 6;
+    if(UI.advMode==='pvp') return 6;
+    if(UI.advMode==='raid'){ const r=(typeof C!=='undefined'&&C.raid&&C.phase!=='idle')?RAIDS.find(x=>x.id===C.raid.r):RAIDS[UI.raidB||0]; return r?raidSc(r):6 }
     return (typeof C!=='undefined'&&C.phase&&C.phase!=='idle'&&C.zone!=null)?C.zone:(UI.zone||0);
   }
   return UI.zone||0;

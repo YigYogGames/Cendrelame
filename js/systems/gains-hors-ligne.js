@@ -1,8 +1,8 @@
 /* Cendrelame · systems/gains-hors-ligne.js (0.8.15)
    Gains hors ligne : pendant l’absence du joueur, le héros continue de combattre à sa progression actuelle (difficulté Normale).
-   1 combat toutes les 2 minutes, à partir de 5 minutes d’absence, jusqu’à 12 heures cumulées.
+   1 combat toutes les 3 minutes (0.8.17), à partir de 5 minutes d’absence, jusqu’à 12 heures cumulées.
    Les gains attendent dans S.idle et ne sont ajoutés qu’au moment où le joueur les récupère (écran d’accueil). */
-const IDLE={step:120,min:300,cap:12*3600,keepMax:40};
+const IDLE={step:180,min:300,cap:12*3600,keepMax:20};
 const idleNew=()=>({sec:0,fights:0,gold:0,xp:0,mats:{},items:[],rc:0,z:0,st:1});
 const idleAdd=(m,k,v)=>{ if(v>0) m[k]=(m[k]||0)+v };
 function idleAccrue(sec){

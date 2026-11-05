@@ -4,7 +4,8 @@
 const ascCost=h=>({gold:5000*(h.stars+1),prisme:5*(h.stars+1)});
 /* portraits de classe (image intégrée) */
 const PORTRAIT={mage:'assets/img/classes/portrait_mage.webp',guerrier:'assets/img/classes/portrait_guerrier.webp'};
-const xpNeed=l=>Math.round(30*Math.pow(l,1.6));
+/* 0.8.17 : progression plus lente (≈ ×2 au niveau 10, ×2,6 au niveau 49) */
+const xpNeed=l=>Math.round(45*Math.pow(l,1.75));
 function newHero(name,cls,hue,lvl=1){
   const h={id:++S.uid,name,cls,hue,lvl,xp:0,sp:lvl,stars:0,learned:{},loadout:[],equip:{}};
   const first=CLASSES[cls].skills.find(s=>s.t==='a'&&s.lvl===1);

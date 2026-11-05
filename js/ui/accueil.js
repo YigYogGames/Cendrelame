@@ -21,7 +21,7 @@ function hmTodo(h){
   if(h.sp>0) row('spark',`<b>${h.sp}</b> point${h.sp>1?'s':''} de compétence à dépenser`,'tab','Ouvrir','data-t="heroes"');
   if(S.bagDot) row('bag','Nouveaux objets dans le sac','invTog','Ouvrir');
   if(ACC.trNew) row('trophy2','Nouveau trophée obtenu','tab','Voir','data-t="troph"');
-  if(!L.length) L.push(`<li class="hmnone">Rien en attente. ${I&&I.sec?'':'Les gains hors ligne arrivent après 5 minutes d’absence (1 combat toutes les 2 minutes, jusqu’à 12 h).'}</li>`);
+  if(!L.length) L.push(`<li class="hmnone">Rien en attente. ${I&&I.sec?'':'Les gains hors ligne arrivent après 5 minutes d’absence (1 combat toutes les 3 minutes, jusqu’à 12 h).'}</li>`);
   return L.join('');
 }
 function viewHome(){

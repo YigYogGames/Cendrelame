@@ -64,11 +64,11 @@ function craftMigrate(){
 }
 /* ---------- butin des zones ---------- */
 const ZLOOT=[
- {eq:18,rw:[80,16,3.5,.5,0],it:[['pd_rune',30],['es_pie',9],['es_bra',9],['es_ven',9],['ru_min',6],['st_up',5],['sc_blank',2],['ch_pou',1.5],['gm_mag',1]]},
- {eq:20,rw:[72,20,6,1.8,.2],it:[['pd_rune',32],['es_pie',10],['es_bra',10],['es_ven',10],['ru_min',8],['ru_maj',2.5],['st_up',6],['sc_blank',2.5],['ch_pou',2],['gm_mag',1.5],['gm_rar',.5]]},
- {eq:22,rw:[64,24,9,2.6,.4],it:[['pd_rune',34],['es_pie',11],['es_bra',11],['es_ven',11],['ru_min',7],['ru_maj',4],['st_up',7],['sc_blank',3],['ch_pou',2.5],['ch_tre',.5],['gm_mag',2],['gm_rar',1],['gm_epi',.3]]},
- {eq:24,rw:[55,27,13,4.2,.8],it:[['pd_rune',36],['es_pie',12],['es_bra',12],['es_ven',12],['ru_maj',6],['ru_anc',2],['st_up',8],['sc_blank',3.5],['ch_pou',3],['ch_tre',1],['gm_rar',1.5],['gm_epi',.7],['gm_leg',.15]]},
- {eq:26,rw:[45,30,17,6.5,1.5],it:[['pd_rune',38],['es_pie',13],['es_bra',13],['es_ven',13],['ru_maj',6],['ru_anc',3.5],['ru_pri',.8],['st_up',9],['sc_blank',4],['ch_pou',3.5],['ch_tre',1.5],['gm_epi',1.2],['gm_leg',.4]]}];
+ {eq:8,rw:[80,16,3.5,.5,0],it:[['pd_rune',30],['es_pie',9],['es_bra',9],['es_ven',9],['ru_min',6],['st_up',5],['sc_blank',2],['ch_pou',1.5],['gm_mag',1]]},
+ {eq:9,rw:[72,20,6,1.8,.2],it:[['pd_rune',32],['es_pie',10],['es_bra',10],['es_ven',10],['ru_min',8],['ru_maj',2.5],['st_up',6],['sc_blank',2.5],['ch_pou',2],['gm_mag',1.5],['gm_rar',.5]]},
+ {eq:10,rw:[64,24,9,2.6,.4],it:[['pd_rune',34],['es_pie',11],['es_bra',11],['es_ven',11],['ru_min',7],['ru_maj',4],['st_up',7],['sc_blank',3],['ch_pou',2.5],['ch_tre',.5],['gm_mag',2],['gm_rar',1],['gm_epi',.3]]},
+ {eq:11,rw:[55,27,13,4.2,.8],it:[['pd_rune',36],['es_pie',12],['es_bra',12],['es_ven',12],['ru_maj',6],['ru_anc',2],['st_up',8],['sc_blank',3.5],['ch_pou',3],['ch_tre',1],['gm_rar',1.5],['gm_epi',.7],['gm_leg',.15]]},
+ {eq:12,rw:[45,30,17,6.5,1.5],it:[['pd_rune',38],['es_pie',13],['es_bra',13],['es_ven',13],['ru_maj',6],['ru_anc',3.5],['ru_pri',.8],['st_up',9],['sc_blank',4],['ch_pou',3.5],['ch_tre',1.5],['gm_epi',1.2],['gm_leg',.4]]}];
 const zLoot=z=>ZLOOT[Math.min(z,ZLOOT.length-1)];
 function rollZoneLoot(z,boss,L,lb){
   const Z=zLoot(z),dk=dKey(),mul=(boss?3:1)*Math.max(1,lb||1)*dropM(dk),mats={},items=[];
