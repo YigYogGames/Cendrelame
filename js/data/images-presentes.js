@@ -77,5 +77,15 @@ const IMG_PRESENTES=[
   "ressources/sc_rob2.png",
   "ressources/sc_rob3.png",
   "ressources/sc_rob4.png",
-  "ressources/st_up.png"
+  "ressources/st_up.png",
+  "skins/guerrier/berserker.png",
+  "skins/guerrier/defenseur.png",
+  "skins/guerrier/saison_1.png",
+  "skins/sorcier/evocateur.png",
+  "skins/sorcier/evocatrice.png",
+  "skins/sorcier/pyromancien.png",
+  "skins/sorcier/pyromancienne.png",
+  "skins/sorcier/saison_1.png",
+  "skins/sorcier/saison_1_b.png",
+  "skins/sorcier/saison_1_c.png"
 ];

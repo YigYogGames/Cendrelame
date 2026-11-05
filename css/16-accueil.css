@@ -102,3 +102,6 @@
 .skpv{width:260px;height:390px;display:flex;align-items:flex-end;justify-content:center;border-radius:12px;background:radial-gradient(ellipse at 50% 80%,#4a3220,#1a110a 75%);border:1px solid #6b4a22}
 .skpv .hart.skart{background:none;width:100%;height:100%}.skpv .hart.skart img{object-fit:contain;object-position:50% 100%;padding:14px}
 .skth{display:block;width:100%;height:120px}.skth img{width:100%;height:100%;object-fit:contain;object-position:50% 100%}
+
+/* 0.8.18 : héros un peu plus petit */
+.hmhero .hart.hmart{height:90%;margin-top:auto}

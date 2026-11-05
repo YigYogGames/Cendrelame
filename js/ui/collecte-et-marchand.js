@@ -35,7 +35,7 @@ function viewSites(){
     <p class="amnote mute" style="margin-top:auto">La flèche ouvre l’arbre d’améliorations de la Mine (cadence, filon d’or et entrepôt). L’engrenage donne accès à la récolte automatique, débloquée au niveau de zone ${AUTO_L}.</p></div></aside></div>${UI.siteTree?treeModal(UI.siteTree):''}`;
 }
 /* ===== Marchand : étal ===== */
-const SHOP_CAT=k=>/^c[tf]_/.test(k)?'comp':['c_relic','s_ch2','s_ch3'].includes(k)?'cos':k==='sc_blank'||k==='rm_aff'?'ench':k==='p_oubli'?'spe':['p_xp','p_loot'].includes(k)?'prog':'comb';
+const SHOP_CAT=k=>/^c[tf]_/.test(k)?'comp':['c_relic','s_ch2','s_ch3','c_prod'].includes(k)?'cos':k==='sc_blank'||k==='rm_aff'?'ench':k==='p_oubli'?'spe':['p_xp','p_loot'].includes(k)?'prog':'comb';
 const SHOP_CATS=[['all','Tout'],['comb','Combat'],['prog','Progression'],['ench','Enchantement'],['cos','Cosmétiques'],['comp','Compagnon'],['spe','Spéciaux']];
 const SHOP_CN={comp:'Objet de compagnon',cos:'Coffre cosmétique',ench:'Fourniture d’enchantement',comb:'Potion de combat',prog:'Potion de progression',spe:'Objet spécial'};
 const potLock=k=>POTS[k].cls&&POTS[k].cls!==S.heroes[0].cls;

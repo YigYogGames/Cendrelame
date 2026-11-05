@@ -1,0 +1,72 @@
+/* Cendrelame · cosmétiques Prodiges (0.8.18) : catégories, auras détaillées, effets de carte, traînée étoilée */
+/* rangement par catégorie */
+.cu8gh{grid-column:1/-1;margin:8px 0 0;padding:0 0 4px;display:flex;align-items:center;gap:10px;font-family:var(--display);font-weight:400;font-size:1.1rem;letter-spacing:.03em;color:#6a3412}
+.cu8gh:first-child{margin-top:0}
+.cu8gh:after{content:"";flex:1;height:1px;background:linear-gradient(90deg,#8a5a2acc,transparent)}
+.s8tag.pro{background:linear-gradient(90deg,#127a70,#3ad0c0);color:#fff}
+
+/* ---- auras détaillées (au9) ---- */
+.au8.au9{overflow:visible}
+.au9 .a9glow{position:absolute;left:5%;right:5%;top:8%;bottom:0;border-radius:50%;background:radial-gradient(ellipse at 50% 62%,var(--g),transparent 68%);animation:s8ap 2.6s ease-in-out infinite}
+.au9 .a9ring{position:absolute;left:14%;right:14%;bottom:0;height:12%;border-radius:50%;border:2px solid var(--c);box-shadow:0 0 16px var(--c),inset 0 0 10px var(--c);clip-path:inset(50% -30px -30px -30px);opacity:.85}
+.au9 .a9e{position:absolute;left:var(--x);bottom:6%;width:5px;height:5px;border-radius:50%;background:var(--c);box-shadow:0 0 8px var(--c);animation:a9up var(--d) linear infinite;animation-delay:var(--dl)}
+@keyframes a9up{0%{transform:translate(0,0) scale(1);opacity:0}12%{opacity:1}100%{transform:translate(8px,-260%) scale(.3);opacity:0}}
+/* phénix : ailes */
+.au9 .a9w{position:absolute;left:-28%;right:-28%;top:-12%;width:156%;height:auto;filter:drop-shadow(0 0 10px #ff7a1a99)}
+.au9 .a9w .wl{transform-origin:98px 96px;animation:a9wl 2.4s ease-in-out infinite}
+.au9 .a9w .wr{transform-origin:102px 96px;animation:a9wr 2.4s ease-in-out infinite}
+@keyframes a9wl{0%,100%{transform:rotate(0)}50%{transform:rotate(9deg) scaleY(.94)}}
+@keyframes a9wr{0%,100%{transform:rotate(0)}50%{transform:rotate(-9deg) scaleY(.94)}}
+/* néant : vortex */
+.au9 .a9v{position:absolute;left:-12%;top:2%;width:124%;height:auto;aspect-ratio:1}
+.au9 .a9v .sp{transform-origin:100px 100px;animation:a9spin 7s linear infinite}
+@keyframes a9spin{to{transform:rotate(360deg)}}
+/* arcane : cercle au sol + glyphes */
+.au9 .a9c{position:absolute;left:-8%;right:-8%;bottom:-14%;width:116%;height:auto;aspect-ratio:1;transform:perspective(300px) rotateX(70deg);transform-origin:50% 60%;filter:drop-shadow(0 0 6px #a080ff)}
+.au9 .a9c .sp{transform-origin:100px 100px;animation:a9spin 14s linear infinite}
+.au9 .a9g{position:absolute;left:var(--x);top:var(--y);font-size:15px;color:#f0e8ff;text-shadow:0 0 6px #a070ff,0 0 12px #a070ff;font-style:normal;animation:a9fl 3.2s ease-in-out infinite;animation-delay:var(--dl)}
+@keyframes a9fl{0%,100%{transform:translateY(0);opacity:.35}50%{transform:translateY(-12px);opacity:1}}
+/* cristaux en orbite */
+.au9 .a9orb{position:absolute;left:0;right:0;top:30%;height:30%}
+.au9 .a9orb i{position:absolute;left:50%;top:50%;width:14%;aspect-ratio:20/34;margin:-12% 0 0 -7%;animation:a9orb 6s linear infinite;animation-delay:calc(var(--i) * -1.2s)}
+.au9 .a9orb i svg{display:block;width:100%;height:100%;filter:drop-shadow(0 0 5px #7ff0e0)}
+@keyframes a9orb{0%{transform:translateX(-300%) scale(.8);z-index:0;opacity:.6}25%{transform:translateX(0) scale(.65);opacity:.45}50%{transform:translateX(300%) scale(.8);opacity:.6}75%{transform:translateX(0) scale(1.15);opacity:1}100%{transform:translateX(-300%) scale(.8);opacity:.6}}
+/* souffle sylvestre */
+.au9 .a9lf{position:absolute;inset:0}
+.au9 .a9lf i{position:absolute;left:50%;bottom:4%;width:10px;height:6px;border-radius:70% 0;background:var(--c);box-shadow:0 0 4px #5ad04a;animation:a9lf var(--d) linear infinite;animation-delay:calc(var(--i) * -.37s)}
+@keyframes a9lf{0%{transform:rotate(0) translateX(40px) translateY(0) rotate(0);opacity:0}10%{opacity:1}100%{transform:rotate(540deg) translateX(30px) translateY(-150px) rotate(360deg);opacity:0}}
+/* auréole dorée */
+.au9 .a9halo{position:absolute;left:31%;right:31%;top:4%;height:7%;border-radius:50%;border:3px solid #ffd060;box-shadow:0 0 12px #ffd060,inset 0 0 8px #fff3c0;animation:a9hal 3s ease-in-out infinite}
+@keyframes a9hal{0%,100%{transform:translateY(0) rotate(-4deg)}50%{transform:translateY(-5px) rotate(4deg)}}
+.au9 .a9sp{position:absolute;left:var(--x);top:8%;width:6px;height:6px;background:#fff3c0;clip-path:polygon(50% 0,62% 38%,100% 50%,62% 62%,50% 100%,38% 62%,0 50%,38% 38%);animation:a9fall var(--d) linear infinite;animation-delay:var(--dl)}
+@keyframes a9fall{0%{transform:translateY(0) scale(.6);opacity:0}15%{opacity:1}100%{transform:translateY(500%) scale(1.1);opacity:0}}
+
+/* ---- effets de carte ---- */
+.cfx8.f_stars i{position:absolute;left:var(--x);top:var(--y);width:70px;height:2px;border-radius:2px;background:linear-gradient(90deg,transparent,#ffffffcc 80%,#fff);rotate:28deg;opacity:0;animation:f9star 5.5s ease-in infinite;animation-delay:var(--dl)}
+.cfx8.f_stars i:after{content:"";position:absolute;right:-2px;top:-2px;width:6px;height:6px;border-radius:50%;background:#fff;box-shadow:0 0 8px #bfe0ff}
+@keyframes f9star{0%{transform:translateX(-80px);opacity:0}5%{opacity:1}20%{transform:translateX(160px);opacity:0}100%{transform:translateX(160px);opacity:0}}
+.cfx8.f_storm{background:linear-gradient(180deg,#1a2238aa,transparent 35%)}
+.cfx8.f_storm .fl{position:absolute;inset:0;background:#dfe8ff;opacity:0;animation:f9fl 6s infinite}
+.cfx8.f_storm svg{position:absolute;inset:0;width:100%;height:100%;opacity:0;filter:drop-shadow(0 0 6px #c8d8ff);animation:f9fl2 6s infinite}
+@keyframes f9fl{0%,40%,44%,47%,100%{opacity:0}42%{opacity:.35}45.5%{opacity:.22}}
+@keyframes f9fl2{0%,40%,48%,100%{opacity:0}41%,46%{opacity:1}}
+.cfx8.f_aurora b{position:absolute;left:-30%;right:-30%;top:-10%;height:42%;border-radius:50%;filter:blur(14px);mix-blend-mode:screen}
+.cfx8.f_aurora .v1{background:linear-gradient(90deg,transparent,#3affa088,#3affc066,transparent);animation:f9au 7s ease-in-out infinite alternate}
+.cfx8.f_aurora .v2{top:4%;background:linear-gradient(90deg,transparent,#a070ff66,#ff70c044,transparent);animation:f9au 9s ease-in-out infinite alternate-reverse}
+@keyframes f9au{0%{transform:translateX(-12%) skewX(-10deg) scaleY(.8)}100%{transform:translateX(12%) skewX(10deg) scaleY(1.15)}}
+.cfx8.f_gold{box-shadow:inset 0 -40px 50px -30px #ffd06055}
+.cfx8.f_gold i{position:absolute;left:var(--x);top:-14px;width:9px;height:9px;border-radius:50%;background:radial-gradient(circle at 35% 35%,#fff3c0,#ffc040 55%,#a06a10);box-shadow:0 0 5px #ffd060;animation:f9coin var(--d) linear infinite;animation-delay:var(--dl)}
+@keyframes f9coin{0%{transform:translateY(0) scaleX(1);opacity:0}8%{opacity:1}25%{transform:translateY(110px) scaleX(.2)}50%{transform:translateY(220px) scaleX(1)}75%{transform:translateY(330px) scaleX(.2)}100%{transform:translateY(440px) scaleX(1);opacity:0}}
+.cfx8.f_runes i{position:absolute;left:var(--x);bottom:-20px;font-style:normal;font-size:16px;color:#bfe8ff;text-shadow:0 0 6px #4ab0ff,0 0 12px #4ab0ff;animation:f9run var(--d) linear infinite;animation-delay:var(--dl)}
+@keyframes f9run{0%{transform:translateY(0);opacity:0}15%{opacity:1}80%{opacity:.8}100%{transform:translateY(-300px);opacity:0}}
+
+/* ---- traînée étoilée ---- */
+.trp8.star{border-radius:0;clip-path:polygon(50% 0,62% 38%,100% 50%,62% 62%,50% 100%,38% 62%,0 50%,38% 38%);box-shadow:none}
+
+/* ---- fenêtre des amis déplaçable (PC) ---- */
+@media (min-width:761px){
+  .frw.frmv .frhead{cursor:move;user-select:none}
+  .frw.frdrag{transition:none}
+  .frw.frdrag .frpanel{box-shadow:0 20px 44px #000e,inset 0 0 30px #7a521f44}
+}
+@media (prefers-reduced-motion:reduce){.au9 *,.cfx8.f_stars i,.cfx8.f_gold i,.cfx8.f_runes i,.cfx8.f_aurora b{animation:none!important}}

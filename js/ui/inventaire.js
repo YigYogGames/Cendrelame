@@ -341,6 +341,7 @@ document.addEventListener('contextmenu',e=>{
   if(it&&(it.mat==='ct_1'||it.mat==='ct_2')){ cpTickAsk(it.mat); return }
   if(it&&/^(cf_|cs_|cw_)/.test(it.mat)){ UI.tab='comp'; UI.cpT='c'; UI.invOpen=false; render(); toast('Choisissez une créature : la nourriture, les pierres et les objets portés s’utilisent depuis sa fiche.'); return }
   if(it&&/^s_ch[0-3]$/.test(it.mat)){ sChAsk(+it.mat.slice(4)); return }
+  if(it&&it.mat==='c_prod'&&typeof prodAsk==='function'){ prodAsk(); return }
   if(it&&BUFF_K.includes(it.mat)&&UI.tab!=='forge'){ drinkBuff(it.mat); return }
   if(c&&UI.tab==='forge'){ if(it) fPlace(it); return}
   if(c){ if(it&&!it.mat) equipFromCell(+c.dataset.i,targetSlot(S.heroes[0],it))}
