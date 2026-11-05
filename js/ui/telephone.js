@@ -3,8 +3,8 @@
 UIC.grid=UIC.grid||'<rect x="4" y="4" width="7" height="7" rx="1.5"/><rect x="13" y="4" width="7" height="7" rx="1.5"/><rect x="4" y="13" width="7" height="7" rx="1.5"/><rect x="13" y="13" width="7" height="7" rx="1.5"/>';
 const MOB=()=>matchMedia('(max-width:760px)').matches;
 const MNAV=[['bag','bag','Sac'],['comp','paw','Compagnon'],['combat','swords','Aventure',1],['quest','scroll','Quêtes'],['plus','grid','Plus']];
-const MPLUS=[['shop','coin','Marchand'],['forge','anvil','Amélioration'],['heroes','helm','Personnage'],['comm','flag','Communauté'],['troph','trophy','Trophées'],['fr','people','Amis'],['mail','mail','Messagerie'],['opts','gear','Options']];
-const MPLUS_T=['shop','forge','heroes','comm','troph'];
+const MPLUS=[['home','home','Accueil'],['shop','coin','Marchand'],['forge','anvil','Amélioration'],['heroes','helm','Personnage'],['comm','flag','Communauté'],['troph','trophy','Trophées'],['fr','people','Amis'],['mail','mail','Messagerie'],['opts','gear','Options']];
+const MPLUS_T=['home','shop','forge','heroes','comm','troph'];
 function mnavHTML(){ const inv=!!UI.invOpen,plusOn=!!UI.mPlus||(!inv&&MPLUS_T.includes(UI.tab));
   const dot=k=>{ let d=false; try{ d=k==='bag'?!!S.bagDot:k==='comp'?!!(ACC.comp&&cpDone()>0):k==='quest'?qClaimable():k==='plus'?!!(ACC.trNew||commDot()):false }catch(e){} return d?'<span class="ndot" aria-label="Nouveauté"></span>':'' };
   const on=k=>k==='bag'?inv:k==='plus'?plusOn:(!inv&&!UI.mPlus&&UI.tab===k);

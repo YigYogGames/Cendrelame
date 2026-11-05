@@ -32,7 +32,7 @@ function render1(){
   if(!S||!S.heroes.length){UI.scr='menu';return render()}
   if(UI.tab==='opts'||UI.tab==='news') UI.tab='combat';
   if(UI.tab==='sites') UI.tab='comp';
-  v.innerHTML=({quest:viewQuest,comm:viewComm,troph:viewTroph,combat:viewCombat,heroes:viewHeroes,bag:viewBag,shop:viewShop,forge:viewForge,sites:viewComp,comp:viewComp,help:viewHelp,opts:viewOpts,news:viewNews})[UI.tab]();
+  v.innerHTML=({home:viewHome,quest:viewQuest,comm:viewComm,troph:viewTroph,combat:viewCombat,heroes:viewHeroes,bag:viewBag,shop:viewShop,forge:viewForge,sites:viewComp,comp:viewComp,help:viewHelp,opts:viewOpts,news:viewNews})[UI.tab]();
   if(UI.tab==='combat'&&C.phase!=='idle'){C.units.forEach(refresh);renderActbar();const l=$('#log');if(l){l.scrollTop=l.scrollHeight}}
   renderInvPop();
 }
