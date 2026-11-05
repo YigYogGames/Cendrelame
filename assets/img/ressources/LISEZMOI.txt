@@ -1,0 +1,47 @@
+﻿Cendrelame · Ressources, composants et objets d’amélioration
+============================================================
+Format : PNG carré 256 × 256, fond transparent, objet centré avec un peu de marge.
+Nom de fichier : exactement celui de la liste (minuscules, sans accents). Format PNG.
+Après avoir ajouté des images : lancez outils\mettre-a-jour-images.bat, puis rechargez le jeu.
+Une image absente n’est pas un problème : le jeu garde son dessin actuel.
+
+Images attendues dans ce dossier (39) :
+  ch_pou.png                         Poudre de chance
+  ch_tre.png                         Trèfle de fortune
+  cr_asc.png                         Cristal d’ascension
+  cristal.png                        Éclat de cristal
+  cuir.png                           Peau tannée (ancien matériau, peu utilisé)
+  es_bra.png                         Essence magique de braise
+  es_pie.png                         Essence magique de pierre
+  es_ven.png                         Essence magique de vent
+  essence.png                        Fiole d’essence
+  fer.png                            Lingot de fer (ancien matériau, peu utilisé)
+  fu_ap.png                          Parchemin d’action
+  gm_epi.png                         Améthyste ancienne
+  gm_leg.png                         Cœur de braise
+  gm_mag.png                         Cristal magique
+  gm_rar.png                         Saphir d’éclat
+  gold.png                           Or
+  pd_rune.png                        Poudre runique
+  plante.png                         Herbe enchantée (ancien matériau, peu utilisé)
+  prisme.png                         Prisme divin
+  rm_aff.png                         Pierre de remodelage
+  ru_anc.png                         Rune ancienne
+  ru_maj.png                         Rune majeure
+  ru_min.png                         Rune mineure
+  ru_pri.png                         Rune primordiale
+  rune.png                           Pierre runique
+  sc_adr1.png                        Parchemin de Adresse (Magique)
+  sc_adr2.png                        Parchemin de Adresse (Rare)
+  sc_adr3.png                        Parchemin de Adresse (Épique)
+  sc_adr4.png                        Parchemin de Adresse (Légendaire)
+  sc_blank.png                       Parchemin vierge
+  sc_fur1.png                        Parchemin de Fureur (Magique)
+  sc_fur2.png                        Parchemin de Fureur (Rare)
+  sc_fur3.png                        Parchemin de Fureur (Épique)
+  sc_fur4.png                        Parchemin de Fureur (Légendaire)
+  sc_rob1.png                        Parchemin de Robustesse (Magique)
+  sc_rob2.png                        Parchemin de Robustesse (Rare)
+  sc_rob3.png                        Parchemin de Robustesse (Épique)
+  sc_rob4.png                        Parchemin de Robustesse (Légendaire)
+  st_up.png                          Pierre de renforcement
