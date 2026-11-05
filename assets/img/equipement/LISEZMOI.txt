@@ -1,0 +1,20 @@
+﻿Cendrelame · Équipement (une image par type d’objet)
+====================================================
+Format : PNG carré 256 × 256, fond transparent, objet centré avec un peu de marge. La couleur de rareté (cadre) est ajoutée par le jeu : dessinez l’objet dans ses couleurs normales.
+Nom de fichier : exactement celui de la liste (minuscules, sans accents). Format PNG.
+Après avoir ajouté des images : lancez outils\mettre-a-jour-images.bat, puis rechargez le jeu.
+Une image absente n’est pas un problème : le jeu garde son dessin actuel.
+
+Images attendues dans ce dossier (12) :
+  amulette.png                       Amulette · Amulette
+  anneau.png                         Anneau · Anneau
+  baton.png                          Bâton (Sorcier) · Arme
+  bottes.png                         Bottes (Guerrier) · Bottes
+  capuche.png                        Capuche (Sorcier) · Casque
+  cuirasse.png                       Cuirasse (Guerrier) · Armure
+  epee.png                           Épée (Guerrier) · Arme
+  heaume.png                         Heaume (Guerrier) · Casque
+  jambieres_guerrier.png             Jambières (Guerrier) · Jambières
+  jambieres_sorcier.png              Jambières (Sorcier) · Jambières
+  robe.png                           Robe (Sorcier) · Armure
+  sandales.png                       Sandales (Sorcier) · Bottes

@@ -1,0 +1,4 @@
+﻿Cendrelame · Anciens sprites
+============================
+Sprites .webp actuels (Sorcière, Sorcier, Gobelin, Loup, Chaman gobelin).
+Ils restent utilisés tant que les nouvelles images (classes/apparences, ennemis) ne sont pas fournies.

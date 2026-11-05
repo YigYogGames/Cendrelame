@@ -1,0 +1,20 @@
+﻿Cendrelame · Potions
+====================
+Format : PNG carré 256 × 256, fond transparent.
+Nom de fichier : exactement celui de la liste (minuscules, sans accents). Format PNG.
+Après avoir ajouté des images : lancez outils\mettre-a-jour-images.bat, puis rechargez le jeu.
+Une image absente n’est pas un problème : le jeu garde son dessin actuel.
+
+Images attendues dans ce dossier (12) :
+  p_for.png                          Potion de force
+  p_int.png                          Potion d’intelligence
+  p_loot.png                         Philtre de fortune
+  p_oubli.png                        Potion d’oubli
+  p_pa.png                           Potion d’action
+  p_reg1.png                         Potion de régénération
+  p_reg2.png                         Élixir de régénération
+  p_res.png                          Potion de résistance
+  p_vie.png                          Potion de vie
+  p_vie1.png                         Petite potion de vie
+  p_vie3.png                         Grande potion de vie
+  p_xp.png                           Élixir de savoir

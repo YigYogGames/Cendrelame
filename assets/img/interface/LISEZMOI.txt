@@ -1,0 +1,4 @@
+﻿Cendrelame · Interface
+======================
+Dossier réservé aux éléments d’interface (boutons, cadres, icônes du menu, barre du bas).
+Ils seront branchés dans une prochaine étape : déposez-les ici avec un nom clair, je ferai le lien.
