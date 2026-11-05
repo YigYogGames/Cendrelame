@@ -1,7 +1,7 @@
 /* Cendrelame · écran d’accueil « Salle du héros » et fenêtre des gains hors ligne (0.8.15) */
 .hmwrap{display:grid;grid-template-columns:minmax(0,1fr) 560px;gap:18px;height:100%;min-height:600px}
 /* --- héros et équipement --- */
-.hmstage{position:relative;min-height:0;display:grid;grid-template-columns:80px minmax(0,1fr) 80px;grid-template-rows:auto minmax(0,1fr) auto;align-items:center;padding:0 10px}
+.hmstage{position:relative;min-height:0;display:grid;grid-template-columns:minmax(0,1fr);grid-template-rows:auto minmax(0,1fr) auto;align-items:center;padding:0 10px}
 .hmplate{grid-column:1/-1;justify-self:center;text-align:center;padding:8px 26px;color:#f1e2bd;background:linear-gradient(180deg,#2f2014f2,#1a110af2);border:1px solid #8a6a3c;box-shadow:0 8px 22px #000a;
   --c:10px;clip-path:polygon(var(--c) 0,calc(100% - var(--c)) 0,100% var(--c),100% calc(100% - var(--c)),calc(100% - var(--c)) 100%,var(--c) 100%,0 calc(100% - var(--c)),0 var(--c))}
 .hmplate h2{color:var(--gold);font-size:1.9rem;line-height:1.1}.hmplate small{color:#c9b28a}
@@ -65,7 +65,7 @@
 @media (max-width:760px){
   .dkhome{display:none!important}
   .hmwrap{grid-template-columns:1fr;height:auto;min-height:0;gap:12px}
-  .hmstage{height:470px;border-radius:10px;padding:10px 6px;background:radial-gradient(ellipse at 50% 70%,#4a3220,#1a110a 75%);border:1px solid #6b4a22;grid-template-columns:58px minmax(0,1fr) 58px}
+  .hmstage{height:470px;border-radius:10px;padding:10px 6px;background:radial-gradient(ellipse at 50% 70%,#4a3220,#1a110a 75%);border:1px solid #6b4a22;grid-template-columns:minmax(0,1fr)}
   .hmslot{width:50px;height:50px}.hmcol{gap:10px}
   .hmplate h2{font-size:1.45rem}.hmstats{gap:12px;padding:6px 14px;font-size:.85rem}
   .hmban{height:150px}.hmboss{height:140px}.hmbin{width:62%}.hmbin h3{font-size:1.4rem}.hmbar{width:100%}
@@ -94,3 +94,7 @@
 .ofrc{margin:12px 0 0;font-size:.85rem;color:var(--mute)}
 .ofok{display:block;margin:18px auto 0;min-width:200px;font-size:1.2rem!important;padding:11px 20px!important}
 @media (max-width:760px){ .ofpop .box{padding:20px 14px} .ofbig{grid-template-columns:1fr} .ofgrid{grid-template-columns:repeat(auto-fill,minmax(52px,1fr))} }
+/* 0.8.16 : carte de joueur à taille fixe (3 lignes de personnages), sacoches pleine largeur */
+.pc1ch li{height:46px;box-sizing:border-box}
+.pc1ch li.pcemp{background:none;border:1px dashed #ffffff1a}
+.shfull .shpouch{max-width:620px}

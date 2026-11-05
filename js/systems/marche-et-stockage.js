@@ -10,7 +10,8 @@ const STG85={
  comp:{n:'Besace du dresseur',ic:'paw',cap:[0,8,16],d:'Range à part les objets de Compagnon : tickets, nourriture, pierres d’évolution, objets portés.',cost:[[15000],[45000,'ru_maj']]}};
 const POUCH_K=['craft','pot','comp'];
 const stgLv=k=>Math.max(0,Math.min(STG85[k].cost.length,((ACC&&ACC.stg)||{})[k]||0));
-function stgSync(){ GH=5+stgLv('bag'); BAG=GW*GH }
+/* 0.8.16 : le Sac agrandi est retiré, le sac reste à 14 × 5 cases (achats remboursés : voir stgRefund) */
+function stgSync(){ GH=5; BAG=GW*GH }
 stgSync();
 const stgCost=k=>{ const c=STG85[k].cost[stgLv(k)]; if(!c) return null; const o={gold:c[0]}; if(c[1]) o[c[1]]=1; return o };
 /* ---------- sacoches : contenu par personnage ---------- */
@@ -98,7 +99,7 @@ function shopHub(){ const pv=['p_vie1','p_vie','p_vie3'].reduce((a,k)=>a+matAll(
   return `<div class="shop85"><div class="shbar"><h2>Place du marché</h2><span class="mute">Choisissez une échoppe.</span>${shGold()}</div><div class="shhub">
    ${card('m','coin','Marchand','Potions, coffres de cosmétiques, fournitures d’enchantement et de Compagnon.',[['Objets en vente',Object.keys(POTS).length],['Potions de vie possédées',fmt(pv)]],'Entrer chez le Marchand')}
    ${card('h','scale','Hôtel des ventes','Achetez et vendez de l’équipement entre joueurs. Les objets achetés arrivent par la messagerie.',[['Objets en vente',FB.user?(ahN==null?'…':fmt(ahN)):'hors ligne'],['Vos ventes en cours',FB.user?(mine==null?'…':fmt(mine)):'—']],'Entrer à l’Hôtel des ventes')}
-   ${card('s','bag','Maroquinier','Agrandissez votre sac et achetez des sacoches pour l’artisanat, les potions et le Compagnon.',[['Sac',`${BAG} cases`],['Sacoches',`${own} / 3`]],'Entrer chez le Maroquinier')}</div></div>` }
+   ${card('s','bag','Maroquinier','Achetez des sacoches pour ranger à part l’artisanat, les potions et le Compagnon.',[['Sac',`${BAG} cases`],['Sacoches',`${own} / 3`]],'Entrer chez le Maroquinier')}</div></div>` }
 const shBar=(t,d)=>`<div class="shbar"><button class="btn" data-act="shopSub" data-s="hub" ${ttip('Place du marché','Revenir aux trois échoppes.')}>${uic('back')} Place du marché</button><h2>${t}</h2><span class="mute">${d}</span>${shGold()}</div>`;
 function stgRow(k){ const S2=STG85[k],lv=stgLv(k),mx=S2.cost.length,c=stgCost(k),pouch=!!S2.cap;
   const now=pouch?(lv?`${S2.cap[lv]} piles`:'Aucune'):`${GW*(5+lv)} cases`,nx=lv<mx?(pouch?`${S2.cap[lv+1]} piles`:`${GW*(6+lv)} cases`):null;
@@ -111,10 +112,7 @@ function pouchViz85(c){ const cap=pouchCap(c),P=pouchOf(c),L=[]; for(const [k,n]
   const max=STG85[c].cap[STG85[c].cap.length-1]; while(L.length<max) L.push(`<span class="${L.length<cap?'':'lk'}"></span>`); return `<div class="shpouch">${L.join('')}</div>` }
 function shopStorage(){ const lv=stgLv('bag'),c=UI.shPch&&POUCH_K.includes(UI.shPch)?UI.shPch:'craft';
   return `<div class="shop85">${shBar('Maroquinier','Améliorations pour tout le compte : elles servent à tous vos personnages.')}<div class="shsub">
-   <section class="shshelf">${shopBg('s','sh1')}<div class="shsin"><h3>${uic('bag')} Sac agrandi</h3><div class="shcmp"><div>Actuel<b>${BAG} cases</b>${GH} rangées</div><span>→</span><div>${lv<3?`Niveau ${lv+1}<b>${BAG+GW} cases</b>${GH+1} rangées`:'Maximum<b>112 cases</b>8 rangées'}</div></div>${bagViz85()}
-    <div class="shtier">${STG85.bag.cost.map((x,i)=>`<div class="${i<lv?'done':i===lv?'nx':''}"><b>Niveau ${i+1}</b>${i<lv?'Acheté':costHTML(Object.assign({gold:x[0]},x[1]?{[x[1]]:1}:{}))}</div>`).join('')}</div>
-    <div class="shgo">${lv<3?`<button class="btn pri amgo" data-act="stgBuy" data-k="bag" ${canPay(stgCost('bag'))?'':'disabled'}>Acheter le niveau ${lv+1}</button>`:'<span class="shmax">Sac au maximum</span>'}</div></div></section>
-   <section class="shshelf"><div class="shsin"><h3>${uic('anvil')} Sacoches</h3><p class="mute">Hors du sac : les objets compatibles y sont rangés automatiquement, et restent utilisables partout (Forge, combat, Compagnon…).</p>
+   <section class="shshelf shfull">${shopBg('s','sh1')}<div class="shsin"><h3>${uic('anvil')} Sacoches</h3><p class="mute">Hors du sac : les objets compatibles y sont rangés automatiquement, et restent utilisables partout (Forge, combat, Compagnon…).</p>
     <div class="shpt">${POUCH_K.map(x=>`<button class="${x===c?'on':''}" data-act="shPch" data-c="${x}">${uic(STG85[x].ic)}${STG85[x].n}<small class="num">${pouchCap(x)?pouchUsed(x)+' / '+pouchCap(x):'—'}</small></button>`).join('')}</div>${pouchViz85(c)}
     ${POUCH_K.map(stgRow).join('')}</div></section></div></div>` }
 viewShop=function(){ const s=UI.shopSub||'hub';

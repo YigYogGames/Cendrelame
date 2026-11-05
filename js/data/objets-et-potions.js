@@ -36,7 +36,7 @@ const MAT_OBJ={fer:'Lingot de fer',cuir:'Peau tannée',plante:'Herbe enchantée'
 const MAT_D={prisme:'Relique céleste, lâchée rarement par Le Dévoreur (10 %). À la forge légendaire, elle crée un objet de niveau 60 et de rareté Divin.',fer:'Sert à forger et à améliorer tout l’équipement.',cuir:'Indispensable à la forge et aux améliorations.',plante:'Herbe luminescente cueillie dans la Forêt Enchantée.',cristal:'Forges fines, relances de valeurs et améliorations avancées.',essence:'Forges de maître et remplacement d’affixes.',rune:'Rare. Forge légendaire, ascension et améliorations ultimes.'};
 const GW=14,STACK=500; let GH=5,BAG=GW*GH;
 /* taille d'un objet dans la grille (largeur x hauteur) */
-const SIZE=o=>o.mat?[1,1]:({weapon:[1,5],armor:[2,3],legs:[2,3],helm:[2,2],boots:[2,2],ring:[1,1],amulet:[1,1]})[o.slot]||[1,1];
+const SIZE=o=>o.mat?[1,1]:({weapon:[1,2],armor:[1,2],legs:[1,2],helm:[1,2],boots:[1,2],ring:[1,1],amulet:[1,1]})[o.slot]||[1,1];
 const STAT_N={hp:'PV',atk:'Force',mag:'Intelligence',def:'Défense physique',res:'Défense magique',ap:'Points d’action',rPhys:'Résistance physique',rMag:'Résistance magique',rFeu:'Résistance au feu',rGlace:'Résistance à la glace',rFoudre:'Résistance à la foudre',rTerre:'Résistance à la terre',spd:'Vitesse',crit:'Critique',critDmg:'Dégâts critiques',dodge:'Esquive',lifesteal:'Vol de vie',hpPct:'PV',dmgPct:'Dégâts',goldFind:'Or trouvé',dropRate:'Butin trouvé'};
 const PCT=new Set(['rPhys','rMag','rFeu','rGlace','rFoudre','rTerre','crit','critDmg','dodge','lifesteal','hpPct','dmgPct','goldFind','dropRate']);
 const fmtStat=(s,v)=>PCT.has(s)?`+${r1(v)}% ${STAT_N[s]}`:`+${Math.round(v)} ${STAT_N[s]}`;

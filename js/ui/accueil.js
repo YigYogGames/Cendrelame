@@ -1,6 +1,6 @@
 /* Cendrelame · ui/accueil.js (0.8.15)
    Écran d’accueil « Salle du héros » : affiché après le choix du personnage.
-   Au centre le héros et son équipement porté ; à droite le prochain boss, les activités et la liste « À faire ». */
+   Au centre le héros ; à droite le prochain boss, les activités et la liste « À faire ». */
 Object.assign(UIC,{
   home:UIC.home||'<path d="M3 11.5 12 4l9 7.5"/><path d="M5.5 10v10h5v-6h3v6h5V10"/>',
   clock:UIC.clock||'<circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/>',
@@ -35,9 +35,7 @@ function viewHome(){
   return `<div class="hmwrap">
    <section class="hmstage" aria-label="Votre héros">
     <div class="hmplate"><h2>${esc(h.name)}</h2><small>${c.n}${esc(spec)} · niveau ${h.lvl}</small></div>
-    <div class="hmcol l">${HM_L.map(k=>hmSlot(h,k)).join('')}</div>
     <div class="hmhero"><span class="hmring"></span>${heroArt(h.cls,h.skin,'hmart')}</div>
-    <div class="hmcol r">${HM_R.map(k=>hmSlot(h,k)).join('')}</div>
     <div class="hmstats"><span ${ttip('Points de vie')}>PV <b class="num">${fmt(Math.round(st.hp))}</b></span><span ${ttip(mag?'Intelligence':'Force','Statistique principale de votre classe.')}>${mag?'Intelligence':'Force'} <b class="num">${fmt(Math.round(mag?st.mag:st.atk))}</b></span><span ${ttip('Puissance','Estimation globale de la force du héros.')}>Puissance <b class="num gold">${fmt(Math.round(heroPower(h)))}</b></span></div>
    </section>
    <aside class="hmside">

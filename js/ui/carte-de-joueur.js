@@ -8,9 +8,11 @@ const pcFxAttr=d=>{const F=pcFr(d.fr);return `style="--fr:${F[1]};--fl:${F[4]||F
 const PC_SPK='<i class="pcsp s1"></i><i class="pcsp s2"></i><i class="pcsp s3"></i><i class="pcsp s4"></i><i class="pcsp s5"></i>';
 const PC_ICONS=[['c:guerrier',0],['c:mage',0],['i:swords',0],['i:shield',0],['i:star',50],['i:trophy',150]];
 const PC_BG=[[0,'Forêt des Murmures',()=>1],[1,'Catacombes oubliées',()=>bossK('normal',0)],[2,'Marais putride',()=>bossK('normal',1)],[3,'Pic de Cendre',()=>bossK('normal',2)],[4,'Abysses du Néant',()=>bossK('normal',3)],[5,'Glaces éternelles',()=>Object.values(S.raid||{}).some(v=>v>0)],[6,'Arène',()=>trGot('p_d1')]];
+/* 0.8.16 : la carte n’affiche que les 3 personnages de plus haut niveau */
+const pcTop3=L=>(L||[]).slice().sort((a,b)=>(b.lvl||0)-(a.lvl||0)).slice(0,3);
 const pcDef=()=>Object.assign({icon:'c:'+(S&&S.heroes[0]?S.heroes[0].cls:'guerrier'),fr:0,bg:3,title:null,show:[]},ACC.card||{});
 function cardMine(){
-  const c=pcDef(),chars=[];for(let i=0;i<MAXCH;i++){const s=charSum(i); if(s) chars.push({n:s.name,cls:s.cls,lvl:s.lvl})}
+  const c=pcDef();let chars=[];for(let i=0;i<MAXCH;i++){const s=charSum(i); if(s) chars.push({n:s.name,cls:s.cls,lvl:s.lvl})} chars=pcTop3(chars);
   return {name:(FB.prof&&FB.prof.name)||(S&&S.heroes[0]&&S.heroes[0].name)||'Joueur',pts:trPts(),icon:c.icon,fr:c.fr,bg:(c.bg>=100&&!cosOwn(SBG_ID[c.bg]))?3:c.bg,orn:cosOk(c.orn),pf:cosOk(c.pf),aura:cosOk(c.aura),trail:cosOk(c.trail),cfx:cosOk(c.cfx),title:c.title&&trGot(c.title)&&TRK[c.title]?TRK[c.title].n:null,show:(c.show||[]).filter(id=>trGot(id)&&TRK[id]).slice(0,3),chars};
 }
 const pcIcon=(ic,s)=>{ic=ic||'c:guerrier';return ic.startsWith('c:')&&PORTRAIT[ic.slice(2)]?`<img src="${PORTRAIT[ic.slice(2)]}" width="${s}" height="${s}" alt="" class="mpport">`:`<span class="mpunk pcemb" style="width:${s}px;height:${s}px">${uic(UIC[ic.slice(2)]?ic.slice(2):'star')}</span>`};
@@ -19,11 +21,11 @@ function cardColl(d,id='me'){ /* carte de collection : amis */
   return pcOrnWrap(d,`<article class="pc1 ${pcFr(d.fr)[3]?'pcfx':''}" ${pcFxAttr(d)}><div class="pc1bg">${pcBgH(d.bg??3,'pc'+id)}</div><div class="pc1top">${pcFr(d.fr)[3]==='spark'?PC_SPK:''}${pcPf(d,96)}<b>${esc(d.name)}</b>${d.title?`<small class="pc1t">« ${esc(d.title)} »</small>`:''}</div>
    <div class="pc1pts">${uic('trophy')}<b class="num">${fmt(d.pts||0)}</b><small>points de trophées</small></div>
    ${(d.show||[]).length?`<div class="pc1show">${d.show.map(i=>TRK[i]?`<span class="mtti sm ${trTier(TRK[i])}" title="${esc(TRK[i].n)}">${uic(trIc(TRK[i]))}</span>`:'').join('')}</div>`:''}
-   <ul class="pc1ch ${(d.chars||[]).length>3?'many':''}">${(d.chars||[]).map(c=>`<li>${pcPort(c.cls,34)}<span><b>${esc(c.n)}</b><small>${(CLASSES[c.cls]||{n:''}).n}</small></span><em class="num">Niv ${c.lvl}</em></li>`).join('')||'<li class="mute">Aucun personnage.</li>'}</ul>${pcCfx(d)}</article>`);
+   <ul class="pc1ch">${(()=>{ const T=pcTop3(d.chars),L=T.map(c=>`<li>${pcPort(c.cls,34)}<span><b>${esc(c.n)}</b><small>${(CLASSES[c.cls]||{n:''}).n}</small></span><em class="num">Niv ${c.lvl}</em></li>`); while(L.length<3) L.push('<li class="pcemp" aria-hidden="true"></li>'); return L.join('') })()}</ul>${pcCfx(d)}</article>`);
 }
 function cardBanner(d,id='meb',rank){ /* bannière : classement */
   return `<article class="pc2 ${pcFr(d.fr)[3]?'pcfx':''}" ${pcFxAttr(d)}>${pcFr(d.fr)[3]==='spark'?PC_SPK:''}<div class="pc2bg">${pcBgH(d.bg??3,'pb'+id)}</div>${rank?`<span class="pc2rk num">${rank}</span>`:''}<div class="pc2l">${pcPf(d,96)}</div><div class="pc2m"><small>Joueur</small><b>${esc(d.name)}</b>${d.title?`<span class="pc1t">« ${esc(d.title)} »</span>`:''}<div class="pc2pts">${uic('trophy')}<b class="num">${fmt(d.pts||0)}</b> points de trophées</div></div>
-   <div class="pc2r">${(d.chars||[]).slice(0,3).map(c=>`<div class="pc2c">${pcPort(c.cls,48)}<b>${esc(c.n)}</b><small>${(CLASSES[c.cls]||{n:''}).n} · niv ${c.lvl}</small></div>`).join('')}</div></article>`;
+   <div class="pc2r">${pcTop3(d.chars).map(c=>`<div class="pc2c">${pcPort(c.cls,48)}<b>${esc(c.n)}</b><small>${(CLASSES[c.cls]||{n:''}).n} · niv ${c.lvl}</small></div>`).join('')}</div></article>`;
 }
 function openCard(d,extra=''){
   closeCard(); const w=document.createElement('div'); w.id='pcard'; w.className='pcmodal'; w.setAttribute('role','dialog'); w.setAttribute('aria-modal','true'); w.setAttribute('aria-label','Carte de joueur : '+d.name);

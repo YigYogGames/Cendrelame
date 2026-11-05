@@ -56,3 +56,5 @@
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 @media (min-width:760px){.arena{grid-template-columns:1fr 1fr}}
 
+/* 0.8.16 : Maroquinier sans Sac agrandi, les sacoches prennent toute la largeur */
+.shsub>.shshelf.shfull{grid-column:1/-1}
