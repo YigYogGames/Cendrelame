@@ -3,7 +3,7 @@
 const ahNum=n=>Math.floor(+n||0).toLocaleString('fr-FR');
 const AH_TAX=5,AH_DEP=1,AH_MAXL=10,AH_DUR=[2,12,24,72,168];
 const ahCol=()=>FB.db.collection(COL('ah'));
-const AH={tab:'buy',cat:'all',rar:[1,1,1,1,1,1],lv:[1,75],cls:{mage:1,guerrier:1,paladin:1},q:'',sort:'pa',list:null,mine:null,busy:false,err:'',ts:0,conf:null,sell:null,price:'',dur:24};
+const AH={tab:'buy',cat:'all',rar:[1,1,1,1,1,1,1],lv:[1,75],cls:{mage:1,guerrier:1,paladin:1},q:'',sort:'pa',list:null,mine:null,busy:false,err:'',ts:0,conf:null,sell:null,price:'',dur:24};
 const AH_CAT=[['all','Tout'],['weapon','Armes'],['armor','Armures'],['jewel','Bijoux'],['pot','Potions',1],['gem','Gemmes',1]];
 const ahCatOf=s=>s==='weapon'?'weapon':(s==='ring'||s==='amulet')?'jewel':'armor';
 const ahDurN=h=>h<24?h+' h':h===24?'24 h':(h/24)+' jours';

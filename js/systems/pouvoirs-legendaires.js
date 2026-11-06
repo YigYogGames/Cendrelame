@@ -48,7 +48,7 @@ const _gearStats87=gearStats; gearStats=function(h){ const prev=LP_ALLOW; LP_ALL
 hx=function(h){ const g=_hx86(h); if(!h||!h.equip) return g; const A=lpAllow(h);
   for(const it of A){ const P=LPW[lpOf(it)]; if(!P.gx) continue; const m=P.fix?1:lpM(it); for(const [s,v] of Object.entries(P.gx)) g[s]=(g[s]||0)+v*m }
   if(g.killAp) g.killAp=Math.min(1,g.killAp); return g };
-const lpFix=o=>{ if(o&&o.slot&&Array.isArray(o.aff)&&o.rarity>=4&&!o.lp){ o.leg=o.leg||o.slot; o.lp=rollLp82() } };
+const lpFix=o=>{ if(o&&o.slot&&Array.isArray(o.aff)&&o.rarity>=4&&o.rarity<6&&!o.lp){ o.leg=o.leg||o.slot; o.lp=rollLp82() } };
 function lpWalk(o,d){ if(!o||typeof o!=='object'||(d|0)>9) return; if(Array.isArray(o)){ for(const x of o) lpWalk(x,(d|0)+1); return } if(o.slot&&Array.isArray(o.aff)){ lpFix(o); return } for(const k in o) if(o[k]&&typeof o[k]==='object') lpWalk(o[k],(d|0)+1) }
 function accLp87(){ if(!ACC||ACC.lp87) return; lpWalk(ACC.stash); ACC.lp87=1; try{ saveAcc() }catch(e){} }
 /* ---------- Parchemin d'Adresse : plus de Points d'action ---------- */

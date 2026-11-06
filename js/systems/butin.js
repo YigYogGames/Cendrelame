@@ -23,10 +23,11 @@ function viewCombatIdle(){
     :dk==='myth'?`<p class="hint" style="color:var(--r3)"><b>Mode mythique :</b> monstres niveau ${D.L}. Les boss gagnent la Frappe dévastatrice et entrent en rage dès le tour ${D.rage+1}. Récompenses : or, XP et matériaux ×2, Prisme divin à 25 % sur Le Dévoreur.</p>`:heroOpen()?'':`<p class="hint">🔒 Le mode Héroïque se débloque au niveau ${HERO_L} (vous êtes niveau ${S.heroes[0].lvl}).</p>`;
   const mstat=c.role==='mag'?['Intelligence',st.mag]:['Force',st.atk];
   const mode=UI.advMode||'pve';
-  const modeSeg=`<div class="advmode2" role="tablist"><button class="${mode==='pve'?'on':''}" data-act="advMode" data-m="pve">${uic('swords')} Aventure</button><button class="${mode==='pvp'?'on':''}" data-act="advMode" data-m="pvp">${uic('people')} Duel</button><button class="${mode==='raid'?'on':''}" data-act="advMode" data-m="raid">${uic('skull')} Défis</button></div>`;
+  const modeSeg=`<div class="advmode2" role="tablist"><button class="${mode==='pve'?'on':''}" data-act="advMode" data-m="pve">${uic('swords')} Aventure</button><button class="${mode==='pvp'?'on':''}" data-act="advMode" data-m="pvp">${uic('people')} Duel</button><button class="${mode==='raid'?'on':''}" data-act="advMode" data-m="raid">${uic('skull')} Défis</button><button class="${mode==='rift'?'on':''}" data-act="advMode" data-m="rift" ${ttip('Failles temporelles','Mode de haut niveau (niveau 50) : 3 combats et un boss à la suite, objets niveau 85 et objets d’Ensemble.')}>${uic('hour')} Failles</button></div>`;
   if(mode==='pve') return `<div class="advwrap">${modeSeg}${viewAdvMap()}</div>`;
   if(mode==='pvp') return `<div class="advwrap">${modeSeg}${viewDuel()}</div>`;
   if(mode==='raid') return `<div class="advwrap">${modeSeg}${viewRaidMap82()}</div>`;
+  if(mode==='rift'&&typeof viewRift==='function') return `<div class="advwrap">${modeSeg}${viewRift()}</div>`;
   return `${modeSeg}<div class="adv-layout">
     <section class="panel herocol">
       <h2 style="margin:0 0 10px;font-size:1.6rem">${esc(h.name)}</h2>

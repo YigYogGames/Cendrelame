@@ -30,7 +30,7 @@ const TROPHIES=[
  {id:'f_100',c:'forge',n:'Forgeron confirmé',d:'Forger 100 objets.',p:15,f:()=>[trCnt('forge'),100]},
  {id:'f_500',c:'forge',n:'Maître forgeron',d:'Forger 500 objets.',p:30,t:1,f:()=>[trCnt('forge'),500]},
  {id:'f_leg',c:'forge',n:'Œuvre légendaire',d:'Posséder un objet Légendaire.',p:20,f:()=>[anyItem(i=>i.rarity>=4)?1:0,1]},
- {id:'f_div',c:'forge',n:'Œuvre divine',d:'Posséder un objet Divin.',p:50,t:1,f:()=>[anyItem(i=>i.rarity>=5)?1:0,1]},
+ {id:'f_div',c:'forge',n:'Œuvre divine',d:'Posséder un objet Divin.',p:50,t:1,f:()=>[anyItem(i=>i.rarity===5)?1:0,1]},
  {id:'f_up',c:'forge',n:'Perfection',d:'Améliorer un objet jusqu’à +10.',p:25,f:()=>[anyItem(i=>i.up>=10)?1:0,1]},
  {id:'c_50',c:'col',n:'Dresseur débutant',d:'Invoquer 10 créatures.',p:5,f:()=>[(ACC.comp&&ACC.comp.disc)||0,10]},
  {id:'c_500',c:'col',n:'Maître dresseur',d:'Terminer 100 expéditions de compagnon.',p:20,t:1,f:()=>[(ACC.comp&&ACC.comp.nexp)||0,100]},

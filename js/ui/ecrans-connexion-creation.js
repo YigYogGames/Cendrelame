@@ -38,7 +38,7 @@ function bootChar(){
   S.bag.forEach(e=>fixL(e.o)); for(const h of S.heroes) Object.values(h.equip||{}).forEach(fixL);
   for(const h of S.heroes){ const ok=new Set(heroSkills(h).filter(x=>x.t==='a').map(x=>x.id)); h.loadout=(h.loadout||[]).filter(id=>ok.has(id)&&h.learned[id]).slice(0,LOADOUT_MAX); if(!h.loadout.length){ const f=heroSkills(h).find(x=>x.t==='a'&&h.learned[x.id]); if(f) h.loadout=[f.id] } }
   for(const h of S.heroes) if(h.lvl>MAXL){h.lvl=MAXL;h.xp=0}
-  {const lg=it=>{if(it&&!it.mat&&it.rarity>=4&&!it.leg) it.leg=it.slot}; S.bag.forEach(e=>lg(e.o)); for(const h of S.heroes) Object.values(h.equip||{}).forEach(lg)}
+  {const lg=it=>{if(it&&!it.mat&&it.rarity>=4&&it.rarity<6&&!it.leg) it.leg=it.slot}; S.bag.forEach(e=>lg(e.o)); for(const h of S.heroes) Object.values(h.equip||{}).forEach(lg)}
   {let cut=0; for(const k of Object.keys(S.mats||{})) if(S.mats[k]>matCap(k)){cut++; S.mats[k]=matCap(k)}
    if(cut) setTimeout(()=>toast(`Stock maximum réduit à ${MATCAP.toLocaleString('fr-FR')} par matériau : les surplus ont été retirés.`),1600)}
   { S.bag=S.bag.filter(e=>!(e.o.mat&&HARV.includes(e.o.mat))); if(S.mats) for(const k of HARV) delete S.mats[k]; if(ACC.stash&&ACC.stash.tabs) for(const T of ACC.stash.tabs) T.bag=(T.bag||[]).filter(e=>!(e.o&&e.o.mat&&HARV.includes(e.o.mat))); }
