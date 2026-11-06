@@ -1,6 +1,9 @@
 /* Cendrelame · liste des images PNG présentes dans assets/img (générée par outils/mettre-a-jour-images.bat) */
 const IMG_PRESENTES=[
   "boss/roi_gobelin.png",
+  "classes/apparences/paladin_f.png",
+  "classes/apparences/paladin_m.png",
+  "classes/portraits/paladin.png",
   "classes/apparences/guerrier_f.png",
   "classes/apparences/guerrier_m.png",
   "classes/apparences/mage_f.png",

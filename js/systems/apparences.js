@@ -3,7 +3,7 @@
    puis lancez outils\mettre-a-jour-images.bat. Chaque image devient une apparence (nom tiré du nom de fichier).
    Choix dans Communauté → Personnalisation → Apparence du héros.
    Pour l’instant tout est débloqué (test) : les conditions se mettront dans SKIN_COND. */
-const SKIN_DIR={sorcier:'mage',mage:'mage',guerrier:'guerrier'};
+const SKIN_DIR={sorcier:'mage',mage:'mage',guerrier:'guerrier',paladin:'paladin'};
 /* conditions de déblocage, à remplir plus tard. Exemple : sk_mage_pyromancien:()=>S.heroes[0].lvl>=30 */
 const SKIN_COND={};
 const SKIN_HOW={}; /* texte affiché quand une apparence est verrouillée, même clé que SKIN_COND */
@@ -27,5 +27,5 @@ function skinTiles(tile){ const h=S.heroes[0],L=skinsOf(h.cls);
     return tile(cur===s.id,!ok,`<span class="skth"><img src="${s.src}" alt=""></span>`,esc(s.n),cur===s.id?'Équipée':ok?(s.extra?'Débloquée':'De base'):(SKIN_HOW[s.id]||'Verrouillée'),`data-act="skinSet" data-id="${s.id}"`,false,ttip(s.n,ok?'Cliquez pour l’équiper : elle s’affiche partout (accueil, combat, duel, carte).':(SKIN_HOW[s.id]||'Apparence verrouillée.'))) };
   const g=s=>!s.extra?'Base':/saison_(\d+)/.test(s.id)?'Saison '+s.id.match(/saison_(\d+)/)[1]:'Spécialisations';
   return ['Base','Spécialisations',...[...new Set(L.map(g))].filter(x=>/^Saison/.test(x)).sort()].map(n=>cu8Grp(n,L.filter(s=>g(s)===n).map(T).join(''))).join('')+
-   `<div class="cu8wide"><small class="mute">Nouvelles apparences : déposez les images dans assets/img/skins/${h.cls==='mage'?'sorcier':'guerrier'}/.</small></div>` }
+   `<div class="cu8wide"><small class="mute">Nouvelles apparences : déposez les images dans assets/img/skins/${h.cls==='mage'?'sorcier':h.cls}/.</small></div>` }
 Object.assign(A,{ skinSet:d=>{ const h=S.heroes[0]; if(!skinOk(d.id)){ toast('Apparence verrouillée.'); return } h.skin=d.id; save(); render(); toast('Apparence équipée.') } });

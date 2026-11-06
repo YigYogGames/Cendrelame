@@ -3,7 +3,7 @@
 /* ascension : niveau maximum requis ; palier n = 5000 × n or et 5 × n Prismes divins */
 const ascCost=h=>({gold:5000*(h.stars+1),prisme:5*(h.stars+1)});
 /* portraits de classe (image intégrée) */
-const PORTRAIT={mage:'assets/img/classes/portrait_mage.webp',guerrier:'assets/img/classes/portrait_guerrier.webp'};
+const PORTRAIT={mage:'assets/img/classes/portrait_mage.webp',guerrier:'assets/img/classes/portrait_guerrier.webp',paladin:'assets/img/classes/portraits/paladin.png'};
 /* 0.8.17 : progression plus lente (≈ ×2 au niveau 10, ×2,6 au niveau 49) */
 const xpNeed=l=>Math.round(45*Math.pow(l,1.75));
 function newHero(name,cls,hue,lvl=1){

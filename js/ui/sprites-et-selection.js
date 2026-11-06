@@ -1,6 +1,6 @@
 /* Cendrelame · ui/sprites-et-selection.js */
 /* ================= Sprites des héros (fichiers du dossier sprites/) ================= */
-const SPRITES={mage:[{id:'mage_f',src:'assets/img/sprites/mage_f.webp',n:'Apparence 1'},{id:'mage_m',src:'assets/img/sprites/mage_m.webp',n:'Apparence 2'}],guerrier:[{id:'guerrier_m',src:'assets/img/classes/apparences/guerrier_m.png',n:'Apparence 1'},{id:'guerrier_f',src:'assets/img/classes/apparences/guerrier_f.png',n:'Apparence 2'}]};
+const SPRITES={mage:[{id:'mage_f',src:'assets/img/sprites/mage_f.webp',n:'Apparence 1'},{id:'mage_m',src:'assets/img/sprites/mage_m.webp',n:'Apparence 2'}],guerrier:[{id:'guerrier_m',src:'assets/img/classes/apparences/guerrier_m.png',n:'Apparence 1'},{id:'guerrier_f',src:'assets/img/classes/apparences/guerrier_f.png',n:'Apparence 2'}],paladin:[{id:'paladin_m',src:'assets/img/classes/apparences/paladin_m.png',n:'Apparence 1'},{id:'paladin_f',src:'assets/img/classes/apparences/paladin_f.png',n:'Apparence 2'}]};
 const skinsOf=cls=>SPRITES[cls]||[];
 const skinOf=(cls,id)=>{const L=skinsOf(cls);return L.find(s=>s.id===id)||L[0]||null};
 /* image en pied ; repli sur le portrait si aucun sprite (ou fichier introuvable) */

@@ -20,7 +20,7 @@ const POTS={
   p_reg1:{n:'Potion de régénération',c:'#5ac87a',p:40,d:'Soigne 6 % des PV max au début de chacun de vos tours pendant 4 tours (24 % au total).',cd:5},
   p_reg2:{n:'Élixir de régénération',c:'#2a9a5a',p:100,d:'Soigne 10 % des PV max au début de chacun de vos tours pendant 5 tours (50 % au total).',cd:7},
   p_res:{n:'Potion de résistance',c:'#4a86c8',p:50,d:'+40 % Défense et Résistance pendant 3 tours.',cd:4},
-  p_for:{n:'Potion de force',c:'#e07a1f',p:60,d:'+30 % Force pendant 3 tours.',cls:'guerrier',cd:4},
+  p_for:{n:'Potion de force',c:'#e07a1f',p:60,d:'+30 % Force pendant 3 tours (Guerrier et Paladin).',cls:'guerrier',cd:4},
   p_int:{n:'Potion d’intelligence',c:'#8a4fd8',p:60,d:'+30 % Intelligence pendant 3 tours.',cls:'mage',cd:4},
   p_pa:{n:'Potion d’action',c:'#d9b81f',p:70,cd:6,d:'+2 PA pendant 3 tours. En duel, uniquement pendant la préparation ou à votre premier tour.'},
   p_oubli:{n:'Potion d’oubli',c:'#5f7fa8',fix:{gold:5000},nocombat:1,d:'Réinitialise toutes vos compétences et votre spécialisation (points remboursés). Se boit depuis la fenêtre Personnage.'},
@@ -81,6 +81,8 @@ const RES_S={rPhys:'Physique',rMag:'Magique',rFeu:'Feu',rGlace:'Glace',rFoudre:'
 const LEGP={weapon:'Fil du destin',helm:'Regard du prédateur',armor:'Cœur de braise',legs:'Foulée du chasseur',boots:'Course fatale',ring:'Sceau du bourreau',amulet:'Œil de l’oracle'};
 const LEG_FX={crit:6,critDmg:10},LEG_D='Augmente les chances de coup critique de 6 % et les dégâts critiques de 10 %.';
 /* affixes possibles : pas d’Intelligence sur l’équipement de Guerrier, pas de Force sur celui du Sorcier */
-const affPool=c=>AFX.filter(a=>!(c==='guerrier'&&a.s==='mag')&&!(c==='mage'&&a.s==='atk'));
+const affPool=c=>{ const r=typeof CLASSES!=='undefined'&&CLASSES[c]?CLASSES[c].role:(c==='mage'?'mag':'atk'); return AFX.filter(a=>!(r==='atk'&&a.s==='mag')&&!(r==='mag'&&a.s==='atk')) };
+/* potion réservée : la Potion de force sert à toutes les classes de Force */
+const potFor=(k,cls)=>{ const c=POTS[k]&&POTS[k].cls; return !c||c===cls||(c==='guerrier'&&typeof CLASSES!=='undefined'&&CLASSES[cls]&&CLASSES[cls].role==='atk') };
 const EPITHETS=['de Cendre','des Damnés','du Crépuscule','de l’Aube','d’Aldrec','des Abysses','du Gardien','de la Braise','du Dernier Siège'];
 

@@ -24,7 +24,7 @@ const CB_LIM={p_vie1:3,p_vie:3,p_vie3:3,p_reg1:1,p_reg2:1,p_res:1,p_for:1,p_int:
 const cbBag=()=>{ if(!S.cbag||typeof S.cbag!=='object') S.cbag={}; return S.cbag };
 const cbCount=k=>(S&&S.cbag&&S.cbag[k])||0;
 const cbTake=k=>{ const b=cbBag(); b[k]=Math.max(0,(b[k]||0)-1); if(!b[k]) delete b[k] };
-const cbKeys=(cls)=>Object.keys(CB_LIM).filter(k=>POTS[k]&&!POTS[k].nocombat&&(!POTS[k].cls||POTS[k].cls===cls));
+const cbKeys=(cls)=>Object.keys(CB_LIM).filter(k=>POTS[k]&&!POTS[k].nocombat&&potFor(k,cls));
 const cbTotal=()=>Object.values(S&&S.cbag||{}).reduce((a,b)=>a+b,0);
 const cbBusy=()=>inFight()||[PV.match,RD.match].some(m=>m&&['prep','fight'].includes(m.state));
 function cbIn(k,n){

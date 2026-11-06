@@ -1,6 +1,6 @@
 /* Cendrelame · systems/potions-en-combat.js */
 /* --- potions en combat --- */
-const ownPots=()=>Object.keys(POTS).filter(k=>!POTS[k].nocombat&&cbCount(k)>0&&(!POTS[k].cls||POTS[k].cls===S.heroes[0].cls));
+const ownPots=()=>Object.keys(POTS).filter(k=>!POTS[k].nocombat&&cbCount(k)>0&&potFor(k,S.heroes[0].cls));
 function potBar(){
   const ks=ownPots(); if(!ks.length) return '<small class="mute" style="align-self:center">Aucune potion : achetez-en chez le Marchand.</small>';
   return `<div class="potbar">${ks.map(k=>{const used=(BUFF_K.includes(k)&&buffOn(k)),cd=potLeft(k),cs=potShow(k,cd);

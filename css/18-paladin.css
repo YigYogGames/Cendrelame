@@ -1,0 +1,5 @@
+/* Cendrelame · Paladin (0.8.19) : fonds des arbres de talents */
+.bg-holy{background:radial-gradient(ellipse at 50% -10%,#bcd4ff44,transparent 55%),radial-gradient(ellipse at 50% 115%,#e8c05033,transparent 55%),linear-gradient(#0f1a2c,#1b2c46 60%,#26385a)}
+.bg-holy:before{background:repeating-conic-gradient(from 0deg at 50% -10%,#ffffff07 0 4deg,transparent 4deg 12deg)}
+.bg-divine{background:radial-gradient(ellipse at 50% -10%,#ffe08a55,transparent 55%),linear-gradient(#2a1c08,#43300e 60%,#5a4214)}
+.bg-divine:before{background:repeating-linear-gradient(100deg,transparent 0 46px,#ffe08a0e 46px 48px)}

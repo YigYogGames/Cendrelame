@@ -38,7 +38,7 @@ function viewSites(){
 const SHOP_CAT=k=>/^c[tf]_/.test(k)?'comp':['c_relic','s_ch2','s_ch3','c_prod'].includes(k)?'cos':k==='sc_blank'||k==='rm_aff'?'ench':k==='p_oubli'?'spe':['p_xp','p_loot'].includes(k)?'prog':'comb';
 const SHOP_CATS=[['all','Tout'],['comb','Combat'],['prog','Progression'],['ench','Enchantement'],['cos','Cosmétiques'],['comp','Compagnon'],['spe','Spéciaux']];
 const SHOP_CN={comp:'Objet de compagnon',cos:'Coffre cosmétique',ench:'Fourniture d’enchantement',comb:'Potion de combat',prog:'Potion de progression',spe:'Objet spécial'};
-const potLock=k=>POTS[k].cls&&POTS[k].cls!==S.heroes[0].cls;
+const potLock=k=>!potFor(k,S.heroes[0].cls);
 const bigPot=(k,c='')=>`<span class="mcpot ${c}" style="--pc:${POTS[k].c}">${matIcon(k)}</span>`;
 const shopMax=k=>POTS[k].fix?1:Math.max(1,Math.min(99,matRoom(k),Math.floor(S.gold/Math.max(1,potPrice(k)))));
 function viewShop(){
