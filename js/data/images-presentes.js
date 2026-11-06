@@ -84,6 +84,8 @@ const IMG_PRESENTES=[
   "skins/guerrier/berserker.png",
   "skins/guerrier/defenseur.png",
   "skins/guerrier/saison_1.png",
+  "skins/paladin/gardien_aube.png",
+  "skins/paladin/heraut_jugement.png",
   "skins/sorcier/evocateur.png",
   "skins/sorcier/evocatrice.png",
   "skins/sorcier/pyromancien.png",

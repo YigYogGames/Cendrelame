@@ -9,7 +9,7 @@ const SKIN_COND={};
 const SKIN_HOW={}; /* texte affiché quand une apparence est verrouillée, même clé que SKIN_COND */
 const skinOk=id=>!SKIN_COND[id]||!!SKIN_COND[id]();
 /* noms affichés (avec accents) ; sinon le nom vient du fichier */
-const SKIN_NAMES={berserker:'Berserker',defenseur:'Défenseure',evocatrice:'Évocatrice',evocateur:'Évocateur',pyromancienne:'Pyromancienne',pyromancien:'Pyromancien',saison_1:'Saison 1',saison_1_b:'Saison 1 · variante 2',saison_1_c:'Saison 1 · variante 3'};
+const SKIN_NAMES={berserker:'Berserker',defenseur:'Défenseure',evocatrice:'Évocatrice',evocateur:'Évocateur',pyromancienne:'Pyromancienne',pyromancien:'Pyromancien',saison_1:'Saison 1',saison_1_b:'Saison 1 · variante 2',saison_1_c:'Saison 1 · variante 3',gardien_aube:'Gardien de l’Aube',heraut_jugement:'Héraut du Jugement'};
 const skinName=f=>{ if(SKIN_NAMES[f]) return SKIN_NAMES[f]; const t=f.replace(/[_-]+/g,' ').trim(); return t.charAt(0).toUpperCase()+t.slice(1) };
 (function skinLoad(){
   const L=(typeof IMG_PRESENTES!=='undefined'?IMG_PRESENTES:[]);
