@@ -1,0 +1,55 @@
+/* Cendrelame · Alchimie, Jardin et Runomancie (0.8.23) */
+/* Alchimie */
+.mfc.alch{background:radial-gradient(ellipse at 50% 80%,#ff7a2a33,#0000 45%),radial-gradient(ellipse at 50% 40%,#1e3a24,#0a140c 75%);border-color:#3a6a3a}
+.alpot{position:relative;width:min(300px,70%);margin:6px auto 0}.alpot svg{display:block;width:100%;height:auto}
+.alpot .albub circle{animation:albub 2.4s ease-in-out infinite}.alpot .albub circle:nth-child(2){animation-delay:-.8s}.alpot .albub circle:nth-child(3){animation-delay:-1.6s}
+@keyframes albub{0%,100%{transform:translateY(0);opacity:.2}50%{transform:translateY(-12px);opacity:.8}}
+.alpot .alfire{animation:alfire .9s ease-in-out infinite alternate;transform-origin:150px 250px}
+@keyframes alfire{to{transform:scaleY(1.12)}}
+.alout{position:absolute;left:50%;top:32%;width:58px;height:58px;translate:-50% 0;border-radius:50%;display:grid;place-items:center;background:#0008;border:2px solid #c9a25a;box-shadow:0 0 18px #3ad07055}
+.alout .mi{width:40px;height:40px}
+.alrow .alsl{flex-direction:column;gap:2px;width:96px!important;height:96px!important;text-align:center;padding:4px}
+.alsl .mfi{width:34px;height:34px}.alsl small{font-size:.66rem;color:#e8d4a8;line-height:1.1}.alsl em{font-style:normal;font-size:.75rem;color:#9affb0;font-weight:700}.alsl em.no{color:#ff9a8a}
+.mfc.fxbrew .alout{animation:albrew .9s ease-out}@keyframes albrew{0%{box-shadow:0 0 0 #fff}40%{box-shadow:0 0 50px #9affb0;transform:scale(1.25)}100%{box-shadow:0 0 18px #3ad07055}}
+.alrecs{display:flex;flex-direction:column;gap:4px;min-height:0;overflow:auto;scrollbar-width:thin}
+.alrec{display:grid;grid-template-columns:30px 1fr auto;align-items:center;gap:8px;padding:5px 8px;border-radius:8px;border:1px solid transparent;background:#fff5;cursor:pointer;text-align:left;font:inherit;color:inherit}
+.alrec:hover{border-color:#c9ad7a}.alrec.on{border-color:#b33a22;background:#b33a2218}.alrec.dim{opacity:.6}
+.alri .mi{width:28px;height:28px}.alrn b{display:block;font-size:.84rem}.alrn small{font-size:.7rem;color:#8a6a44}
+.alrp{display:flex;gap:2px}.plc{display:inline-flex;align-items:center;gap:1px;padding:1px 4px;border-radius:10px;background:#2a1a0c14;border:1px solid #c9ad7a;font-size:.7rem}.plc .mfi{width:16px;height:16px}
+.alq{display:flex;align-items:center;gap:6px}.alq span{flex:1;font-weight:700;font-size:.85rem}.alq b{min-width:26px;text-align:center}
+/* Jardin */
+.mfc.garden{background:radial-gradient(ellipse at 50% 30%,#3a6a2a,#14240c 80%);border-color:#4a7a3a}
+.gplots{position:relative;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;width:min(520px,92%);margin:auto}
+.gplot{position:relative;aspect-ratio:1;border-radius:14px;border:2px solid #8a6a44;background:linear-gradient(#6a4a2a,#3a2614);color:#f3e6c8;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;padding:8px;font:inherit;text-align:center;cursor:pointer;box-shadow:inset 0 -10px 20px #0006}
+.gplot b{font-size:.82rem}.gplot small{font-size:.72rem;opacity:.85}
+.gplot .gico .mi{width:46px;height:46px;filter:drop-shadow(0 2px 3px #0008)}
+.gplot.em{border-style:dashed}.gplot.em:hover,.gplot.sel{border-color:#e8c070;box-shadow:0 0 0 3px #e8c07055,inset 0 -10px 20px #0006}
+.gplot.gr .gico{animation:gsway 3s ease-in-out infinite}@keyframes gsway{0%,100%{transform:rotate(-4deg)}50%{transform:rotate(4deg)}}
+.gplot.rdy{border-color:#3fd07a;box-shadow:0 0 16px #3fd07a99,inset 0 -10px 20px #0006;animation:grdy 1.6s ease-in-out infinite}@keyframes grdy{50%{box-shadow:0 0 26px #3fd07acc,inset 0 -10px 20px #0006}}
+.gplot.lk{opacity:.65;background:#2a1a0c}.gplot.lk .uic{width:22px;height:22px}.gplot:disabled{cursor:default}
+.gbar{width:80%;height:6px;border-radius:3px;background:#0006;overflow:hidden}.gbar i{display:block;height:100%;background:linear-gradient(90deg,#5ad04a,#a8e060)}
+.gown{display:flex;flex-wrap:wrap;gap:5px}.gown .zlt{width:46px;height:46px}
+.gtab td:nth-child(n+2){text-align:right;white-space:nowrap}
+/* Runomancie */
+.mfc.rune{background:radial-gradient(ellipse at 50% 45%,#2a1a4a,#0c0814 75%);border-color:#4a3070}
+.rnalt{gap:18px}.rnit{width:150px!important;height:190px!important;border-radius:16px!important}
+.rsocks{display:flex;gap:22px;justify-content:center}
+.rsock{width:84px;height:84px;border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;border:3px solid #c9a25a;background:#0c0814;color:#c9a25a;font:inherit;text-align:center;padding:4px}
+.rsock small{font-size:.62rem;line-height:1.05;color:#e0d0ff}.rsock .mfi{width:40px;height:40px}
+.rsock.em{border-style:dashed}.rsock.lk{opacity:.5;border-style:dotted}.rsock.lk .uic{width:20px;height:20px}
+button.rsock{cursor:pointer}.rsock.on{box-shadow:0 0 16px #9a70ff88}.rsock.sel{border-color:#ff8a6a;box-shadow:0 0 0 3px #ff8a6a66}
+.rtypes{position:relative;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px;width:min(560px,94%);margin:auto}
+.rtype{display:flex;flex-direction:column;align-items:center;gap:4px;padding:12px 4px;border-radius:12px;border:2px solid #4a3070;background:#140c24;color:#e0d0ff;cursor:pointer;font:inherit}
+.rtype .mfi{width:52px;height:52px}.rtype b{font-family:var(--display);font-weight:400;font-size:.95rem}.rtype small{opacity:.8}
+.rtype.on{border-color:#e8c070;box-shadow:0 0 0 3px #e8c07044,0 0 20px #9a70ff66}
+.rcut .mfs.big{width:120px;height:120px}
+.rlists{display:flex;flex-direction:column;gap:4px}
+.rlist{display:flex;align-items:center;gap:8px;padding:4px 8px;border-radius:8px;border:1px solid #c9ad7a;border-left:4px solid var(--rc);background:#fff6;cursor:pointer;text-align:left;font:inherit;color:inherit}
+.rlist b{display:block;font-size:.82rem}.rlist small{font-size:.7rem;color:#8a6a44}.rli{width:28px;height:28px;display:grid;place-items:center}.rli svg{width:26px;height:26px}
+/* infobulle : châsses */
+.sockb{margin:6px 10px 10px;display:flex;flex-direction:column;gap:3px}
+.sockb .skt{display:flex;align-items:center;gap:5px;font-size:.8rem;color:#8a7a6a}.sockb .skt.on{color:#4a2a8a;font-weight:600}.sockb .mfi{width:18px;height:18px}
+@media (max-width:760px){.gplots{grid-template-columns:repeat(3,1fr);gap:8px}.rtypes{grid-template-columns:repeat(3,1fr)}.alrow .alsl{width:80px!important;height:80px!important}}
+.gtab{width:100%;border-collapse:collapse;font-size:.8rem}.gtab td{padding:3px 4px;border-bottom:1px solid #c9ad7a66}.gtab td:first-child{display:flex;align-items:center;gap:6px}
+.mfc .gplot small{color:#e8d8b0!important;opacity:.9}.mfc .rsock small{color:#e0d0ff!important}
+.mfc.rune .mfrow3{display:flex;gap:14px;justify-content:center}.mfc.rune .mfrow3 .mfs{width:84px;height:84px;display:grid;place-items:center}.mfc.rune .mfs .mfi{width:46px;height:46px}.rcut .mfs.big .mfi{width:70px;height:70px}

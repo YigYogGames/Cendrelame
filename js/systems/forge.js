@@ -178,11 +178,14 @@ function forgeEnch(){
    <aside class="mfr">${right}</aside></div>`;
 }
 function viewForge(){
-  if(!['forge','ench'].includes(UI.ws)) UI.ws='forge';
+  if(!['forge','ench','alch','rune'].includes(UI.ws)) UI.ws='forge';
   if(!FSUB.some(([k])=>k===UI.fMode)) UI.fMode='up';
-  const ws=WORKSHOPS.map(([k,i,n,d],j)=>j>1?`<div class="mawt lock" aria-disabled="true" ${ttip(n,SOON)}><span class="mawi">${uic(i)}</span><span><b>${n}</b><small>${SOON}</small></span>${uic('lock','malk')}</div>`
-    :`<button class="mawt ${UI.ws===k?'on':''}" data-act="ws" data-w="${k}" aria-pressed="${UI.ws===k}"><span class="mawi">${uic(i)}</span><span><b>${n}</b><small>${j?'Créer des parchemins d’amélioration.':'Renforcer et recycler l’équipement.'}</small></span></button>`).join('');
+  const WS_D=['Renforcer et recycler l’équipement.','Créer des parchemins d’amélioration.','Préparer des potions, cultiver le Jardin.','Gemmes, châsses et incrustations.'];
+  const ws=WORKSHOPS.map(([k,i,n,d],j)=>j>3?`<div class="mawt lock" aria-disabled="true" ${ttip(n,SOON)}><span class="mawi">${uic(i)}</span><span><b>${n}</b><small>${SOON}</small></span>${uic('lock','malk')}</div>`
+    :`<button class="mawt ${UI.ws===k?'on':''}" data-act="ws" data-w="${k}" aria-pressed="${UI.ws===k}"><span class="mawi">${uic(i)}</span><span><b>${n}</b><small>${WS_D[j]}</small></span></button>`).join('');
   const recB=`<button class="marec" data-act="recOpen" ${ttip('Livre des recettes','Toutes les recettes d’enchantement, de fusion et d’amélioration.')}>${uic('book')}<span>Recettes</span></button>`;
+  if(UI.ws==='alch'&&typeof viewAlch==='function') return `<div class="ma1"><div class="mawts">${ws}</div><div class="mabody">${viewAlch()}</div></div>`;
+  if(UI.ws==='rune'&&typeof viewRune==='function') return `<div class="ma1"><div class="mawts">${ws}</div><div class="mabody">${viewRune()}</div></div>`;
   if(UI.ws==='ench'){ const em=UI.eMode==='fuse'?'fuse':'ench',es=`<div class="masub" role="tablist" aria-label="Enchantement">${[['ench','spark','Enchanter'],['fuse','star','Fusion']].map(([k,i,n])=>`<button role="tab" aria-selected="${em===k}" class="${em===k?'on':''}" data-act="eMode" data-m="${k}">${uic(i)}<span>${n}</span></button>`).join('')}${recB}</div>`;
     return `<div class="ma1"><div class="mawts">${ws}</div><div class="mabody">${es}${em==='fuse'?forgeFuse():forgeEnch()}</div></div>` }
   const sub=`<div class="masub" role="tablist" aria-label="Forge">${FSUB.map(([k,i,n])=>`<button role="tab" aria-selected="${UI.fMode===k}" class="${UI.fMode===k?'on':''}" data-act="fMode" data-m="${k}">${uic(i)}<span>${n}</span></button>`).join('')}${typeof recB!=='undefined'?recB:''}</div>`;
