@@ -132,7 +132,8 @@ function fUpInfo(it,k){
   return null;
 }
 const affRound=(s,v)=>s==='ap'?v:PCT.has(s)?Math.max(.5,r1(v)):Math.max(1,Math.round(v));
-const stKeys=()=>{const o=new Set();if(ACC&&ACC.stash&&Array.isArray(ACC.stash.tabs))for(const T of ACC.stash.tabs)for(const e of (T.bag||[]))if(e.o.mat&&e.o.n>0)o.add(e.o.mat);return o};
+const stKeys=()=>{const o=new Set();if(ACC&&ACC.stash&&Array.isArray(ACC.stash.tabs))for(const T of ACC.stash.tabs)for(const e of (T.bag||[]))if(e.o.mat&&e.o.n>0)o.add(e.o.mat);
+  /* 0.8.26 : les objets rangés dans les sacoches comptent aussi */ if(S&&S.pouch)for(const c of Object.keys(S.pouch))for(const [k,n] of Object.entries(S.pouch[c]||{}))if(n>0)o.add(k);return o};
 const FST_IC='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10h18v10H3zM3 10l2-5h14l2 5M10 13h4"/></svg>';
 function fOwn(fn,act,empty){
   const sk=stKeys(),ks=[...new Set([...S.bag.filter(e=>e.o.mat).map(e=>e.o.mat),...sk])].filter(k=>fn(k)&&matAll(k)>0).sort((a,b)=>nwR(a)-nwR(b)||String(a).localeCompare(b));

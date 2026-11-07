@@ -34,3 +34,21 @@
   .chead{left:10px;right:10px}
 }
 .cmap .cbld small{color:#e8d8b0!important}.cside .cplot small{color:#e8d8b0!important}
+/* 0.8.27 : décor du camp, zones cliquables posées sur les bâtiments */
+.cmap{background:#1a2410;display:flex;align-items:center;justify-content:center;container-type:size}
+.cstage{position:relative;width:min(100cqw,160cqh);aspect-ratio:1586/992;flex:none}
+.cimg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;user-select:none}
+.cstage .chead{left:1.5%;right:1.5%;top:1.5%}
+.chot{position:absolute;border-radius:20px;border:2px solid transparent;background:none;cursor:pointer;padding:0;font:inherit;transition:background .15s,border-color .15s}
+.chot:hover{background:#fff1;border-color:#e8c07088}
+.chot.on{border-color:#e8c070;box-shadow:0 0 0 3px #e8c07044,inset 0 0 30px #e8c07033}
+.ctag{position:absolute;left:50%;bottom:-6px;translate:-50% 0;min-width:120px;padding:5px 10px 6px;border-radius:10px;background:#21150bee;border:1px solid #8a6a44;color:#f1e2bd;text-align:center;box-shadow:0 4px 12px #000a;white-space:nowrap}
+.ctag b{font-family:var(--display);font-weight:400;font-size:.95rem;color:#e8c070}.ctag em{font-style:normal;font-family:var(--body);font-size:.72rem;color:#d8c8a0}
+.ctag .cbar{margin-top:4px}.ctag .crdy{top:-11px;right:-10px}
+@media (max-width:760px){
+  .cmap{display:block;container-type:normal;padding:0;min-height:0}
+  .cstage{width:100%}.cstage .chead{position:absolute}.ctag{min-width:0;padding:3px 6px;font-size:.7rem}.ctag b{font-size:.75rem}.ctag em{display:none}
+}
+.cmap{position:relative;overflow:hidden}
+.cmap:before{content:"";position:absolute;inset:-30px;background:url(../assets/img/ateliers/camp.jpg) center/cover;filter:blur(16px) brightness(.5)}
+@media (max-width:760px){.cmap:before{display:none}}

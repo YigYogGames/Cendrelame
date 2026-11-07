@@ -131,34 +131,33 @@ const sockable=it=>!!(it&&!it.mat&&it.slot);
   const h=S.heroes&&S.heroes[0],b=`<div class="sockb">${L.map(k=>k?`<span class="skt on"><svg class="mfi" viewBox="0 0 24 24">${MI[k]}</svg>${esc(gemName(k))} : ${esc(gemTxt(k,h))}</span>`:'<span class="skt">◇ Châsse vide</span>').join('')}</div>`;
   const i=s.lastIndexOf('</article>'); return i<0?s+b:s.slice(0,i)+b+s.slice(i) } }
 { const _sv=salvageValue; salvageValue=function(it){ const v=_sv(it); for(const k of sockOf(it)) if(k) v[k]=(v[k]||0)+1; return v } }
-const RUNE_HELP=`<h3>Runomancie</h3><ul><li><b>Incruster</b> : posez un équipement (clic droit depuis l’inventaire ou liste à droite). Percez jusqu’à 2 châsses, puis cliquez une gemme pour l’incruster. Retirer une gemme coûte ${UNSOCK} or : elle est rendue.</li><li><b>Créer</b> : fabrique une gemme brute du type choisi avec de la poudre runique et de l’or.</li><li><b>Tailler</b> : 3 gemmes identiques donnent 1 gemme de la taille au-dessus (brute → polie → taillée → parfaite → royale).</li></ul>
+const RUNE_HELP=`<h3>Runomancie</h3><ul><li><b>Incruster</b> : dans l’inventaire, glissez une gemme sur un équipement qui a une châsse libre (sac ou équipement porté). C’est gratuit.</li><li><b>Châsses</b> : posez un équipement ici (clic droit depuis l’inventaire ou liste à droite) pour percer jusqu’à 2 châsses ou retirer une gemme (${UNSOCK} or, la gemme est rendue).</li><li><b>Créer</b> : fabrique une gemme brute du type choisi avec de la poudre runique et de l’or.</li><li><b>Tailler</b> : 3 gemmes identiques donnent 1 gemme de la taille au-dessus (brute → polie → taillée → parfaite → royale).</li></ul>
  <h3>Effets</h3><ul><li><b>Rubis</b> : Force ou Intelligence (selon la classe)</li><li><b>Saphir</b> : PV</li><li><b>Émeraude</b> : Défense physique et magique</li><li><b>Topaze</b> : chance de critique</li><li><b>Améthyste</b> : résistances élémentaires</li></ul><p class="mute">Recycler un objet rend ses gemmes. On trouve aussi des gemmes en Défis et en Failles temporelles.</p>`;
 const ownGems=()=>[...new Set([...S.bag.filter(e=>e.o.mat&&gemP(e.o.mat)).map(e=>e.o.mat),...[...stKeys()].filter(k=>gemP(k))])].filter(k=>matAll(k)>0).sort((a,b)=>{const A=gemP(a),B=gemP(b);return 'rseta'.indexOf(A.t)-'rseta'.indexOf(B.t)||B.s-A.s});
 const gemBtn=(k,act,extra='')=>`<button class="zlt" style="--rc:var(--r${nwR(k)})" data-act="${act}" data-k="${k}" data-tip="nw:${k}" ${extra}><svg class="mfi" viewBox="0 0 24 24">${MI[k]}</svg><em class="num">${fmt(matAll(k))}</em></button>`;
 function viewRune(){
   const rm=['inc','make','cut'].includes(UI.rMode)?UI.rMode:'inc';
-  const sub=`<div class="masub" role="tablist" aria-label="Runomancie">${[['inc','gem','Incruster'],['make','spark','Créer'],['cut','star','Tailler']].map(([k,i,n])=>`<button role="tab" aria-selected="${rm===k}" class="${rm===k?'on':''}" data-act="rMode" data-m="${k}">${uic(i)}<span>${n}</span></button>`).join('')}</div>`;
+  const sub=`<div class="masub" role="tablist" aria-label="Runomancie">${[['inc','gem','Châsses'],['make','spark','Créer'],['cut','star','Tailler']].map(([k,i,n])=>`<button role="tab" aria-selected="${rm===k}" class="${rm===k?'on':''}" data-act="rMode" data-m="${k}">${uic(i)}<span>${n}</span></button>`).join('')}</div>`;
   return sub+(rm==='make'?runeMake():rm==='cut'?runeCut():runeInc());
 }
 function runeWrap(center,right,title,sm){ return `<div class="mfwork ${fHelpOn()?'':'nohelp'}">${fHelpOn()?`<aside class="mfl">${RUNE_HELP}</aside>`:''}
   <section class="mfc rune" id="mfc"><div class="mfhead">${helpBtn()}<span class="mfht"><b>${title}</b><small>${sm}</small></span></div>${center}</section><aside class="mfr">${right}</aside></div>` }
 function runeInc(){
   const h=S.heroes[0],f=UI.rItem?findItem(UI.rItem):null,it=f&&f.it; if(!it) UI.rItem=null; const L=sockOf(it);
-  const big=`<div class="mfs big rnit ${it?'full item':''}" ${it?`style="--rc:var(--r${it.rarity})" data-tip="f:${it.id}"`:''}>${it?bigIcon(it):'<small>Posez un équipement</small>'}</div>`;
+  const big=`<div class="mfs big rnit ${it?'full item':''}" data-rx="item" ${it?`style="--rc:var(--r${it.rarity})" data-tip="f:${it.id}"`:''}>${it?bigIcon(it):'<small>Posez un équipement</small>'}</div>`;
   const socks=it?[0,1].map(i=>{ const k=L[i];
     if(i>=L.length) return `<div class="rsock lk" ${ttip('Châsse '+(i+1),i===L.length?'Percez cette châsse à droite.':'Percez d’abord la châsse précédente.')}><span>${uic('lock')}</span><small>Non percée</small></div>`;
-    return k?`<button class="rsock on ${UI.rSock===i?'sel':''}" data-act="rSock" data-i="${i}" data-tip="nw:${k}"><svg class="mfi" viewBox="0 0 24 24">${MI[k]}</svg><small>${esc(gemName(k))}</small></button>`
-      :`<div class="rsock em" ${ttip('Châsse '+(i+1)+' libre','Cliquez une gemme à droite pour l’incruster.')}><span>◇</span><small>Libre</small></div>` }).join(''):'';
+    return k?`<button class="rsock on ${UI.rSock===i?'sel':''}" data-act="rSock" data-i="${i}" data-rx="sock" data-tip="nw:${k}"><svg class="mfi" viewBox="0 0 24 24">${MI[k]}</svg><small>${esc(gemName(k))}</small></button>`
+      :`<div class="rsock em" ${ttip('Châsse '+(i+1)+' libre','Glissez une gemme de l’inventaire sur cet équipement pour l’incruster.')}><span>◇</span><small>Libre</small></div>` }).join(''):'';
   let right;
   if(!it){ const eq=SLOTS.map(s=>h.equip[s]).filter(Boolean),bag=invItems().filter(sockable).sort((a,b)=>b.rarity-a.rarity||b.ilvl-a.ilvl).slice(0,24);
     const li=x=>`<button class="rlist" data-act="rPut" data-id="${x.id}" data-tip="f:${x.id}" style="--rc:var(--r${x.rarity})"><span class="rli">${eqIco(x)}</span><span><b>${esc(x.name)}</b><small>${RAR[x.rarity].n} · niv. ${x.ilvl} · ${sockOf(x).length} / 2 châsse${sockOf(x).length>1?'s':''}</small></span></button>`;
     right=`<h3>Aucun équipement</h3><p class="mfsm">Choisissez un objet ci-dessous, ou faites un clic droit dessus dans l’inventaire.</p><h4>Objets portés</h4><div class="rlists">${eq.map(li).join('')||'<small class="mute">Aucun.</small>'}</div><h4>Inventaire</h4><div class="rlists">${bag.map(li).join('')||'<small class="mute">Aucun équipement dans le sac.</small>'}</div>` }
   else{ const n=L.length,c=SOCK_COST[n],gems=ownGems(),sel=UI.rSock!=null&&L[UI.rSock];
-    right=`<h4 class="mfh1">Vos gemmes</h4>${gems.length?`<div class="mfown">${gems.map(k=>gemBtn(k,'rSet',L.includes(null)?'':'disabled')).join('')}</div>`:'<small class="mute">Aucune gemme : créez-en dans l’onglet Créer.</small>'}
-     ${gems.length&&!L.includes(null)?`<p class="mfsm mute">${n<2?'Percez une châsse pour incruster une gemme.':'Toutes les châsses sont occupées.'}</p>`:''}
+    right=`<h4 class="mfh1">Incruster une gemme</h4><p class="mfsm">Dans l’inventaire, <b>glissez une gemme sur l’équipement</b> : elle va dans la première châsse libre. Ici, vous pouvez percer des châsses et retirer des gemmes (clic sur une gemme posée, ou clic droit).</p>
      ${sel?`<h4>Châsse ${UI.rSock+1}</h4><p class="mfsm">${esc(gemName(sel))} : ${esc(gemTxt(sel,h))}.</p><button class="btn" data-act="rUnsock" ${S.gold>=UNSOCK?'':'disabled'}>Retirer la gemme (${fmt(UNSOCK)} or)</button>`:''}
      <div class="mfgo">${c?`<div class="mfcost">Percer la châsse ${n+1} : ${costHTML(c)}</div><button class="btn pri amgo" data-act="rPierce" ${canPay(c)?'':'disabled'}>${uic('gem')} Percer une châsse</button>`:'<p class="mfsm">Cet objet a déjà ses 2 châsses.</p>'}<button class="btn sm" data-act="rClear">Changer d’objet</button></div>` }
-  return runeWrap(`<div class="mfalt rnalt">${big}<div class="rsocks">${socks}</div></div><small class="mfhint">Clic droit sur un équipement de l’inventaire pour le poser ici.</small>`,right,'Table runique',it?esc(it.name):'Aucun objet posé');
+  return runeWrap(`<div class="mfalt rnalt">${big}<div class="rsocks">${socks}</div></div><small class="mfhint">Clic droit sur un équipement de l’inventaire pour le poser ici · clic droit sur l’objet posé ou sur une gemme pour les retirer.</small>`,right,'Table runique',it?esc(it.name):'Aucun objet posé');
 }
 function runeMake(){
   const t=GEM_T[UI.rT]?UI.rT:'r',k=gemK(t,1);
@@ -169,9 +168,9 @@ function runeMake(){
   return runeWrap(`<div class="rtypes">${types}</div><small class="mfhint">La poudre runique se trouve en combat et dans les recyclages.</small>`,right,'Création de gemme','Choisissez le type');
 }
 function runeCut(){
-  const L=ownGems().filter(k=>gemP(k).s<5); if(!L.includes(UI.rCut)) UI.rCut=L.find(k=>matAll(k)>=3)||L[0]||null; const k=UI.rCut,g=gemP(k);
+  const L=ownGems().filter(k=>gemP(k).s<5); if(!L.includes(UI.rCut)&&!UI.rCutX) UI.rCut=L.find(k=>matAll(k)>=3)||L[0]||null; if(UI.rCut&&!L.includes(UI.rCut)) UI.rCut=null; const k=UI.rCut,g=gemP(k);
   const out=g?gemK(g.t,g.s+1):null,cost=g?{gold:300*g.s}:{gold:0},ok=k&&matAll(k)>=3;
-  const slot=x=>`<div class="mfs ${k?'full':''}" style="--rc:var(--r${k?nwR(k):0})">${k?`<svg class="mfi" viewBox="0 0 24 24">${MI[k]}</svg>`:'<small>Gemme</small>'}</div>`;
+  const slot=x=>`<div class="mfs ${k?'full':''}" data-rx="cut" style="--rc:var(--r${k?nwR(k):0})">${k?`<svg class="mfi" viewBox="0 0 24 24">${MI[k]}</svg>`:'<small>Gemme</small>'}</div>`;
   const right=`<h4 class="mfh1">Gemmes à tailler</h4>${L.length?`<div class="mfown">${L.map(x=>gemBtn(x,'rCut')).join('')}</div>`:'<small class="mute">Aucune gemme à tailler.</small>'}
    ${out?`<h3 class="mfh2">Résultat</h3><div class="mfres" style="--rc:var(--r${nwR(out)})" data-tip="nw:${out}"><svg class="mfi" viewBox="0 0 24 24">${MI[out]}</svg><span><b>${esc(gemName(out))}</b><small>${esc(gemTxt(out,S.heroes[0]))}</small></span></div>`:''}
    <div class="mfgo">${k&&!ok?`<p class="lockr">Il faut 3 × ${esc(gemName(k))} (vous en avez ${matAll(k)}).</p>`:''}<div class="mfcost">Coût : ${costHTML(cost)}</div><button class="btn pri amgo" data-act="rDoCut" ${ok&&canPay(cost)?'':'disabled'}>${uic('star')} Tailler</button></div>`;
@@ -186,11 +185,11 @@ Object.assign(A,{
   rUnsock:()=>{ const f=UI.rItem&&findItem(UI.rItem),it=f&&f.it; if(!it||UI.rSock==null) return; const k=sockOf(it)[UI.rSock]; if(!k||S.gold<UNSOCK) return; S.gold-=UNSOCK; it.sock[UI.rSock]=null; gain({[k]:1}); UI.rSock=null; save(); toast(`${gemName(k)} retiré${GEM_T[gemP(k).t].f?'e':''} et rendu${GEM_T[gemP(k).t].f?'e':''}.`); render() },
   rT:d=>{ UI.rT=d.t; render() },
   rMake:()=>{ if(!canPay(GEM_MAKE)) return; const k=gemK(GEM_T[UI.rT]?UI.rT:'r',1); pay(GEM_MAKE); gain({[k]:1}); save(); toast(`${gemName(k)} créé${GEM_T[gemP(k).t].f?'e':''}.`); render() },
-  rCut:d=>{ UI.rCut=d.k; render() },
+  rCut:d=>{ UI.rCut=d.k; UI.rCutX=0; render() },
   rDoCut:()=>{ const k=UI.rCut,g=gemP(k); if(!g||g.s>=5||matAll(k)<3) return; const c={gold:300*g.s}; if(!canPay(c)) return; pay(c); removeMat(k,3); const o=gemK(g.t,g.s+1); gain({[o]:1}); save(); toast(`Taille réussie : ${gemName(o)}.`); render() } });
 /* clic droit depuis l’inventaire vers l’atelier ouvert */
 { const _fp=fPlace; fPlace=function(o,slot){ if(o&&UI.tab==='forge'){
-    if(UI.ws==='rune'){ if(!o.mat&&o.slot){ UI.rMode='inc'; UI.rItem=o.id; UI.rSock=null; render(); return } if(o.mat&&gemP(o.mat)){ if(UI.rMode==='cut'){ UI.rCut=o.mat; render(); return } if(UI.rItem){ A.rSet({k:o.mat}); return } } }
+    if(UI.ws==='rune'){ if(!o.mat&&o.slot){ UI.rMode='inc'; UI.rItem=o.id; UI.rSock=null; render(); return } if(o.mat&&gemP(o.mat)){ if(UI.rMode==='cut'){ UI.rCut=o.mat; render(); return } toast('Pour incruster, glissez la gemme sur l’équipement dans l’inventaire.'); return } }
     if(UI.ws==='alch'&&o.mat&&PLANTS[o.mat]){ if(UI.aMode==='jar'){ A.gPlant({k:o.mat}); return } toast('Les plantes se placent toutes seules : choisissez une recette.'); return } }
   return _fp.apply(this,arguments) } }
 /* gemmes et lotus en Défis et en Failles */
@@ -210,3 +209,27 @@ if(!UIC.rune) UIC.rune='<path d="M12 3l7 4v10l-7 4-7-4V7z M12 8v8M9 10l3-2 3 2" 
 /* nombre de châsses sur les icônes d’équipement (sac, emplacements, coffre, butin) */
 function sockTag(it){ const L=sockOf(it); if(!L.length) return '';
   return `<i class="isk" aria-label="${L.filter(Boolean).length} gemme(s) sur ${L.length} châsse(s)">${L.map(k=>{ const g=gemP(k); return `<b class="${g?'on':''}" ${g?`style="--gc:${GEM_T[g.t].c[0]}"`:''}></b>` }).join('')}</i>` }
+/* clic droit dans les ateliers : retirer ce qui est posé au centre */
+document.addEventListener('contextmenu',e=>{ const t=e.target.closest&&e.target.closest('#mfc [data-rx]'); if(!t) return; e.preventDefault(); if(typeof hideTip==='function') hideTip();
+  const x=t.dataset.rx; if(x==='item'){ if(UI.rItem){ UI.rItem=null; UI.rSock=null; render() } return }
+  if(x==='cut'){ UI.rCut=null; UI.rCutX=1; render(); return }
+  if(x==='sock'){ UI.rSock=+t.dataset.i; if(S.gold<UNSOCK){ toast(`Retirer une gemme coûte ${UNSOCK} or.`); render(); return } A.rUnsock() } });
+/* glisser-déposer une gemme sur un équipement (sac, équipement porté, coffre) */
+function gemInto(it,k){ if(!sockable(it)) return false; const L=sockOf(it),i=L.indexOf(null);
+  if(!L.length){ toast('Cet objet n’a pas de châsse : percez-en une à la Runomancie.'); return false }
+  if(i<0){ toast('Toutes les châsses de cet objet sont occupées.'); return false }
+  L[i]=k; it.sock=L; return true }
+window.addEventListener('pointerup',e=>{ const d=typeof DRAG!=='undefined'&&DRAG; if(!d||!d.on||(d.src!=='bag'&&d.src!=='stash')) return;
+  const E=d.src==='bag'?S.bag[d.from]:stashTab().bag[d.from]; const k=E&&E.o&&E.o.mat; if(!k||!gemP(k)) return;
+  const els=document.elementsFromPoint(e.clientX,e.clientY).filter(x=>x!==d.ghost&&!(d.ghost&&d.ghost.contains(x)));
+  let tgt=null; for(const x of els){ const c=x.closest&&x.closest('#bag .gi, #doll .dslot.full, #stash .si, .rnit.full'); if(c){ tgt=c; break } } if(!tgt) return;
+  let it=null; const h=S.heroes[0];
+  if(tgt.matches('#bag .gi')){ const B=S.bag[+tgt.dataset.i]; it=B&&B.o }
+  else if(tgt.matches('#doll .dslot')) it=h.equip[tgt.dataset.slot];
+  else if(tgt.matches('#stash .si')){ const B=stashTab().bag[+tgt.dataset.i]; it=B&&B.o }
+  else if(tgt.matches('.rnit')){ const f=UI.rItem&&findItem(UI.rItem); it=f&&f.it }
+  if(!it||it.mat) return;
+  e.stopImmediatePropagation(); endDrag(e,false);
+  if(gemInto(it,k)){ E.o.n--; if(E.o.n<=0){ if(d.src==='bag') S.bag.splice(d.from,1); else stashTab().bag.splice(d.from,1) } if(d.src==='stash') saveAcc(); save();
+    toast(`${gemName(k)} incrusté${GEM_T[gemP(k).t].f?'e':''} : ${it.name}.`) }
+  render() },true);

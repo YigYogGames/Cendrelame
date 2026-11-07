@@ -14,7 +14,8 @@ const CAMP_B={
  entrepot:{n:'Entrepôt',d:'Plus il est grand, plus le camp garde longtemps sa production quand vous ne récoltez pas.',
   cost:l=>({gold:Math.round(4000*Math.pow(l,1.8))}),
   svg:`<path d="M8 24 L32 10 L56 24 V44 H8Z" fill="#6a4a2a" stroke="#2a1a0c" stroke-width="2"/><rect x="22" y="28" width="20" height="16" fill="#3a2614" stroke="#2a1a0c" stroke-width="2"/><path d="M22 28l20 16M42 28L22 44" stroke="#8a6a44" stroke-width="2"/>`}};
-const CAMP_POS={mine:[4,10],autel:[54,8],jardin:[8,56],entrepot:[56,56]};
+/* zones du décor (centre x, centre y, largeur, hauteur en % de l’image) */
+const CAMP_POS={mine:[22,19,30,32],autel:[83,19,28,30],jardin:[24,73,36,34],entrepot:[79,69,36,36]};
 const campCapH=()=>4+2*camp().b.entrepot.lv;
 function camp(){ if(!S.camp){ const t=Date.now(); S.camp={b:{mine:{lv:1,t},autel:{lv:1,t},entrepot:{lv:1}},sel:'mine'} } return S.camp }
 const campHours=k=>{ const B=camp().b[k]; return B&&B.t?Math.min(campCapH(),(Date.now()-B.t)/3.6e6):0 };
@@ -41,10 +42,10 @@ function viewCamp(){
     if(B.prod){ const h=campHours(k),pc=Math.round(h/campCapH()*100),r=B.prod(lv); info=Object.entries(r).slice(0,2).map(([m,v])=>prodTxt(m,v)+'/h').join(' · '); bar=`<span class="cbar"><i style="width:${pc}%"></i></span>`; if(h>=.25) badge=`<span class="crdy ${campFull(k)?'full':''}">${campFull(k)?'Plein':'Prêt'}</span>` }
     else if(B.garden){ const g=garReady(); info=`${gar().u} parcelle${gar().u>1?'s':''} · ${gar().p.filter(Boolean).length} en pousse`; if(g) badge=`<span class="crdy">${g} prête${g>1?'s':''}</span>` }
     else info=`Garde ${campCapH()} h de production`;
-    return `<button class="cbld ${k===sel?'on':''}" style="left:${x}%;top:${y}%" data-act="campSel" data-k="${k}" ${ttip(B.n+' · niveau '+lv,B.d)}>${badge}<b>${B.n}</b><span class="cpic"><svg viewBox="0 0 64 48" aria-hidden="true">${B.svg}</svg></span><small>Niv. ${lv} · ${info}</small>${bar}</button>` }).join('');
-  return `<div class="camp24"><section class="cmap">
-    <svg class="cmapbg" viewBox="0 0 800 600" preserveAspectRatio="none" aria-hidden="true"><path d="M0 430 C200 380 300 470 420 410 S700 340 800 380 L800 600 L0 600Z" fill="#3a2a14" opacity=".45"/><path d="M380 600 C390 500 360 420 400 340 S470 240 440 120" stroke="#c9a25a" stroke-width="26" fill="none" opacity=".35" stroke-linecap="round"/><circle cx="410" cy="300" r="40" fill="#ff8a3a" opacity=".35"/><circle cx="410" cy="300" r="15" fill="#ffd060"/></svg>
-    <div class="chead"><h2>Camp de base</h2><span class="cchip">${uic('hour')} Production gardée : ${campCapH()} h</span>${rdy?`<button class="btn pri sm" data-act="campAll">Tout récolter (${rdy})</button>`:''}</div>${cards}</section>
+    const [w,hh]=[CAMP_POS[k][2],CAMP_POS[k][3]];
+    return `<button class="chot ${k===sel?'on':''}" style="left:${x-w/2}%;top:${y-hh/2}%;width:${w}%;height:${hh}%" data-act="campSel" data-k="${k}" ${ttip(B.n+' · niveau '+lv,B.d+' '+info+'.')}><span class="ctag">${badge}<b>${B.n} <em>niv. ${lv}</em></b>${bar}</span></button>` }).join('');
+  return `<div class="camp24"><section class="cmap"><div class="cstage"><img class="cimg" src="assets/img/ateliers/camp.jpg?v=${typeof VERSION!=='undefined'?VERSION:''}" alt="" draggable="false">${cards}
+    <div class="chead"><h2>Camp de base</h2><span class="cchip">${uic('hour')} Production gardée : ${campCapH()} h</span>${rdy?`<button class="btn pri sm" data-act="campAll">Tout récolter (${rdy})</button>`:''}</div></div></section>
    <aside class="cside">${campSide(sel)}</aside></div>`;
 }
 function campSide(k){
