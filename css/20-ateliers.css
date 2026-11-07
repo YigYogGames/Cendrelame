@@ -53,3 +53,10 @@ button.rsock{cursor:pointer}.rsock.on{box-shadow:0 0 16px #9a70ff88}.rsock.sel{b
 .gtab{width:100%;border-collapse:collapse;font-size:.8rem}.gtab td{padding:3px 4px;border-bottom:1px solid #c9ad7a66}.gtab td:first-child{display:flex;align-items:center;gap:6px}
 .mfc .gplot small{color:#e8d8b0!important;opacity:.9}.mfc .rsock small{color:#e0d0ff!important}
 .mfc.rune .mfrow3{display:flex;gap:14px;justify-content:center}.mfc.rune .mfrow3 .mfs{width:84px;height:84px;display:grid;place-items:center}.mfc.rune .mfs .mfi{width:46px;height:46px}.rcut .mfs.big .mfi{width:70px;height:70px}
+/* 0.8.24 : décors des ateliers (images de Roukette) */
+.mfc.forge{background:linear-gradient(#140b0566,#140b05aa),url(../assets/img/ateliers/forge.jpg) center 60%/cover no-repeat}
+.mfc.ench{background:linear-gradient(#0c081466,#0c0814aa),url(../assets/img/ateliers/enchantement.jpg) center 60%/cover no-repeat}
+.mfc.alch{background:linear-gradient(#0a140c55,#0a140caa),url(../assets/img/ateliers/alchimie.jpg) 20% 60%/cover no-repeat}
+.mfc.garden{background:linear-gradient(#14240c88,#14240cbb),url(../assets/img/ateliers/alchimie.jpg) 80% 60%/cover no-repeat}
+.mfc.rune{background:linear-gradient(#0c081455,#0c0814aa),url(../assets/img/ateliers/runomancie.jpg) center 70%/cover no-repeat}
+.bag .cell.full>svg.eqimg{position:absolute;left:4%;top:4%;width:92%;height:92%}
