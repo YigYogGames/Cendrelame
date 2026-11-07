@@ -1,0 +1,5 @@
+/* Cendrelame · Options → Son (0.8.28) */
+.opA .snr input[type=range]{width:min(220px,40vw);accent-color:#7b2a1a;cursor:pointer}
+.opA .snr .sndv{min-width:46px;text-align:right;font-variant-numeric:tabular-nums}
+.sngrid{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}
+@media (max-width:760px){.opA .snr{flex-wrap:wrap}.opA .snr .lab{flex-basis:100%}.opA .snr input[type=range]{flex:1;width:auto}}

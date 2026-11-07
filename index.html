@@ -4,28 +4,29 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>Cendrelame</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Alegreya+Sans:wght@400;500;700&family=IM+Fell+English+SC&display=swap">
-<link rel="stylesheet" href="css/00-initial.css?v=0.8.27">
-<link rel="stylesheet" href="css/01-base.css?v=0.8.27">
-<link rel="stylesheet" href="css/02-menus-et-personnages.css?v=0.8.27">
-<link rel="stylesheet" href="css/03-elements.css?v=0.8.27">
-<link rel="stylesheet" href="css/04-interface.css?v=0.8.27">
-<link rel="stylesheet" href="css/05-sprites-et-combat.css?v=0.8.27">
-<link rel="stylesheet" href="css/06-ajustements-0.4.css?v=0.8.27">
-<link rel="stylesheet" href="css/07-classement-quetes-hdv.css?v=0.8.27">
-<link rel="stylesheet" href="css/08-saison.css?v=0.8.27">
-<link rel="stylesheet" href="css/09-compagnon.css?v=0.8.27">
-<link rel="stylesheet" href="css/10-telephone.css?v=0.8.27">
-<link rel="stylesheet" href="css/11-defis-et-aide.css?v=0.8.27">
-<link rel="stylesheet" href="css/12-marche-et-stockage.css?v=0.8.27">
-<link rel="stylesheet" href="css/13-images-vectorielles.css?v=0.8.27">
-<link rel="stylesheet" href="css/14-plein-ecran.css?v=0.8.27">
-<link rel="stylesheet" href="css/15-boutons-graves.css?v=0.8.27">
-<link rel="stylesheet" href="css/16-accueil.css?v=0.8.27">
-<link rel="stylesheet" href="css/17-cosmetiques.css?v=0.8.27">
-<link rel="stylesheet" href="css/18-paladin.css?v=0.8.27">
-<link rel="stylesheet" href="css/19-failles.css?v=0.8.27">
-<link rel="stylesheet" href="css/20-ateliers.css?v=0.8.27">
-<link rel="stylesheet" href="css/21-camp.css?v=0.8.27">
+<link rel="stylesheet" href="css/00-initial.css?v=0.8.28">
+<link rel="stylesheet" href="css/01-base.css?v=0.8.28">
+<link rel="stylesheet" href="css/02-menus-et-personnages.css?v=0.8.28">
+<link rel="stylesheet" href="css/03-elements.css?v=0.8.28">
+<link rel="stylesheet" href="css/04-interface.css?v=0.8.28">
+<link rel="stylesheet" href="css/05-sprites-et-combat.css?v=0.8.28">
+<link rel="stylesheet" href="css/06-ajustements-0.4.css?v=0.8.28">
+<link rel="stylesheet" href="css/07-classement-quetes-hdv.css?v=0.8.28">
+<link rel="stylesheet" href="css/08-saison.css?v=0.8.28">
+<link rel="stylesheet" href="css/09-compagnon.css?v=0.8.28">
+<link rel="stylesheet" href="css/10-telephone.css?v=0.8.28">
+<link rel="stylesheet" href="css/11-defis-et-aide.css?v=0.8.28">
+<link rel="stylesheet" href="css/12-marche-et-stockage.css?v=0.8.28">
+<link rel="stylesheet" href="css/13-images-vectorielles.css?v=0.8.28">
+<link rel="stylesheet" href="css/14-plein-ecran.css?v=0.8.28">
+<link rel="stylesheet" href="css/15-boutons-graves.css?v=0.8.28">
+<link rel="stylesheet" href="css/16-accueil.css?v=0.8.28">
+<link rel="stylesheet" href="css/17-cosmetiques.css?v=0.8.28">
+<link rel="stylesheet" href="css/18-paladin.css?v=0.8.28">
+<link rel="stylesheet" href="css/19-failles.css?v=0.8.28">
+<link rel="stylesheet" href="css/20-ateliers.css?v=0.8.28">
+<link rel="stylesheet" href="css/21-camp.css?v=0.8.28">
+<link rel="stylesheet" href="css/22-sons.css?v=0.8.28">
 </head>
 <body>
 <div class="byline"><span id="ver"></span></div>
@@ -49,82 +50,84 @@
 <div id="updbar" class="updbar" role="alert" hidden><b>Une nouvelle version de Cendrelame est disponible.</b><span>Rafraîchissez la page pour l’installer (votre progression est sauvegardée).</span><button class="btn sm" data-act="updReload">Rafraîchir maintenant</button></div>
 <div id="toasts" aria-live="polite"></div>
 <div id="tip" hidden></div>
-<script src="js/version.js?v=0.8.27"></script>
-<script src="js/core/utilitaires.js?v=0.8.27"></script>
-<script src="js/data/images-presentes.js?v=0.8.27"></script>
-<script src="js/core/images.js?v=0.8.27"></script>
-<script src="js/data/objets-et-potions.js?v=0.8.27"></script>
-<script src="js/data/classes-et-competences.js?v=0.8.27"></script>
-<script src="js/data/icones-des-sorts.js?v=0.8.27"></script>
-<script src="js/core/etat-et-migrations.js?v=0.8.27"></script>
-<script src="js/systems/objets.js?v=0.8.27"></script>
-<script src="js/systems/heros.js?v=0.8.27"></script>
-<script src="js/systems/combat-aventure.js?v=0.8.27"></script>
-<script src="js/systems/collecte.js?v=0.8.27"></script>
-<script src="js/ui/rendu.js?v=0.8.27"></script>
-<script src="js/online/compte-et-amis.js?v=0.8.27"></script>
-<script src="js/online/duels.js?v=0.8.27"></script>
-<script src="js/online/raids-a-deux.js?v=0.8.27"></script>
-<script src="js/online/chat.js?v=0.8.27"></script>
-<script src="js/ui/ecrans-connexion-creation.js?v=0.8.27"></script>
-<script src="js/ui/carte-aventure.js?v=0.8.27"></script>
-<script src="js/ui/trophees.js?v=0.8.27"></script>
-<script src="js/ui/carte-de-joueur.js?v=0.8.27"></script>
-<script src="js/ui/communaute.js?v=0.8.27"></script>
-<script src="js/systems/coffre-des-reliques.js?v=0.8.27"></script>
-<script src="js/online/messagerie.js?v=0.8.27"></script>
-<script src="js/ui/sprites-et-selection.js?v=0.8.27"></script>
-<script src="js/ui/scene-de-combat.js?v=0.8.27"></script>
-<script src="js/systems/forge.js?v=0.8.27"></script>
-<script src="js/online/nouvelle-saison.js?v=0.8.27"></script>
-<script src="js/admin/administration.js?v=0.8.27"></script>
-<script src="js/systems/defis-solo.js?v=0.8.27"></script>
-<script src="js/ui/page-personnage.js?v=0.8.27"></script>
-<script src="js/ui/nouveautes-chroniques.js?v=0.8.27"></script>
-<script src="js/online/classement.js?v=0.8.27"></script>
-<script src="js/systems/quetes.js?v=0.8.27"></script>
-<script src="js/systems/potions-en-combat.js?v=0.8.27"></script>
-<script src="js/ui/marchand-et-personnage.js?v=0.8.27"></script>
-<script src="js/ui/inventaire.js?v=0.8.27"></script>
-<script src="js/systems/forge-creation.js?v=0.8.27"></script>
-<script src="js/systems/coffre-du-compte.js?v=0.8.27"></script>
-<script src="js/ui/collecte-et-marchand.js?v=0.8.27"></script>
-<script src="js/ui/aide-base.js?v=0.8.27"></script>
-<script src="js/ui/nouveautes.js?v=0.8.27"></script>
-<script src="js/data/notes-de-version.js?v=0.8.27"></script>
-<script src="js/ui/nouveautes-suite.js?v=0.8.27"></script>
-<script src="js/core/sauvegarde.js?v=0.8.27"></script>
-<script src="js/admin/bestiaire.js?v=0.8.27"></script>
-<script src="js/ui/infobulles.js?v=0.8.27"></script>
-<script src="js/ui/actions.js?v=0.8.27"></script>
-<script src="js/ui/reglages-du-combat.js?v=0.8.27"></script>
-<script src="js/online/hotel-des-ventes.js?v=0.8.27"></script>
-<script src="js/ui/popup-mise-a-jour.js?v=0.8.27"></script>
-<script src="js/systems/moteur-de-combat.js?v=0.8.27"></script>
-<script src="js/ui/page-competences.js?v=0.8.27"></script>
-<script src="js/systems/saison-et-cosmetiques.js?v=0.8.27"></script>
-<script src="js/systems/potions-ascension-fusion.js?v=0.8.27"></script>
-<script src="js/systems/coffres-et-admin.js?v=0.8.27"></script>
-<script src="js/systems/compagnon-dessins.js?v=0.8.27"></script>
-<script src="js/systems/compagnon.js?v=0.8.27"></script>
-<script src="js/ui/telephone.js?v=0.8.27"></script>
-<script src="js/systems/raretes-et-defis.js?v=0.8.27"></script>
-<script src="js/ui/aide.js?v=0.8.27"></script>
-<script src="js/ui/forge-equipement-porte.js?v=0.8.27"></script>
-<script src="js/systems/marche-et-stockage.js?v=0.8.27"></script>
-<script src="js/systems/pouvoirs-legendaires.js?v=0.8.27"></script>
-<script src="js/systems/affixes-par-emplacement.js?v=0.8.27"></script>
-<script src="js/systems/butin.js?v=0.8.27"></script>
-<script src="js/systems/sac-de-base.js?v=0.8.27"></script>
-<script src="js/systems/apparences.js?v=0.8.27"></script>
-<script src="js/systems/paladin.js?v=0.8.27"></script>
-<script src="js/systems/cosmetiques-prodiges.js?v=0.8.27"></script>
-<script src="js/systems/gains-hors-ligne.js?v=0.8.27"></script>
-<script src="js/ui/accueil.js?v=0.8.27"></script>
-<script src="js/ui/amis-deplacable.js?v=0.8.27"></script>
-<script src="js/ui/plein-ecran.js?v=0.8.27"></script>
-<script src="js/systems/failles.js?v=0.8.27"></script>
-<script src="js/systems/ateliers.js?v=0.8.27"></script>
-<script src="js/systems/camp.js?v=0.8.27"></script>
-<script src="js/core/demarrage.js?v=0.8.27"></script>
+<script src="js/version.js?v=0.8.28"></script>
+<script src="js/core/utilitaires.js?v=0.8.28"></script>
+<script src="js/data/images-presentes.js?v=0.8.28"></script>
+<script src="js/data/sons-presents.js?v=0.8.28"></script>
+<script src="js/core/images.js?v=0.8.28"></script>
+<script src="js/data/objets-et-potions.js?v=0.8.28"></script>
+<script src="js/data/classes-et-competences.js?v=0.8.28"></script>
+<script src="js/data/icones-des-sorts.js?v=0.8.28"></script>
+<script src="js/core/etat-et-migrations.js?v=0.8.28"></script>
+<script src="js/systems/objets.js?v=0.8.28"></script>
+<script src="js/systems/heros.js?v=0.8.28"></script>
+<script src="js/systems/combat-aventure.js?v=0.8.28"></script>
+<script src="js/systems/collecte.js?v=0.8.28"></script>
+<script src="js/ui/rendu.js?v=0.8.28"></script>
+<script src="js/online/compte-et-amis.js?v=0.8.28"></script>
+<script src="js/online/duels.js?v=0.8.28"></script>
+<script src="js/online/raids-a-deux.js?v=0.8.28"></script>
+<script src="js/online/chat.js?v=0.8.28"></script>
+<script src="js/ui/ecrans-connexion-creation.js?v=0.8.28"></script>
+<script src="js/ui/carte-aventure.js?v=0.8.28"></script>
+<script src="js/ui/trophees.js?v=0.8.28"></script>
+<script src="js/ui/carte-de-joueur.js?v=0.8.28"></script>
+<script src="js/ui/communaute.js?v=0.8.28"></script>
+<script src="js/systems/coffre-des-reliques.js?v=0.8.28"></script>
+<script src="js/online/messagerie.js?v=0.8.28"></script>
+<script src="js/ui/sprites-et-selection.js?v=0.8.28"></script>
+<script src="js/ui/scene-de-combat.js?v=0.8.28"></script>
+<script src="js/systems/forge.js?v=0.8.28"></script>
+<script src="js/online/nouvelle-saison.js?v=0.8.28"></script>
+<script src="js/admin/administration.js?v=0.8.28"></script>
+<script src="js/systems/defis-solo.js?v=0.8.28"></script>
+<script src="js/ui/page-personnage.js?v=0.8.28"></script>
+<script src="js/ui/nouveautes-chroniques.js?v=0.8.28"></script>
+<script src="js/online/classement.js?v=0.8.28"></script>
+<script src="js/systems/quetes.js?v=0.8.28"></script>
+<script src="js/systems/potions-en-combat.js?v=0.8.28"></script>
+<script src="js/ui/marchand-et-personnage.js?v=0.8.28"></script>
+<script src="js/ui/inventaire.js?v=0.8.28"></script>
+<script src="js/systems/forge-creation.js?v=0.8.28"></script>
+<script src="js/systems/coffre-du-compte.js?v=0.8.28"></script>
+<script src="js/ui/collecte-et-marchand.js?v=0.8.28"></script>
+<script src="js/ui/aide-base.js?v=0.8.28"></script>
+<script src="js/ui/nouveautes.js?v=0.8.28"></script>
+<script src="js/data/notes-de-version.js?v=0.8.28"></script>
+<script src="js/ui/nouveautes-suite.js?v=0.8.28"></script>
+<script src="js/core/sauvegarde.js?v=0.8.28"></script>
+<script src="js/admin/bestiaire.js?v=0.8.28"></script>
+<script src="js/ui/infobulles.js?v=0.8.28"></script>
+<script src="js/ui/actions.js?v=0.8.28"></script>
+<script src="js/ui/reglages-du-combat.js?v=0.8.28"></script>
+<script src="js/online/hotel-des-ventes.js?v=0.8.28"></script>
+<script src="js/ui/popup-mise-a-jour.js?v=0.8.28"></script>
+<script src="js/systems/moteur-de-combat.js?v=0.8.28"></script>
+<script src="js/ui/page-competences.js?v=0.8.28"></script>
+<script src="js/systems/saison-et-cosmetiques.js?v=0.8.28"></script>
+<script src="js/systems/potions-ascension-fusion.js?v=0.8.28"></script>
+<script src="js/systems/coffres-et-admin.js?v=0.8.28"></script>
+<script src="js/systems/compagnon-dessins.js?v=0.8.28"></script>
+<script src="js/systems/compagnon.js?v=0.8.28"></script>
+<script src="js/ui/telephone.js?v=0.8.28"></script>
+<script src="js/systems/raretes-et-defis.js?v=0.8.28"></script>
+<script src="js/ui/aide.js?v=0.8.28"></script>
+<script src="js/ui/forge-equipement-porte.js?v=0.8.28"></script>
+<script src="js/systems/marche-et-stockage.js?v=0.8.28"></script>
+<script src="js/systems/pouvoirs-legendaires.js?v=0.8.28"></script>
+<script src="js/systems/affixes-par-emplacement.js?v=0.8.28"></script>
+<script src="js/systems/butin.js?v=0.8.28"></script>
+<script src="js/systems/sac-de-base.js?v=0.8.28"></script>
+<script src="js/systems/apparences.js?v=0.8.28"></script>
+<script src="js/systems/paladin.js?v=0.8.28"></script>
+<script src="js/systems/cosmetiques-prodiges.js?v=0.8.28"></script>
+<script src="js/systems/gains-hors-ligne.js?v=0.8.28"></script>
+<script src="js/ui/accueil.js?v=0.8.28"></script>
+<script src="js/ui/amis-deplacable.js?v=0.8.28"></script>
+<script src="js/ui/plein-ecran.js?v=0.8.28"></script>
+<script src="js/systems/failles.js?v=0.8.28"></script>
+<script src="js/systems/ateliers.js?v=0.8.28"></script>
+<script src="js/systems/camp.js?v=0.8.28"></script>
+<script src="js/systems/sons.js?v=0.8.28"></script>
+<script src="js/core/demarrage.js?v=0.8.28"></script>
 </body></html>
