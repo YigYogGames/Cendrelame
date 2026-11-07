@@ -84,3 +84,26 @@
   /* 0.8.18 : décor plein écran en « cover », recadré sur le milieu du paysage (images 2880 × 960 plus nettes) */
   body.hasdock:not(.scr) #scene{background-size:cover;background-position:center 62%;background-color:#140b05}
 }
+
+/* 0.8.22 : les lignes du sac ne s’étirent plus (un objet 1 × 2 occupe bien 2 cases visuellement) */
+#invpop .bag,#stashpop .bag{align-content:center;grid-auto-rows:auto}
+.bag .cell.full{position:relative;overflow:hidden}
+.bag .cell.full>svg.eqi{position:absolute;left:8%;top:6%;width:84%;height:88%}
+/* 0.8.22 : ateliers (forge, enchantement, alchimie, runomancie) à hauteur fixe, sans barre de défilement */
+@media (min-width:761px){
+  body.hasdock:not(.scr)[data-tab=forge] main#view{overflow:hidden;display:flex;flex-direction:column}
+  body.hasdock:not(.scr)[data-tab=forge] .ma1{flex:1;min-height:0;display:flex;flex-direction:column}
+  body.hasdock:not(.scr)[data-tab=forge] .mawts{flex:none}
+  body.hasdock:not(.scr)[data-tab=forge] .mabody{flex:1;min-height:0}
+  body.hasdock:not(.scr)[data-tab=forge] .mfwork,body.hasdock:not(.scr)[data-tab=forge] .mawork{height:auto!important;min-height:0!important;max-height:100%}
+  body.hasdock:not(.scr)[data-tab=forge] .mfl{font-size:.76rem;line-height:1.25;padding:10px 12px}
+  body.hasdock:not(.scr)[data-tab=forge] .mfr{font-size:.86rem}body.hasdock:not(.scr)[data-tab=forge] .mfr h4{margin:8px 0 4px}body.hasdock:not(.scr)[data-tab=forge] .mfr p{font-size:.84rem;margin-bottom:4px}
+  body.hasdock:not(.scr)[data-tab=forge] .mfl li{margin-bottom:2px}body.hasdock:not(.scr)[data-tab=forge] .mfl ol,body.hasdock:not(.scr)[data-tab=forge] .mfl ul,body.hasdock:not(.scr)[data-tab=forge] .mfl p,body.hasdock:not(.scr)[data-tab=forge] .mfl div{font-size:.82rem!important}
+  body.hasdock:not(.scr)[data-tab=forge] .mfl,body.hasdock:not(.scr)[data-tab=forge] .mfr{scrollbar-width:none}
+  body.hasdock:not(.scr)[data-tab=forge] .mfl::-webkit-scrollbar,body.hasdock:not(.scr)[data-tab=forge] .mfr::-webkit-scrollbar{display:none}
+  body.hasdock:not(.scr)[data-tab=forge] .mfbag82{max-height:none;scrollbar-width:thin}
+}
+@media (min-width:761px){
+  /* enchantement : les tableaux « rareté selon la rune » et « type selon l’essence » sont déjà dans l’aide de gauche */
+  body.hasdock:not(.scr)[data-tab=forge] .mfr .mftab,body.hasdock:not(.scr)[data-tab=forge] .mfr h4:has(+ .mftab){display:none}
+}
