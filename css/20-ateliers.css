@@ -60,3 +60,6 @@ button.rsock{cursor:pointer}.rsock.on{box-shadow:0 0 16px #9a70ff88}.rsock.sel{b
 .mfc.garden{background:linear-gradient(#14240c88,#14240cbb),url(../assets/img/ateliers/alchimie.jpg) 80% 60%/cover no-repeat}
 .mfc.rune{background:linear-gradient(#0c081455,#0c0814aa),url(../assets/img/ateliers/runomancie.jpg) center 70%/cover no-repeat}
 .bag .cell.full>svg.eqimg{position:absolute;left:4%;top:4%;width:92%;height:92%}
+.isk{position:absolute;left:4px;top:4px;display:flex;gap:3px;z-index:4;pointer-events:none}
+.isk b{width:8px;height:8px;rotate:45deg;border:1.5px solid #f3e6c8;background:#140b05cc;box-shadow:0 0 2px #000}
+.isk b.on{background:var(--gc);border-color:#fff6d0;box-shadow:0 0 5px var(--gc)}

@@ -207,3 +207,6 @@ if(!UIC.flask) UIC.flask='<path d="M9 3h6M10 3v6l-5 9a2 2 0 0 0 2 3h10a2 2 0 0 0
 if(!UIC.leaf) UIC.leaf='<path d="M5 19c0-9 6-14 15-14 0 9-5 15-14 15M5 19l8-8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>';
 if(!UIC.gem) UIC.gem='<path d="M7 4h10l4 5-9 11L3 9z M3 9h18" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>';
 if(!UIC.rune) UIC.rune='<path d="M12 3l7 4v10l-7 4-7-4V7z M12 8v8M9 10l3-2 3 2" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>';
+/* nombre de châsses sur les icônes d’équipement (sac, emplacements, coffre, butin) */
+function sockTag(it){ const L=sockOf(it); if(!L.length) return '';
+  return `<i class="isk" aria-label="${L.filter(Boolean).length} gemme(s) sur ${L.length} châsse(s)">${L.map(k=>{ const g=gemP(k); return `<b class="${g?'on':''}" ${g?`style="--gc:${GEM_T[g.t].c[0]}"`:''}></b>` }).join('')}</i>` }

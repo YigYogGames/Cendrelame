@@ -104,7 +104,7 @@ const matSvg=k=>`<svg viewBox="0 0 24 24" aria-hidden="true">${MI[k]||''}</svg>`
 const TALL={sword:'<path d="M10 3l3 4v58l-3 4-3-4V7z"/><path d="M2 67h16v4H2z"/><path d="M8.5 71h3v17h-3z"/><circle cx="10" cy="91.5" r="3.2"/>',
   staff:'<circle cx="10" cy="11" r="7"/><path d="M8.6 17h2.8v79h-2.8z"/><path d="M4 22q6 5 12 0v3q-6 5-12 0z"/>'};
 const itFx=it=>it&&!it.mat?(lvlOk(it)?'':' bad'):'';
-const ilTag=it=>it&&!it.mat?`${it.rarity>=2?`<i class="rfx r${it.rarity}"></i>`:''}${lvlOk(it)?'':`<i class="ilk" aria-hidden="true"><span>${uic('lock','ilks')}</span></i>`}<em class="il">${it.ilvl}</em>`:'';
+const ilTag=it=>it&&!it.mat?`${it.rarity>=2?`<i class="rfx r${it.rarity}"></i>`:''}${lvlOk(it)?'':`<i class="ilk" aria-hidden="true"><span>${uic('lock','ilks')}</span></i>`}<em class="il">${it.ilvl}</em>${typeof sockTag==='function'?sockTag(it):''}`:'';
 const EQ_RC=['#c8c4b8','#5a9ae8','#e0b040','#a868e8','#ee8a3a','#3ad0d8'];
 const EQP={
  helm:{o:'M9 27C9 15 16 7 24 7s15 8 15 20v8h-8v-6h-4v12h-6V29h-4v6H9z',d:['M24 7v12','M13 22h22','M9 27h6M33 27h6']},
